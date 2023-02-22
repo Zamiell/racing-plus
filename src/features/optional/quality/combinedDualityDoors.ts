@@ -31,7 +31,7 @@ export function init(): void {
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  if (!config.combinedDualityDoors) {
+  if (!config.CombinedDualityDoors) {
     return;
   }
 
@@ -111,7 +111,7 @@ function shouldInvertDirection(slot: DoorSlot) {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.combinedDualityDoors) {
+  if (!config.CombinedDualityDoors) {
     return;
   }
 
@@ -120,7 +120,7 @@ export function postNewRoom(): void {
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
-  if (!config.combinedDualityDoors) {
+  if (!config.CombinedDualityDoors) {
     return;
   }
 

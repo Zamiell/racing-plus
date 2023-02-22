@@ -60,7 +60,7 @@ function newMysteryGiftSprite(icon: boolean) {
 }
 
 export class FreeDevilItem extends ConfigurableModFeature {
-  configKey: keyof Config = "freeDevilItem";
+  configKey: keyof Config = "FreeDevilItem";
   v = v;
 
   // 2
@@ -192,7 +192,7 @@ export class FreeDevilItem extends ConfigurableModFeature {
     amount: float,
     damageFlags: BitFlags<DamageFlag>,
   ): boolean | undefined {
-    if (!config.freeDevilItem) {
+    if (!config.FreeDevilItem) {
       return undefined;
     }
 

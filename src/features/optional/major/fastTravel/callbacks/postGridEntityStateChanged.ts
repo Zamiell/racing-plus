@@ -7,7 +7,7 @@ export function fastTravelPostGridEntityStateChangedTeleporter(
   _oldState: int,
   newState: int,
 ): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

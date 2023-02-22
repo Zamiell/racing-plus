@@ -23,7 +23,7 @@ const v = {
 };
 
 export class DummyDPS extends ConfigurableModFeature {
-  configKey: keyof Config = "dummyDPS";
+  configKey: keyof Config = "DummyDPS";
   v = v;
 
   // 11, 964

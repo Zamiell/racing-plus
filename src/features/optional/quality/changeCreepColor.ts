@@ -9,7 +9,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.EVALUATE_CACHE (8)
 // CacheFlag.TEAR_COLOR (1 << 6)
 export function evaluateCacheTearColor(player: EntityPlayer): void {
-  if (!config.changeCreepColor) {
+  if (!config.ChangeCreepColor) {
     return;
   }
 
@@ -38,7 +38,7 @@ function changeMysteriousLiquidColor(player: EntityPlayer) {
 // ModCallback.POST_EFFECT_INIT (54)
 // EffectVariant.PLAYER_CREEP_GREEN (53)
 export function postEffectInitPlayerCreepGreen(effect: EntityEffect): void {
-  if (!config.changeCreepColor) {
+  if (!config.ChangeCreepColor) {
     return;
   }
 
@@ -71,7 +71,7 @@ function changeGreenCreepToBlue(effect: EntityEffect) {
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.CREEP_RED (22)
 export function postEffectUpdateCreepRed(effect: EntityEffect): void {
-  if (!config.changeCreepColor) {
+  if (!config.ChangeCreepColor) {
     return;
   }
 
@@ -97,7 +97,7 @@ function changeRedCreepToGreen(effect: EntityEffect) {
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.PLAYER_CREEP_RED (46)
 export function postEffectUpdatePlayerCreepRed(effect: EntityEffect): void {
-  if (!config.changeCreepColor) {
+  if (!config.ChangeCreepColor) {
     return;
   }
 

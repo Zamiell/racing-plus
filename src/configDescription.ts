@@ -17,7 +17,7 @@ const MAX_CONFIG_PAGE_LENGTH = 10;
 // 0001-0010
 export const MAJOR_CHANGES = [
   [
-    "clientCommunication",
+    "ClientCommunication",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "001",
@@ -26,7 +26,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "startWithD6",
+    "StartWithD6",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "002",
@@ -35,7 +35,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "disableCurses",
+    "DisableCurses",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "003",
@@ -44,7 +44,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "betterDevilAngelRooms",
+    "BetterDevilAngelRooms",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "004",
@@ -53,7 +53,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "freeDevilItem",
+    "FreeDevilItem",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "005",
@@ -62,7 +62,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "fastReset",
+    "FastReset",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "006",
@@ -71,7 +71,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "fastClear",
+    "FastClear",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "007",
@@ -80,7 +80,7 @@ export const MAJOR_CHANGES = [
     ],
   ],
   [
-    "fastTravel",
+    "FastTravel",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "008",
@@ -187,7 +187,7 @@ export const CUSTOM_HOTKEYS = [
 // 0201-0210
 export const CHARACTER_CHANGES = [
   [
-    "judasAddBomb", // 3
+    "JudasAddBomb", // 3
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0201",
@@ -196,7 +196,7 @@ export const CHARACTER_CHANGES = [
     ],
   ],
   [
-    "samsonDropHeart", // 6
+    "SamsonDropHeart", // 6
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0202",
@@ -205,7 +205,7 @@ export const CHARACTER_CHANGES = [
     ],
   ],
   [
-    "showEdenStartingItems", // 9, 30
+    "ShowEdenStartingItems", // 9, 30
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0203",
@@ -214,7 +214,7 @@ export const CHARACTER_CHANGES = [
     ],
   ],
   [
-    "lostUseHolyCard", // 31
+    "LostUseHolyCard", // 31
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0204",
@@ -223,7 +223,7 @@ export const CHARACTER_CHANGES = [
     ],
   ],
   [
-    "taintedKeeperMoney", // 33
+    "TaintedKeeperMoney", // 33
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0205",
@@ -236,7 +236,7 @@ export const CHARACTER_CHANGES = [
 // 0301-0310
 export const BOSS_CHANGES_1 = [
   [
-    "fadeBosses",
+    "FadeBosses",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0301",
@@ -245,7 +245,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "removeArmor",
+    "RemoveArmor",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0302",
@@ -254,7 +254,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastBossRush",
+    "FastBossRush",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0303",
@@ -263,7 +263,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "killExtraEnemies", // 45, 78
+    "KillExtraEnemies", // 45, 78
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0304",
@@ -272,7 +272,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastPin", // 62
+    "FastPin", // 62
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0305",
@@ -281,7 +281,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "preventDeathSlow", // 66
+    "PreventDeathSlow", // 66
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0306",
@@ -290,7 +290,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastBlastocyst", // 74
+    "FastBlastocyst", // 74
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0307",
@@ -299,7 +299,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastKrampus", // 81
+    "FastKrampus", // 81
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0308",
@@ -308,7 +308,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastSatan", // 84
+    "FastSatan", // 84
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0309",
@@ -317,7 +317,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "fastHaunt", // 260
+    "FastHaunt", // 260
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0310",
@@ -330,7 +330,7 @@ export const BOSS_CHANGES_1 = [
 // 0311-0320
 export const BOSS_CHANGES_2 = [
   [
-    "fastAngels", // 271, 272
+    "FastAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0311",
@@ -339,7 +339,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "consistentAngels", // 271, 272
+    "ConsistentAngels", // 271, 272
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0312",
@@ -348,7 +348,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "removeLambBody", // 273
+    "RemoveLambBody", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0313",
@@ -357,7 +357,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "preventVictoryLapPopup", // 273
+    "PreventVictoryLapPopup", // 273
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0314",
@@ -366,7 +366,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "fastMegaSatan", // 274, 275
+    "FastMegaSatan", // 274, 275
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0315",
@@ -375,7 +375,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "preventEndMegaSatan", // 275
+    "PreventEndMegaSatan", // 275
     [
       ModConfigMenuOptionType.TEXT,
       "0316",
@@ -384,7 +384,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "openHushDoor", // 407
+    "OpenHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0317",
@@ -393,7 +393,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "fastHush", // 407
+    "FastHush", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0318",
@@ -402,7 +402,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "fastBigHorn", // 411
+    "FastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0319",
@@ -411,7 +411,7 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
-    "fastHeretic", // 905
+    "FastHeretic", // 905
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0320",
@@ -424,7 +424,7 @@ export const BOSS_CHANGES_2 = [
 // 0321-0330
 export const BOSS_CHANGES_3 = [
   [
-    "fastColostomia", // 917
+    "FastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0321",
@@ -433,7 +433,7 @@ export const BOSS_CHANGES_3 = [
     ],
   ],
   [
-    "fastDogma", // 950
+    "FastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0322",
@@ -442,7 +442,7 @@ export const BOSS_CHANGES_3 = [
     ],
   ],
   [
-    "preventEndBeast", // 951
+    "PreventEndBeast", // 951
     [
       ModConfigMenuOptionType.TEXT,
       "0323",
@@ -455,7 +455,7 @@ export const BOSS_CHANGES_3 = [
 // 0401-0410
 export const ENEMY_CHANGES_1 = [
   [
-    "fadeFriendlyEnemies",
+    "FadeFriendlyEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0401",
@@ -464,7 +464,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "removeTreasureRoomEnemies",
+    "RemoveTreasureRoomEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0402",
@@ -473,7 +473,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "clearerShadowAttacks",
+    "ClearerShadowAttacks",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0403",
@@ -482,7 +482,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "globinSoftlock", // 24
+    "GlobinSoftlock", // 24
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0404",
@@ -491,7 +491,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "fastHands", // 213, 287
+    "FastHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0405",
@@ -500,7 +500,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "appearHands", // 213, 287
+    "AppearHands", // 213, 287
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0406",
@@ -509,7 +509,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "disableInvulnerability", // 219, 260, 285
+    "DisableInvulnerability", // 219, 260, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0407",
@@ -518,7 +518,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "fastGhosts", // 219, 285
+    "FastGhosts", // 219, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0408",
@@ -527,7 +527,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "replaceCodWorms", // 221
+    "ReplaceCodWorms", // 221
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0409",
@@ -536,7 +536,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "removeStrayPitfalls", // 291
+    "RemoveStrayPitfalls", // 291
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0410",
@@ -549,7 +549,7 @@ export const ENEMY_CHANGES_1 = [
 // 0411-0420
 export const ENEMY_CHANGES_2 = [
   [
-    "fastPolties", // 816
+    "FastPolties", // 816
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0411",
@@ -558,7 +558,7 @@ export const ENEMY_CHANGES_2 = [
     ],
   ],
   [
-    "fastNeedles", // 881
+    "FastNeedles", // 881
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0412",
@@ -567,7 +567,7 @@ export const ENEMY_CHANGES_2 = [
     ],
   ],
   [
-    "fastDusts", // 882
+    "FastDusts", // 882
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0413",
@@ -576,7 +576,7 @@ export const ENEMY_CHANGES_2 = [
     ],
   ],
   [
-    "dummyDPS", // 964
+    "DummyDPS", // 964
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0414",
@@ -589,7 +589,7 @@ export const ENEMY_CHANGES_2 = [
 // 0501-0510
 export const QUALITY_OF_LIFE_CHANGES_1 = [
   [
-    "speedUpFadeIn",
+    "SpeedUpFadeIn",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0501",
@@ -598,7 +598,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "easyFirstFloorItems",
+    "EasyFirstFloorItems",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0502",
@@ -607,7 +607,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "changeCreepColor",
+    "ChangeCreepColor",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0503",
@@ -616,7 +616,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "subvertTeleport",
+    "SubvertTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0504",
@@ -625,7 +625,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "deleteVoidPortals",
+    "DeleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0505",
@@ -634,7 +634,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "showNumSacrifices",
+    "ShowNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0506",
@@ -643,7 +643,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "taintedSamsonChargeBar",
+    "TaintedSamsonChargeBar",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0507",
@@ -652,7 +652,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "bloodyLustChargeBar",
+    "BloodyLustChargeBar",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0508",
@@ -661,7 +661,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "leadPencilChargeBar", // 444
+    "LeadPencilChargeBar", // 444
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0509",
@@ -670,7 +670,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "azazelsRageChargeBar", // 669
+    "AzazelsRageChargeBar", // 669
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0510",
@@ -683,7 +683,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
 // 0511-0520
 export const QUALITY_OF_LIFE_CHANGES_2 = [
   [
-    "combinedDualityDoors", // 498
+    "CombinedDualityDoors", // 498
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0511",
@@ -692,7 +692,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "removeFortuneCookieBanners", // 557
+    "RemoveFortuneCookieBanners", // 557
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0512",
@@ -701,7 +701,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "showDreamCatcherItem", // 566
+    "ShowDreamCatcherItem", // 566
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0513",
@@ -710,7 +710,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "fastLuna", // 589
+    "FastLuna", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0514",
@@ -719,7 +719,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "fadeVasculitisTears", // 657
+    "FadeVasculitisTears", // 657
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0515",
@@ -728,7 +728,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "fastVanishingTwin", // 697
+    "FastVanishingTwin", // 697
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0516",
@@ -737,7 +737,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "flipCustom", // 711
+    "FlipCustom", // 711
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0517",
@@ -746,7 +746,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "removePerfectionVelocity", // 145
+    "RemovePerfectionVelocity", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0518",
@@ -755,7 +755,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "removePerfectionOnEndFloors", // 145
+    "RemovePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0519",
@@ -764,7 +764,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "displayExpansionPack", // 181
+    "DisplayExpansionPack", // 181
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0520",
@@ -777,7 +777,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
 // 0521-0530
 export const QUALITY_OF_LIFE_CHANGES_3 = [
   [
-    "automaticItemInsertion",
+    "AutomaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0521",
@@ -786,7 +786,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "chargePocketItemFirst",
+    "ChargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0522",
@@ -795,7 +795,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "showMaxFamiliars",
+    "ShowMaxFamiliars",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0523",
@@ -804,7 +804,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "showPills",
+    "ShowPills",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0524",
@@ -813,7 +813,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "fadeDevilStatue",
+    "FadeDevilStatue",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0525",
@@ -835,7 +835,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
 // 0601-0610
 export const GAMEPLAY_CHANGES = [
   [
-    "extraStartingItems",
+    "ExtraStartingItems",
     [
       ModConfigMenuOptionType.TEXT,
       "0601",
@@ -844,7 +844,7 @@ export const GAMEPLAY_CHANGES = [
     ],
   ],
   [
-    "consistentTrollBombs",
+    "ConsistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0602",
@@ -853,7 +853,7 @@ export const GAMEPLAY_CHANGES = [
     ],
   ],
   [
-    "pillsCancelAnimations",
+    "PillsCancelAnimations",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0603",
@@ -942,7 +942,7 @@ export const REMOVALS = [
 // 0801-0810
 export const CUTSCENE_CHANGES = [
   [
-    "fastTeleports",
+    "FastTeleports",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0801",
@@ -1000,7 +1000,7 @@ export const CUTSCENE_CHANGES = [
 // 0901-0910
 export const BUG_FIXES_1 = [
   [
-    "taintedIsaacCollectibleDelay",
+    "TaintedIsaacCollectibleDelay",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0901",
@@ -1009,7 +1009,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "battery9VoltSynergy",
+    "Battery9VoltSynergy",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0902",
@@ -1018,7 +1018,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "reverseJusticeFix",
+    "ReverseJusticeFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0903",
@@ -1027,7 +1027,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "preventUltraSecretRoomSoftlock",
+    "PreventUltraSecretRoomSoftlock",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0904",
@@ -1036,7 +1036,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "batteryBumFix",
+    "BatteryBumFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0905",
@@ -1045,7 +1045,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "teleportInvalidEntrance",
+    "TeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0906",
@@ -1054,7 +1054,7 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "removeInvalidPitfalls",
+    "RemoveInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0907",
@@ -1107,7 +1107,7 @@ export const BUG_FIXES_2 = [
 // 1001-1010
 export const GRAPHIC_CHANGES_1 = [
   [
-    "hudOffsetFix",
+    "HUDOffsetFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1001",
@@ -1116,7 +1116,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "drawControls",
+    "DrawControls",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1002",
@@ -1125,7 +1125,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "paschalCandle", // 3.221
+    "PaschalCandle", // 3.221
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1003",
@@ -1134,7 +1134,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "scaredHeart", // 5.10.9
+    "ScaredHeart", // 5.10.9
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1004",
@@ -1143,7 +1143,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "stickyNickel", // 5.20.6
+    "StickyNickel", // 5.20.6
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1005",
@@ -1152,7 +1152,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "uniqueCardBacks", // 5.300
+    "UniqueCardBacks", // 5.300
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1006",
@@ -1161,7 +1161,7 @@ export const GRAPHIC_CHANGES_1 = [
     ],
   ],
   [
-    "holidayHats",
+    "HolidayHats",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1007",
@@ -1308,7 +1308,7 @@ export const GRAPHIC_CHANGES_3 = [
 // 1101-1110
 export const SOUND_CHANGES = [
   [
-    "silenceMomDad",
+    "SilenceMomDad",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1101",
@@ -1321,7 +1321,7 @@ export const SOUND_CHANGES = [
 // 1201-1210
 export const OTHER_FEATURES = [
   [
-    "shadows",
+    "Shadows",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1201",
@@ -1330,7 +1330,7 @@ export const OTHER_FEATURES = [
     ],
   ],
   [
-    "chat",
+    "Chat",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1202",
@@ -1339,16 +1339,7 @@ export const OTHER_FEATURES = [
     ],
   ],
   [
-    "chat",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1202",
-      "Draw race chat",
-      "Enable the drawing of race chat on the screen.",
-    ],
-  ],
-  [
-    "characterTimer",
+    "CharacterTimer",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "1203",

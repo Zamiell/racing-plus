@@ -40,5 +40,5 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.automaticItemInsertion;
+  return config.AutomaticItemInsertion;
 }

@@ -6,7 +6,7 @@ import { config } from "../../../modConfigMenu";
 import { spawnTrophy } from "../../mandatory/trophy";
 
 export function hush(_entity: Entity): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

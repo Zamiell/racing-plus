@@ -22,7 +22,7 @@ const MULTI_SEGMENT_BOSSES = new ReadonlySet<EntityType>([
 
 // ModCallback.POST_ENTITY_KILL (68)
 export function postEntityKill(entity: Entity): void {
-  if (!config.fadeBosses) {
+  if (!config.FadeBosses) {
     return;
   }
 

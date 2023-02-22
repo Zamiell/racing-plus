@@ -51,7 +51,7 @@ function shouldDeleteSpikes() {
 
 function inRaceToDarkRoom() {
   return (
-    config.clientCommunication &&
+    config.ClientCommunication &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     (g.race.goal === RaceGoal.THE_LAMB || g.race.goal === RaceGoal.MEGA_SATAN)

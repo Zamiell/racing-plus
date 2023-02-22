@@ -10,7 +10,7 @@ const MEGA_SATAN_REMOVE_ANIMATIONS = new ReadonlySet<string>([
 ]);
 
 export class FastMegaSatan extends ConfigurableModFeature {
-  configKey: keyof Config = "fastMegaSatan";
+  configKey: keyof Config = "FastMegaSatan";
 
   // 28, 274
   @Callback(ModCallback.POST_NPC_RENDER, EntityType.MEGA_SATAN)

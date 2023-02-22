@@ -4,7 +4,7 @@ import { finishGoingToNewFloor } from "../setNewState";
 import { v } from "../v";
 
 export function fastTravelPostUpdate(): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

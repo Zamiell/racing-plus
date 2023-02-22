@@ -11,7 +11,7 @@ import { reset, socketFunctions, SOCKET_DEBUG } from "./socketFunctions";
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

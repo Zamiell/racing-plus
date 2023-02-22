@@ -11,7 +11,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  if (!config.openHushDoor) {
+  if (!config.OpenHushDoor) {
     return;
   }
 

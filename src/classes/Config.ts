@@ -1,121 +1,121 @@
 /** Config values should match the ordering in "configDescription.ts". */
 export class Config {
   // Major
-  clientCommunication = true;
-  startWithD6 = true;
-  disableCurses = true;
-  betterDevilAngelRooms = true;
-  freeDevilItem = true;
-  fastReset = true;
-  fastClear = true;
-  fastTravel = true;
+  ClientCommunication = true;
+  StartWithD6 = true;
+  DisableCurses = true;
+  BetterDevilAngelRooms = true;
+  FreeDevilItem = true;
+  FastReset = true;
+  FastClear = true;
+  FastTravel = true;
 
   // Chars
-  judasAddBomb = true; // 3
-  samsonDropHeart = true; // 6
-  showEdenStartingItems = true; // 9, 30
-  lostUseHolyCard = true; // 31
-  taintedKeeperMoney = true; // 33
+  JudasAddBomb = true; // 3
+  SamsonDropHeart = true; // 6
+  ShowEdenStartingItems = true; // 9, 30
+  LostUseHolyCard = true; // 31
+  TaintedKeeperMoney = true; // 33
 
   // Boss
-  fadeBosses = true;
-  removeArmor = true;
-  fastBossRush = true;
-  killExtraEnemies = true; // 45, 78
-  fastPin = true; // 62
-  preventDeathSlow = true; // 66
-  fastBlastocyst = true; // 74
-  fastKrampus = true; // 81
-  fastSatan = true; // 84
-  fastHaunt = true; // 260
-  fastAngels = true; // 271, 272
-  consistentAngels = true; // 271, 272
-  removeLambBody = true; // 273
-  preventVictoryLapPopup = true; // 273
-  fastMegaSatan = true; // 274, 275
-  preventEndMegaSatan = true; // 275
-  openHushDoor = true; // 407
-  fastHush = true; // 407
-  fastBigHorn = true; // 411
-  fastHeretic = true; // 905
-  fastColostomia = true; // 917
-  fastDogma = true; // 950
-  preventEndBeast = true; // 951
+  FadeBosses = true;
+  RemoveArmor = true;
+  FastBossRush = true;
+  KillExtraEnemies = true; // 45, 78
+  FastPin = true; // 62
+  PreventDeathSlow = true; // 66
+  FastBlastocyst = true; // 74
+  FastKrampus = true; // 81
+  FastSatan = true; // 84
+  FastHaunt = true; // 260
+  FastAngels = true; // 271, 272
+  ConsistentAngels = true; // 271, 272
+  RemoveLambBody = true; // 273
+  PreventVictoryLapPopup = true; // 273
+  FastMegaSatan = true; // 274, 275
+  PreventEndMegaSatan = true; // 275
+  OpenHushDoor = true; // 407
+  FastHush = true; // 407
+  FastBigHorn = true; // 411
+  FastHeretic = true; // 905
+  FastColostomia = true; // 917
+  FastDogma = true; // 950
+  PreventEndBeast = true; // 951
 
   // Enemies
-  fadeFriendlyEnemies = true;
-  removeTreasureRoomEnemies = true;
-  clearerShadowAttacks = true;
-  globinSoftlock = true; // 24
-  fastHands = true; // 213, 287
-  appearHands = true; // 213, 287
-  disableInvulnerability = true; // 219, 260, 285
-  fastGhosts = true; // 219, 285
-  replaceCodWorms = true; // 221
-  removeStrayPitfalls = true; // 291
-  fastPolties = true; // 816
-  fastNeedles = true; // 881
-  fastDusts = true; // 882
-  dummyDPS = true; // 964
+  FadeFriendlyEnemies = true;
+  RemoveTreasureRoomEnemies = true;
+  ClearerShadowAttacks = true;
+  GlobinSoftlock = true; // 24
+  FastHands = true; // 213, 287
+  AppearHands = true; // 213, 287
+  DisableInvulnerability = true; // 219, 260, 285
+  FastGhosts = true; // 219, 285
+  ReplaceCodWorms = true; // 221
+  RemoveStrayPitfalls = true; // 291
+  FastPolties = true; // 816
+  FastNeedles = true; // 881
+  FastDusts = true; // 882
+  DummyDPS = true; // 964
 
   // QoL
-  speedUpFadeIn = true;
-  easyFirstFloorItems = true;
-  changeCreepColor = true;
-  subvertTeleport = true;
-  deleteVoidPortals = true;
-  showNumSacrifices = true;
-  taintedSamsonChargeBar = true;
-  bloodyLustChargeBar = true; // 157 (charge bar)
-  leadPencilChargeBar = true; // 444 (charge bar)
-  azazelsRageChargeBar = true; // 669 (charge bar)
-  combinedDualityDoors = true; // 498 (collectible)
-  removeFortuneCookieBanners = true; // 557 (collectible)
-  showDreamCatcherItem = true; // 566 (collectible)
-  fastLuna = true; // 589 (collectible)
-  fadeVasculitisTears = true; // 657 (collectible)
-  fastVanishingTwin = true; // 697 (collectible)
-  flipCustom = true; // 711 (collectible)
-  removePerfectionVelocity = true; // 145 (trinket)
-  removePerfectionOnEndFloors = true; // 145 (trinket)
-  displayExpansionPack = true; // 181 (trinket)
-  automaticItemInsertion = true;
-  chargePocketItemFirst = true;
-  showMaxFamiliars = true;
-  showPills = true;
-  fadeDevilStatue = true;
+  SpeedUpFadeIn = true;
+  EasyFirstFloorItems = true;
+  ChangeCreepColor = true;
+  SubvertTeleport = true;
+  DeleteVoidPortals = true;
+  ShowNumSacrifices = true;
+  TaintedSamsonChargeBar = true;
+  BloodyLustChargeBar = true; // 157 (charge bar)
+  LeadPencilChargeBar = true; // 444 (charge bar)
+  AzazelsRageChargeBar = true; // 669 (charge bar)
+  CombinedDualityDoors = true; // 498 (collectible)
+  RemoveFortuneCookieBanners = true; // 557 (collectible)
+  ShowDreamCatcherItem = true; // 566 (collectible)
+  FastLuna = true; // 589 (collectible)
+  FadeVasculitisTears = true; // 657 (collectible)
+  FastVanishingTwin = true; // 697 (collectible)
+  FlipCustom = true; // 711 (collectible)
+  RemovePerfectionVelocity = true; // 145 (trinket)
+  RemovePerfectionOnEndFloors = true; // 145 (trinket)
+  DisplayExpansionPack = true; // 181 (trinket)
+  AutomaticItemInsertion = true;
+  ChargePocketItemFirst = true;
+  ShowMaxFamiliars = true;
+  ShowPills = true;
+  FadeDevilStatue = true;
 
   // Gameplay
-  extraStartingItems = true;
-  consistentTrollBombs = true;
-  pillsCancelAnimations = true;
+  ExtraStartingItems = true;
+  ConsistentTrollBombs = true;
+  PillsCancelAnimations = true;
 
   // Cutscenes
-  fastTeleports = true;
+  FastTeleports = true;
 
   // Bug fixes
-  taintedIsaacCollectibleDelay = true;
-  battery9VoltSynergy = true;
-  reverseJusticeFix = true;
-  preventUltraSecretRoomSoftlock = true;
-  batteryBumFix = true;
-  teleportInvalidEntrance = true;
-  removeInvalidPitfalls = true;
+  TaintedIsaacCollectibleDelay = true;
+  Battery9VoltSynergy = true;
+  ReverseJusticeFix = true;
+  PreventUltraSecretRoomSoftlock = true;
+  BatteryBumFix = true;
+  TeleportInvalidEntrance = true;
+  RemoveInvalidPitfalls = true;
 
   // GFX
-  hudOffsetFix = true;
-  drawControls = true;
-  paschalCandle = true; // 3.221
-  scaredHeart = true; // 5.10.9
-  stickyNickel = true; // 5.20.6
-  uniqueCardBacks = true; // 5.300
-  holidayHats = true;
+  HUDOffsetFix = true;
+  DrawControls = true;
+  PaschalCandle = true; // 3.221
+  ScaredHeart = true; // 5.10.9
+  StickyNickel = true; // 5.20.6
+  UniqueCardBacks = true; // 5.300
+  HolidayHats = true;
 
   // Sounds
-  silenceMomDad = true;
+  SilenceMomDad = true;
 
   // Other
-  shadows = false;
-  chat = true;
-  characterTimer = true;
+  Shadows = false;
+  Chat = true;
+  CharacterTimer = true;
 }

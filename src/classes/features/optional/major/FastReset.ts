@@ -23,7 +23,7 @@ const v = {
 };
 
 export class FastReset extends ConfigurableModFeature {
-  configKey: keyof Config = "fastReset";
+  configKey: keyof Config = "FastReset";
   v = v;
 
   // 2

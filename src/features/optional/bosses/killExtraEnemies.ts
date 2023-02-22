@@ -29,13 +29,13 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.killExtraEnemies;
+  return config.KillExtraEnemies;
 }
 
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.MOM (45)
 export function postEntityKillMom(): void {
-  if (!config.killExtraEnemies) {
+  if (!config.KillExtraEnemies) {
     return;
   }
 
@@ -50,7 +50,7 @@ export function postEntityKillMom(): void {
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.MOMS_HEART (78)
 export function postEntityKillMomsHeart(): void {
-  if (!config.killExtraEnemies) {
+  if (!config.KillExtraEnemies) {
     return;
   }
 

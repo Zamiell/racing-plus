@@ -11,7 +11,7 @@ const ACTIVATION_STATE = 60;
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariant.HEAVEN_LIGHT_DOOR (39)
 export function postEffectUpdateHeavenLightDoor(effect: EntityEffect): void {
-  if (!config.fastLuna) {
+  if (!config.FastLuna) {
     return;
   }
 

@@ -4,7 +4,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.WIZOOB (219)
 export function postNPCUpdateWizoob(npc: EntityNPC): void {
-  if (!config.fastGhosts) {
+  if (!config.FastGhosts) {
     return;
   }
 
@@ -14,7 +14,7 @@ export function postNPCUpdateWizoob(npc: EntityNPC): void {
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.RED_GHOST (285)
 export function postNPCUpdateRedGhost(npc: EntityNPC): void {
-  if (!config.fastGhosts) {
+  if (!config.FastGhosts) {
     return;
   }
 

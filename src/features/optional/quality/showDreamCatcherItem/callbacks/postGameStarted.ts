@@ -4,7 +4,7 @@ import * as sprites from "../sprites";
 import { v } from "../v";
 
 export function showDreamCatcherItemPostGameStarted(): void {
-  if (!config.showDreamCatcherItem) {
+  if (!config.ShowDreamCatcherItem) {
     return;
   }
 

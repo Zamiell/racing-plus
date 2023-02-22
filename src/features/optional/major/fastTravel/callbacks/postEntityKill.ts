@@ -2,7 +2,7 @@ import { config } from "../../../../../modConfigMenu";
 import * as spawnPerfection from "../spawnPerfection";
 
 export function main(entity: Entity): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

@@ -27,12 +27,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.showMaxFamiliars;
+  return config.ShowMaxFamiliars;
 }
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.showMaxFamiliars) {
+  if (!config.ShowMaxFamiliars) {
     return;
   }
 
@@ -42,7 +42,7 @@ export function postUpdate(): void {
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.showMaxFamiliars) {
+  if (!config.ShowMaxFamiliars) {
     return;
   }
 

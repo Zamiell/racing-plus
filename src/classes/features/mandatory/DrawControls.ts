@@ -24,7 +24,7 @@ import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 
 export class DrawControls extends ConfigurableModFeature {
-  configKey: keyof Config = "drawControls";
+  configKey: keyof Config = "DrawControls";
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {

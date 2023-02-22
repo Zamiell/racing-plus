@@ -13,7 +13,7 @@ import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class AppearHands extends ConfigurableModFeature {
-  configKey: keyof Config = "appearHands";
+  configKey: keyof Config = "AppearHands";
 
   // 69, 213
   @Callback(ModCallback.PRE_NPC_UPDATE, EntityType.MOMS_HAND)

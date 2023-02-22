@@ -12,7 +12,7 @@ sprite.Load("gfx/chargebar_tainted_samson.anm2", true);
 
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
-  if (!config.taintedSamsonChargeBar) {
+  if (!config.TaintedSamsonChargeBar) {
     return;
   }
 

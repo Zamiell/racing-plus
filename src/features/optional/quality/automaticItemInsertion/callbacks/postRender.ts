@@ -25,7 +25,7 @@ const BETHANY_Y_KEY_OFFSET = -2;
 const JACOB_ESAU_Y_OFFSET = 14;
 
 export function automaticItemInsertionPostRender(): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 

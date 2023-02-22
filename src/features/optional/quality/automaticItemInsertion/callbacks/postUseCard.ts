@@ -18,7 +18,7 @@ import { insertPickupAndUpdateDelta } from "../automaticItemInsertion";
 export function automaticItemInsertionPostUseCardHierophant(
   player: EntityPlayer,
 ): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 
@@ -29,7 +29,7 @@ export function automaticItemInsertionPostUseCardHierophant(
 export function automaticItemInsertionPostUseCardLovers(
   player: EntityPlayer,
 ): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 
@@ -57,7 +57,7 @@ function insertHeartsFromCard(player: EntityPlayer) {
 export function automaticItemInsertionPostUseCardJustice(
   player: EntityPlayer,
 ): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 

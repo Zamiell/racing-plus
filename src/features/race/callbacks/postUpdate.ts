@@ -8,7 +8,7 @@ import { config } from "../../../modConfigMenu";
 import { doesTrophyExist, spawnTrophy } from "../../mandatory/trophy";
 
 export function racePostUpdate(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

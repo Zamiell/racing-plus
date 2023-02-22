@@ -5,7 +5,6 @@ import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as fadeFriendlyEnemies from "../features/optional/enemies/fadeFriendlyEnemies";
-import * as fastDusts from "../features/optional/enemies/fastDusts";
 import * as fastGhosts from "../features/optional/enemies/fastGhosts";
 import * as fastHands from "../features/optional/enemies/fastHands";
 import * as fastNeedles from "../features/optional/enemies/fastNeedles";
@@ -99,12 +98,6 @@ export function init(): void {
     needle,
     EntityType.NEEDLE, // 881
   );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    dust,
-    EntityType.DUST, // 882
-  );
 }
 
 function main(npc: EntityNPC) {
@@ -183,9 +176,4 @@ function darkEsau(npc: EntityNPC) {
 // EntityType.NEEDLE (881)
 function needle(npc: EntityNPC) {
   fastNeedles.postNPCUpdateNeedle(npc);
-}
-
-// EntityType.DUST (882)
-function dust(npc: EntityNPC) {
-  fastDusts.postNPCUpdateDust(npc);
 }

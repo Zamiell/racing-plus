@@ -44,7 +44,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.betterDevilAngelRooms;
+  return config.BetterDevilAngelRooms;
 }
 
 export function initBetterDevilAngelRoomsRNG(): void {

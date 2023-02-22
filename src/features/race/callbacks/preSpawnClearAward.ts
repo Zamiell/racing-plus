@@ -4,7 +4,7 @@ import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeVoidDoor from "../removeVoidDoor";
 
 export function racePreSpawnClearAward(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

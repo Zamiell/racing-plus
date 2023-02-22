@@ -23,7 +23,7 @@ import { isFastTravelHappening } from "../major/fastTravel/v";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.teleportInvalidEntrance) {
+  if (!config.TeleportInvalidEntrance) {
     return;
   }
 

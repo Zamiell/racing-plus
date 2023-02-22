@@ -14,7 +14,7 @@ const v = {
 
 /** Get rid of the slow fade-in at the beginning of a run. */
 export class SpeedUpFadeIn extends ConfigurableModFeature {
-  configKey: keyof Config = "speedUpFadeIn";
+  configKey: keyof Config = "SpeedUpFadeIn";
   v = v;
 
   // 2

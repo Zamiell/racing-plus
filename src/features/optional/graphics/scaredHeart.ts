@@ -4,7 +4,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.HEART (10)
 export function postPickupInitHeart(heart: EntityPickupHeart): void {
-  if (!config.scaredHeart) {
+  if (!config.ScaredHeart) {
     return;
   }
 

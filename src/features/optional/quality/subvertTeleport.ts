@@ -49,7 +49,7 @@ const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT = {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.subvertTeleport) {
+  if (!config.SubvertTeleport) {
     return;
   }
 

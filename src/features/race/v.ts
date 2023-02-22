@@ -36,12 +36,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.clientCommunication;
+  return config.ClientCommunication;
 }
 
 export function inSeededRace(): boolean {
   return (
-    config.clientCommunication &&
+    config.ClientCommunication &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED

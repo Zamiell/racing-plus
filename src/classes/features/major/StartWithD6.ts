@@ -27,7 +27,6 @@ import {
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { g } from "../../../globals";
 import { mod } from "../../../mod";
-import { config } from "../../../modConfigMenu";
 import { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 
@@ -57,7 +56,7 @@ const v = {
  * active slot.)
  */
 export class StartWithD6 extends ConfigurableModFeature {
-  configKey: keyof Config = "startWithD6";
+  configKey: keyof Config = "StartWithD6";
   v = v;
 
   /**
@@ -188,10 +187,6 @@ export class StartWithD6 extends ConfigurableModFeature {
     CollectibleType.BIRTHRIGHT,
   )
   postItemPickupBirthright(player: EntityPlayer): void {
-    if (!config.startWithD6) {
-      return;
-    }
-
     if (!isCharacter(player, PlayerType.FORGOTTEN_B)) {
       return;
     }

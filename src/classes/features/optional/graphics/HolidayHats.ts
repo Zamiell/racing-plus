@@ -12,7 +12,7 @@ const CURRENT_HOLIDAY = Holiday.NONE as Holiday;
 
 /** Conditionally show a festive hat. (It is disabled if it is not currently a holiday.) */
 export class HolidayHats extends ConfigurableModFeature {
-  configKey: keyof Config = "holidayHats";
+  configKey: keyof Config = "HolidayHats";
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {

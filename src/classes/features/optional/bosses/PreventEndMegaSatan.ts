@@ -13,7 +13,7 @@ import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class PreventEndMegaSatan extends ConfigurableModFeature {
-  configKey: keyof Config = "preventEndMegaSatan";
+  configKey: keyof Config = "PreventEndMegaSatan";
 
   // 68, 275
   @Callback(ModCallback.POST_ENTITY_KILL, EntityType.MEGA_SATAN_2)

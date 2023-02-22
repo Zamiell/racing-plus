@@ -11,7 +11,7 @@ const BOTTOM_LEFT_GRID_INDEX = 106;
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.samsonDropHeart) {
+  if (!config.SamsonDropHeart) {
     return;
   }
 

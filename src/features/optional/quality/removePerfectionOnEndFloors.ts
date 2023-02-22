@@ -10,7 +10,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.TRINKET (350)
 export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
-  if (!config.removePerfectionOnEndFloors) {
+  if (!config.RemovePerfectionOnEndFloors) {
     return;
   }
 

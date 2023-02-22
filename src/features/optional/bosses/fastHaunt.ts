@@ -16,7 +16,7 @@ const BLACK_CHAMPION_COLOR_IDX = 0;
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.THE_HAUNT (260)
 export function postNPCUpdateHaunt(npc: EntityNPC): void {
-  if (!config.fastHaunt) {
+  if (!config.FastHaunt) {
     return;
   }
 

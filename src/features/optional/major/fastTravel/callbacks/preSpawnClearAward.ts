@@ -3,7 +3,7 @@ import * as heavenDoor from "../heavenDoor";
 import { setFastTravelClearFrame } from "../v";
 
 export function fastTravelPreSpawnClearAward(): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

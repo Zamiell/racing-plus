@@ -16,7 +16,7 @@ export function entityTakeDmg(
   source: EntityRef,
   countdownFrames: int,
 ): boolean | undefined {
-  if (!config.removeArmor) {
+  if (!config.RemoveArmor) {
     return undefined;
   }
 

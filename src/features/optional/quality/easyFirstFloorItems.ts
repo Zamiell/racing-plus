@@ -11,7 +11,7 @@ import { config } from "../../../modConfigMenu";
 export function preRoomEntitySpawn(
   gridIndex: int,
 ): [EntityType, int, int] | undefined {
-  if (!config.easyFirstFloorItems) {
+  if (!config.EasyFirstFloorItems) {
     return undefined;
   }
 

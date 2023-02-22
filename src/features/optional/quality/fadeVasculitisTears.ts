@@ -11,7 +11,7 @@ const FADE_AMOUNT = 0.1;
 // ModCallbackCustom.POST_TEAR_INIT_LATE
 // TearVariant.BLOOD (1)
 export function postTearInitLateBlood(tear: EntityTear): void {
-  if (!config.fadeVasculitisTears) {
+  if (!config.FadeVasculitisTears) {
     return;
   }
 

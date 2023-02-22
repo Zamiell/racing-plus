@@ -14,7 +14,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.showNumSacrifices;
+  return config.ShowNumSacrifices;
 }
 
 // ModCallbackCustom.POST_SACRIFICE
@@ -23,7 +23,7 @@ export function postSacrifice(numSacrifices: int): void {
 }
 
 export function shouldShowNumSacrifices(): boolean {
-  if (!config.showNumSacrifices) {
+  if (!config.ShowNumSacrifices) {
     return false;
   }
 

@@ -6,7 +6,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_USE_PILL (10)
 // PillEffect.POWER (36)
 export function usePillPowerPill(player: EntityPlayer): void {
-  if (!config.pillsCancelAnimations) {
+  if (!config.PillsCancelAnimations) {
     return;
   }
 
@@ -16,7 +16,7 @@ export function usePillPowerPill(player: EntityPlayer): void {
 // ModCallback.POST_USE_PILL (10)
 // PillEffect.HORF (44)
 export function usePillHorf(player: EntityPlayer): void {
-  if (!config.pillsCancelAnimations) {
+  if (!config.PillsCancelAnimations) {
     return;
   }
 

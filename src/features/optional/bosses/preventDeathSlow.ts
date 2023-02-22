@@ -5,7 +5,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.DEATH (66)
 export function postNPCUpdateDeath(npc: EntityNPC): void {
-  if (!config.preventDeathSlow) {
+  if (!config.PreventDeathSlow) {
     return;
   }
 

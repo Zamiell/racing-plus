@@ -41,7 +41,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastAngels;
+  return config.FastAngels;
 }
 
 // ModCallback.POST_GAME_STARTED (15)
@@ -55,7 +55,7 @@ export function postGameStarted(): void {
 export function postPickupInitCollectible(
   collectible: EntityPickupCollectible,
 ): void {
-  if (!config.fastAngels) {
+  if (!config.FastAngels) {
     return;
   }
 
@@ -76,7 +76,7 @@ function checkRemoveVanillaAngelDrop(collectible: EntityPickupCollectible) {
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.URIEL (271)
 export function postEntityKillUriel(entity: Entity): void {
-  if (!config.fastAngels) {
+  if (!config.FastAngels) {
     return;
   }
 
@@ -86,7 +86,7 @@ export function postEntityKillUriel(entity: Entity): void {
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.GABRIEL (272)
 export function postEntityKillGabriel(entity: Entity): void {
-  if (!config.fastAngels) {
+  if (!config.FastAngels) {
     return;
   }
 

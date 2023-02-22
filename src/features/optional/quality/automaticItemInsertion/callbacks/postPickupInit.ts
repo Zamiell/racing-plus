@@ -11,7 +11,7 @@ import { v } from "../v";
 export function automaticItemInsertionPostPickupInit(
   pickup: EntityPickup,
 ): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 

@@ -30,13 +30,13 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.removePerfectionVelocity;
+  return config.RemovePerfectionVelocity;
 }
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.TRINKET (350)
 export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
-  if (!config.removePerfectionVelocity) {
+  if (!config.RemovePerfectionVelocity) {
     return;
   }
 

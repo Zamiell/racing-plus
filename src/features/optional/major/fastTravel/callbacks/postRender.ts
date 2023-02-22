@@ -7,7 +7,7 @@ import * as checkStateComplete from "../checkStateComplete";
 import { v } from "../v";
 
 export function fastTravelPostRender(): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

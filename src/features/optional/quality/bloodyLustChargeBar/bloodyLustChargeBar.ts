@@ -14,7 +14,7 @@ sprite.Load("gfx/chargebar_bloody_lust.anm2", true);
 // ModCallback.ENTITY_TAKE_DMG (11)
 // EntityType.PLAYER (1)
 export function entityTakeDmgPlayer(player: EntityPlayer): void {
-  if (!config.bloodyLustChargeBar) {
+  if (!config.BloodyLustChargeBar) {
     return;
   }
 
@@ -25,7 +25,7 @@ export function entityTakeDmgPlayer(player: EntityPlayer): void {
 
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
-  if (!config.bloodyLustChargeBar) {
+  if (!config.BloodyLustChargeBar) {
     return;
   }
 

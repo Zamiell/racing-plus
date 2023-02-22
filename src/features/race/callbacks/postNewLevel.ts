@@ -4,7 +4,7 @@ import * as megaSatan from "../megaSatan";
 import * as socket from "../socket";
 
 export function racePostNewLevel(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

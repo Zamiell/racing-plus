@@ -35,12 +35,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.leadPencilChargeBar;
+  return config.LeadPencilChargeBar;
 }
 
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
-  if (!config.leadPencilChargeBar) {
+  if (!config.LeadPencilChargeBar) {
     return;
   }
 
@@ -62,7 +62,7 @@ export function postPlayerRender(player: EntityPlayer): void {
 
 // ModCallback.POST_TEAR_INIT_VERY_LATE
 export function postTearInitVeryLate(tear: EntityTear): void {
-  if (!config.leadPencilChargeBar) {
+  if (!config.LeadPencilChargeBar) {
     return;
   }
 
@@ -75,7 +75,7 @@ export function postTearInitVeryLate(tear: EntityTear): void {
 
 // ModCallbackCustom.POST_BONE_SWING
 export function postBoneSwing(boneClub: EntityKnife): void {
-  if (!config.leadPencilChargeBar) {
+  if (!config.LeadPencilChargeBar) {
     return;
   }
 

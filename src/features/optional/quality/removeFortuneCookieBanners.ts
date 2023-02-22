@@ -10,7 +10,7 @@ import { config } from "../../../modConfigMenu";
 export function postUseItemFortuneCookie(): void {
   const HUD = game.GetHUD();
 
-  if (!config.removeFortuneCookieBanners) {
+  if (!config.RemoveFortuneCookieBanners) {
     return;
   }
 

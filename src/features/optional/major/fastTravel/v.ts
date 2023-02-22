@@ -95,7 +95,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastTravel;
+  return config.FastTravel;
 }
 
 export function isFastTravelHappening(): boolean {

@@ -23,7 +23,7 @@ import * as victoryLap from "../victoryLap";
 const MEGA_SATAN_FAKE_STAGE_NUM = asLevelStage(asNumber(LAST_STAGE) + 1);
 
 export function racePostNewRoom(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

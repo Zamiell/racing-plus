@@ -41,7 +41,7 @@ function drawSpeedrunTimer() {
 }
 
 function drawSpeedrunCharacterTimer() {
-  if (!config.characterTimer) {
+  if (!config.CharacterTimer) {
     return;
   }
 

@@ -4,7 +4,7 @@ import * as endOfRaceButtons from "../endOfRaceButtons";
 export function racePostPressurePlateUpdate(
   pressurePlate: GridEntityPressurePlate,
 ): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

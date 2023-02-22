@@ -17,7 +17,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastClear;
+  return config.FastClear;
 }
 
 export function logFastClear(

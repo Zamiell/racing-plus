@@ -66,12 +66,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.showPills;
+  return config.ShowPills;
 }
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.showPills) {
+  if (!config.ShowPills) {
     return;
   }
 
@@ -129,7 +129,7 @@ function getFalsePHDPillEffectRacingPlus(pillEffect: PillEffect): PillEffect {
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.showPills) {
+  if (!config.ShowPills) {
     return;
   }
 

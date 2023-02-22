@@ -42,7 +42,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastKrampus;
+  return config.FastKrampus;
 }
 
 // ModCallback.POST_NEW_LEVEL (18)
@@ -83,7 +83,7 @@ function checkRemoveVanillaKrampusDrop(collectible: EntityPickupCollectible) {
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.FALLEN (81)
 export function postEntityKillFallen(entity: Entity): void {
-  if (!config.fastKrampus) {
+  if (!config.FastKrampus) {
     return;
   }
 

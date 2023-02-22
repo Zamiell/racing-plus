@@ -60,12 +60,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastTravel;
+  return config.FastTravel;
 }
 
 /** Only swap things if we are playing a seeded race. */
 function shouldSeededFloorsApply() {
-  return config.fastTravel && inSeededRace();
+  return config.FastTravel && inSeededRace();
 }
 
 // ModCallback.POST_GAME_STARTED (15)

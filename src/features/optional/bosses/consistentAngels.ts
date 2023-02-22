@@ -27,7 +27,7 @@ export function init(): void {
 // ModCallback.POST_USE_ITEM (3)
 // CollectibleType.MEAT_CLEAVER (631)
 export function postUseItemMeatCleaver(): void {
-  if (!config.consistentAngels) {
+  if (!config.ConsistentAngels) {
     return;
   }
 
@@ -41,7 +41,7 @@ export function preEntitySpawnUriel(
   subType: int,
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
-  if (!config.consistentAngels) {
+  if (!config.ConsistentAngels) {
     return undefined;
   }
 
@@ -55,7 +55,7 @@ export function preEntitySpawnGabriel(
   subType: int,
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
-  if (!config.consistentAngels) {
+  if (!config.ConsistentAngels) {
     return undefined;
   }
 

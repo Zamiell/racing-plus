@@ -3,7 +3,7 @@ import { config } from "../../../../../modConfigMenu";
 import { v } from "../v";
 
 export function betterDevilAngelRoomsPreUseItemD4(): void {
-  if (!config.betterDevilAngelRooms) {
+  if (!config.BetterDevilAngelRooms) {
     return;
   }
 

@@ -15,7 +15,7 @@ import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
 
 export function racePostRender(): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

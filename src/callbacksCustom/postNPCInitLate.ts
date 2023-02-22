@@ -1,7 +1,6 @@
 import { EntityType, HauntVariant } from "isaac-typescript-definitions";
 import { ModCallbackCustom } from "isaacscript-common";
 import * as disableInvulnerability from "../features/optional/enemies/disableInvulnerability";
-import * as fastPolties from "../features/optional/enemies/fastPolties";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -23,12 +22,6 @@ export function init(): void {
     redGhost,
     EntityType.RED_GHOST, // 285
   );
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_NPC_INIT_LATE,
-    polty,
-    EntityType.POLTY, // 816
-  );
 }
 
 // EntityType.WIZOOB (219)
@@ -44,9 +37,4 @@ function lilHaunt(npc: EntityNPC) {
 // EntityType.RED_GHOST (285)
 function redGhost(npc: EntityNPC) {
   disableInvulnerability.postNPCInitLateRedGhost(npc);
-}
-
-// EntityType.POLTY (816)
-function polty(npc: EntityNPC) {
-  fastPolties.postNPCInitLatePolty(npc);
 }

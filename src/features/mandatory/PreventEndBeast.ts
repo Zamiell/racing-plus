@@ -23,7 +23,7 @@ const v = {
 };
 
 export class PreventEndBeast extends ConfigurableModFeature {
-  configKey: keyof Config = "preventEndBeast";
+  configKey: keyof Config = "PreventEndBeast";
   v = v;
 
   @CallbackCustom(

@@ -5,7 +5,7 @@ const ANIMATION_SPEED_MULTIPLIER = 1.66;
 
 // ModCallback.POST_PLAYER_RENDER (32)
 export function postPlayerRender(player: EntityPlayer): void {
-  if (!config.fastTeleports) {
+  if (!config.FastTeleports) {
     return;
   }
 

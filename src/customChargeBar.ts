@@ -153,7 +153,7 @@ function shouldDrawAnyCustomChargeBar(): boolean {
 
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
   return (
-    config.leadPencilChargeBar &&
+    config.LeadPencilChargeBar &&
     player.HasCollectible(CollectibleType.LEAD_PENCIL) &&
     // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
     // (because there is no `POST_LASER_FIRED` callback).
@@ -182,7 +182,7 @@ function shouldDrawAzazelsRageChargeBar(player: EntityPlayer) {
   // The number of effects goes from 4 to 6 when the blast is firing.
   const isBlastFiring = numCharges > NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE;
 
-  return config.azazelsRageChargeBar && hasAzazelsRage && !isBlastFiring;
+  return config.AzazelsRageChargeBar && hasAzazelsRage && !isBlastFiring;
 }
 
 function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
@@ -190,12 +190,12 @@ function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
   const effects = player.GetEffects();
   const isBerserk = effects.HasCollectibleEffect(CollectibleType.BERSERK);
 
-  return config.taintedSamsonChargeBar && isTaintedSamson && !isBerserk;
+  return config.TaintedSamsonChargeBar && isTaintedSamson && !isBerserk;
 }
 
 function shouldDrawBloodyLustChargeBar(player: EntityPlayer) {
   return (
-    config.bloodyLustChargeBar &&
+    config.BloodyLustChargeBar &&
     player.HasCollectible(CollectibleType.BLOODY_LUST) &&
     !isMaxBloodyLustCharges(player)
   );

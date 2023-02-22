@@ -37,7 +37,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.showDreamCatcherItem;
+  return config.ShowDreamCatcherItem;
 }
 
 export function isDreamCatcherWarping(): boolean {

@@ -9,7 +9,7 @@ const DELAY_FRAMES = 4;
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.MOMS_HAND (213)
 export function postNPCUpdateMomsHand(npc: EntityNPC): void {
-  if (!config.fastHands) {
+  if (!config.FastHands) {
     return;
   }
 
@@ -19,7 +19,7 @@ export function postNPCUpdateMomsHand(npc: EntityNPC): void {
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.MOMS_DEAD_HAND (287)
 export function postNPCUpdateMomsDeadHand(npc: EntityNPC): void {
-  if (!config.fastHands) {
+  if (!config.FastHands) {
     return;
   }
 

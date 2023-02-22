@@ -9,7 +9,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.removeInvalidPitfalls) {
+  if (!config.RemoveInvalidPitfalls) {
     return;
   }
 

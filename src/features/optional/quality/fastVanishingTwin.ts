@@ -36,7 +36,7 @@ export function init(): void {
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.fastVanishingTwin) {
+  if (!config.FastVanishingTwin) {
     return;
   }
 
@@ -77,7 +77,7 @@ function getFreshlySpawnedCollectible(): EntityPickup | undefined {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  if (!config.fastVanishingTwin) {
+  if (!config.FastVanishingTwin) {
     return;
   }
 
@@ -91,7 +91,7 @@ export function postNewLevel(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.fastVanishingTwin) {
+  if (!config.FastVanishingTwin) {
     return;
   }
 
@@ -174,7 +174,7 @@ function duplicateBoss(boss: EntityNPC) {
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
-  if (!config.fastVanishingTwin) {
+  if (!config.FastVanishingTwin) {
     return;
   }
 

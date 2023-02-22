@@ -12,7 +12,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.preventUltraSecretRoomSoftlock) {
+  if (!config.PreventUltraSecretRoomSoftlock) {
     return;
   }
 

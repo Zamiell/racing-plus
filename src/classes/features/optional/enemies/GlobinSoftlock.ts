@@ -17,7 +17,7 @@ const v = {
 };
 
 export class GlobinSoftlock extends ConfigurableModFeature {
-  configKey: keyof Config = "globinSoftlock";
+  configKey: keyof Config = "GlobinSoftlock";
   v = v;
 
   // 0, 24

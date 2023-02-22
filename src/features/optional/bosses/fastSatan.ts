@@ -30,7 +30,7 @@ export function init(): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStartedContinued(): void {
-  if (!config.fastSatan) {
+  if (!config.FastSatan) {
     return;
   }
 
@@ -39,7 +39,7 @@ export function postGameStartedContinued(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.fastSatan) {
+  if (!config.FastSatan) {
     return;
   }
 

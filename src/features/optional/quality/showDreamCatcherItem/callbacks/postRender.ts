@@ -15,7 +15,7 @@ import { DREAM_CATCHER_FEATURE_NAME, v } from "../v";
 import { checkStartDreamCatcherWarp } from "../warp";
 
 export function showDreamCatcherItemPostRender(): void {
-  if (!config.showDreamCatcherItem) {
+  if (!config.ShowDreamCatcherItem) {
     return;
   }
 

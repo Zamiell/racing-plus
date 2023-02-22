@@ -148,7 +148,7 @@ export function init(): void {
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.fastBossRush) {
+  if (!config.FastBossRush) {
     return;
   }
 
@@ -403,7 +403,7 @@ export function postNewRoom(): void {
 // ModCallbackCustom.POST_AMBUSH_STARTED
 // AmbushType.BOSS_RUSH
 export function postAmbushStartedBossRush(): void {
-  if (!config.fastBossRush) {
+  if (!config.FastBossRush) {
     return;
   }
 

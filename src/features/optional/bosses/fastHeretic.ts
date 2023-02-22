@@ -8,7 +8,7 @@ import { getNPCs } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 export function postNPCRenderHeretic(npc: EntityNPC): void {
-  if (!config.fastHeretic) {
+  if (!config.FastHeretic) {
     return;
   }
 

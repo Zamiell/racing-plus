@@ -12,7 +12,7 @@ import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class FastHush extends ConfigurableModFeature {
-  configKey: keyof Config = "fastHush";
+  configKey: keyof Config = "FastHush";
 
   // 28, 407
   @Callback(ModCallback.POST_NPC_RENDER, EntityType.HUSH)

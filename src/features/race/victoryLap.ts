@@ -282,7 +282,7 @@ function checkVictoryLapBossReplace() {
 }
 
 export function shouldShowVictoryLaps(): boolean {
-  return config.clientCommunication && v.run.numVictoryLaps > 0;
+  return config.ClientCommunication && v.run.numVictoryLaps > 0;
 }
 
 export function getNumVictoryLaps(): int {

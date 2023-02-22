@@ -11,7 +11,7 @@ const CONSISTENT_EXPLOSION_TIME_IN_SECONDS = 2;
 // ModCallback.POST_BOMB_INIT (57)
 // BombVariant.TROLL (3)
 export function postBombInitTroll(bomb: EntityBomb): void {
-  if (!config.consistentTrollBombs) {
+  if (!config.ConsistentTrollBombs) {
     return;
   }
 
@@ -21,7 +21,7 @@ export function postBombInitTroll(bomb: EntityBomb): void {
 // ModCallback.POST_BOMB_INIT (57)
 // BombVariant.MEGA_TROLL (4)
 export function postBombInitMegaTroll(bomb: EntityBomb): void {
-  if (!config.consistentTrollBombs) {
+  if (!config.ConsistentTrollBombs) {
     return;
   }
 
@@ -31,7 +31,7 @@ export function postBombInitMegaTroll(bomb: EntityBomb): void {
 // ModCallback.POST_BOMB_INIT (57)
 // BombVariant.GOLDEN_TROLL (18)
 export function postBombInitGoldenTroll(bomb: EntityBomb): void {
-  if (!config.consistentTrollBombs) {
+  if (!config.ConsistentTrollBombs) {
     return;
   }
 

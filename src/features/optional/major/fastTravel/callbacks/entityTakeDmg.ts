@@ -6,7 +6,7 @@ import { v } from "../v";
 export function fastTravelEntityTakeDmgPlayer(
   damageFlags: BitFlags<DamageFlag>,
 ): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

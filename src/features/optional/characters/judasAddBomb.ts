@@ -6,7 +6,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.judasAddBomb) {
+  if (!config.JudasAddBomb) {
     return;
   }
 

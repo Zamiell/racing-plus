@@ -3,7 +3,7 @@ import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 
 export function pitfall(npc: EntityNPC): void {
-  if (!config.betterDevilAngelRooms) {
+  if (!config.BetterDevilAngelRooms) {
     return;
   }
 

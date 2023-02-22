@@ -5,7 +5,7 @@ import { config } from "../../../modConfigMenu";
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.THE_LAMB (273)
 export function postNPCUpdateLamb(npc: EntityNPC): void {
-  if (!config.removeLambBody) {
+  if (!config.RemoveLambBody) {
     return;
   }
 

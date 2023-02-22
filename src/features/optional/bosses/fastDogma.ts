@@ -25,7 +25,7 @@ import { onSeason } from "../../speedrun/speedrun";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.fastDogma) {
+  if (!config.FastDogma) {
     return;
   }
 
@@ -75,7 +75,7 @@ function enteredDogmaRoom() {
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.DOGMA (950)
 export function postEntityKillDogma(entity: Entity): void {
-  if (!config.fastDogma) {
+  if (!config.FastDogma) {
     return;
   }
 
@@ -97,7 +97,7 @@ export function postEntityKillDogma(entity: Entity): void {
 // ModCallback.POST_NPC_RENDER (28)
 // EntityType.DOGMA (950)
 export function postNPCRenderDogma(npc: EntityNPC): void {
-  if (!config.fastDogma) {
+  if (!config.FastDogma) {
     return;
   }
 

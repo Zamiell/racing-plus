@@ -124,7 +124,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.flipCustom;
+  return config.FlipCustom;
 }
 
 // ModCallback.POST_USE_ITEM (3)
@@ -132,7 +132,7 @@ function featureEnabled() {
 export function postUseItemFlipCustom(
   player: EntityPlayer,
 ): boolean | undefined {
-  if (!config.flipCustom) {
+  if (!config.FlipCustom) {
     return undefined;
   }
 
@@ -180,7 +180,7 @@ export function postUseItemFlipCustom(
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  if (!config.flipCustom) {
+  if (!config.FlipCustom) {
     return;
   }
 
@@ -198,7 +198,7 @@ export function postPEffectUpdate(player: EntityPlayer): void {
 export function postPickupInitCollectible(
   collectible: EntityPickupCollectible,
 ): void {
-  if (!config.flipCustom) {
+  if (!config.FlipCustom) {
     return;
   }
 
@@ -248,7 +248,7 @@ export function postPickupRenderCollectible(
   collectible: EntityPickup,
   renderOffset: Vector,
 ): void {
-  if (!config.flipCustom) {
+  if (!config.FlipCustom) {
     return;
   }
 
@@ -297,7 +297,7 @@ export function postPurchaseCollectible(
   // The vanilla flip has a feature where if you purchase a collectible, it will keep the empty
   // pedestal around (so that you can use Flip on the other item if you want). Emulate this feature
   // with the custom flip.
-  if (!config.flipCustom) {
+  if (!config.FlipCustom) {
     return;
   }
 

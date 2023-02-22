@@ -14,7 +14,7 @@ import {
 import { config } from "../../../modConfigMenu";
 
 export function racePostNPCUpdateDarkEsau(npc: EntityNPC): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

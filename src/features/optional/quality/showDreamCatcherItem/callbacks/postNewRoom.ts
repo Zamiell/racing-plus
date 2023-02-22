@@ -26,14 +26,14 @@ import { v } from "../v";
 import { warpToNextDreamCatcherRoom } from "../warp";
 
 export function showDreamCatcherItemPostNewRoom(): void {
-  if (!config.showDreamCatcherItem) {
+  if (!config.ShowDreamCatcherItem) {
     return;
   }
 
   // This feature requires that fast-travel is enabled. This is because using the Glowing Hourglass
   // will not work after warping to the Treasure Room (because the screen is still fading in from
   // the stage animation).
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

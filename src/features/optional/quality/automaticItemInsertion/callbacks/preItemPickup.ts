@@ -19,7 +19,7 @@ export function automaticItemInsertionPreItemPickup(
   player: EntityPlayer,
   pickingUpItem: PickingUpItem,
 ): void {
-  if (!config.automaticItemInsertion) {
+  if (!config.AutomaticItemInsertion) {
     return;
   }
 

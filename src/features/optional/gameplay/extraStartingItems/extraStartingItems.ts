@@ -40,7 +40,7 @@ function shouldGetExtraStartingItems() {
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.extraStartingItems) {
+  if (!config.ExtraStartingItems) {
     return;
   }
 
@@ -50,7 +50,7 @@ export function postUpdate(): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.extraStartingItems) {
+  if (!config.ExtraStartingItems) {
     return;
   }
 
@@ -61,7 +61,7 @@ export function postGameStarted(): void {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  if (!config.extraStartingItems) {
+  if (!config.ExtraStartingItems) {
     return;
   }
 
@@ -75,7 +75,7 @@ export function postNewLevel(): void {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.extraStartingItems) {
+  if (!config.ExtraStartingItems) {
     return;
   }
 

@@ -4,7 +4,7 @@ import { config } from "../../../../../modConfigMenu";
 import * as heavenDoor from "../heavenDoor";
 
 export function heavenLightDoor(effect: EntityEffect): void {
-  if (!config.fastTravel) {
+  if (!config.FastTravel) {
     return;
   }
 

@@ -20,13 +20,13 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.stickyNickel;
+  return config.StickyNickel;
 }
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.COIN (20)
 export function postPickupInitCoin(coin: EntityPickupCoin): void {
-  if (!config.stickyNickel) {
+  if (!config.StickyNickel) {
     return;
   }
 
@@ -63,7 +63,7 @@ function postPickupInitStickyNickel(stickyNickel: EntityPickupCoin) {
 // ModCallback.POST_EFFECT_UPDATE (55)
 // EffectVariantCustom.STICKY_NICKEL
 export function postEffectUpdateStickyNickel(effect: EntityEffect): void {
-  if (!config.stickyNickel) {
+  if (!config.StickyNickel) {
     return;
   }
 

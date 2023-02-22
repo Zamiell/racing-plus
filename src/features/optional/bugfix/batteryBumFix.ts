@@ -25,7 +25,7 @@ const v = {
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  if (!config.batteryBumFix) {
+  if (!config.BatteryBumFix) {
     return;
   }
 
@@ -84,7 +84,7 @@ export function postSlotAnimationChangedBatteryBum(
   _previousAnimation: string,
   currentAnimation: string,
 ): void {
-  if (!config.batteryBumFix) {
+  if (!config.BatteryBumFix) {
     return;
   }
 

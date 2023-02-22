@@ -28,7 +28,7 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.battery9VoltSynergy;
+  return config.Battery9VoltSynergy;
 }
 
 // ModCallback.POST_USE_ITEM (3)
@@ -38,7 +38,7 @@ export function postUseItem(
   useFlags: BitFlags<UseFlag>,
   activeSlot: ActiveSlot,
 ): void {
-  if (!config.battery9VoltSynergy) {
+  if (!config.Battery9VoltSynergy) {
     return;
   }
 
@@ -72,7 +72,7 @@ export function postUseItem(
 
 // ModCallback.POST_UPDATE (1)
 export function postUpdate(): void {
-  if (!config.battery9VoltSynergy) {
+  if (!config.Battery9VoltSynergy) {
     return;
   }
 

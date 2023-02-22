@@ -31,13 +31,13 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.fastPin;
+  return config.FastPin;
 }
 
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.PIN (62)
 export function postNPCUpdatePin(npc: EntityNPC): void {
-  if (!config.fastPin) {
+  if (!config.FastPin) {
     return;
   }
 

@@ -22,7 +22,7 @@ const FRAMES_FOR_CHAT_TO_SHOW = 120;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.chat) {
+  if (!config.Chat) {
     return;
   }
 

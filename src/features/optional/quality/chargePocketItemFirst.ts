@@ -76,11 +76,11 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.chargePocketItemFirst;
+  return config.ChargePocketItemFirst;
 }
 
 function chargePocketFeatureShouldApply(player: EntityPlayer) {
-  return config.chargePocketItemFirst && !dropButtonPressed(player);
+  return config.ChargePocketItemFirst && !dropButtonPressed(player);
 }
 
 function dropButtonPressed(player: EntityPlayer) {

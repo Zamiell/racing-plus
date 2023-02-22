@@ -35,13 +35,13 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.preventVictoryLapPopup;
+  return config.PreventVictoryLapPopup;
 }
 
 // ModCallback.POST_ENTITY_KILL (68)
 // EntityType.THE_LAMB (273)
 export function postEntityKillLamb(entity: Entity): void {
-  if (!config.preventVictoryLapPopup) {
+  if (!config.PreventVictoryLapPopup) {
     return;
   }
 

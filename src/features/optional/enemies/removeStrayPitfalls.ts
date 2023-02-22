@@ -4,7 +4,7 @@ import { config } from "../../../modConfigMenu";
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
 export function preSpawnClearAward(): void {
-  if (!config.removeStrayPitfalls) {
+  if (!config.RemoveStrayPitfalls) {
     return;
   }
 

@@ -262,7 +262,7 @@ function drawShadows() {
   const renderFrameCount = Isaac.GetFrameCount();
   const roomListIndex = getRoomListIndex();
 
-  if (!config.shadows) {
+  if (!config.Shadows) {
     return;
   }
 

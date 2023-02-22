@@ -15,7 +15,7 @@ import { checkRespawnKrampus, devil } from "../devil";
 import { v } from "../v";
 
 export function betterDevilAngelRoomsPostNewRoom(): void {
-  if (!config.betterDevilAngelRooms) {
+  if (!config.BetterDevilAngelRooms) {
     return;
   }
 

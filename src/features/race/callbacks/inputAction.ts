@@ -8,7 +8,7 @@ import { config } from "../../../modConfigMenu";
 // InputHook.IS_ACTION_TRIGGERED (1)
 // ButtonAction.CONSOLE (28)
 export function isActionTriggeredConsole(): boolean | undefined {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return undefined;
   }
 

@@ -10,7 +10,7 @@ const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new ReadonlySet<EntityType>([
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.removeTreasureRoomEnemies) {
+  if (!config.RemoveTreasureRoomEnemies) {
     return;
   }
 

@@ -14,7 +14,7 @@ export function raceStart(): void {
 
 export function shouldShowRaceID(): boolean {
   return (
-    config.clientCommunication &&
+    config.ClientCommunication &&
     g.race.raceID !== -1 &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&

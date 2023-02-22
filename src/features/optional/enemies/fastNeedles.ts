@@ -10,7 +10,7 @@ const FRAME_DELAY_BEFORE_JUMPING = -8;
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.NEEDLE (881)
 export function postNPCUpdateNeedle(npc: EntityNPC): void {
-  if (!config.fastNeedles) {
+  if (!config.FastNeedles) {
     return;
   }
 

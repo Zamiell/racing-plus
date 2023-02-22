@@ -6,7 +6,7 @@ export function main(
   _player: EntityPlayer,
   pickingUpItem: PickingUpItem,
 ): void {
-  if (!config.clientCommunication) {
+  if (!config.ClientCommunication) {
     return;
   }
 

@@ -25,12 +25,12 @@ export function init(): void {
 }
 
 function featureEnabled() {
-  return config.showEdenStartingItems;
+  return config.ShowEdenStartingItems;
 }
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
-  if (!config.showEdenStartingItems) {
+  if (!config.ShowEdenStartingItems) {
     return;
   }
 
@@ -61,7 +61,7 @@ function drawItemSprites() {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  if (!config.showEdenStartingItems) {
+  if (!config.ShowEdenStartingItems) {
     return;
   }
 
@@ -90,7 +90,7 @@ function shouldShowSprites() {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  if (!config.showEdenStartingItems) {
+  if (!config.ShowEdenStartingItems) {
     return;
   }
 
