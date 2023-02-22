@@ -201,13 +201,13 @@ Post-flip actions:
 
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
-- `0315` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0316` <!-- fastHush 407 --> Hush no longer plays an appear animation.
-- `0317` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0318` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
-- `0319` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0320` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
-- <!-- "274.000_megasatanhead.anm2", "275.000_megasatan2head.anm2" 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
+- `0315` <!-- fastMegaSatan 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
+- `0316` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0317` <!-- fastHush 407 --> Hush no longer plays an appear animation.
+- `0318` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0319` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
+- `0320` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0321` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
 - <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.

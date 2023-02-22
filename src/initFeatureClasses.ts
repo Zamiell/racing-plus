@@ -9,6 +9,7 @@ import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBann
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
+import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
 import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
@@ -41,6 +42,7 @@ const FEATURE_CLASSES = [
   FastReset,
 
   // Bosses
+  FastMegaSatan, // 274, 275
   FastHush, // 407
 
   // Enemies

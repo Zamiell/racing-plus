@@ -366,6 +366,15 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
+    "fastMegaSatan", // 274, 275
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0315",
+      "Fast Mega Satan",
+      "Remove some animations in the Mega Satan fight.",
+    ],
+  ],
+  [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
@@ -410,6 +419,10 @@ export const BOSS_CHANGES_2 = [
       "Make Colostomia appear instantly.",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 0311-0320
+export const BOSS_CHANGES_3 = [
   [
     "fastDogma", // 950
     [
@@ -417,19 +430,6 @@ export const BOSS_CHANGES_2 = [
       "0320",
       "Fast Dogma",
       "Speed up Dogma's death animation (and skip the death cutscene).",
-    ],
-  ],
-] as const satisfies ConfigDescriptions;
-
-// 0311-0320
-export const BOSS_CHANGES_3 = [
-  [
-    "", // 274, 275
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fast Mega Satan",
-      "Remove some of the animations in the Mega Satan fight.",
     ],
   ],
   [
