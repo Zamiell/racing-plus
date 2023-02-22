@@ -509,7 +509,7 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "DisableInvulnerability", // 219, 260, 285
+    "VulnerableGhosts", // 219, 260, 285
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0407",
