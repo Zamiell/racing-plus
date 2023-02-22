@@ -25,11 +25,8 @@ export const SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
 ]);
 
 export const SEASON_4_BANNED_COLLECTIBLES = [
-  CollectibleType.WE_NEED_TO_GO_DEEPER,
-] as const;
-
-export const SEASON_4_BANNED_COLLECTIBLES_PAST_FIRST_CHAR = [
-  CollectibleType.GENESIS,
+  CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
+  CollectibleType.GENESIS, // 622
 ] as const;
 
 export const SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE =

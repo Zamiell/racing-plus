@@ -251,8 +251,9 @@ Some builds are banned on certain characters:
 
 ### Item Bans
 
-- We Need to Go Deeper is removed from all pools.
-- Genesis is removed from all pools on the second character and beyond.
+- The following items are removed from all pools:
+  - 84 - We Need to Go Deeper
+  - 622 - Genesis
 
 <br>
 

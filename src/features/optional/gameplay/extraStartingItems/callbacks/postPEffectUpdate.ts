@@ -13,7 +13,7 @@ export function extraStartingItemsPostPEffectUpdate(
     placeholderCollectibleType,
     collectibleType,
   ] of COLLECTIBLE_REPLACEMENT_MAP) {
-    if (!player.HasCollectible(placeholderCollectibleType)) {
+    if (!player.HasCollectible(placeholderCollectibleType, true)) {
       continue;
     }
 
@@ -22,7 +22,7 @@ export function extraStartingItemsPostPEffectUpdate(
 
     // Prevent the situation where the player uses a D4 to roll into both e.g. Magic Mushroom and
     // Magic Mushroom Placeholder.
-    if (player.HasCollectible(collectibleType)) {
+    if (player.HasCollectible(collectibleType, true)) {
       continue;
     }
 

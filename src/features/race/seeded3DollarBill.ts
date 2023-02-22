@@ -7,8 +7,8 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { v } from "./v";
 
-const REPLACED_ITEM = CollectibleType.THREE_DOLLAR_BILL;
-const REPLACEMENT_ITEM = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
+const OLD_COLLECTIBLE_TYPE = CollectibleType.THREE_DOLLAR_BILL;
+const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.THREE_DOLLAR_BILL_SEEDED;
 
 // Listed in alphabetical order to match the wiki page (39 in total).
 // https://bindingofisaacrebirth.fandom.com/wiki/3_Dollar_Bill?dlcfilter=3
@@ -60,10 +60,10 @@ export function postPEffectUpdate(player: EntityPlayer): void {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.format === RaceFormat.SEEDED &&
-    player.HasCollectible(REPLACED_ITEM)
+    player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)
   ) {
-    player.RemoveCollectible(REPLACED_ITEM);
-    player.AddCollectible(REPLACEMENT_ITEM);
+    player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
+    player.AddCollectible(NEW_COLLECTIBLE_TYPE);
 
     checkApplySeeded3DollarBillItem(player);
   }
@@ -77,7 +77,7 @@ export function postNewRoom(): void {
 }
 
 function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
-  if (!player.HasCollectible(REPLACEMENT_ITEM)) {
+  if (!player.HasCollectible(NEW_COLLECTIBLE_TYPE)) {
     return;
   }
 
