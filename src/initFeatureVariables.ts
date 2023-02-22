@@ -2,7 +2,6 @@ import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
-import * as beastPreventEnd from "./features/mandatory/beastPreventEnd";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -78,7 +77,6 @@ export function initFeatureVariables(): void {
   removeGloballyBannedItems.init();
   removeGlitchedItems.init();
   replacePhotos.init();
-  beastPreventEnd.init();
   tempMoreOptions.init();
   seededDrops.init();
   seededTeleports.init();

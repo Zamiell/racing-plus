@@ -10,6 +10,7 @@ import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFr
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
+import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
@@ -19,6 +20,7 @@ import { Season1 } from "./classes/features/speedrun/Season1";
 import { Season2 } from "./classes/features/speedrun/Season2";
 import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
+import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
 
 const FEATURE_CLASSES = [
   // Mandatory
@@ -43,7 +45,9 @@ const FEATURE_CLASSES = [
 
   // Bosses
   FastMegaSatan, // 274, 275
+  PreventEndMegaSatan, // 275
   FastHush, // 407
+  PreventEndBeast, // 951
 
   // Enemies
   DummyDPS, // 964

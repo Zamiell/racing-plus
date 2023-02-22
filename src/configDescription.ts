@@ -375,10 +375,19 @@ export const BOSS_CHANGES_2 = [
     ],
   ],
   [
+    "preventEndMegaSatan", // 275
+    [
+      ModConfigMenuOptionType.TEXT,
+      "0316",
+      "Prevent Mega Satan ending",
+      "Defeating Mega Satan no longer has a chance to immediately end the run.",
+    ],
+  ],
+  [
     "openHushDoor", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0315",
+      "0317",
       "Open the Hush door",
       "Automatically open the big door to Hush when you arrive on the Blue womb.",
     ],
@@ -387,16 +396,16 @@ export const BOSS_CHANGES_2 = [
     "fastHush", // 407
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0316",
+      "0318",
       "Fast Hush",
-      "Make Hush skip the appear animation.",
+      'Make Hush no longer play an "Appear" animation.',
     ],
   ],
   [
     "fastBigHorn", // 411
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0317",
+      "0319",
       "Fast Big Horn",
       "Make Big Horn spend less time underground.",
     ],
@@ -405,56 +414,38 @@ export const BOSS_CHANGES_2 = [
     "fastHeretic", // 905
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0318",
+      "0320",
       "Fast Heretic",
       "Make The Heretic fight start instantly.",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 0321-0330
+export const BOSS_CHANGES_3 = [
   [
     "fastColostomia", // 917
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0319",
+      "0321",
       "Fast Colostomia",
       "Make Colostomia appear instantly.",
     ],
   ],
-] as const satisfies ConfigDescriptions;
-
-// 0311-0320
-export const BOSS_CHANGES_3 = [
   [
     "fastDogma", // 950
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0320",
+      "0322",
       "Fast Dogma",
       "Speed up Dogma's death animation (and skip the death cutscene).",
     ],
   ],
   [
-    "", // 275
+    "preventEndBeast", // 951
     [
       ModConfigMenuOptionType.TEXT,
-      "",
-      "Prevent Mega Satan ending",
-      "Defeating Mega Satan no longer has a chance to immediately end the run.",
-    ],
-  ],
-  [
-    "", // 407
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Fast Hush",
-      'Make Hush no longer play an "Appear" animation.',
-    ],
-  ],
-  [
-    "", // 951
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
+      "0323",
       "Prevent The Beast ending",
       "Defeating The Beast no longer has a chance to immediately end the run.",
     ],

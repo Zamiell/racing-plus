@@ -33,12 +33,14 @@ export class Config {
   removeLambBody = true; // 273
   preventVictoryLapPopup = true; // 273
   fastMegaSatan = true; // 274, 275
+  preventEndMegaSatan = true; // 275
   openHushDoor = true; // 407
   fastHush = true; // 407
   fastBigHorn = true; // 411
   fastHeretic = true; // 905
   fastColostomia = true; // 917
   fastDogma = true; // 950
+  preventEndBeast = true; // 951
 
   // Enemies
   fadeFriendlyEnemies = true;

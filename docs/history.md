@@ -7,6 +7,8 @@
 
 - Mega Satan's death animation will now be sped up instead of being completely skipped.
 - Skipping Mega Satan's animations is now configurable via Mod Config Menu.
+- Preventing Mega Satan's cutscene is now configurable via Mod Config Menu.
+- Preventing The Beast's cutscene is now configurable via Mod Config Menu.
 
 ### _v0.94.4_ - February 21st, 2023
 

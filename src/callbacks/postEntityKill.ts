@@ -1,7 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
-import * as beastPreventEnd from "../features/mandatory/beastPreventEnd";
-import * as megaSatanPreventEnd from "../features/mandatory/megaSatanPreventEnd";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as fastAngels from "../features/optional/bosses/fastAngels";
@@ -58,12 +56,6 @@ export function init(): void {
 
   mod.AddCallback(
     ModCallback.POST_ENTITY_KILL,
-    megaSatan2,
-    EntityType.MEGA_SATAN_2, // 275
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
     hush,
     EntityType.HUSH, // 407
   );
@@ -72,12 +64,6 @@ export function init(): void {
     ModCallback.POST_ENTITY_KILL,
     dogma,
     EntityType.DOGMA, // 950
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    theBeast,
-    EntityType.BEAST, // 951
   );
 }
 
@@ -135,11 +121,6 @@ function gabriel(entity: Entity) {
   fastAngels.postEntityKillGabriel(entity);
 }
 
-// EntityType.MEGA_SATAN_2 (275)
-function megaSatan2(entity: Entity) {
-  megaSatanPreventEnd.postEntityKillMegaSatan2(entity);
-}
-
 // EntityType.HUSH (407)
 function hush(entity: Entity) {
   racePostEntityKill.hush(entity);
@@ -148,9 +129,4 @@ function hush(entity: Entity) {
 // EntityType.DOGMA (950)
 function dogma(entity: Entity) {
   fastDogma.postEntityKillDogma(entity);
-}
-
-// EntityType.BEAST (951)
-function theBeast(entity: Entity) {
-  beastPreventEnd.postEntityKillTheBeast(entity);
 }

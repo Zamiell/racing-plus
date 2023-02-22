@@ -202,20 +202,21 @@ Post-flip actions:
 > Why? Speedrunners never want to do a Victory Lap; they just want to finish the run.
 
 - `0315` <!-- fastMegaSatan 274, 275 --> Some of the animations in the Mega Satan fight have been removed.
-- `0316` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
-- `0317` <!-- fastHush 407 --> Hush no longer plays an appear animation.
-- `0318` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
-- `0319` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
-- `0320` <!-- fastColostomia 917 --> Colostomia will instantly appear.
-- `0321` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
-- <!-- megaSatanPreventEnd 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
+- `0316` <!-- preventEndMegaSatan 275 --> Defeating Mega Satan no longer has a chance to immediately end the run.
 
 > Why? This gives players a chance to touch a trophy, use a Fool card, etc.
 
-- <!-- "00.special rooms.xml" 907 --> Great Gideon will no longer appear as a boss in Mines/Ashpit.
-- <!-- beastPreventEnd 951 --> Defeating The Beast no longer immediately ends the run.
+- `0317` <!-- openHushDoor 407 --> The Hush door will be automatically opened.
+- `0318` <!-- fastHush 407 --> Hush no longer plays an appear animation.
+- `0319` <!-- fastBigHorn 411 --> Big Horn will spend less time underground.
+- `0320` <!-- fastHeretic 905 --> The Heretic fight will instantly start.
+- `0321` <!-- fastColostomia 917 --> Colostomia will instantly appear.
+- `0322` <!-- fastDogma 950 --> Dogma's death animation is sped up, and his death cutscene is skipped.
+- `0323` <!-- preventEndBeast 951 --> Defeating The Beast no longer immediately ends the run.
 
 > Why? This gives players a chance to touch a trophy.
+
+- <!-- "00.special rooms.xml" 907 --> Great Gideon will no longer appear as a boss in Mines/Ashpit.
 
 ### 4) Enemy Changes
 
