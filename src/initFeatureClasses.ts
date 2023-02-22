@@ -1,4 +1,5 @@
 import { ModFeature } from "isaacscript-common";
+import { StartWithD6 } from "./classes/features/major/StartWithD6";
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
 import { DrawControls } from "./classes/features/mandatory/DrawControls";
@@ -41,7 +42,20 @@ const FEATURE_CLASSES = [
   Season4,
 
   // Major
+  StartWithD6,
+  // - DisableCurses,
+  // - BetterDevilAngelRooms,
+  // - FreeDevilItem,
+  // - DoubleAngelNerf,
   FastReset,
+  // - FastClear,
+  // - FastTravel,
+
+  // Hotkeys
+  // TODO
+
+  // Characters
+  // TODO
 
   // Bosses
   FastMegaSatan, // 274, 275
@@ -52,12 +66,30 @@ const FEATURE_CLASSES = [
   // Enemies
   DummyDPS, // 964
 
-  // QoL
+  // Quality of Life
   SpeedUpFadeIn,
 
-  // GFX
+  // Gameplay
+  // TODO
+
+  // Removals
+  // TODO
+
+  // Cutscenes
+  // TODO
+
+  // Bug Fixes
+  // TODO
+
+  // Graphics
   DrawControls,
   HolidayHats,
+
+  // Sounds
+  // TODO
+
+  // Other
+  // TODO
 ] as const satisfies ReadonlyArray<typeof ModFeature>;
 
 export function initFeatureClasses(): void {

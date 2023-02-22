@@ -31,7 +31,6 @@ import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/ext
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
-import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
@@ -78,7 +77,6 @@ function main() {
   racePostNewRoom();
   speedrunPostNewRoom();
   charCharOrderPostNewRoom();
-  startWithD6.postNewRoom();
   betterDevilAngelRoomsPostNewRoom();
   fastClearPostNewRoom();
   fastTravelPostNewRoom();

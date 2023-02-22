@@ -7,7 +7,6 @@ import {
 import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
-import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as speedrunPreUseItem from "../features/speedrun/callbacks/preUseItem";
 import { mod } from "../mod";
 
@@ -58,12 +57,6 @@ export function init(): void {
     ModCallback.PRE_USE_ITEM,
     abyss,
     CollectibleType.ABYSS, // 706
-  );
-
-  mod.AddCallback(
-    ModCallback.PRE_USE_ITEM,
-    flip,
-    CollectibleType.FLIP, // 711
   );
 
   mod.AddCallback(
@@ -185,18 +178,4 @@ function spindownDice(
   _customVarData: int,
 ): boolean | undefined {
   return speedrunPreUseItem.spindownDice(player);
-}
-
-// CollectibleType.FLIP (711)
-function flip(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  player: EntityPlayer,
-  useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  startWithD6.preUseItemFlip(player, useFlags);
-
-  return undefined;
 }

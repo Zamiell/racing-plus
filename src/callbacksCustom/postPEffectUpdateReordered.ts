@@ -4,7 +4,6 @@ import * as solCustom from "../features/items/solCustom";
 import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import { extraStartingItemsPostPEffectUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postPEffectUpdate";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
-import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as roll from "../features/optional/other/roll";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
@@ -22,7 +21,6 @@ function main(player: EntityPlayer) {
 
   // Major
   racePostPEffectUpdate(player);
-  startWithD6.postPEffectUpdate(player);
   fastTravelPostPEffectUpdate(player);
 
   // Gameplay

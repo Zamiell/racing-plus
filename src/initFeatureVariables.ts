@@ -39,7 +39,6 @@ import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevi
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as freeDevilItem from "./features/optional/major/freeDevilItem";
-import * as startWithD6 from "./features/optional/major/startWithD6";
 import * as roll from "./features/optional/other/roll";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as bloodyLustChargeBar from "./features/optional/quality/bloodyLustChargeBar/v";
@@ -90,7 +89,6 @@ export function initFeatureVariables(): void {
   seededGlitterBombs.init();
 
   // Major
-  startWithD6.init();
   fastClearVars.init();
   fastTravelVars.init();
   betterDevilAngelRoomsVars.init();

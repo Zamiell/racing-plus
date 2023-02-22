@@ -1,6 +1,5 @@
 import { CollectibleType, ItemType } from "isaac-typescript-definitions";
 import { ModCallbackCustom, PickingUpItem } from "isaacscript-common";
-import * as startWithD6 from "../features/optional/major/startWithD6";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import { mod } from "../mod";
@@ -21,13 +20,6 @@ export function init(): void {
     ItemType.PASSIVE, // 1
     CollectibleType.BATTERY_PACK, // 603
   );
-
-  mod.AddCallbackCustom(
-    ModCallbackCustom.POST_ITEM_PICKUP,
-    birthright,
-    ItemType.PASSIVE, // 1
-    CollectibleType.BIRTHRIGHT, // 619
-  );
 }
 
 function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {
@@ -44,10 +36,4 @@ function nineVolt(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
 // CollectibleType.BATTERY_PACK (603)
 function batteryPack(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
   chargePocketItemFirst.postItemPickupBatteryPack(player);
-}
-
-// ItemType.PASSIVE (1)
-// CollectibleType.BATTERY_PACK (603)
-function birthright(player: EntityPlayer, _pickingUpItem: PickingUpItem) {
-  startWithD6.postItemPickupBirthright(player);
 }
