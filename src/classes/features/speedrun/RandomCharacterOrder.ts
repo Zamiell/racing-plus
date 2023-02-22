@@ -13,7 +13,6 @@ import {
   getEffectiveStage,
   getRandomArrayElementAndRemove,
   isRoomInsideGrid,
-  logError,
   ModCallbackCustom,
   ReadonlySet,
 } from "isaacscript-common";
@@ -224,15 +223,8 @@ export class RandomCharacterOrder extends ChallengeModFeature {
     v.persistent.remainingCharacters = copyArray(characters);
     v.persistent.timeCharacterAssigned = time; // We will assign the character in the next function.
 
-    switch (challenge) {
-      case ChallengeCustom.SEASON_2: {
-        season2ResetBuilds();
-        break;
-      }
-
-      default: {
-        break;
-      }
+    if (onSeason(2)) {
+      season2ResetBuilds();
     }
   }
 }
@@ -260,10 +252,10 @@ export function getRandomlySelectedStartingCharacter(): PlayerType {
     }
   }
 
-  // Provide a fail-safe for a corrupted data structure.
   if (v.persistent.remainingCharacters.length === 0) {
-    logError("Failed to get a remaining character.");
-    return PlayerType.ISAAC;
+    error(
+      "Failed to get a random starting character since there were no remaining characters.",
+    );
   }
 
   // Select a new starting character.

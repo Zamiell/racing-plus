@@ -151,6 +151,12 @@ export class Season2 extends ChallengeModFeature {
     const antiSynergyBuilds = this.getAntiSynergyBuilds(character);
     buildExceptions.push(...antiSynergyBuilds);
 
+    if (v.persistent.remainingBuildIndexes.length === 0) {
+      error(
+        "Failed to get a random starting build index since there were no remaining build indexes.",
+      );
+    }
+
     const startingBuildIndex = getRandomArrayElementAndRemove(
       v.persistent.remainingBuildIndexes,
       undefined,
