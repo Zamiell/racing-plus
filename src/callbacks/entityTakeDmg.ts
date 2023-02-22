@@ -3,7 +3,6 @@ import {
   EntityType,
   ModCallback,
 } from "isaac-typescript-definitions";
-import * as doubleAngelNerf from "../features/mandatory/doubleAngelNerf";
 import * as removeArmor from "../features/optional/bosses/removeArmor";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import * as roll from "../features/optional/other/roll";
@@ -17,18 +16,6 @@ export function init(): void {
     ModCallback.ENTITY_TAKE_DMG,
     entityTakeDmgPlayer,
     EntityType.PLAYER, // 1
-  );
-
-  mod.AddCallback(
-    ModCallback.ENTITY_TAKE_DMG,
-    uriel,
-    EntityType.URIEL, // 271
-  );
-
-  mod.AddCallback(
-    ModCallback.ENTITY_TAKE_DMG,
-    gabriel,
-    EntityType.GABRIEL, // 272
   );
 }
 
@@ -71,26 +58,4 @@ function entityTakeDmgPlayer(
   roll.entityTakeDmgPlayer(player);
 
   return undefined;
-}
-
-// EntityType.URIEL (271)
-function uriel(
-  _entity: Entity,
-  _amount: float,
-  _damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  _countdownFrames: int,
-): boolean | undefined {
-  return doubleAngelNerf.entityTakeDmgUriel(source);
-}
-
-// EntityType.GABRIEL (272)
-function gabriel(
-  _entity: Entity,
-  _amount: float,
-  _damageFlags: BitFlags<DamageFlag>,
-  source: EntityRef,
-  _countdownFrames: int,
-): boolean | undefined {
-  return doubleAngelNerf.entityTakeDmgGabriel(source);
 }

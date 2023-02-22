@@ -4,6 +4,7 @@ import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
 import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
+import { DoubleAngelNerf } from "./classes/features/mandatory/DoubleAngelNerf";
 import { DrawControls } from "./classes/features/mandatory/DrawControls";
 import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
 import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
@@ -29,6 +30,7 @@ const FEATURE_CLASSES = [
   // Mandatory
   CheckErrors,
   DisableMultiplayer,
+  DoubleAngelNerf,
   ForceFadedConsoleDisplay,
   LogConsoleCommands,
   RacingPlusIcon,
