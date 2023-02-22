@@ -32,7 +32,6 @@ import { mod } from "./mod";
 
 const CATEGORY_NAME = "Racing+";
 const PRESETS_NAME = "Presets";
-const MAX_CONFIG_PAGE_LENGTH = 10;
 
 const v = {
   persistent: {
@@ -177,12 +176,6 @@ function registerSubMenuConfig(
 ) {
   if (ModConfigMenu === undefined) {
     return;
-  }
-
-  if (descriptions.length > MAX_CONFIG_PAGE_LENGTH) {
-    error(
-      `The config descriptions for "${subMenuName}" was longer than ${MAX_CONFIG_PAGE_LENGTH} elements. Move some elements into a new category.`,
-    );
   }
 
   for (const [configName, array] of descriptions) {

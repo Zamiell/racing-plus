@@ -1,12 +1,18 @@
+import { TupleWithMaxLength } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
 
-export type ConfigDescriptions = ReadonlyArray<
-  readonly [
-    keyof Config | keyof Hotkeys | "",
-    readonly [ModConfigMenuOptionType, string, string, string],
-  ]
+type ConfigDescription = readonly [
+  keyof Config | keyof Hotkeys | "",
+  readonly [ModConfigMenuOptionType, string, string, string],
+];
+
+export type ConfigDescriptions = TupleWithMaxLength<
+  ConfigDescription,
+  typeof MAX_CONFIG_PAGE_LENGTH
 >;
+
+const MAX_CONFIG_PAGE_LENGTH = 10;
 
 // 0001-0010
 export const MAJOR_CHANGES = [
@@ -1391,8 +1397,8 @@ export const ALL_CONFIG_DESCRIPTIONS = [
   ...GRAPHIC_CHANGES_3,
   ...SOUND_CHANGES,
   ...OTHER_FEATURES,
-] as const satisfies ConfigDescriptions;
+] as const satisfies readonly ConfigDescription[];
 
 export const ALL_HOTKEY_DESCRIPTIONS = [
   ...CUSTOM_HOTKEYS,
-] as const satisfies ConfigDescriptions;
+] as const satisfies readonly ConfigDescription[];
