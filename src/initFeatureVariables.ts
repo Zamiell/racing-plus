@@ -45,7 +45,6 @@ import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwi
 import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChargeBar";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
-import * as showMaxFamiliars from "./features/optional/quality/showMaxFamiliars";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as showPills from "./features/optional/quality/showPills";
 import * as customConsole from "./features/race/customConsole";
@@ -114,7 +113,6 @@ export function initFeatureVariables(): void {
   showDreamCatcherItemVars.init(); // 566
   fastVanishingTwin.init(); // 697
   removePerfectionVelocity.init(); // 145
-  showMaxFamiliars.init();
   automaticItemInsertion.init();
   chargePocketItemFirst.init();
 

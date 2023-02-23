@@ -4,7 +4,6 @@ import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
-import * as runTimer from "../features/mandatory/runTimer";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
@@ -12,7 +11,6 @@ import * as showEdenStartingItems from "../features/optional/characters/showEden
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
-import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
@@ -38,7 +36,6 @@ function main() {
   // Mandatory
   modConfigNotify.postRender();
   streakText.postRender();
-  runTimer.postRender();
   topLeftText.postRender();
   drawVersion.postRender();
   seededDeathPostRender();
@@ -54,9 +51,10 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostRender(); // 566
-  showMaxFamiliars.postRender();
+
   // Should be after the "Show Max Familiars" feature so that the text has priority.
   automaticItemInsertionPostRender();
+
   showPills.postRender();
 
   // Other

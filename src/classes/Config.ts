@@ -43,9 +43,9 @@ export class Config {
   PreventEndBeast = true; // 951
 
   // Enemies
+  ClearerShadowAttacks = true;
   FadeFriendlyEnemies = true;
   RemoveTreasureRoomEnemies = true;
-  ClearerShadowAttacks = true;
   GlobinSoftlock = true; // 24
   AppearHands = true; // 213, 287
   FastHands = true; // 213, 287
@@ -59,13 +59,19 @@ export class Config {
   DummyDPS = true; // 964
 
   // QoL
-  SpeedUpFadeIn = true;
-  EasyFirstFloorItems = true;
+  AutomaticItemInsertion = true;
   ChangeCreepColor = true;
-  SubvertTeleport = true;
+  ChargePocketItemFirst = true;
   DeleteVoidPortals = true;
+  EasyFirstFloorItems = true;
+  FadeDevilStatue = true;
+  RunTimer = true;
+  ShowMaxFamiliars = true;
   ShowNumSacrifices = true;
-  TaintedSamsonChargeBar = true;
+  ShowPills = true;
+  SpeedUpFadeIn = true;
+  SubvertTeleport = true;
+  TaintedSamsonChargeBar = true; // 27 (charge bar)
   BloodyLustChargeBar = true; // 157 (charge bar)
   LeadPencilChargeBar = true; // 444 (charge bar)
   AzazelsRageChargeBar = true; // 669 (charge bar)
@@ -79,11 +85,6 @@ export class Config {
   RemovePerfectionVelocity = true; // 145 (trinket)
   RemovePerfectionOnEndFloors = true; // 145 (trinket)
   DisplayExpansionPack = true; // 181 (trinket)
-  AutomaticItemInsertion = true;
-  ChargePocketItemFirst = true;
-  ShowMaxFamiliars = true;
-  ShowPills = true;
-  FadeDevilStatue = true;
 
   // Gameplay
   ExtraStartingItems = true;

@@ -8,6 +8,7 @@
 - In season 4, reviving as a new character will now remove the extra starting items granted to the old character. (This means playing as Jacob & Esau should be more balanced.)
 - In season 4, Genesis is now removed from pools on all runs. (Thanks Monkeypot)
 - Fixed the bug where item wisps could give you infinite items under certain circumstances. (Thanks Rollmop)
+- Fixed the alignment of the in-game run timer so that it is always drawn to the right of the free devil deal icon & max familiar icon.
 
 ### _v0.94.5_ - February 22nd, 2023
 

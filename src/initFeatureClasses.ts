@@ -28,6 +28,8 @@ import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlo
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
+import { RunTimer } from "./classes/features/optional/quality/runTimer";
+import { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
 import { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 import { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
@@ -86,7 +88,9 @@ const FEATURE_CLASSES = [
   PreventEndBeast, // 951
 
   // Enemies
+  // - ClearerShadowAttacks
   FadeFriendlyEnemies,
+  // - RemoveTreasureRoomEnemies
   GlobinSoftlock, // 24
   AppearHands, // 213, 287
   FastHands, // 213, 287
@@ -98,6 +102,8 @@ const FEATURE_CLASSES = [
   DummyDPS, // 964
 
   // Quality of Life
+  RunTimer,
+  ShowMaxFamiliars,
   SpeedUpFadeIn,
 
   // Gameplay

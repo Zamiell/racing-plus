@@ -1,15 +1,14 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
-  clearRoomDisplayFlags,
   getDoorsToRoomIndex,
   getPlayers,
   getRoomGridIndexesForType,
+  hideRoomOnMinimap,
   onFirstFloor,
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
 import { g } from "../../globals";
-import { mod } from "../../mod";
 import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter, onSeason } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
@@ -76,11 +75,6 @@ function outsideBannedRoom(bannedRoomType: RoomType) {
 
   // Delete the icon on the minimap. (This has to be done on every room, because it will reappear.)
   for (const roomGridIndex of bannedRoomGridIndexes) {
-    clearRoomDisplayFlags(roomGridIndex);
-
-    // Work around the bug with MinimapAPI not having callback priority.
-    mod.runNextRenderFrame(() => {
-      clearRoomDisplayFlags(roomGridIndex);
-    });
+    hideRoomOnMinimap(roomGridIndex);
   }
 }

@@ -23,6 +23,7 @@ import {
   isSelfDamage,
   ModCallbackCustom,
   onDarkRoom,
+  VectorZero,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
@@ -34,8 +35,10 @@ import { getEffectiveDevilDeals } from "../../../utils";
 import { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 
-const ICON_SPRITE_POSITION = Vector(42, 51); // To the right of the coin count.
+const TOP_LEFT_UI_POSITION = Vector(42, 51); // To the right of the coin count.
 const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);
+export const ANOTHER_UI_ICON_OFFSET = Vector(16, 0);
+
 const COLLECTIBLE_OFFSET = Vector(0, 30);
 
 const iconSprite = newMysteryGiftSprite(true);
@@ -66,34 +69,25 @@ export class FreeDevilItem extends ConfigurableModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
-    if (!shouldGetFreeDevilItemOnThisRun()) {
-      return;
-    }
-
     // In seeded races, we might be guaranteed to be getting Angel Rooms. If so, then showing the
     // free item icon is superfluous.
     if (inSeededRaceWithAllAngelRooms()) {
       return;
     }
 
-    this.drawIconSprite();
+    if (shouldGetFreeDevilItemOnThisRun()) {
+      this.drawIconSprite();
+    }
   }
 
+  /** Draw the Mystery Gift icon that indicates that the player currently has a free devil deal. */
   drawIconSprite(): void {
     const hud = game.GetHUD();
     if (!hud.IsVisible()) {
       return;
     }
 
-    const hudOffsetVector = getHUDOffsetVector();
-    const defaultPosition = ICON_SPRITE_POSITION.add(hudOffsetVector);
-    const hasTaintedCharacterUI = anyPlayerIs(
-      PlayerType.ISAAC_B, // 21
-      PlayerType.BLUE_BABY_B, // 25
-    );
-    const position = hasTaintedCharacterUI
-      ? defaultPosition.add(TAINTED_CHARACTER_UI_OFFSET)
-      : defaultPosition;
+    const position = getTopLeftUIPositionFreeDevilItem();
     iconSprite.RenderLayer(CollectibleSpriteLayer.HEAD, position);
   }
 
@@ -219,6 +213,22 @@ export class FreeDevilItem extends ConfigurableModFeature {
     v.run.tookDamage = true;
     return undefined;
   }
+}
+
+export function getTopLeftUIPositionFreeDevilItem(): Vector {
+  const hudOffsetVector = getHUDOffsetVector();
+
+  const hasTaintedCharacterUI = anyPlayerIs(
+    PlayerType.ISAAC_B, // 21
+    PlayerType.BLUE_BABY_B, // 25
+  );
+  const taintedCharacterUIOffset = hasTaintedCharacterUI
+    ? TAINTED_CHARACTER_UI_OFFSET
+    : VectorZero;
+
+  return TOP_LEFT_UI_POSITION.add(hudOffsetVector).add(
+    taintedCharacterUIOffset,
+  );
 }
 
 export function shouldGetFreeDevilItemOnThisRun(): boolean {

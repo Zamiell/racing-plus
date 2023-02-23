@@ -10,7 +10,6 @@ import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extr
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
-import * as showMaxFamiliars from "../features/optional/quality/showMaxFamiliars";
 import * as showPills from "../features/optional/quality/showPills";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
@@ -39,7 +38,6 @@ function main() {
 
   // QoL
   showPills.postUpdate();
-  showMaxFamiliars.postUpdate();
   fastVanishingTwin.postUpdate(); // 697
 
   // Gameplay

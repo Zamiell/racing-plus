@@ -455,10 +455,19 @@ export const BOSS_CHANGES_3 = [
 // 0401-0410
 export const ENEMY_CHANGES_1 = [
   [
-    "FadeFriendlyEnemies",
+    "ClearerShadowAttacks",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0401",
+      "Make shadow attacks clearer",
+      "Make a blue target appear on the ground for the specific attacks that come from above.",
+    ],
+  ],
+  [
+    "FadeFriendlyEnemies",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0402",
       "Fade friendly enemies",
       "Fade friendly enemies to make it easier to see the real ones.",
     ],
@@ -467,18 +476,9 @@ export const ENEMY_CHANGES_1 = [
     "RemoveTreasureRoomEnemies",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0402",
+      "0403",
       "Remove Treasure Room enemies",
       "Remove all enemies from Treasure Rooms.",
-    ],
-  ],
-  [
-    "ClearerShadowAttacks",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0403",
-      "Make shadow attacks clearer",
-      "Make a blue target appear on the ground for the specific attacks that come from above.",
     ],
   ],
   [
@@ -589,64 +589,122 @@ export const ENEMY_CHANGES_2 = [
 // 0501-0510
 export const QUALITY_OF_LIFE_CHANGES_1 = [
   [
-    "SpeedUpFadeIn",
+    "AutomaticItemInsertion",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0501",
-      "Speed-up new run fade-ins",
-      "Speed-up the fade-in that occurs at the beginning of a new run.",
-    ],
-  ],
-  [
-    "EasyFirstFloorItems",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0502",
-      "Easier first floor items",
-      "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.",
+      "Automatically insert pickups",
+      "When taking an item that drops pickups, automatically insert them into your inventory.",
     ],
   ],
   [
     "ChangeCreepColor",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0503",
+      "0502",
       "Consistent creep color",
       "Change enemy red creep to green and change friendly green creep to red.",
     ],
   ],
   [
-    "SubvertTeleport",
+    "ChargePocketItemFirst",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0504",
-      "Subvert disruptive teleports",
-      "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
+      "0503",
+      "Charge the Pocket item first",
+      "Make batteries charge the pocket item first over the active item.",
     ],
   ],
   [
     "DeleteVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0505",
+      "0504",
       "Delete Void portals",
       "Automatically delete the Void portals that spawn after bosses.",
+    ],
+  ],
+  [
+    "EasyFirstFloorItems",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0505",
+      "Easier first floor items",
+      "Slightly change first floor Treasure Rooms so that you never have to spend a bomb or walk on spikes.",
+    ],
+  ],
+  [
+    "FadeDevilStatue",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0506",
+      "Fade Devil statue",
+      "Fade the statue in a Devil Room if there are pickups behind it.",
+    ],
+  ],
+  [
+    "RunTimer",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0507",
+      "Show the run timer",
+      "Display a timer for in-game time when holding down the map button.",
+    ],
+  ],
+  [
+    "ShowMaxFamiliars",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0508",
+      "Show max familiars",
+      "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
     ],
   ],
   [
     "ShowNumSacrifices",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0506",
+      "0509",
       "Show the number of sacrifices",
       "Show the number of sacrifices in the top-left when in a Sacrifice Room.",
+    ],
+  ],
+  [
+    "ShowPills",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0510",
+      "Remember pills",
+      "Hold the map button to see a list of identified pills for easy reference.",
+    ],
+  ],
+] as const satisfies ConfigDescriptions;
+
+// 0511-0520
+export const QUALITY_OF_LIFE_CHANGES_2 = [
+  [
+    "SpeedUpFadeIn",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0511",
+      "Speed-up new run fade-ins",
+      "Speed-up the fade-in that occurs at the beginning of a new run.",
+    ],
+  ],
+  [
+    "SubvertTeleport",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0512",
+      "Subvert disruptive teleports",
+      "Stop the disruptive teleport that happens when entering a room with Gurdy, Mom, Mom's Heart, or It Lives!",
     ],
   ],
   [
     "TaintedSamsonChargeBar",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0507",
+      "0513",
       "Show Tainted Samson charge bar",
       "Show a custom charge bar that lets you know how close you are to Berserk! activation.",
     ],
@@ -655,7 +713,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     "BloodyLustChargeBar",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0508",
+      "0514",
       "Show Bloody Lust charge bar",
       "Show a custom charge bar that lets you know how close you are to getting the maximum amount of damage from Bloody Lust.",
     ],
@@ -664,7 +722,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     "LeadPencilChargeBar", // 444
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0509",
+      "0515",
       "Show Lead Pencil charge bar",
       "It will only show in situations where the Lead Pencil will work normally.",
     ],
@@ -673,20 +731,16 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     "AzazelsRageChargeBar", // 669
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0510",
+      "0516",
       "Show Azazels' Rage charge bar",
       "Show a custom charge bar that lets you know how close you are to the blast firing.",
     ],
   ],
-] as const satisfies ConfigDescriptions;
-
-// 0511-0520
-export const QUALITY_OF_LIFE_CHANGES_2 = [
   [
     "CombinedDualityDoors", // 498
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0511",
+      "0517",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -695,7 +749,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "RemoveFortuneCookieBanners", // 557
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0512",
+      "0518",
       "Remove Fortune Cookie UI",
       "Remove the banners that occur when you use Fortune Cookie.",
     ],
@@ -704,7 +758,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "ShowDreamCatcherItem", // 566
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0513",
+      "0519",
       "Show the Dream Catcher item",
       "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
@@ -713,16 +767,20 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "FastLuna", // 589
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0514",
+      "0520",
       "Fast Luna",
       "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
   ],
+] as const satisfies ConfigDescriptions;
+
+// 0521-0530
+export const QUALITY_OF_LIFE_CHANGES_3 = [
   [
     "FadeVasculitisTears", // 657
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0515",
+      "0521",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -731,7 +789,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "FastVanishingTwin", // 697
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0516",
+      "0522",
       "Fast Vanishing Twin",
       "Speed up the Vanishing Twin familiar by replacing it with a custom implementation.",
     ],
@@ -740,7 +798,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "FlipCustom", // 711
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0517",
+      "0523",
       "Custom Flip",
       "Replace Flip with a custom version that more clearly shows what each item will change into.",
     ],
@@ -749,7 +807,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "RemovePerfectionVelocity", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0518",
+      "0524",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -758,7 +816,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "RemovePerfectionOnEndFloors", // 145
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0519",
+      "0525",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -767,58 +825,9 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "DisplayExpansionPack", // 181
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0520",
+      "0526",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
-    ],
-  ],
-] as const satisfies ConfigDescriptions;
-
-// 0521-0530
-export const QUALITY_OF_LIFE_CHANGES_3 = [
-  [
-    "AutomaticItemInsertion",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0521",
-      "Automatically insert pickups",
-      "When taking an item that drops pickups, automatically insert them into your inventory.",
-    ],
-  ],
-  [
-    "ChargePocketItemFirst",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0522",
-      "Charge the Pocket item first",
-      "Make batteries charge the pocket item first over the active item.",
-    ],
-  ],
-  [
-    "ShowMaxFamiliars",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0523",
-      "Show max familiars",
-      "Show an icon on the UI when you have the maximum amount of familiars (i.e. 64).",
-    ],
-  ],
-  [
-    "ShowPills",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0524",
-      "Remember pills",
-      "Hold the map button to see a list of identified pills for easy reference.",
-    ],
-  ],
-  [
-    "FadeDevilStatue",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0525",
-      "Fade Devil statue",
-      "Fade the statue in a Devil Room if there are pickups behind it.",
     ],
   ],
   [
