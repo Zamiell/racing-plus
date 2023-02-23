@@ -1,5 +1,6 @@
 import { getCharacterName, log, ModCallbackCustom } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
+import * as fastAngels from "../classes/features/optional/bosses/FastAngels";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -9,7 +10,6 @@ import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
-import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as judasAddBomb from "../features/optional/characters/judasAddBomb";
 import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCard";

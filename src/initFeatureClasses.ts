@@ -13,6 +13,7 @@ import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
+import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
@@ -61,7 +62,7 @@ const FEATURE_CLASSES = [
   TimeConsoleUsed,
 
   // Speedrun
-  RandomCharacterOrder,
+  RandomCharacterOrder, // This must be before the seasons.
   Season1,
   Season2,
   Season3,
@@ -86,9 +87,28 @@ const FEATURE_CLASSES = [
   // TODO
 
   // Bosses
+  // - FadeBosses,
+  // - FastBossRush,
+  // - RemoveArmor,
+  // - KillExtraEnemies, // 45, 78
+  // - FastPin, // 62
+  // - PreventDeathSlow, // 66
+  // - FastBlastocyst, // 74
+  // - FastKrampus, // 81
+  // - FastSatan, // 84
+  // - FastHaunt, // 260
+  FastAngels, // 271, 272
+  // - ConsistentAngels, // 271, 272
+  // - RemoveLambBody, // 273
+  // - PreventVictoryLapPopup, // 273
   FastMegaSatan, // 274, 275
   PreventEndMegaSatan, // 275
+  // - OpenHushDoor, // 407
   FastHush, // 407
+  // - FastBigHorn, // 411
+  // - FastHeretic, // 905
+  // - FastColostomia, // 917
+  // - FastDogma, // 950
   PreventEndBeast, // 951
 
   // Enemies

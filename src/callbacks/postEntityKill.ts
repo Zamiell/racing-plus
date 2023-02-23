@@ -1,8 +1,8 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
+import * as fastAngels from "../classes/features/optional/bosses/FastAngels";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
-import * as fastAngels from "../features/optional/bosses/fastAngels";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";

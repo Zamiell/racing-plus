@@ -1,3 +1,4 @@
+import * as fastAngels from "./classes/features/optional/bosses/FastAngels";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as sawblade from "./features/items/sawblade";
@@ -18,7 +19,6 @@ import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as consistentAngels from "./features/optional/bosses/consistentAngels";
-import * as fastAngels from "./features/optional/bosses/fastAngels";
 import * as fastBossRush from "./features/optional/bosses/fastBossRush";
 import * as fastKrampus from "./features/optional/bosses/fastKrampus";
 import * as fastPin from "./features/optional/bosses/fastPin";

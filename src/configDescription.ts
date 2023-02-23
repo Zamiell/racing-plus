@@ -245,21 +245,21 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "RemoveArmor",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0302",
-      "Remove armor",
-      "Remove damage scaling from all of the bosses that have it.",
-    ],
-  ],
-  [
     "FastBossRush",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0303",
+      "0302",
       "Fast Boss Rush",
       "The mandatory waiting between bosses is removed.",
+    ],
+  ],
+  [
+    "RemoveArmor",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0303",
+      "Remove armor",
+      "Remove damage scaling from all of the bosses that have it.",
     ],
   ],
   [
