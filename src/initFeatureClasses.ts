@@ -17,6 +17,7 @@ import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
+import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
 import { DummyDPS } from "./classes/features/optional/enemies/DummyDPS";
 import { FadeFriendlyEnemies } from "./classes/features/optional/enemies/FadeFriendlyEnemies";
 import { FastDusts } from "./classes/features/optional/enemies/FastDusts";
@@ -91,7 +92,7 @@ const FEATURE_CLASSES = [
   PreventEndBeast, // 951
 
   // Enemies
-  // - ClearerShadowAttacks,
+  ClearerShadowAttacks,
   FadeFriendlyEnemies,
   RemoveTreasureRoomEnemies,
   GlobinSoftlock, // 24
