@@ -19,12 +19,16 @@ import { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastBigHorn } from "./classes/features/optional/bosses/FastBigHorn";
 import { FastBlastocyst } from "./classes/features/optional/bosses/FastBlastocyst";
+import { FastColostomia } from "./classes/features/optional/bosses/FastColostomia";
 import { FastDogma } from "./classes/features/optional/bosses/FastDogma";
+import { FastHaunt } from "./classes/features/optional/bosses/FastHaunt";
 import { FastHeretic } from "./classes/features/optional/bosses/FastHeretic";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastKrampus } from "./classes/features/optional/bosses/FastKrampus";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
 import { FastPin } from "./classes/features/optional/bosses/FastPin";
+import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
+import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
@@ -107,19 +111,19 @@ const FEATURE_CLASSES = [
   // - PreventDeathSlow, // 66
   FastBlastocyst, // 74
   FastKrampus, // 81
-  // - FastSatan, // 84
-  // - FastHaunt, // 260
+  FastSatan, // 84
+  FastHaunt, // 260
   FastAngels, // 271, 272
   ConsistentAngels, // 271, 272
   // - RemoveLambBody, // 273
   // - PreventVictoryLapPopup, // 273
   FastMegaSatan, // 274, 275
   PreventEndMegaSatan, // 275
-  // - OpenHushDoor, // 407
+  OpenHushDoor, // 407
   FastHush, // 407
   FastBigHorn, // 411
   FastHeretic, // 905
-  // - FastColostomia, // 917
+  FastColostomia, // 917
   FastDogma, // 950
   PreventEndBeast, // 951
 

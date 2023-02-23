@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import * as fastHaunt from "../features/optional/bosses/fastHaunt";
+import * as removeLambBody from "../classes/features/optional/bosses/RemoveLambBody";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
-import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
@@ -19,12 +18,6 @@ export function init(): void {
     ModCallback.POST_NPC_UPDATE,
     ragling,
     EntityType.RAGLING, // 246
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    haunt,
-    EntityType.THE_HAUNT, // 260
   );
 
   mod.AddCallback(
@@ -65,11 +58,6 @@ function death(npc: EntityNPC) {
 // EntityType.RAGLING (246)
 function ragling(npc: EntityNPC) {
   fastClearPostNPCUpdate.ragling(npc);
-}
-
-// EntityType.THE_HAUNT (260)
-function haunt(npc: EntityNPC) {
-  fastHaunt.postNPCUpdateHaunt(npc);
 }
 
 // EntityType.DINGLE (261)

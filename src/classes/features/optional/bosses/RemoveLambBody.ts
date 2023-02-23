@@ -1,6 +1,12 @@
 import { LambVariant } from "isaac-typescript-definitions";
 import { asNumber, log } from "isaacscript-common";
-import { config } from "../../../modConfigMenu";
+import { config } from "../../../../modConfigMenu";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+
+export class RemoveLambBody extends ConfigurableModFeature {
+  configKey: keyof Config = "RemoveLambBody";
+}
 
 // ModCallback.POST_NPC_UPDATE (0)
 // EntityType.THE_LAMB (273)
