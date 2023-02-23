@@ -28,7 +28,7 @@ import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlo
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
-import { RunTimer } from "./classes/features/optional/quality/runTimer";
+import { RunTimer } from "./classes/features/optional/quality/RunTimer";
 import { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
 import { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";

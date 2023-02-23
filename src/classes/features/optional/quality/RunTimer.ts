@@ -1,8 +1,3 @@
-// Racing+ removes the font that displays the in-game time. Thus, we need to create a substitute for
-// this. By holding the map button, players can show a timer that represents the current time spent
-// on this specific run. Unlike the normal run timer, this uses real time instead of game frame
-// count.
-
 import { ButtonAction, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
@@ -24,6 +19,12 @@ import {
 
 const OFFSET_FROM_WHERE_AN_ICON_WOULD_BE = Vector(14, -10);
 
+/**
+ * Racing+ removes the font that displays the in-game time. Thus, we need to create a substitute for
+ * this. By holding the map button, players can show a timer that represents the current time spent
+ * on this specific run. Unlike the normal run timer, this uses real time instead of game frame
+ * count.
+ */
 export class RunTimer extends ConfigurableModFeature {
   configKey: keyof Config = "RunTimer";
 
