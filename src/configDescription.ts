@@ -263,7 +263,7 @@ export const BOSS_CHANGES_1 = [
     ],
   ],
   [
-    "KillExtraEnemies", // 45, 78
+    "FastMom", // 45, 78
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0304",

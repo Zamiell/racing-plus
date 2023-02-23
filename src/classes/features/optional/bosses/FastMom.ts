@@ -25,23 +25,23 @@ const v = {
  *
  * Racing+ manually fixes this bug by explicitly killing them (and removing Fistula and Teratoma).
  */
-export class KillExtraEnemies extends ConfigurableModFeature {
-  configKey: keyof Config = "KillExtraEnemies";
+export class FastMom extends ConfigurableModFeature {
+  configKey: keyof Config = "FastMom";
   v = v;
 
   // 68, 45
   @Callback(ModCallback.POST_ENTITY_KILL, EntityType.MOM)
   postEntityKillMom(): void {
-    this.killExtraEnemies();
+    this.killLeftoverEnemies();
   }
 
   // 68, 78
   @Callback(ModCallback.POST_ENTITY_KILL, EntityType.MOMS_HEART)
   postEntityKillMomsHeart(): void {
-    this.killExtraEnemies();
+    this.killLeftoverEnemies();
   }
 
-  killExtraEnemies(): void {
+  killLeftoverEnemies(): void {
     // - There can be up to 5 Mom entities in the room.
     // - It Lives will trigger this callback twice.
     if (v.room.killedExtraEnemies) {

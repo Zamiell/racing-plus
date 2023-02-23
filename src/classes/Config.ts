@@ -21,7 +21,7 @@ export class Config {
   FadeBosses = true;
   FastBossRush = true;
   RemoveArmor = true;
-  KillExtraEnemies = true; // 45, 78
+  FastMom = true; // 45, 78
   FastPin = true; // 62
   PreventDeathSlow = true; // 66
   FastBlastocyst = true; // 74

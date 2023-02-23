@@ -26,9 +26,9 @@ import { FastHeretic } from "./classes/features/optional/bosses/FastHeretic";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastKrampus } from "./classes/features/optional/bosses/FastKrampus";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
+import { FastMom } from "./classes/features/optional/bosses/FastMom";
 import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
-import { KillExtraEnemies } from "./classes/features/optional/bosses/KillExtraEnemies";
 import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
@@ -107,7 +107,7 @@ const FEATURE_CLASSES = [
   FadeBosses,
   // - FastBossRush,
   // - RemoveArmor,
-  KillExtraEnemies, // 45, 78
+  FastMom, // 45, 78
   FastPin, // 62
   // - PreventDeathSlow, // 66
   FastBlastocyst, // 74
