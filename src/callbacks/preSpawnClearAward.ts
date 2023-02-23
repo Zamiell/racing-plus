@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import * as solCustom from "../features/items/solCustom";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import { fastTravelPreSpawnClearAward } from "../features/optional/major/fastTravel/callbacks/preSpawnClearAward";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
@@ -21,9 +20,6 @@ function main(_rng: RNG, _spawnPosition: Vector): boolean | undefined {
 
   // Gameplay
   combinedDualityDoors.preSpawnClearAward();
-
-  // Items
-  solCustom.preSpawnClearAward();
 
   return seededDrops.preSpawnClearAward();
 }

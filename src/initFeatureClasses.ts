@@ -1,6 +1,7 @@
 import { ModFeature } from "isaacscript-common";
 import { DebugItem } from "./classes/features/items/DebugItem";
 import { NLuck } from "./classes/features/items/NLuck";
+import { SolCustom } from "./classes/features/items/SolCustom";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
@@ -33,6 +34,7 @@ import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
+import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
@@ -89,6 +91,7 @@ const FEATURE_CLASSES = [
   // Items
   DebugItem,
   NLuck,
+  SolCustom,
 
   // Major
   StartWithD6,
@@ -161,7 +164,7 @@ const FEATURE_CLASSES = [
   FastTeleport,
 
   // Bug Fixes
-  // TODO
+  BatteryBumFix,
 
   // Graphics
   DrawControls,

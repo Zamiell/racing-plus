@@ -96,6 +96,15 @@ export function getRacingPlusIconPosition(): Vector {
   return position;
 }
 
+/** Similar to the `setUnseeded` function from "isaacscript-common". */
+export function setUnseededWithRacingPlusLogic(): void {
+  setUnseeded();
+
+  // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we
+  // must manually reactivate them.
+  disableAchievements();
+}
+
 /**
  * We want the vanilla "no achievements" icon to appear in order to create a gap for the Racing+
  * icon. Thus, we need to disable achievements on all runs. The easiest way to do this without
@@ -106,13 +115,4 @@ export function getRacingPlusIconPosition(): Vector {
  */
 function disableAchievements() {
   g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
-}
-
-/** Similar to the `setUnseeded` function from "isaacscript-common". */
-export function setUnseededWithRacingPlusLogic(): void {
-  setUnseeded();
-
-  // Using the `Seeds.Reset` method will also remove any Easter Eggs that have been enabled, so we
-  // must manually reactivate them.
-  disableAchievements();
 }

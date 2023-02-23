@@ -31,14 +31,14 @@ export class ClearerShadowAttacks extends ConfigurableModFeature {
   postNPCInitDaddyLongLegs(npc: EntityNPC): void {
     // We only want to target the child entities that represent the multi-stomp attack.
     if (npc.SpawnerEntity !== undefined) {
-      this.spawnTarget(npc);
+      spawnTarget(npc);
     }
   }
 
   // 43, 9
   @Callback(ModCallback.POST_PROJECTILE_INIT, ProjectileVariant.ROCK)
   postProjectileInitRock(projectile: EntityProjectile): void {
-    this.spawnTarget(projectile);
+    spawnTarget(projectile);
   }
 
   @CallbackCustom(
@@ -58,16 +58,16 @@ export class ClearerShadowAttacks extends ConfigurableModFeature {
       effect.Remove();
     }
   }
+}
 
-  spawnTarget(spawner: Entity): void {
-    const target = spawnEffect(
-      EffectVariant.TARGET,
-      TargetSubTypeCustom.SHADOW_ATTACKS,
-      spawner.Position,
-      VectorZero,
-      spawner,
-    );
-    const sprite = target.GetSprite();
-    sprite.Color = LIGHT_BLUE;
-  }
+function spawnTarget(spawner: Entity) {
+  const target = spawnEffect(
+    EffectVariant.TARGET,
+    TargetSubTypeCustom.SHADOW_ATTACKS,
+    spawner.Position,
+    VectorZero,
+    spawner,
+  );
+  const sprite = target.GetSprite();
+  sprite.Color = LIGHT_BLUE;
 }

@@ -58,32 +58,32 @@ export class CheckErrors extends MandatoryModFeature {
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
     if (v.run.afterbirthPlus) {
-      drawErrorText(
+      this.drawErrorText(
         "You must have the Repentance DLC installed in order to use Racing+.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.",
       );
     } else if (v.run.corrupted) {
-      drawErrorText(
+      this.drawErrorText(
         "You must completely close and re-open the game after enabling or disabling any mods.\n\nIf this error persists after re-opening the game, then your Racing+ mod is corrupted and needs to be redownloaded/reinstalled.",
       );
     } else if (v.run.incompleteSave) {
-      drawErrorText(
+      this.drawErrorText(
         "You must use a fully unlocked save file to play the Racing+ mod. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources",
       );
     } else if (v.run.otherModsEnabled) {
-      drawErrorText(
+      this.drawErrorText(
         "You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
       );
     } else if (v.run.babiesModEnabled) {
-      drawErrorText(
+      this.drawErrorText(
         "You must turn off The Babies Mod when playing characters other than Random Baby.",
       );
     } else if (v.run.invalidCharOrder) {
       const thingToSet = onSeason(2) ? "item bans" : "a character order";
-      drawErrorText(
+      this.drawErrorText(
         `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
       );
     } else if (v.run.season4StorageHotkeyNotSet) {
-      drawErrorText(
+      this.drawErrorText(
         "You must set a hotkey to store items using Mod Config Menu. (Restart the game after this is done.)",
       );
     } else if (v.run.seasonGameRecentlyOpened) {
@@ -91,20 +91,50 @@ export class CheckErrors extends MandatoryModFeature {
         "opening the game",
         TIME_GAME_OPENED,
       );
-      drawErrorText(text);
+      this.drawErrorText(text);
     } else if (v.run.seasonConsoleRecentlyUsed) {
       const text = this.getSeasonErrorMessage(
         "using the console",
         getTimeConsoleUsed() ?? 0,
       );
-      drawErrorText(text);
+      this.drawErrorText(text);
     } else if (v.run.seasonBansRecentlySet) {
       const text = this.getSeasonErrorMessage(
         `assigning your ${SEASON_2_NUM_BANS} build bans`,
         getBuildBansTime() ?? 0,
       );
-      drawErrorText(text);
+      this.drawErrorText(text);
     }
+  }
+
+  drawErrorText(text: string): void {
+    const x = STARTING_X;
+    let y = STARTING_Y;
+
+    text = `Error: ${text}`;
+
+    for (const line of text.split("\n")) {
+      const splitLines = this.getSplitLines(line);
+      for (const splitLine of splitLines) {
+        Isaac.RenderText(splitLine, x, y, 2, 2, 2, 2);
+        y += 10;
+      }
+    }
+  }
+
+  getSplitLines(line: string): string[] {
+    let spaceLeft = MAX_CHARACTERS_PER_LINE;
+    const words = line.split(" ");
+    words.forEach((word, i) => {
+      if (word.length + 1 > spaceLeft) {
+        words[i] = `\n${word}`;
+        spaceLeft = MAX_CHARACTERS_PER_LINE - word.length;
+      } else {
+        spaceLeft -= word.length + 1;
+      }
+    });
+
+    return words.join(" ").split("\n");
   }
 
   getSeasonErrorMessage(action: string, millisecondsStarted: int): string {
@@ -317,34 +347,4 @@ function checkBansRecentlySet() {
     v.run.seasonBansRecentlySet = true;
     log("Error: Build bans recently set.");
   }
-}
-
-function drawErrorText(text: string) {
-  const x = STARTING_X;
-  let y = STARTING_Y;
-
-  text = `Error: ${text}`;
-
-  for (const line of text.split("\n")) {
-    const splitLines = getSplitLines(line);
-    for (const splitLine of splitLines) {
-      Isaac.RenderText(splitLine, x, y, 2, 2, 2, 2);
-      y += 10;
-    }
-  }
-}
-
-function getSplitLines(line: string): string[] {
-  let spaceLeft = MAX_CHARACTERS_PER_LINE;
-  const words = line.split(" ");
-  words.forEach((word, i) => {
-    if (word.length + 1 > spaceLeft) {
-      words[i] = `\n${word}`;
-      spaceLeft = MAX_CHARACTERS_PER_LINE - word.length;
-    } else {
-      spaceLeft -= word.length + 1;
-    }
-  });
-
-  return words.join(" ").split("\n");
 }

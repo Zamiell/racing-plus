@@ -1,6 +1,5 @@
 import { SlotVariant } from "isaac-typescript-definitions";
 import { ModCallbackCustom } from "isaacscript-common";
-import * as batteryBumFix from "../features/optional/bugfix/batteryBumFix";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
 import { mod } from "../mod";
 
@@ -20,13 +19,6 @@ function batteryBum(
 ) {
   // QoL
   chargePocketItemFirst.postSlotAnimationChangedBatteryBum(
-    slot,
-    previousAnimation,
-    currentAnimation,
-  );
-
-  // Bug Fixes
-  batteryBumFix.postSlotAnimationChangedBatteryBum(
     slot,
     previousAnimation,
     currentAnimation,

@@ -1,7 +1,3 @@
-// Speed up the attacks of Pin, Frail, and Scolex. Additionally, make Wormwood spend less time
-// underground. (There does not seem to be a good way of speeding up Pin/Frail/Scolex while they are
-// underground.)
-
 import {
   EntityType,
   ModCallback,
@@ -25,6 +21,11 @@ const v = {
   },
 };
 
+/**
+ * Speed up the attacks of Pin, Frail, and Scolex. Additionally, make Wormwood spend less time
+ * underground. (There does not seem to be a good way of speeding up Pin/Frail/Scolex while they are
+ * underground.)
+ */
 export class FastPin extends ConfigurableModFeature {
   configKey: keyof Config = "FastPin";
   v = v;

@@ -16,23 +16,23 @@ export class HolidayHats extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
-    addHolidayHat();
-  }
-}
-
-function addHolidayHat() {
-  const nullItemID = HOLIDAY_TO_NULL_ITEM_ID[CURRENT_HOLIDAY];
-  if (nullItemID === undefined) {
-    return;
+    this.addHolidayHat();
   }
 
-  const player = Isaac.GetPlayer();
-  player.AddNullCostume(nullItemID);
+  addHolidayHat(): void {
+    const nullItemID = HOLIDAY_TO_NULL_ITEM_ID[CURRENT_HOLIDAY];
+    if (nullItemID === undefined) {
+      return;
+    }
 
-  if (isJacobOrEsau(player)) {
-    const esau = player.GetOtherTwin();
-    if (esau !== undefined) {
-      esau.AddNullCostume(nullItemID);
+    const player = Isaac.GetPlayer();
+    player.AddNullCostume(nullItemID);
+
+    if (isJacobOrEsau(player)) {
+      const esau = player.GetOtherTwin();
+      if (esau !== undefined) {
+        esau.AddNullCostume(nullItemID);
+      }
     }
   }
 }

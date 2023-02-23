@@ -56,6 +56,8 @@ export class RunTimer extends ConfigurableModFeature {
   }
 }
 
+// This is not part of the class to maintain parity with the "FreeDevilItem" and "ShowMaxFamiliars"
+// features.
 function getTopLeftUIPositionRunTimer() {
   const topLeftUIPosition = getTopLeftUIPositionShowMaxFamiliars();
   const maxFamiliarsOffset = hasMaxFamiliars()

@@ -128,7 +128,7 @@ export class StartWithD6 extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_PLAYER_INIT_FIRST)
   playerPlayerInitFirst(player: EntityPlayer): void {
-    this.giveD6(player);
+    giveD6(player);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_FLIP)
@@ -172,13 +172,13 @@ export class StartWithD6 extends ConfigurableModFeature {
     if (isCharacter(player, PlayerType.JACOB)) {
       const esau = player.GetOtherTwin();
       if (esau !== undefined) {
-        this.giveD6(esau, gotHereFromEsauJr);
+        giveD6(esau, gotHereFromEsauJr);
       }
     }
 
     // In some cases, switching the character will delete the D6, so we may need to give another
     // one.
-    this.giveD6(player, gotHereFromEsauJr);
+    giveD6(player, gotHereFromEsauJr);
   }
 
   @CallbackCustom(
@@ -208,78 +208,77 @@ export class StartWithD6 extends ConfigurableModFeature {
     player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
 
     const itemCharges = getCollectibleMaxCharges(itemToReplace);
-    this.giveActiveItem(player, itemToReplace, itemCharges);
+    giveActiveItem(player, itemToReplace, itemCharges);
   }
+}
 
-  giveD6(player: EntityPlayer, gotHereFromEsauJr = false): void {
-    const pocketItem = player.GetActiveItem(ActiveSlot.POCKET);
-    const pocketItemCharge = getTotalCharge(player, ActiveSlot.POCKET);
-    const hasPocketD6 = pocketItem === CollectibleType.D6;
+function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
+  const pocketItem = player.GetActiveItem(ActiveSlot.POCKET);
+  const pocketItemCharge = getTotalCharge(player, ActiveSlot.POCKET);
+  const hasPocketD6 = pocketItem === CollectibleType.D6;
 
-    // Jacob & Esau (19, 20) are a special case. Since pocket actives do not work on them properly,
-    // give each of them a normal D6. Don't give a D6 to Jacob if we transformed to them with
-    // Clicker.
-    if (isJacobOrEsau(player)) {
-      if (hasOpenActiveItemSlot(player)) {
-        player.AddCollectible(CollectibleType.D6, D6_STARTING_CHARGE);
-      }
-
-      return;
-    }
-
-    // Tainted Cain (23) is a special case. The Bag of Crafting does not work properly in the normal
-    // active slot. Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded
-    // the D6.
-    if (isCharacter(player, PlayerType.CAIN_B)) {
-      return;
-    }
-
-    // Tainted Soul (40) is a special case; he cannot use items.
-    if (isCharacter(player, PlayerType.SOUL_B)) {
-      return;
-    }
-
-    if (hasPocketD6) {
-      return;
-    }
-
-    // If we are switching characters, get the charge from the D6 on the previous frame.
-    const oldCharge = defaultMapGetPlayer(
-      v.run.playersPocketActiveD6Charge,
-      player,
-    );
-    const d6Charge = player.FrameCount === 0 ? D6_STARTING_CHARGE : oldCharge;
-
-    // The "EntityPlayer.SetPocketActiveItem" method also removes it from item pools.
-    player.SetPocketActiveItem(CollectibleType.D6, ActiveSlot.POCKET);
-    player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
-
-    // If we previously had a pocket active item, move it to the normal active item slot.
-    if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {
-      this.giveActiveItem(player, pocketItem, pocketItemCharge);
-    }
-
-    const playerName = getPlayerName(player);
-    log(`Awarded a pocket active D6 to: ${playerName}`);
-  }
-
-  giveActiveItem(
-    player: EntityPlayer,
-    collectibleType: CollectibleType,
-    itemCharge: int,
-  ): void {
+  // Jacob & Esau (19, 20) are a special case. Since pocket actives do not work on them properly,
+  // give each of them a normal D6. Don't give a D6 to Jacob if we transformed to them with Clicker.
+  if (isJacobOrEsau(player)) {
     if (hasOpenActiveItemSlot(player)) {
-      player.AddCollectible(collectibleType, itemCharge);
-    } else {
-      // Spawn it on the ground instead.
-      const position = findFreePosition(player.Position);
-      const startSeed = g.seeds.GetStartSeed();
-      const collectible = mod.spawnCollectible(
-        collectibleType,
-        position,
-        startSeed,
-      );
-      collectible.Charge = itemCharge;
+      player.AddCollectible(CollectibleType.D6, D6_STARTING_CHARGE);
     }
+
+    return;
+  }
+
+  // Tainted Cain (23) is a special case. The Bag of Crafting does not work properly in the normal
+  // active slot. Since the D6 is useless on Tainted Cain anyway, he does not need to be awarded the
+  // D6.
+  if (isCharacter(player, PlayerType.CAIN_B)) {
+    return;
+  }
+
+  // Tainted Soul (40) is a special case; he cannot use items.
+  if (isCharacter(player, PlayerType.SOUL_B)) {
+    return;
+  }
+
+  if (hasPocketD6) {
+    return;
+  }
+
+  // If we are switching characters, get the charge from the D6 on the previous frame.
+  const oldCharge = defaultMapGetPlayer(
+    v.run.playersPocketActiveD6Charge,
+    player,
+  );
+  const d6Charge = player.FrameCount === 0 ? D6_STARTING_CHARGE : oldCharge;
+
+  // The "EntityPlayer.SetPocketActiveItem" method also removes it from item pools.
+  player.SetPocketActiveItem(CollectibleType.D6, ActiveSlot.POCKET);
+  player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
+
+  // If we previously had a pocket active item, move it to the normal active item slot.
+  if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {
+    giveActiveItem(player, pocketItem, pocketItemCharge);
+  }
+
+  const playerName = getPlayerName(player);
+  log(`Awarded a pocket active D6 to: ${playerName}`);
+}
+
+function giveActiveItem(
+  player: EntityPlayer,
+  collectibleType: CollectibleType,
+  itemCharge: int,
+) {
+  if (hasOpenActiveItemSlot(player)) {
+    player.AddCollectible(collectibleType, itemCharge);
+  } else {
+    // Spawn it on the ground instead.
+    const position = findFreePosition(player.Position);
+    const startSeed = g.seeds.GetStartSeed();
+    const collectible = mod.spawnCollectible(
+      collectibleType,
+      position,
+      startSeed,
+    );
+    collectible.Charge = itemCharge;
   }
 }

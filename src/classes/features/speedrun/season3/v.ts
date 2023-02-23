@@ -1,6 +1,8 @@
 import { Season3Goal } from "../../../../enums/Season3Goal";
 import { SEASON_3_GOALS_THROUGH_WOMB_1 } from "./constants";
 
+// This is registered in "Season3.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   persistent: {
     remainingGoals: [] as Season3Goal[],

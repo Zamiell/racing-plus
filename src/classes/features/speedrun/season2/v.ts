@@ -2,6 +2,8 @@ import { copyArray } from "isaacscript-common";
 import { speedrunGetCharacterNum } from "../../../../features/speedrun/v";
 import { SEASON_2_STARTING_BUILD_INDEXES } from "./constants";
 
+// This is registered in "Season2.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   persistent: {
     selectedBuildIndexes: [] as int[],

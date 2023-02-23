@@ -2,6 +2,8 @@
  * We need to separate the variables from the feature class in order to prevent circular
  * dependencies.
  */
+// This is registered in "CheckErrors.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
     afterbirthPlus: false,

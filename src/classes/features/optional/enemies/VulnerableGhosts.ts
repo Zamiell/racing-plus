@@ -20,7 +20,7 @@ export class VulnerableGhosts extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NPC_INIT_LATE, EntityType.WIZOOB)
   postNPCInitLateWizoob(npc: EntityNPC): void {
-    this.setGhostCollisionClass(npc);
+    setGhostCollisionClass(npc);
   }
 
   @CallbackCustom(
@@ -29,15 +29,15 @@ export class VulnerableGhosts extends ConfigurableModFeature {
     HauntVariant.LIL_HAUNT,
   )
   postNPCInitLateLilHaunt(npc: EntityNPC): void {
-    this.setGhostCollisionClass(npc);
+    setGhostCollisionClass(npc);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NPC_INIT_LATE, EntityType.RED_GHOST)
   postNPCInitLateRedGhost(npc: EntityNPC): void {
-    this.setGhostCollisionClass(npc);
+    setGhostCollisionClass(npc);
   }
+}
 
-  setGhostCollisionClass(npc: EntityNPC): void {
-    npc.EntityCollisionClass = EntityCollisionClass.PLAYER_OBJECTS;
-  }
+function setGhostCollisionClass(npc: EntityNPC) {
+  npc.EntityCollisionClass = EntityCollisionClass.PLAYER_OBJECTS;
 }

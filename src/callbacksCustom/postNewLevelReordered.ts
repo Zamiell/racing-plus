@@ -1,5 +1,4 @@
 import { game, log, ModCallbackCustom } from "isaacscript-common";
-import * as solCustom from "../features/items/solCustom";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
@@ -38,7 +37,4 @@ function main() {
   // QoL
   showDreamCatcherItemPostNewLevel(); // 566
   fastVanishingTwin.postNewLevel(); // 697
-
-  // Items
-  solCustom.postNewLevel();
 }

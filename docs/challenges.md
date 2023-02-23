@@ -216,15 +216,15 @@ Some builds are banned on certain characters:
   - 0 - Isaac
   - 3 - Judas
   - 7 - Azazel
+  - 10 - The Lost
   - 13 - Lilith
-  - 15 - Apollyon
   - 18 - Bethany
-  - 19 - Jacob & Esau
+  - 22 - Tainted Magdalene
 - Lilith starts with Birthright.
 - Bethany starts with Duality.
-- Jacob & Esau start with There's Options & More Options.
+- Tainted Magdalene starts with Steven and Birthright.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
-- Jacob & Esau and Bethany will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
+- Bethany and Tainted Magdalene will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
 - If you transform into a different character mid-way through the run, all of the starting items granted to the old character will be removed.
 
 ### Goal
