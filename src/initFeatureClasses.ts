@@ -20,6 +20,7 @@ import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastBigHorn } from "./classes/features/optional/bosses/FastBigHorn";
 import { FastBlastocyst } from "./classes/features/optional/bosses/FastBlastocyst";
 import { FastDogma } from "./classes/features/optional/bosses/FastDogma";
+import { FastHeretic } from "./classes/features/optional/bosses/FastHeretic";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastKrampus } from "./classes/features/optional/bosses/FastKrampus";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
@@ -117,7 +118,7 @@ const FEATURE_CLASSES = [
   // - OpenHushDoor, // 407
   FastHush, // 407
   FastBigHorn, // 411
-  // - FastHeretic, // 905
+  FastHeretic, // 905
   // - FastColostomia, // 917
   FastDogma, // 950
   PreventEndBeast, // 951
