@@ -31,6 +31,8 @@ import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
 import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
+import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
+import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
@@ -116,8 +118,8 @@ const FEATURE_CLASSES = [
   FastHaunt, // 260
   FastAngels, // 271, 272
   ConsistentAngels, // 271, 272
-  // - RemoveLambBody, // 273
-  // - PreventVictoryLapPopup, // 273
+  RemoveLambBody, // 273
+  PreventVictoryLapPopup, // 273
   FastMegaSatan, // 274, 275
   PreventEndMegaSatan, // 275
   OpenHushDoor, // 407

@@ -5,6 +5,7 @@
 
 ### _v0.94.7_ - February 23rd, 2023 (Unreleased)
 
+- In season 4, Jacob & Esau have been swapped with Tainted Magdalene. Tainted Magdalene starts with Steven and Birthright. (The revival nerf applies to her in the same way that it did for Jacob & Esau.)
 - Displaying the run timer (for in-game time) is now configurable via Mod Config Menu.
 - Fixed the bug where MinimapAPI would get incorrectly disabled under certain circumstances. (Thanks ArutheArrow)
 

@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
 import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/major/betterDevilAngelRooms/callbacks/postEntityKill";
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
@@ -23,12 +22,6 @@ export function init(): void {
     ModCallback.POST_ENTITY_KILL,
     fallen,
     EntityType.FALLEN, // 81
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    lamb,
-    EntityType.THE_LAMB, // 273
   );
 
   mod.AddCallback(
@@ -67,11 +60,6 @@ function mom(entity: Entity) {
 // EntityType.FALLEN (81)
 function fallen(entity: Entity) {
   betterDevilAngelRoomsPostEntityKillFallen(entity);
-}
-
-// EntityType.THE_LAMB (273)
-function lamb(entity: Entity) {
-  preventVictoryLapPopup.postEntityKillLamb(entity);
 }
 
 // EntityType.HUSH (407)

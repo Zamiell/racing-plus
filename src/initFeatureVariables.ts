@@ -18,7 +18,6 @@ import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as fastBossRush from "./features/optional/bosses/fastBossRush";
-import * as preventVictoryLapPopup from "./features/optional/bosses/preventVictoryLapPopup";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
@@ -90,7 +89,6 @@ export function initFeatureVariables(): void {
 
   // Bosses
   fastBossRush.init();
-  preventVictoryLapPopup.init(); // 273
 
   // QoL
   showPills.init();
