@@ -1,5 +1,5 @@
 import { ModFeature } from "isaacscript-common";
-import { DebugItem } from "./classes/features/items/debugItem";
+import { DebugItem } from "./classes/features/items/DebugItem";
 import { NLuck } from "./classes/features/items/NLuck";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
