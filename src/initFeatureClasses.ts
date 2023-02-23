@@ -31,6 +31,7 @@ import { FastMom } from "./classes/features/optional/bosses/FastMom";
 import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
 import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
+import { PreventDeathSlow } from "./classes/features/optional/bosses/preventDeathSlow";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
@@ -115,7 +116,7 @@ const FEATURE_CLASSES = [
   // - RemoveArmor,
   FastMom, // 45, 78
   FastPin, // 62
-  // - PreventDeathSlow, // 66
+  PreventDeathSlow, // 66
   FastBlastocyst, // 74
   FastKrampus, // 81
   FastSatan, // 84
