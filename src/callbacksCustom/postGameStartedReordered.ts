@@ -1,6 +1,5 @@
 import { getCharacterName, log, ModCallbackCustom } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
-import * as fastAngels from "../classes/features/optional/bosses/FastAngels";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
@@ -89,9 +88,6 @@ function main(isContinued: boolean) {
   samsonDropHeart.postGameStarted();
   lostUseHolyCard.postGameStarted();
   taintedKeeperMoney.postGameStarted();
-
-  // Bosses
-  fastAngels.postGameStarted();
 
   // Gameplay
   extraStartingItemsPostGameStarted();

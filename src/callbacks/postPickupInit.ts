@@ -1,5 +1,4 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
-import * as fastAngels from "../classes/features/optional/bosses/FastAngels";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
@@ -97,7 +96,6 @@ function collectibleCallback(pickup: EntityPickup) {
   const collectible = pickup as EntityPickupCollectible;
 
   fastKrampus.postPickupInitCollectible(collectible);
-  fastAngels.postPickupInitCollectible(collectible);
   flipCustom.postPickupInitCollectible(collectible);
 }
 

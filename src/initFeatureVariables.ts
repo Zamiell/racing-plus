@@ -1,4 +1,3 @@
-import * as fastAngels from "./classes/features/optional/bosses/FastAngels";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
 import * as sawblade from "./features/items/sawblade";
@@ -101,7 +100,6 @@ export function initFeatureVariables(): void {
   fastKrampus.init(); // 81
   fastSatan.init(); // 84
   consistentAngels.init(); // 271, 272
-  fastAngels.init(); // 271, 272
   preventVictoryLapPopup.init(); // 273
 
   // QoL

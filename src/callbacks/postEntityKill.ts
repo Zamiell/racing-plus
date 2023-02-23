@@ -1,6 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
-import * as fastAngels from "../classes/features/optional/bosses/FastAngels";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as fastDogma from "../features/optional/bosses/fastDogma";
@@ -40,18 +39,6 @@ export function init(): void {
     ModCallback.POST_ENTITY_KILL,
     lamb,
     EntityType.THE_LAMB, // 273
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    uriel,
-    EntityType.URIEL, // 271
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    gabriel,
-    EntityType.GABRIEL, // 272
   );
 
   mod.AddCallback(
@@ -109,16 +96,6 @@ function fallen(entity: Entity) {
 // EntityType.THE_LAMB (273)
 function lamb(entity: Entity) {
   preventVictoryLapPopup.postEntityKillLamb(entity);
-}
-
-// EntityType.URIEL (271)
-function uriel(entity: Entity) {
-  fastAngels.postEntityKillUriel(entity);
-}
-
-// EntityType.GABRIEL (272)
-function gabriel(entity: Entity) {
-  fastAngels.postEntityKillGabriel(entity);
 }
 
 // EntityType.HUSH (407)
