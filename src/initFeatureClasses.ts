@@ -31,7 +31,7 @@ import { FastMom } from "./classes/features/optional/bosses/FastMom";
 import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
 import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
-import { PreventDeathSlow } from "./classes/features/optional/bosses/preventDeathSlow";
+import { PreventDeathSlow } from "./classes/features/optional/bosses/PreventDeathSlow";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
