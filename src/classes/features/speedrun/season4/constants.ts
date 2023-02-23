@@ -4,7 +4,7 @@ import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
 export const SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND = [
   PlayerType.BETHANY, // 18
-  PlayerType.JACOB, // 19
+  PlayerType.MAGDALENE_B, // 22
 ] as const;
 
 export const SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
@@ -17,10 +17,10 @@ export const SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
   // 18
   [PlayerType.BETHANY, [CollectibleType.DUALITY]],
 
-  // 19
+  // 22
   [
-    PlayerType.JACOB,
-    [CollectibleType.THERES_OPTIONS, CollectibleType.MORE_OPTIONS],
+    PlayerType.MAGDALENE_B,
+    [CollectibleType.STEVEN, CollectibleType.BIRTHRIGHT],
   ],
 ]);
 

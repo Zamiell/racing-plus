@@ -217,14 +217,8 @@ export class Season4 extends ChallengeModFeature {
       return;
     }
 
-    const startingCollectibleTypes = [
-      ...getCharacterStartingCollectibles(startingCharacter),
-    ];
-    if (startingCharacter === PlayerType.JACOB) {
-      // Racing+ artificially gives Jacob an extra D6.
-      startingCollectibleTypes.push(CollectibleType.D6);
-    }
-
+    const startingCollectibleTypes =
+      getCharacterStartingCollectibles(startingCharacter);
     for (const collectibleType of startingCollectibleTypes) {
       // Don't remove the D6 if it is in the pocket item slot.
       if (

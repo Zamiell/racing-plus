@@ -381,7 +381,7 @@ Post-flip actions:
 
 ### 8) Cutscenes & Animations
 
-- `0801` <!-- FastTeleports --> Teleport animations are sped up by a factor of 2.
+- `0801` <!-- FastTeleport --> Teleport animations are sped up by a factor of 2.
 - <!-- "cutscenes.xml" --> The intro that occurs when you launch the game is removed.
 - <!-- "cutscenes.xml" --> The cutscenes that occur when finishing a run are removed.
 - <!-- "versusscreen.anm2", "versusscreen_dogma.anm2", "versusscreen_mother.anm2" --> The cutscenes that occur before each boss are removed.

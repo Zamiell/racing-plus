@@ -77,7 +77,7 @@ const SEASON_CHARACTERS = {
     PlayerType.LILITH, // 13
     PlayerType.APOLLYON, // 15
     PlayerType.BETHANY, // 18
-    PlayerType.JACOB, // 19
+    PlayerType.MAGDALENE_B, // 22
   ],
 } as const;
 

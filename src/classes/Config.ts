@@ -92,7 +92,7 @@ export class Config {
   PillsCancelAnimations = true;
 
   // Cutscenes
-  FastTeleports = true;
+  FastTeleport = true;
 
   // Bug fixes
   TaintedIsaacCollectibleDelay = true;

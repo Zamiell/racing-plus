@@ -18,7 +18,6 @@ import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCInit from "./callbacks/postNPCInit";
-import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPickupRender from "./callbacks/postPickupRender";
@@ -126,7 +125,6 @@ function registerCallbacksVanilla() {
   postFamiliarRender.init(); // 25
   preFamiliarCollision.init(); // 26
   postNPCInit.init(); // 27
-  postNPCRender.init(); // 28
   postPickupInit.init(); // 34
   postPickupUpdate.init(); // 35
   postPickupRender.init(); // 36

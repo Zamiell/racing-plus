@@ -951,7 +951,7 @@ export const REMOVALS = [
 // 0801-0810
 export const CUTSCENE_CHANGES = [
   [
-    "FastTeleports",
+    "FastTeleport",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0801",
