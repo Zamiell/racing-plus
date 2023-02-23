@@ -4,7 +4,6 @@ import * as fastHaunt from "../features/optional/bosses/fastHaunt";
 import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
-import * as fadeFriendlyEnemies from "../features/optional/enemies/fadeFriendlyEnemies";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
@@ -70,9 +69,6 @@ export function init(): void {
 function main(npc: EntityNPC) {
   // Major
   fastClearPostNPCUpdate.main(npc);
-
-  // Enemies
-  fadeFriendlyEnemies.postNPCUpdate(npc);
 }
 
 // EntityType.PIN (62)

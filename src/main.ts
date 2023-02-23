@@ -17,7 +17,6 @@ import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
-import * as postLaserUpdate from "./callbacks/postLaserUpdate";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCRender from "./callbacks/postNPCRender";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
@@ -25,9 +24,7 @@ import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postPickupRender from "./callbacks/postPickupRender";
 import * as postPickupUpdate from "./callbacks/postPickupUpdate";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
-import * as postProjectileUpdate from "./callbacks/postProjectileUpdate";
 import * as postRender from "./callbacks/postRender";
-import * as postTearUpdate from "./callbacks/postTearUpdate";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as useCard from "./callbacks/postUseCard";
 import * as useItem from "./callbacks/postUseItem";
@@ -56,7 +53,6 @@ import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered"
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
-import * as postPlayerInitFirst from "./callbacksCustom/postPlayerInitFirst";
 import * as postPlayerRenderReordered from "./callbacksCustom/postPlayerRenderReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
@@ -134,11 +130,8 @@ function registerCallbacksVanilla() {
   postPickupInit.init(); // 34
   postPickupUpdate.init(); // 35
   postPickupRender.init(); // 36
-  postTearUpdate.init(); // 40
   postProjectileInit.init(); // 43
-  postProjectileUpdate.init(); // 44
   postLaserInit.init(); // 47
-  postLaserUpdate.init(); // 48
   postEffectInit.init(); // 54
   postEffectUpdate.init(); // 55
   postBombInit.init(); // 57
@@ -167,7 +160,6 @@ function registerCallbacksCustom() {
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
   postPickupCollect.init();
-  postPlayerInitFirst.init();
   postPlayerRenderReordered.init();
   postPressurePlateUpdate.init();
   postPurchase.init();

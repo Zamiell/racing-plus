@@ -5,6 +5,7 @@
 
 ### _v0.94.6_ - February 23rd, 2023 (Unreleased)
 
+- In season 4, reviving as a new character will now remove the extra starting items granted to the old character. (This means playing as Jacob & Esau should be more balanced.)
 - In season 4, Genesis is now removed from pools on all runs. (Thanks Monkeypot)
 - Fixed the bug where item wisps could give you infinite items under certain circumstances. (Thanks Rollmop)
 

@@ -1,4 +1,5 @@
 import { ModFeature } from "isaacscript-common";
+import { NLuck } from "./classes/features/items/NLuck";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
@@ -35,7 +36,11 @@ import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
 import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
 
-/** TODO: Search for all `config` to ensure that no functions have early return with it. */
+/**
+ * TODO:
+ * - Search for all `config` to ensure that no functions have early return with it.
+ * - Search for: ^(?<![\s\S\r])//
+ */
 const FEATURE_CLASSES = [
   // Mandatory
   CheckErrors,
@@ -54,6 +59,9 @@ const FEATURE_CLASSES = [
   Season2,
   Season3,
   Season4,
+
+  // Items
+  NLuck,
 
   // Major
   StartWithD6,

@@ -225,7 +225,7 @@ Some builds are banned on certain characters:
 - Jacob & Esau start with There's Options & More Options.
 - You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
 - Jacob & Esau and Bethany will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
-- If you transform into a different character mid-way through the run, all of the starting items granted to that character will be removed.
+- If you transform into a different character mid-way through the run, all of the starting items granted to the old character will be removed.
 
 ### Goal
 

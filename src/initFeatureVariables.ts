@@ -1,6 +1,5 @@
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
-import * as nLuck from "./features/items/nLuck";
 import * as sawblade from "./features/items/sawblade";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as fireworks from "./features/mandatory/fireworks";
@@ -131,7 +130,6 @@ export function initFeatureVariables(): void {
   stickyNickel.init();
 
   // Items
-  nLuck.init();
   flipCustom.init();
   sawblade.init();
 

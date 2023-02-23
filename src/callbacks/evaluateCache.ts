@@ -1,6 +1,5 @@
 import { CacheFlag, ModCallback } from "isaac-typescript-definitions";
 import * as magic8BallSeeded from "../features/items/magic8BallSeeded";
-import * as nLuck from "../features/items/nLuck";
 import * as sawblade from "../features/items/sawblade";
 import * as solCustom from "../features/items/solCustom";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
@@ -36,6 +35,5 @@ function familiars(player: EntityPlayer) {
 
 // CacheFlag.LUCK (1 << 10)
 function luck(player: EntityPlayer) {
-  nLuck.evaluateCacheLuck(player);
   solCustom.evaluateCacheLuck(player);
 }
