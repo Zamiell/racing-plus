@@ -19,7 +19,6 @@ import * as removeGloballyBannedItems from "../features/mandatory/removeGlobally
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as fastBossRush from "../features/optional/bosses/fastBossRush";
-import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastSatan from "../features/optional/bosses/fastSatan";
 import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/preventUltraSecretRoomSoftlock";
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
@@ -84,7 +83,6 @@ function main() {
 
   // Bosses
   fastBossRush.postNewRoom();
-  fastDogma.postNewRoom();
 
   // Enemies
   fastSatan.postNewRoom();

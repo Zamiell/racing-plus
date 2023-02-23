@@ -2,7 +2,6 @@ import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
-import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as scaredHeart from "../features/optional/graphics/scaredHeart";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
@@ -95,7 +94,6 @@ function coinCallback(pickup: EntityPickup) {
 function collectibleCallback(pickup: EntityPickup) {
   const collectible = pickup as EntityPickupCollectible;
 
-  fastKrampus.postPickupInitCollectible(collectible);
   flipCustom.postPickupInitCollectible(collectible);
 }
 

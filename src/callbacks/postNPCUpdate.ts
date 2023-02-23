@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import * as fastBigHorn from "../features/optional/bosses/fastBigHorn";
 import * as fastHaunt from "../features/optional/bosses/fastHaunt";
-import * as fastPin from "../features/optional/bosses/fastPin";
 import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as removeLambBody from "../features/optional/bosses/removeLambBody";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
@@ -10,12 +9,6 @@ import { mod } from "../mod";
 
 export function init(): void {
   mod.AddCallback(ModCallback.POST_NPC_UPDATE, main);
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    pin,
-    EntityType.PIN, // 62
-  );
 
   mod.AddCallback(
     ModCallback.POST_NPC_UPDATE,
@@ -69,11 +62,6 @@ export function init(): void {
 function main(npc: EntityNPC) {
   // Major
   fastClearPostNPCUpdate.main(npc);
-}
-
-// EntityType.PIN (62)
-function pin(npc: EntityNPC) {
-  fastPin.postNPCUpdatePin(npc);
 }
 
 // EntityType.DEATH (66)

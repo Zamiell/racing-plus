@@ -1,4 +1,5 @@
 import { ModFeature } from "isaacscript-common";
+import { DebugItem } from "./classes/features/items/debugItem";
 import { NLuck } from "./classes/features/items/NLuck";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
@@ -15,8 +16,11 @@ import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFr
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
+import { FastDogma } from "./classes/features/optional/bosses/FastDogma";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
+import { FastKrampus } from "./classes/features/optional/bosses/FastKrampus";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
+import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
@@ -71,6 +75,7 @@ const FEATURE_CLASSES = [
   Season4,
 
   // Items
+  DebugItem,
   NLuck,
 
   // Major
@@ -93,10 +98,10 @@ const FEATURE_CLASSES = [
   // - FastBossRush,
   // - RemoveArmor,
   // - KillExtraEnemies, // 45, 78
-  // - FastPin, // 62
+  FastPin, // 62
   // - PreventDeathSlow, // 66
   // - FastBlastocyst, // 74
-  // - FastKrampus, // 81
+  FastKrampus, // 81
   // - FastSatan, // 84
   // - FastHaunt, // 260
   FastAngels, // 271, 272
@@ -110,7 +115,7 @@ const FEATURE_CLASSES = [
   // - FastBigHorn, // 411
   // - FastHeretic, // 905
   // - FastColostomia, // 917
-  // - FastDogma, // 950
+  FastDogma, // 950
   PreventEndBeast, // 951
 
   // Enemies

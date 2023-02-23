@@ -1,6 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import * as fastPolycephalus from "../features/optional/bosses/fastBlastocyst";
-import * as fastDogma from "../features/optional/bosses/fastDogma";
 import * as fastHeretic from "../features/optional/bosses/fastHeretic";
 import { mod } from "../mod";
 
@@ -28,12 +27,6 @@ export function init(): void {
     heretic,
     EntityType.HERETIC, // 905
   );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_RENDER,
-    dogma,
-    EntityType.DOGMA, // 950
-  );
 }
 
 // EntityType.BLASTOCYST_BIG (74)
@@ -54,9 +47,4 @@ function blastocystSmall(npc: EntityNPC) {
 // EntityType.HERETIC (905)
 function heretic(npc: EntityNPC) {
   fastHeretic.postNPCRenderHeretic(npc);
-}
-
-// EntityType.DOGMA (950)
-function dogma(npc: EntityNPC) {
-  fastDogma.postNPCRenderDogma(npc);
 }

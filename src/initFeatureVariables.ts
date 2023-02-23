@@ -18,8 +18,6 @@ import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
 import * as fastBossRush from "./features/optional/bosses/fastBossRush";
-import * as fastKrampus from "./features/optional/bosses/fastKrampus";
-import * as fastPin from "./features/optional/bosses/fastPin";
 import * as fastSatan from "./features/optional/bosses/fastSatan";
 import * as killExtraEnemies from "./features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "./features/optional/bosses/preventVictoryLapPopup";
@@ -95,8 +93,6 @@ export function initFeatureVariables(): void {
   // Bosses
   killExtraEnemies.init(); // 45, 78
   fastBossRush.init();
-  fastPin.init(); // 62
-  fastKrampus.init(); // 81
   fastSatan.init(); // 84
   preventVictoryLapPopup.init(); // 273
 

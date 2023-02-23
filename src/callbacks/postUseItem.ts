@@ -5,7 +5,6 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
-import * as debugItem from "../features/items/debugItem";
 import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
@@ -46,12 +45,6 @@ export function init(): void {
     ModCallback.POST_USE_ITEM,
     useItemFlipCustom,
     CollectibleTypeCustom.FLIP_CUSTOM,
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_ITEM,
-    debug,
-    CollectibleTypeCustom.DEBUG,
   );
 }
 
@@ -140,16 +133,4 @@ function useItemFlipCustom(
   _customVarData: int,
 ): boolean | undefined {
   return flipCustom.postUseItemFlipCustom(player);
-}
-
-// CollectibleTypeCustom.DEBUG
-function debug(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  return debugItem.postUseItemDebug();
 }

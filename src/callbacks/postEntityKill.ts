@@ -2,8 +2,6 @@ import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as fadeBosses from "../features/optional/bosses/fadeBosses";
-import * as fastDogma from "../features/optional/bosses/fastDogma";
-import * as fastKrampus from "../features/optional/bosses/fastKrampus";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
 import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/major/betterDevilAngelRooms/callbacks/postEntityKill";
@@ -46,12 +44,6 @@ export function init(): void {
     hush,
     EntityType.HUSH, // 407
   );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    dogma,
-    EntityType.DOGMA, // 950
-  );
 }
 
 function main(entity: Entity) {
@@ -89,7 +81,6 @@ function momsHeart(_entity: Entity) {
 
 // EntityType.FALLEN (81)
 function fallen(entity: Entity) {
-  fastKrampus.postEntityKillFallen(entity);
   betterDevilAngelRoomsPostEntityKillFallen(entity);
 }
 
@@ -101,9 +92,4 @@ function lamb(entity: Entity) {
 // EntityType.HUSH (407)
 function hush(entity: Entity) {
   racePostEntityKill.hush(entity);
-}
-
-// EntityType.DOGMA (950)
-function dogma(entity: Entity) {
-  fastDogma.postEntityKillDogma(entity);
 }
