@@ -15,6 +15,7 @@ import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBann
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
+import { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastDogma } from "./classes/features/optional/bosses/FastDogma";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
@@ -94,7 +95,7 @@ const FEATURE_CLASSES = [
   // TODO
 
   // Bosses
-  // - FadeBosses,
+  FadeBosses,
   // - FastBossRush,
   // - RemoveArmor,
   // - KillExtraEnemies, // 45, 78

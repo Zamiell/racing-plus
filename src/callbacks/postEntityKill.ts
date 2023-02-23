@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as fadeBosses from "../features/optional/bosses/fadeBosses";
 import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
 import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/major/betterDevilAngelRooms/callbacks/postEntityKill";
@@ -65,7 +64,6 @@ function main(entity: Entity) {
 
   fastClearPostEntityKill(entity);
   fastTravelPostEntityKill.main(entity);
-  fadeBosses.postEntityKill(entity);
 }
 
 // EntityType.MOM (45)
