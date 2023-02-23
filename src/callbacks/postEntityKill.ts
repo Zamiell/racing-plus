@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as killExtraEnemies from "../features/optional/bosses/killExtraEnemies";
 import * as preventVictoryLapPopup from "../features/optional/bosses/preventVictoryLapPopup";
 import { betterDevilAngelRoomsPostEntityKillFallen } from "../features/optional/major/betterDevilAngelRooms/callbacks/postEntityKill";
 import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
@@ -18,12 +17,6 @@ export function init(): void {
     ModCallback.POST_ENTITY_KILL,
     mom,
     EntityType.MOM, // 45
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_ENTITY_KILL,
-    momsHeart,
-    EntityType.MOMS_HEART, // 78
   );
 
   mod.AddCallback(
@@ -69,12 +62,6 @@ function main(entity: Entity) {
 // EntityType.MOM (45)
 function mom(entity: Entity) {
   replacePhotos.postEntityKillMom(entity);
-  killExtraEnemies.postEntityKillMom();
-}
-
-// EntityType.MOMS_HEART (78)
-function momsHeart(_entity: Entity) {
-  killExtraEnemies.postEntityKillMomsHeart();
 }
 
 // EntityType.FALLEN (81)
