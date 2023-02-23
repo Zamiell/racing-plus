@@ -6,11 +6,11 @@ import {
 import {
   Callback,
   FIRST_CHARACTER,
+  game,
   LAST_VANILLA_CHARACTER,
   log,
   restart,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { consoleCommand } from "../../../utils";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
 
@@ -42,10 +42,11 @@ export class RestartOnNextFrame extends MandatoryModFeature {
   }
 
   performRestart(): void {
+    const seeds = game.GetSeeds();
+    const startSeedString = seeds.GetStartSeedString();
+    const challenge = Isaac.GetChallenge();
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
-    const startSeedString = g.seeds.GetStartSeedString();
-    const challenge = Isaac.GetChallenge();
 
     if (
       v.run.restartCharacter !== null &&

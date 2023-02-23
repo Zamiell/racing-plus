@@ -8,6 +8,7 @@ import {
 import {
   anyPlayerCloserThan,
   asNumber,
+  game,
   getAllPlayers,
   getDoorEnterPosition,
   getDoors,
@@ -16,7 +17,6 @@ import {
   isRoomInsideGrid,
   log,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 import { isFastTravelHappening } from "../major/fastTravel/v";
@@ -27,9 +27,11 @@ export function postNewRoom(): void {
     return;
   }
 
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const roomShape = g.r.GetRoomShape();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomShape = room.GetRoomShape();
 
   if (!enteredRoomViaTeleport()) {
     return;
@@ -81,9 +83,11 @@ export function postNewRoom(): void {
 }
 
 function enteredRoomViaTeleport() {
-  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
-  const roomType = g.r.GetType();
-  const isFirstVisit = g.r.IsFirstVisit();
+  const level = game.GetLevel();
+  const previousRoomGridIndex = level.GetPreviousRoomIndex();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const isFirstVisit = room.IsFirstVisit();
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
   const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
@@ -91,7 +95,7 @@ function enteredRoomViaTeleport() {
     previousRoomGridIndex === asNumber(GridRoom.SECRET_SHOP);
 
   return (
-    g.l.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&
+    level.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&
     !justReachedThisFloor &&
     !inDungeon &&
     !cameFromDungeon &&

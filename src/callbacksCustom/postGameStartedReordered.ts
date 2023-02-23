@@ -1,4 +1,9 @@
-import { getCharacterName, log, ModCallbackCustom } from "isaacscript-common";
+import {
+  game,
+  getCharacterName,
+  log,
+  ModCallbackCustom,
+} from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
@@ -21,7 +26,6 @@ import { fastTravelPostGameStartedContinued } from "../features/optional/major/f
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
-import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -33,7 +37,8 @@ export function init(): void {
 }
 
 function main(isContinued: boolean) {
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
   const renderFrameCount = Isaac.GetFrameCount();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();

@@ -3,11 +3,11 @@ import {
   HeavenLightDoorSubType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getEffects,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeEntities,
 } from "isaacscript-common";
-import { g } from "../../../../../globals";
 import * as postItLivesOrHushPath from "../postItLivesOrHushPath";
 import { shouldEnableFastClear } from "../shouldEnableFastClear";
 
@@ -38,7 +38,8 @@ function checkBugTwoHeavenDoors() {
   }
 
   const heavenDoorInCenter = heavenDoors.find((heavenDoor) => {
-    const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
+    const room = game.GetRoom();
+    const gridIndex = room.GetGridIndex(heavenDoor.Position);
     return gridIndex === GRID_INDEX_CENTER_OF_1X1_ROOM;
   });
 

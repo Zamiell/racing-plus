@@ -2,12 +2,12 @@ import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
   emptyArray,
   emptyRoom,
+  game,
   getPlayerFromIndex,
   getRoomListIndex,
   inAngelShop,
   inRoomType,
 } from "isaacscript-common";
-import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import { angel } from "../angel";
@@ -24,8 +24,9 @@ export function betterDevilAngelRoomsPostNewRoom(): void {
 }
 
 function checkDevilAngelRoomReplacement() {
-  const roomType = g.r.GetType();
-  const isFirstVisit = g.r.IsFirstVisit();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const isFirstVisit = room.IsFirstVisit();
 
   if (!isFirstVisit) {
     checkRespawnKrampus();

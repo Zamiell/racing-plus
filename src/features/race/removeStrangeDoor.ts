@@ -1,5 +1,6 @@
 import { LevelStage } from "isaac-typescript-definitions";
 import {
+  game,
   getRepentanceDoor,
   inStartingRoom,
   onRepentanceStage,
@@ -12,7 +13,8 @@ import { g } from "../../globals";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
   const repentanceStage = onRepentanceStage();
 
   if (

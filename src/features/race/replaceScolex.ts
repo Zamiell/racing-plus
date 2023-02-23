@@ -3,6 +3,7 @@
 import { EntityType, PinVariant } from "isaac-typescript-definitions";
 import {
   doesEntityExist,
+  game,
   newRNG,
   removeAllMatchingEntities,
   repeat,
@@ -27,9 +28,10 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomClear = g.r.IsClear();
-  const roomSeed = g.r.GetSpawnSeed();
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
+  const roomSeed = room.GetSpawnSeed();
+  const centerPos = room.GetCenterPos();
   const rng = newRNG(roomSeed);
 
   if (roomClear) {

@@ -11,6 +11,7 @@ import {
   addRoomClearCharges,
   asNumber,
   Callback,
+  game,
   getNPCs,
   isRoomInsideGrid,
   log,
@@ -22,7 +23,6 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -69,8 +69,9 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
   }
 
   inUnclearedLambBossRoom(): boolean {
-    const roomType = g.r.GetType();
-    const roomClear = g.r.IsClear();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
+    const roomClear = room.IsClear();
 
     return (
       onDarkRoom() &&
@@ -113,14 +114,15 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
   }
 
   emulateRoomClear(): void {
-    // Emulate the room being cleared.
-    g.r.SetClear(true);
+    const room = game.GetRoom();
+
+    room.SetClear(true);
     addRoomClearCharges();
     openAllDoors();
     sfxManager.Play(SoundEffect.DOOR_HEAVY_OPEN);
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
-    const position = g.r.GetCenterPos();
+    const position = room.GetCenterPos();
     spawnPickup(PickupVariant.BIG_CHEST, 0, position);
   }
 }

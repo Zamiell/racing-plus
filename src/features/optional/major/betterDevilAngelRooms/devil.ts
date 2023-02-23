@@ -7,6 +7,7 @@ import {
 import {
   anyPlayerHasTrinket,
   emptyRoom,
+  game,
   getJSONRoomOfVariant,
   getJSONRoomsOfSubType,
   getRandom,
@@ -15,7 +16,6 @@ import {
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { getEffectiveDevilDeals } from "../../../../utils";
 import * as devilRooms from "./devilRooms.json";
@@ -57,7 +57,8 @@ export function devil(): void {
 }
 
 function checkSpawnKrampus() {
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
   const effectiveDevilDeals = getEffectiveDevilDeals();
 
   if (
@@ -89,8 +90,9 @@ function checkSpawnKrampus() {
 }
 
 export function checkRespawnKrampus(): void {
-  const roomType = g.r.GetType();
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const centerPos = room.GetCenterPos();
 
   if (roomType !== RoomType.DEVIL) {
     return;

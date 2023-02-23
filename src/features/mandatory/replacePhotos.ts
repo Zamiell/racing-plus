@@ -143,7 +143,8 @@ function getPhotoSituationRace(goal: RaceGoal): PhotoSituation {
 }
 
 function doPhotoSituation(situation: PhotoSituation) {
-  const roomSeed = g.r.GetSpawnSeed();
+  const room = game.GetRoom();
+  const roomSeed = room.GetSpawnSeed();
   const rng = newRNG(roomSeed);
 
   switch (situation) {

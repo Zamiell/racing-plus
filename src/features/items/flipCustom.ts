@@ -8,6 +8,7 @@ import {
 import {
   anyPlayerHasCollectible,
   DefaultMap,
+  game,
   getCollectibleMaxCharges,
   getCollectibles,
   getRoomListIndex,
@@ -21,7 +22,6 @@ import {
   useActiveItemTemp,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { newCollectibleSprite } from "../../sprite";
@@ -46,7 +46,8 @@ type FlippedCollectibleIndex = string & {
 /** See the documentation for `v.level.flippedCollectibleTypes`. */
 function getFlippedCollectibleIndex(collectible: EntityPickup) {
   const roomListIndex = getRoomListIndex();
-  const gridIndex = g.r.GetGridIndex(collectible.Position);
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(collectible.Position);
 
   return `${roomListIndex},${gridIndex}` as FlippedCollectibleIndex;
 }
@@ -91,8 +92,9 @@ const v = {
 };
 
 function newFlippedCollectibleType(collectible: EntityPickup): CollectibleType {
+  const itemPool = game.GetItemPool();
   const itemPoolType = mod.getCollectibleItemPoolType(collectible);
-  const collectibleType = g.itemPool.GetCollectible(
+  const collectibleType = itemPool.GetCollectible(
     itemPoolType,
     true,
     collectible.InitSeed,
@@ -206,8 +208,9 @@ export function postPickupInitCollectible(
     return;
   }
 
-  const isFirstVisit = g.r.IsFirstVisit();
-  const roomFrameCount = g.r.GetFrameCount();
+  const room = game.GetRoom();
+  const isFirstVisit = room.IsFirstVisit();
+  const roomFrameCount = room.GetFrameCount();
 
   // The Flip effect is only supposed to happen to items that are part of the room layout.
   if (!isFirstVisit || roomFrameCount > 0) {
@@ -256,9 +259,11 @@ export function postPickupRenderCollectible(
     return;
   }
 
+  const room = game.GetRoom();
+
   // Checking for blind sprites will not work in the reflect callback, so wait for the "normal"
   // render callback to fire.
-  const renderMode = g.r.GetRenderMode();
+  const renderMode = room.GetRenderMode();
   if (renderMode === RenderMode.WATER_REFLECT) {
     return;
   }

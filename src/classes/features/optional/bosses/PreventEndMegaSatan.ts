@@ -3,8 +3,12 @@ import {
   ModCallback,
   PickupVariant,
 } from "isaac-typescript-definitions";
-import { addRoomClearCharges, Callback, spawnPickup } from "isaacscript-common";
-import { g } from "../../../../globals";
+import {
+  addRoomClearCharges,
+  Callback,
+  game,
+  spawnPickup,
+} from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -23,11 +27,12 @@ export class PreventEndMegaSatan extends ConfigurableModFeature {
   }
 
   emulateRoomClear(): void {
-    g.r.SetClear(true);
+    const room = game.GetRoom();
+    room.SetClear(true);
     addRoomClearCharges();
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
-    const position = g.r.GetCenterPos();
+    const position = room.GetCenterPos();
     spawnPickup(PickupVariant.BIG_CHEST, 0, position);
   }
 }

@@ -1,18 +1,11 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import * as removeLambBody from "../classes/features/optional/bosses/RemoveLambBody";
-import * as preventDeathSlow from "../features/optional/bosses/preventDeathSlow";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
 
 export function init(): void {
   mod.AddCallback(ModCallback.POST_NPC_UPDATE, main);
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    death,
-    EntityType.DEATH, // 66
-  );
 
   mod.AddCallback(
     ModCallback.POST_NPC_UPDATE,
@@ -48,11 +41,6 @@ export function init(): void {
 function main(npc: EntityNPC) {
   // Major
   fastClearPostNPCUpdate.main(npc);
-}
-
-// EntityType.DEATH (66)
-function death(npc: EntityNPC) {
-  preventDeathSlow.postNPCUpdateDeath(npc);
 }
 
 // EntityType.RAGLING (246)

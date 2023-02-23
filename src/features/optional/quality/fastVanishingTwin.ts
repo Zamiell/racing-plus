@@ -17,7 +17,6 @@ import {
   spawnNPC,
   VectorOne,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -62,10 +61,11 @@ function checkRoomCleared() {
 
   // If we get a new random position for the second collectible, it could be blocking a Devil Room
   // or Angel Room. Instead, always spawn it to the right of the existing collectible.
-  const gridIndex = g.r.GetGridIndex(freshCollectible.Position);
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(freshCollectible.Position);
   const newGridIndex = gridIndex + 1; // To the right of the collectible
-  const position = g.r.GetGridPosition(newGridIndex);
-  const roomSeed = g.r.GetSpawnSeed();
+  const position = room.GetGridPosition(newGridIndex);
+  const roomSeed = room.GetSpawnSeed();
 
   mod.spawnCollectible(CollectibleType.NULL, position, roomSeed);
 }
@@ -100,14 +100,16 @@ export function postNewRoom(): void {
     return;
   }
 
+  const room = game.GetRoom();
+
   // Vanishing Twin only takes effect in Boss Rooms.
-  const roomType = g.r.GetType();
+  const roomType = room.GetType();
   if (roomType !== RoomType.BOSS) {
     return;
   }
 
   // Vanishing Twin only takes effect in uncleared rooms.
-  const roomClear = g.r.IsClear();
+  const roomClear = room.IsClear();
   if (roomClear) {
     return;
   }

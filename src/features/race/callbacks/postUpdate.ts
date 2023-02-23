@@ -16,7 +16,8 @@ export function racePostUpdate(): void {
 }
 
 function spawnBossRushTrophy() {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const bossRushDone = game.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
@@ -28,7 +29,7 @@ function spawnBossRushTrophy() {
     roomType === RoomType.BOSS_RUSH &&
     bossRushDone
   ) {
-    const centerPos = g.r.GetCenterPos();
+    const centerPos = room.GetCenterPos();
     const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits.
     spawnTrophy(position);
   }

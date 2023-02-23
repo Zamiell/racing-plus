@@ -1,6 +1,10 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
-import { isGlitchedCollectible, log, ReadonlySet } from "isaacscript-common";
-import { g } from "../../globals";
+import {
+  game,
+  isGlitchedCollectible,
+  log,
+  ReadonlySet,
+} from "isaacscript-common";
 import { mod } from "../../mod";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
@@ -35,7 +39,9 @@ export function postPickupUpdateCollectible(
  * spawn as normal items, and then swap to a glitched item after exactly 4 frames.
  */
 function checkGlitchedItem(collectible: EntityPickupCollectible) {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+
+  const roomType = room.GetType();
   if (!ROOM_TYPES_TO_CHECK.has(roomType)) {
     return;
   }

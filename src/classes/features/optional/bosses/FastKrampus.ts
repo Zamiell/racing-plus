@@ -12,6 +12,7 @@ import {
   Callback,
   CallbackCustom,
   findFreePosition,
+  game,
   getCollectibleName,
   getEffectiveStage,
   getRandom,
@@ -20,7 +21,6 @@ import {
   newRNG,
   nextSeed,
 } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -88,16 +88,18 @@ export class FastKrampus extends ConfigurableModFeature {
   }
 
   getKrampusCollectibleType(): CollectibleType {
+    const seeds = game.GetSeeds();
+    const itemPool = game.GetItemPool();
+    const startSeed = seeds.GetStartSeed();
+
     // Normally, Krampus has a 50% chance of dropping A Lump of Coal and a 50% chance of dropping
     // Krampus' Head. However, we might be in a special situation where we should always spawn one
     // or the other.
-    const startSeed = g.seeds.GetStartSeed();
-
-    const [coalBanned, headBanned] = this.getKrampusBans();
+    const { coalBanned, headBanned } = this.getKrampusBans();
 
     if (coalBanned && headBanned) {
       // Since both of the items are banned, make Krampus drop a random Devil Room item.
-      return g.itemPool.GetCollectible(ItemPoolType.DEVIL, true, startSeed);
+      return itemPool.GetCollectible(ItemPoolType.DEVIL, true, startSeed);
     }
 
     if (coalBanned) {
@@ -120,8 +122,7 @@ export class FastKrampus extends ConfigurableModFeature {
       : CollectibleType.HEAD_OF_KRAMPUS;
   }
 
-  /** We want Krampus' drops to be explicitly contingent upon the items that the player has. */
-  getKrampusBans(): [coalBanned: boolean, headBanned: boolean] {
+  getKrampusBans(): { coalBanned: boolean; headBanned: boolean } {
     const coalBanned =
       v.run.startedWithLumpOfCoal ||
       anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL);
@@ -129,7 +130,7 @@ export class FastKrampus extends ConfigurableModFeature {
       v.run.startedWithHeadOfKrampus ||
       anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS);
 
-    return [coalBanned, headBanned];
+    return { coalBanned, headBanned };
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)

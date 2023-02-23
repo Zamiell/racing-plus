@@ -13,6 +13,7 @@ import {
   Callback,
   CallbackCustom,
   doesEntityExist,
+  game,
   getRoomSubType,
   ModCallbackCustom,
   removeAllDoors,
@@ -23,7 +24,6 @@ import {
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { doesTrophyExist } from "../../../../features/mandatory/trophy";
 import { onSeason } from "../../../../features/speedrun/speedrun";
-import { g } from "../../../../globals";
 import { consoleCommand } from "../../../../utils";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -59,8 +59,9 @@ export class FastDogma extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const stage = g.l.GetStage();
-    const stageType = g.l.GetStageType();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
+    const stageType = level.GetStageType();
     const roomSubType = getRoomSubType();
 
     if (
@@ -78,7 +79,8 @@ export class FastDogma extends ConfigurableModFeature {
    * trigger) and then manually set up the fight.
    */
   enteredDogmaRoom(): void {
-    const centerPos = g.r.GetCenterPos();
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
 
     // Don't do anything if we already spawned Dogma. (It is possible to get here twice on the same
     // frame.)

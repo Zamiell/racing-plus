@@ -1,6 +1,5 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
 import { BOSS_PNG_MAP } from "./bossPNGMap";
 import { v } from "./v";
@@ -87,8 +86,9 @@ function shouldShowSprites() {
 export function draw(): void {
   const isPaused = game.IsPaused();
   const hud = game.GetHUD();
-  const topLeftRoomPosition = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  const nextToDreamCatcherPosition = g.r.GetGridPosition(
+  const room = game.GetRoom();
+  const topLeftRoomPosition = room.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const nextToDreamCatcherPosition = room.GetGridPosition(
     TOP_LEFT_GRID_INDEX + 1,
   );
 

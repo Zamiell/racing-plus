@@ -28,7 +28,8 @@ export function postGameStarted(): void {
   }
 
   // Calculate whether we should get all Devil Rooms or all Angel Rooms.
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   const randomChance = getRandom(startSeed);
   const allAngelRooms =
     randomChance < CHANCE_TO_GET_ANGEL_ROOMS ||
@@ -45,10 +46,12 @@ export function postNewLevel(): void {
     return;
   }
 
+  const level = game.GetLevel();
+
   if (v.run.allAngelRooms) {
-    g.l.InitializeDevilAngelRoom(true, false);
+    level.InitializeDevilAngelRoom(true, false);
   } else {
-    g.l.InitializeDevilAngelRoom(false, true);
+    level.InitializeDevilAngelRoom(false, true);
   }
 }
 

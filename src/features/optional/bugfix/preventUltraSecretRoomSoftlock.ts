@@ -3,11 +3,11 @@
 
 import { CardType, RoomType } from "isaac-typescript-definitions";
 import {
+  game,
   getDoors,
   gridCoordinatesToWorldPosition,
   spawnCard,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_ROOM (19)
@@ -16,7 +16,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   if (roomType !== RoomType.ULTRA_SECRET) {
     return;
   }

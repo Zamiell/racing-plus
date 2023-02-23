@@ -3,8 +3,7 @@
 // though the room is already cleared and they should be gone).
 
 import { EntityType, PitfallVariant } from "isaac-typescript-definitions";
-import { removeAllMatchingEntities } from "isaacscript-common";
-import { g } from "../../../globals";
+import { game, removeAllMatchingEntities } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.POST_NEW_ROOM (19)
@@ -13,7 +12,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
   if (!roomClear) {
     return;
   }

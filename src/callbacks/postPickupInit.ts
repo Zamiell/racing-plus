@@ -8,7 +8,6 @@ import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks"
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
-import * as removePerfectionOnEndFloors from "../features/optional/quality/removePerfectionOnEndFloors";
 import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
 import { mod } from "../mod";
@@ -114,7 +113,6 @@ function trinketCallback(pickup: EntityPickup) {
   const trinket = pickup as EntityPickupTrinket;
 
   removePerfectionVelocity.postPickupInitTrinket(trinket);
-  removePerfectionOnEndFloors.postPickupInitTrinket(trinket);
 }
 
 // PickupVariant.RED_CHEST (360)

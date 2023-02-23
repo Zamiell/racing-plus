@@ -1,5 +1,6 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
+  game,
   getDoorsToRoomIndex,
   getPlayers,
   getRoomGridIndexesForType,
@@ -8,7 +9,6 @@ import {
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { inSeededRace } from "../race/v";
 import { isOnFirstCharacter, onSeason } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
@@ -42,7 +42,8 @@ function shouldBanSpecialRoomsSeason2() {
 }
 
 function postNewRoomCheckForRoomType(bannedRoomType: RoomType) {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (roomType === bannedRoomType) {
     inBannedRoom();

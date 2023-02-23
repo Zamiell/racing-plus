@@ -116,7 +116,8 @@ export function postRender(): void {
 
 /** We only check for the config option in the render function. */
 function shadowsEnabled() {
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
 
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
@@ -161,8 +162,9 @@ function sendShadow() {
     return;
   }
 
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const sprite = player.GetSprite();
@@ -257,8 +259,9 @@ function updateShadow(shadowMessage: ShadowMessage) {
 function drawShadows() {
   const isPaused = game.IsPaused();
   const hud = game.GetHUD();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
   const renderFrameCount = Isaac.GetFrameCount();
   const roomListIndex = getRoomListIndex();
 

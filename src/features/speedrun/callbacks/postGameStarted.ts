@@ -3,7 +3,11 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { log, removeCollectibleFromItemTracker } from "isaacscript-common";
+import {
+  game,
+  log,
+  removeCollectibleFromItemTracker,
+} from "isaacscript-common";
 import { hasErrors } from "../../../classes/features/mandatory/checkErrors/v";
 import {
   isRestartingOnNextFrame,
@@ -12,11 +16,10 @@ import {
 } from "../../../classes/features/mandatory/RestartOnNextFrame";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { g } from "../../../globals";
 import {
   addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
-} from "../../../utilsGlobals";
+} from "../../../utils";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
 import { spawnDroppedChildsHeart } from "../../optional/characters/samsonDropHeart";
@@ -152,6 +155,7 @@ function goBackToFirstCharacter() {
  * challenges.
  */
 function giveAchievementItems() {
+  const itemPool = game.GetItemPool();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 
@@ -183,7 +187,7 @@ function giveAchievementItems() {
     // 10
     case PlayerType.LOST: {
       // Holy Mantle is not removed from pools while in a custom challenge.
-      g.itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);
+      itemPool.RemoveCollectible(CollectibleType.HOLY_MANTLE);
       break;
     }
 

@@ -1,4 +1,4 @@
-import { DingleVariant, NpcState } from "isaac-typescript-definitions";
+import { DingleVariant, NPCState } from "isaac-typescript-definitions";
 import {
   asNumber,
   ColorDefault,
@@ -26,7 +26,7 @@ export function dingle(npc: EntityNPC): void {
   // that are freshly spawned.
   if (
     npc.Variant === asNumber(DingleVariant.DANGLE) &&
-    npc.State === NpcState.INIT
+    npc.State === NPCState.INIT
   ) {
     npc.SetColor(ColorDefault, 1000, 0, true, true);
   }

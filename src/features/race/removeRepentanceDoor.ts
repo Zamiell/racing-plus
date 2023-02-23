@@ -4,6 +4,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getEffectiveStage,
   getEffects,
   getRepentanceDoor,
@@ -26,8 +27,9 @@ export function preSpawnClearAward(): void {
 }
 
 function checkRemoveRepentanceDoor() {
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomClear = room.IsClear();
 
   if (
     !roomClear ||

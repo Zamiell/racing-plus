@@ -2,9 +2,13 @@
 // spending a bomb or being forced to walk on spikes.
 
 import { EntityType, RoomType } from "isaac-typescript-definitions";
-import { getRoomVariant, inRoomType, onFirstFloor } from "isaacscript-common";
+import {
+  game,
+  getRoomVariant,
+  inRoomType,
+  onFirstFloor,
+} from "isaacscript-common";
 import { EffectVariantCustom } from "../../../enums/EffectVariantCustom";
-import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 
 // ModCallback.PRE_ROOM_ENTITY_SPAWN (71)
@@ -15,7 +19,8 @@ export function preRoomEntitySpawn(
     return undefined;
   }
 
-  const roomFrameCount = g.r.GetFrameCount();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
   const roomVariant = getRoomVariant();
 
   if (

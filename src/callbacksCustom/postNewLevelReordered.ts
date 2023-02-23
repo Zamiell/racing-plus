@@ -6,7 +6,6 @@ import { extraStartingItemsPostNewLevel } from "../features/optional/gameplay/ex
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { showDreamCatcherItemPostNewLevel } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewLevel";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
-import { g } from "../globals";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -15,8 +14,9 @@ export function init(): void {
 
 function main() {
   const gameFrameCount = game.GetFrameCount();
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
   const renderFrameCount = Isaac.GetFrameCount();
 
   log(

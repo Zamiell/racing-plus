@@ -19,7 +19,6 @@ import {
 } from "isaacscript-common";
 import { RevivalType } from "../../../../enums/RevivalType";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import { g } from "../../../../globals";
 import { DEVIL_DEAL_BUFFER_GAME_FRAMES } from "../constants";
 import {
   logSeededDeathStateChange,
@@ -44,7 +43,8 @@ export function seededDeathPreCustomRevive(
 }
 
 function shouldSeededDeathRevive(player: EntityPlayer) {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const gameFrameCount = game.GetFrameCount();
 
   // Do not revive the player if they took a devil deal within the past few seconds. (We cannot use
@@ -79,6 +79,7 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
 }
 
 function preRevivalDeathAnimation(player: EntityPlayer) {
+  const level = game.GetLevel();
   const playerIndex = getPlayerIndex(player);
 
   dropEverything(player);
@@ -95,7 +96,7 @@ function preRevivalDeathAnimation(player: EntityPlayer) {
 
   // The custom revive works by awarding a 1-Up, which is confusing. Thus, hide the health UI with
   // Curse of the Unknown for the duration of the revive.
-  g.l.AddCurse(LevelCurse.UNKNOWN, false);
+  level.AddCurse(LevelCurse.UNKNOWN, false);
 }
 
 function canCharacterDieFromTakingADevilDeal(player: EntityPlayer) {

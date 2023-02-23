@@ -7,7 +7,6 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
-import { g } from "../../../globals";
 import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "../constants";
@@ -59,7 +58,8 @@ function draw() {
 }
 
 function drawCurrentChoosingActivity() {
-  const bottomCenterOfRoom = g.r.GetGridPosition(112);
+  const room = game.GetRoom();
+  const bottomCenterOfRoom = room.GetGridPosition(112);
   const position = Isaac.WorldToScreen(bottomCenterOfRoom);
   position.Y -= 15;
   const text = CHANGE_CHAR_ORDER_PHASE_TEXT[v.room.phase];

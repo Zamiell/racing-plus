@@ -7,6 +7,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getCollectibles,
   getEffects,
   getPlayers,
@@ -19,7 +20,6 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { RepentanceDoorState } from "../../../enums/RepentanceDoorState";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { isPlanetariumFixWarping } from "../../mandatory/planetariumFix";
 import { setDevilAngelEmpty } from "../../optional/major/betterDevilAngelRooms/v";
@@ -39,7 +39,8 @@ export function speedrunPostNewRoom(): void {
 }
 
 function checkFirstCharacterFirstFloorDevilRoom() {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const { previousRoomType } = v.level;
 
   v.level.previousRoomType = roomType;
@@ -77,9 +78,11 @@ function emptyDevilAngelRoom() {
 }
 
 function checkWomb2IAmError() {
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const levelSeed = g.l.GetDungeonPlacementSeed();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const levelSeed = level.GetDungeonPlacementSeed();
 
   if (stage !== LevelStage.WOMB_2 || roomType !== RoomType.ERROR) {
     return;
@@ -99,7 +102,7 @@ function checkWomb2IAmError() {
   );
   for (const heavenDoor of heavenDoors) {
     heavenDoor.Remove();
-    const gridIndex = g.r.GetGridIndex(heavenDoor.Position);
+    const gridIndex = room.GetGridIndex(heavenDoor.Position);
     spawnGridEntityWithVariant(
       GridEntityType.TRAPDOOR,
       TrapdoorVariant.NORMAL,
@@ -115,7 +118,8 @@ function checkWomb2IAmError() {
  */
 function checkEnteringClearedBossRoom() {
   if (speedrunShouldSpawnRepentanceDoor() && hasUnusedDoorSlot()) {
-    g.r.TrySpawnSecretExit(false, true);
+    const room = game.GetRoom();
+    room.TrySpawnSecretExit(false, true);
     setRepentanceDoorState();
   }
 }

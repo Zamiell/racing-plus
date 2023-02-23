@@ -152,7 +152,8 @@ export function postUpdate(): void {
     return;
   }
 
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   if (roomType !== RoomType.BOSS_RUSH) {
     return;
   }
@@ -278,15 +279,17 @@ function getNumBossSegments(entityType: EntityType): int {
 }
 
 function getBossSpawnPosition(bossNum: int): Vector {
+  const room = game.GetRoom();
+
   const basePosition = BOSS_POSITIONS[bossNum];
   if (basePosition === undefined) {
     error(`Failed to get the base boss position for boss number: ${bossNum}`);
   }
 
   for (let i = 0; i < 100; i++) {
-    const position = g.r.FindFreePickupSpawnPosition(basePosition, i, true);
+    const position = room.FindFreePickupSpawnPosition(basePosition, i, true);
 
-    const gridEntity = g.r.GetGridEntityFromPos(position);
+    const gridEntity = room.GetGridEntityFromPos(position);
 
     // Ensure that we do not spawn a boss too close to the player or on top of red poop. (For some
     // reason, the `Room.FindFreePickupSpawnPosition` method will return positions that overlap with
@@ -364,8 +367,9 @@ function finish() {
 }
 
 function spawnBossRushFinishReward() {
-  const roomSeed = g.r.GetSpawnSeed();
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const roomSeed = room.GetSpawnSeed();
+  const centerPos = room.GetCenterPos();
 
   const position = findFreePosition(centerPos, true);
   if (onSeason(3)) {
@@ -388,11 +392,13 @@ function spawnBossRushFinishReward() {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+
   // In vanilla, saving and quitting in the middle of the Boss Rush will reset the wave back to 0.
   // However, teleporting out of the room before completing it will mark it as being completed.
   // Thus, we need to emulate this. Note that the player will still be able to restart the Boss Rush
   // if they go back in and touch another collectible. (This is also how vanilla works.)
-  const roomType = g.r.GetType();
   if (v.run.inProgress && !v.run.finished && roomType !== RoomType.BOSS_RUSH) {
     v.run.inProgress = false;
     v.run.finished = true;
@@ -429,7 +435,8 @@ function startCustomBossRush() {
 }
 
 function getRandomBossRushBosses(): string[] {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   const rng = newRNG(startSeed);
 
   const randomBosses: string[] = [];

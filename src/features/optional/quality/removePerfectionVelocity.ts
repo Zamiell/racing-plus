@@ -6,8 +6,7 @@ import {
   LevelStage,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { findFreePosition, VectorZero } from "isaacscript-common";
-import { g } from "../../../globals";
+import { findFreePosition, game, VectorZero } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -57,16 +56,18 @@ export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
 }
 
 function getPerfectionPosition(): Vector {
-  const stage = g.l.GetStage();
-  const centerPos = g.r.GetCenterPos();
-  const gridEntity = g.r.GetGridEntityFromPos(centerPos);
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
+  const gridEntity = room.GetGridEntityFromPos(centerPos);
 
   if (stage === LevelStage.WOMB_2) {
-    return g.r.GetGridPosition(STAGE_8_SPAWN_GRID_LOCATION);
+    return room.GetGridPosition(STAGE_8_SPAWN_GRID_LOCATION);
   }
 
   if (stage === LevelStage.SHEOL_CATHEDRAL) {
-    return g.r.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
+    return room.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
   }
 
   // Some boss rooms have pits in the center of the room.

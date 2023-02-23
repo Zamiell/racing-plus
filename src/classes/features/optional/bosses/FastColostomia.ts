@@ -5,7 +5,7 @@ import {
   ModCallback,
   PoofSubType,
 } from "isaac-typescript-definitions";
-import { asNpcState, Callback, spawnEffect } from "isaacscript-common";
+import { asNPCState, Callback, spawnEffect } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -22,7 +22,7 @@ export class FastColostomia extends ConfigurableModFeature {
     // The state starts at `ColostomiaState.IDLE_PHASE_1` and then always transitions to
     // `ColostomiaState.SPIT_POOP_BOMB`. By immediately setting the state to
     // `ColostomiaState.SPIT_POOP_BOMB`, it will force the NPC to be on the ground.
-    npc.State = asNpcState(ColostomiaState.SPIT_POOP_BOMB);
+    npc.State = asNPCState(ColostomiaState.SPIT_POOP_BOMB);
 
     // Make it have a poof of smoke like a normal boss.
     spawnEffect(

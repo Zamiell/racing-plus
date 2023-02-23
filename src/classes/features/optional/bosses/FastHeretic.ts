@@ -3,7 +3,7 @@ import {
   EntityType,
   ExorcistVariant,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { Callback, getNPCs } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -29,12 +29,12 @@ export class FastHeretic extends ConfigurableModFeature {
     npc.EntityCollisionClass = EntityCollisionClass.ALL;
 
     // We also need to manually "enable" all of the Fanatics in the room, or they will permanently
-    // be stuck in the state `NpcState.SPECIAL` (16).
+    // be stuck in the state `NPCState.SPECIAL` (16).
     const fanatics = getNPCs(EntityType.EXORCIST, ExorcistVariant.FANATIC);
     for (const fanatic of fanatics) {
-      // They start at `NpcState.SPECIAL` (16) when summoning and then go to state
-      // `NpcState.SUICIDE` when the Heretic frees them.
-      fanatic.State = NpcState.SUICIDE;
+      // They start at `NPCState.SPECIAL` (16) when summoning and then go to state
+      // `NPCState.SUICIDE` when the Heretic frees them.
+      fanatic.State = NPCState.SUICIDE;
     }
   }
 }

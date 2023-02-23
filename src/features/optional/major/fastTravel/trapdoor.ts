@@ -80,7 +80,9 @@ export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const seeds = game.GetSeeds();
   const repentanceStage = onRepentanceStage();
 
   if (isPostBossVoidPortal(gridEntity)) {
@@ -89,7 +91,7 @@ function shouldIgnore(gridEntity: GridEntity) {
 
   // There is no way to manually travel to the "Infinite Basements" Easter Egg floors, so just
   // disable the fast-travel feature if this is the case.
-  if (g.seeds.HasSeedEffect(SeedEffect.INFINITE_BASEMENT)) {
+  if (seeds.HasSeedEffect(SeedEffect.INFINITE_BASEMENT)) {
     return true;
   }
 
@@ -107,8 +109,10 @@ function shouldRemove() {
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
   const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
@@ -247,8 +251,9 @@ function shouldRemove() {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  const roomFrameCount = g.r.GetFrameCount();
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
+  const roomClear = room.IsClear();
 
   // After defeating Satan, the trapdoor should always spawn open (because there is no reason to
   // remain in Sheol).

@@ -28,7 +28,6 @@ import {
 } from "isaacscript-common";
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../../features/race/consistentDevilAngelRooms";
-import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import { newCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utils";
@@ -110,7 +109,8 @@ export class FreeDevilItem extends ConfigurableModFeature {
 
   shouldGetFreeDevilItemInThisRoom(): boolean {
     const gameFrameCount = game.GetFrameCount();
-    const roomType = g.r.GetType();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
 
     return (
       // Black Market deals do not count as "locking in" Devil Deals, so we exclude this mechanic
@@ -135,7 +135,8 @@ export class FreeDevilItem extends ConfigurableModFeature {
    * example.
    */
   isDevilDealStyleCollectible(collectible: EntityPickupCollectible): boolean {
-    const roomType = g.r.GetType();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
 
     if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
       return (

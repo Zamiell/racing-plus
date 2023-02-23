@@ -6,7 +6,7 @@ import {
 } from "isaacscript-common";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../../../features/optional/major/fastTravel/fastTravel";
 import { onSeason } from "../../../../features/speedrun/speedrun";
-import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utils";
 import { season3HasHushGoal, season3HasOnlyDogmaLeft } from "./v";
 
 export function season3FastClear(): void {

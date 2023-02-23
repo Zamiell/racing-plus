@@ -45,9 +45,11 @@ export function fastClear(): void {
 }
 
 function inItLivesOrHushBossRoom() {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
-  const roomType = g.r.GetType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   return (
     (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
@@ -152,15 +154,17 @@ function getItLivesSituationRace(goal: RaceGoal): ItLivesSituation {
 
 function doItLivesSituation(situation: ItLivesSituation) {
   const gameFrameCount = game.GetFrameCount();
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
 
-  let positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
-  let positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
-  let positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
+  let positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+  let positionLeft = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
+  let positionRight = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
   if (stage === LevelStage.BLUE_WOMB) {
-    positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM);
-    positionLeft = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM - 1);
-    positionRight = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM + 1);
+    positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM);
+    positionLeft = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM - 1);
+    positionRight = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM + 1);
   }
 
   switch (situation) {
@@ -207,7 +211,8 @@ function spawnHeavenDoor(position: Vector) {
 }
 
 function spawnTrapdoor(position: Vector) {
-  const gridIndex = g.r.GetGridIndex(position);
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(position);
   spawnGridEntityWithVariant(
     GridEntityType.TRAPDOOR,
     TrapdoorVariant.NORMAL,
@@ -227,17 +232,19 @@ export function postNewRoom(): void {
  * Check for this situation and spawn the appropriate path if needed.
  */
 function checkItLivesWrongPath() {
+  const room = game.GetRoom();
+
   if (!inItLivesOrHushBossRoom()) {
     return;
   }
 
-  const roomClear = g.r.IsClear();
+  const roomClear = room.IsClear();
   if (!roomClear) {
     return;
   }
 
   const situation = getItLivesSituation();
-  const positionCenter = g.r.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+  const positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
 
   switch (situation) {
     case ItLivesSituation.NEITHER: {

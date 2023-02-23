@@ -10,6 +10,7 @@ import {
 import {
   anyPlayerHasCollectible,
   asNumber,
+  game,
   getBosses,
   getCollectibles,
   inStartingRoom,
@@ -18,7 +19,6 @@ import {
   useActiveItemTemp,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
-import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { config } from "../../../../../modConfigMenu";
 import * as sprites from "../sprites";
@@ -59,7 +59,8 @@ function checkWarping() {
 
 function gatherInfoAndGlowingHourGlass() {
   // We have arrived in a new Treasure Room or Boss Room.
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   if (roomType === RoomType.TREASURE) {
     for (const collectibleType of getRoomCollectibles()) {
       v.level.collectibles.push(collectibleType);

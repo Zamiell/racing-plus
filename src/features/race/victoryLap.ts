@@ -55,6 +55,7 @@ import {
   WidowVariant,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getRandomArrayElement,
   inBossRoomOf,
   newRNG,
@@ -256,9 +257,10 @@ export function postNewRoom(): void {
 }
 
 function checkVictoryLapBossReplace() {
-  const roomClear = g.r.IsClear();
-  const roomSeed = g.r.GetSpawnSeed();
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
+  const roomSeed = room.GetSpawnSeed();
+  const centerPos = room.GetCenterPos();
   const rng = newRNG(roomSeed);
 
   if (

@@ -138,7 +138,8 @@ function validateSeed() {
     return true;
   }
 
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
 
   if (
     g.race.format === RaceFormat.SEEDED &&

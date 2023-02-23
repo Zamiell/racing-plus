@@ -14,7 +14,6 @@ import {
   setSeed,
   spawnPickup,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 
 const v = {
@@ -32,7 +31,8 @@ export function init(): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   setSeed(v.run.rng, startSeed);
 }
 

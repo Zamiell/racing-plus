@@ -1,7 +1,7 @@
 import {
   EntityType,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { Callback, getNPCs } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -27,8 +27,8 @@ export class FastHands extends ConfigurableModFeature {
   }
 
   checkSpeedUpHand(npc: EntityNPC): void {
-    // `NpcState.MOVE` is when they are following the player.
-    if (npc.State === NpcState.MOVE) {
+    // `NPCState.MOVE` is when they are following the player.
+    if (npc.State === NPCState.MOVE) {
       this.speedUpInitialDelay(npc);
       this.checkOtherHandOverlap(npc);
     }
@@ -60,7 +60,7 @@ export class FastHands extends ConfigurableModFeature {
     return hands.some(
       (hand) =>
         GetPtrHash(hand) !== GetPtrHash(initialHand) &&
-        hand.State === NpcState.MOVE &&
+        hand.State === NPCState.MOVE &&
         hand.StateFrame === initialHand.StateFrame,
     );
   }

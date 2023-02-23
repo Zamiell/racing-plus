@@ -15,7 +15,6 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { consoleCommand } from "../../../utils";
 import {
@@ -49,17 +48,18 @@ function gotoButtonRoom() {
 }
 
 function setupButtonRoom() {
-  const player = Isaac.GetPlayer();
+  const room = game.GetRoom();
   const hud = game.GetHUD();
+  const player = Isaac.GetPlayer();
 
   hud.SetVisible(false);
 
   const npcs = getNPCs();
   removeEntities(npcs);
-  g.r.SetClear(true);
+  room.SetClear(true);
   removeAllDoors();
 
-  const nextToBottomDoor = g.r.GetGridPosition(97);
+  const nextToBottomDoor = room.GetGridPosition(97);
   player.Position = nextToBottomDoor;
   player.RemoveCollectible(CollectibleType.D6);
   player.AddBombs(-1);
@@ -87,7 +87,7 @@ function setupButtonRoom() {
       seasonDescription.X,
       seasonDescription.Y,
     );
-    const gridIndex = g.r.GetGridIndex(position);
+    const gridIndex = room.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,

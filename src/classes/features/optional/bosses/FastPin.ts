@@ -1,7 +1,7 @@
 import {
   EntityType,
   ModCallback,
-  NpcState,
+  NPCState,
   PinVariant,
 } from "isaac-typescript-definitions";
 import { asNumber, Callback, getNPCs } from "isaacscript-common";
@@ -11,7 +11,7 @@ import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;
 const PIN_ATTACK2_STATE_FRAME_IN_GROUND = 60;
 
-/** This is the same for both NpcState.ATTACK and NpcState.ATTACK_2. */
+/** This is the same for both NPCState.ATTACK and NPCState.ATTACK_2. */
 const PIN_ATTACK_STATE_FRAME_FINAL = 105;
 
 const v = {
@@ -50,7 +50,7 @@ export class FastPin extends ConfigurableModFeature {
     // 0. When Wormwood is underground, we force it to be invisible to prevent buggy artifacts. As
     // soon as it does another attack, make it visible again.
     if (
-      (npc.State === NpcState.JUMP || npc.State === NpcState.ATTACK) &&
+      (npc.State === NPCState.JUMP || npc.State === NPCState.ATTACK) &&
       !npc.Visible
     ) {
       v.room.pokePhase = false;
@@ -63,13 +63,13 @@ export class FastPin extends ConfigurableModFeature {
       return;
     }
 
-    if (npc.State === NpcState.ATTACK_2) {
+    if (npc.State === NPCState.ATTACK_2) {
       v.room.pokePhase = true;
       npc.Visible = true;
       return;
     }
 
-    if (npc.State === NpcState.IDLE) {
+    if (npc.State === NPCState.IDLE) {
       this.checkSpeedUpWormwoodWhileUnderground(npc);
     }
   }
@@ -124,14 +124,14 @@ export class FastPin extends ConfigurableModFeature {
   speedUpTearAttack(npc: EntityNPC): void {
     // In vanilla, Pin will spend too long underground after performing the tear attack.
     if (
-      npc.State === NpcState.ATTACK &&
+      npc.State === NPCState.ATTACK &&
       npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
     ) {
       npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
     }
 
     if (
-      npc.State === NpcState.ATTACK_2 &&
+      npc.State === NPCState.ATTACK_2 &&
       npc.StateFrame >= PIN_ATTACK2_STATE_FRAME_IN_GROUND
     ) {
       npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;

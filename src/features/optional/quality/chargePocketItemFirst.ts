@@ -38,7 +38,6 @@ import {
   playChargeSoundEffect,
   PlayerIndex,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -117,9 +116,10 @@ function checkBatteryBumCharge(player: EntityPlayer) {
 }
 
 function checkHairpinCharge(player: EntityPlayer) {
-  const roomType = g.r.GetType();
-  const roomFrameCount = g.r.GetFrameCount();
-  const firstVisit = g.r.IsFirstVisit();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomFrameCount = room.GetFrameCount();
+  const firstVisit = room.IsFirstVisit();
   const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   if (

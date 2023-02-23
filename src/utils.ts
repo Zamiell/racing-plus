@@ -1,19 +1,58 @@
 import {
+  BossID,
   CollectibleType,
   EntityType,
+  LevelStage,
   PlayerType,
   PlayerVariant,
+  RoomType,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import {
   game,
+  getCollectibleInitCharge,
+  getCollectibleItemType,
+  getCollectibleMaxCharges,
   getEntities,
   getFamiliars,
   getPlayers,
+  isRoomInsideGrid,
   log,
+  newPickingUpItem,
 } from "isaacscript-common";
+import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
+import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
+
+export function addCollectibleAndRemoveFromPools(
+  player: EntityPlayer,
+  collectibleType: CollectibleType,
+): void {
+  const itemPool = game.GetItemPool();
+
+  // Before adding the new collectible, pretend like the item is becoming queued so that the
+  // automatic item insertion feature works properly.
+  const itemType = getCollectibleItemType(collectibleType);
+  const pickingUpItem = newPickingUpItem();
+  pickingUpItem.itemType = itemType;
+  pickingUpItem.subType = collectibleType;
+  automaticItemInsertionPreItemPickup(player, pickingUpItem);
+
+  const initCharges = getCollectibleInitCharge(collectibleType);
+  const maxCharges = getCollectibleMaxCharges(collectibleType);
+  const charges = initCharges === -1 ? maxCharges : initCharges;
+
+  player.AddCollectible(collectibleType, charges);
+  itemPool.RemoveCollectible(collectibleType);
+
+  const placeholderCollectible =
+    COLLECTIBLE_PLACEHOLDER_REVERSE_MAP.get(collectibleType);
+  if (placeholderCollectible !== undefined) {
+    itemPool.RemoveCollectible(placeholderCollectible);
+  }
+}
 
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
@@ -29,6 +68,16 @@ export function getEffectiveDevilDeals(): int {
   return shouldConsistentDevilAngelRoomsApply()
     ? devilRoomDeals - 1
     : devilRoomDeals;
+}
+
+export function giveTrinketAndRemoveFromPools(
+  player: EntityPlayer,
+  trinketType: TrinketType,
+): void {
+  const itemPool = game.GetItemPool();
+
+  player.AddTrinket(trinketType);
+  itemPool.RemoveTrinket(trinketType);
 }
 
 /**
@@ -55,6 +104,25 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
   });
 
   return [hasPolaroid, hasNegative];
+}
+
+export function inClearedMomBossRoom(): boolean {
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomClear = room.IsClear();
+  const bossID = room.GetBossID();
+  const roomInsideGrid = isRoomInsideGrid();
+
+  return (
+    stage === LevelStage.DEPTHS_2 &&
+    roomType === RoomType.BOSS &&
+    roomInsideGrid &&
+    roomClear &&
+    // We want to filter out the situations where the Dad's Note room is cleared.
+    bossID === BossID.MOM
+  );
 }
 
 export function moveEsauNextToJacob(): void {

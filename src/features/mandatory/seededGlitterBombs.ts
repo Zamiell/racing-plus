@@ -5,6 +5,7 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getRandom,
   newRNG,
   setSeed,
@@ -12,7 +13,6 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 
 /** This chance is modified by 1% for every prize previously awarded on the floor. */
@@ -35,7 +35,8 @@ export function init(): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   setSeed(v.run.rng, startSeed);
 }
 

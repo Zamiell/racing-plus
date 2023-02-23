@@ -21,7 +21,6 @@ import { setBuildBansTime } from "../../classes/features/speedrun/RandomCharacte
 import { SEASON_2_STARTING_BUILDS } from "../../classes/features/speedrun/season2/constants";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
-import { g } from "../../globals";
 import { newGlowingCollectibleSprite } from "../../sprite";
 import { ChallengeCustomAbbreviation } from "../speedrun/constants";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
@@ -66,7 +65,9 @@ function checkCreateButtons() {
 }
 
 function createCharacterButtons() {
-  const nextToBottomDoor = g.r.GetGridPosition(97);
+  const room = game.GetRoom();
+  const nextToBottomDoor = room.GetGridPosition(97);
+
   for (const player of getPlayers()) {
     player.Position = nextToBottomDoor;
     player.Velocity = VectorZero;
@@ -78,7 +79,7 @@ function createCharacterButtons() {
   for (const { character, x, y } of seasonDescription.charPositions) {
     // Spawn buttons for each characters.
     const position = gridCoordinatesToWorldPosition(x, y);
-    const gridIndex = g.r.GetGridIndex(position);
+    const gridIndex = room.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
@@ -103,7 +104,9 @@ function createCharacterButtons() {
 }
 
 function createBuildVetoButtons() {
-  const nextToBottomDoor = g.r.GetGridPosition(97);
+  const room = game.GetRoom();
+  const nextToBottomDoor = room.GetGridPosition(97);
+
   for (const player of getPlayers()) {
     player.Position = nextToBottomDoor;
     player.Velocity = VectorZero;
@@ -119,7 +122,7 @@ function createBuildVetoButtons() {
   for (const { buildIndex, x, y } of seasonDescription.buildPositions) {
     // Spawn buttons for each characters.
     const position = gridCoordinatesToWorldPosition(x, y);
-    const gridIndex = g.r.GetGridIndex(position);
+    const gridIndex = room.GetGridIndex(position);
     spawnGridEntityWithVariant(
       GridEntityType.PRESSURE_PLATE,
       PressurePlateVariant.PRESSURE_PLATE,
@@ -279,6 +282,7 @@ function season1DeleteOtherCharButton(i: int) {
 }
 
 function deleteCharacterButtonAtIndex(i: int) {
+  const room = game.GetRoom();
   const seasonDescription = getSeasonDescription();
 
   const charPosition = seasonDescription.charPositions[i];
@@ -287,7 +291,7 @@ function deleteCharacterButtonAtIndex(i: int) {
   }
   const { x, y } = charPosition;
   const position = gridCoordinatesToWorldPosition(x, y);
-  const gridEntity = g.r.GetGridEntityFromPos(position);
+  const gridEntity = room.GetGridEntityFromPos(position);
   if (gridEntity !== undefined) {
     removeGridEntity(gridEntity, false);
   }

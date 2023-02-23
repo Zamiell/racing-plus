@@ -1,21 +1,28 @@
-import { DeathState } from "isaac-typescript-definitions";
-import { asNpcState } from "isaacscript-common";
-import { config } from "../../../modConfigMenu";
+import {
+  DeathState,
+  DeathVariant,
+  EntityType,
+} from "isaac-typescript-definitions";
+import {
+  asNPCState,
+  CallbackCustom,
+  ModCallbackCustom,
+} from "isaacscript-common";
+import { Config } from "../../../classes/Config";
+import { ConfigurableModFeature } from "../../../classes/ConfigurableModFeature";
 
-// ModCallback.POST_NPC_UPDATE (0)
-// EntityType.DEATH (66)
-export function postNPCUpdateDeath(npc: EntityNPC): void {
-  if (!config.PreventDeathSlow) {
-    return;
-  }
+/** Stop Death from performing the attack that slows down the player. */
+export class PreventDeathSlow extends ConfigurableModFeature {
+  configKey: keyof Config = "PreventDeathSlow";
 
-  // We only care about the main Death.
-  if (npc.Variant !== 0) {
-    return;
-  }
-
-  // Stop Death from performing the attack that slows down the player.
-  if (npc.State === asNpcState(DeathState.SLOW_ATTACK)) {
-    npc.State = asNpcState(DeathState.MAIN_IDLE);
+  @CallbackCustom(
+    ModCallbackCustom.POST_NPC_UPDATE_FILTER,
+    EntityType.DEATH,
+    DeathVariant.DEATH,
+  )
+  postNPCUpdateDeath(npc: EntityNPC): void {
+    if (npc.State === asNPCState(DeathState.SLOW_ATTACK)) {
+      npc.State = asNPCState(DeathState.MAIN_IDLE);
+    }
   }
 }

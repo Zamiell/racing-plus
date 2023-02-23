@@ -10,6 +10,7 @@ import {
   CHARACTER_NAME_TO_TYPE_MAP,
   copyArray,
   FIRST_CHARACTER,
+  game,
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
@@ -131,7 +132,8 @@ function diversityRace(params: string) {
     );
   }
 
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 
@@ -259,7 +261,8 @@ function seededRace(params: string) {
     );
   }
 
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
 

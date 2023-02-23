@@ -3,8 +3,12 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { getPlayersOfType, spawnTrinket, VectorZero } from "isaacscript-common";
-import { g } from "../../../globals";
+import {
+  game,
+  getPlayersOfType,
+  spawnTrinket,
+  VectorZero,
+} from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
 const BOTTOM_LEFT_GRID_INDEX = 106;
@@ -28,7 +32,8 @@ export function postGameStarted(): void {
 }
 
 export function spawnDroppedChildsHeart(player: EntityPlayer): void {
-  const bottomRightPosition = g.r.GetGridPosition(BOTTOM_LEFT_GRID_INDEX);
+  const room = game.GetRoom();
+  const bottomRightPosition = room.GetGridPosition(BOTTOM_LEFT_GRID_INDEX);
   const childsHeart = spawnTrinket(
     TrinketType.CHILDS_HEART,
     bottomRightPosition,

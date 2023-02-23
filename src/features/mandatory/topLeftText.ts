@@ -42,7 +42,8 @@ export function postRender(): void {
     return;
   }
 
-  const seedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const seedString = seeds.GetStartSeedString();
   const HUDOffsetVector = getHUDOffsetVector();
   const heartsUIWidth = getHeartsUIWidth();
 
@@ -115,11 +116,13 @@ export function postRender(): void {
 }
 
 function shouldShowSeededRaceTimeOffset() {
+  const room = game.GetRoom();
+
   return (
     inSeededRace() &&
     !onFirstFloor() &&
     inStartingRoom() &&
-    g.r.IsFirstVisit() &&
+    room.IsFirstVisit() &&
     g.race.placeMid !== 1 // Only show it if we are not in first place.
   );
 }

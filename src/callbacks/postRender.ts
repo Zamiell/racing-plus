@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import { updateCachedAPIFunctions } from "../cache";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as drawVersion from "../features/mandatory/drawVersion";
@@ -22,8 +21,6 @@ export function init(): void {
 }
 
 function main() {
-  updateCachedAPIFunctions();
-
   // If there are any errors, we can skip the remainder of this function.
   if (hasErrors()) {
     return;

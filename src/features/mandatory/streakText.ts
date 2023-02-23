@@ -202,7 +202,8 @@ export function usePill(
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   setSeed(v.run.deadSeaScrollsRNG, startSeed);
 }
 
@@ -229,6 +230,8 @@ function shouldShowLevelText() {
 }
 
 function showLevelText() {
+  const level = game.GetLevel();
+
   // Going to or being in the race room is a special case; we don't want to display the level text
   // here.
   if (g.race.status === RaceStatus.OPEN && onFirstFloor()) {
@@ -241,7 +244,7 @@ function showLevelText() {
     const text = getEnglishLevelName();
     setStreakText(text);
   } else if (!onFirstFloor()) {
-    g.l.ShowName(false);
+    level.ShowName(false);
   }
 }
 

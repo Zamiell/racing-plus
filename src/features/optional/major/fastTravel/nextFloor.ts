@@ -19,7 +19,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
-import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { onSeason } from "../../../speedrun/speedrun";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
@@ -27,7 +27,8 @@ import { v } from "./v";
 
 export function goto(upwards: boolean): void {
   const hud = game.GetHUD();
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
   const nextStage = getNextStageCustom();
@@ -88,7 +89,8 @@ function getNextStageCustom() {
   const backwardsPathInit = game.GetStateFlag(
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
   const repentanceStage = onRepentanceStage();
   const raceDestinationTheAscent = isRaceDestinationTheAscent();
   const clearedMomBossRoom = inClearedMomBossRoom();

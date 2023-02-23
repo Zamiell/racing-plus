@@ -1,4 +1,5 @@
 import {
+  game,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   removeGridEntity,
 } from "isaacscript-common";
@@ -34,8 +35,10 @@ export function postSacrifice(numSacrifices: int): void {
 }
 
 function checkDeleteSpikes() {
+  const room = game.GetRoom();
+
   if (shouldDeleteSpikes()) {
-    const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
+    const spikes = room.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
     if (spikes !== undefined) {
       removeGridEntity(spikes, false);
     }

@@ -65,14 +65,15 @@ function spawnSparkleOnPlayer() {
 
 function spawnFireworks() {
   const gameFrameCount = game.GetFrameCount();
+  const room = game.GetRoom();
 
   // Spawn 30 fireworks. (Some can be duds randomly.)
   if (v.run.numFireworksSpawned < 40 && gameFrameCount % 20 === 0) {
     repeat(5, () => {
       v.run.numFireworksSpawned++;
       const seed = v.run.rng.Next();
-      const randomGridIndex = g.r.GetRandomTileIndex(seed);
-      const position = g.r.GetGridPosition(randomGridIndex);
+      const randomGridIndex = room.GetRandomTileIndex(seed);
+      const position = room.GetGridPosition(randomGridIndex);
       const firework = spawnEffect(EffectVariant.FIREWORKS, 0, position);
       firework.SetTimeout(20);
     });
@@ -81,6 +82,7 @@ function spawnFireworks() {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   setSeed(v.run.rng, startSeed);
 }

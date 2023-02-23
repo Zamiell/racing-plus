@@ -2,7 +2,6 @@ import { RoomType } from "isaac-typescript-definitions";
 import { anyPlayerCloserThan, game, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import {
@@ -107,7 +106,8 @@ export function initDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
-  const roomFrameCount = g.r.GetFrameCount();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
   const fastTravelMap = getFastTravelMap(fastTravelEntityType);
   const index = getIndex(entity, fastTravelEntityType);
   const description = {
@@ -139,6 +139,8 @@ function getIndex(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): number {
+  const room = game.GetRoom();
+
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
       const gridEntity = entity as GridEntity;
@@ -153,7 +155,7 @@ function getIndex(
     case FastTravelEntityType.HEAVEN_DOOR: {
       // "effect.Index" is not yet initialized in the PostEffectInit callback. Use the grid index as
       // the index for conformity with the other fast-travel entities.
-      return g.r.GetGridIndex(entity.Position);
+      return room.GetGridIndex(entity.Position);
     }
   }
 }
@@ -178,12 +180,14 @@ export function shouldOpen(
 }
 
 function shouldBeClosedFromStartingInRoomWithEnemies(initial: boolean) {
-  return initial && !g.r.IsClear();
+  const room = game.GetRoom();
+  return initial && !room.IsClear();
 }
 
 function playerCloseAfterBoss(position: Vector) {
   const gameFrameCount = game.GetFrameCount();
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
   // killing the boss of the floor, we use a wider open distance for X frames.

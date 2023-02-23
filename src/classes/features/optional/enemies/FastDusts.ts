@@ -1,7 +1,7 @@
 import {
   EntityType,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -13,8 +13,8 @@ export class FastDusts extends ConfigurableModFeature {
   // 0, 882
   @Callback(ModCallback.POST_NPC_UPDATE, EntityType.DUST)
   postNPCUpdateDust(npc: EntityNPC): void {
-    if (npc.State === NpcState.SPECIAL) {
-      npc.State = NpcState.IDLE;
+    if (npc.State === NPCState.SPECIAL) {
+      npc.State = NPCState.IDLE;
     }
   }
 }

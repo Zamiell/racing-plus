@@ -31,7 +31,6 @@ import {
   repeat,
   setPlayerHealth,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 import { inSeededRace } from "../race/v";
@@ -72,7 +71,8 @@ function shouldSeededFloorsApply() {
 export function postGameStarted(): void {
   // We may have had the Curse of the Unknown seed enabled in a previous run, so ensure that it is
   // removed.
-  g.seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
+  const seeds = game.GetSeeds();
+  seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
 }
 
 export function before(): void {
@@ -82,10 +82,11 @@ export function before(): void {
 
   log("seededFloors - Before going to a new floor.");
 
+  const level = game.GetLevel();
+  const levelSeed = level.GetDungeonPlacementSeed();
   const player = Isaac.GetPlayer();
   const character = player.GetPlayerType();
   const eternalHearts = player.GetEternalHearts();
-  const levelSeed = g.l.GetDungeonPlacementSeed();
   const rng = newRNG(levelSeed);
 
   // Record the current inventory and health values.
@@ -199,7 +200,8 @@ export function after(): void {
   addExtraHealthFromItems(player);
   fixWhoreOfBabylon(player);
 
-  g.seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
+  const seeds = game.GetSeeds();
+  seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
 }
 
 function getGameStateFlags(): GameStateFlags {

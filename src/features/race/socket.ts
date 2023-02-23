@@ -35,7 +35,8 @@ export function postRender(): void {
 
 // ModCallback.POST_GAME_STARTED (15)
 export function postGameStarted(): void {
-  const startSeedString = g.seeds.GetStartSeedString();
+  const seeds = game.GetSeeds();
+  const startSeedString = seeds.GetStartSeedString();
 
   if (!socketClient.isActive()) {
     if (!socketClient.connect()) {
@@ -56,15 +57,17 @@ export function postNewLevel(): void {
   const backwards = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH)
     ? "true"
     : "false";
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
 
   send("level", `${stage}-${stageType}-${backwards}`);
 }
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const roomVariant = getRoomVariant();
 
   // This roughly emulates a log.txt line of e.g.: "[INFO] - Room 13.12(New Room)"

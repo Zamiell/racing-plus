@@ -52,6 +52,7 @@ import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodW
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
+import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
 import { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
@@ -150,6 +151,7 @@ const FEATURE_CLASSES = [
   DummyDPS, // 964
 
   // Quality of Life
+  RemovePerfectionOnEndFloors,
   RunTimer,
   ShowMaxFamiliars,
   SpeedUpFadeIn,

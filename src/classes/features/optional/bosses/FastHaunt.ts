@@ -1,9 +1,7 @@
-// Speed up the first Lil' Haunt (260.10) attached to a Haunt (260.0).
-
 import {
   EntityType,
   HauntVariant,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
@@ -19,6 +17,7 @@ const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
 /** After patch 1.7.8, all Haunt champions have a color index of -1 except for the black one. */
 const BLACK_CHAMPION_COLOR_IDX = 0;
 
+/** Speed up the first Lil' Haunt attached to a Haunt. */
 export class FastHaunt extends ConfigurableModFeature {
   configKey: keyof Config = "FastHaunt";
 
@@ -87,8 +86,8 @@ export class FastHaunt extends ConfigurableModFeature {
   }
 
   detachLilHaunt(npc: EntityNPC): void {
-    // Setting their state to NpcState.MOVE detaches them from the parent.
-    npc.State = NpcState.MOVE;
+    // Setting their state to NPCState.MOVE detaches them from the parent.
+    npc.State = NPCState.MOVE;
 
     // After detaching, the Lil' Haunt will remain faded, so manually set the color to be fully
     // opaque.

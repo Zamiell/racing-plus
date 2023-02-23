@@ -7,6 +7,7 @@ import {
 import {
   characterStartsWithActiveItem,
   copyArray,
+  game,
   getCollectibleName,
   getTrinketName,
   giveTrinketsBack,
@@ -25,11 +26,11 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { ServerCollectibleID } from "../../types/ServerCollectibleID";
-import { serverCollectibleIDToCollectibleType } from "../../utils";
 import {
   addCollectibleAndRemoveFromPools,
   giveTrinketAndRemoveFromPools,
-} from "../../utilsGlobals";
+  serverCollectibleIDToCollectibleType,
+} from "../../utils";
 import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 
@@ -139,6 +140,8 @@ function unseededRankedSolo(player: EntityPlayer) {
 }
 
 function seeded(player: EntityPlayer) {
+  const itemPool = game.GetItemPool();
+
   // All seeded races start with the Compass to reduce mapping RNG.
   if (player.HasCollectible(CollectibleType.COMPASS)) {
     // Eden started with The Compass, so mark to replace it with another random passive item later
@@ -174,7 +177,7 @@ function seeded(player: EntityPlayer) {
   // - Remove Birthright on Cain, since it changes floor generation.
   // - Remove Birthright on The Lost, since it changes pools and causes Judas' Shadow to be removed.
   if (isCharacter(player, PlayerType.CAIN, PlayerType.LOST)) {
-    g.itemPool.RemoveCollectible(CollectibleType.BIRTHRIGHT);
+    itemPool.RemoveCollectible(CollectibleType.BIRTHRIGHT);
   }
 
   // Other collectible/trinket pool removals are done in the "removeGloballyBannedItems" feature.

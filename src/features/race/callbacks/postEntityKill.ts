@@ -1,3 +1,4 @@
+import { game } from "isaacscript-common";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
@@ -19,7 +20,8 @@ function checkSpawnHushRaceTrophy() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH
   ) {
-    const centerPos = g.r.GetCenterPos();
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
     spawnTrophy(centerPos);
   }
 }

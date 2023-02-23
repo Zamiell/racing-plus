@@ -39,7 +39,7 @@ import {
 } from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
-import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
 import {

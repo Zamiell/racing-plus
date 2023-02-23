@@ -22,7 +22,6 @@ import {
   setAllRNGToStartSeed,
   spawnPickupWithSeed,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 
 /** Collectibles that change room drop calculation. */
@@ -98,7 +97,8 @@ export function preSpawnClearAward(): boolean | undefined {
 }
 
 function shouldSpawnSeededDrop(): boolean {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   return (
     onSetSeed() &&
@@ -147,7 +147,8 @@ function shouldSpawnSeededDrop(): boolean {
  * the room drop.
  */
 function spawnSeededDrop() {
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
   const rng = getRNGToUse();
 
   let pickupVariant = getPickupVariant(rng);
@@ -271,7 +272,8 @@ function getPickupVariant(rng: RNG) {
 }
 
 function getRNGToUse() {
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (
     roomType === RoomType.DEVIL || // 14

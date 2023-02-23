@@ -21,7 +21,6 @@ import {
   spawnEffect,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
@@ -37,7 +36,8 @@ const STAIRWAY_GRID_INDEX = 25;
 export function checkStartDreamCatcherWarp(): void {
   const isGreedMode = game.IsGreedMode();
   const onTheAscent = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
-  const isFirstVisit = g.r.IsFirstVisit();
+  const room = game.GetRoom();
+  const isFirstVisit = room.IsFirstVisit();
 
   if (v.level.warpState !== DreamCatcherWarpState.INITIAL) {
     return;
@@ -108,6 +108,7 @@ function startWarp() {
 }
 
 export function warpToNextDreamCatcherRoom(): void {
+  const room = game.GetRoom();
   const players = getPlayers();
 
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
@@ -126,7 +127,7 @@ export function warpToNextDreamCatcherRoom(): void {
   // If the player has The Stairway, moving away from the room would delete the ladder, so respawn
   // it if necessary.
   if (anyPlayerHasCollectible(CollectibleType.STAIRWAY)) {
-    const position = g.r.GetGridPosition(STAIRWAY_GRID_INDEX);
+    const position = room.GetGridPosition(STAIRWAY_GRID_INDEX);
     spawnEffect(
       EffectVariant.TALL_LADDER,
       TallLadderSubType.STAIRWAY,

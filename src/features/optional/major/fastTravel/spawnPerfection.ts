@@ -3,8 +3,12 @@ import {
   RoomType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { getAliveBosses, ReadonlySet, spawnTrinket } from "isaacscript-common";
-import { g } from "../../../../globals";
+import {
+  game,
+  getAliveBosses,
+  ReadonlySet,
+  spawnTrinket,
+} from "isaacscript-common";
 import { v } from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
@@ -20,8 +24,10 @@ export function postEntityKill(entity: Entity): void {
     return;
   }
 
-  const roomType = g.r.GetType();
-  const startSeed = g.seeds.GetStartSeed();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
 
   if (roomType !== RoomType.BOSS) {
     return;

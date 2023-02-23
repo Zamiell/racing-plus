@@ -21,7 +21,8 @@ export function postNewRoom(): void {
   const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (
     !v.run.spawnedCorpseTrapdoor &&
@@ -32,7 +33,7 @@ export function postNewRoom(): void {
     roomType === RoomType.BOSS
   ) {
     v.run.spawnedCorpseTrapdoor = true;
-    const gridIndex = g.r.GetGridIndex(NORMAL_TRAPDOOR_POSITION);
+    const gridIndex = room.GetGridIndex(NORMAL_TRAPDOOR_POSITION);
     spawnGridEntityWithVariant(
       GridEntityType.TRAPDOOR,
       TrapdoorVariant.NORMAL,

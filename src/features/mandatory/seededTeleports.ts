@@ -6,6 +6,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  game,
   getRandomArrayElement,
   getRandomInt,
   getRooms,
@@ -15,7 +16,6 @@ import {
   setSeed,
   teleport,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 
 const v = {
@@ -61,7 +61,8 @@ export function usePillTelepills(): void {
 }
 
 function seededTelepills() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   // Telepills works in a way similar to Teleport!, but the possibilities can also include the I AM
   // ERROR room and the Black Market. Thus, we have to build a room index array manually, which
@@ -100,7 +101,8 @@ function seededTelepills() {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const levelSeed = g.l.GetDungeonPlacementSeed();
+  const level = game.GetLevel();
+  const levelSeed = level.GetDungeonPlacementSeed();
 
   setSeed(v.level.rng.teleport, levelSeed);
   setSeed(v.level.rng.telepills, levelSeed);

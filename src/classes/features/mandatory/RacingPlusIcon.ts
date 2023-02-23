@@ -22,7 +22,6 @@ import {
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../../constants";
 import * as socketClient from "../../../features/race/socketClient";
-import { g } from "../../../globals";
 import { newSprite } from "../../../sprite";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
 
@@ -114,5 +113,6 @@ export function setUnseededWithRacingPlusLogic(): void {
  * Note that not all easter eggs prevent achievements, but this one does.
  */
 function disableAchievements() {
-  g.seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
+  const seeds = game.GetSeeds();
+  seeds.AddSeedEffect(SeedEffect.PREVENT_CURSE_DARKNESS);
 }

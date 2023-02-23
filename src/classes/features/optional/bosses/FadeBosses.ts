@@ -2,7 +2,7 @@ import {
   EntityType,
   LambVariant,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { asNumber, Callback, ReadonlySet } from "isaacscript-common";
 import { mod } from "../../../../mod";
@@ -44,9 +44,9 @@ export class FadeBosses extends ConfigurableModFeature {
     }
 
     // Killing the first phase of Hornfel will trigger the `POST_ENTITY_KILL` callback, so do not
-    // fade Hornfel in this case. (Hornfel will be in `NpcState.MOVE` in his second phase when he is
+    // fade Hornfel in this case. (Hornfel will be in `NPCState.MOVE` in his second phase when he is
     // running away from the player.)
-    if (npc.Type === EntityType.HORNFEL && npc.State !== NpcState.MOVE) {
+    if (npc.Type === EntityType.HORNFEL && npc.State !== NPCState.MOVE) {
       return;
     }
 

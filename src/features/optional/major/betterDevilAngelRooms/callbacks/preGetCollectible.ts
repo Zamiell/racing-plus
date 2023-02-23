@@ -17,7 +17,6 @@ import {
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
-import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import { v } from "../v";
 
@@ -37,7 +36,8 @@ export function betterDevilAngelRoomsPreGetCollectible(
   }
 
   const gameFrameCount = game.GetFrameCount();
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (gameFrameCount === v.room.usedD4Frame) {
     return undefined;
@@ -131,17 +131,19 @@ function getDevilOrAngelCollectibleInOrder(
 function getNewCollectibleType(
   itemPoolType: ItemPoolType.DEVIL | ItemPoolType.ANGEL,
 ): CollectibleType {
+  const itemPool = game.GetItemPool();
+
   switch (itemPoolType) {
     // 3
     case ItemPoolType.DEVIL: {
       const seed = v.run.rng.devilCollectibles.Next();
-      return g.itemPool.GetCollectible(itemPoolType, true, seed);
+      return itemPool.GetCollectible(itemPoolType, true, seed);
     }
 
     // 4
     case ItemPoolType.ANGEL: {
       const seed = v.run.rng.angelCollectibles.Next();
-      return g.itemPool.GetCollectible(itemPoolType, true, seed);
+      return itemPool.GetCollectible(itemPoolType, true, seed);
     }
   }
 }

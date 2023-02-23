@@ -4,7 +4,7 @@ import {
   EffectVariant,
   EntityCollisionClass,
   EntityType,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import {
   asNumber,
@@ -20,7 +20,6 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { speedrunPostFastClear } from "../../../speedrun/fastClear";
 import {
   CREEP_VARIANTS_TO_KILL,
@@ -36,9 +35,10 @@ export function postUpdate(): void {
 
 function checkEarlyClearRoom() {
   const gameFrameCount = game.GetFrameCount();
-  const roomFrameCount = g.r.GetFrameCount();
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
+  const roomType = room.GetType();
+  const roomClear = room.IsClear();
 
   // Do nothing if we already cleared the room.
   if (v.room.fastClearedRoom) {
@@ -89,6 +89,7 @@ function checkEarlyClearRoom() {
 
 function earlyClearRoom() {
   const gameFrameCount = game.GetFrameCount();
+  const room = game.GetRoom();
   const roomData = getRoomData();
   const roomID =
     roomData === undefined
@@ -103,8 +104,8 @@ function earlyClearRoom() {
 
   // The `Room.TriggerClear` method must be before other logic because extra doors can be spawned by
   // clearing the room.
-  g.r.TriggerClear();
-  g.r.SetClear(true);
+  room.TriggerClear();
+  room.SetClear(true);
 
   openAllDoors();
   killExtraEntities();
@@ -135,7 +136,7 @@ function killDeathsHeads() {
 
     // Activate the death state. (We can't use the `Entity.Kill` method because it would immediately
     // vanish.)
-    deathsHead.State = NpcState.DEATH;
+    deathsHead.State = NPCState.DEATH;
 
     // Players should be able to run through them as they are dying; this matches the vanilla
     // behavior.
@@ -164,7 +165,7 @@ function killFleshDeathsHeads() {
       fleshDeathsHead.Parent,
       fleshDeathsHead.InitSeed,
     );
-    newHead.State = NpcState.DEATH;
+    newHead.State = NPCState.DEATH;
   }
 }
 

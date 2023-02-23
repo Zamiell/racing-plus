@@ -1,7 +1,7 @@
 import {
   EntityType,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { Callback, DefaultMap, log } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -12,7 +12,7 @@ const MAX_REGENERATIONS = 4;
 const v = {
   room: {
     numGlobinRegenerations: new DefaultMap<PtrHash, int>(0),
-    globinStates: new Map<PtrHash, NpcState>(),
+    globinStates: new Map<PtrHash, NPCState>(),
   },
 };
 
@@ -30,13 +30,13 @@ export class GlobinSoftlock extends ConfigurableModFeature {
     const ptrHash = GetPtrHash(npc);
     const lastState = v.room.globinStates.get(ptrHash);
 
-    // Globins are always in `NpcState.MOVE` (when chasing) or `NpcState.IDLE` (when dead).
+    // Globins are always in `NPCState.MOVE` (when chasing) or `NPCState.IDLE` (when dead).
     if (npc.State === lastState) {
       return;
     }
     v.room.globinStates.set(ptrHash, npc.State);
 
-    if (npc.State === NpcState.IDLE) {
+    if (npc.State === NPCState.IDLE) {
       this.globinTransitionedToFleshPile(npc, ptrHash);
     }
   }

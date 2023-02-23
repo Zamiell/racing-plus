@@ -8,6 +8,7 @@ import {
   anyPlayerIs,
   asCollectibleType,
   asNumber,
+  game,
   getCollectibles,
   getPlayersOfType,
   newRNG,
@@ -15,9 +16,8 @@ import {
   removeTrinketFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
-import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 import { inSeededRace } from "../../race/v";
@@ -46,6 +46,8 @@ export function postGameStartedFirst(): void {
 }
 
 function removeBannedItemsFromPools() {
+  const itemPool = game.GetItemPool();
+
   removeCollectibleFromPools(...BANNED_COLLECTIBLES);
   removeTrinketFromPools(...BANNED_TRINKETS);
 
@@ -61,7 +63,7 @@ function removeBannedItemsFromPools() {
 
   // Tainted Magdalene is invincible with Sharp Plug.
   if (anyPlayerIs(PlayerType.MAGDALENE_B)) {
-    g.itemPool.RemoveCollectible(CollectibleType.SHARP_PLUG);
+    itemPool.RemoveCollectible(CollectibleType.SHARP_PLUG);
   }
 }
 
@@ -111,7 +113,8 @@ function addNewRandomPassiveToEden(player: EntityPlayer) {
 function getEdenReplacementCollectibleType(
   player: EntityPlayer,
 ): CollectibleType {
-  const startSeed = g.seeds.GetStartSeed();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
   const rng = newRNG(startSeed);
 
   let replacementCollectible: CollectibleType;

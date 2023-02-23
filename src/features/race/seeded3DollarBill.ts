@@ -1,5 +1,5 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { getPlayers, getRandomArrayIndex } from "isaacscript-common";
+import { game, getPlayers, getRandomArrayIndex } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -85,7 +85,8 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
     player.RemoveCollectible(v.run.seeded3DollarBillItem);
   }
 
-  const roomSeed = g.r.GetSpawnSeed();
+  const room = game.GetRoom();
+  const roomSeed = room.GetSpawnSeed();
   const initialArrayIndex = getRandomArrayIndex(
     THREE_DOLLAR_BILL_ITEMS,
     roomSeed,

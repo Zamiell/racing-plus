@@ -5,7 +5,7 @@ import {
   LevelStage,
   SoundEffect,
 } from "isaac-typescript-definitions";
-import { sfxManager } from "isaacscript-common";
+import { game, sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -13,7 +13,9 @@ import { g } from "../../globals";
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
   const player = Isaac.GetPlayer();
 
   if (
@@ -25,7 +27,7 @@ export function postNewLevel(): void {
     return;
   }
 
-  const topDoor = g.r.GetDoor(DoorSlot.UP_0);
+  const topDoor = room.GetDoor(DoorSlot.UP_0);
   if (topDoor !== undefined) {
     topDoor.TryUnlock(player, true);
     sfxManager.Stop(SoundEffect.UNLOCK);

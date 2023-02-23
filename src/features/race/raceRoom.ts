@@ -150,8 +150,9 @@ function gotoRaceRoom() {
     return;
   }
 
+  const level = game.GetLevel();
+  const stageType = level.GetStageType();
   const effectiveStage = getEffectiveStage();
-  const stageType = g.l.GetStageType();
 
   // If we not already on the right floor, go there.
   if (
@@ -188,9 +189,11 @@ function setupRaceRoom() {
     return;
   }
 
+  const room = game.GetRoom();
+
   const npcs = getNPCs();
   removeEntities(npcs);
-  g.r.SetClear(true);
+  room.SetClear(true);
   removeAllDoors();
 
   // Put the player next to the bottom door.
@@ -205,7 +208,7 @@ function setupRaceRoom() {
 
   // Spawn two Gaping Maws.
   for (const gridIndex of [96, 98]) {
-    const position = g.r.GetGridPosition(gridIndex);
+    const position = room.GetGridPosition(gridIndex);
     const gapingMaw = spawnNPC(EntityType.GAPING_MAW, 0, 0, position);
     gapingMaw.ClearEntityFlags(EntityFlag.APPEAR); // Make them appear instantly
   }

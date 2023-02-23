@@ -14,6 +14,7 @@ import {
 import {
   asNumber,
   DISTANCE_OF_GRID_TILE,
+  game,
   getCrawlSpaces,
   getEffects,
   getRoomGridIndex,
@@ -30,7 +31,6 @@ import {
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { movePlayersAndFamiliars } from "../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
@@ -89,7 +89,8 @@ function checkMovedAwayFromSecretShopLadder(player: EntityPlayer) {
     return;
   }
 
-  const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
+  const room = game.GetRoom();
+  const ladderPosition = room.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
   if (player.Position.Distance(ladderPosition) > DISTANCE_OF_GRID_TILE) {
     v.room.movedAwayFromSecretShopLadder = true;
   }
@@ -108,7 +109,8 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
     return;
   }
 
-  const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+  const level = game.GetLevel();
+  const startingRoomGridIndex = level.GetStartingRoomIndex();
 
   v.room.amChangingRooms = true;
   v.level.crawlSpace.amExiting = true;
@@ -122,10 +124,12 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
 }
 
 function playerIsTouchingExitTile(player: EntityPlayer) {
+  const room = game.GetRoom();
+
   // First, handle the special case of being in a secret shop, where you exit from the top right
   // corner of the room.
   if (inSecretShop()) {
-    const ladderPosition = g.r.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
+    const ladderPosition = room.GetGridPosition(GRID_INDEX_SECRET_SHOP_LADDER);
     return (
       // The vanilla hitbox seems to be half of a grid square. (We do not have to worry about
       // colliding with the vanilla hitbox because it no longer exists once we have removed the
@@ -136,7 +140,7 @@ function playerIsTouchingExitTile(player: EntityPlayer) {
 
   // Handle the case of being in a normal crawlspace, where you exit from the top left corner of the
   // room.
-  const gridIndexOfPlayer = g.r.GetGridIndex(player.Position);
+  const gridIndexOfPlayer = room.GetGridIndex(player.Position);
   return gridIndexOfPlayer === GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER;
 }
 
@@ -149,8 +153,10 @@ function playerIsTouchingExitTile(player: EntityPlayer) {
  * their interaction.
  */
 function checkExitSoftlock(player: EntityPlayer) {
-  const previousRoomGridIndex = g.l.GetPreviousRoomIndex(); // We need the unsafe version here.
-  const roomType = g.r.GetType();
+  const level = game.GetLevel();
+  const previousRoomGridIndex = level.GetPreviousRoomIndex(); // We need the unsafe version here.
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (
     previousRoomGridIndex !== asNumber(GridRoom.DUNGEON) ||
@@ -178,7 +184,8 @@ function getExitDirection(
   roomType: RoomType,
   player: EntityPlayer,
 ): Direction | undefined {
-  const playerGridIndex = g.r.GetGridIndex(player.Position);
+  const room = game.GetRoom();
+  const playerGridIndex = room.GetGridIndex(player.Position);
 
   switch (roomType) {
     case RoomType.DEVIL:
@@ -271,6 +278,8 @@ function checkExitingCrawlSpace() {
 }
 
 function checkPostRoomTransitionSubvert() {
+  const room = game.GetRoom();
+
   // If we subverted the room transition for a room outside of the grid, we might not end up in a
   // spot where the player expects. So, move to the most logical position.
   const direction = v.level.crawlSpace.subvertedRoomTransitionDirection;
@@ -278,7 +287,7 @@ function checkPostRoomTransitionSubvert() {
     return;
   }
 
-  const roomShape = g.r.GetRoomShape();
+  const roomShape = room.GetRoomShape();
   if (roomShape !== RoomShape.SHAPE_1x1) {
     return;
   }
@@ -289,7 +298,7 @@ function checkPostRoomTransitionSubvert() {
   }
 
   const player = Isaac.GetPlayer();
-  player.Position = g.r.GetGridPosition(gridPosition);
+  player.Position = room.GetGridPosition(gridPosition);
   v.level.crawlSpace.subvertedRoomTransitionDirection = Direction.NO_DIRECTION;
   log(
     "Changed the player's position after subverting the room transition animation for a room outside of the grid.",
@@ -367,7 +376,8 @@ export function postGridEntityStateChangedTeleporter(newState: int): void {
   }
 
   if (newState === asNumber(TeleporterState.DISABLED)) {
-    const startingRoomGridIndex = g.l.GetStartingRoomIndex();
+    const level = game.GetLevel();
+    const startingRoomGridIndex = level.GetStartingRoomIndex();
     teleport(startingRoomGridIndex);
   }
 }
@@ -379,8 +389,9 @@ export function postGridEntityRemoveCrawlSpace(gridIndex: int): void {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  const roomFrameCount = g.r.GetFrameCount();
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomFrameCount = room.GetFrameCount();
+  const roomClear = room.IsClear();
 
   // Crawl spaces created after a room has already initialized should spawn closed by default. For
   // example, crawl spaces created by We Need to Go Deeper should spawn closed because the player
@@ -411,8 +422,9 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 function touched(entity: GridEntity | EntityEffect) {
   const gridEntity = entity as GridEntity;
   const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
+  const level = game.GetLevel();
+  const previousRoomGridIndex = level.GetPreviousRoomIndex();
   const roomGridIndex = getRoomGridIndex();
-  const previousRoomGridIndex = g.l.GetPreviousRoomIndex();
 
   if (FAST_TRAVEL_DEBUG) {
     log("Touched a crawl space.");

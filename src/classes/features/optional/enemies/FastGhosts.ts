@@ -1,7 +1,7 @@
 import {
   EntityType,
   ModCallback,
-  NpcState,
+  NPCState,
 } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
 import { Config } from "../../../Config";
@@ -24,7 +24,7 @@ export class FastGhosts extends ConfigurableModFeature {
 
   checkSpeedUpGhost(npc: EntityNPC): void {
     // Speed up the attack pattern of Wizoobs & Red Ghosts.
-    if (npc.State === NpcState.IDLE) {
+    if (npc.State === NPCState.IDLE) {
       // This is when they are disappeared and doing nothing.
       npc.StateFrame = 0; // `StateFrame` decrements down from 60 to 0, so just jump ahead.
     }

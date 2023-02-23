@@ -5,7 +5,7 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { getEffects, inBossRoomOf } from "isaacscript-common";
+import { game, getEffects, inBossRoomOf } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -42,7 +42,8 @@ function shouldRemove(effect: EntityEffect) {
     return false;
   }
 
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   // - If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
   // - If the goal of the race is Hush, delete the heaven door that spawns after Hush.
@@ -59,9 +60,11 @@ function shouldRemove(effect: EntityEffect) {
 }
 
 function shouldSpawnOpen() {
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomClear = room.IsClear();
 
   // In almost all cases, beams of light are spawned after defeating a boss. This means that the
   // room will be clear and they should spawn in an open state. Rarely, players can also encounter

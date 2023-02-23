@@ -40,6 +40,7 @@ export function postRender(): void {
 function drawSprites() {
   const isPaused = game.IsPaused();
   const hud = game.GetHUD();
+  const room = game.GetRoom();
 
   if (!hud.IsVisible()) {
     return;
@@ -59,7 +60,7 @@ function drawSprites() {
     !v.level.dpsButton.pressed
   ) {
     DPSSprite.Render(
-      g.r.WorldToScreenPosition(v.level.dpsButton.spritePosition),
+      room.WorldToScreenPosition(v.level.dpsButton.spritePosition),
       VectorZero,
       VectorZero,
     );
@@ -71,7 +72,7 @@ function drawSprites() {
     !v.level.victoryLapButton.pressed
   ) {
     victoryLapSprite.Render(
-      g.r.WorldToScreenPosition(v.level.victoryLapButton.spritePosition),
+      room.WorldToScreenPosition(v.level.victoryLapButton.spritePosition),
       VectorZero,
       VectorZero,
     );
@@ -79,7 +80,8 @@ function drawSprites() {
 }
 
 export function spawnEndOfRaceButtons(): void {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage !== LevelStage.DARK_ROOM_CHEST) {
     return;
@@ -117,6 +119,7 @@ function spawnDPSButton() {
 }
 
 export function spawnVictoryLapButton(center?: boolean): void {
+  const room = game.GetRoom();
   const roomListIndex = getRoomListIndex();
 
   let gridIndex = 42; // Top right
@@ -126,8 +129,8 @@ export function spawnVictoryLapButton(center?: boolean): void {
   }
 
   if (center === true) {
-    const centerPos = g.r.GetCenterPos();
-    gridIndex = g.r.GetGridIndex(centerPos);
+    const centerPos = room.GetCenterPos();
+    gridIndex = room.GetGridIndex(centerPos);
   }
 
   const button = spawnGridEntityWithVariant(
@@ -197,7 +200,8 @@ function checkDPSButtonPressed(gridEntity: GridEntityPressurePlate) {
 }
 
 function touchedDPSButton() {
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
   spawnNPC(EntityType.DUMMY, 0, 0, centerPos);
 }
 

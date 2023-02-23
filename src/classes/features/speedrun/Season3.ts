@@ -65,12 +65,11 @@ import {
   isOnFinalCharacter,
   isOnFirstCharacter,
 } from "../../../features/speedrun/speedrun";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import {
   addCollectibleAndRemoveFromPools,
   inClearedMomBossRoom,
-} from "../../../utilsGlobals";
+} from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
 import {
@@ -150,7 +149,8 @@ export class Season3 extends ChallengeModFeature {
   // 27, 102
   @Callback(ModCallback.POST_NPC_INIT, EntityType.ISAAC)
   postNPCInitIsaac(npc: EntityNPC): void {
-    const stage = g.l.GetStage();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
     if (stage !== LevelStage.BLUE_WOMB) {
       return;
     }
@@ -199,8 +199,10 @@ export class Season3 extends ChallengeModFeature {
       return;
     }
 
+    const room = game.GetRoom();
+
     // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
-    const centerPos = g.r.GetCenterPos();
+    const centerPos = room.GetCenterPos();
     spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
 
     // When Dogma dies, it triggers the static fade out effect, which will take the player to the
@@ -223,6 +225,7 @@ export class Season3 extends ChallengeModFeature {
       return;
     }
 
+    const seeds = game.GetSeeds();
     const player = Isaac.GetPlayer();
 
     if (isOnFirstCharacter()) {
@@ -234,7 +237,7 @@ export class Season3 extends ChallengeModFeature {
     // In addition to the "normal" diversity bans, some additional items are removed from pools.
     removeCollectibleFromPools(...BANNED_DIVERSITY_COLLECTIBLES_SEASON_ONLY);
 
-    const startSeed = g.seeds.GetStartSeed();
+    const startSeed = seeds.GetStartSeed();
     const { collectibleTypes, trinketType } = this.getRandomDiversityItems(
       player,
       startSeed,
@@ -357,7 +360,9 @@ export class Season3 extends ChallengeModFeature {
   }
 
   checkSpawnMegaSatanDoor(): void {
-    const stage = g.l.GetStage();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
+    const room = game.GetRoom();
 
     if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
       return;
@@ -367,8 +372,8 @@ export class Season3 extends ChallengeModFeature {
       return;
     }
 
-    g.r.TrySpawnMegaSatanRoomDoor(true); // It has to be forced in order to work.
-    const topDoor = g.r.GetDoor(DoorSlot.UP_0);
+    room.TrySpawnMegaSatanRoomDoor(true); // It has to be forced in order to work.
+    const topDoor = room.GetDoor(DoorSlot.UP_0);
     if (topDoor !== undefined) {
       const player = Isaac.GetPlayer();
       topDoor.TryUnlock(player, true);
@@ -380,8 +385,10 @@ export class Season3 extends ChallengeModFeature {
     const backwardsPathInit = game.GetStateFlag(
       GameStateFlag.BACKWARDS_PATH_INIT,
     );
-    const stage = g.l.GetStage();
-    const roomType = g.r.GetType();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
     const repentanceStage = onRepentanceStage();
     const roomInsideGrid = isRoomInsideGrid();
 
@@ -454,8 +461,10 @@ export class Season3 extends ChallengeModFeature {
    * subsequent frame.
    */
   checkHushCleared(): void {
-    const stage = g.l.GetStage();
-    const roomType = g.r.GetType();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
 
     if (
       stage === LevelStage.BLUE_WOMB &&
@@ -467,7 +476,7 @@ export class Season3 extends ChallengeModFeature {
       removeAllEffects(EffectVariant.HEAVEN_LIGHT_DOOR);
 
       // The Big Chest will be replaced by a Checkpoint or Trophy on the subsequent frame.
-      const centerPos = g.r.GetCenterPos();
+      const centerPos = room.GetCenterPos();
       spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
     }
   }
@@ -576,8 +585,10 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
 }
 
 function getGoalCorrespondingToRoom(): Season3Goal | undefined {
-  const stage = g.l.GetStage();
-  const roomType = g.r.GetType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const repentanceStage = onRepentanceStage();
 
   // First, check for goals related to the specific room type.

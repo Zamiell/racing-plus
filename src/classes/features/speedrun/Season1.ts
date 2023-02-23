@@ -5,7 +5,7 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
 

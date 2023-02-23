@@ -6,7 +6,6 @@ import {
   getRoomGridIndexesForType,
   log,
 } from "isaacscript-common";
-import { g } from "../../globals";
 import { mod } from "../../mod";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
@@ -65,11 +64,13 @@ export function planetariumFixBeginWarp(): void {
 }
 
 function warpToNextRoom() {
+  const room = game.GetRoom();
+
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
   if (roomGridIndex !== undefined) {
     log(`Planetarium Fix - Warping to room: ${roomGridIndex}`);
     changeRoom(roomGridIndex);
-    const roomType = g.r.GetType();
+    const roomType = room.GetType();
     log(
       `Planetarium Fix - Arrived at room: ${roomGridIndex} (room type: ${roomType})`,
     );

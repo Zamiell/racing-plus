@@ -1,12 +1,12 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
+  game,
   getPlayerFromIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   isJacobOrEsau,
   removeGridEntity,
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import {
   SEEDED_DEATH_DEBUFF_RENDER_FRAMES,
@@ -82,16 +82,17 @@ function postNewRoomGhostForm() {
   setCheckpointCollision(false);
 }
 
+/** Prevent people from abusing the death mechanic to use a Sacrifice Room. */
 function removeSpikesInSacrificeRoom() {
-  // Prevent people from abusing the death mechanic to use a Sacrifice Room.
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
   const player = Isaac.GetPlayer();
 
   if (roomType !== RoomType.SACRIFICE) {
     return;
   }
 
-  const spikes = g.r.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
+  const spikes = room.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
   if (spikes !== undefined) {
     removeGridEntity(spikes, false);
   }

@@ -9,6 +9,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  game,
   getNPCs,
   inBossRoomOf,
   log,
@@ -16,7 +17,6 @@ import {
   newRNG,
   spawnWithSeed,
 } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -50,18 +50,20 @@ export class FastSatan extends ConfigurableModFeature {
   }
 
   inUnclearedSatanRoom(): boolean {
-    const roomClear = g.r.IsClear();
+    const room = game.GetRoom();
+    const roomClear = room.IsClear();
     return !roomClear && inBossRoomOf(BossID.SATAN);
   }
 
   spawnEnemies(): void {
-    const centerPos = g.r.GetCenterPos();
-    const roomSeed = g.r.GetSpawnSeed();
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
+    const roomSeed = room.GetSpawnSeed();
     const rng = newRNG(roomSeed);
 
     // Spawn 2x Kamikaze Leech.
     for (const gridIndex of [66, 68]) {
-      const position = g.r.GetGridPosition(gridIndex);
+      const position = room.GetGridPosition(gridIndex);
       const leechSeed = rng.Next();
       spawnWithSeed(
         EntityType.LEECH,

@@ -57,8 +57,10 @@ export class DrawControls extends ConfigurableModFeature {
   }
 
   drawControlsGraphic(): void {
-    const stageType = g.l.GetStageType();
-    const centerPos = g.r.GetCenterPos();
+    const level = game.GetLevel();
+    const stageType = level.GetStageType();
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
 
     // Spawn the custom "Floor Effect Creep" entity.
     const controlsEffect = spawnEffect(

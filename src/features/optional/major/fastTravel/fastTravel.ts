@@ -25,7 +25,7 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
-import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom } from "../../../../utils";
 import { onSeason } from "../../../speedrun/speedrun";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
@@ -75,9 +75,11 @@ function getCustomSpriteFilename(
   const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(entity.Position);
   const roomGridIndex = getRoomGridIndex();
-  const gridIndex = g.r.GetGridIndex(entity.Position);
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 

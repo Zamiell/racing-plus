@@ -12,6 +12,7 @@ import {
   DefaultMap,
   defaultMapGetPlayer,
   findFreePosition,
+  game,
   getCollectibleMaxCharges,
   getPlayerName,
   getTotalCharge,
@@ -25,7 +26,6 @@ import {
   PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
@@ -268,12 +268,14 @@ function giveActiveItem(
   collectibleType: CollectibleType,
   itemCharge: int,
 ) {
+  const seeds = game.GetSeeds();
+
   if (hasOpenActiveItemSlot(player)) {
     player.AddCollectible(collectibleType, itemCharge);
   } else {
     // Spawn it on the ground instead.
     const position = findFreePosition(player.Position);
-    const startSeed = g.seeds.GetStartSeed();
+    const startSeed = seeds.GetStartSeed();
     const collectible = mod.spawnCollectible(
       collectibleType,
       position,

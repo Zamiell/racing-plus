@@ -5,8 +5,7 @@ import {
   EntityType,
   LevelStage,
 } from "isaac-typescript-definitions";
-import { removeAllMatchingEntities } from "isaacscript-common";
-import { g } from "../../globals";
+import { game, removeAllMatchingEntities } from "isaacscript-common";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -22,6 +21,7 @@ function removeEndGamePortals() {
 }
 
 export function shouldRemoveEndGamePortals(): boolean {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
   return stage >= LevelStage.WOMB_2;
 }

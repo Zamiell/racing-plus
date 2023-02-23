@@ -8,6 +8,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  game,
   inMegaSatanRoom,
   log,
   onCathedral,
@@ -196,7 +197,8 @@ function theLamb() {
 }
 
 function megaSatan() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.DARK_ROOM_CHEST && !inMegaSatanRoom()) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
@@ -212,7 +214,8 @@ function megaSatan() {
 }
 
 function hush() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.BLUE_WOMB) {
     return BigChestReplacementAction.TROPHY;
@@ -222,7 +225,8 @@ function hush() {
 }
 
 function delirium() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.THE_VOID) {
     return BigChestReplacementAction.TROPHY;
@@ -232,7 +236,8 @@ function delirium() {
 }
 
 function mother() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.WOMB_2 && onRepentanceStage()) {
     return BigChestReplacementAction.TROPHY;
@@ -242,7 +247,8 @@ function mother() {
 }
 
 function theBeast() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.HOME) {
     return BigChestReplacementAction.TROPHY;
@@ -252,7 +258,8 @@ function theBeast() {
 }
 
 function bossRush() {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   if (stage === LevelStage.DEPTHS_2) {
     return BigChestReplacementAction.TROPHY;
@@ -265,6 +272,9 @@ function replace(
   pickup: EntityPickup,
   replacementAction: BigChestReplacementAction,
 ) {
+  const room = game.GetRoom();
+  const seeds = game.GetSeeds();
+
   if (replacementAction !== BigChestReplacementAction.LEAVE_ALONE) {
     pickup.Remove();
   }
@@ -278,7 +288,7 @@ function replace(
     }
 
     case BigChestReplacementAction.TRAPDOOR: {
-      const gridIndex = g.r.GetGridIndex(pickup.Position);
+      const gridIndex = room.GetGridIndex(pickup.Position);
       spawnGridEntityWithVariant(
         GridEntityType.TRAPDOOR,
         TrapdoorVariant.NORMAL,
@@ -304,7 +314,7 @@ function replace(
     }
 
     case BigChestReplacementAction.CHECKPOINT: {
-      const seed = g.seeds.GetStartSeed();
+      const seed = seeds.GetStartSeed();
       const checkpoint = mod.spawnCollectible(
         CollectibleTypeCustom.CHECKPOINT,
         pickup.Position,

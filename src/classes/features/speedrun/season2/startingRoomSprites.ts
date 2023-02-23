@@ -1,6 +1,5 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { fonts, getPlayerName, KColorDefault } from "isaacscript-common";
-import { g } from "../../../../globals";
+import { fonts, game, getPlayerName, KColorDefault } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
 
@@ -93,9 +92,11 @@ export function season2DrawStartingRoomSprites(): void {
 }
 
 function getPosition(spriteName: keyof typeof sprites): Vector {
-  const topLeftPositionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const room = game.GetRoom();
+
+  const topLeftPositionGame = room.GetGridPosition(TOP_LEFT_GRID_INDEX);
   const topLeftPosition = Isaac.WorldToScreen(topLeftPositionGame);
-  const topRightPositionGame = g.r.GetGridPosition(TOP_RIGHT_GRID_INDEX);
+  const topRightPositionGame = room.GetGridPosition(TOP_RIGHT_GRID_INDEX);
   const topRightPosition = Isaac.WorldToScreen(topRightPositionGame);
 
   switch (spriteName) {
@@ -134,10 +135,11 @@ export function season2DrawStartingRoomText(): void {
     return;
   }
 
+  const room = game.GetRoom();
   const player = Isaac.GetPlayer();
   const characterName = getPlayerName(player);
 
-  const positionGame = g.r.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const positionGame = room.GetGridPosition(TOP_LEFT_GRID_INDEX);
   const positionWithoutOffset = Isaac.WorldToScreen(positionGame);
   const position = positionWithoutOffset.add(SEASON_2_CHARACTER_NAME_OFFSET);
 

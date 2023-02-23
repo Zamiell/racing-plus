@@ -14,6 +14,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   emptyArray,
+  game,
   getCollectibles,
   getEnumValues,
   getFamiliars,
@@ -33,7 +34,6 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { TRANSFORMATION_TO_HELPERS } from "../../../objects/transformationToHelper";
 import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";
@@ -45,8 +45,10 @@ import { v } from "./v";
 const NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES = 4;
 
 export function debuffOn(player: EntityPlayer): void {
+  const level = game.GetLevel();
+
   // Make them take "red heart damage" for the purposes of getting a Devil Deal.
-  g.l.SetRedHeartDamage();
+  level.SetRedHeartDamage();
 
   // Make them take damage for the purposes of getting a Perfection Trinket.
   setFastTravelTookDamage();
@@ -197,8 +199,9 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
 }
 
 function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
 
   // Esau can not carry bombs and keys.
   if (isCharacter(player, PlayerType.ESAU)) {
@@ -405,8 +408,9 @@ function disableSpiritShackles(player: EntityPlayer) {
 }
 
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
-  const stage = g.l.GetStage();
-  const stageType = g.l.GetStageType();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
 
   // Esau can not carry bombs and keys.
   if (isCharacter(player, PlayerType.ESAU)) {
@@ -436,7 +440,8 @@ function debuffOffAddDarkEsau() {
   }
   v.run.removedDarkEsau = false;
 
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
   spawnNPC(EntityType.DARK_ESAU, DarkEsauVariant.DARK_ESAU, 0, centerPos);
 }
 

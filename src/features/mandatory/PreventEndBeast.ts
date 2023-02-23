@@ -6,6 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  game,
   ModCallbackCustom,
   spawnNPC,
   spawnPickup,
@@ -13,7 +14,6 @@ import {
 } from "isaacscript-common";
 import { Config } from "../../classes/Config";
 import { ConfigurableModFeature } from "../../classes/ConfigurableModFeature";
-import { g } from "../../globals";
 import { consoleCommand } from "../../utils";
 
 const v = {
@@ -40,8 +40,10 @@ export class PreventEndBeast extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const stage = g.l.GetStage();
-    const centerPos = g.r.GetCenterPos();
+    const level = game.GetLevel();
+    const stage = level.GetStage();
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
 
     if (stage !== LevelStage.HOME || !v.run.beastDefeated) {
       return;

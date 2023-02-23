@@ -1,5 +1,6 @@
 import { Dimension, LevelStage, RoomType } from "isaac-typescript-definitions";
 import {
+  game,
   getAngelRoomDoor,
   getDevilRoomDoor,
   getDimension,
@@ -11,7 +12,6 @@ import {
 } from "isaacscript-common";
 import { season3FastClear } from "../../classes/features/speedrun/season3/fastClear";
 import { season3HasMotherGoal } from "../../classes/features/speedrun/season3/v";
-import { g } from "../../globals";
 import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
 import { inSpeedrun, onSeason } from "./speedrun";
 
@@ -31,28 +31,33 @@ export function speedrunPostFastClear(): void {
  * re-entering the room causes the Devil Room to become blocked.
  */
 function checkSpawnRepentanceDoor() {
-  if (speedrunShouldSpawnRepentanceDoor()) {
-    if (hasUnusedDoorSlot()) {
-      g.r.TrySpawnSecretExit(true, true);
-    } else {
-      const devilRoomDoor = getDevilRoomDoor();
-      const angelRoomDoor = getAngelRoomDoor();
-      if (devilRoomDoor !== undefined && angelRoomDoor !== undefined) {
-        // Both a Devil Room and an Angel Room door spawned, so there was no room left for the
-        // Repentance door. Delete the Angel Room door and respawn the Repentance door.
-        removeDoor(angelRoomDoor);
-        g.r.TrySpawnSecretExit(true, true);
+  const room = game.GetRoom();
 
-        // Combine the Devil Door with the Angel Room door.
-        combinedDualityDoors.preSpawnClearAward();
-      }
+  if (!speedrunShouldSpawnRepentanceDoor()) {
+    return;
+  }
+
+  if (hasUnusedDoorSlot()) {
+    room.TrySpawnSecretExit(true, true);
+  } else {
+    const devilRoomDoor = getDevilRoomDoor();
+    const angelRoomDoor = getAngelRoomDoor();
+    if (devilRoomDoor !== undefined && angelRoomDoor !== undefined) {
+      // Both a Devil Room and an Angel Room door spawned, so there was no room left for the
+      // Repentance door. Delete the Angel Room door and respawn the Repentance door.
+      removeDoor(angelRoomDoor);
+      room.TrySpawnSecretExit(true, true);
+
+      // Combine the Devil Door with the Angel Room door.
+      combinedDualityDoors.preSpawnClearAward();
     }
   }
 }
 
 export function speedrunShouldSpawnRepentanceDoor(): boolean {
-  const roomType = g.r.GetType();
-  const roomClear = g.r.IsClear();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
+  const roomClear = room.IsClear();
   const insideGrid = isRoomInsideGrid();
   const dimension = getDimension();
   const correctStageForRepentanceDoor = isCorrectStageForRepentanceDoor();

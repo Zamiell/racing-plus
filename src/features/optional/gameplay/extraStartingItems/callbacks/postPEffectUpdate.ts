@@ -1,4 +1,4 @@
-import { g } from "../../../../../globals";
+import { game } from "isaacscript-common";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../constants";
 
 /**
@@ -9,6 +9,8 @@ import { COLLECTIBLE_REPLACEMENT_MAP } from "../constants";
 export function extraStartingItemsPostPEffectUpdate(
   player: EntityPlayer,
 ): void {
+  const itemPool = game.GetItemPool();
+
   for (const [
     placeholderCollectibleType,
     collectibleType,
@@ -18,7 +20,7 @@ export function extraStartingItemsPostPEffectUpdate(
     }
 
     player.RemoveCollectible(placeholderCollectibleType);
-    g.itemPool.RemoveCollectible(placeholderCollectibleType);
+    itemPool.RemoveCollectible(placeholderCollectibleType);
 
     // Prevent the situation where the player uses a D4 to roll into both e.g. Magic Mushroom and
     // Magic Mushroom Placeholder.
@@ -27,6 +29,6 @@ export function extraStartingItemsPostPEffectUpdate(
     }
 
     player.AddCollectible(collectibleType);
-    g.itemPool.RemoveCollectible(collectibleType);
+    itemPool.RemoveCollectible(collectibleType);
   }
 }

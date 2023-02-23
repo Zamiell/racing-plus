@@ -13,7 +13,6 @@ import {
 } from "isaacscript-common";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
 import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
-import { g } from "./globals";
 import { config } from "./modConfigMenu";
 
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
@@ -50,6 +49,8 @@ export function drawCustomChargeBar(
   barFrame: int,
   chargeBarType: CustomChargeBarType,
 ): void {
+  const room = game.GetRoom();
+
   // For vanilla charge bars, as the player grows bigger, the charge bar offset increases.
   const sizeOffset = VANILLA_CHARGE_BAR_OFFSET.mul(player.SpriteScale);
 
@@ -71,7 +72,7 @@ export function drawCustomChargeBar(
   // Render it
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
-  const position = g.r.WorldToScreenPosition(adjustedPosition);
+  const position = room.WorldToScreenPosition(adjustedPosition);
   sprite.Render(position, VectorZero, VectorZero);
 }
 

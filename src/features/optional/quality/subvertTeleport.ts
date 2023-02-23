@@ -9,13 +9,13 @@ import {
 } from "isaac-typescript-definitions";
 import {
   doesAnyEntityExist,
+  game,
   getAllPlayers,
   getDoorSlotEnterPosition,
   getFamiliars,
   isCharacter,
   log,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
@@ -59,7 +59,8 @@ export function postNewRoom(): void {
 }
 
 function shouldSubvertTeleport() {
-  const roomShape = g.r.GetRoomShape();
+  const room = game.GetRoom();
+  const roomShape = room.GetRoomShape();
 
   // There are Double Trouble rooms with Gurdy but they don't cause a teleport.
   if (roomShape !== RoomShape.SHAPE_1x1) {
@@ -101,5 +102,6 @@ function subvertTeleport() {
  *   1x1 room.)
  */
 function getRoomEnterDoorSlot(): OneByOneRoomDoorSlot {
-  return LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT[g.l.LeaveDoor];
+  const level = game.GetLevel();
+  return LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT[level.LeaveDoor];
 }

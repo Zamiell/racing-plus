@@ -8,11 +8,11 @@ import {
   anyPlayerHasCollectible,
   asNumber,
   DOOR_HITBOX_RADIUS,
+  game,
   getAngelRoomDoor,
   getDevilRoomDoor,
   log,
 } from "isaacscript-common";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -43,7 +43,10 @@ function checkPlayerPositionOnDoorSide(player: EntityPlayer) {
     return;
   }
 
-  const door = g.r.GetDoor(v.room.modifiedDevilDoorSlot);
+  const level = game.GetLevel();
+  const room = game.GetRoom();
+
+  const door = room.GetDoor(v.room.modifiedDevilDoorSlot);
   if (door === undefined) {
     return;
   }
@@ -63,13 +66,13 @@ function checkPlayerPositionOnDoorSide(player: EntityPlayer) {
   // If the room was already initialized, then re-calling the `Level.InitializeDevilAngelRoom`
   // method will do nothing. We can work around this by deleting the room data, which will allow the
   // method to work again.
-  const roomDesc = g.l.GetRoomByIdx(GridRoom.DEVIL);
+  const roomDesc = level.GetRoomByIdx(GridRoom.DEVIL);
   roomDesc.Data = undefined;
 
   if (playerOnDevilSide) {
-    g.l.InitializeDevilAngelRoom(false, true);
+    level.InitializeDevilAngelRoom(false, true);
   } else {
-    g.l.InitializeDevilAngelRoom(true, false);
+    level.InitializeDevilAngelRoom(true, false);
   }
 
   const roomTypeString = playerOnDevilSide ? "Devil" : "Angel";
@@ -128,7 +131,9 @@ export function preSpawnClearAward(): void {
 }
 
 function checkModifyDevilRoomDoor() {
-  const roomType = g.r.GetType();
+  const level = game.GetLevel();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (roomType !== RoomType.BOSS) {
     return;
@@ -139,7 +144,7 @@ function checkModifyDevilRoomDoor() {
   }
 
   // If we have already entered a Devil Room or an Angel Room, only that specific door will spawn.
-  const devilOrAngelRoomDesc = g.l.GetRoomByIdx(GridRoom.DEVIL);
+  const devilOrAngelRoomDesc = level.GetRoomByIdx(GridRoom.DEVIL);
   if (devilOrAngelRoomDesc.VisitedCount > 0) {
     return;
   }

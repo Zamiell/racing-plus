@@ -14,6 +14,7 @@ import {
   anyPlayerHasCollectible,
   Callback,
   CallbackCustom,
+  game,
   getPlayerFromIndex,
   getPlayerIndex,
   getPlayersWithCollectible,
@@ -23,7 +24,6 @@ import {
   PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { g } from "../../../globals";
 import { MandatoryModFeature } from "../../MandatoryModFeature";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;
@@ -59,7 +59,10 @@ export class SolCustom extends MandatoryModFeature {
   // 70
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
-    const roomType = g.r.GetType();
+    const level = game.GetLevel();
+    const room = game.GetRoom();
+
+    const roomType = room.GetType();
     if (roomType !== RoomType.BOSS) {
       return undefined;
     }
@@ -88,8 +91,8 @@ export class SolCustom extends MandatoryModFeature {
 
         player.UseCard(CardType.SUN, UseFlag.NO_ANIMATION);
 
-        const curses = g.l.GetCurses();
-        g.l.RemoveCurses(curses);
+        const curses = level.GetCurses();
+        level.RemoveCurses(curses);
 
         const playerIndex = getPlayerIndex(player);
         v.run.playersSolEffect.add(playerIndex);

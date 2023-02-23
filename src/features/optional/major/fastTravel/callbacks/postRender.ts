@@ -1,6 +1,5 @@
-import { getPlayers, VectorZero } from "isaacscript-common";
+import { game, getPlayers, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import { g } from "../../../../../globals";
 import { config } from "../../../../../modConfigMenu";
 import * as blackSprite from "../blackSprite";
 import * as checkStateComplete from "../checkStateComplete";
@@ -30,8 +29,9 @@ function keepPlayerInPosition() {
   }
 
   for (const player of getPlayers()) {
-    const gridIndex = g.r.GetGridIndex(player.Position);
-    const gridPosition = g.r.GetGridPosition(gridIndex);
+    const room = game.GetRoom();
+    const gridIndex = room.GetGridIndex(player.Position);
+    const gridPosition = room.GetGridPosition(gridIndex);
     player.Position = gridPosition;
     player.Velocity = VectorZero;
   }

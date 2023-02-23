@@ -7,13 +7,13 @@ import {
 } from "isaac-typescript-definitions";
 import {
   doesEntityExist,
+  game,
   getCollectibles,
   onFirstFloor,
   removeCollectibleFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { shouldBanFirstFloorTreasureRoom } from "../../../mandatory/banFirstFloorRoomType";
@@ -79,8 +79,10 @@ export function postNewRoom(): void {
     return;
   }
 
+  const level = game.GetLevel();
+
   if (!v.run.placeholdersRemoved) {
-    const lastRoomDesc = g.l.GetLastRoomDesc();
+    const lastRoomDesc = level.GetLastRoomDesc();
     const lastRoomData = lastRoomDesc.Data;
     if (
       lastRoomData !== undefined &&
@@ -97,7 +99,9 @@ export function postNewRoom(): void {
 }
 
 function rollDuplicateItems() {
-  const startSeed = g.seeds.GetStartSeed();
+  const itemPool = game.GetItemPool();
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
 
   const deathsTouchExists = doesEntityExist(
     EntityType.PICKUP,
@@ -121,7 +125,7 @@ function rollDuplicateItems() {
       deathsTouchExists &&
       collectible.SubType === CollectibleTypeCustom.DEATHS_TOUCH_PLACEHOLDER
     ) {
-      const newCollectibleType = g.itemPool.GetCollectible(
+      const newCollectibleType = itemPool.GetCollectible(
         ItemPoolType.TREASURE,
         true,
         startSeed,
@@ -134,7 +138,7 @@ function rollDuplicateItems() {
       magicMushroomExists &&
       collectible.SubType === CollectibleTypeCustom.MAGIC_MUSHROOM_PLACEHOLDER
     ) {
-      const newCollectibleType = g.itemPool.GetCollectible(
+      const newCollectibleType = itemPool.GetCollectible(
         ItemPoolType.TREASURE,
         true,
         startSeed,

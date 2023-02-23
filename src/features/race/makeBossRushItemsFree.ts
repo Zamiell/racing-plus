@@ -3,7 +3,7 @@ import {
   PlayerType,
   RoomType,
 } from "isaac-typescript-definitions";
-import { anyPlayerIs, getCollectibles } from "isaacscript-common";
+import { anyPlayerIs, game, getCollectibles } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -16,7 +16,8 @@ export function postNewRoom(): void {
     return;
   }
 
-  const roomType = g.r.GetType();
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   if (
     !v.run.madeBossRushItemsFree &&

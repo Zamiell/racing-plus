@@ -30,8 +30,7 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
-import { moveEsauNextToJacob } from "../../../../utils";
-import { inClearedMomBossRoom } from "../../../../utilsGlobals";
+import { inClearedMomBossRoom, moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
@@ -100,7 +99,8 @@ export function setFadingToBlack(
 }
 
 function setGameStateFlags(position: Vector) {
-  const stage = g.l.GetStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
 
   // If the player has gone through the trapdoor past the strange door.
   if (stage === LevelStage.DEPTHS_2 && !onRepentanceStage() && inSecretExit()) {
@@ -126,7 +126,8 @@ function setGameStateFlags(position: Vector) {
 }
 
 function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
-  const gridIndex = g.r.GetGridIndex(position);
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(position);
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
@@ -142,7 +143,8 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
 }
 
 function goingToCorpse1ThroughCustomTrapdoor(position: Vector): boolean {
-  const gridIndex = g.r.GetGridIndex(position);
+  const room = game.GetRoom();
+  const gridIndex = room.GetGridIndex(position);
   const repentanceStage = onRepentanceStage();
   const clearedMomBossRoom = inClearedMomBossRoom();
 
@@ -317,7 +319,8 @@ function adjustJacobAndEsau(players: EntityPlayer[]) {
     return;
   }
 
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
 
   // By default, Jacob and Esau will spawn offset from each other. Instead, make them spawn together
   // in the center of the room like what happens when starting a new run.
@@ -337,7 +340,8 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
     return;
   }
 
-  const centerPos = g.r.GetCenterPos();
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
 
   // By default, Tainted Forgotten and Tainted Soul will spawn offset from each other. Instead, make
   // them spawn together in the center of the room like what happens when starting a new run.

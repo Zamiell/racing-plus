@@ -21,9 +21,8 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { getCharacterOrderSafe } from "../../../features/speedrun/speedrun";
-import { g } from "../../../globals";
 import { mod } from "../../../mod";
-import { addCollectibleAndRemoveFromPools } from "../../../utilsGlobals";
+import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/checkErrors/v";
 import { getRandomlySelectedStartingCharacter } from "./RandomCharacterOrder";
@@ -279,12 +278,14 @@ export class Season2 extends ChallengeModFeature {
   }
 
   removeItemsFromPools(): void {
+    const itemPool = game.GetItemPool();
+
     // These bans are from seeded races.
-    g.itemPool.RemoveCollectible(CollectibleType.SOL);
-    g.itemPool.RemoveTrinket(TrinketType.CAINS_EYE);
+    itemPool.RemoveCollectible(CollectibleType.SOL);
+    itemPool.RemoveTrinket(TrinketType.CAINS_EYE);
 
     if (anyPlayerIs(PlayerType.DARK_JUDAS)) {
-      g.itemPool.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
+      itemPool.RemoveCollectible(CollectibleType.JUDAS_SHADOW);
     }
   }
 

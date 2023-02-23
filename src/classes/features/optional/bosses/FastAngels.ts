@@ -15,13 +15,13 @@ import {
   CallbackCustom,
   doesEntityExist,
   findFreePosition,
+  game,
   getCollectibleName,
   log,
   ModCallbackCustom,
   newRNG,
   setSeed,
 } from "isaacscript-common";
-import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -78,7 +78,8 @@ export class FastAngels extends ConfigurableModFeature {
   }
 
   shouldSpawnKeyPiece(entity: Entity): boolean {
-    const roomType = g.r.GetType();
+    const room = game.GetRoom();
+    const roomType = room.GetType();
 
     // Fallen Angels do not drop key pieces.
     if (entity.Variant !== asNumber(AngelVariant.NORMAL)) {
@@ -196,7 +197,8 @@ export class FastAngels extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
-    const startSeed = g.seeds.GetStartSeed();
+    const seeds = game.GetSeeds();
+    const startSeed = seeds.GetStartSeed();
     setSeed(v.run.collectibleRNG, startSeed);
   }
 }
