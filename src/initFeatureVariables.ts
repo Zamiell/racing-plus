@@ -17,7 +17,6 @@ import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as trophy from "./features/mandatory/trophy";
-import * as consistentAngels from "./features/optional/bosses/consistentAngels";
 import * as fastBossRush from "./features/optional/bosses/fastBossRush";
 import * as fastKrampus from "./features/optional/bosses/fastKrampus";
 import * as fastPin from "./features/optional/bosses/fastPin";
@@ -99,7 +98,6 @@ export function initFeatureVariables(): void {
   fastPin.init(); // 62
   fastKrampus.init(); // 81
   fastSatan.init(); // 84
-  consistentAngels.init(); // 271, 272
   preventVictoryLapPopup.init(); // 273
 
   // QoL

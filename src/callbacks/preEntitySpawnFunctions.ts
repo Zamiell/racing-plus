@@ -1,5 +1,4 @@
 import {
-  AngelVariant,
   CollectibleType,
   EntityType,
   PickupNullSubType,
@@ -7,7 +6,6 @@ import {
 } from "isaac-typescript-definitions";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
-import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 
 export const preEntitySpawnFunctions = new Map<
   EntityType,
@@ -45,38 +43,4 @@ preEntitySpawnFunctions.set(
 
     return undefined;
   },
-);
-
-// 271
-preEntitySpawnFunctions.set(
-  EntityType.URIEL,
-  (
-    variant: int,
-    subType: int,
-    _position: Vector,
-    _spawner: Entity | undefined,
-    initSeed: int,
-  ) =>
-    consistentAngels.preEntitySpawnUriel(
-      variant as AngelVariant,
-      subType,
-      initSeed,
-    ),
-);
-
-// 272
-preEntitySpawnFunctions.set(
-  EntityType.GABRIEL,
-  (
-    variant: int,
-    subType: int,
-    _position: Vector,
-    _spawner: Entity | undefined,
-    initSeed: int,
-  ) =>
-    consistentAngels.preEntitySpawnGabriel(
-      variant as AngelVariant,
-      subType,
-      initSeed,
-    ),
 );

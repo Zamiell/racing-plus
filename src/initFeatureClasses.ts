@@ -13,6 +13,7 @@ import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
+import { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastHush } from "./classes/features/optional/bosses/FastHush";
 import { FastMegaSatan } from "./classes/features/optional/bosses/FastMegaSatan";
@@ -48,6 +49,7 @@ import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
  * TODO:
  * - Search for all `config` to ensure that no functions have early return with it.
  * - Search for: ^(?<![\s\S\r])//
+ * - Search all files for "const v" && "v = v" (make lint rule)
  */
 const FEATURE_CLASSES = [
   // Mandatory
@@ -98,7 +100,7 @@ const FEATURE_CLASSES = [
   // - FastSatan, // 84
   // - FastHaunt, // 260
   FastAngels, // 271, 272
-  // - ConsistentAngels, // 271, 272
+  ConsistentAngels, // 271, 272
   // - RemoveLambBody, // 273
   // - PreventVictoryLapPopup, // 273
   FastMegaSatan, // 274, 275

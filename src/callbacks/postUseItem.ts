@@ -10,7 +10,6 @@ import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
-import * as consistentAngels from "../features/optional/bosses/consistentAngels";
 import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
@@ -29,12 +28,6 @@ export function init(): void {
     ModCallback.POST_USE_ITEM,
     fortuneCookie,
     CollectibleType.FORTUNE_COOKIE, // 557
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_ITEM,
-    meatCleaver,
-    CollectibleType.MEAT_CLEAVER, // 631
   );
 
   mod.AddCallback(
@@ -105,20 +98,6 @@ function fortuneCookie(
   _customVarData: int,
 ): boolean | undefined {
   removeFortuneCookieBanners.postUseItemFortuneCookie();
-
-  return undefined;
-}
-
-// CollectibleType.MEAT_CLEAVER (631)
-function meatCleaver(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  consistentAngels.postUseItemMeatCleaver();
 
   return undefined;
 }
