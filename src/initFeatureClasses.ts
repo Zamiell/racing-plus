@@ -25,6 +25,7 @@ import { FastHands } from "./classes/features/optional/enemies/FastHands";
 import { FastNeedles } from "./classes/features/optional/enemies/FastNeedles";
 import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
+import { RemoveStrayPitfalls } from "./classes/features/optional/enemies/RemoveStrayPitfalls";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
@@ -96,6 +97,7 @@ const FEATURE_CLASSES = [
   FastHands, // 213, 287
   VulnerableGhosts, // 219, 260, 285
   FastGhosts, // 219, 285
+  RemoveStrayPitfalls, // 291
   FastPolties, // 816
   FastNeedles, // 881
   FastDusts, // 882

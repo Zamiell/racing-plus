@@ -1,7 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import * as solCustom from "../features/items/solCustom";
 import * as seededDrops from "../features/mandatory/seededDrops";
-import * as removeStrayPitfalls from "../features/optional/enemies/removeStrayPitfalls";
 import { fastTravelPreSpawnClearAward } from "../features/optional/major/fastTravel/callbacks/preSpawnClearAward";
 import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
@@ -16,9 +15,6 @@ function main(_rng: RNG, _spawnPosition: Vector): boolean | undefined {
   // Major
   fastTravelPreSpawnClearAward();
   racePreSpawnClearAward();
-
-  // Enemies
-  removeStrayPitfalls.preSpawnClearAward();
 
   // QoL
   fastVanishingTwin.preSpawnClearAward();
