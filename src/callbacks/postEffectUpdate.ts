@@ -1,6 +1,5 @@
 import { EffectVariant, ModCallback } from "isaac-typescript-definitions";
 import { EffectVariantCustom } from "../enums/EffectVariantCustom";
-import * as clearerShadowAttacks from "../features/optional/enemies/clearerShadowAttacks";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
@@ -19,12 +18,6 @@ export function init(): void {
     ModCallback.POST_EFFECT_UPDATE,
     creepRed,
     EffectVariant.CREEP_RED, // 22
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_EFFECT_UPDATE,
-    target,
-    EffectVariant.TARGET, // 30
   );
 
   mod.AddCallback(
@@ -54,11 +47,6 @@ function devil(effect: EntityEffect) {
 // EffectVariant.CREEP_RED (22)
 function creepRed(effect: EntityEffect) {
   changeCreepColor.postEffectUpdateCreepRed(effect);
-}
-
-// EffectVariant.TARGET (30)
-function target(effect: EntityEffect) {
-  clearerShadowAttacks.postEffectUpdateTarget(effect);
 }
 
 // EffectVariant.HEAVEN_LIGHT_DOOR (39)

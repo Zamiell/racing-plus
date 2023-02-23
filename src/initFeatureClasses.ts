@@ -26,6 +26,8 @@ import { FastNeedles } from "./classes/features/optional/enemies/FastNeedles";
 import { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 import { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
 import { RemoveStrayPitfalls } from "./classes/features/optional/enemies/RemoveStrayPitfalls";
+import { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/RemoveTreasureRoomEnemies";
+import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { FastReset } from "./classes/features/optional/major/FastReset";
@@ -89,14 +91,15 @@ const FEATURE_CLASSES = [
   PreventEndBeast, // 951
 
   // Enemies
-  // - ClearerShadowAttacks
+  // - ClearerShadowAttacks,
   FadeFriendlyEnemies,
-  // - RemoveTreasureRoomEnemies
+  RemoveTreasureRoomEnemies,
   GlobinSoftlock, // 24
   AppearHands, // 213, 287
   FastHands, // 213, 287
   VulnerableGhosts, // 219, 260, 285
   FastGhosts, // 219, 285
+  ReplaceCodWorms, // 221
   RemoveStrayPitfalls, // 291
   FastPolties, // 816
   FastNeedles, // 881

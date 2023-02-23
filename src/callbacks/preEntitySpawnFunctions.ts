@@ -8,7 +8,6 @@ import {
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as consistentAngels from "../features/optional/bosses/consistentAngels";
-import * as replaceCodWorms from "../features/optional/enemies/replaceCodWorms";
 
 export const preEntitySpawnFunctions = new Map<
   EntityType,
@@ -46,18 +45,6 @@ preEntitySpawnFunctions.set(
 
     return undefined;
   },
-);
-
-// 221
-preEntitySpawnFunctions.set(
-  EntityType.COD_WORM,
-  (
-    _variant: int,
-    _subType: int,
-    _position: Vector,
-    _spawner: Entity | undefined,
-    initSeed: int,
-  ) => replaceCodWorms.preEntitySpawnCodWorm(initSeed),
 );
 
 // 271
