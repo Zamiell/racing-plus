@@ -14,7 +14,6 @@ import * as seededGlitterBombs from "./features/mandatory/seededGlitterBombs";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
-import * as trophy from "./features/mandatory/trophy";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
@@ -67,7 +66,6 @@ export function initFeatureVariables(): void {
   seededTeleports.init();
   seededFloors.init();
   seededGBBug.init();
-  trophy.init();
   fireworks.init();
   drawVersion.init();
   preventSacrificeRoomTeleport.init();

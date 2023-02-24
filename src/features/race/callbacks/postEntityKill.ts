@@ -1,10 +1,10 @@
 import { game } from "isaacscript-common";
+import { spawnTrophy } from "../../../classes/features/mandatory/Trophy";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { spawnTrophy } from "../../mandatory/trophy";
 
 export function hush(_entity: Entity): void {
   if (!config.ClientCommunication) {

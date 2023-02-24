@@ -24,11 +24,11 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { doesTrophyExist } from "../../../../features/mandatory/trophy";
 import { onSeason } from "../../../../features/speedrun/speedrun";
 import { consoleCommand } from "../../../../utils";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { doesTrophyExist } from "../../mandatory/Trophy";
 
 export class FastDogma extends ConfigurableModFeature {
   configKey: keyof Config = "FastDogma";

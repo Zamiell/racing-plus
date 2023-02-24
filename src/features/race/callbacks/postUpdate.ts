@@ -1,11 +1,14 @@
 import { GameStateFlag, RoomType } from "isaac-typescript-definitions";
 import { findFreePosition, game, inRoomType } from "isaacscript-common";
+import {
+  doesTrophyExist,
+  spawnTrophy,
+} from "../../../classes/features/mandatory/Trophy";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import { doesTrophyExist, spawnTrophy } from "../../mandatory/trophy";
 
 export function racePostUpdate(): void {
   if (!config.ClientCommunication) {

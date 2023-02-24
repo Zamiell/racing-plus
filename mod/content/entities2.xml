@@ -62,8 +62,8 @@
 
   <!-- For races and speedruns -->
   <!--
-    We don't want to make the trophy an effect because it will automatically disappear on the next
-    frame after spawning.
+    We don't want to make the trophy a custom effect variant (e.g. 1000.N) because it will
+    automatically disappear on the next frame after spawning.
   -->
   <entity name="Trophy (Custom)" id="1001" anm2path="005.370_Trophy.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" numGridCollisionPoints="24" shadowSize="16" shutdoors="false" stageHP="0">
     <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" worm="0" />

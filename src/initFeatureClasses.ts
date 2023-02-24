@@ -1,5 +1,6 @@
 import { ModFeature } from "isaacscript-common";
 import { DebugItem } from "./classes/features/items/DebugItem";
+import { FlipCustom } from "./classes/features/items/FlipCustom";
 import { Magic8BallSeeded } from "./classes/features/items/Magic8BallSeeded";
 import { NLuck } from "./classes/features/items/NLuck";
 import { Sawblade } from "./classes/features/items/Sawblade";
@@ -18,6 +19,7 @@ import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
+import { Trophy } from "./classes/features/mandatory/Trophy";
 import { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
 import { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
@@ -89,6 +91,7 @@ const FEATURE_CLASSES = [
   RemoveBannedPillEffects,
   RestartOnNextFrame,
   TimeConsoleUsed,
+  Trophy,
 
   // Speedrun
   RandomCharacterOrder, // This must be before the seasons.
@@ -99,6 +102,7 @@ const FEATURE_CLASSES = [
 
   // Items
   DebugItem,
+  FlipCustom,
   Magic8BallSeeded,
   NLuck,
   Sawblade,

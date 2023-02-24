@@ -20,6 +20,7 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
+import { spawnTrophy } from "../../../../classes/features/mandatory/Trophy";
 import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -29,7 +30,6 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
-import { spawnTrophy } from "../../../mandatory/trophy";
 import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import {
   isOnFinalCharacter,
