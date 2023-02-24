@@ -391,14 +391,11 @@ function spawnBossRushFinishReward() {
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
   // In vanilla, saving and quitting in the middle of the Boss Rush will reset the wave back to 0.
   // However, teleporting out of the room before completing it will mark it as being completed.
   // Thus, we need to emulate this. Note that the player will still be able to restart the Boss Rush
   // if they go back in and touch another collectible. (This is also how vanilla works.)
-  if (v.run.inProgress && !v.run.finished && roomType !== RoomType.BOSS_RUSH) {
+  if (v.run.inProgress && !v.run.finished && !inRoomType(RoomType.BOSS_RUSH)) {
     v.run.inProgress = false;
     v.run.finished = true;
     game.SetStateFlag(GameStateFlag.BOSS_RUSH_DONE, true);

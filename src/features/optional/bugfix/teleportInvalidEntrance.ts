@@ -13,13 +13,20 @@ import {
   getDoorEnterPosition,
   getDoors,
   getFamiliars,
+  inRoomType,
   inStartingRoom,
   isRoomInsideGrid,
   log,
+  ReadonlySet,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { moveEsauNextToJacob } from "../../../utils";
 import { isFastTravelHappening } from "../major/fastTravel/v";
+
+const DOOR_HOLE_ROOM_TYPES = new ReadonlySet([
+  RoomType.SECRET, // 7
+  RoomType.SUPER_SECRET, // 8
+]);
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -30,7 +37,6 @@ export function postNewRoom(): void {
   const level = game.GetLevel();
   const stage = level.GetStage();
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomShape = room.GetRoomShape();
 
   if (!enteredRoomViaTeleport()) {
@@ -40,7 +46,7 @@ export function postNewRoom(): void {
   // Don't bother fixing entrances in the Mom boss room.
   if (
     stage === LevelStage.DEPTHS_2 &&
-    roomType === RoomType.BOSS &&
+    inRoomType(RoomType.BOSS) &&
     isRoomInsideGrid()
   ) {
     return;
@@ -86,10 +92,8 @@ function enteredRoomViaTeleport() {
   const level = game.GetLevel();
   const previousRoomGridIndex = level.GetPreviousRoomIndex();
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const isFirstVisit = room.IsFirstVisit();
   const justReachedThisFloor = inStartingRoom() && isFirstVisit;
-  const inDungeon = roomType === RoomType.DUNGEON;
   const cameFromDungeon =
     previousRoomGridIndex === asNumber(GridRoom.DUNGEON) ||
     previousRoomGridIndex === asNumber(GridRoom.SECRET_SHOP);
@@ -97,33 +101,25 @@ function enteredRoomViaTeleport() {
   return (
     level.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&
     !justReachedThisFloor &&
-    !inDungeon &&
+    !inRoomType(RoomType.DUNGEON) &&
     !cameFromDungeon &&
     !isFastTravelHappening()
   );
 }
 
 function isPlayerNextToADoor() {
-  for (const door of getDoors()) {
-    if (
-      door.TargetRoomType !== RoomType.SECRET && // 7
-      door.TargetRoomType !== RoomType.SUPER_SECRET // 8
-    ) {
-      if (anyPlayerCloserThan(door.Position, 60)) {
-        return true;
-      }
-    }
-  }
-
-  return false;
+  const doors = getDoors();
+  return doors.some(
+    (door) =>
+      !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType) &&
+      anyPlayerCloserThan(door.Position, 60),
+  );
 }
 
 function getFirstNonSecretDoor(): GridEntityDoor | undefined {
   const doors = getDoors();
   const nonSecretRoomDoors = doors.filter(
-    (door) =>
-      door.TargetRoomType !== RoomType.SECRET &&
-      door.TargetRoomType !== RoomType.SUPER_SECRET,
+    (door) => !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType),
   );
 
   return nonSecretRoomDoors[0];

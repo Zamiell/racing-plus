@@ -3,9 +3,9 @@
 
 import { CardType, RoomType } from "isaac-typescript-definitions";
 import {
-  game,
   getDoors,
   gridCoordinatesToWorldPosition,
+  inRoomType,
   spawnCard,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
@@ -16,9 +16,7 @@ export function postNewRoom(): void {
     return;
   }
 
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-  if (roomType !== RoomType.ULTRA_SECRET) {
+  if (!inRoomType(RoomType.ULTRA_SECRET)) {
     return;
   }
 

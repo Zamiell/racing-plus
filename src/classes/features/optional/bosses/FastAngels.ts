@@ -64,14 +64,20 @@ export class FastAngels extends ConfigurableModFeature {
     }
   }
 
-  // 68, 271
-  @Callback(ModCallback.POST_ENTITY_KILL, EntityType.URIEL)
+  @CallbackCustom(
+    ModCallbackCustom.POST_ENTITY_KILL_FILTER,
+    EntityType.URIEL,
+    AngelVariant.NORMAL,
+  )
   postEntityKillUriel(entity: Entity): void {
     this.spawnKeyPiece(entity);
   }
 
-  // 68, 272
-  @Callback(ModCallback.POST_ENTITY_KILL, EntityType.GABRIEL)
+  @CallbackCustom(
+    ModCallbackCustom.POST_ENTITY_KILL_FILTER,
+    EntityType.GABRIEL,
+    AngelVariant.NORMAL,
+  )
   postEntityKillGabriel(entity: Entity): void {
     if (this.shouldSpawnKeyPiece(entity)) {
       this.spawnKeyPiece(entity);

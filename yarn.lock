@@ -2731,10 +2731,10 @@ isaacscript-tsconfig@^4.0.0:
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.6.38:
-  version "3.6.38"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.38.tgz#c23341a80836e18054e47989cf49d3dd95ad4fe6"
-  integrity sha512-ZMryoaBDkKO9ThrQ28uIEcNV+QDqL/VcEV5BnHO1FVIAhrGhYCwybV6ylIPEJNXl4T2V880HxHvXL0PKzmnQLg==
+isaacscript@^3.6.39:
+  version "3.6.39"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.39.tgz#2615000ed75011b9bb01b247d9c7e2b50acb9274"
+  integrity sha512-KSQJj5SFqHTPsv4zuPu7lzmTdPOd96xgdp7XaoVn8zbXEDyqsowyHK298FI27tS3RQhVWFtXVfsk8eJyo6aBBg==
   dependencies:
     ajv "^8.12.0"
     chalk "4.1.2"
@@ -2745,16 +2745,16 @@ isaacscript@^3.6.38:
     jsonc-parser "^3.2.0"
     klaw-sync "^6.0.0"
     moment "^2.29.4"
-    npm-check-updates "^16.7.5"
+    npm-check-updates "^16.7.9"
     prompt "^1.3.0"
     source-map "^0.7.4"
     source-map-support "^0.5.21"
-    sync-directory "^5.1.9"
+    sync-directory "^6.0.2"
     tslib "^2.5.0"
     typescript-to-lua "^1.13.1"
     xml2js "^0.4.23"
     yaml "^2.2.1"
-    yargs "^17.7.0"
+    yargs "^17.7.1"
 
 isexe@^2.0.0:
   version "2.0.0"
@@ -3248,10 +3248,10 @@ npm-bundled@^3.0.0:
   dependencies:
     npm-normalize-package-bin "^3.0.0"
 
-npm-check-updates@^16.7.5:
-  version "16.7.5"
-  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.7.5.tgz#ef277d88b3df0e13d647c77b3621964d01a2d48e"
-  integrity sha512-g+U/cxA0iTvU/syX0EjXWtV10joEKQlN5s6DCFdvpv6eXSGbSYpOjOtifiyopSekdPnjogVuIDtxNlVdJECR8w==
+npm-check-updates@^16.7.9:
+  version "16.7.9"
+  resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.7.9.tgz#b30e21eb27a9b9f590f96ef9eb0f128a09aaf216"
+  integrity sha512-2/T9PB0W1uABB1N11jdnPauqNLXMhPUyC0DBeeGlUktcGl/412f40iqFsnNGCqIAag/C37SjLNiW2/yuD7Salw==
   dependencies:
     chalk "^5.2.0"
     cli-table "^0.3.11"
@@ -4165,10 +4165,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sync-directory@^5.1.9:
-  version "5.1.9"
-  resolved "https://registry.yarnpkg.com/sync-directory/-/sync-directory-5.1.9.tgz#f307dc277034a872a223752abf0f22caf132a6eb"
-  integrity sha512-0942RssO+NrIjDcaNiXUH/NQoAamURT1zpzN/uB8fgyetDM8NtPPOQNax3+BuNUfw/2JcaEXrAz567DokNq0lw==
+sync-directory@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/sync-directory/-/sync-directory-6.0.2.tgz#9ae66092ed9ee1ce2d7701c27595d3ef6cbaa344"
+  integrity sha512-cW8QEKdU8Dt02JzHXUXDwTkknsA8FME/iqpbXfhYEZSnHtW83pPjgK+w4OJl5Ji8shiyM436OG3YCJXr67ZZDg==
   dependencies:
     chokidar "^3.3.1"
     commander "^6.2.0"
@@ -4620,7 +4620,7 @@ yargs-parser@^21.1.1:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
   integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
 
-yargs@^17.6.2, yargs@^17.7.0:
+yargs@^17.6.2, yargs@^17.7.1:
   version "17.7.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.7.1.tgz#34a77645201d1a8fc5213ace787c220eabbd0967"
   integrity sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==
