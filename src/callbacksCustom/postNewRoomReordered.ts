@@ -17,7 +17,6 @@ import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacr
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as fastBossRush from "../features/optional/bosses/fastBossRush";
 import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/preventUltraSecretRoomSoftlock";
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
@@ -76,9 +75,6 @@ function main() {
 
   // Characters
   showEdenStartingItems.postNewRoom();
-
-  // Bosses
-  fastBossRush.postNewRoom();
 
   // QoL
   showDreamCatcherItemPostNewRoom(); // 566

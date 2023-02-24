@@ -20,6 +20,7 @@ import { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
 import { FastBigHorn } from "./classes/features/optional/bosses/FastBigHorn";
 import { FastBlastocyst } from "./classes/features/optional/bosses/FastBlastocyst";
+import { FastBossRush } from "./classes/features/optional/bosses/FastBossRush";
 import { FastColostomia } from "./classes/features/optional/bosses/FastColostomia";
 import { FastDogma } from "./classes/features/optional/bosses/FastDogma";
 import { FastHaunt } from "./classes/features/optional/bosses/FastHaunt";
@@ -34,6 +35,7 @@ import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventDeathSlow } from "./classes/features/optional/bosses/PreventDeathSlow";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
+import { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
 import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
@@ -112,8 +114,8 @@ const FEATURE_CLASSES = [
 
   // Bosses
   FadeBosses,
-  // - FastBossRush,
-  // - RemoveArmor,
+  FastBossRush,
+  RemoveArmor,
   FastMom, // 45, 78
   FastPin, // 62
   PreventDeathSlow, // 66
