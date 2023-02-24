@@ -1,6 +1,5 @@
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as flipCustom from "./features/items/flipCustom";
-import * as sawblade from "./features/items/sawblade";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -111,7 +110,6 @@ export function initFeatureVariables(): void {
 
   // Items
   flipCustom.init();
-  sawblade.init();
 
   // Other
   customConsole.init();

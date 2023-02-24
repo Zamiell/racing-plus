@@ -14,7 +14,6 @@ import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
-import * as postFamiliarUpdate from "./callbacks/postFamiliarUpdate";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCInit from "./callbacks/postNPCInit";
@@ -29,7 +28,6 @@ import * as useCard from "./callbacks/postUseCard";
 import * as useItem from "./callbacks/postUseItem";
 import * as usePill from "./callbacks/postUsePill";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
-import * as preFamiliarCollision from "./callbacks/preFamiliarCollision";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
@@ -111,7 +109,6 @@ function registerCallbacksVanilla() {
   postRender.init(); // 2
   useItem.init(); // 3
   useCard.init(); // 5
-  postFamiliarUpdate.init(); // 6
   postFamiliarInit.init(); // 7
   evaluateCache.init(); // 8
   usePill.init(); // 10
@@ -122,7 +119,6 @@ function registerCallbacksVanilla() {
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
   postFamiliarRender.init(); // 25
-  preFamiliarCollision.init(); // 26
   postNPCInit.init(); // 27
   postPickupInit.init(); // 34
   postPickupUpdate.init(); // 35

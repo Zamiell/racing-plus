@@ -1,6 +1,8 @@
 import { ModFeature } from "isaacscript-common";
 import { DebugItem } from "./classes/features/items/DebugItem";
+import { Magic8BallSeeded } from "./classes/features/items/Magic8BallSeeded";
 import { NLuck } from "./classes/features/items/NLuck";
+import { Sawblade } from "./classes/features/items/Sawblade";
 import { SolCustom } from "./classes/features/items/SolCustom";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
@@ -11,6 +13,7 @@ import { DoubleAngelNerf } from "./classes/features/mandatory/DoubleAngelNerf";
 import { DrawControls } from "./classes/features/mandatory/DrawControls";
 import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
 import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
+import { PreserveCheckpoint } from "./classes/features/mandatory/PreserveCheckpoint";
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
@@ -80,6 +83,7 @@ const FEATURE_CLASSES = [
   DoubleAngelNerf,
   ForceFadedConsoleDisplay,
   LogConsoleCommands,
+  PreserveCheckpoint,
   RacingPlusIcon,
   RemoveBannedPillEffects,
   RestartOnNextFrame,
@@ -94,7 +98,9 @@ const FEATURE_CLASSES = [
 
   // Items
   DebugItem,
+  Magic8BallSeeded,
   NLuck,
+  Sawblade,
   SolCustom,
 
   // Major

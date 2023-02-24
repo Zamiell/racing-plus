@@ -5,7 +5,6 @@ import {
   automaticItemInsertionPostUseCardJustice,
   automaticItemInsertionPostUseCardLovers,
 } from "../features/optional/quality/automaticItemInsertion/callbacks/postUseCard";
-import * as speedrunPostUseCard from "../features/speedrun/callbacks/postUseCard";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -27,12 +26,6 @@ export function init(): void {
     ModCallback.POST_USE_CARD,
     justice,
     CardType.JUSTICE, // 9
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_CARD,
-    blackRune,
-    CardType.RUNE_BLACK, // 41
   );
 }
 
@@ -69,13 +62,4 @@ function justice(
   _useFlags: BitFlags<UseFlag>,
 ) {
   automaticItemInsertionPostUseCardJustice(player);
-}
-
-// Card.RUNE_BLACK (41)
-function blackRune(
-  _cardType: CardType,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-) {
-  speedrunPostUseCard.blackRune();
 }
