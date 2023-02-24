@@ -3,6 +3,7 @@ import {
   game,
   getPlayerFromIndex,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  inRoomType,
   isJacobOrEsau,
   removeGridEntity,
 } from "isaacscript-common";
@@ -85,10 +86,9 @@ function postNewRoomGhostForm() {
 /** Prevent people from abusing the death mechanic to use a Sacrifice Room. */
 function removeSpikesInSacrificeRoom() {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const player = Isaac.GetPlayer();
 
-  if (roomType !== RoomType.SACRIFICE) {
+  if (!inRoomType(RoomType.SACRIFICE)) {
     return;
   }
 

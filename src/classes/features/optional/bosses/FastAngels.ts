@@ -17,6 +17,7 @@ import {
   findFreePosition,
   game,
   getCollectibleName,
+  inRoomType,
   log,
   ModCallbackCustom,
   newRNG,
@@ -78,9 +79,6 @@ export class FastAngels extends ConfigurableModFeature {
   }
 
   shouldSpawnKeyPiece(entity: Entity): boolean {
-    const room = game.GetRoom();
-    const roomType = room.GetType();
-
     // Fallen Angels do not drop key pieces.
     if (entity.Variant !== asNumber(AngelVariant.NORMAL)) {
       return false;
@@ -88,9 +86,11 @@ export class FastAngels extends ConfigurableModFeature {
 
     // We don't want to drop key pieces from angels in Victory Lap bosses or the Boss Rush.
     if (
-      roomType !== RoomType.SUPER_SECRET && // 8
-      roomType !== RoomType.SACRIFICE && // 13
-      roomType !== RoomType.ANGEL // 15
+      !inRoomType(
+        RoomType.SUPER_SECRET, // 8
+        RoomType.SACRIFICE, // 13
+        RoomType.ANGEL, // 15
+      )
     ) {
       // Key pieces dropping from angels in non-Angel Rooms was introduced in Booster Pack 4.
       return false;

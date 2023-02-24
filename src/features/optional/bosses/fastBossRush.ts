@@ -21,6 +21,7 @@ import {
   getNPCs,
   getRandomArrayElement,
   gridCoordinatesToWorldPosition,
+  inRoomType,
   log,
   logError,
   musicManager,
@@ -152,9 +153,7 @@ export function postUpdate(): void {
     return;
   }
 
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-  if (roomType !== RoomType.BOSS_RUSH) {
+  if (!inRoomType(RoomType.BOSS_RUSH)) {
     return;
   }
 

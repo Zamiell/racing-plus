@@ -7,6 +7,7 @@ import {
 import {
   CallbackCustom,
   game,
+  inRoomType,
   ModCallbackCustom,
   onRepentanceStage,
 } from "isaacscript-common";
@@ -23,10 +24,8 @@ export class RemovePerfectionOnEndFloors extends ConfigurableModFeature {
   )
   postPickupInitPerfection(pickup: EntityPickup): void {
     const level = game.GetLevel();
-    const room = game.GetRoom();
 
-    const roomType = room.GetType();
-    if (roomType !== RoomType.BOSS) {
+    if (!inRoomType(RoomType.BOSS)) {
       return;
     }
 

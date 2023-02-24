@@ -13,6 +13,7 @@ import {
   findFreePosition,
   game,
   getTotalPlayerCollectibles,
+  inRoomType,
   log,
   newRNG,
   onSetSeed,
@@ -97,17 +98,16 @@ export function preSpawnClearAward(): boolean | undefined {
 }
 
 function shouldSpawnSeededDrop(): boolean {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
   return (
     onSetSeed() &&
-    // Boss rooms will drop a pedestal item instead of a random pickup.
-    roomType !== RoomType.BOSS &&
-    // The Boss Rush will drop a pedestal item when it is cleared.
-    roomType !== RoomType.BOSS_RUSH &&
-    // In vanilla, room drops will never occur in crawl spaces, even with 50 luck.
-    roomType !== RoomType.DUNGEON
+    !inRoomType(
+      // Boss rooms will drop a pedestal item instead of a random pickup.
+      RoomType.BOSS, // 5
+      // In vanilla, room drops will never occur in crawl spaces, even with 50 luck.
+      RoomType.DUNGEON, // 16
+      // The Boss Rush will drop a pedestal item when it is cleared.
+      RoomType.BOSS_RUSH, // 17
+    )
   );
 }
 

@@ -17,6 +17,7 @@ import {
   DefaultMap,
   game,
   getHUDOffsetVector,
+  inRoomType,
   inStartingRoom,
   isCharacter,
   isChildPlayer,
@@ -109,13 +110,11 @@ export class FreeDevilItem extends ConfigurableModFeature {
 
   shouldGetFreeDevilItemInThisRoom(): boolean {
     const gameFrameCount = game.GetFrameCount();
-    const room = game.GetRoom();
-    const roomType = room.GetType();
 
     return (
       // Black Market deals do not count as "locking in" Devil Deals, so we exclude this mechanic
       // from applying to them.
-      roomType !== RoomType.BLACK_MARKET &&
+      !inRoomType(RoomType.BLACK_MARKET) &&
       // Dark Room starting room deals also don't count as "locking in" Devil Deals.
       !(onDarkRoom() && inStartingRoom()) &&
       // We might be traveling to a Devil Room for run-initialization-related tasks.
@@ -141,7 +140,7 @@ export class FreeDevilItem extends ConfigurableModFeature {
     if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
       return (
         collectible.Price > 0 &&
-        (roomType === RoomType.DEVIL || roomType === RoomType.BLACK_MARKET)
+        inRoomType(RoomType.DEVIL, RoomType.BLACK_MARKET)
       );
     }
 

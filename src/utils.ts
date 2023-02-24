@@ -16,6 +16,7 @@ import {
   getEntities,
   getFamiliars,
   getPlayers,
+  inRoomType,
   isRoomInsideGrid,
   log,
   newPickingUpItem,
@@ -110,14 +111,13 @@ export function inClearedMomBossRoom(): boolean {
   const level = game.GetLevel();
   const stage = level.GetStage();
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomClear = room.IsClear();
   const bossID = room.GetBossID();
   const roomInsideGrid = isRoomInsideGrid();
 
   return (
     stage === LevelStage.DEPTHS_2 &&
-    roomType === RoomType.BOSS &&
+    inRoomType(RoomType.BOSS) &&
     roomInsideGrid &&
     roomClear &&
     // We want to filter out the situations where the Dad's Note room is cleared.

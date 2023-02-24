@@ -20,6 +20,7 @@ import {
   getPlayersWithCollectible,
   getRoomGridIndex,
   getRoomGridIndexesForType,
+  inRoomType,
   ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
@@ -60,10 +61,8 @@ export class SolCustom extends MandatoryModFeature {
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
     const level = game.GetLevel();
-    const room = game.GetRoom();
 
-    const roomType = room.GetType();
-    if (roomType !== RoomType.BOSS) {
+    if (!inRoomType(RoomType.BOSS)) {
       return undefined;
     }
 
