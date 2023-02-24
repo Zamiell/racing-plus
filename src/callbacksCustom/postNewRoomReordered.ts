@@ -17,8 +17,6 @@ import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacr
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
-import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
 import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
@@ -79,10 +77,6 @@ function main() {
   // Gameplay
   combinedDualityDoors.postNewRoom();
   extraStartingItemsPostNewRoom();
-
-  // Bug fixes
-  teleportInvalidEntrance.postNewRoom();
-  removeInvalidPitfalls.postNewRoom();
 
   // Other
   roll.postNewRoom();

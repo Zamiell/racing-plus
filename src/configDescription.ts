@@ -1045,19 +1045,10 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "ReverseJusticeFix",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0905",
-      "Fix Justice? cards",
-      "Prevent Justice? cards from needlessly removing items from pools.",
-    ],
-  ],
-  [
     "TaintedIsaacCollectibleDelay",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
+      "0905",
       "Fix Tainted Isaac chest bugs",
       "Make Tainted Isaac not automatically pick up pedestal items from chests.",
     ],
@@ -1066,7 +1057,7 @@ export const BUG_FIXES_1 = [
     "TeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0907",
+      "0906",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],

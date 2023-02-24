@@ -12,7 +12,6 @@ import * as seededGlitterBombs from "./features/mandatory/seededGlitterBombs";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
-import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
@@ -89,9 +88,6 @@ export function initFeatureVariables(): void {
   // Gameplay
   combinedDualityDoors.init();
   extraStartingItems.init();
-
-  // Bug fixes
-  taintedIsaacCollectibleDelay.init();
 
   // Other
   customConsole.init();

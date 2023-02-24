@@ -99,7 +99,6 @@ export class Config {
   BatteryBumFix = true;
   PreventUltraSecretRoomSoftlock = true;
   RemoveInvalidPitfalls = true;
-  ReverseJusticeFix = true;
   TaintedIsaacCollectibleDelay = true;
   TeleportInvalidEntrance = true;
 

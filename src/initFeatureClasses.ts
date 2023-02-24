@@ -48,6 +48,9 @@ import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBod
 import { Battery9VoltSynergy } from "./classes/features/optional/bugfix/Battery9VoltSynergy";
 import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
 import { PreventUltraSecretRoomSoftlock } from "./classes/features/optional/bugfix/PreventUltraSecretRoomSoftlock";
+import { RemoveInvalidPitfalls } from "./classes/features/optional/bugfix/RemoveInvalidPitfalls";
+import { TaintedIsaacCollectibleDelay } from "./classes/features/optional/bugfix/TaintedIsaacCollectibleDelay";
+import { TeleportInvalidEntrance } from "./classes/features/optional/bugfix/TeleportInvalidEntrance";
 import { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
 import { LostUseHolyCard } from "./classes/features/optional/characters/LostUseHolyCard";
 import { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";
@@ -206,10 +209,9 @@ const FEATURE_CLASSES = [
   Battery9VoltSynergy,
   BatteryBumFix,
   PreventUltraSecretRoomSoftlock,
-  // - RemoveInvalidPitfalls,
-  // - ReverseJusticeFix,
-  // - TaintedIsaacCollectibleDelay,
-  // - TeleportInvalidEntrance,
+  RemoveInvalidPitfalls,
+  TaintedIsaacCollectibleDelay,
+  TeleportInvalidEntrance,
 
   // Graphics
   DrawControls,
