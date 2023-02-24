@@ -4,10 +4,10 @@ import {
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
+import * as battery9VoltSynergy from "../classes/features/optional/bugfix/Battery9VoltSynergy";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
-import * as battery9VoltSynergy from "../features/optional/bugfix/battery9VoltSynergy";
 import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import { mod } from "../mod";

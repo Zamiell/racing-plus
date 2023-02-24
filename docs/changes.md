@@ -390,13 +390,13 @@ Post-flip actions:
 
 ### 9) Bug Fixes
 
-- `0901` <!-- TaintedIsaacCollectibleDelay --> Tainted Isaac will no longer automatically pick up pedestal items from chests if they happen to rotate at the same time the chest is opened.
-- `0902` <!-- Battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
-- `0903` <!-- ReverseJusticeFix --> Justice? cards will no longer needlessly remove items from the current room's pool.
-- `0904` <!-- PreventUltraSecretRoomSoftlock --> You can no longer be softlocked in Ultra Secret Rooms.
-- `0905` <!-- FixBatteryBum --> Battery Bums will now properly charge pocket active items.
-- `0906` <!-- TeleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
-- `0907` <!-- RemoveInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- `0901` <!-- Battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
+- `0902` <!-- BatteryBumFix --> Battery Bums will now properly charge pocket active items.
+- `0903` <!-- PreventUltraSecretRoomSoftlock --> You can no longer be softlocked in Ultra Secret Rooms.
+- `0904` <!-- RemoveInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- `0905` <!-- ReverseJusticeFix --> Justice? cards will no longer needlessly remove items from the current room's pool.
+- `0906` <!-- TaintedIsaacCollectibleDelay --> Tainted Isaac will no longer automatically pick up pedestal items from chests if they happen to rotate at the same time the chest is opened.
+- `0907` <!-- TeleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
 - <!-- FastTravel --> Returning from a crawl space in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - <!-- FastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- SeededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.

@@ -13,8 +13,9 @@ import {
   hasFlag,
   PlayerIndex,
 } from "isaacscript-common";
-import { mod } from "../../../mod";
-import { config } from "../../../modConfigMenu";
+import { config } from "../../../../modConfigMenu";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {
   run: {
@@ -23,12 +24,9 @@ const v = {
   },
 };
 
-export function init(): void {
-  mod.saveDataManager("battery9VoltSynergy", v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.Battery9VoltSynergy;
+export class Battery9VoltSynergy extends ConfigurableModFeature {
+  configKey: keyof Config = "Battery9VoltSynergy";
+  v = v;
 }
 
 // ModCallback.POST_USE_ITEM (3)

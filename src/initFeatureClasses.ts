@@ -45,7 +45,9 @@ import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventE
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
 import { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
+import { Battery9VoltSynergy } from "./classes/features/optional/bugfix/Battery9VoltSynergy";
 import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
+import { PreventUltraSecretRoomSoftlock } from "./classes/features/optional/bugfix/PreventUltraSecretRoomSoftlock";
 import { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
 import { LostUseHolyCard } from "./classes/features/optional/characters/LostUseHolyCard";
 import { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";
@@ -89,6 +91,7 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * - Search for all `config` to ensure that no functions have early return with it.
  * - Search for: ^(?<![\s\S\r])//
  * - Search for: "import *"
+ * - Make sure all classes are sorted alphabetically + in "changes.md".
  * - Sort files in "mandatory" directory into subdirectories and ensure that everything is
  *   documented in "changes.md".
  * - Audit "changes.md" to see that it conforms to the ordering in this file.
@@ -200,7 +203,13 @@ const FEATURE_CLASSES = [
   FastTeleport,
 
   // Bug Fixes
+  Battery9VoltSynergy,
   BatteryBumFix,
+  PreventUltraSecretRoomSoftlock,
+  // - RemoveInvalidPitfalls,
+  // - ReverseJusticeFix,
+  // - TaintedIsaacCollectibleDelay,
+  // - TeleportInvalidEntrance,
 
   // Graphics
   DrawControls,

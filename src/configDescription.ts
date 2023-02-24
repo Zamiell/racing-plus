@@ -1009,66 +1009,66 @@ export const CUTSCENE_CHANGES = [
 // 0901-0910
 export const BUG_FIXES_1 = [
   [
-    "TaintedIsaacCollectibleDelay",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0901",
-      "Fix Tainted Isaac chest bugs",
-      "Make Tainted Isaac not automatically pick up pedestal items from chests.",
-    ],
-  ],
-  [
     "Battery9VoltSynergy",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0902",
+      "0901",
       "Fix The Battery + 9 Volt synergy",
       "Make these items work together properly.",
-    ],
-  ],
-  [
-    "ReverseJusticeFix",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0903",
-      "Fix Justice? cards",
-      "Prevent Justice? cards from needlessly removing items from pools.",
-    ],
-  ],
-  [
-    "PreventUltraSecretRoomSoftlock",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0904",
-      "Fix Ultra Secret Rooms softlocks",
-      "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
   ],
   [
     "BatteryBumFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0902",
       "Fix Battery Bums",
       "Make Battery Bums properly charge pocket active items.",
     ],
   ],
   [
-    "TeleportInvalidEntrance",
+    "PreventUltraSecretRoomSoftlock",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
-      "Fix bad teleports",
-      "Never teleport to a non-existent entrance.",
+      "0903",
+      "Fix Ultra Secret Rooms softlocks",
+      "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
   ],
   [
     "RemoveInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0907",
+      "0904",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
+    ],
+  ],
+  [
+    "ReverseJusticeFix",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0905",
+      "Fix Justice? cards",
+      "Prevent Justice? cards from needlessly removing items from pools.",
+    ],
+  ],
+  [
+    "TaintedIsaacCollectibleDelay",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0906",
+      "Fix Tainted Isaac chest bugs",
+      "Make Tainted Isaac not automatically pick up pedestal items from chests.",
+    ],
+  ],
+  [
+    "TeleportInvalidEntrance",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0907",
+      "Fix bad teleports",
+      "Never teleport to a non-existent entrance.",
     ],
   ],
   [

@@ -95,13 +95,13 @@ export class Config {
   FastTeleport = true;
 
   // Bug fixes
-  TaintedIsaacCollectibleDelay = true;
   Battery9VoltSynergy = true;
-  ReverseJusticeFix = true;
-  PreventUltraSecretRoomSoftlock = true;
   BatteryBumFix = true;
-  TeleportInvalidEntrance = true;
+  PreventUltraSecretRoomSoftlock = true;
   RemoveInvalidPitfalls = true;
+  ReverseJusticeFix = true;
+  TaintedIsaacCollectibleDelay = true;
+  TeleportInvalidEntrance = true;
 
   // GFX
   HUDOffsetFix = true;

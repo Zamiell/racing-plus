@@ -1,3 +1,4 @@
+import * as battery9VoltSynergy from "./classes/features/optional/bugfix/Battery9VoltSynergy";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -12,7 +13,6 @@ import * as seededGlitterBombs from "./features/mandatory/seededGlitterBombs";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
-import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as autofire from "./features/optional/hotkeys/autofire";

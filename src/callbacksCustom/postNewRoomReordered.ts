@@ -17,7 +17,6 @@ import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacr
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/preventUltraSecretRoomSoftlock";
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
 import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
@@ -82,7 +81,6 @@ function main() {
   extraStartingItemsPostNewRoom();
 
   // Bug fixes
-  preventUltraSecretRoomSoftlock.postNewRoom();
   teleportInvalidEntrance.postNewRoom();
   removeInvalidPitfalls.postNewRoom();
 
