@@ -2,8 +2,8 @@ import { LevelStage } from "isaac-typescript-definitions";
 import {
   getRepentanceDoor,
   inStartingRoom,
-  onEffectiveStage,
   onRepentanceStage,
+  onStage,
   removeDoor,
 } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
@@ -31,8 +31,6 @@ export function postNewRoom(): void {
 
 function inRoomWithStrangeDoor(): boolean {
   return (
-    onEffectiveStage(LevelStage.DEPTHS_2) &&
-    inStartingRoom() &&
-    !onRepentanceStage()
+    onStage(LevelStage.DEPTHS_2) && !onRepentanceStage() && inStartingRoom()
   );
 }

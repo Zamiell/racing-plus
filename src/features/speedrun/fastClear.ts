@@ -4,7 +4,6 @@ import {
   getAngelRoomDoor,
   getDevilRoomDoor,
   getDimension,
-  getEffectiveStage,
   hasUnusedDoorSlot,
   inRoomType,
   isRoomInsideGrid,
@@ -58,21 +57,20 @@ function checkSpawnRepentanceDoor() {
 export function speedrunShouldSpawnRepentanceDoor(): boolean {
   const room = game.GetRoom();
   const roomClear = room.IsClear();
-  const insideGrid = isRoomInsideGrid();
   const dimension = getDimension();
-  const correctStageForRepentanceDoor = isCorrectStageForRepentanceDoor();
 
   return (
-    correctStageForRepentanceDoor &&
+    isCorrectStageForRepentanceDoor() &&
     inRoomType(RoomType.BOSS) &&
-    insideGrid && // Handle the case of Emperor? card rooms.
+    isRoomInsideGrid() && // Handle the case of Emperor? card rooms.
     dimension === Dimension.MAIN &&
     roomClear
   );
 }
 
 function isCorrectStageForRepentanceDoor(): boolean {
-  const effectiveStage = getEffectiveStage();
+  const level = game.GetLevel();
+  const stage = level.GetStage();
   const repentanceStage = onRepentanceStage();
 
   if (onSeason(3)) {
@@ -82,17 +80,16 @@ function isCorrectStageForRepentanceDoor(): boolean {
 
     return (
       // Basement 2 --> Downpour/Dross 2
-      (effectiveStage === LevelStage.BASEMENT_2 && !repentanceStage) ||
+      (stage === LevelStage.BASEMENT_2 && !repentanceStage) ||
       // Downpour/Dross 2 --> Mines/Ashpit 1
-      (effectiveStage === LevelStage.CAVES_1 && repentanceStage) ||
+      (stage === LevelStage.BASEMENT_2 && repentanceStage) ||
       // Mines/Ashpit 2 --> Mausoleum/Gehenna 1
-      (effectiveStage === LevelStage.DEPTHS_1 && repentanceStage)
+      (stage === LevelStage.CAVES_2 && repentanceStage)
     );
   }
 
   return (
-    (effectiveStage === LevelStage.BASEMENT_1 ||
-      effectiveStage === LevelStage.BASEMENT_2) &&
+    (stage === LevelStage.BASEMENT_1 || stage === LevelStage.BASEMENT_2) &&
     !repentanceStage
   );
 }

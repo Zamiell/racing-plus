@@ -1,14 +1,10 @@
 // In some situations, we force the first Treasure Room to have two items.
 
+import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
-  CollectibleType,
-  LevelStage,
-  RoomType,
-} from "isaac-typescript-definitions";
-import {
-  getEffectiveStage,
   inRoomType,
   itemConfig,
+  onFirstFloor,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
 import { mod } from "../../mod";
@@ -25,13 +21,12 @@ export function init(): void {
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const effectiveStage = getEffectiveStage();
   const player = Isaac.GetPlayer();
 
-  // Ensure that the "More Options" buff does not persist beyond Basement 1. (It is removed as soon
-  // as they enter the first Treasure Room, but they might have skipped the Basement 1 Treasure Room
-  // for some reason.)
-  if (v.run.removeMoreOptions && effectiveStage >= LevelStage.BASEMENT_2) {
+  // Ensure that the "More Options" buff does not persist beyond the first floor. (It is removed as
+  // soon as they enter the first Treasure Room, but they might have skipped the Basement 1 Treasure
+  // Room for some reason.)
+  if (v.run.removeMoreOptions && !onFirstFloor()) {
     v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.MORE_OPTIONS);
   }

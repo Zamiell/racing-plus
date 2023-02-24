@@ -9,7 +9,7 @@ import {
   getRoomStageID,
   getRoomVariant,
   getScreenCenterPos,
-  onEffectiveStage,
+  onStage,
   onStageType,
   removeAllDoors,
   removeEntities,
@@ -152,10 +152,7 @@ function gotoRaceRoom() {
   }
 
   // If we not already on the right floor, go there.
-  if (
-    !onEffectiveStage(RACE_ROOM_LEVEL_STAGE) ||
-    !onStageType(RACE_ROOM_STAGE_TYPE)
-  ) {
+  if (!onStage(RACE_ROOM_LEVEL_STAGE) || !onStageType(RACE_ROOM_STAGE_TYPE)) {
     // Since we might be going to a new floor on frame 0, we have to specify that the
     // `POST_NEW_LEVEL` callback should fire.
     mod.forceNewLevelCallback();

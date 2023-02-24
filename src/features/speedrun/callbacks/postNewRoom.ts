@@ -15,8 +15,8 @@ import {
   getRepentanceDoor,
   hasUnusedDoorSlot,
   inRoomType,
-  onEffectiveStage,
   onFirstFloor,
+  onStage,
   removeAllPickups,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -84,7 +84,7 @@ function checkWomb2IAmError() {
   const room = game.GetRoom();
   const levelSeed = level.GetDungeonPlacementSeed();
 
-  if (!onEffectiveStage(LevelStage.WOMB_2) || !inRoomType(RoomType.ERROR)) {
+  if (!onStage(LevelStage.WOMB_2) || !inRoomType(RoomType.ERROR)) {
     return;
   }
 

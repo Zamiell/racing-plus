@@ -1,14 +1,10 @@
-import {
-  EffectVariant,
-  LevelStage,
-  RoomType,
-} from "isaac-typescript-definitions";
+import { EffectVariant, RoomType } from "isaac-typescript-definitions";
 import {
   game,
   getEffects,
   getRepentanceDoor,
   inRoomType,
-  onEffectiveStage,
+  onStageWithSecretExitToMausoleum,
   removeDoor,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
@@ -71,7 +67,7 @@ function shouldRemoveRepentanceDoorOnSeededRace() {
  */
 function shouldRemoveRepentanceDoorOnBeastRace() {
   return (
-    g.race.goal === RaceGoal.THE_BEAST && onEffectiveStage(LevelStage.DEPTHS_1)
+    g.race.goal === RaceGoal.THE_BEAST && onStageWithSecretExitToMausoleum()
   );
 }
 
