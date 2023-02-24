@@ -6,33 +6,38 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   getEnumValues,
   getPlayersOfType,
+  ModCallbackCustom,
   sfxManager,
 } from "isaacscript-common";
-import { config } from "../../../modConfigMenu";
+import { Config } from "../../../classes/Config";
+import { ConfigurableModFeature } from "../../../classes/ConfigurableModFeature";
 
-// ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  if (!config.LostUseHolyCard) {
-    return;
-  }
+export class LostUseHolyCard extends ConfigurableModFeature {
+  configKey: keyof Config = "LostUseHolyCard";
 
-  const taintedLosts = getPlayersOfType(PlayerType.LOST_B);
-  for (const player of taintedLosts) {
-    const slotWithHolyCard = getPocketItemSlotWithHolyCard(player);
-    if (slotWithHolyCard !== undefined) {
-      player.SetCard(slotWithHolyCard, CardType.NULL);
-      player.UseCard(CardType.HOLY, UseFlag.NO_ANIMATION);
-      sfxManager.Stop(SoundEffect.HOLY_CARD);
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    const taintedLosts = getPlayersOfType(PlayerType.LOST_B);
+    for (const player of taintedLosts) {
+      const slotWithHolyCard = this.getPocketItemSlotWithHolyCard(player);
+      if (slotWithHolyCard !== undefined) {
+        player.SetCard(slotWithHolyCard, CardType.NULL);
+        player.UseCard(CardType.HOLY, UseFlag.NO_ANIMATION);
+        sfxManager.Stop(SoundEffect.HOLY_CARD);
+      }
     }
   }
-}
 
-function getPocketItemSlotWithHolyCard(player: EntityPlayer) {
-  const pocketItemSlots = getEnumValues(PocketItemSlot);
-  return pocketItemSlots.find((pocketItemSlot) => {
-    const cardType = player.GetCard(pocketItemSlot);
-    return cardType === CardType.HOLY;
-  });
+  getPocketItemSlotWithHolyCard(
+    player: EntityPlayer,
+  ): PocketItemSlot | undefined {
+    const pocketItemSlots = getEnumValues(PocketItemSlot);
+    return pocketItemSlots.find((pocketItemSlot) => {
+      const cardType = player.GetCard(pocketItemSlot);
+      return cardType === CardType.HOLY;
+    });
+  }
 }

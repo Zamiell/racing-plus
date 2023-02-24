@@ -46,6 +46,8 @@ import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/Preve
 import { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
 import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
+import { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
+import { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
@@ -62,6 +64,7 @@ import { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/R
 import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
+import { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
@@ -73,6 +76,7 @@ import { Season1 } from "./classes/features/speedrun/Season1";
 import { Season2 } from "./classes/features/speedrun/Season2";
 import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
+import { LostUseHolyCard } from "./features/optional/characters/lostUseHolyCard";
 
 /**
  * TODO:
@@ -80,6 +84,8 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * - Search for: ^(?<![\s\S\r])//
  * - Search all files for "const v" && "v = v" (make lint rule)
  * - Search for all "import *"
+ * - Sort files in "mandatory" directory into subdirectories and ensure that everything is
+ *   documented in "changes.md"
  */
 const FEATURE_CLASSES = [
   // Mandatory
@@ -125,7 +131,11 @@ const FEATURE_CLASSES = [
   // TODO
 
   // Characters
-  // TODO
+  JudasAddBomb, // 3
+  SamsonDropHeart, // 6
+  // - ShowEdenStartingItems, // 9, 30
+  LostUseHolyCard, // 31
+  // - TaintedKeeperMoney, // 33
 
   // Bosses
   FadeBosses,
@@ -189,6 +199,7 @@ const FEATURE_CLASSES = [
   // Graphics
   DrawControls,
   HolidayHats,
+  HUDOffsetFix,
 
   // Sounds
   SilenceMomDad,

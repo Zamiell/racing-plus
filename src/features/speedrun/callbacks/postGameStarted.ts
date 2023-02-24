@@ -14,6 +14,7 @@ import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../../../classes/features/mandatory/RestartOnNextFrame";
+import { spawnDroppedChildsHeart } from "../../../classes/features/optional/characters/SamsonDropHeart";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import {
@@ -22,7 +23,6 @@ import {
 } from "../../../utils";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
-import { spawnDroppedChildsHeart } from "../../optional/characters/samsonDropHeart";
 import * as characterProgress from "../characterProgress";
 import { speedrunResetPersistentVars } from "../resetVars";
 import {

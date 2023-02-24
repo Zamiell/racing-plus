@@ -4,30 +4,33 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   game,
   getPlayersOfType,
+  ModCallbackCustom,
   spawnTrinket,
   VectorZero,
 } from "isaacscript-common";
-import { config } from "../../../modConfigMenu";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const BOTTOM_LEFT_GRID_INDEX = 106;
 
-// ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  if (!config.SamsonDropHeart) {
-    return;
-  }
+export class SamsonDropHeart extends ConfigurableModFeature {
+  configKey: keyof Config = "SamsonDropHeart";
 
-  const samsons = getPlayersOfType(PlayerType.SAMSON);
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    const samsons = getPlayersOfType(PlayerType.SAMSON);
 
-  for (const samson of samsons) {
-    const removed = samson.TryRemoveTrinket(TrinketType.CHILDS_HEART);
-    if (!removed) {
-      return;
+    for (const samson of samsons) {
+      const removed = samson.TryRemoveTrinket(TrinketType.CHILDS_HEART);
+      if (!removed) {
+        return;
+      }
+
+      spawnDroppedChildsHeart(samson);
     }
-
-    spawnDroppedChildsHeart(samson);
   }
 }
 

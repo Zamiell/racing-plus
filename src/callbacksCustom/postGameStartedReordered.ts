@@ -14,13 +14,9 @@ import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
-import * as judasAddBomb from "../features/optional/characters/judasAddBomb";
-import * as lostUseHolyCard from "../features/optional/characters/lostUseHolyCard";
-import * as samsonDropHeart from "../features/optional/characters/samsonDropHeart";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
 import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
-import * as hudOffsetFix from "../features/optional/graphics/hudOffsetFix";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
@@ -88,9 +84,6 @@ function main(isContinued: boolean) {
   betterDevilAngelRoomsPostGameStarted();
 
   // Chars
-  judasAddBomb.postGameStarted();
-  samsonDropHeart.postGameStarted();
-  lostUseHolyCard.postGameStarted();
   taintedKeeperMoney.postGameStarted();
 
   // Gameplay
@@ -98,9 +91,6 @@ function main(isContinued: boolean) {
 
   // QoL
   showDreamCatcherItemPostGameStarted();
-
-  // GFX
-  hudOffsetFix.postGameStarted();
 
   // Handle features that need to be last. (This checks for items, so it has to be after all
   // features that grant items.)
