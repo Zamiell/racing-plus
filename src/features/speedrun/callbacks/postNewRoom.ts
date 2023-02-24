@@ -15,6 +15,7 @@ import {
   getRepentanceDoor,
   hasUnusedDoorSlot,
   inRoomType,
+  onEffectiveStage,
   onFirstFloor,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -80,11 +81,10 @@ function emptyDevilAngelRoom() {
 
 function checkWomb2IAmError() {
   const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const levelSeed = level.GetDungeonPlacementSeed();
 
-  if (stage !== LevelStage.WOMB_2 || !inRoomType(RoomType.ERROR)) {
+  if (!onEffectiveStage(LevelStage.WOMB_2) || !inRoomType(RoomType.ERROR)) {
     return;
   }
 

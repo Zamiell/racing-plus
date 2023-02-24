@@ -14,12 +14,12 @@ import {
   findFreePosition,
   game,
   getCollectibleName,
-  getEffectiveStage,
   getRandom,
   log,
   ModCallbackCustom,
   newRNG,
   nextSeed,
+  onEffectiveStage,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
@@ -135,8 +135,7 @@ export class FastKrampus extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)
   postNewLevelReordered(): void {
-    const effectStage = getEffectiveStage();
-    if (effectStage !== LevelStage.BASEMENT_2) {
+    if (!onEffectiveStage(LevelStage.BASEMENT_2)) {
       return;
     }
 

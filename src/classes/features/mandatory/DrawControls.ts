@@ -6,6 +6,7 @@ import {
   inStartingRoom,
   ModCallbackCustom,
   onFirstFloor,
+  onStageType,
   spawnEffect,
 } from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../../enums/CreepRedSubTypeCustom";
@@ -57,8 +58,6 @@ export class DrawControls extends ConfigurableModFeature {
   }
 
   drawControlsGraphic(): void {
-    const level = game.GetLevel();
-    const stageType = level.GetStageType();
     const room = game.GetRoom();
     const centerPos = room.GetCenterPos();
 
@@ -80,9 +79,8 @@ export class DrawControls extends ConfigurableModFeature {
     controlsEffect.Scale = 1;
 
     // On vanilla, the sprite is a slightly different color on the Burning Basement.
-    controlsSprite.Color =
-      stageType === StageType.AFTERBIRTH
-        ? BURNING_BASEMENT_COLOR
-        : ColorDefault;
+    controlsSprite.Color = onStageType(StageType.AFTERBIRTH)
+      ? BURNING_BASEMENT_COLOR
+      : ColorDefault;
   }
 }

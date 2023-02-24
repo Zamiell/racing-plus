@@ -1,9 +1,9 @@
 import { CollectibleType, LevelStage } from "isaac-typescript-definitions";
 import {
-  game,
   getPlayerIndex,
   getPlayers,
   getRoomListIndex,
+  onStage,
   repeat,
 } from "isaacscript-common";
 import { v } from "../v";
@@ -15,9 +15,7 @@ import { v } from "../v";
  * prevent confusion.
  */
 export function betterDevilAngelRoomsPostPickupInitRedChest(): void {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  if (stage !== LevelStage.DARK_ROOM_CHEST) {
+  if (!onStage(LevelStage.DARK_ROOM_CHEST)) {
     return;
   }
 

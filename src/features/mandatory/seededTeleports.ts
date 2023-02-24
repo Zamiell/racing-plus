@@ -12,6 +12,7 @@ import {
   getRooms,
   log,
   newRNG,
+  onStage,
   repeat,
   setSeed,
   teleport,
@@ -60,18 +61,16 @@ export function usePillTelepills(): void {
   seededTelepills();
 }
 
+/**
+ * Telepills works in a way similar to Teleport!, but the possibilities can also include the I AM
+ * ERROR room and the Black Market. Thus, we have to build a room index array manually, which makes
+ * the logic more complicated.
+ */
 function seededTelepills() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  // Telepills works in a way similar to Teleport!, but the possibilities can also include the I AM
-  // ERROR room and the Black Market. Thus, we have to build a room index array manually, which
-  // makes the logic more complicated.
-
   // It is not possible to teleport to I AM ERROR rooms and Black Markets on The Chest / Dark Room.
   let insertErrorRoom = false;
   let insertBlackMarket = false;
-  if (stage !== LevelStage.DARK_ROOM_CHEST) {
+  if (!onStage(LevelStage.DARK_ROOM_CHEST)) {
     insertErrorRoom = true;
 
     // There is a 2% chance have a Black Market inserted into the list of possibilities (according

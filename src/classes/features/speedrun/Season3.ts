@@ -41,6 +41,7 @@ import {
   onFirstFloor,
   onRepentanceStage,
   onSheol,
+  onStage,
   removeAllEffects,
   removeAllTrapdoors,
   removeCollectibleFromPools,
@@ -150,9 +151,7 @@ export class Season3 extends ChallengeModFeature {
   // 27, 102
   @Callback(ModCallback.POST_NPC_INIT, EntityType.ISAAC)
   postNPCInitIsaac(npc: EntityNPC): void {
-    const level = game.GetLevel();
-    const stage = level.GetStage();
-    if (stage !== LevelStage.BLUE_WOMB) {
+    if (!onStage(LevelStage.BLUE_WOMB)) {
       return;
     }
 
@@ -361,11 +360,9 @@ export class Season3 extends ChallengeModFeature {
   }
 
   checkSpawnMegaSatanDoor(): void {
-    const level = game.GetLevel();
-    const stage = level.GetStage();
     const room = game.GetRoom();
 
-    if (stage !== LevelStage.DARK_ROOM_CHEST || !inStartingRoom()) {
+    if (!onStage(LevelStage.DARK_ROOM_CHEST) || !inStartingRoom()) {
       return;
     }
 

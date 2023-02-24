@@ -1,8 +1,8 @@
 import { LevelStage } from "isaac-typescript-definitions";
 import {
-  game,
   getRepentanceDoor,
   inStartingRoom,
+  onEffectiveStage,
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";
@@ -13,23 +13,26 @@ import { g } from "../../globals";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const repentanceStage = onRepentanceStage();
-
   if (
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
-    g.race.goal !== RaceGoal.THE_BEAST ||
-    repentanceStage ||
-    stage !== LevelStage.DEPTHS_2 ||
-    !inStartingRoom()
+    g.race.goal !== RaceGoal.THE_BEAST
   ) {
     return;
   }
 
-  const repentanceDoor = getRepentanceDoor();
-  if (repentanceDoor !== undefined) {
-    removeDoor(repentanceDoor);
+  if (inRoomWithStrangeDoor()) {
+    const repentanceDoor = getRepentanceDoor();
+    if (repentanceDoor !== undefined) {
+      removeDoor(repentanceDoor);
+    }
   }
+}
+
+function inRoomWithStrangeDoor(): boolean {
+  return (
+    onEffectiveStage(LevelStage.DEPTHS_2) &&
+    inStartingRoom() &&
+    !onRepentanceStage()
+  );
 }

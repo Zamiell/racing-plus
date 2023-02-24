@@ -5,7 +5,7 @@ import {
   LevelStage,
   SoundEffect,
 } from "isaac-typescript-definitions";
-import { game, sfxManager } from "isaacscript-common";
+import { game, onStage, sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -13,8 +13,6 @@ import { g } from "../../globals";
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const player = Isaac.GetPlayer();
 
@@ -22,7 +20,7 @@ export function postNewLevel(): void {
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
     g.race.goal !== RaceGoal.MEGA_SATAN ||
-    stage !== LevelStage.DARK_ROOM_CHEST
+    !onStage(LevelStage.DARK_ROOM_CHEST)
   ) {
     return;
   }

@@ -11,6 +11,7 @@ import {
   getClosestPlayer,
   getRoomListIndex,
   inMegaSatanRoom,
+  onStage,
   openAllDoors,
   spawnGridEntityWithVariant,
   spawnNPC,
@@ -80,10 +81,7 @@ function drawSprites() {
 }
 
 export function spawnEndOfRaceButtons(): void {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage !== LevelStage.DARK_ROOM_CHEST) {
+  if (!onStage(LevelStage.DARK_ROOM_CHEST)) {
     return;
   }
 

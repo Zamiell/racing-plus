@@ -2,7 +2,6 @@ import { EntityFlag, EntityType, GridRoom } from "isaac-typescript-definitions";
 import {
   asNumber,
   game,
-  getEffectiveStage,
   getFamiliars,
   getNPCs,
   getPlayers,
@@ -10,6 +9,8 @@ import {
   getRoomStageID,
   getRoomVariant,
   getScreenCenterPos,
+  onEffectiveStage,
+  onStageType,
   removeAllDoors,
   removeEntities,
   spawnNPC,
@@ -150,14 +151,10 @@ function gotoRaceRoom() {
     return;
   }
 
-  const level = game.GetLevel();
-  const stageType = level.GetStageType();
-  const effectiveStage = getEffectiveStage();
-
   // If we not already on the right floor, go there.
   if (
-    effectiveStage !== RACE_ROOM_LEVEL_STAGE ||
-    stageType !== RACE_ROOM_STAGE_TYPE
+    !onEffectiveStage(RACE_ROOM_LEVEL_STAGE) ||
+    !onStageType(RACE_ROOM_STAGE_TYPE)
   ) {
     // Since we might be going to a new floor on frame 0, we have to specify that the
     // `POST_NEW_LEVEL` callback should fire.

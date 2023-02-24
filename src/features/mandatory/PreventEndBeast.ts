@@ -8,6 +8,7 @@ import {
   CallbackCustom,
   game,
   ModCallbackCustom,
+  onStage,
   spawnNPC,
   spawnPickup,
   VectorZero,
@@ -40,12 +41,10 @@ export class PreventEndBeast extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const level = game.GetLevel();
-    const stage = level.GetStage();
     const room = game.GetRoom();
     const centerPos = room.GetCenterPos();
 
-    if (stage !== LevelStage.HOME || !v.run.beastDefeated) {
+    if (!onStage(LevelStage.HOME) || !v.run.beastDefeated) {
       return;
     }
 

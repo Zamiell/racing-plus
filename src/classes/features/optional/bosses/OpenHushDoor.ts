@@ -21,7 +21,7 @@ export class OpenHushDoor extends ConfigurableModFeature {
     ModCallbackCustom.POST_NEW_LEVEL_REORDERED,
     LevelStage.BLUE_WOMB,
   )
-  postNewLevel(): void {
+  postNewLevelReorderedBlueWomb(): void {
     const room = game.GetRoom();
     const player = Isaac.GetPlayer();
 

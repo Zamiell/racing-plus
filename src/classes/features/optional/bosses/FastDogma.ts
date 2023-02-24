@@ -16,6 +16,8 @@ import {
   game,
   getRoomSubType,
   ModCallbackCustom,
+  onStage,
+  onStageType,
   removeAllDoors,
   removeAllEffects,
   removeAllNPCs,
@@ -59,14 +61,11 @@ export class FastDogma extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const level = game.GetLevel();
-    const stage = level.GetStage();
-    const stageType = level.GetStageType();
     const roomSubType = getRoomSubType();
 
     if (
-      stage === LevelStage.HOME &&
-      stageType === StageType.WRATH_OF_THE_LAMB &&
+      onStage(LevelStage.HOME) &&
+      onStageType(StageType.WRATH_OF_THE_LAMB) &&
       roomSubType === asNumber(HomeRoomSubType.LIVING_ROOM)
     ) {
       this.enteredDogmaRoom();

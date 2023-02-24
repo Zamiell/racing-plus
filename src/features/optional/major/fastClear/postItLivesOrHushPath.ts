@@ -5,7 +5,6 @@ import {
   HeavenLightDoorSubType,
   LevelStage,
   RoomType,
-  StageType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
@@ -16,6 +15,8 @@ import {
   inRoomType,
   isRoomInsideGrid,
   log,
+  onRepentanceStage,
+  onStage,
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
   spawnEffect,
@@ -46,14 +47,10 @@ export function fastClear(): void {
 }
 
 function inItLivesOrHushBossRoom() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const stageType = level.GetStageType();
-
   return (
-    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
+    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB) &&
     // Corpse does not have It Lives! / Hush.
-    stageType !== StageType.REPENTANCE &&
+    !onRepentanceStage() &&
     inRoomType(RoomType.BOSS) &&
     // If the player is fighting It Lives from a Reverse Emperor Card room, then the room will be
     // outside the grid. Paths are not supposed to spawn in this situation.
