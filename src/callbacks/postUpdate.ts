@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import * as battery9VoltSynergy from "../classes/features/optional/bugfix/Battery9VoltSynergy";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
@@ -36,7 +35,4 @@ function main() {
 
   // Gameplay
   extraStartingItemsPostUpdate();
-
-  // Bug fixes
-  battery9VoltSynergy.postUpdate();
 }

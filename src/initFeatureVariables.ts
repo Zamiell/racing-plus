@@ -1,4 +1,3 @@
-import * as battery9VoltSynergy from "./classes/features/optional/bugfix/Battery9VoltSynergy";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -93,7 +92,6 @@ export function initFeatureVariables(): void {
 
   // Bug fixes
   taintedIsaacCollectibleDelay.init();
-  battery9VoltSynergy.init();
 
   // Other
   customConsole.init();

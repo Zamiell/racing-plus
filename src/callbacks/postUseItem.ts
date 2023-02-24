@@ -4,7 +4,6 @@ import {
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
-import * as battery9VoltSynergy from "../classes/features/optional/bugfix/Battery9VoltSynergy";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -45,15 +44,9 @@ function main(
   _rng: RNG,
   player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,
-  activeSlot: ActiveSlot,
+  _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  battery9VoltSynergy.postUseItem(
-    collectibleType,
-    player,
-    useFlags,
-    activeSlot,
-  );
   displayExpansionPack.postUseItem(collectibleType, player, useFlags);
 
   return undefined;
