@@ -14,10 +14,8 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
-import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
 import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
@@ -53,7 +51,6 @@ function main() {
   );
 
   // Mandatory
-  removeGloballyBannedItems.postNewRoom();
   nerfCardReading.postNewRoom();
   tempMoreOptions.postNewRoom();
   banFirstFloorRoomType.postNewRoom();
@@ -76,7 +73,6 @@ function main() {
 
   // Gameplay
   combinedDualityDoors.postNewRoom();
-  extraStartingItemsPostNewRoom();
 
   // Other
   roll.postNewRoom();

@@ -4,7 +4,6 @@ import {
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
-import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
@@ -30,12 +29,6 @@ export function init(): void {
     ModCallback.POST_USE_ITEM,
     lemegeton,
     CollectibleType.LEMEGETON, // 712
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_ITEM,
-    spindownDice,
-    CollectibleType.SPINDOWN_DICE, // 723
   );
 }
 
@@ -90,20 +83,6 @@ function lemegeton(
   _customVarData: int,
 ): boolean | undefined {
   streakText.postUseItemLemegeton();
-
-  return undefined;
-}
-
-// CollectibleType.SPINDOWN_DICE (723)
-function spindownDice(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  _player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  removeGloballyBannedItems.postUseItemSpindownDice();
 
   return undefined;
 }

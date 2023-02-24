@@ -1,5 +1,4 @@
 import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
-import { extraStartingItemsPostPEffectUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postPEffectUpdate";
 import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
@@ -22,7 +21,6 @@ function main(player: EntityPlayer) {
 
   // Gameplay
   combinedDualityDoors.postPEffectUpdate(player);
-  extraStartingItemsPostPEffectUpdate(player);
 
   // QoL
   chargePocketItemFirst.postPEffectUpdate(player);

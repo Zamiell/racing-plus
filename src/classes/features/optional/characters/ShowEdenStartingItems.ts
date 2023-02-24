@@ -76,7 +76,7 @@ export class ShowEdenStartingItems extends ConfigurableModFeature {
     CallbackPriority.EARLY,
     false,
   )
-  postGameStartedReorderedFalse(): void {
+  postGameStartedReorderedFalseEarly(): void {
     this.storeItemIdentities();
   }
 

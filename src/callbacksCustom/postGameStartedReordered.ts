@@ -8,13 +8,11 @@ import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import * as centerStart from "../features/mandatory/centerStart";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
-import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
-import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
@@ -57,10 +55,6 @@ function main(isContinued: boolean) {
     return;
   }
 
-  // Handle features that need to be first. (This removes items from pools, so it needs to be before
-  // giving items that can spawn other items (like Marbles).
-  removeGloballyBannedItems.postGameStartedFirst();
-
   // Mandatory
   modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
@@ -76,15 +70,8 @@ function main(isContinued: boolean) {
   speedrunPostGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 
-  // Gameplay
-  extraStartingItemsPostGameStarted();
-
   // QoL
   showDreamCatcherItemPostGameStarted();
-
-  // Handle features that need to be last. (This checks for items, so it has to be after all
-  // features that grant items.)
-  removeGloballyBannedItems.postGameStartedLast();
 }
 
 function postGameStartedContinued() {

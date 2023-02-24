@@ -2,7 +2,6 @@ import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
-import * as removeGloballyBannedItems from "./features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
@@ -12,7 +11,6 @@ import * as seededGlitterBombs from "./features/mandatory/seededGlitterBombs";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
-import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
 import * as roll from "./features/optional/hotkeys/roll";
@@ -52,7 +50,6 @@ export function initFeatureVariables(): void {
 
   // Mandatory
   streakText.init();
-  removeGloballyBannedItems.init();
   replacePhotos.init();
   tempMoreOptions.init();
   seededDrops.init();
@@ -87,7 +84,6 @@ export function initFeatureVariables(): void {
 
   // Gameplay
   combinedDualityDoors.init();
-  extraStartingItems.init();
 
   // Other
   customConsole.init();

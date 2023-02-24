@@ -21,6 +21,7 @@ import {
   temporarilyRemoveTrinkets,
   useActiveItemTemp,
 } from "isaacscript-common";
+import { setStartedWithCompass } from "../../classes/features/mandatory/RemoveGloballyBannedItems";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -31,7 +32,6 @@ import {
   giveTrinketAndRemoveFromPools,
   serverCollectibleIDToCollectibleType,
 } from "../../utils";
-import { setStartedWithCompass } from "../mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 
 /**

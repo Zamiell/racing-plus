@@ -1,6 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { getReversedMap, ReadonlyMap } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 
 export const COLLECTIBLE_REPLACEMENT_MAP = new ReadonlyMap<
   CollectibleType,

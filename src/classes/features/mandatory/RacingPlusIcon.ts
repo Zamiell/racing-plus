@@ -46,7 +46,7 @@ export class RacingPlusIcon extends MandatoryModFeature {
    */
   // 2
   @PriorityCallback(ModCallback.POST_RENDER, CallbackPriority.LATE)
-  postRender(): void {
+  postRenderLate(): void {
     const hud = game.GetHUD();
     if (!hud.IsVisible()) {
       return;

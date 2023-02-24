@@ -1,7 +1,7 @@
 import { TrinketType } from "isaac-typescript-definitions";
-import { BANNED_TRINKETS } from "../../../../features/mandatory/removeGloballyBannedItems/constants";
 import { BANNED_DIVERSITY_TRINKETS } from "../../../../features/race/formatSetup";
 import { mod } from "../../../../mod";
+import { BANNED_TRINKETS } from "../../mandatory/RemoveGloballyBannedItems";
 
 /**
  * These are trinkets that can never be assigned as random starting items, but can still be found in

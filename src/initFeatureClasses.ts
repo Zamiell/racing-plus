@@ -19,6 +19,7 @@ import { PreserveCheckpoint } from "./classes/features/mandatory/PreserveCheckpo
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
 import { RemoveGlitchedItems } from "./classes/features/mandatory/RemoveGlitchedItems";
+import { RemoveGloballyBannedItems } from "./classes/features/mandatory/RemoveGloballyBannedItems";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { Trophy } from "./classes/features/mandatory/Trophy";
@@ -72,6 +73,7 @@ import { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/R
 import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { ConsistentTrollBombs } from "./classes/features/optional/gameplay/ConsistentTrollBombs";
+import { ExtraStartingItems } from "./classes/features/optional/gameplay/ExtraStartingItems";
 import { PillsCancelAnimations } from "./classes/features/optional/gameplay/PillsCancelAnimations";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix";
@@ -100,6 +102,10 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * - Sort files in "mandatory" directory into subdirectories and ensure that everything is
  *   documented in "changes.md".
  * - Audit "changes.md" to see that it conforms to the ordering in this file.
+ * - Search for: "postNewLevel("
+ * - Search for: "postNewRoom("
+ * - Search for: "postGameStarted("
+ * - Search for: "postGameStartedReordered(" (should have false suffix)
  */
 const FEATURE_CLASSES = [
   // Mandatory
@@ -113,6 +119,7 @@ const FEATURE_CLASSES = [
   RacingPlusIcon,
   RemoveBannedPillEffects,
   RemoveGlitchedItems,
+  RemoveGloballyBannedItems,
   RestartOnNextFrame,
   TimeConsoleUsed,
   Trophy,
@@ -200,7 +207,7 @@ const FEATURE_CLASSES = [
 
   // Gameplay
   ConsistentTrollBombs,
-  // - ExtraStartingItems,
+  ExtraStartingItems,
   PillsCancelAnimations,
 
   // Removals

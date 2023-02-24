@@ -3,7 +3,6 @@ import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
-import { extraStartingItemsPostUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postUpdate";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
@@ -32,7 +31,4 @@ function main() {
   // QoL
   showPills.postUpdate();
   fastVanishingTwin.postUpdate(); // 697
-
-  // Gameplay
-  extraStartingItemsPostUpdate();
 }

@@ -161,7 +161,7 @@ export class CheckErrors extends MandatoryModFeature {
     CallbackPriority.EARLY,
     false,
   )
-  postGameStartedReorderedFalse(): void {
+  postGameStartedReorderedFalseEarly(): void {
     checkAfterbirthPlus();
     checkCorruptMod();
     checkIncompleteSave();
