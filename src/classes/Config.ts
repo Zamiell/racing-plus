@@ -15,7 +15,7 @@ export class Config {
   SamsonDropHeart = true; // 6
   ShowEdenStartingItems = true; // 9, 30
   LostUseHolyCard = true; // 31
-  TaintedKeeperMoney = true; // 33
+  TaintedKeeperExtraMoney = true; // 33
 
   // Boss
   FadeBosses = true;

@@ -4,18 +4,22 @@ import {
   getPlayersOfType,
   ModCallbackCustom,
 } from "isaacscript-common";
+import { inSeededRace } from "../../../../features/race/v";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-/** We grant Judas an extra bomb so that the character is slightly more skill based. */
-export class JudasAddBomb extends ConfigurableModFeature {
-  configKey: keyof Config = "JudasAddBomb";
+export class TaintedKeeperExtraMoney extends ConfigurableModFeature {
+  configKey: keyof Config = "TaintedKeeperExtraMoney";
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
-    const judases = getPlayersOfType(PlayerType.JUDAS);
-    for (const judas of judases) {
-      judas.AddBombs(1);
+    if (inSeededRace()) {
+      return;
+    }
+
+    const taintedKeepers = getPlayersOfType(PlayerType.KEEPER_B);
+    for (const taintedKeeper of taintedKeepers) {
+      taintedKeeper.AddCoins(15);
     }
   }
 }

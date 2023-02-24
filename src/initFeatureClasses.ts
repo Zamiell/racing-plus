@@ -47,7 +47,9 @@ import { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
 import { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
 import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
 import { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
+import { LostUseHolyCard } from "./classes/features/optional/characters/LostUseHolyCard";
 import { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";
+import { TaintedKeeperExtraMoney } from "./classes/features/optional/characters/TaintedKeeperExtraMoney";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
 import { ClearerShadowAttacks } from "./classes/features/optional/enemies/ClearerShadowAttacks";
@@ -76,7 +78,6 @@ import { Season1 } from "./classes/features/speedrun/Season1";
 import { Season2 } from "./classes/features/speedrun/Season2";
 import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
-import { LostUseHolyCard } from "./features/optional/characters/lostUseHolyCard";
 
 /**
  * TODO:
@@ -135,7 +136,7 @@ const FEATURE_CLASSES = [
   SamsonDropHeart, // 6
   // - ShowEdenStartingItems, // 9, 30
   LostUseHolyCard, // 31
-  // - TaintedKeeperMoney, // 33
+  TaintedKeeperExtraMoney, // 33
 
   // Bosses
   FadeBosses,

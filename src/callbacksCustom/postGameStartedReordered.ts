@@ -15,7 +15,6 @@ import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
 import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
-import * as taintedKeeperMoney from "../features/optional/characters/taintedKeeperMoney";
 import { extraStartingItemsPostGameStarted } from "../features/optional/gameplay/extraStartingItems/callbacks/postGameStarted";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
@@ -82,9 +81,6 @@ function main(isContinued: boolean) {
   racePostGameStarted();
   speedrunPostGameStarted();
   betterDevilAngelRoomsPostGameStarted();
-
-  // Chars
-  taintedKeeperMoney.postGameStarted();
 
   // Gameplay
   extraStartingItemsPostGameStarted();

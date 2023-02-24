@@ -12,8 +12,8 @@ import {
   ModCallbackCustom,
   sfxManager,
 } from "isaacscript-common";
-import { Config } from "../../../classes/Config";
-import { ConfigurableModFeature } from "../../../classes/ConfigurableModFeature";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class LostUseHolyCard extends ConfigurableModFeature {
   configKey: keyof Config = "LostUseHolyCard";

@@ -223,7 +223,7 @@ export const CHARACTER_CHANGES = [
     ],
   ],
   [
-    "TaintedKeeperMoney", // 33
+    "TaintedKeeperExtraMoney", // 33
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0205",
