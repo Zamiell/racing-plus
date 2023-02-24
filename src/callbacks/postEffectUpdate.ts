@@ -1,6 +1,4 @@
 import { EffectVariant, ModCallback } from "isaac-typescript-definitions";
-import * as stickyNickel from "../classes/features/optional/graphics/StickyNickel";
-import { EffectVariantCustom } from "../enums/EffectVariantCustom";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";
@@ -31,12 +29,6 @@ export function init(): void {
     playerCreepRed,
     EffectVariant.PLAYER_CREEP_RED, // 46
   );
-
-  mod.AddCallback(
-    ModCallback.POST_EFFECT_UPDATE,
-    stickyNickelEffect,
-    EffectVariantCustom.STICKY_NICKEL,
-  );
 }
 
 // EffectVariant.DEVIL (6)
@@ -58,9 +50,4 @@ function heavenLightDoor(effect: EntityEffect) {
 // EffectVariant.PLAYER_CREEP_RED (46)
 function playerCreepRed(effect: EntityEffect) {
   changeCreepColor.postEffectUpdatePlayerCreepRed(effect);
-}
-
-// EffectVariantCustom.STICKY_NICKEL
-function stickyNickelEffect(effect: EntityEffect) {
-  stickyNickel.postEffectUpdateStickyNickel(effect);
 }

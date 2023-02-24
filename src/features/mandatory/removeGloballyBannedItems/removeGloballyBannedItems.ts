@@ -16,9 +16,9 @@ import {
   removeTrinketFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
+import * as showEdenStartingItems from "../../../classes/features/optional/characters/ShowEdenStartingItems";
 import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
-import * as showEdenStartingItems from "../../optional/characters/showEdenStartingItems";
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 import { inSeededRace } from "../../race/v";
 import {

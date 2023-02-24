@@ -49,6 +49,7 @@ import { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix"
 import { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
 import { LostUseHolyCard } from "./classes/features/optional/characters/LostUseHolyCard";
 import { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";
+import { ShowEdenStartingItems } from "./classes/features/optional/characters/ShowEdenStartingItems";
 import { TaintedKeeperExtraMoney } from "./classes/features/optional/characters/TaintedKeeperExtraMoney";
 import { FastTeleport } from "./classes/features/optional/cutscenes/FastTeleport";
 import { AppearHands } from "./classes/features/optional/enemies/AppearHands";
@@ -70,6 +71,7 @@ import { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix"
 import { PaschalCandle } from "./classes/features/optional/graphics/PaschalCandle";
 import { ScaredHeart } from "./classes/features/optional/graphics/ScaredHeart";
 import { StickyNickel } from "./classes/features/optional/graphics/StickyNickel";
+import { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCardBacks";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
@@ -137,7 +139,7 @@ const FEATURE_CLASSES = [
   // Characters
   JudasAddBomb, // 3
   SamsonDropHeart, // 6
-  // - ShowEdenStartingItems, // 9, 30
+  ShowEdenStartingItems, // 9, 30
   LostUseHolyCard, // 31
   TaintedKeeperExtraMoney, // 33
 
@@ -207,7 +209,7 @@ const FEATURE_CLASSES = [
   PaschalCandle,
   ScaredHeart,
   StickyNickel,
-  // - UniqueCardBacks,
+  UniqueCardBacks,
 
   // Sounds
   SilenceMomDad,

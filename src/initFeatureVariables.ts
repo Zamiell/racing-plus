@@ -1,4 +1,3 @@
-import * as stickyNickel from "./classes/features/optional/graphics/StickyNickel";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -15,7 +14,6 @@ import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSynergy";
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
-import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
@@ -81,7 +79,6 @@ export function initFeatureVariables(): void {
   // QoL
   showPills.init();
   showNumSacrifices.init();
-  showEdenStartingItems.init();
   bloodyLustChargeBar.init(); // 157
   leadPencilChargeBar.init(); // 444
   showDreamCatcherItemVars.init(); // 566
@@ -97,9 +94,6 @@ export function initFeatureVariables(): void {
   // Bug fixes
   taintedIsaacCollectibleDelay.init();
   battery9VoltSynergy.init();
-
-  // Graphics fixes
-  stickyNickel.init();
 
   // Other
   customConsole.init();

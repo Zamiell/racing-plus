@@ -1,8 +1,6 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
-import * as stickyNickel from "../classes/features/optional/graphics/StickyNickel";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
-import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
@@ -12,18 +10,6 @@ import { mod } from "../mod";
 
 export function init(): void {
   mod.AddCallback(ModCallback.POST_PICKUP_INIT, main);
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    coinCallback,
-    PickupVariant.COIN, // 20
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    tarotCard,
-    PickupVariant.TAROT_CARD, // 300
-  );
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
@@ -59,20 +45,6 @@ export function init(): void {
 function main(pickup: EntityPickup) {
   seededGBBug.postPickupInit(pickup);
   automaticItemInsertionPostPickupInit(pickup);
-}
-
-// PickupVariant.COIN (20)
-function coinCallback(pickup: EntityPickup) {
-  const coin = pickup as EntityPickupCoin;
-
-  stickyNickel.postPickupInitCoin(coin);
-}
-
-// PickupVariant.TAROT_CARD (300)
-function tarotCard(pickup: EntityPickup) {
-  const pickupCard = pickup as EntityPickupCard;
-
-  uniqueCardBacks.postPickupInitTarotCard(pickupCard);
 }
 
 // PickupVariant.BIG_CHEST (340)

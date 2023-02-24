@@ -5,7 +5,6 @@ import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import * as topLeftText from "../features/mandatory/topLeftText";
-import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
@@ -40,9 +39,6 @@ function main() {
   speedrunPostRender();
   changeCharOrderPostRender();
   fastTravelPostRender();
-
-  // Chars
-  showEdenStartingItems.postRender();
 
   // QoL
   showDreamCatcherItemPostRender(); // 566

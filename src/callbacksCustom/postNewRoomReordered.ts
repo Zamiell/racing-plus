@@ -20,7 +20,6 @@ import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as preventUltraSecretRoomSoftlock from "../features/optional/bugfix/preventUltraSecretRoomSoftlock";
 import * as removeInvalidPitfalls from "../features/optional/bugfix/removeInvalidPitfalls";
 import * as teleportInvalidEntrance from "../features/optional/bugfix/teleportInvalidEntrance";
-import * as showEdenStartingItems from "../features/optional/characters/showEdenStartingItems";
 import { extraStartingItemsPostNewRoom } from "../features/optional/gameplay/extraStartingItems/callbacks/postNewRoom";
 import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
@@ -72,9 +71,6 @@ function main() {
   betterDevilAngelRoomsPostNewRoom();
   fastClearPostNewRoom();
   fastTravelPostNewRoom();
-
-  // Characters
-  showEdenStartingItems.postNewRoom();
 
   // QoL
   showDreamCatcherItemPostNewRoom(); // 566
