@@ -1,7 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
-import * as drawVersion from "../features/mandatory/drawVersion";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
@@ -34,7 +33,6 @@ function main() {
   modConfigNotify.postRender();
   streakText.postRender();
   topLeftText.postRender();
-  drawVersion.postRender();
   seededDeathPostRender();
 
   // Major

@@ -12,11 +12,13 @@ import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
 import { DoubleAngelNerf } from "./classes/features/mandatory/DoubleAngelNerf";
 import { DrawControls } from "./classes/features/mandatory/DrawControls";
+import { DrawVersion } from "./classes/features/mandatory/DrawVersion";
 import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
 import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
 import { PreserveCheckpoint } from "./classes/features/mandatory/PreserveCheckpoint";
 import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
 import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
+import { RemoveGlitchedItems } from "./classes/features/mandatory/RemoveGlitchedItems";
 import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
 import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
 import { Trophy } from "./classes/features/mandatory/Trophy";
@@ -38,6 +40,7 @@ import { FastPin } from "./classes/features/optional/bosses/FastPin";
 import { FastSatan } from "./classes/features/optional/bosses/FastSatan";
 import { OpenHushDoor } from "./classes/features/optional/bosses/OpenHushDoor";
 import { PreventDeathSlow } from "./classes/features/optional/bosses/PreventDeathSlow";
+import { PreventEndBeast } from "./classes/features/optional/bosses/PreventEndBeast";
 import { PreventEndMegaSatan } from "./classes/features/optional/bosses/PreventEndMegaSatan";
 import { PreventVictoryLapPopup } from "./classes/features/optional/bosses/PreventVictoryLapPopup";
 import { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
@@ -70,7 +73,6 @@ import { Season1 } from "./classes/features/speedrun/Season1";
 import { Season2 } from "./classes/features/speedrun/Season2";
 import { Season3 } from "./classes/features/speedrun/Season3";
 import { Season4 } from "./classes/features/speedrun/Season4";
-import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
 
 /**
  * TODO:
@@ -84,11 +86,13 @@ const FEATURE_CLASSES = [
   CheckErrors,
   DisableMultiplayer,
   DoubleAngelNerf,
+  DrawVersion,
   ForceFadedConsoleDisplay,
   LogConsoleCommands,
   PreserveCheckpoint,
   RacingPlusIcon,
   RemoveBannedPillEffects,
+  RemoveGlitchedItems,
   RestartOnNextFrame,
   TimeConsoleUsed,
   Trophy,

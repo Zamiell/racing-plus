@@ -13,9 +13,9 @@ import {
   spawnPickup,
   VectorZero,
 } from "isaacscript-common";
-import { Config } from "../../classes/Config";
-import { ConfigurableModFeature } from "../../classes/ConfigurableModFeature";
-import { consoleCommand } from "../../utils";
+import { consoleCommand } from "../../../../utils";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {
   run: {
