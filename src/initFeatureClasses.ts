@@ -67,6 +67,9 @@ import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodW
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix";
+import { PaschalCandle } from "./classes/features/optional/graphics/PaschalCandle";
+import { ScaredHeart } from "./classes/features/optional/graphics/ScaredHeart";
+import { StickyNickel } from "./classes/features/optional/graphics/StickyNickel";
 import { FastReset } from "./classes/features/optional/major/FastReset";
 import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
@@ -83,10 +86,10 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * TODO:
  * - Search for all `config` to ensure that no functions have early return with it.
  * - Search for: ^(?<![\s\S\r])//
- * - Search all files for "const v" && "v = v" (make lint rule)
- * - Search for all "import *"
+ * - Search for: "import *"
  * - Sort files in "mandatory" directory into subdirectories and ensure that everything is
- *   documented in "changes.md"
+ *   documented in "changes.md".
+ * - Audit "changes.md" to see that it conforms to the ordering in this file.
  */
 const FEATURE_CLASSES = [
   // Mandatory
@@ -201,6 +204,10 @@ const FEATURE_CLASSES = [
   DrawControls,
   HolidayHats,
   HUDOffsetFix,
+  PaschalCandle,
+  ScaredHeart,
+  StickyNickel,
+  // - UniqueCardBacks,
 
   // Sounds
   SilenceMomDad,

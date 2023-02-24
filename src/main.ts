@@ -12,7 +12,6 @@ import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
-import * as postFamiliarInit from "./callbacks/postFamiliarInit";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
@@ -108,7 +107,6 @@ function registerCallbacksVanilla() {
   postRender.init(); // 2
   useItem.init(); // 3
   useCard.init(); // 5
-  postFamiliarInit.init(); // 7
   evaluateCache.init(); // 8
   usePill.init(); // 10
   entityTakeDmg.init(); // 11

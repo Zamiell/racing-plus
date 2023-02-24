@@ -1,6 +1,6 @@
 import { EffectVariant, ModCallback } from "isaac-typescript-definitions";
+import * as stickyNickel from "../classes/features/optional/graphics/StickyNickel";
 import { EffectVariantCustom } from "../enums/EffectVariantCustom";
-import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";

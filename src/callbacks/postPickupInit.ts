@@ -1,8 +1,7 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
+import * as stickyNickel from "../classes/features/optional/graphics/StickyNickel";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
-import * as scaredHeart from "../features/optional/graphics/scaredHeart";
-import * as stickyNickel from "../features/optional/graphics/stickyNickel";
 import * as uniqueCardBacks from "../features/optional/graphics/uniqueCardBacks";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
@@ -13,12 +12,6 @@ import { mod } from "../mod";
 
 export function init(): void {
   mod.AddCallback(ModCallback.POST_PICKUP_INIT, main);
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    heartCallback,
-    PickupVariant.HEART, // 10
-  );
 
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
@@ -66,13 +59,6 @@ export function init(): void {
 function main(pickup: EntityPickup) {
   seededGBBug.postPickupInit(pickup);
   automaticItemInsertionPostPickupInit(pickup);
-}
-
-// PickupVariant.HEART (10)
-function heartCallback(pickup: EntityPickup) {
-  const heart = pickup as EntityPickupHeart;
-
-  scaredHeart.postPickupInitHeart(heart);
 }
 
 // PickupVariant.COIN (20)

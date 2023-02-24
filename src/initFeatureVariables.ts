@@ -1,3 +1,4 @@
+import * as stickyNickel from "./classes/features/optional/graphics/StickyNickel";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -16,7 +17,6 @@ import * as battery9VoltSynergy from "./features/optional/bugfix/battery9VoltSyn
 import * as taintedIsaacCollectibleDelay from "./features/optional/bugfix/taintedIsaacCollectibleDelay";
 import * as showEdenStartingItems from "./features/optional/characters/showEdenStartingItems";
 import * as extraStartingItems from "./features/optional/gameplay/extraStartingItems/extraStartingItems";
-import * as stickyNickel from "./features/optional/graphics/stickyNickel";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
 import * as roll from "./features/optional/hotkeys/roll";
