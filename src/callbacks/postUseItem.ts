@@ -4,8 +4,6 @@ import {
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
-import { CollectibleTypeCustom } from "../enums/CollectibleTypeCustom";
-import * as flipCustom from "../features/items/flipCustom";
 import * as removeGloballyBannedItems from "../features/mandatory/removeGloballyBannedItems/removeGloballyBannedItems";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
@@ -39,12 +37,6 @@ export function init(): void {
     ModCallback.POST_USE_ITEM,
     spindownDice,
     CollectibleType.SPINDOWN_DICE, // 723
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_USE_ITEM,
-    useItemFlipCustom,
-    CollectibleTypeCustom.FLIP_CUSTOM,
   );
 }
 
@@ -121,16 +113,4 @@ function spindownDice(
   removeGloballyBannedItems.postUseItemSpindownDice();
 
   return undefined;
-}
-
-// CollectibleTypeCustom.FLIP_CUSTOM
-function useItemFlipCustom(
-  _collectibleType: CollectibleType,
-  _rng: RNG,
-  player: EntityPlayer,
-  _useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  return flipCustom.postUseItemFlipCustom(player);
 }

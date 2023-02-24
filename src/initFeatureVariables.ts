@@ -1,5 +1,4 @@
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
-import * as flipCustom from "./features/items/flipCustom";
 import * as drawVersion from "./features/mandatory/drawVersion";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -107,9 +106,6 @@ export function initFeatureVariables(): void {
 
   // Graphics fixes
   stickyNickel.init();
-
-  // Items
-  flipCustom.init();
 
   // Other
   customConsole.init();

@@ -1,6 +1,5 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
-import * as flipCustom from "../features/items/flipCustom";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as scaredHeart from "../features/optional/graphics/scaredHeart";
 import * as stickyNickel from "../features/optional/graphics/stickyNickel";
@@ -25,12 +24,6 @@ export function init(): void {
     ModCallback.POST_PICKUP_INIT,
     coinCallback,
     PickupVariant.COIN, // 20
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    collectibleCallback,
-    PickupVariant.COLLECTIBLE, // 100
   );
 
   mod.AddCallback(
@@ -87,13 +80,6 @@ function coinCallback(pickup: EntityPickup) {
   const coin = pickup as EntityPickupCoin;
 
   stickyNickel.postPickupInitCoin(coin);
-}
-
-// PickupVariant.COLLECTIBLE (100)
-function collectibleCallback(pickup: EntityPickup) {
-  const collectible = pickup as EntityPickupCollectible;
-
-  flipCustom.postPickupInitCollectible(collectible);
 }
 
 // PickupVariant.TAROT_CARD (300)

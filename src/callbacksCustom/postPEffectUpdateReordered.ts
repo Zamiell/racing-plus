@@ -1,5 +1,4 @@
 import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
-import * as flipCustom from "../features/items/flipCustom";
 import { extraStartingItemsPostPEffectUpdate } from "../features/optional/gameplay/extraStartingItems/callbacks/postPEffectUpdate";
 import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
@@ -27,9 +26,6 @@ function main(player: EntityPlayer) {
 
   // QoL
   chargePocketItemFirst.postPEffectUpdate(player);
-
-  // Items
-  flipCustom.postPEffectUpdate(player);
 
   // Other
   roll.postPEffectUpdate(player);

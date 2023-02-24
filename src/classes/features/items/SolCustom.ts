@@ -25,7 +25,8 @@ import {
   PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { Config } from "../../Config";
+import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.SOL_CUSTOM;
@@ -36,7 +37,14 @@ const v = {
   },
 };
 
-export class SolCustom extends MandatoryModFeature {
+/**
+ * We have to reimplement Sol from scratch so that the Sun card effect will happen at the beginning
+ * of a boss' death animation (instead of at the end).
+ *
+ * For this reason, this feature depends on fast-clear.
+ */
+export class SolCustom extends ConfigurableModFeature {
+  configKey: keyof Config = "FastClear";
   v = v;
 
   // 8, 1 << 0

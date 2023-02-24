@@ -75,6 +75,7 @@ import { PreventEndBeast } from "./features/mandatory/PreventEndBeast";
  * - Search for all `config` to ensure that no functions have early return with it.
  * - Search for: ^(?<![\s\S\r])//
  * - Search all files for "const v" && "v = v" (make lint rule)
+ * - Search for all "import *"
  */
 const FEATURE_CLASSES = [
   // Mandatory
