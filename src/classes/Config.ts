@@ -87,8 +87,8 @@ export class Config {
   DisplayExpansionPack = true; // 181 (trinket)
 
   // Gameplay
-  ExtraStartingItems = true;
   ConsistentTrollBombs = true;
+  ExtraStartingItems = true;
   PillsCancelAnimations = true;
 
   // Cutscenes

@@ -320,13 +320,17 @@ Post-flip actions:
 
 ### 6) Gameplay Changes
 
-- `0601` <!-- ExtraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
+- `0601` <!-- ConsistentTrollBombs --> Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
+
+> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
+
+- `0602` <!-- ExtraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
 
   - 12 - Magic Mushroom (from 0.5)
   - 168 - Epic Fetus (from 0.1)
   - 237 - Death's Touch (from 0.2)
 
-- `0601` <!-- ExtraStartingItems --> The following extra starting items will appear in the Treasure Room on the first floor:
+- `0602` <!-- ExtraStartingItems --> The following extra starting items will appear in the Treasure Room on the first floor:
   - 182 - Sacred Heart
   - 311 - Judas' Shadow
   - 331 - Godhead
@@ -336,10 +340,6 @@ Post-flip actions:
   - 698 - Twisted Pair
 
 > Why? This decreases the time spent in the resetting phase, which everyone agrees is not very fun.
-
-- `0602` <!-- ConsistentTrollBombs --> Troll Bombs, Mega Troll Bombs, and Golden Troll Bombs always have a fuse timer of exactly 2 seconds.
-
-> Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
 - `0603` <!-- PillsCancelAnimations --> Power Pill and Horf! now cancel animations in the same way that all of the other pills do.
 

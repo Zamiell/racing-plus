@@ -71,6 +71,8 @@ import { RemoveStrayPitfalls } from "./classes/features/optional/enemies/RemoveS
 import { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/RemoveTreasureRoomEnemies";
 import { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";
 import { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
+import { ConsistentTrollBombs } from "./classes/features/optional/gameplay/ConsistentTrollBombs";
+import { PillsCancelAnimations } from "./classes/features/optional/gameplay/PillsCancelAnimations";
 import { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 import { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix";
 import { PaschalCandle } from "./classes/features/optional/graphics/PaschalCandle";
@@ -197,7 +199,9 @@ const FEATURE_CLASSES = [
   SpeedUpFadeIn,
 
   // Gameplay
-  // TODO
+  ConsistentTrollBombs,
+  // - ExtraStartingItems,
+  PillsCancelAnimations,
 
   // Removals
   // TODO

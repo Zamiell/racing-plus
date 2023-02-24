@@ -7,7 +7,6 @@ import {
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as evaluateCache from "./callbacks/evaluateCache";
 import * as inputAction from "./callbacks/inputAction";
-import * as postBombInit from "./callbacks/postBombInit";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
@@ -121,7 +120,6 @@ function registerCallbacksVanilla() {
   postLaserInit.init(); // 47
   postEffectInit.init(); // 54
   postEffectUpdate.init(); // 55
-  postBombInit.init(); // 57
   preGetCollectible.init(); // 62
   postEntityRemove.init(); // 67
   postEntityKill.init(); // 68

@@ -844,21 +844,21 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
 // 0601-0610
 export const GAMEPLAY_CHANGES = [
   [
-    "ExtraStartingItems",
-    [
-      ModConfigMenuOptionType.TEXT,
-      "0601",
-      "Extra Treasure Room Items",
-      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
-    ],
-  ],
-  [
     "ConsistentTrollBombs",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0602",
+      "0601",
       "Consistent troll bombs",
       "Make Troll Bombs and Mega Troll Bombs always have a fuse timer of exactly 2 seconds.",
+    ],
+  ],
+  [
+    "ExtraStartingItems",
+    [
+      ModConfigMenuOptionType.TEXT,
+      "0602",
+      "Extra Treasure Room Items",
+      "Puts several extra good items in the Treasure Room pool to make finding a starting item easier.",
     ],
   ],
   [
