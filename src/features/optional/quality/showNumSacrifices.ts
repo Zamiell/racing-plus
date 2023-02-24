@@ -1,5 +1,5 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { game } from "isaacscript-common";
+import { game, inRoomType } from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -28,10 +28,9 @@ export function shouldShowNumSacrifices(): boolean {
   }
 
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomFrameCount = room.GetFrameCount();
 
-  return roomType === RoomType.SACRIFICE && roomFrameCount > 0;
+  return inRoomType(RoomType.SACRIFICE) && roomFrameCount > 0;
 }
 
 export function getNumSacrifices(): int {

@@ -10,9 +10,9 @@ import {
 import {
   anyPlayerHasCollectible,
   asNumber,
-  game,
   getBosses,
   getCollectibles,
+  inRoomType,
   inStartingRoom,
   isArrayInArray,
   log,
@@ -59,13 +59,11 @@ function checkWarping() {
 
 function gatherInfoAndGlowingHourGlass() {
   // We have arrived in a new Treasure Room or Boss Room.
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-  if (roomType === RoomType.TREASURE) {
+  if (inRoomType(RoomType.TREASURE)) {
     for (const collectibleType of getRoomCollectibles()) {
       v.level.collectibles.push(collectibleType);
     }
-  } else if (roomType === RoomType.BOSS) {
+  } else if (inRoomType(RoomType.BOSS)) {
     for (const boss of getRoomBosses()) {
       v.level.bosses.push(boss);
     }

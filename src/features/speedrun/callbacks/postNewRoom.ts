@@ -14,6 +14,7 @@ import {
   getRandom,
   getRepentanceDoor,
   hasUnusedDoorSlot,
+  inRoomType,
   onFirstFloor,
   removeAllPickups,
   spawnGridEntityWithVariant,
@@ -51,7 +52,7 @@ function checkFirstCharacterFirstFloorDevilRoom() {
   }
 
   if (
-    (roomType === RoomType.DEVIL || roomType === RoomType.ANGEL) &&
+    inRoomType(RoomType.DEVIL, RoomType.ANGEL) &&
     previousRoomType === RoomType.CURSE
   ) {
     emptyDevilAngelRoom();
@@ -81,10 +82,9 @@ function checkWomb2IAmError() {
   const level = game.GetLevel();
   const stage = level.GetStage();
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const levelSeed = level.GetDungeonPlacementSeed();
 
-  if (stage !== LevelStage.WOMB_2 || roomType !== RoomType.ERROR) {
+  if (stage !== LevelStage.WOMB_2 || !inRoomType(RoomType.ERROR)) {
     return;
   }
 

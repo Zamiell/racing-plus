@@ -14,6 +14,7 @@ import {
   getEnumValues,
   getPlayerIndex,
   inBeastRoom,
+  inRoomType,
   isJacobOrEsau,
   isKeeper,
 } from "isaacscript-common";
@@ -43,8 +44,6 @@ export function seededDeathPreCustomRevive(
 }
 
 function shouldSeededDeathRevive(player: EntityPlayer) {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
   const gameFrameCount = game.GetFrameCount();
 
   // Do not revive the player if they took a devil deal within the past few seconds. (We cannot use
@@ -62,10 +61,7 @@ function shouldSeededDeathRevive(player: EntityPlayer) {
 
   // Do not revive the player if they are trying to get a "free" item from a particular special
   // room.
-  if (
-    roomType === RoomType.SACRIFICE || // 13
-    roomType === RoomType.BOSS_RUSH // 17
-  ) {
+  if (inRoomType(RoomType.SACRIFICE, RoomType.BOSS_RUSH)) {
     return false;
   }
 

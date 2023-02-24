@@ -12,6 +12,7 @@ import {
   giveTrinketsBack,
   inAngelShop,
   inGenesisRoom,
+  inRoomType,
   itemConfig,
   log,
   temporarilyRemoveTrinket,
@@ -36,8 +37,6 @@ export function betterDevilAngelRoomsPreGetCollectible(
   }
 
   const gameFrameCount = game.GetFrameCount();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
   if (gameFrameCount === v.room.usedD4Frame) {
     return undefined;
@@ -62,7 +61,7 @@ export function betterDevilAngelRoomsPreGetCollectible(
   // affect pools. The placeholder item will be deleted later on this frame.
   if (
     !v.level.vanillaCollectiblesHaveSpawnedInCustomRoom &&
-    (roomType === RoomType.DEVIL || roomType === RoomType.ANGEL) &&
+    inRoomType(RoomType.DEVIL, RoomType.ANGEL) &&
     !inAngelShop()
   ) {
     return CollectibleTypeCustom.DEBUG;

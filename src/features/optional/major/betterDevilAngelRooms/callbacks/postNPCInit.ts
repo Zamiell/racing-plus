@@ -1,5 +1,5 @@
 import { NPCState, RoomType } from "isaac-typescript-definitions";
-import { game } from "isaacscript-common";
+import { inRoomType } from "isaacscript-common";
 import { config } from "../../../../../modConfigMenu";
 
 export function pitfall(npc: EntityNPC): void {
@@ -7,10 +7,7 @@ export function pitfall(npc: EntityNPC): void {
     return;
   }
 
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
-  if (roomType !== RoomType.DEVIL) {
+  if (!inRoomType(RoomType.DEVIL)) {
     return;
   }
 

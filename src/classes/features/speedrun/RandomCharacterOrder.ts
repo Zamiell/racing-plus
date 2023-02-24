@@ -10,9 +10,9 @@ import {
   CallbackCustom,
   copyArray,
   emptyArray,
-  game,
   getEffectiveStage,
   getRandomArrayElementAndRemove,
+  inRoomType,
   isRoomInsideGrid,
   ModCallbackCustom,
   ReadonlySet,
@@ -153,14 +153,12 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
   /** Reset the starting character timer if we just killed the Basement 2 boss. */
   checkResetTimeAssigned(): void {
-    const room = game.GetRoom();
-    const roomType = room.GetType();
     const effectiveStage = getEffectiveStage();
     const roomInsideGrid = isRoomInsideGrid();
 
     if (
       effectiveStage === LevelStage.BASEMENT_2 &&
-      roomType === RoomType.BOSS &&
+      inRoomType(RoomType.BOSS) &&
       roomInsideGrid
     ) {
       v.persistent.timeCharacterAssigned = 0;

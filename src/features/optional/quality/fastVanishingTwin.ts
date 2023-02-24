@@ -12,6 +12,7 @@ import {
   getBosses,
   getCollectibles,
   getFamiliars,
+  inRoomType,
   isStoryBoss,
   spawnEffect,
   spawnNPC,
@@ -103,8 +104,7 @@ export function postNewRoom(): void {
   const room = game.GetRoom();
 
   // Vanishing Twin only takes effect in Boss Rooms.
-  const roomType = room.GetType();
-  if (roomType !== RoomType.BOSS) {
+  if (!inRoomType(RoomType.BOSS)) {
     return;
   }
 

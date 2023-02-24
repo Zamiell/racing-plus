@@ -134,9 +134,6 @@ export class FreeDevilItem extends ConfigurableModFeature {
    * example.
    */
   isDevilDealStyleCollectible(collectible: EntityPickupCollectible): boolean {
-    const room = game.GetRoom();
-    const roomType = room.GetType();
-
     if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
       return (
         collectible.Price > 0 &&
@@ -149,11 +146,11 @@ export class FreeDevilItem extends ConfigurableModFeature {
       // For the context of this function, shop items with A Pound of Flesh do not count as devil
       // deal style collectibles because they do not increase the return value from the
       // `Game.GetDevilRoomDeals` method. (Black Market items are not affected by A Pound of Flesh.)
-      if (roomType === RoomType.SHOP) {
+      if (inRoomType(RoomType.SHOP)) {
         return false;
       }
 
-      if (roomType === RoomType.DEVIL) {
+      if (inRoomType(RoomType.DEVIL)) {
         return collectible.Price > 0;
       }
     }

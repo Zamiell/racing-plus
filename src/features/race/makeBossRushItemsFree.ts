@@ -3,7 +3,7 @@ import {
   PlayerType,
   RoomType,
 } from "isaac-typescript-definitions";
-import { anyPlayerIs, game, getCollectibles } from "isaacscript-common";
+import { anyPlayerIs, getCollectibles, inRoomType } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -16,15 +16,12 @@ export function postNewRoom(): void {
     return;
   }
 
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
   if (
     !v.run.madeBossRushItemsFree &&
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
-    roomType === RoomType.BOSS_RUSH
+    inRoomType(RoomType.BOSS_RUSH)
   ) {
     v.run.madeBossRushItemsFree = true;
     makeBossRushItemsFree();

@@ -5,7 +5,7 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { game, getEffects, inBossRoomOf } from "isaacscript-common";
+import { game, getEffects, inBossRoomOf, inRoomType } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -63,7 +63,6 @@ function shouldSpawnOpen() {
   const level = game.GetLevel();
   const stage = level.GetStage();
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomClear = room.IsClear();
 
   // In almost all cases, beams of light are spawned after defeating a boss. This means that the
@@ -74,7 +73,7 @@ function shouldSpawnOpen() {
   // killing It Lives or Hush, so account for that first.
   if (
     (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
-    roomType === RoomType.BOSS
+    inRoomType(RoomType.BOSS)
   ) {
     return true;
   }

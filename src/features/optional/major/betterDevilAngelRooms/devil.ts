@@ -12,6 +12,7 @@ import {
   getJSONRoomsOfSubType,
   getRandom,
   getRandomJSONRoom,
+  inRoomType,
   JSONRoom,
   setRoomUncleared,
   spawnWithSeed,
@@ -91,10 +92,9 @@ function checkSpawnKrampus() {
 
 export function checkRespawnKrampus(): void {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const centerPos = room.GetCenterPos();
 
-  if (roomType !== RoomType.DEVIL) {
+  if (!inRoomType(RoomType.DEVIL)) {
     return;
   }
 

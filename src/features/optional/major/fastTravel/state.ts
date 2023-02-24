@@ -1,5 +1,5 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { anyPlayerCloserThan, game, log } from "isaacscript-common";
+import { anyPlayerCloserThan, game, inRoomType, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { mod } from "../../../../mod";
@@ -186,13 +186,11 @@ function shouldBeClosedFromStartingInRoomWithEnemies(initial: boolean) {
 
 function playerCloseAfterBoss(position: Vector) {
   const gameFrameCount = game.GetFrameCount();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
   // killing the boss of the floor, we use a wider open distance for X frames.
   if (
-    roomType !== RoomType.BOSS ||
+    !inRoomType(RoomType.BOSS) ||
     v.room.clearFrame === null ||
     gameFrameCount >= v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
   ) {

@@ -6,8 +6,8 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  game,
   getEffectiveStage,
+  inRoomType,
   itemConfig,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
@@ -39,11 +39,9 @@ export function postNewLevel(): void {
 
 // ModCallback.POST_NEW_ROOM (18)
 export function postNewRoom(): void {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
   const player = Isaac.GetPlayer();
 
-  if (v.run.removeMoreOptions && roomType === RoomType.TREASURE) {
+  if (v.run.removeMoreOptions && inRoomType(RoomType.TREASURE)) {
     v.run.removeMoreOptions = false;
     player.RemoveCollectible(CollectibleType.MORE_OPTIONS);
   }

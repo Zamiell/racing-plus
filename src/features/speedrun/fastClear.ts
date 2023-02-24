@@ -6,6 +6,7 @@ import {
   getDimension,
   getEffectiveStage,
   hasUnusedDoorSlot,
+  inRoomType,
   isRoomInsideGrid,
   onRepentanceStage,
   removeDoor,
@@ -56,7 +57,6 @@ function checkSpawnRepentanceDoor() {
 
 export function speedrunShouldSpawnRepentanceDoor(): boolean {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomClear = room.IsClear();
   const insideGrid = isRoomInsideGrid();
   const dimension = getDimension();
@@ -64,7 +64,7 @@ export function speedrunShouldSpawnRepentanceDoor(): boolean {
 
   return (
     correctStageForRepentanceDoor &&
-    roomType === RoomType.BOSS &&
+    inRoomType(RoomType.BOSS) &&
     insideGrid && // Handle the case of Emperor? card rooms.
     dimension === Dimension.MAIN &&
     roomClear

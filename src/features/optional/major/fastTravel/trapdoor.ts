@@ -10,6 +10,7 @@ import {
   asNumber,
   game,
   getRoomGridIndex,
+  inRoomType,
   inSecretExit,
   isPostBossVoidPortal,
   log,
@@ -111,8 +112,6 @@ function shouldRemove() {
   const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const level = game.GetLevel();
   const stage = level.GetStage();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomGridIndex = getRoomGridIndex();
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
@@ -187,7 +186,7 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.MOTHER &&
-    roomType === RoomType.BOSS
+    inRoomType(RoomType.BOSS)
   ) {
     if (
       (stage === LevelStage.BASEMENT_1 ||

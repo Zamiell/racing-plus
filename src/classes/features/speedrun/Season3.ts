@@ -29,6 +29,7 @@ import {
   getRandomArrayElement,
   inBeastRoom,
   inMegaSatanRoom,
+  inRoomType,
   inStartingRoom,
   isRoomInsideGrid,
   log,
@@ -387,8 +388,6 @@ export class Season3 extends ChallengeModFeature {
     );
     const level = game.GetLevel();
     const stage = level.GetStage();
-    const room = game.GetRoom();
-    const roomType = room.GetType();
     const repentanceStage = onRepentanceStage();
     const roomInsideGrid = isRoomInsideGrid();
 
@@ -396,7 +395,7 @@ export class Season3 extends ChallengeModFeature {
       season3HasDogmaGoal() &&
       stage === LevelStage.DEPTHS_2 &&
       repentanceStage &&
-      roomType === RoomType.BOSS &&
+      inRoomType(RoomType.BOSS) &&
       roomInsideGrid &&
       backwardsPathInit &&
       !isDreamCatcherWarping()
@@ -464,11 +463,10 @@ export class Season3 extends ChallengeModFeature {
     const level = game.GetLevel();
     const stage = level.GetStage();
     const room = game.GetRoom();
-    const roomType = room.GetType();
 
     if (
       stage === LevelStage.BLUE_WOMB &&
-      roomType === RoomType.BOSS &&
+      inRoomType(RoomType.BOSS) &&
       isRoomInsideGrid() &&
       season3HasHushGoal()
     ) {
@@ -587,12 +585,10 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
 function getGoalCorrespondingToRoom(): Season3Goal | undefined {
   const level = game.GetLevel();
   const stage = level.GetStage();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
   const repentanceStage = onRepentanceStage();
 
   // First, check for goals related to the specific room type.
-  if (roomType === RoomType.BOSS_RUSH) {
+  if (inRoomType(RoomType.BOSS_RUSH)) {
     return Season3Goal.BOSS_RUSH;
   }
 

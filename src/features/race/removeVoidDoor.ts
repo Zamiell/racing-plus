@@ -4,7 +4,12 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { game, isRoomInsideGrid, spawnGridEntity } from "isaacscript-common";
+import {
+  game,
+  inRoomType,
+  isRoomInsideGrid,
+  spawnGridEntity,
+} from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -29,15 +34,13 @@ function checkDeleteDoor() {
 function shouldDeleteVoidDoor() {
   const level = game.GetLevel();
   const stage = level.GetStage();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
     stage === LevelStage.BLUE_WOMB &&
-    roomType === RoomType.BOSS &&
+    inRoomType(RoomType.BOSS) &&
     isRoomInsideGrid()
   );
 }

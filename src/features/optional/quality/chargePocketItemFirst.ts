@@ -33,6 +33,7 @@ import {
   game,
   getCollectibleMaxCharges,
   getTotalCharge,
+  inRoomType,
   isActiveSlotEmpty,
   log,
   playChargeSoundEffect,
@@ -117,13 +118,12 @@ function checkBatteryBumCharge(player: EntityPlayer) {
 
 function checkHairpinCharge(player: EntityPlayer) {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomFrameCount = room.GetFrameCount();
   const firstVisit = room.IsFirstVisit();
   const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
   if (
-    roomType !== RoomType.BOSS ||
+    !inRoomType(RoomType.BOSS) ||
     roomFrameCount !== 1 ||
     !firstVisit ||
     !hasHairpin

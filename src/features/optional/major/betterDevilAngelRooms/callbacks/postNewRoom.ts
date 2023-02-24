@@ -25,7 +25,6 @@ export function betterDevilAngelRoomsPostNewRoom(): void {
 
 function checkDevilAngelRoomReplacement() {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const isFirstVisit = room.IsFirstVisit();
 
   if (!isFirstVisit) {
@@ -51,9 +50,9 @@ function checkDevilAngelRoomReplacement() {
 
   v.level.vanillaCollectiblesHaveSpawnedInCustomRoom = true;
 
-  if (roomType === RoomType.DEVIL) {
+  if (inRoomType(RoomType.DEVIL)) {
     devil();
-  } else {
+  } else if (inRoomType(RoomType.ANGEL)) {
     angel();
   }
 }

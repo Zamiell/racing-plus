@@ -13,6 +13,7 @@ import {
   game,
   getGridEntities,
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  inRoomType,
   isRoomInsideGrid,
   log,
   removeAllMatchingEntities,
@@ -48,14 +49,12 @@ function inItLivesOrHushBossRoom() {
   const level = game.GetLevel();
   const stage = level.GetStage();
   const stageType = level.GetStageType();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
   return (
     (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
     // Corpse does not have It Lives! / Hush.
     stageType !== StageType.REPENTANCE &&
-    roomType === RoomType.BOSS &&
+    inRoomType(RoomType.BOSS) &&
     // If the player is fighting It Lives from a Reverse Emperor Card room, then the room will be
     // outside the grid. Paths are not supposed to spawn in this situation.
     isRoomInsideGrid()

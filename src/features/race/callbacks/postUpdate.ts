@@ -1,5 +1,5 @@
 import { GameStateFlag, RoomType } from "isaac-typescript-definitions";
-import { findFreePosition, game } from "isaacscript-common";
+import { findFreePosition, game, inRoomType } from "isaacscript-common";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
@@ -17,7 +17,6 @@ export function racePostUpdate(): void {
 
 function spawnBossRushTrophy() {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const bossRushDone = game.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
@@ -26,7 +25,7 @@ function spawnBossRushTrophy() {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
     !g.raceVars.finished &&
-    roomType === RoomType.BOSS_RUSH &&
+    inRoomType(RoomType.BOSS_RUSH) &&
     bossRushDone
   ) {
     const centerPos = room.GetCenterPos();

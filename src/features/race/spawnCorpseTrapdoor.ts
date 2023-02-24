@@ -7,7 +7,11 @@ import {
   RoomType,
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
-import { game, spawnGridEntityWithVariant } from "isaacscript-common";
+import {
+  game,
+  inRoomType,
+  spawnGridEntityWithVariant,
+} from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -22,7 +26,6 @@ export function postNewRoom(): void {
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
   const room = game.GetRoom();
-  const roomType = room.GetType();
 
   if (
     !v.run.spawnedCorpseTrapdoor &&
@@ -30,7 +33,7 @@ export function postNewRoom(): void {
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.MOTHER &&
     mausoleumHeartKilled &&
-    roomType === RoomType.BOSS
+    inRoomType(RoomType.BOSS)
   ) {
     v.run.spawnedCorpseTrapdoor = true;
     const gridIndex = room.GetGridIndex(NORMAL_TRAPDOOR_POSITION);

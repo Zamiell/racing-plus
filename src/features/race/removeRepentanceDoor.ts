@@ -8,6 +8,7 @@ import {
   getEffectiveStage,
   getEffects,
   getRepentanceDoor,
+  inRoomType,
   removeDoor,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
@@ -28,14 +29,13 @@ export function preSpawnClearAward(): void {
 
 function checkRemoveRepentanceDoor() {
   const room = game.GetRoom();
-  const roomType = room.GetType();
   const roomClear = room.IsClear();
 
   if (
     !roomClear ||
     g.race.status !== RaceStatus.IN_PROGRESS ||
     g.race.myStatus !== RacerStatus.RACING ||
-    roomType !== RoomType.BOSS
+    !inRoomType(RoomType.BOSS)
   ) {
     return;
   }

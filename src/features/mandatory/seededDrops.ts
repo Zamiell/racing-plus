@@ -272,15 +272,7 @@ function getPickupVariant(rng: RNG) {
 }
 
 function getRNGToUse() {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
-  if (
-    roomType === RoomType.DEVIL || // 14
-    roomType === RoomType.ANGEL // 15
-  ) {
-    return v.run.rng.devilAngel;
-  }
-
-  return v.run.rng.normalRooms;
+  return inRoomType(RoomType.DEVIL, RoomType.ANGEL)
+    ? v.run.rng.devilAngel
+    : v.run.rng.normalRooms;
 }

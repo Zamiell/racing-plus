@@ -13,6 +13,7 @@ import {
   Callback,
   game,
   getNPCs,
+  inRoomType,
   isRoomInsideGrid,
   log,
   onDarkRoom,
@@ -70,12 +71,11 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
 
   inUnclearedLambBossRoom(): boolean {
     const room = game.GetRoom();
-    const roomType = room.GetType();
     const roomClear = room.IsClear();
 
     return (
       onDarkRoom() &&
-      roomType === RoomType.BOSS &&
+      inRoomType(RoomType.BOSS) &&
       isRoomInsideGrid() &&
       !roomClear
     );

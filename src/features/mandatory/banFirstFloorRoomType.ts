@@ -1,10 +1,10 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
-  game,
   getDoorsToRoomIndex,
   getPlayers,
   getRoomGridIndexesForType,
   hideRoomOnMinimap,
+  inRoomType,
   onFirstFloor,
   removeAllPickups,
   removeDoors,
@@ -42,10 +42,7 @@ function shouldBanSpecialRoomsSeason2() {
 }
 
 function postNewRoomCheckForRoomType(bannedRoomType: RoomType) {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-
-  if (roomType === bannedRoomType) {
+  if (inRoomType(bannedRoomType)) {
     inBannedRoom();
   } else {
     outsideBannedRoom(bannedRoomType);

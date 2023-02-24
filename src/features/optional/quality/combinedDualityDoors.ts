@@ -11,6 +11,7 @@ import {
   game,
   getAngelRoomDoor,
   getDevilRoomDoor,
+  inRoomType,
   log,
 } from "isaacscript-common";
 import { mod } from "../../../mod";
@@ -132,10 +133,8 @@ export function preSpawnClearAward(): void {
 
 function checkModifyDevilRoomDoor() {
   const level = game.GetLevel();
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
-  if (roomType !== RoomType.BOSS) {
+  if (!inRoomType(RoomType.BOSS)) {
     return;
   }
 

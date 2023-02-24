@@ -6,6 +6,7 @@ import {
 import {
   game,
   getAliveBosses,
+  inRoomType,
   ReadonlySet,
   spawnTrinket,
 } from "isaacscript-common";
@@ -24,12 +25,10 @@ export function postEntityKill(entity: Entity): void {
     return;
   }
 
-  const room = game.GetRoom();
-  const roomType = room.GetType();
   const seeds = game.GetSeeds();
   const startSeed = seeds.GetStartSeed();
 
-  if (roomType !== RoomType.BOSS) {
+  if (!inRoomType(RoomType.BOSS)) {
     return;
   }
 
