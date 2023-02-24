@@ -16,6 +16,7 @@ import {
   onDarkRoom,
   onRepentanceStage,
   onSheol,
+  onStage,
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -38,6 +39,14 @@ import {
 } from "../../../speedrun/speedrun";
 import { speedrunGetCharacterNum } from "../../../speedrun/v";
 import * as fastTravel from "./fastTravel";
+
+enum SpeedrunDirection {
+  /** To The Chest & Blue Baby. */
+  UP,
+
+  /** The the Dark Room & The Lamb. */
+  DOWN,
+}
 
 const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
 
@@ -130,14 +139,6 @@ function speedrunUp() {
   return DEFAULT_REPLACEMENT_ACTION;
 }
 
-enum SpeedrunDirection {
-  /** To The Chest & Blue Baby. */
-  UP,
-
-  /** The the Dark Room & The Lamb. */
-  DOWN,
-}
-
 function speedrunAlternate() {
   // Some seasons alternate between directions, so we need to make sure we only handle the intended
   // direction.
@@ -173,99 +174,63 @@ function speedrunAlternate() {
 }
 
 function speedrunKilledFinalBoss() {
-  if (isOnFinalCharacter()) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return BigChestReplacementAction.CHECKPOINT;
+  return isOnFinalCharacter()
+    ? BigChestReplacementAction.TROPHY
+    : BigChestReplacementAction.CHECKPOINT;
 }
 
 function blueBaby() {
-  if (onChest() && !inMegaSatanRoom()) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onChest() && !inMegaSatanRoom()
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function theLamb() {
-  if (onDarkRoom() && !inMegaSatanRoom()) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onDarkRoom() && !inMegaSatanRoom()
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function megaSatan() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.DARK_ROOM_CHEST && !inMegaSatanRoom()) {
+  if (onStage(LevelStage.DARK_ROOM_CHEST)) {
     // We want to delete the Big Chest after Blue Baby or The Lamb to remind the player that they
     // have to go to Mega Satan.
-    return BigChestReplacementAction.REMOVE;
-  }
-
-  if (stage === LevelStage.DARK_ROOM_CHEST && inMegaSatanRoom()) {
-    return BigChestReplacementAction.TROPHY;
+    return inMegaSatanRoom()
+      ? BigChestReplacementAction.TROPHY
+      : BigChestReplacementAction.REMOVE;
   }
 
   return DEFAULT_REPLACEMENT_ACTION;
 }
 
 function hush() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.BLUE_WOMB) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onStage(LevelStage.BLUE_WOMB)
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function delirium() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.THE_VOID) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onStage(LevelStage.THE_VOID)
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function mother() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.WOMB_2 && onRepentanceStage()) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onStage(LevelStage.WOMB_2) && onRepentanceStage()
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function theBeast() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.HOME) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onStage(LevelStage.HOME)
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function bossRush() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
-  if (stage === LevelStage.DEPTHS_2) {
-    return BigChestReplacementAction.TROPHY;
-  }
-
-  return DEFAULT_REPLACEMENT_ACTION;
+  return onStage(LevelStage.DEPTHS_2)
+    ? BigChestReplacementAction.TROPHY
+    : DEFAULT_REPLACEMENT_ACTION;
 }
 
 function replace(

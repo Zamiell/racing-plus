@@ -15,6 +15,7 @@ import {
   isChildPlayer,
   log,
   onRepentanceStage,
+  onStage,
 } from "isaacscript-common";
 import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/season3/constants";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
@@ -75,8 +76,6 @@ function getCustomSpriteFilename(
   const mausoleumHeartKilled = game.GetStateFlag(
     GameStateFlag.MAUSOLEUM_HEART_KILLED,
   );
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const gridIndex = room.GetGridIndex(entity.Position);
   const roomGridIndex = getRoomGridIndex();
@@ -131,25 +130,24 @@ function getCustomSpriteFilename(
       // -10
       if (roomGridIndex === asNumber(GridRoom.SECRET_EXIT)) {
         if (
-          (stage === LevelStage.BASEMENT_1 ||
-            stage === LevelStage.BASEMENT_2) &&
+          onStage(LevelStage.BASEMENT_1, LevelStage.BASEMENT_2) &&
           !repentanceStage
         ) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
 
         if (
-          ((stage === LevelStage.CAVES_1 || stage === LevelStage.CAVES_2) &&
+          (onStage(LevelStage.CAVES_1, LevelStage.CAVES_2) &&
             !repentanceStage) ||
-          (stage === LevelStage.BASEMENT_2 && repentanceStage)
+          (onStage(LevelStage.BASEMENT_2) && repentanceStage)
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          ((stage === LevelStage.DEPTHS_1 || stage === LevelStage.DEPTHS_2) &&
+          (onStage(LevelStage.DEPTHS_1, LevelStage.DEPTHS_2) &&
             !repentanceStage) ||
-          (stage === LevelStage.CAVES_2 && repentanceStage)
+          (onStage(LevelStage.CAVES_2) && repentanceStage)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
@@ -157,17 +155,16 @@ function getCustomSpriteFilename(
 
       if (
         (repentanceStage &&
-          stage === LevelStage.DEPTHS_2 &&
+          onStage(LevelStage.DEPTHS_2) &&
           mausoleumHeartKilled) ||
-        (repentanceStage && stage === LevelStage.WOMB_1)
+        (repentanceStage && onStage(LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }
 
       if (
-        (isGreedMode && stage === LevelStage.CAVES_1) ||
-        (!isGreedMode &&
-          (stage === LevelStage.DEPTHS_2 || stage === LevelStage.WOMB_1))
+        (isGreedMode && onStage(LevelStage.CAVES_1)) ||
+        (!isGreedMode && onStage(LevelStage.DEPTHS_2, LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_wombhole_custom.anm2";
       }

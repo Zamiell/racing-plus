@@ -5,10 +5,10 @@ import {
 } from "isaac-typescript-definitions";
 import {
   game,
-  getEffectiveStage,
   getEffects,
   getRepentanceDoor,
   inRoomType,
+  onEffectiveStage,
   removeDoor,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
@@ -70,9 +70,8 @@ function shouldRemoveRepentanceDoorOnSeededRace() {
  * the Mausoleum floors by deleting the doors.
  */
 function shouldRemoveRepentanceDoorOnBeastRace() {
-  const effectiveStage = getEffectiveStage();
   return (
-    g.race.goal === RaceGoal.THE_BEAST && effectiveStage === LevelStage.DEPTHS_1
+    g.race.goal === RaceGoal.THE_BEAST && onEffectiveStage(LevelStage.DEPTHS_1)
   );
 }
 

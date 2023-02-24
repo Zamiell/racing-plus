@@ -18,6 +18,7 @@ import {
   isCharacter,
   log,
   onRepentanceStage,
+  onStage,
   ReadonlySet,
   spawnEffect,
   VectorZero,
@@ -99,11 +100,8 @@ export function setFadingToBlack(
 }
 
 function setGameStateFlags(position: Vector) {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
   // If the player has gone through the trapdoor past the strange door.
-  if (stage === LevelStage.DEPTHS_2 && !onRepentanceStage() && inSecretExit()) {
+  if (onStage(LevelStage.DEPTHS_2) && !onRepentanceStage() && inSecretExit()) {
     // Set the game state flag that results in Mausoleum 2 having Dad's Note at the end of it.
     game.SetStateFlag(GameStateFlag.BACKWARDS_PATH_INIT, true);
   }

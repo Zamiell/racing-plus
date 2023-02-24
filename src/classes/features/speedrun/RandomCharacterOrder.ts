@@ -10,11 +10,11 @@ import {
   CallbackCustom,
   copyArray,
   emptyArray,
-  getEffectiveStage,
   getRandomArrayElementAndRemove,
   inRoomType,
   isRoomInsideGrid,
   ModCallbackCustom,
+  onEffectiveStage,
   ReadonlySet,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
@@ -153,13 +153,10 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
   /** Reset the starting character timer if we just killed the Basement 2 boss. */
   checkResetTimeAssigned(): void {
-    const effectiveStage = getEffectiveStage();
-    const roomInsideGrid = isRoomInsideGrid();
-
     if (
-      effectiveStage === LevelStage.BASEMENT_2 &&
+      onEffectiveStage(LevelStage.BASEMENT_2) &&
       inRoomType(RoomType.BOSS) &&
-      roomInsideGrid
+      isRoomInsideGrid()
     ) {
       v.persistent.timeCharacterAssigned = 0;
     }

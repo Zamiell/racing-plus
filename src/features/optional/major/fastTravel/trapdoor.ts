@@ -16,6 +16,7 @@ import {
   log,
   onRepentanceStage,
   onSheol,
+  onStage,
   removeGridEntity,
 } from "isaacscript-common";
 import {
@@ -81,8 +82,6 @@ export function postGridEntityRemoveTrapdoor(gridIndex: int): void {
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const seeds = game.GetSeeds();
   const repentanceStage = onRepentanceStage();
 
@@ -97,7 +96,7 @@ function shouldIgnore(gridEntity: GridEntity) {
   }
 
   // Don't replace the trap door that leads to Mother.
-  if (stage === LevelStage.WOMB_2 && repentanceStage) {
+  if (onStage(LevelStage.WOMB_2) && repentanceStage) {
     return true;
   }
 
@@ -121,7 +120,7 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.BOSS_RUSH &&
-    stage === LevelStage.DEPTHS_2
+    onStage(LevelStage.DEPTHS_2)
   ) {
     log(
       `Removed a vanilla trapdoor on Depths 2 (for a race Boss Rush goal) on game frame: ${gameFrameCount}`,
@@ -132,7 +131,7 @@ function shouldRemove() {
   if (
     onSeason(3) &&
     season3HasOnlyBossRushLeft() &&
-    stage === LevelStage.DEPTHS_2
+    onStage(LevelStage.DEPTHS_2)
   ) {
     log(
       `Removed a vanilla trapdoor on Depths 2 (for a Season 3 Boss Rush goal) on game frame: ${gameFrameCount}`,
@@ -145,7 +144,7 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === LevelStage.WOMB_2 &&
+    onStage(LevelStage.WOMB_2) &&
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
@@ -157,7 +156,7 @@ function shouldRemove() {
   if (
     onSeason(3) &&
     season3HasOnlyHushLeft() &&
-    stage === LevelStage.WOMB_2 &&
+    onStage(LevelStage.WOMB_2) &&
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
@@ -171,7 +170,7 @@ function shouldRemove() {
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === LevelStage.BLUE_WOMB &&
+    onStage(LevelStage.BLUE_WOMB) &&
     roomGridIndex !== asNumber(GridRoom.THE_VOID)
   ) {
     log(
@@ -188,24 +187,14 @@ function shouldRemove() {
     g.race.goal === RaceGoal.MOTHER &&
     inRoomType(RoomType.BOSS)
   ) {
-    if (
-      (stage === LevelStage.BASEMENT_1 ||
-        stage === LevelStage.BASEMENT_2 ||
-        stage === LevelStage.CAVES_1 ||
-        stage === LevelStage.CAVES_2 ||
-        stage === LevelStage.DEPTHS_1) &&
-      !repentanceStage
-    ) {
+    if (stage <= LevelStage.DEPTHS_1 && !repentanceStage) {
       log(
         `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
 
-    if (
-      (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
-      repentanceStage
-    ) {
+    if (onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2) && repentanceStage) {
       log(
         `Removed a vanilla trapdoor Downpour/Dross or Mines/Ashpit (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
@@ -213,7 +202,7 @@ function shouldRemove() {
     }
 
     if (
-      stage === LevelStage.DEPTHS_2 &&
+      onStage(LevelStage.DEPTHS_2) &&
       repentanceStage &&
       !mausoleumHeartKilled
     ) {
@@ -228,7 +217,7 @@ function shouldRemove() {
   if (
     onSeason(3) &&
     season3HasOnlyMotherLeft() &&
-    (stage === LevelStage.BASEMENT_2 || stage === LevelStage.CAVES_2) &&
+    onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2) &&
     !inSecretExit()
   ) {
     log(

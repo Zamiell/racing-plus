@@ -20,6 +20,7 @@ import {
   isRoomInsideGrid,
   log,
   newPickingUpItem,
+  onStage,
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./features/optional/gameplay/extraStartingItems/constants";
 import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
@@ -108,15 +109,13 @@ export function hasPolaroidOrNegative(): [boolean, boolean] {
 }
 
 export function inClearedMomBossRoom(): boolean {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const roomClear = room.IsClear();
   const bossID = room.GetBossID();
   const roomInsideGrid = isRoomInsideGrid();
 
   return (
-    stage === LevelStage.DEPTHS_2 &&
+    onStage(LevelStage.DEPTHS_2) &&
     inRoomType(RoomType.BOSS) &&
     roomInsideGrid &&
     roomClear &&

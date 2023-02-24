@@ -383,14 +383,12 @@ export class Season3 extends ChallengeModFeature {
     const backwardsPathInit = game.GetStateFlag(
       GameStateFlag.BACKWARDS_PATH_INIT,
     );
-    const level = game.GetLevel();
-    const stage = level.GetStage();
     const repentanceStage = onRepentanceStage();
     const roomInsideGrid = isRoomInsideGrid();
 
     if (
       season3HasDogmaGoal() &&
-      stage === LevelStage.DEPTHS_2 &&
+      onStage(LevelStage.DEPTHS_2) &&
       repentanceStage &&
       inRoomType(RoomType.BOSS) &&
       roomInsideGrid &&
@@ -457,12 +455,10 @@ export class Season3 extends ChallengeModFeature {
    * subsequent frame.
    */
   checkHushCleared(): void {
-    const level = game.GetLevel();
-    const stage = level.GetStage();
     const room = game.GetRoom();
 
     if (
-      stage === LevelStage.BLUE_WOMB &&
+      onStage(LevelStage.BLUE_WOMB) &&
       inRoomType(RoomType.BOSS) &&
       isRoomInsideGrid() &&
       season3HasHushGoal()
@@ -580,8 +576,6 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
 }
 
 function getGoalCorrespondingToRoom(): Season3Goal | undefined {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const repentanceStage = onRepentanceStage();
 
   // First, check for goals related to the specific room type.
@@ -594,7 +588,7 @@ function getGoalCorrespondingToRoom(): Season3Goal | undefined {
   }
 
   // Second, check for goals relating to the stage.
-  if (stage === LevelStage.BLUE_WOMB) {
+  if (onStage(LevelStage.BLUE_WOMB)) {
     return Season3Goal.HUSH;
   }
 
@@ -606,11 +600,11 @@ function getGoalCorrespondingToRoom(): Season3Goal | undefined {
     return Season3Goal.THE_LAMB;
   }
 
-  if (stage === LevelStage.WOMB_2 && repentanceStage) {
+  if (onStage(LevelStage.WOMB_2) && repentanceStage) {
     return Season3Goal.MOTHER;
   }
 
-  if (stage === LevelStage.HOME) {
+  if (onStage(LevelStage.HOME)) {
     return Season3Goal.DOGMA;
   }
 

@@ -10,6 +10,7 @@ import {
   inRoomType,
   ModCallbackCustom,
   onRepentanceStage,
+  onStage,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -32,7 +33,7 @@ export class RemovePerfectionOnEndFloors extends ConfigurableModFeature {
     const stage = level.GetStage();
     if (
       stage >= LevelStage.DARK_ROOM_CHEST ||
-      (stage === LevelStage.WOMB_2 && onRepentanceStage())
+      (onStage(LevelStage.WOMB_2) && onRepentanceStage())
     ) {
       pickup.Remove();
     }

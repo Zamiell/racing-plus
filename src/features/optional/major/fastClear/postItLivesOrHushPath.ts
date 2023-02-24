@@ -150,14 +150,12 @@ function getItLivesSituationRace(goal: RaceGoal): ItLivesSituation {
 
 function doItLivesSituation(situation: ItLivesSituation) {
   const gameFrameCount = game.GetFrameCount();
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
 
   let positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
   let positionLeft = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
   let positionRight = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
-  if (stage === LevelStage.BLUE_WOMB) {
+  if (onStage(LevelStage.BLUE_WOMB)) {
     positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM);
     positionLeft = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM - 1);
     positionRight = room.GetGridPosition(GRID_INDEX_CENTER_OF_HUSH_ROOM + 1);

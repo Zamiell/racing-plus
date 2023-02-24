@@ -12,6 +12,7 @@ import {
   getNextStageType,
   getPlayers,
   onRepentanceStage,
+  onStage,
   removeAllMatchingEntities,
   setStage,
 } from "isaacscript-common";
@@ -27,8 +28,6 @@ import { v } from "./v";
 
 export function goto(upwards: boolean): void {
   const hud = game.GetHUD();
-  const level = game.GetLevel();
-  const stage = level.GetStage();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
   const nextStage = getNextStageCustom();
@@ -69,7 +68,7 @@ export function goto(upwards: boolean): void {
   // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
   // command after doing the "stage" command. However, when we travel to the same floor layout from
   // a Repentance exit, floors do not need to be reseeded for some reason.
-  const reseed = stage === nextStage && !v.run.repentanceSecretExit;
+  const reseed = onStage(nextStage) && !v.run.repentanceSecretExit;
 
   // Use the console to manually travel to the floor.
   setStage(nextStage, nextStageType, reseed);

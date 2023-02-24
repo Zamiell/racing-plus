@@ -17,6 +17,7 @@ import {
   inStartingRoom,
   isRoomInsideGrid,
   log,
+  onStage,
   ReadonlySet,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
@@ -34,8 +35,6 @@ export function postNewRoom(): void {
     return;
   }
 
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const roomShape = room.GetRoomShape();
 
@@ -45,7 +44,7 @@ export function postNewRoom(): void {
 
   // Don't bother fixing entrances in the Mom boss room.
   if (
-    stage === LevelStage.DEPTHS_2 &&
+    onStage(LevelStage.DEPTHS_2) &&
     inRoomType(RoomType.BOSS) &&
     isRoomInsideGrid()
   ) {

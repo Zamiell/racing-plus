@@ -8,6 +8,7 @@ import {
   game,
   inRoomType,
   isRoomInsideGrid,
+  onStage,
   spawnGridEntity,
 } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
@@ -32,14 +33,11 @@ function checkDeleteDoor() {
 }
 
 function shouldDeleteVoidDoor() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
   return (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    stage === LevelStage.BLUE_WOMB &&
+    onStage(LevelStage.BLUE_WOMB) &&
     inRoomType(RoomType.BOSS) &&
     isRoomInsideGrid()
   );

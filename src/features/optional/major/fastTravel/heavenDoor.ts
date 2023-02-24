@@ -5,7 +5,13 @@ import {
   LevelStage,
   RoomType,
 } from "isaac-typescript-definitions";
-import { game, getEffects, inBossRoomOf, inRoomType } from "isaacscript-common";
+import {
+  game,
+  getEffects,
+  inBossRoomOf,
+  inRoomType,
+  onStage,
+} from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -42,16 +48,13 @@ function shouldRemove(effect: EntityEffect) {
     return false;
   }
 
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-
   // - If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
   // - If the goal of the race is Hush, delete the heaven door that spawns after Hush.
   if (
     g.race.status === RaceStatus.IN_PROGRESS &&
     g.race.myStatus === RacerStatus.RACING &&
     g.race.goal === RaceGoal.HUSH &&
-    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB)
+    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)
   ) {
     return true;
   }
@@ -60,11 +63,6 @@ function shouldRemove(effect: EntityEffect) {
 }
 
 function shouldSpawnOpen() {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const room = game.GetRoom();
-  const roomClear = room.IsClear();
-
   // In almost all cases, beams of light are spawned after defeating a boss. This means that the
   // room will be clear and they should spawn in an open state. Rarely, players can also encounter
   // beams of light in an I AM ERROR room with enemies. If this is the case, spawn the heaven door
@@ -72,11 +70,14 @@ function shouldSpawnOpen() {
   // up. However, the room will not be clear yet if this is a manually spawned heaven door after
   // killing It Lives or Hush, so account for that first.
   if (
-    (stage === LevelStage.WOMB_2 || stage === LevelStage.BLUE_WOMB) &&
+    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB) &&
     inRoomType(RoomType.BOSS)
   ) {
     return true;
   }
+
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
 
   return roomClear;
 }

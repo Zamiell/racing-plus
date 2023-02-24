@@ -6,7 +6,12 @@ import {
   LevelStage,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { findFreePosition, game, VectorZero } from "isaacscript-common";
+import {
+  findFreePosition,
+  game,
+  onStage,
+  VectorZero,
+} from "isaacscript-common";
 import { mod } from "../../../mod";
 import { config } from "../../../modConfigMenu";
 
@@ -56,17 +61,15 @@ export function postPickupInitTrinket(pickup: EntityPickupTrinket): void {
 }
 
 function getPerfectionPosition(): Vector {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
   const room = game.GetRoom();
   const centerPos = room.GetCenterPos();
   const gridEntity = room.GetGridEntityFromPos(centerPos);
 
-  if (stage === LevelStage.WOMB_2) {
+  if (onStage(LevelStage.WOMB_2)) {
     return room.GetGridPosition(STAGE_8_SPAWN_GRID_LOCATION);
   }
 
-  if (stage === LevelStage.SHEOL_CATHEDRAL) {
+  if (onStage(LevelStage.SHEOL_CATHEDRAL)) {
     return room.GetGridPosition(STAGE_10_SPAWN_GRID_LOCATION);
   }
 
