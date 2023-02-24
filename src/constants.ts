@@ -9,4 +9,4 @@ export const RACE_TIMER_POSITION_X = 19; // Directly below the stat HUD.
 export const RACE_TIMER_POSITION_Y = 198; // Directly below the stat HUD.
 
 /** The version is updated automatically by the IsaacScript publish command. */
-export const VERSION = "0.95.1";
+export const VERSION = "0.95.2";
