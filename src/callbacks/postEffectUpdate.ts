@@ -2,7 +2,6 @@ import { EffectVariant, ModCallback } from "isaac-typescript-definitions";
 import * as fastTravelPostEffectUpdate from "../features/optional/major/fastTravel/callbacks/postEffectUpdate";
 import * as changeCreepColor from "../features/optional/quality/changeCreepColor";
 import * as fadeDevilStatue from "../features/optional/quality/fadeDevilStatue";
-import * as fastLuna from "../features/optional/quality/fastLuna";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -44,7 +43,6 @@ function creepRed(effect: EntityEffect) {
 // EffectVariant.HEAVEN_LIGHT_DOOR (39)
 function heavenLightDoor(effect: EntityEffect) {
   fastTravelPostEffectUpdate.heavenLightDoor(effect);
-  fastLuna.postEffectUpdateHeavenLightDoor(effect);
 }
 
 // EffectVariant.PLAYER_CREEP_RED (46)

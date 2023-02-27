@@ -404,16 +404,25 @@ Post-flip actions:
 
 ### 10) Graphics Fixes
 
-- `1001` <!-- HUDOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
-- `1002` <!-- DrawControls --> The controls graphic in the start room is changed to be speedrunning-themed.
-- `1003` <!-- PaschalCandle 3.221 --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
-- `1004` <!-- ScaredHeart 5.10.9 --> Scared Hearts now have a custom animation so that they are easier to identify.
-- `1005` <!-- StickyNickel 5.20.6 --> Sticky Nickels now have a custom effect so that they are easier to identify.
-- `1006` <!-- UniqueCardBacks 5.300 --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
+- `1001` <!-- DrawControls --> The controls graphic in the start room is changed to be speedrunning-themed.
+- `1002` <!-- HolidayHats --> Show a festive hat during a holiday.
+- `1003` <!-- HUDOffsetFix --> The default HUD offset is changed from 1.0 to 0.0.
 
 > Why? This is how it was in Afterbirth+ and is likely the intended default value.
 
-- `1007` <!-- HolidayHats --> Show a festive hat during a holiday.
+- `1004` <!-- PaschalCandle 3.221 --> Paschal Candle now visually "fills up" so that you can easily tell at a glance if it is maxed out.
+- `1005` <!-- ScaredHeart 5.10.9 --> Scared Hearts now have a custom animation so that they are easier to identify.
+- `1006` <!-- StickyNickel 5.20.6 --> Sticky Nickels now have a custom effect so that they are easier to identify.
+- `1007` <!-- UniqueCardBacks 5.300 --> Blank Runes, Black Runes, and ? Cards now have a unique graphic so that they are easier to identify.
+- <!-- "teammeatfont10.fnt", "teammeatfont10_0.png" --> The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
+
+> Why? The text blocks gameplay.
+
+- <!-- ui_streak.anm2 --> Streak text is revamped so that it will no longer block gameplay.
+- <!-- RemoveFortuneCookieBanner --> The banner for fortune cookies graphics for fortunes and custom seeds is removed.
+
+> Why? So that gameplay is not blocked when you use Rules card.
+
 - <!-- "ui_hearts.png" --> The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
 - <!-- 5.70 --> Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - <!-- 5.70 --> The color of some pills are changed to make them easier to identify at a glance:
@@ -426,17 +435,9 @@ Post-flip actions:
 - The Distant Admiration, Forever Alone, and Friend Zone sprites now match the color of the actual familiars. <!-- 5.100.57, 5.100.128, 5.100.364 -->
 - The 20/20 sprite is now easier to see. <!-- 5.100.245, "collectibles_245_2020_custom.png" -->
 - The Star of Bethlehem sprite is now more distinct from Eden's Soul. (Credit goes to [Chebupeli](https://steamcommunity.com/profiles/76561198370261026).) <!-- 5.100.651, "collectibles_651_starofbethlehem_custom.png" -->
-- The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).) <!-- 5.350.75, "trinket_075_error.png" (cannot be toggleable) -->
-- The Locust of Famine sprite now matches the color of the flies. <!-- 5.350.115, "trinket_115_locustoffamine.png" (cannot be toggleable) -->
+- The Error trinket sprite now has an outline. (Credit goes to [O_o](http://steamcommunity.com/profiles/76561197993627005).) <!-- 5.350.75, "trinket_075_error.png" -->
+- The Locust of Famine sprite now matches the color of the flies. <!-- 5.350.115, "trinket_115_locustoffamine.png" -->
 - The icon for a dirty bedroom is now a cobweb so that it is more distinct from a clean bedroom.
-- <!-- "teammeatfont10.fnt", "teammeatfont10_0.png" --> The vanilla in-game timer and score text will no longer appear. (Hold Tab to see a custom in-game timer.)
-
-> Why? The text blocks gameplay.
-
-- <!-- RemoveFortuneCookieBanner --> The banner for fortune cookies graphics for fortunes and custom seeds is removed.
-
-> Why? So that gameplay is not blocked when you use Rules card.
-
 - All fog is removed.
 
 > Why? It makes elements on the screen easier to see and it makes the game run better on slower computers.
@@ -447,10 +448,11 @@ Post-flip actions:
 
 ### 12) Other
 
-- `1201` <!-- Shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
+- `1201` <!-- CharacterTimer --> In multi-character speedruns, draw a second timer that shows the time since the last checkpoint.
 - `1202` <!-- Chat --> Chat from your race opponents will be drawn on the screen.
-- <!-- ForceFadedConsoleDisplay --> The "faded console display" feature is automatically enabled in the "options.ini" file, which allows you to visually see when an error in the game happens.
+- `1203` <!-- Shadows --> Your race opponents will appear on your screen as faded sprites during seeded races.
 - <!-- DrawVersion --> Pressing the "F1" key on the keyboard will draw the version of Racing+ on the screen.
+- <!-- ForceFadedConsoleDisplay --> The "faded console display" feature is automatically enabled in the "options.ini" file, which allows you to visually see when an error in the game happens.
 
 <br>
 

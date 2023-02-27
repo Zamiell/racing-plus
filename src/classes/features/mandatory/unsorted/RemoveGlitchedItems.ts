@@ -11,8 +11,8 @@ import {
   log,
   ReadonlySet,
 } from "isaacscript-common";
-import { mod } from "../../../mod";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { mod } from "../../../../mod";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
 

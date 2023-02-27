@@ -7,7 +7,7 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/checkErrors/v";
+import { hasErrors } from "../mandatory/unsorted/checkErrors/v";
 
 export class Season1 extends ChallengeModFeature {
   challenge = ChallengeCustom.SEASON_1;

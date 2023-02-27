@@ -1,28 +1,29 @@
+/* eslint-disable isaacscript/complete-sentences-line-comments */
+
 import { ModFeature } from "isaacscript-common";
-import { DebugItem } from "./classes/features/items/DebugItem";
-import { FlipCustom } from "./classes/features/items/FlipCustom";
-import { Magic8BallSeeded } from "./classes/features/items/Magic8BallSeeded";
-import { NLuck } from "./classes/features/items/NLuck";
-import { Sawblade } from "./classes/features/items/Sawblade";
-import { SolCustom } from "./classes/features/items/SolCustom";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
-import { CheckErrors } from "./classes/features/mandatory/CheckErrors";
-import { DisableMultiplayer } from "./classes/features/mandatory/DisableMultiplayer";
-import { DoubleAngelNerf } from "./classes/features/mandatory/DoubleAngelNerf";
-import { DrawControls } from "./classes/features/mandatory/DrawControls";
-import { DrawVersion } from "./classes/features/mandatory/DrawVersion";
-import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/ForceFadedConsoleDisplay";
-import { LogConsoleCommands } from "./classes/features/mandatory/LogConsoleCommands";
-import { PreserveCheckpoint } from "./classes/features/mandatory/PreserveCheckpoint";
-import { RacingPlusIcon } from "./classes/features/mandatory/RacingPlusIcon";
-import { RemoveBannedPillEffects } from "./classes/features/mandatory/RemoveBannedPillEffects";
-import { RemoveGlitchedItems } from "./classes/features/mandatory/RemoveGlitchedItems";
-import { RemoveGloballyBannedItems } from "./classes/features/mandatory/RemoveGloballyBannedItems";
-import { RestartOnNextFrame } from "./classes/features/mandatory/RestartOnNextFrame";
-import { TimeConsoleUsed } from "./classes/features/mandatory/TimeConsoleUsed";
-import { Trophy } from "./classes/features/mandatory/Trophy";
+import { DebugItem } from "./classes/features/mandatory/items/DebugItem";
+import { Magic8BallSeeded } from "./classes/features/mandatory/items/Magic8BallSeeded";
+import { NLuck } from "./classes/features/mandatory/items/NLuck";
+import { Sawblade } from "./classes/features/mandatory/items/Sawblade";
+import { SolCustom } from "./classes/features/mandatory/items/SolCustom";
+import { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
+import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";
+import { CheckErrors } from "./classes/features/mandatory/unsorted/CheckErrors";
+import { DisableMultiplayer } from "./classes/features/mandatory/unsorted/DisableMultiplayer";
+import { DoubleAngelNerf } from "./classes/features/mandatory/unsorted/DoubleAngelNerf";
+import { DrawControls } from "./classes/features/mandatory/unsorted/DrawControls";
+import { LogConsoleCommands } from "./classes/features/mandatory/unsorted/LogConsoleCommands";
+import { PreserveCheckpoint } from "./classes/features/mandatory/unsorted/PreserveCheckpoint";
+import { RacingPlusIcon } from "./classes/features/mandatory/unsorted/RacingPlusIcon";
+import { RemoveBannedPillEffects } from "./classes/features/mandatory/unsorted/RemoveBannedPillEffects";
+import { RemoveGlitchedItems } from "./classes/features/mandatory/unsorted/RemoveGlitchedItems";
+import { RemoveGloballyBannedItems } from "./classes/features/mandatory/unsorted/RemoveGloballyBannedItems";
+import { RestartOnNextFrame } from "./classes/features/mandatory/unsorted/RestartOnNextFrame";
+import { TimeConsoleUsed } from "./classes/features/mandatory/unsorted/TimeConsoleUsed";
+import { Trophy } from "./classes/features/mandatory/unsorted/Trophy";
 import { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
 import { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";
 import { FastAngels } from "./classes/features/optional/bosses/FastAngels";
@@ -82,6 +83,9 @@ import { ScaredHeart } from "./classes/features/optional/graphics/ScaredHeart";
 import { StickyNickel } from "./classes/features/optional/graphics/StickyNickel";
 import { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCardBacks";
 import { FastReset } from "./classes/features/optional/major/FastReset";
+import { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
+import { FastLuna } from "./classes/features/optional/quality/FastLuna";
+import { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
 import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
 import { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
@@ -98,7 +102,6 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * - Search for all `config` to ensure that no functions have early return with it.
  * - Search for: ^(?<![\s\S\r])//
  * - Search for: "import *"
- * - Make sure all classes are sorted alphabetically + in "changes.md".
  * - Sort files in "mandatory" directory into subdirectories and ensure that everything is
  *   documented in "changes.md".
  * - Audit "changes.md" to see that it conforms to the ordering in this file.
@@ -106,14 +109,14 @@ import { Season4 } from "./classes/features/speedrun/Season4";
  * - Search for: "postNewRoom("
  * - Search for: "postGameStarted("
  * - Search for: "postGameStartedReordered(" (should have false suffix)
+ * - Make SolCustom part of FastClear directory.
+ * - Alphabetize "Removals" section + Config.ts.
  */
 const FEATURE_CLASSES = [
   // Mandatory
   CheckErrors,
   DisableMultiplayer,
   DoubleAngelNerf,
-  DrawVersion,
-  ForceFadedConsoleDisplay,
   LogConsoleCommands,
   PreserveCheckpoint,
   RacingPlusIcon,
@@ -124,6 +127,13 @@ const FEATURE_CLASSES = [
   TimeConsoleUsed,
   Trophy,
 
+  // Items (mandatory)
+  DebugItem,
+  Magic8BallSeeded,
+  NLuck,
+  Sawblade,
+  SolCustom,
+
   // Speedrun
   RandomCharacterOrder, // This must be before the seasons.
   Season1,
@@ -131,15 +141,8 @@ const FEATURE_CLASSES = [
   Season3,
   Season4,
 
-  // Items
-  DebugItem,
-  FlipCustom,
-  Magic8BallSeeded,
-  NLuck,
-  Sawblade,
-  SolCustom,
-
-  // Major
+  // Major (not alphabetized)
+  // - ClientCommunication,
   StartWithD6,
   DisableCurses,
   // - BetterDevilAngelRooms,
@@ -200,18 +203,48 @@ const FEATURE_CLASSES = [
   DummyDPS, // 964
 
   // Quality of Life
-  RemovePerfectionOnEndFloors,
+  // - AutomaticItemInsertion,
+  // - ChangeCreepColor,
+  // - ChargePocketItemFirst,
+  // - DeleteVoidPortals,
+  // - EasyFirstFloorItems,
+  // - FadeDevilStatue,
   RunTimer,
   ShowMaxFamiliars,
+  // - ShowNumSacrifices,
+  // - ShowPills,
   SpeedUpFadeIn,
+  // - SubvertTeleport,
+  // - TaintedSamsonChargeBar, // 27 (charge bar)
+  // - BloodyLustChargeBar, // 157 (charge bar)
+  // - LeadPencilChargeBar, // 444 (charge bar)
+  AzazelsRageChargeBar, // 669 (charge bar)
+  // - CombinedDualityDoors, // 498 (collectible)
+  // - RemoveFortuneCookieBanners, // 557 (collectible)
+  // - ShowDreamCatcherItem, // 566 (collectible)
+  FastLuna, // 589 (collectible)
+  // - FadeVasculitisTears, // 657 (collectible)
+  // - FastVanishingTwin, // 697 (collectible)
+  FlipCustom, // 711 (collectible)
+  // - RemovePerfectionVelocity, // 145 (trinket)
+  RemovePerfectionOnEndFloors, // 145 (trinket)
+  // - DisplayExpansionPack, // 181 (trinket)
+
+  // Quality of Life (mandatory)
+  // - CenterStart
 
   // Gameplay
   ConsistentTrollBombs,
   ExtraStartingItems,
   PillsCancelAnimations,
 
-  // Removals
-  // TODO
+  // Gameplay (mandatory)
+  // - NerfCardReading,
+
+  // Removals (mandatory) (not alphabetized)
+  // - RemoveGloballyBannedItems,
+  // - RemoveGlitchedItems,
+  // - RemoveBannedPillEffects,
 
   // Cutscenes
   FastTeleport,
@@ -224,20 +257,31 @@ const FEATURE_CLASSES = [
   TaintedIsaacCollectibleDelay,
   TeleportInvalidEntrance,
 
+  // Bug Fixes (mandatory)
+  // - SeededTeleports, // 44
+  // - SeededGBBug, // 405
+  // - SeededGlitterBombs, // 432
+
   // Graphics
   DrawControls,
   HolidayHats,
   HUDOffsetFix,
-  PaschalCandle,
-  ScaredHeart,
-  StickyNickel,
-  UniqueCardBacks,
+  PaschalCandle, // 3.221
+  ScaredHeart, // 5.10.9
+  StickyNickel, // 5.20.6
+  UniqueCardBacks, // 5.300
 
   // Sounds
   SilenceMomDad,
 
   // Other
-  // TODO
+  // - CharacterTimer,
+  // - Chat,
+  // - Shadows,
+
+  // Other (mandatory)
+  DrawVersion,
+  ForceFadedConsoleDisplay,
 ] as const satisfies ReadonlyArray<typeof ModFeature>;
 
 export function initFeatureClasses(): void {

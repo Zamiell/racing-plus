@@ -1,6 +1,6 @@
 import { ModCallback, PillEffect } from "isaac-typescript-definitions";
 import { Callback, ReadonlyMap } from "isaacscript-common";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const BANNED_PILLS = new ReadonlyMap<PillEffect, PillEffect>([
   [PillEffect.AMNESIA, PillEffect.HORF], // 25

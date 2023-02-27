@@ -1,5 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
+import { hasErrors } from "../classes/features/mandatory/unsorted/checkErrors/v";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";

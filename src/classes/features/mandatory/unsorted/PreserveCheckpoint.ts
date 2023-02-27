@@ -1,9 +1,9 @@
 import { CardType, ModCallback } from "isaac-typescript-definitions";
 import { Callback, getCollectibles } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { postSpawnCheckpoint } from "../../../features/speedrun/speedrun";
-import { mod } from "../../../mod";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { postSpawnCheckpoint } from "../../../../features/speedrun/speedrun";
+import { mod } from "../../../../mod";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 export class PreserveCheckpoint extends MandatoryModFeature {
   // 5, 41

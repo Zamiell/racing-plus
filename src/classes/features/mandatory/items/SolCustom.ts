@@ -24,9 +24,9 @@ import {
   ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { Config } from "../../Config";
-import { ConfigurableModFeature } from "../../ConfigurableModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.SOL_CUSTOM;

@@ -26,12 +26,12 @@ import {
   spawnEmptyCollectible,
   useActiveItemTemp,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { mod } from "../../../mod";
-import { newCollectibleSprite } from "../../../sprite";
-import { Config } from "../../Config";
-import { ConfigurableModFeature } from "../../ConfigurableModFeature";
-import { COLLECTIBLE_REPLACEMENT_MAP } from "../optional/gameplay/extraStartingItems/constants";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { mod } from "../../../../mod";
+import { newCollectibleSprite } from "../../../../sprite";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { COLLECTIBLE_REPLACEMENT_MAP } from "../gameplay/extraStartingItems/constants";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.FLIP;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.FLIP_CUSTOM;

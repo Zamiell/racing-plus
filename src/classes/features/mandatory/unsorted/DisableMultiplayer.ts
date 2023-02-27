@@ -1,6 +1,6 @@
 import { FadeoutTarget, ModCallback } from "isaac-typescript-definitions";
 import { Callback, game, isMultiplayer } from "isaacscript-common";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 /**
  * Multiplayer is illegal in Racing+ races and custom challenges, so if multiplayer is detected, the

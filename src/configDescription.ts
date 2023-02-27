@@ -701,7 +701,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "TaintedSamsonChargeBar",
+    "TaintedSamsonChargeBar", // 27 (charge bar)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0513",
@@ -710,7 +710,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "BloodyLustChargeBar",
+    "BloodyLustChargeBar", // 157 (charge bar)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0514",
@@ -719,7 +719,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "LeadPencilChargeBar", // 444
+    "LeadPencilChargeBar", // 444 (charge bar)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0515",
@@ -728,7 +728,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "AzazelsRageChargeBar", // 669
+    "AzazelsRageChargeBar", // 669 (charge bar)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0516",
@@ -737,7 +737,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "CombinedDualityDoors", // 498
+    "CombinedDualityDoors", // 498 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0517",
@@ -746,7 +746,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "RemoveFortuneCookieBanners", // 557
+    "RemoveFortuneCookieBanners", // 557 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0518",
@@ -755,7 +755,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "ShowDreamCatcherItem", // 566
+    "ShowDreamCatcherItem", // 566 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0519",
@@ -764,7 +764,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "FastLuna", // 589
+    "FastLuna", // 589 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0520",
@@ -777,7 +777,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
 // 0521-0530
 export const QUALITY_OF_LIFE_CHANGES_3 = [
   [
-    "FadeVasculitisTears", // 657
+    "FadeVasculitisTears", // 657 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0521",
@@ -786,7 +786,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "FastVanishingTwin", // 697
+    "FastVanishingTwin", // 697 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0522",
@@ -795,7 +795,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "FlipCustom", // 711
+    "FlipCustom", // 711 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0523",
@@ -804,7 +804,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "RemovePerfectionVelocity", // 145
+    "RemovePerfectionVelocity", // 145 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0524",
@@ -813,7 +813,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "RemovePerfectionOnEndFloors", // 145
+    "RemovePerfectionOnEndFloors", // 145 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0525",
@@ -822,7 +822,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "DisplayExpansionPack", // 181
+    "DisplayExpansionPack", // 181 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0526",
@@ -831,7 +831,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     ],
   ],
   [
-    "",
+    "", // CenterStart (mandatory)
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1085,7 +1085,7 @@ export const BUG_FIXES_1 = [
 // 0911-0920
 export const BUG_FIXES_2 = [
   [
-    "",
+    "", // SeededTeleports 44 (mandatory)
     [
       ModConfigMenuOptionType.TEXT,
       "",
@@ -1094,11 +1094,20 @@ export const BUG_FIXES_2 = [
     ],
   ],
   [
-    "",
+    "", // SeededGBBug 405 (mandatory)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "",
       "Seeded GB Bug",
+      "Make morphed GB Bug pickups seeded in order.",
+    ],
+  ],
+  [
+    "", // SeededGlitterBombs 432 (mandatory)
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Seeded Glitter Bombs",
       "Make morphed GB Bug pickups seeded in order.",
     ],
   ],
@@ -1107,28 +1116,37 @@ export const BUG_FIXES_2 = [
 // 1001-1010
 export const GRAPHIC_CHANGES_1 = [
   [
-    "HUDOffsetFix",
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1001",
-      "Fix HUD offset",
-      "Fix the default HUD offset to be the same as it was in Afterbirth+.",
-    ],
-  ],
-  [
     "DrawControls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1002",
+      "1001",
       "Draw Controls",
-      "Draw the controls on the starting room of the run.",
+      "Draw the controls on the starting room of the run, which are now speedrunning-themed.",
+    ],
+  ],
+  [
+    "HolidayHats",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1002",
+      "Holiday hats",
+      "Show a festive hat during a holiday.",
+    ],
+  ],
+  [
+    "HUDOffsetFix",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "1003",
+      "Fix HUD offset",
+      "Fix the default HUD offset to be the same as it was in Afterbirth+.",
     ],
   ],
   [
     "PaschalCandle", // 3.221
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1003",
+      "1004",
       "Better Paschal Candle",
       'Make Paschal Candle "fill up" so that you can easily tell at a glance if it is maxed out.',
     ],
@@ -1137,7 +1155,7 @@ export const GRAPHIC_CHANGES_1 = [
     "ScaredHeart", // 5.10.9
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1004",
+      "1005",
       "Distinct Scared Hearts",
       "Make Sticky Nickels have a custom animation so that they are easier to identify.",
     ],
@@ -1146,7 +1164,7 @@ export const GRAPHIC_CHANGES_1 = [
     "StickyNickel", // 5.20.6
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1005",
+      "1006",
       "Distinct Sticky Nickels",
       "Make Sticky Nickels have a custom effect so that they are easier to identify.",
     ],
@@ -1155,20 +1173,42 @@ export const GRAPHIC_CHANGES_1 = [
     "UniqueCardBacks", // 5.300
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1006",
+      "1007",
       "Unique card backs",
       "Make some cards have a unique card back or modified graphic so that they are easier to identify.",
     ],
   ],
   [
-    "HolidayHats",
+    "",
     [
-      ModConfigMenuOptionType.BOOLEAN,
-      "1007",
-      "Holiday hats",
-      "Show a festive hat during a holiday.",
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Remove the in-game timer",
+      "Hold Tab to see a custom in-game timer.",
     ],
   ],
+  [
+    "",
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Revamp streak text",
+      "Make streak text smaller so that it no longer blocks gameplay.",
+    ],
+  ],
+  [
+    "",
+    [
+      ModConfigMenuOptionType.TEXT,
+      "",
+      "Reduce opacity of fortunes",
+      "Set the opacity for fortunes and custom seeds to 15%.",
+    ],
+  ],
+] as const satisfies ConfigDescriptions;
+
+// 1011-1020
+export const GRAPHIC_CHANGES_2 = [
   [
     "",
     [
@@ -1196,10 +1236,6 @@ export const GRAPHIC_CHANGES_1 = [
       "The color of some pills are changed to make them easier to identify at a glance.",
     ],
   ],
-] as const satisfies ConfigDescriptions;
-
-// 1011-1020
-export const GRAPHIC_CHANGES_2 = [
   [
     "",
     [
@@ -1263,33 +1299,6 @@ export const GRAPHIC_CHANGES_2 = [
       "Make the icon for a dirty bedroom a cobweb so that it is more distinct from a clean bedroom.",
     ],
   ],
-  [
-    "",
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Speedrunning controls graphic",
-      "The controls graphic in the start room is changed to be speedrunning-themed.",
-    ],
-  ],
-  [
-    "",
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Remove the in-game timer",
-      "Hold Tab to see a custom in-game timer.",
-    ],
-  ],
-  [
-    "",
-    [
-      ModConfigMenuOptionType.TEXT,
-      "",
-      "Reduce opacity of fortunes",
-      "Set the opacity for fortunes and custom seeds to 15%.",
-    ],
-  ],
 ] as const satisfies ConfigDescriptions;
 
 // 1011-1020
@@ -1321,12 +1330,12 @@ export const SOUND_CHANGES = [
 // 1201-1210
 export const OTHER_FEATURES = [
   [
-    "Shadows",
+    "CharacterTimer",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1201",
-      "Draw opponent's shadows",
-      "Enable the drawing of race opponents as faded sprites during seeded races.",
+      "1203",
+      "Enable character timer",
+      "Enable a second timer that displays the time since the last checkpoint.",
     ],
   ],
   [
@@ -1339,20 +1348,29 @@ export const OTHER_FEATURES = [
     ],
   ],
   [
-    "CharacterTimer",
+    "Shadows",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "1203",
-      "Enable character timer",
-      "Enable a second timer that displays the time since the last checkpoint.",
+      "1201",
+      "Draw opponent's shadows",
+      "Enable the drawing of race opponents as faded sprites during seeded races.",
     ],
   ],
   [
     "",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "",
+      "", // ForceFadedConsoleDisplay (mandatory)
       "Force faded console display",
+      'Enabled the "faded console display" feature in the "options.ini" file, which allows you to visually see when an error in the game happens.',
+    ],
+  ],
+  [
+    "", // DrawVersion (mandatory)
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "",
+      "Show the version",
       'Enabled the "faded console display" feature in the "options.ini" file, which allows you to visually see when an error in the game happens.',
     ],
   ],

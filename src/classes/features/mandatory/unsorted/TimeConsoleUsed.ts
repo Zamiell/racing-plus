@@ -1,6 +1,6 @@
 import { Keyboard, ModCallback } from "isaac-typescript-definitions";
 import { Callback, isKeyboardPressed } from "isaacscript-common";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 /** In milliseconds. */
 let timeConsoleOpenedOrUsed: int | undefined;

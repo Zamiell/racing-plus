@@ -91,6 +91,8 @@ export class Config {
   ExtraStartingItems = true;
   PillsCancelAnimations = true;
 
+  // Removals are all mandatory.
+
   // Cutscenes
   FastTeleport = true;
 
@@ -103,19 +105,22 @@ export class Config {
   TeleportInvalidEntrance = true;
 
   // GFX
-  HUDOffsetFix = true;
   DrawControls = true;
+  HolidayHats = true;
+  HUDOffsetFix = true;
   PaschalCandle = true; // 3.221
   ScaredHeart = true; // 5.10.9
   StickyNickel = true; // 5.20.6
   UniqueCardBacks = true; // 5.300
-  HolidayHats = true;
+
+  // GFX (mandatory)
+  // - RemoveFortuneCookieBanner,
 
   // Sounds
   SilenceMomDad = true;
 
   // Other
-  Shadows = false;
-  Chat = true;
   CharacterTimer = true;
+  Chat = true;
+  Shadows = false;
 }

@@ -1,5 +1,5 @@
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 /**
  * Force the "faded console display" feature to be turned on, so that end-users can report bugs

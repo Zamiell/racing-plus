@@ -12,8 +12,8 @@ import {
   ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const v = {
   run: {

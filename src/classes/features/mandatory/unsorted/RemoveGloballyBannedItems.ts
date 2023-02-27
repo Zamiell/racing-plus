@@ -23,12 +23,12 @@ import {
   removeTrinketFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
-import { inSeededRace } from "../../../features/race/v";
-import { mod } from "../../../mod";
-import { addCollectibleAndRemoveFromPools } from "../../../utils";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
-import * as showEdenStartingItems from "../optional/characters/ShowEdenStartingItems";
-import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../optional/gameplay/extraStartingItems/constants";
+import { inSeededRace } from "../../../../features/race/v";
+import { mod } from "../../../../mod";
+import { addCollectibleAndRemoveFromPools } from "../../../../utils";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import * as showEdenStartingItems from "../../optional/characters/ShowEdenStartingItems";
+import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 
 export const BANNED_COLLECTIBLES = new ReadonlySet<CollectibleType>([
   CollectibleType.MERCURIUS,

@@ -9,9 +9,9 @@ import {
   checkFamiliarFromCollectibles,
   VectorZero,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { FamiliarVariantCustom } from "../../../enums/FamiliarVariantCustom";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { FamiliarVariantCustom } from "../../../../enums/FamiliarVariantCustom";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const DISTANCE_AWAY_FROM_PLAYER = 35;
 const ORBITAL_ROTATION_SPEED_AFTERBIRTH_PLUS = 2.7;

@@ -19,7 +19,7 @@ import {
   onSetSeed,
   restart,
 } from "isaacscript-common";
-import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/RacingPlusIcon";
+import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/unsorted/RacingPlusIcon";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugCode";

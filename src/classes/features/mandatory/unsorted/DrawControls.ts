@@ -9,13 +9,13 @@ import {
   onStageType,
   spawnEffect,
 } from "isaacscript-common";
-import { CreepRedSubTypeCustom } from "../../../enums/CreepRedSubTypeCustom";
-import { RaceFormat } from "../../../enums/RaceFormat";
-import { RacerStatus } from "../../../enums/RacerStatus";
-import { RaceStatus } from "../../../enums/RaceStatus";
-import { g } from "../../../globals";
-import { Config } from "../../Config";
-import { ConfigurableModFeature } from "../../ConfigurableModFeature";
+import { CreepRedSubTypeCustom } from "../../../../enums/CreepRedSubTypeCustom";
+import { RaceFormat } from "../../../../enums/RaceFormat";
+import { RacerStatus } from "../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../enums/RaceStatus";
+import { g } from "../../../../globals";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
 

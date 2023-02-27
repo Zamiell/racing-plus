@@ -4,8 +4,7 @@ import {
   log,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { hasErrors } from "../classes/features/mandatory/checkErrors/v";
-import * as centerStart from "../features/mandatory/centerStart";
+import { hasErrors } from "../classes/features/mandatory/unsorted/checkErrors/v";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as seededDrops from "../features/mandatory/seededDrops";
@@ -59,7 +58,6 @@ function main(isContinued: boolean) {
   modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
-  centerStart.postGameStarted();
   streakText.postGameStarted();
   seededGlitterBombs.postGameStarted();
   seededGBBug.postGameStarted();

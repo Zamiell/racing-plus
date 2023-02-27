@@ -11,8 +11,8 @@ import {
   log,
   restart,
 } from "isaacscript-common";
-import { consoleCommand } from "../../../utils";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { consoleCommand } from "../../../../utils";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const v = {
   run: {

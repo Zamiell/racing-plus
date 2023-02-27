@@ -24,7 +24,7 @@ import { getCharacterOrderSafe } from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/checkErrors/v";
+import { hasErrors } from "../mandatory/unsorted/checkErrors/v";
 import { getRandomlySelectedStartingCharacter } from "./RandomCharacterOrder";
 import {
   NUM_REVELATION_SOUL_HEARTS,

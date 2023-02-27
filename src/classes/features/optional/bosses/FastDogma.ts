@@ -28,7 +28,7 @@ import { onSeason } from "../../../../features/speedrun/speedrun";
 import { consoleCommand } from "../../../../utils";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
-import { doesTrophyExist } from "../../mandatory/Trophy";
+import { doesTrophyExist } from "../../mandatory/unsorted/Trophy";
 
 export class FastDogma extends ConfigurableModFeature {
   configKey: keyof Config = "FastDogma";

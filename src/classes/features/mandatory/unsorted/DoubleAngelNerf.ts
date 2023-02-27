@@ -4,7 +4,7 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 /** In vanilla, this is 660. */
 const NERFED_GABRIEL_HP_AMOUNT = 400;

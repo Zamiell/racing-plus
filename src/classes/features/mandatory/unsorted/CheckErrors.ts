@@ -22,23 +22,23 @@ import {
   removeAllDoors,
   TIME_GAME_OPENED,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { PlayerTypeCustom } from "../../../enums/PlayerTypeCustom";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { PlayerTypeCustom } from "../../../../enums/PlayerTypeCustom";
 import {
   checkValidCharOrder,
   inSpeedrun,
   onSeason,
-} from "../../../features/speedrun/speedrun";
-import { mod } from "../../../mod";
-import { hotkeys } from "../../../modConfigMenu";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+} from "../../../../features/speedrun/speedrun";
+import { mod } from "../../../../mod";
+import { hotkeys } from "../../../../modConfigMenu";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   getBuildBansTime,
   isSpeedrunWithRandomCharacterOrder,
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
   RANDOM_CHARACTER_LOCK_SECONDS,
-} from "../speedrun/RandomCharacterOrder";
-import { SEASON_2_NUM_BANS } from "../speedrun/season2/constants";
+} from "../../speedrun/RandomCharacterOrder";
+import { SEASON_2_NUM_BANS } from "../../speedrun/season2/constants";
 import { hasErrors, v } from "./checkErrors/v";
 import { getTimeConsoleUsed } from "./TimeConsoleUsed";
 

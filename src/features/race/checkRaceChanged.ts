@@ -9,7 +9,7 @@ import {
 import {
   restartOnNextFrame,
   setRestartSeed,
-} from "../../classes/features/mandatory/RestartOnNextFrame";
+} from "../../classes/features/mandatory/unsorted/RestartOnNextFrame";
 import { RaceData, RaceDataType } from "../../classes/RaceData";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";

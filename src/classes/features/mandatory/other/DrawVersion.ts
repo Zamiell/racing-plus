@@ -6,8 +6,8 @@ import {
   isKeyboardPressed,
   RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
-import { VERSION } from "../../../constants";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { VERSION } from "../../../../constants";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const SHOW_VERSION_HOTKEY = Keyboard.F1;
 const SECONDS_SHOWN = 2;

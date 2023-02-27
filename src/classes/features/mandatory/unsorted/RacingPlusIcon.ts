@@ -20,10 +20,10 @@ import {
   SPRITE_CHALLENGE_OFFSET,
   SPRITE_DIFFICULTY_OFFSET,
   SPRITE_JACOB_ESAU_OFFSET,
-} from "../../../constants";
-import * as socketClient from "../../../features/race/socketClient";
-import { newSprite } from "../../../sprite";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+} from "../../../../constants";
+import * as socketClient from "../../../../features/race/socketClient";
+import { newSprite } from "../../../../sprite";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 enum RacingPlusSpriteLayer {
   BLUE,

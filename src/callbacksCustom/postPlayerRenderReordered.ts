@@ -1,5 +1,4 @@
 import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
-import * as azazelsRageChargeBar from "../features/optional/quality/azazelsRageChargeBar";
 import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import * as leadPencilChargeBar from "../features/optional/quality/leadPencilChargeBar";
 import * as taintedSamsonChargeBar from "../features/optional/quality/taintedSamsonChargeBar";
@@ -18,5 +17,4 @@ function main(player: EntityPlayer) {
   taintedSamsonChargeBar.postPlayerRender(player);
   bloodyLustChargeBar.postPlayerRender(player); // 444
   leadPencilChargeBar.postPlayerRender(player); // 444
-  azazelsRageChargeBar.postPlayerRender(player); // 699
 }

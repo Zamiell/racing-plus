@@ -1,7 +1,7 @@
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen.
 
 import { game } from "isaacscript-common";
-import { getRacingPlusIconPosition } from "../../classes/features/mandatory/RacingPlusIcon";
+import { getRacingPlusIconPosition } from "../../classes/features/mandatory/unsorted/RacingPlusIcon";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";

@@ -9,9 +9,9 @@ import {
   ModCallbackCustom,
   repeat,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { inSeededRace } from "../../../features/race/v";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { inSeededRace } from "../../../../features/race/v";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.MAGIC_8_BALL;
 const NEW_COLLECTIBLE_TYPE = CollectibleTypeCustom.MAGIC_8_BALL_SEEDED;
