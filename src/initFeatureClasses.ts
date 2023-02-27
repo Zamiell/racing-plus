@@ -11,6 +11,7 @@ import { Sawblade } from "./classes/features/mandatory/items/Sawblade";
 import { SolCustom } from "./classes/features/mandatory/items/SolCustom";
 import { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
 import { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";
+import { CenterStart } from "./classes/features/mandatory/quality/CenterStart";
 import { CheckErrors } from "./classes/features/mandatory/unsorted/CheckErrors";
 import { DisableMultiplayer } from "./classes/features/mandatory/unsorted/DisableMultiplayer";
 import { DoubleAngelNerf } from "./classes/features/mandatory/unsorted/DoubleAngelNerf";
@@ -231,7 +232,7 @@ const FEATURE_CLASSES = [
   // - DisplayExpansionPack, // 181 (trinket)
 
   // Quality of Life (mandatory)
-  // - CenterStart
+  CenterStart,
 
   // Gameplay
   ConsistentTrollBombs,
