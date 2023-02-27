@@ -7,7 +7,6 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { TimerType } from "../../../../enums/TimerType";
-import { getNumIdentifiedPills } from "../../../../features/optional/quality/showPills";
 import * as timer from "../../../../timer";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -16,6 +15,7 @@ import {
   getTopLeftUIPositionShowMaxFamiliars,
   hasMaxFamiliars,
 } from "./ShowMaxFamiliars";
+import { getNumIdentifiedPills } from "./ShowPills";
 
 const OFFSET_FROM_WHERE_AN_ICON_WOULD_BE = Vector(14, -10);
 

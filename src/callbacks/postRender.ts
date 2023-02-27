@@ -1,5 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/unsorted/checkErrors/v";
+import * as showPills from "../classes/features/optional/quality/ShowPills";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
@@ -8,7 +9,6 @@ import * as topLeftText from "../features/mandatory/topLeftText";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
 import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
-import * as showPills from "../features/optional/quality/showPills";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
 import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";

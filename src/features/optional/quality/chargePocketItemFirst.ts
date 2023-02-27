@@ -159,7 +159,7 @@ function updateActiveItemChargesMap(player: EntityPlayer) {
 
 // ModCallback.POST_USE_PILL (10)
 // PillEffect.FORTY_EIGHT_HOUR_ENERGY (20)
-export function usePill48HourEnergy(player: EntityPlayer): void {
+export function postUsePill48HourEnergy(player: EntityPlayer): void {
   if (!chargePocketFeatureShouldApply(player)) {
     return;
   }

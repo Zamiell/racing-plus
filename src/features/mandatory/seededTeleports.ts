@@ -57,7 +57,7 @@ function seededTeleport() {
 
 // ModCallback.POST_USE_PILL (10)
 // PillEffect.TELEPILLS (19)
-export function usePillTelepills(): void {
+export function postUsePillTelepills(): void {
   seededTelepills();
 }
 

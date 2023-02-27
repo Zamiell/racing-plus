@@ -1,3 +1,4 @@
+import * as showPills from "./classes/features/optional/quality/ShowPills";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -27,7 +28,6 @@ import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChar
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
-import * as showPills from "./features/optional/quality/showPills";
 import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";

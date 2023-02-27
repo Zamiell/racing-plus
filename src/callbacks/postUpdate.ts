@@ -1,4 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
+import * as showPills from "../classes/features/optional/quality/ShowPills";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
@@ -6,7 +7,6 @@ import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
-import * as showPills from "../features/optional/quality/showPills";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 import { mod } from "../mod";

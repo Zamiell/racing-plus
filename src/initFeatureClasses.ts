@@ -91,6 +91,7 @@ import { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
 import { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 import { RunTimer } from "./classes/features/optional/quality/RunTimer";
 import { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
+import { ShowPills } from "./classes/features/optional/quality/ShowPills";
 import { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
 import { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 import { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
@@ -214,7 +215,7 @@ const FEATURE_CLASSES = [
   RunTimer,
   ShowMaxFamiliars,
   // - ShowNumSacrifices,
-  // - ShowPills,
+  ShowPills,
   SpeedUpFadeIn,
   // - SubvertTeleport,
   // - TaintedSamsonChargeBar, // 27 (charge bar)

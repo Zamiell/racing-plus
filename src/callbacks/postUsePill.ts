@@ -2,7 +2,6 @@ import { ModCallback, PillEffect, UseFlag } from "isaac-typescript-definitions";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
-import * as showPills from "../features/optional/quality/showPills";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -23,11 +22,10 @@ export function init(): void {
 
 function main(
   pillEffect: PillEffect,
-  player: EntityPlayer,
+  _player: EntityPlayer,
   useFlags: BitFlags<UseFlag>,
 ) {
-  showPills.usePill(player, pillEffect);
-  streakText.usePill(pillEffect, useFlags);
+  streakText.postUsePill(pillEffect, useFlags);
 }
 
 // PillEffect.TELEPILLS (19)
@@ -36,7 +34,7 @@ function telepills(
   _player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  seededTeleports.usePillTelepills();
+  seededTeleports.postUsePillTelepills();
 }
 
 // PillEffect.FORTY_EIGHT_HOUR_ENERGY (20)
@@ -45,5 +43,5 @@ function fortyEightHourEnergy(
   player: EntityPlayer,
   _useFlags: BitFlags<UseFlag>,
 ) {
-  chargePocketItemFirst.usePill48HourEnergy(player);
+  chargePocketItemFirst.postUsePill48HourEnergy(player);
 }

@@ -188,7 +188,7 @@ export function postUseCard(
 }
 
 // ModCallback.POST_USE_PILL (10)
-export function usePill(
+export function postUsePill(
   pillEffect: PillEffect,
   useFlags: BitFlags<UseFlag>,
 ): void {
