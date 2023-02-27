@@ -11,7 +11,6 @@ import {
 } from "isaacscript-common";
 import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
-import * as nerfCardReading from "../features/mandatory/nerfCardReading";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
@@ -51,7 +50,6 @@ function main() {
   );
 
   // Mandatory
-  nerfCardReading.postNewRoom();
   tempMoreOptions.postNewRoom();
   banFirstFloorRoomType.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();

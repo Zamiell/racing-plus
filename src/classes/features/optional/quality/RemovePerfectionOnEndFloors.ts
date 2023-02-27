@@ -6,11 +6,11 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   inRoomType,
   ModCallbackCustom,
   onRepentanceStage,
   onStage,
+  onStageOrHigher,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -24,15 +24,12 @@ export class RemovePerfectionOnEndFloors extends ConfigurableModFeature {
     TrinketType.PERFECTION,
   )
   postPickupInitPerfection(pickup: EntityPickup): void {
-    const level = game.GetLevel();
-
     if (!inRoomType(RoomType.BOSS)) {
       return;
     }
 
-    const stage = level.GetStage();
     if (
-      stage >= LevelStage.DARK_ROOM_CHEST ||
+      onStageOrHigher(LevelStage.DARK_ROOM_CHEST) ||
       (onStage(LevelStage.WOMB_2) && onRepentanceStage())
     ) {
       pickup.Remove();

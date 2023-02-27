@@ -4,6 +4,7 @@ import { ModFeature } from "isaacscript-common";
 import { DisableCurses } from "./classes/features/major/DisableCurses";
 import { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 import { StartWithD6 } from "./classes/features/major/StartWithD6";
+import { NerfCardReading } from "./classes/features/mandatory/gameplay/NerfCardReading";
 import { DebugItem } from "./classes/features/mandatory/items/DebugItem";
 import { Magic8BallSeeded } from "./classes/features/mandatory/items/Magic8BallSeeded";
 import { NLuck } from "./classes/features/mandatory/items/NLuck";
@@ -240,7 +241,7 @@ const FEATURE_CLASSES = [
   PillsCancelAnimations,
 
   // Gameplay (mandatory)
-  // - NerfCardReading,
+  NerfCardReading,
 
   // Removals (mandatory) (not alphabetized)
   // - RemoveGloballyBannedItems,

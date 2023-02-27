@@ -20,9 +20,9 @@ import {
   onSetSeed,
   spawnEffect,
 } from "isaacscript-common";
+import { shouldRemoveEndGamePortals } from "../../../../classes/features/mandatory/gameplay/NerfCardReading";
 import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { mod } from "../../../../mod";
-import { shouldRemoveEndGamePortals } from "../../../mandatory/nerfCardReading";
 import * as seededFloors from "../../../mandatory/seededFloors";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import {

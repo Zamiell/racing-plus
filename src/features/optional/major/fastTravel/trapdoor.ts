@@ -17,6 +17,7 @@ import {
   onRepentanceStage,
   onSheol,
   onStage,
+  onStageOrLower,
   removeGridEntity,
 } from "isaacscript-common";
 import {
@@ -187,7 +188,7 @@ function shouldRemove() {
     g.race.goal === RaceGoal.MOTHER &&
     inRoomType(RoomType.BOSS)
   ) {
-    if (stage <= LevelStage.DEPTHS_1 && !repentanceStage) {
+    if (onStageOrLower(LevelStage.DEPTHS_1) && !repentanceStage) {
       log(
         `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
@@ -228,7 +229,7 @@ function shouldRemove() {
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
   // this functionality it is simpler to delete them.)
-  if (stage < LevelStage.WOMB_1 && backwardPath && !secretExit) {
+  if (onStageOrLower(LevelStage.WOMB_1) && backwardPath && !secretExit) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );
