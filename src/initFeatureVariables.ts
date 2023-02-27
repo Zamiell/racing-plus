@@ -1,4 +1,3 @@
-import * as showPills from "./classes/features/optional/quality/ShowPills";
 import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
@@ -72,7 +71,6 @@ export function initFeatureVariables(): void {
   autofire.init();
 
   // QoL
-  showPills.init();
   showNumSacrifices.init();
   bloodyLustChargeBar.init(); // 157
   leadPencilChargeBar.init(); // 444

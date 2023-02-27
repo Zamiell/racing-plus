@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import * as showPills from "../classes/features/optional/quality/ShowPills";
 import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
@@ -29,6 +28,5 @@ function main() {
   fastTravelPostUpdate();
 
   // QoL
-  showPills.postUpdate();
   fastVanishingTwin.postUpdate(); // 697
 }

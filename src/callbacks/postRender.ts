@@ -1,6 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/unsorted/checkErrors/v";
-import * as showPills from "../classes/features/optional/quality/ShowPills";
 import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
@@ -45,8 +44,6 @@ function main() {
 
   // Should be after the "Show Max Familiars" feature so that the text has priority.
   automaticItemInsertionPostRender();
-
-  showPills.postRender();
 
   // Other
   customConsole.postRender();
