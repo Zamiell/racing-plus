@@ -5,7 +5,6 @@ import {
 } from "isaac-typescript-definitions";
 import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
-import * as bloodyLustChargeBar from "../features/optional/quality/bloodyLustChargeBar/bloodyLustChargeBar";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -31,9 +30,6 @@ function entityTakeDmgPlayer(
 
   // Major
   fastTravelEntityTakeDmgPlayer(damageFlags);
-
-  // QoL
-  bloodyLustChargeBar.entityTakeDmgPlayer(player);
 
   // Other
   roll.entityTakeDmgPlayer(player);

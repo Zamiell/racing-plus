@@ -88,6 +88,7 @@ export { StickyNickel } from "./classes/features/optional/graphics/StickyNickel"
 export { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCardBacks";
 export { FastReset } from "./classes/features/optional/major/FastReset";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
+export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";
 export { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
 export { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
@@ -95,6 +96,7 @@ export { RunTimer } from "./classes/features/optional/quality/RunTimer";
 export { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 export { ShowPills } from "./classes/features/optional/quality/ShowPills";
 export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
+export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 export { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 export { Season1 } from "./classes/features/speedrun/Season1";

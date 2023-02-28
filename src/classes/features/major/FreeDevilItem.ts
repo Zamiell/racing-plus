@@ -23,6 +23,7 @@ import {
   isChildPlayer,
   isSelfDamage,
   ModCallbackCustom,
+  newCollectibleSprite,
   onDarkRoom,
   VectorZero,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
@@ -30,7 +31,6 @@ import {
 import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../../features/race/consistentDevilAngelRooms";
 import { config } from "../../../modConfigMenu";
-import { newCollectibleSprite } from "../../../sprite";
 import { getEffectiveDevilDeals } from "../../../utils";
 import { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";

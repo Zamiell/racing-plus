@@ -1,8 +1,4 @@
-import {
-  CollectibleSpriteLayer,
-  CollectibleType,
-  TrinketType,
-} from "isaac-typescript-definitions";
+import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   asCollectibleType,
   asNumber,
@@ -134,22 +130,6 @@ function getFileNum(itemID: int) {
   return defaultReturn;
 }
 
-export function newCollectibleSprite(
-  collectibleType: CollectibleType | -1,
-): Sprite {
-  const sprite = Sprite();
-  sprite.Load("gfx/005.100_collectible.anm2", false);
-  sprite.SetFrame("Idle", 0);
-
-  const gfxFilename = getCollectibleGfxFilename(
-    asCollectibleType(collectibleType),
-  );
-  sprite.ReplaceSpritesheet(CollectibleSpriteLayer.HEAD, gfxFilename);
-  sprite.LoadGraphics();
-
-  return sprite;
-}
-
 export function newSprite(anm2Path: string, pngPath?: string): Sprite {
   const sprite = Sprite();
 
@@ -161,7 +141,8 @@ export function newSprite(anm2Path: string, pngPath?: string): Sprite {
     sprite.LoadGraphics();
   }
 
-  sprite.SetFrame("Default", 0);
+  const defaultAnimation = sprite.GetDefaultAnimation();
+  sprite.Play(defaultAnimation, true);
 
   return sprite;
 }

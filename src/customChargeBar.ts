@@ -11,8 +11,8 @@ import {
   isReflectionRender,
   VectorZero,
 } from "isaacscript-common";
+import { isMaxBloodyLustCharges } from "./classes/features/optional/quality/bloodyLustChargeBar/v";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";
-import { isMaxBloodyLustCharges } from "./features/optional/quality/bloodyLustChargeBar/v";
 import { config } from "./modConfigMenu";
 
 const VANILLA_CHARGE_BAR_OFFSET = Vector(-19, -54);
@@ -79,7 +79,7 @@ export function drawCustomChargeBar(
 function getNumHigherPrecedenceCustomChargeBars(
   player: EntityPlayer,
   chargeBarType: CustomChargeBarType,
-) {
+): int {
   const leadPencilShowing = shouldDrawCustomChargeBar(
     player,
     CustomChargeBarType.LEAD_PENCIL,
@@ -163,11 +163,11 @@ function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
     // came from a familiar (because the `SpawnerEntity` shows up as the player for some reason).
     !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.INCUBUS) &&
     !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.BLOOD_BABY) &&
-    !playerHasUntrackableCollectible(player)
+    !playerHasUntrackableLeadPencilCollectible(player)
   );
 }
 
-function playerHasUntrackableCollectible(player: EntityPlayer) {
+function playerHasUntrackableLeadPencilCollectible(player: EntityPlayer) {
   return LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
     player.HasCollectible(collectibleType),
   );

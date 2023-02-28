@@ -18,7 +18,6 @@ import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevi
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
-import * as bloodyLustChargeBar from "./features/optional/quality/bloodyLustChargeBar/v";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
@@ -70,7 +69,6 @@ export function initFeatureVariables(): void {
 
   // QoL
   showNumSacrifices.init();
-  bloodyLustChargeBar.init(); // 157
   leadPencilChargeBar.init(); // 444
   showDreamCatcherItemVars.init(); // 566
   fastVanishingTwin.init(); // 697
