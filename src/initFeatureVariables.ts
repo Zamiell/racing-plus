@@ -21,7 +21,6 @@ import * as automaticItemInsertion from "./features/optional/quality/automaticIt
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
 import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
-import * as leadPencilChargeBar from "./features/optional/quality/leadPencilChargeBar";
 import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
@@ -69,7 +68,6 @@ export function initFeatureVariables(): void {
 
   // QoL
   showNumSacrifices.init();
-  leadPencilChargeBar.init(); // 444
   showDreamCatcherItemVars.init(); // 566
   fastVanishingTwin.init(); // 697
   removePerfectionVelocity.init(); // 145

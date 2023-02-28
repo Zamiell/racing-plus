@@ -123,7 +123,7 @@ const FEATURE_CLASSES = [
   // - fc.SubvertTeleport,
   fc.TaintedSamsonChargeBar, // 27 (charge bar)
   fc.BloodyLustChargeBar, // 157 (charge bar)
-  // - fc.LeadPencilChargeBar, // 444 (charge bar)
+  fc.LeadPencilChargeBar, // 444 (charge bar)
   fc.AzazelsRageChargeBar, // 669 (charge bar)
   // - fc.CombinedDualityDoors, // 498 (collectible)
   // - fc.RemoveFortuneCookieBanners, // 557 (collectible)

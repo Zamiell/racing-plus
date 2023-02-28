@@ -103,3 +103,4 @@ export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";
 export { Season4 } from "./classes/features/speedrun/Season4";
+export { LeadPencilChargeBar } from "./features/optional/quality/leadPencilChargeBar";

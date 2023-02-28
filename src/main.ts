@@ -29,7 +29,6 @@ import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
-import * as postBoneSwing from "./callbacksCustom/postBoneSwing";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
@@ -44,14 +43,12 @@ import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered"
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPickupCollect from "./callbacksCustom/postPickupCollect";
-import * as postPlayerRenderReordered from "./callbacksCustom/postPlayerRenderReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postSlotAnimationChanged from "./callbacksCustom/postSlotAnimationChanged";
 import * as postTearInitLate from "./callbacksCustom/postTearInitLate";
-import * as postTearInitVeryLate from "./callbacksCustom/postTearInitVeryLate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -127,7 +124,6 @@ function registerCallbacksVanilla() {
 }
 
 function registerCallbacksCustom() {
-  postBoneSwing.init();
   postCursedTeleport.init();
   postCustomRevive.init();
   postFirstFlip.init();
@@ -142,14 +138,12 @@ function registerCallbacksCustom() {
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
   postPickupCollect.init();
-  postPlayerRenderReordered.init();
   postPressurePlateUpdate.init();
   postPurchase.init();
   postRoomClearChanged.init();
   postSacrifice.init();
   postSlotAnimationChanged.init();
   postTearInitLate.init();
-  postTearInitVeryLate.init();
   postTransformation.init();
   preCustomRevive.init();
   preItemPickup.init();

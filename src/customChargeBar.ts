@@ -7,6 +7,7 @@ import {
 import {
   doesEntityExist,
   game,
+  hasCollectible,
   isCharacter,
   isReflectionRender,
   VectorZero,
@@ -163,13 +164,7 @@ function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
     // came from a familiar (because the `SpawnerEntity` shows up as the player for some reason).
     !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.INCUBUS) &&
     !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.BLOOD_BABY) &&
-    !playerHasUntrackableLeadPencilCollectible(player)
-  );
-}
-
-function playerHasUntrackableLeadPencilCollectible(player: EntityPlayer) {
-  return LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES.some((collectibleType) =>
-    player.HasCollectible(collectibleType),
+    !hasCollectible(player, ...LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES)
   );
 }
 

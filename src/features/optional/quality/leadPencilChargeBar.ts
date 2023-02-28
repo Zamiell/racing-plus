@@ -1,22 +1,21 @@
-// Incubus and Blood Babies have their own counter that is independent of the player. However, we
-// don't draw an extra charge bar for every familiar, since that would clutter the screen.
-
 import {
+  CallbackCustom,
   DefaultMap,
   game,
   getPlayerFromEntity,
   getPlayerIndex,
   isTearFromPlayer,
+  ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
+import { Config } from "../../../classes/Config";
+import { ConfigurableModFeature } from "../../../classes/ConfigurableModFeature";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
   shouldDrawCustomChargeBar,
 } from "../../../customChargeBar";
 import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
-import { mod } from "../../../mod";
-import { config } from "../../../modConfigMenu";
 
 const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
 
@@ -30,56 +29,41 @@ const v = {
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 
-export function init(): void {
-  mod.saveDataManager("leadPencilChargeBar", v, featureEnabled);
-}
+// Incubus and Blood Babies have their own counter that is independent of the player. However, we
+// don't draw an extra charge bar for every familiar, since that would clutter the screen.
+export class LeadPencilChargeBar extends ConfigurableModFeature {
+  configKey: keyof Config = "LeadPencilChargeBar";
+  v = v;
 
-function featureEnabled() {
-  return config.LeadPencilChargeBar;
-}
-
-// ModCallback.POST_PLAYER_RENDER (32)
-export function postPlayerRender(player: EntityPlayer): void {
-  if (!config.LeadPencilChargeBar) {
-    return;
+  @CallbackCustom(ModCallbackCustom.POST_BONE_SWING)
+  postBoneSwing(boneClub: EntityKnife): void {
+    checkIncrementLeadPencilCounter(boneClub);
   }
 
-  if (!shouldDrawCustomChargeBar(player, CustomChargeBarType.LEAD_PENCIL)) {
-    return;
+  @CallbackCustom(ModCallbackCustom.POST_PLAYER_RENDER_REORDERED)
+  postPlayerRenderReordered(player: EntityPlayer): void {
+    if (!shouldDrawCustomChargeBar(player, CustomChargeBarType.LEAD_PENCIL)) {
+      return;
+    }
+
+    // The Forgotten and The Soul have different Lead Pencil counters.
+    const playerIndex = getPlayerIndex(player, true);
+    const numFiredTears =
+      v.run.playersNumFiredTearsMap.getAndSetDefault(playerIndex);
+    const tearsLeft = numFiredTears % NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
+
+    const frameAmountPerCharge =
+      NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
+    const frame = Math.round(tearsLeft * frameAmountPerCharge);
+    drawCustomChargeBar(player, sprite, frame, CustomChargeBarType.LEAD_PENCIL);
   }
 
-  // The Forgotten and The Soul have different Lead Pencil counters.
-  const playerIndex = getPlayerIndex(player, true);
-  const numFiredTears =
-    v.run.playersNumFiredTearsMap.getAndSetDefault(playerIndex);
-  const tearsLeft = numFiredTears % NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
-
-  const frameAmountPerCharge =
-    NUM_FRAMES_IN_CHARGING_ANIMATION / NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES;
-  const frame = Math.round(tearsLeft * frameAmountPerCharge);
-  drawCustomChargeBar(player, sprite, frame, CustomChargeBarType.LEAD_PENCIL);
-}
-
-// ModCallback.POST_TEAR_INIT_VERY_LATE
-export function postTearInitVeryLate(tear: EntityTear): void {
-  if (!config.LeadPencilChargeBar) {
-    return;
+  @CallbackCustom(ModCallbackCustom.POST_TEAR_INIT_VERY_LATE)
+  postTearInitVeryLate(tear: EntityTear): void {
+    if (isTearFromPlayer(tear)) {
+      checkIncrementLeadPencilCounter(tear);
+    }
   }
-
-  if (!isTearFromPlayer(tear)) {
-    return;
-  }
-
-  checkIncrementLeadPencilCounter(tear);
-}
-
-// ModCallbackCustom.POST_BONE_SWING
-export function postBoneSwing(boneClub: EntityKnife): void {
-  if (!config.LeadPencilChargeBar) {
-    return;
-  }
-
-  checkIncrementLeadPencilCounter(boneClub);
 }
 
 /**
