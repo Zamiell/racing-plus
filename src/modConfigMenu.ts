@@ -92,7 +92,7 @@ export function deleteOldConfig(categoryName: string): void {
   }
 }
 
-// The descriptions are typed as having keys of "keyof Config | keyof Hotkeys". Thus, it is
+// The descriptions are typed as having keys of `keyof Config | keyof Hotkeys`. Thus, it is
 // impossible for them to contain any incorrect data. However, the inverse is not true (i.e. a
 // config value can be missing a description). So, we check this at runtime.
 function validateConfigDescriptions() {

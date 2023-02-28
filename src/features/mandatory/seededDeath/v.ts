@@ -1,8 +1,8 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
 import { PlayerIndex } from "isaacscript-common";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
+import { ActiveCollectibleDescription } from "../../../interfaces/ActiveCollectibleDescription";
 import { mod } from "../../../mod";
-import { ActiveCollectibleDescription } from "../../../types/ActiveCollectibleDescription";
 import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
 
 export const v = {

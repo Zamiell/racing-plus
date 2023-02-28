@@ -5,7 +5,13 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
-import { ButtonDescription } from "../../types/ButtonDescription";
+
+interface ButtonDescription {
+  roomListIndex: int;
+  gridIndex: int;
+  spritePosition: Vector;
+  pressed: boolean;
+}
 
 export const v = {
   run: {

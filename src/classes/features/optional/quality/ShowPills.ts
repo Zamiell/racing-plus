@@ -8,6 +8,7 @@ import {
 import {
   anyPlayerHasCollectible,
   Callback,
+  CallbackCustom,
   fonts,
   game,
   getFalsePHDPillEffect,
@@ -18,26 +19,32 @@ import {
   isActionPressedOnAnyInput,
   KColorDefault,
   log,
+  ModCallbackCustom,
   NUM_PILLS_IN_POOL,
   ReadonlyMap,
 } from "isaacscript-common";
 import { onSeason } from "../../../../features/speedrun/speedrun";
 import { newSprite } from "../../../../sprite";
-import { PillDescription } from "../../../../types/PillDescription";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+
+export interface PillDescription {
+  color: PillColor;
+  effect: PillEffect;
+}
 
 const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   PillEffect,
   PillEffect
 >([
-  // In vanilla, this converts to ???, but in Racing+ we manually convert it to I'm Excited!!!
+  // In vanilla, this converts to "???", but in Racing+ we manually convert it to "I'm Excited!!!".
   [PillEffect.TELEPILLS, PillEffect.IM_EXCITED], // 19
 
-  // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Retro Vision.
+  // In vanilla, this converts to "Amnesia", but in Racing+ we manually convert it to "Retro
+  // Vision".
   [PillEffect.I_CAN_SEE_FOREVER, PillEffect.RETRO_VISION], // 23
 
-  // In vanilla, this converts to Amnesia, but in Racing+ we manually convert it to Horf!
+  // In vanilla, this converts to "Amnesia", but in Racing+ we manually convert it to "Horf!".
   [PillEffect.LEMON_PARTY, PillEffect.HORF], // 26
 ]);
 
@@ -48,7 +55,11 @@ const pillSprites = new Map<PillColor, Sprite>();
 
 const v = {
   run: {
-    pillsIdentified: [] as PillDescription[],
+    /**
+     * This is not technically the same as the pills that are currently "identified" because using
+     * PHD or False PHD will automatically identify every pill in the pool.
+     */
+    pillsUsed: [] as PillDescription[],
 
     PHD: false,
     falsePHD: false,
@@ -94,7 +105,7 @@ export class ShowPills extends ConfigurableModFeature {
     v.run.PHD = true;
 
     // Change the text for any identified pills.
-    for (const pillEntry of v.run.pillsIdentified) {
+    for (const pillEntry of v.run.pillsUsed) {
       pillEntry.effect = getPHDPillEffect(pillEntry.effect);
     }
   }
@@ -110,10 +121,9 @@ export class ShowPills extends ConfigurableModFeature {
     }
 
     v.run.falsePHD = true;
-    log("Converting good pill effects.");
 
     // Change the text for any identified pills.
-    for (const pillEntry of v.run.pillsIdentified) {
+    for (const pillEntry of v.run.pillsUsed) {
       pillEntry.effect = this.getFalsePHDPillEffectRacingPlus(pillEntry.effect);
     }
   }
@@ -146,7 +156,7 @@ export class ShowPills extends ConfigurableModFeature {
     }
 
     // Don't do anything if we have not taken any pills yet.
-    if (v.run.pillsIdentified.length === 0) {
+    if (v.run.pillsUsed.length === 0) {
       return;
     }
 
@@ -167,16 +177,16 @@ export class ShowPills extends ConfigurableModFeature {
     const font = fonts.droid;
 
     // We add one because of the header.
-    const totalHeight = LINE_HEIGHT * (1 + v.run.pillsIdentified.length);
+    const totalHeight = LINE_HEIGHT * (1 + v.run.pillsUsed.length);
     const bottomY = getScreenBottomY();
 
     const x = 80;
     const baseY = bottomY - totalHeight;
 
-    const pillsIdentifiedText = `Pills identified: ${v.run.pillsIdentified.length} / ${NUM_PILLS_IN_POOL}`;
+    const pillsIdentifiedText = `Pills identified: ${v.run.pillsUsed.length} / ${NUM_PILLS_IN_POOL}`;
     font.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
 
-    v.run.pillsIdentified.forEach((pillEntry, i) => {
+    v.run.pillsUsed.forEach((pillEntry, i) => {
       // Show the pill sprite.
       const y = baseY + 20 * (i + 1);
       const position = Vector(x, y);
@@ -199,41 +209,29 @@ export class ShowPills extends ConfigurableModFeature {
   }
 
   // 10
-  @Callback(ModCallback.POST_USE_PILL)
-  postUsePill(pillEffect: PillEffect): void {
-    this.checkNewPillIdentified(pillEffect);
+  @CallbackCustom(ModCallbackCustom.POST_USE_PILL_FILTER)
+  postUsePillFilter(pillEffect: PillEffect, pillColor: PillColor): void {
+    this.checkNewUsedPill(pillEffect, pillColor);
   }
 
-  checkNewPillIdentified(pillEffect: PillEffect): void {
-    const itemPool = game.GetItemPool();
-
-    // This callback fires after the pill is consumed, so we must iterate through all of the pill
-    // colors to see if any new ones are identified.
-    for (const pillColor of getNormalPillColors()) {
-      if (!itemPool.IsPillIdentified(pillColor)) {
-        continue;
-      }
-
-      if (!this.isPillColorRecordedAlready(pillColor)) {
-        this.newPill(pillColor, pillEffect);
-      }
+  checkNewUsedPill(pillEffect: PillEffect, pillColor: PillColor): void {
+    if (this.isPillColorRecordedAlready(pillColor)) {
+      return;
     }
-  }
 
-  isPillColorRecordedAlready(pillColor: PillColor): boolean {
-    return v.run.pillsIdentified.some((pill) => pill.color === pillColor);
-  }
-
-  newPill(pillColor: PillColor, pillEffect: PillEffect): void {
     // This is the first time we have used this pill, so keep track of the pill color and effect.
     const pillDescription: PillDescription = {
       color: pillColor,
       effect: pillEffect,
     };
-    v.run.pillsIdentified.push(pillDescription);
+    v.run.pillsUsed.push(pillDescription);
+  }
+
+  isPillColorRecordedAlready(pillColor: PillColor): boolean {
+    return v.run.pillsUsed.some((pill) => pill.color === pillColor);
   }
 }
 
 export function getNumIdentifiedPills(): int {
-  return v.run.pillsIdentified.length;
+  return v.run.pillsUsed.length;
 }

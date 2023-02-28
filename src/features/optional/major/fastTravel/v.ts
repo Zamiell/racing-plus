@@ -1,9 +1,9 @@
 import { Direction } from "isaac-typescript-definitions";
 import { game } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
+import { FastTravelEntityDescription } from "../../../../interfaces/FastTravelEntityDescription";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
-import { FastTravelEntityDescription } from "../../../../types/FastTravelEntityDescription";
 import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
 
 export const v = {

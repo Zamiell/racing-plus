@@ -1,8 +1,8 @@
 import { game } from "isaacscript-common";
 import { HexColors } from "../../enums/HexColors";
 import { g } from "../../globals";
+import { TextSegment } from "../../interfaces/TextSegment";
 import { config } from "../../modConfigMenu";
-import { TextSegment } from "../../types/TextSegment";
 import {
   CONSOLE_POSITION,
   DEFAULT_CONSOLE_OPACITY,

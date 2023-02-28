@@ -20,9 +20,9 @@ import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
-import * as useCard from "./callbacks/postUseCard";
-import * as useItem from "./callbacks/postUseItem";
-import * as usePill from "./callbacks/postUsePill";
+import * as postUseCard from "./callbacks/postUseCard";
+import * as postUseItem from "./callbacks/postUseItem";
+import * as postUsePill from "./callbacks/postUsePill";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
@@ -103,10 +103,10 @@ function registerCallbacksVanilla() {
   postNPCUpdate.init(); // 0
   postUpdate.init(); // 1
   postRender.init(); // 2
-  useItem.init(); // 3
-  useCard.init(); // 5
+  postUseItem.init(); // 3
+  postUseCard.init(); // 5
   evaluateCache.init(); // 8
-  usePill.init(); // 10
+  postUsePill.init(); // 10
   entityTakeDmg.init(); // 11
   inputAction.init(); // 13
   postGameEnd.init(); // 16

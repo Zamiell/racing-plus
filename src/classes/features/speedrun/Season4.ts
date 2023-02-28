@@ -83,7 +83,7 @@ export class Season4 extends ChallengeModFeature {
 
   // 5, 41
   @Callback(ModCallback.POST_USE_CARD, CardType.RUNE_BLACK)
-  useCardBlackRune(_card: CardType, player: EntityPlayer): void {
+  postUseCardBlackRune(_card: CardType, player: EntityPlayer): void {
     this.preventBlackRuneOnStoredItems(player);
   }
 

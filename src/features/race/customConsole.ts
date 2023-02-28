@@ -15,9 +15,9 @@ import {
 import { HexColors } from "../../enums/HexColors";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
+import { TextSegment } from "../../interfaces/TextSegment";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
-import { TextSegment } from "../../types/TextSegment";
 import { consoleCommand } from "../../utils";
 import * as socket from "./socket";
 

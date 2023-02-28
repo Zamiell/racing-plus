@@ -8,7 +8,7 @@ import { MandatoryModFeature } from "../../../MandatoryModFeature";
 export class PreserveCheckpoint extends MandatoryModFeature {
   // 5, 41
   @Callback(ModCallback.POST_USE_CARD, CardType.RUNE_BLACK)
-  useCardBlackRune(): void {
+  postUseCardBlackRune(): void {
     this.respawnCheckpoint();
   }
 
