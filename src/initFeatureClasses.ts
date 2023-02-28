@@ -158,6 +158,7 @@ const FEATURE_CLASSES = [
   // Bug Fixes
   fc.Battery9VoltSynergy,
   fc.BatteryBumFix,
+  fc.GoatHeadInBossRoom,
   fc.PreventUltraSecretRoomSoftlock,
   fc.RemoveInvalidPitfalls,
   fc.TaintedIsaacCollectibleDelay,

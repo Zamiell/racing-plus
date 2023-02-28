@@ -99,6 +99,7 @@ export class Config {
   // Bug fixes
   Battery9VoltSynergy = true;
   BatteryBumFix = true;
+  GoatHeadInBossRoom = true;
   PreventUltraSecretRoomSoftlock = true;
   RemoveInvalidPitfalls = true;
   TaintedIsaacCollectibleDelay = true;

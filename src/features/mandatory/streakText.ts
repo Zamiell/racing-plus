@@ -107,6 +107,11 @@ function checkDraw() {
     return;
   }
 
+  // Don't draw streak text on top of Mod Config Menu.
+  if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+    return;
+  }
+
   // We don't check for the game being paused because it looks buggy if the text disappears when
   // changing rooms.
 
