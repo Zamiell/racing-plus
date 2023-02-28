@@ -215,11 +215,11 @@ Some builds are banned on certain characters:
 - You must complete the game with the following 7 characters:
   - 0 - Isaac
   - 3 - Judas
-  - 7 - Azazel
   - 10 - The Lost
   - 13 - Lilith
   - 18 - Bethany
   - 22 - Tainted Magdalene
+  - 28 - Tainted Azazel
 - Lilith starts with Birthright.
 - Bethany starts with Duality.
 - Tainted Magdalene starts with Steven and Birthright.

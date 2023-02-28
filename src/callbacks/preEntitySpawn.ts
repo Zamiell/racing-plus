@@ -40,7 +40,14 @@ function main(
 
   const preEntityFunction = preEntitySpawnFunctions.get(entityType);
   if (preEntityFunction !== undefined) {
-    return preEntityFunction(variant, subType, position, velocity, spawner, initSeed);
+    return preEntityFunction(
+      variant,
+      subType,
+      position,
+      velocity,
+      spawner,
+      initSeed,
+    );
   }
 
   return undefined;
