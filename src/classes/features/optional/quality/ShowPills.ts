@@ -28,7 +28,7 @@ import { newSprite } from "../../../../sprite";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-export interface PillDescription {
+interface PillDescription {
   color: PillColor;
   effect: PillEffect;
 }
