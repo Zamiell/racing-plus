@@ -20,7 +20,7 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { spawnTrophy } from "../../../../classes/features/mandatory/unsorted/Trophy";
+import { spawnTrophy } from "../../../../classes/features/mandatory/misc/Trophy";
 import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";

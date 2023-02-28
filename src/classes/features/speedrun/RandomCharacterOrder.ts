@@ -25,11 +25,11 @@ import {
 } from "../../../features/speedrun/v";
 import { g } from "../../../globals";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/unsorted/checkErrors/v";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../mandatory/unsorted/RestartOnNextFrame";
+} from "../mandatory/misc/RestartOnNextFrame";
 import { season2ResetBuilds } from "./season2/v";
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 

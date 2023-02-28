@@ -1,13 +1,13 @@
 import { Challenge, Difficulty } from "isaac-typescript-definitions";
 import { game, log, onSetSeed } from "isaacscript-common";
-import { setUnseededWithRacingPlusLogic } from "../../../classes/features/mandatory/unsorted/RacingPlusIcon";
+import { setUnseededWithRacingPlusLogic } from "../../../classes/features/mandatory/misc/RacingPlusIcon";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,
   setRestartChallenge,
   setRestartCharacter,
   setRestartSeed,
-} from "../../../classes/features/mandatory/unsorted/RestartOnNextFrame";
+} from "../../../classes/features/mandatory/misc/RestartOnNextFrame";
 import { RaceDifficulty } from "../../../enums/RaceDifficulty";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { RacerStatus } from "../../../enums/RacerStatus";

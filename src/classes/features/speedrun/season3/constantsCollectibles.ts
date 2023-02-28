@@ -11,7 +11,7 @@ import {
 } from "isaacscript-common";
 import { BANNED_DIVERSITY_COLLECTIBLES } from "../../../../features/race/formatSetup";
 import { mod } from "../../../../mod";
-import { BANNED_COLLECTIBLES } from "../../mandatory/unsorted/RemoveGloballyBannedItems";
+import { BANNED_COLLECTIBLES } from "../../mandatory/misc/RemoveGloballyBannedItems";
 
 /**
  * - These are collectibles that are banned from all item pools during R+7 Season 3 only.

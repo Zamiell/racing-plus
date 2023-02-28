@@ -41,7 +41,7 @@ import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/unsorted/checkErrors/v";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   SEASON_4_BANNED_COLLECTIBLES,
   SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE,

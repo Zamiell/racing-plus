@@ -8,12 +8,12 @@ import {
   log,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
-import { hasErrors } from "../../../classes/features/mandatory/unsorted/checkErrors/v";
+import { hasErrors } from "../../../classes/features/mandatory/misc/checkErrors/v";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../../classes/features/mandatory/unsorted/RestartOnNextFrame";
+} from "../../../classes/features/mandatory/misc/RestartOnNextFrame";
 import { spawnDroppedChildsHeart } from "../../../classes/features/optional/characters/SamsonDropHeart";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";

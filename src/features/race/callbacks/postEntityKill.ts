@@ -1,5 +1,5 @@
 import { game } from "isaacscript-common";
-import { spawnTrophy } from "../../../classes/features/mandatory/unsorted/Trophy";
+import { spawnTrophy } from "../../../classes/features/mandatory/misc/Trophy";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";

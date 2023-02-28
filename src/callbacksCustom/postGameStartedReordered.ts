@@ -4,7 +4,7 @@ import {
   log,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { hasErrors } from "../classes/features/mandatory/unsorted/checkErrors/v";
+import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as seededDrops from "../features/mandatory/seededDrops";

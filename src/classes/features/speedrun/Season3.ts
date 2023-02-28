@@ -73,7 +73,7 @@ import {
   inClearedMomBossRoom,
 } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/unsorted/checkErrors/v";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_GOALS,

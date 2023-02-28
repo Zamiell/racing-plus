@@ -3,7 +3,7 @@ import { findFreePosition, game, inRoomType } from "isaacscript-common";
 import {
   doesTrophyExist,
   spawnTrophy,
-} from "../../../classes/features/mandatory/unsorted/Trophy";
+} from "../../../classes/features/mandatory/misc/Trophy";
 import { RaceGoal } from "../../../enums/RaceGoal";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";

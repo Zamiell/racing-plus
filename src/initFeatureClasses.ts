@@ -19,7 +19,7 @@ import * as fc from "./featureClasses";
  * - Alphabetize "Removals" section + Config.ts.
  */
 const FEATURE_CLASSES = [
-  // Mandatory
+  // Mandatory (TODO - sort)
   fc.CheckErrors,
   fc.DisableMultiplayer,
   fc.DoubleAngelNerf,

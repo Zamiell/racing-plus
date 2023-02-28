@@ -3,7 +3,7 @@ import { game, getCharacterName, log } from "isaacscript-common";
 import {
   restartOnNextFrame,
   setRestartCharacter,
-} from "../../../classes/features/mandatory/unsorted/RestartOnNextFrame";
+} from "../../../classes/features/mandatory/misc/RestartOnNextFrame";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import * as characterProgress from "../characterProgress";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
