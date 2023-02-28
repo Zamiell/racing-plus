@@ -1,9 +1,4 @@
-import {
-  CollectibleType,
-  EntityType,
-  PickupNullSubType,
-  PickupVariant,
-} from "isaac-typescript-definitions";
+import { EntityType, PickupVariant } from "isaac-typescript-definitions";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
 import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 
@@ -13,6 +8,7 @@ export const preEntitySpawnFunctions = new Map<
     variant: int,
     subType: int,
     position: Vector,
+    velocity: Vector,
     spawner: Entity | undefined,
     initSeed: int,
   ) => [EntityType, int, int, int] | undefined
@@ -24,20 +20,32 @@ preEntitySpawnFunctions.set(
   (
     variant: PickupVariant,
     subType: int,
-    _position: Vector,
+    position: Vector,
+    velocity: Vector,
     spawner: Entity | undefined,
-    _initSeed: int,
+    initSeed: int,
   ) => {
     if (variant === PickupVariant.NULL) {
       return seededGlitterBombs.preEntitySpawnPickupNull(
-        subType as PickupNullSubType,
+        EntityType.PICKUP,
+        variant,
+        subType,
+        position,
+        velocity,
         spawner,
+        initSeed,
       );
     }
 
     if (variant === PickupVariant.COLLECTIBLE) {
       return replacePhotos.preEntitySpawnCollectible(
-        subType as CollectibleType,
+        EntityType.PICKUP,
+        variant,
+        subType,
+        position,
+        velocity,
+        spawner,
+        initSeed,
       );
     }
 

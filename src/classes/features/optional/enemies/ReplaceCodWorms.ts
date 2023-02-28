@@ -1,9 +1,9 @@
 import { EntityType } from "isaac-typescript-definitions";
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
-import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
+/** Replace Cod Worms with Para-Bites. */
 export class ReplaceCodWorms extends ConfigurableModFeature {
   configKey: keyof Config = "ReplaceCodWorms";
 
@@ -12,13 +12,14 @@ export class ReplaceCodWorms extends ConfigurableModFeature {
     EntityType.COD_WORM,
   )
   preEntitySpawnCodWorm(
+    _entityType: EntityType,
+    _variant: int,
+    _subType: int,
+    _position: Vector,
+    _velocity: Vector,
+    _spawner: Entity | undefined,
     initSeed: int,
   ): [EntityType, int, int, int] | undefined {
-    if (!config.ReplaceCodWorms) {
-      return undefined;
-    }
-
-    // Replace Cod Worms with Para-Bites.
     return [EntityType.PARA_BITE, 0, 0, initSeed];
   }
 }

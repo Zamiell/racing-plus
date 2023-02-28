@@ -1,5 +1,11 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
-import { anyPlayerHasCollectible, game, log, newRNG } from "isaacscript-common";
+import {
+  anyPlayerHasCollectible,
+  asCollectibleType,
+  game,
+  log,
+  newRNG,
+} from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -35,9 +41,15 @@ export function init(): void {
 // EntityType.PICKUP (5)
 // PickupVariant.COLLECTIBLE (100)
 export function preEntitySpawnCollectible(
-  collectibleType: CollectibleType,
+  _entityType: EntityType,
+  _variant: int,
+  subType: int,
+  _position: Vector,
+  _velocity: Vector,
+  _spawner: Entity | undefined,
+  _initSeed: int,
 ): [EntityType, int, int, int] | undefined {
-  return preventVanillaPhotos(collectibleType);
+  return preventVanillaPhotos(asCollectibleType(subType));
 }
 
 // We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those

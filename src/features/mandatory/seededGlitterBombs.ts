@@ -5,6 +5,7 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
+  asNumber,
   game,
   getRandom,
   newRNG,
@@ -44,11 +45,16 @@ export function postGameStarted(): void {
 // EntityType.PICKUP (5)
 // PickupVariant.NULL (0)
 export function preEntitySpawnPickupNull(
-  subType: PickupNullSubType,
+  _entityType: EntityType,
+  _variant: int,
+  subType: int,
+  _position: Vector,
+  _velocity: Vector,
   spawner: Entity | undefined,
+  _initSeed: int,
 ): [EntityType, int, int, int] | undefined {
   if (
-    subType !== PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS ||
+    subType !== asNumber(PickupNullSubType.EXCLUDE_COLLECTIBLES_CHESTS) ||
     spawner === undefined ||
     spawner.Type !== EntityType.BOMB ||
     spawner.SpawnerEntity === undefined ||

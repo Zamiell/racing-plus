@@ -28,7 +28,7 @@ function main(
   variant: int,
   subType: int,
   position: Vector,
-  _velocity: Vector,
+  velocity: Vector,
   spawner: Entity | undefined,
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
@@ -40,7 +40,7 @@ function main(
 
   const preEntityFunction = preEntitySpawnFunctions.get(entityType);
   if (preEntityFunction !== undefined) {
-    return preEntityFunction(variant, subType, position, spawner, initSeed);
+    return preEntityFunction(variant, subType, position, velocity, spawner, initSeed);
   }
 
   return undefined;
