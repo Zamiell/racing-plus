@@ -1,7 +1,6 @@
 // We must put the feature classes in a separate file as a workaround for Lua having a limit of 200
 // local variables.
 
-export { ModFeature } from "isaacscript-common";
 export { DisableCurses } from "./classes/features/major/DisableCurses";
 export { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
 export { StartWithD6 } from "./classes/features/major/StartWithD6";
