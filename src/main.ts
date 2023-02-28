@@ -47,7 +47,6 @@ import * as postPurchase from "./callbacksCustom/postPurchase";
 import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postSlotAnimationChanged from "./callbacksCustom/postSlotAnimationChanged";
-import * as postTearInitLate from "./callbacksCustom/postTearInitLate";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
@@ -141,7 +140,6 @@ function registerCallbacksCustom() {
   postRoomClearChanged.init();
   postSacrifice.init();
   postSlotAnimationChanged.init();
-  postTearInitLate.init();
   postTransformation.init();
   preCustomRevive.init();
   preItemPickup.init();

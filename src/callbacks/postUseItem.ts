@@ -6,13 +6,10 @@ import {
 } from "isaac-typescript-definitions";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
-import * as displayExpansionPack from "../features/optional/quality/displayExpansionPack";
 import * as removeFortuneCookieBanners from "../features/optional/quality/removeFortuneCookieBanners";
 import { mod } from "../mod";
 
 export function init(): void {
-  mod.AddCallback(ModCallback.POST_USE_ITEM, main);
-
   mod.AddCallback(
     ModCallback.POST_USE_ITEM,
     teleport,
@@ -30,19 +27,6 @@ export function init(): void {
     lemegeton,
     CollectibleType.LEMEGETON, // 712
   );
-}
-
-function main(
-  collectibleType: CollectibleType,
-  _rng: RNG,
-  player: EntityPlayer,
-  useFlags: BitFlags<UseFlag>,
-  _activeSlot: ActiveSlot,
-  _customVarData: int,
-): boolean | undefined {
-  displayExpansionPack.postUseItem(collectibleType, player, useFlags);
-
-  return undefined;
 }
 
 // CollectibleType.TELEPORT (44)

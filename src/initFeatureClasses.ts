@@ -112,9 +112,9 @@ const FEATURE_CLASSES = [
   // - fc.AutomaticItemInsertion,
   fc.ChangeCreepColor,
   // - fc.ChargePocketItemFirst,
-  // - fc.DeleteVoidPortals,
+  fc.DeleteVoidPortals,
   // - fc.EasyFirstFloorItems,
-  // - fc.FadeDevilStatue,
+  fc.FadeDevilStatue,
   fc.RunTimer,
   fc.ShowMaxFamiliars,
   // - fc.ShowNumSacrifices,
@@ -129,7 +129,7 @@ const FEATURE_CLASSES = [
   // - fc.RemoveFortuneCookieBanners, // 557 (collectible)
   // - fc.ShowDreamCatcherItem, // 566 (collectible)
   fc.FastLuna, // 589 (collectible)
-  // - fc.FadeVasculitisTears, // 657 (collectible)
+  fc.FadeVasculitisTears, // 657 (collectible)
   // - fc.FastVanishingTwin, // 697 (collectible)
   fc.FlipCustom, // 711 (collectible)
   // - fc.RemovePerfectionVelocity, // 145 (trinket)
