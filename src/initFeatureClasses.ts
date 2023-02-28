@@ -110,7 +110,7 @@ const FEATURE_CLASSES = [
 
   // Quality of Life
   // - fc.AutomaticItemInsertion,
-  // - fc.ChangeCreepColor,
+  fc.ChangeCreepColor,
   // - fc.ChargePocketItemFirst,
   // - fc.DeleteVoidPortals,
   // - fc.EasyFirstFloorItems,

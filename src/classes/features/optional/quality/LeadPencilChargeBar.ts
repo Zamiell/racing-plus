@@ -8,14 +8,14 @@ import {
   ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
-import { Config } from "../../../classes/Config";
-import { ConfigurableModFeature } from "../../../classes/ConfigurableModFeature";
 import {
   drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
   shouldDrawCustomChargeBar,
-} from "../../../customChargeBar";
-import { CustomChargeBarType } from "../../../enums/CustomChargeBarType";
+} from "../../../../customChargeBar";
+import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;
 
@@ -29,8 +29,10 @@ const v = {
 const sprite = Sprite();
 sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 
-// Incubus and Blood Babies have their own counter that is independent of the player. However, we
-// don't draw an extra charge bar for every familiar, since that would clutter the screen.
+/**
+ * Incubus and Blood Babies have their own counter that is independent of the player. However, we
+ * don't draw an extra charge bar for every familiar, since that would clutter the screen.
+ */
 export class LeadPencilChargeBar extends ConfigurableModFeature {
   configKey: keyof Config = "LeadPencilChargeBar";
   v = v;

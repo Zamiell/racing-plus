@@ -5,7 +5,6 @@ import {
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
-import * as evaluateCache from "./callbacks/evaluateCache";
 import * as inputAction from "./callbacks/inputAction";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
@@ -101,7 +100,6 @@ function registerCallbacksVanilla() {
   postRender.init(); // 2
   postUseItem.init(); // 3
   postUseCard.init(); // 5
-  evaluateCache.init(); // 8
   postUsePill.init(); // 10
   entityTakeDmg.init(); // 11
   inputAction.init(); // 13

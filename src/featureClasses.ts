@@ -89,8 +89,10 @@ export { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCard
 export { FastReset } from "./classes/features/optional/major/FastReset";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
 export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";
+export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCreepColor";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";
 export { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
+export { LeadPencilChargeBar } from "./classes/features/optional/quality/LeadPencilChargeBar";
 export { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 export { RunTimer } from "./classes/features/optional/quality/RunTimer";
 export { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
@@ -103,4 +105,3 @@ export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";
 export { Season4 } from "./classes/features/speedrun/Season4";
-export { LeadPencilChargeBar } from "./features/optional/quality/leadPencilChargeBar";
