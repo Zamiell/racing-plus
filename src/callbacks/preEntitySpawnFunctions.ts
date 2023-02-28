@@ -1,6 +1,5 @@
 import { EntityType, PickupVariant } from "isaac-typescript-definitions";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 
 export const preEntitySpawnFunctions = new Map<
   EntityType,
@@ -25,18 +24,6 @@ preEntitySpawnFunctions.set(
     spawner: Entity | undefined,
     initSeed: int,
   ) => {
-    if (variant === PickupVariant.NULL) {
-      return seededGlitterBombs.preEntitySpawnPickupNull(
-        EntityType.PICKUP,
-        variant,
-        subType,
-        position,
-        velocity,
-        spawner,
-        initSeed,
-      );
-    }
-
     if (variant === PickupVariant.COLLECTIBLE) {
       return replacePhotos.preEntitySpawnCollectible(
         EntityType.PICKUP,

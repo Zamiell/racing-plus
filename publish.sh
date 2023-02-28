@@ -8,4 +8,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 cd "$DIR"
 npx isaacscript publish "$@"
+
+# @template-customization-start
 python "$DIR/scripts/set_debug_variable.py"
+# @template-customization-end

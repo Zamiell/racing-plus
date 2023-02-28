@@ -1,10 +1,5 @@
-import { GridRoom, Keyboard } from "isaac-typescript-definitions";
-import {
-  game,
-  log,
-  logAndPrint,
-  setLogFunctionsGlobal,
-} from "isaacscript-common";
+import { Keyboard } from "isaac-typescript-definitions";
+import { log, logAndPrint, setLogFunctionsGlobal } from "isaacscript-common";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
@@ -16,9 +11,6 @@ import { hotkeys } from "./modConfigMenu";
  */
 function debugCode(_params?: string) {
   // Add code here.
-  const level = game.GetLevel();
-  const roomDesc = level.GetRoomByIdx(GridRoom.DEVIL);
-  print(`DATA: ${roomDesc.Data}`);
 }
 
 /** Hotkey 1 is bound to F2. */

@@ -7,7 +7,6 @@ import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
-import * as seededGlitterBombs from "./features/mandatory/seededGlitterBombs";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
@@ -58,7 +57,6 @@ export function initFeatureVariables(): void {
   fireworks.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
-  seededGlitterBombs.init();
 
   // Major
   fastClearVars.init();

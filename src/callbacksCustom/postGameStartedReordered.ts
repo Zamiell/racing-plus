@@ -10,7 +10,6 @@ import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
-import * as seededGlitterBombs from "../features/mandatory/seededGlitterBombs";
 import * as streakText from "../features/mandatory/streakText";
 import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
@@ -59,7 +58,6 @@ function main(isContinued: boolean) {
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   streakText.postGameStarted();
-  seededGlitterBombs.postGameStarted();
   seededGBBug.postGameStarted();
   fireworks.postGameStarted();
 

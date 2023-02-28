@@ -5,8 +5,7 @@
 
 ### _v0.95.4_ - February 28th, 2023
 
-- !In season 4, Azazel is now replaced with Tainted Azazel.
-- !Fixed the (vanilla) bug where picking up Goat Head in a Boss Room would not immediately open the Devil Room / Angel Room door.
+- In season 4, Azazel is now replaced with Tainted Azazel.
 - Fixed the bug where Cod Worms would always be replaced with Para-Bites with the wrong seed, which resulted in always being the same champion. (Thanks 3kch1)
 
 ### _v0.95.3_ - February 27th, 2023

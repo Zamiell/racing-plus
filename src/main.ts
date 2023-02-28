@@ -29,7 +29,6 @@ import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
-import * as postBombExploded from "./callbacksCustom/postBombExploded";
 import * as postBoneSwing from "./callbacksCustom/postBoneSwing";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
@@ -128,7 +127,6 @@ function registerCallbacksVanilla() {
 }
 
 function registerCallbacksCustom() {
-  postBombExploded.init();
   postBoneSwing.init();
   postCursedTeleport.init();
   postCustomRevive.init();
