@@ -24,6 +24,7 @@ export { RemoveBannedPillEffects } from "./classes/features/mandatory/misc/Remov
 export { RemoveGlitchedItems } from "./classes/features/mandatory/misc/RemoveGlitchedItems";
 export { RemoveGloballyBannedItems } from "./classes/features/mandatory/misc/RemoveGloballyBannedItems";
 export { RestartOnNextFrame } from "./classes/features/mandatory/misc/RestartOnNextFrame";
+export { TempMoreOptions } from "./classes/features/mandatory/misc/TempMoreOptions";
 export { TimeConsoleUsed } from "./classes/features/mandatory/misc/TimeConsoleUsed";
 export { TopLeftText } from "./classes/features/mandatory/misc/TopLeftText";
 export { Trophy } from "./classes/features/mandatory/misc/Trophy";
@@ -126,4 +127,5 @@ export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";
 export { Season4 } from "./classes/features/speedrun/Season4";
+export { SpawnRepentanceDoor } from "./classes/features/speedrun/SpawnRepentanceDoor";
 export { SpeedrunTimer } from "./classes/features/speedrun/SpeedrunTimer";

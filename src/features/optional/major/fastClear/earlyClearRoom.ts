@@ -21,6 +21,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { season3PostFastClear } from "../../../../classes/features/speedrun/season3/fastClear";
+import { spawnRepentanceDoorPostFastClear } from "../../../../classes/features/speedrun/SpawnRepentanceDoor";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
@@ -111,6 +112,7 @@ function earlyClearRoom() {
   killExtraEntities();
 
   postItLivesOrHushPathPostFastClear();
+  spawnRepentanceDoorPostFastClear();
   season3PostFastClear();
 }
 

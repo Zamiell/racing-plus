@@ -34,6 +34,7 @@ const FEATURE_CLASSES = [
   fc.RemoveGlitchedItems,
   fc.RemoveGloballyBannedItems,
   fc.RestartOnNextFrame,
+  fc.TempMoreOptions,
   fc.TimeConsoleUsed,
   fc.TopLeftText,
   fc.Trophy,
@@ -53,6 +54,7 @@ const FEATURE_CLASSES = [
   fc.EmulateVanillaWomb2IAmError,
   fc.PreventDevilRoomResets,
   fc.RandomCharacterOrder, // This must be before the seasons.
+  fc.SpawnRepentanceDoor,
   fc.SpeedrunTimer,
 
   // Speedrun (main)
