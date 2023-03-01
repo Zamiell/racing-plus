@@ -20,11 +20,11 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { getCharacterOrderSafe } from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { getCharacterOrder } from "./changeCharOrder/v";
 import { getRandomlySelectedStartingCharacter } from "./RandomCharacterOrder";
 import {
   NUM_REVELATION_SOUL_HEARTS,
@@ -143,7 +143,7 @@ export class Season2 extends ChallengeModFeature {
     }
 
     // Don't get starting builds that we have vetoed.
-    const vetoedBuilds = getCharacterOrderSafe();
+    const vetoedBuilds = getCharacterOrder() ?? [];
     buildExceptions.push(...vetoedBuilds);
 
     // Don't get starting builds that don't synergize with the current character.

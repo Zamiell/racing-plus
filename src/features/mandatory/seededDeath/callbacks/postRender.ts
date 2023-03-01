@@ -3,8 +3,8 @@ import { isKeeper, RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 import { SeededDeathState } from "../../../../enums/SeededDeathState";
 import { TimerType } from "../../../../enums/TimerType";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import * as timer from "../../../../timer";
-import { onSeason } from "../../../speedrun/speedrun";
 import {
   SEEDED_DEATH_FEATURE_NAME,
   SEEDED_DEATH_TIMER_SEASON_OFFSET_X,

@@ -1,5 +1,5 @@
 import { copyArray } from "isaacscript-common";
-import { speedrunGetCharacterNum } from "../../../../features/speedrun/v";
+import { speedrunGetCharacterNum } from "../characterProgress/v";
 import { SEASON_2_STARTING_BUILD_INDEXES } from "./constants";
 
 // This is registered in "Season2.ts".

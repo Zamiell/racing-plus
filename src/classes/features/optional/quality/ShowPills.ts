@@ -23,7 +23,7 @@ import {
   NUM_PILLS_IN_POOL,
   ReadonlyMap,
 } from "isaacscript-common";
-import { onSeason } from "../../../../features/speedrun/speedrun";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { newSprite } from "../../../../sprite";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

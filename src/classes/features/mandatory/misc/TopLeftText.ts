@@ -19,22 +19,20 @@ import {
   getNumVictoryLaps,
   shouldShowVictoryLaps,
 } from "../../../../features/race/victoryLap";
-import {
-  getAverageTimePerCharacter,
-  inSpeedrun,
-  isOnFinalCharacter,
-} from "../../../../features/speedrun/speedrun";
-import {
-  speedrunGetFinishedFrames,
-  speedrunShouldShowEndOfRunText,
-} from "../../../../features/speedrun/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   getNumSacrifices,
   shouldShowNumSacrifices,
 } from "../../optional/quality/ShowNumSacrifices";
+import { isOnFinalCharacter } from "../../speedrun/characterProgress/v";
+import {
+  speedrunGetAverageTimePerCharacter,
+  speedrunGetFinishedFrames,
+  speedrunShouldShowEndOfRunText,
+} from "../../speedrun/SpeedrunTimer";
 
 const STARTING_X = 55;
 const STARTING_Y = 10;
@@ -90,7 +88,9 @@ export class TopLeftText extends MandatoryModFeature {
       lines.push(`R+ ${VERSION} - ${seedString}`);
 
       if (speedrunShouldShowEndOfRunText()) {
-        lines.push(`Avg. time per char: ${getAverageTimePerCharacter()}`);
+        lines.push(
+          `Avg. time per char: ${speedrunGetAverageTimePerCharacter()}`,
+        );
       } else {
         const numRoomsEntered = mod.getNumRoomsEntered();
         lines.push(`Rooms entered: ${numRoomsEntered}`);

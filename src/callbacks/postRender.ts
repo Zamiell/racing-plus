@@ -7,7 +7,6 @@ import { automaticItemInsertionPostRender } from "../features/optional/quality/a
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
-import { speedrunPostRender } from "../features/speedrun/callbacks/postRender";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -26,7 +25,6 @@ function main() {
 
   // Major
   racePostRender();
-  speedrunPostRender();
   fastTravelPostRender();
 
   // QoL

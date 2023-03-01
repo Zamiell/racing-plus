@@ -1,7 +1,6 @@
 import { ModCallbackCustom, PickingUpItem } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
 import { automaticItemInsertionPreItemPickup } from "../features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
-import { speedrunPreItemPickup } from "../features/speedrun/callbacks/preItemPickup";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -17,9 +16,6 @@ function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {
 
   // Mandatory
   streakText.preItemPickup(pickingUpItem);
-
-  // Major
-  speedrunPreItemPickup(player, pickingUpItem);
 
   // QoL
   automaticItemInsertionPreItemPickup(player, pickingUpItem);

@@ -18,6 +18,7 @@ import * as fc from "./featureClasses";
  * - Search for: "postPEffectUpdate("
  * - Make SolCustom part of FastClear directory.
  * - Alphabetize "Removals" section + Config.ts.
+ * - Try combining the various speedrun class v.ts with the parent class.
  */
 const FEATURE_CLASSES = [
   // Mandatory (TODO - sort)
@@ -44,10 +45,17 @@ const FEATURE_CLASSES = [
   fc.Sawblade,
   fc.SolCustom,
 
-  // Speedrun
+  // Speedrun (utils)
+  fc.AchievementItems,
   fc.ChangeCharOrder,
   fc.CharacterProgress,
+  fc.DrawCharacterProgress,
+  fc.EmulateVanillaWomb2IAmError,
+  fc.PreventDevilRoomResets,
   fc.RandomCharacterOrder, // This must be before the seasons.
+  fc.SpeedrunTimer,
+
+  // Speedrun (main)
   fc.Season1,
   fc.Season2,
   fc.Season3,

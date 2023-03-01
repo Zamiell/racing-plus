@@ -9,7 +9,10 @@ import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
-import { inSpeedrun, onSpeedrunWithDarkRoomGoal } from "../speedrun/speedrun";
+import {
+  inSpeedrun,
+  onSpeedrunWithDarkRoomGoal,
+} from "../../speedrun/utilsSpeedrun";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
 

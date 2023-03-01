@@ -45,12 +45,23 @@ function featureEnabled() {
   return config.ClientCommunication;
 }
 
+export function inUnseededRace(): boolean {
+  return inRace() && g.race.format === RaceFormat.UNSEEDED;
+}
+
 export function inSeededRace(): boolean {
+  return inRace() && g.race.format === RaceFormat.SEEDED;
+}
+
+export function inDiversityRace(): boolean {
+  return inRace() && g.race.format === RaceFormat.DIVERSITY;
+}
+
+function inRace(): boolean {
   return (
     config.ClientCommunication &&
     g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED
+    g.race.myStatus === RacerStatus.RACING
   );
 }
 

@@ -24,7 +24,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { onSeason } from "../../../../features/speedrun/speedrun";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { consoleCommand } from "../../../../utils";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

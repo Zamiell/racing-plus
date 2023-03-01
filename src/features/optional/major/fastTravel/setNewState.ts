@@ -31,12 +31,12 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom, moveEsauNextToJacob } from "../../../../utils";
 import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
 } from "../../../mandatory/planetariumFix";
-import { onSeason } from "../../../speedrun/speedrun";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravel";

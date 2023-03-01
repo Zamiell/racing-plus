@@ -28,19 +28,19 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
-import { hasPolaroidOrNegative } from "../../../../utils";
 import {
   inSpeedrun,
   onSeason,
   onSpeedrunWithDarkRoomGoal,
-} from "../../../speedrun/speedrun";
+} from "../../../../speedrun/utilsSpeedrun";
+import { hasPolaroidOrNegative } from "../../../../utils";
 
 // The trapdoor / heaven door positions after Hush are not in the center of the room; they are near
 // the top wall.
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
 /** Triggered when a room is fast-cleared. */
-export function fastClear(): void {
+export function postItLivesOrHushPathPostFastClear(): void {
   if (inItLivesOrHushBossRoom()) {
     manuallySpawn();
   }

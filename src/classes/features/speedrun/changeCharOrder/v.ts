@@ -1,6 +1,9 @@
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
 import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
-import { ChallengeCustomAbbreviation } from "../../../../features/speedrun/constants";
+import {
+  ChallengeCustomAbbreviation,
+  CHALLENGE_DEFINITIONS,
+} from "../../../../speedrun/constantsSpeedrun";
 import { SeasonDescription } from "../../../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 
@@ -43,10 +46,30 @@ function getBlankCharOrders(): Map<ChallengeCustomAbbreviation, PlayerType[]> {
   return charOrders;
 }
 
-export function getCharacterOrder(
-  challengeCustomAbbreviation: ChallengeCustomAbbreviation,
-): PlayerType[] | undefined {
-  return v.persistent.charOrders.get(challengeCustomAbbreviation);
+export function getCharacterOrder(): PlayerType[] | undefined {
+  const challenge = Isaac.GetChallenge();
+  const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
+  if (challengeDefinition === undefined) {
+    return undefined;
+  }
+
+  const { challengeCustomAbbreviation, numElements } = challengeDefinition;
+  const characterOrder = v.persistent.charOrders.get(
+    challengeCustomAbbreviation,
+  );
+  if (characterOrder === undefined) {
+    return undefined;
+  }
+
+  if (type(characterOrder) !== "table") {
+    return undefined;
+  }
+
+  if (characterOrder.length !== numElements) {
+    return undefined;
+  }
+
+  return characterOrder;
 }
 
 export function getSeasonDescription(): SeasonDescription {
@@ -64,4 +87,40 @@ export function getSeasonDescription(): SeasonDescription {
   }
 
   return seasonDescription;
+}
+
+export function hasValidCharacterOrder(): boolean {
+  const challenge = Isaac.GetChallenge();
+  const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
+  if (challengeDefinition === undefined) {
+    return false;
+  }
+
+  const { challengeCustomAbbreviation, numElements } = challengeDefinition;
+  if (numElements === 0) {
+    // Some seasons do not have any pre-defined choices.
+    return true;
+  }
+
+  const characterOrder = v.persistent.charOrders.get(
+    challengeCustomAbbreviation,
+  );
+  if (characterOrder === undefined) {
+    return false;
+  }
+
+  if (type(characterOrder) !== "table") {
+    return false;
+  }
+
+  return characterOrder.length === numElements;
+}
+
+export function speedrunGetFirstChosenCharacter(): PlayerType | undefined {
+  const characterOrder = getCharacterOrder();
+  if (characterOrder === undefined) {
+    return undefined;
+  }
+
+  return characterOrder[0];
 }

@@ -14,7 +14,6 @@ import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
-import { speedrunPostGameStarted } from "../features/speedrun/callbacks/postGameStarted";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -61,7 +60,6 @@ function main(isContinued: boolean) {
 
   // Major
   racePostGameStarted();
-  speedrunPostGameStarted();
   betterDevilAngelRoomsPostGameStarted();
 
   // QoL

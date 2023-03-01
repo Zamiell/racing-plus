@@ -11,7 +11,6 @@ import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postFamiliarRender from "./callbacks/postFamiliarRender";
-import * as postGameEnd from "./callbacks/postGameEnd";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
@@ -98,7 +97,6 @@ function registerCallbacksVanilla() {
   postUsePill.init(); // 10
   entityTakeDmg.init(); // 11
   inputAction.init(); // 13
-  postGameEnd.init(); // 16
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24

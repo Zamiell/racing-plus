@@ -30,7 +30,7 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
-import { onSeason } from "../../../speedrun/speedrun";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { FAST_TRAVEL_DEBUG } from "./constants";
 import * as fastTravel from "./fastTravel";
 import { setFadingToBlack } from "./setNewState";

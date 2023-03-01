@@ -5,11 +5,11 @@ import {
   removeGridEntity,
 } from "isaacscript-common";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../../../features/optional/major/fastTravel/fastTravel";
-import { onSeason } from "../../../../features/speedrun/speedrun";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../utils";
 import { season3HasHushGoal, season3HasOnlyDogmaLeft } from "./v";
 
-export function season3FastClear(): void {
+export function season3PostFastClear(): void {
   if (!onSeason(3)) {
     return;
   }

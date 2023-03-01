@@ -4,7 +4,6 @@ import * as seededGBBug from "../features/mandatory/seededGBBug";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
-import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -20,12 +19,6 @@ export function init(): void {
     ModCallback.POST_PICKUP_INIT,
     redChest,
     PickupVariant.RED_CHEST, // 360
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    trophy,
-    PickupVariant.TROPHY, // 370
   );
 
   mod.AddCallback(
@@ -48,11 +41,6 @@ function bigChest(pickup: EntityPickup) {
 // PickupVariant.RED_CHEST (360)
 function redChest(_pickup: EntityPickup) {
   betterDevilAngelRoomsPostPickupInitRedChest();
-}
-
-// PickupVariant.TROPHY (370)
-function trophy(pickup: EntityPickup) {
-  speedrunPostPickupInit.trophy(pickup);
 }
 
 // PickupVariantCustom.INVISIBLE_PICKUP

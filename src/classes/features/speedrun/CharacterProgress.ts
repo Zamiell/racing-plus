@@ -1,145 +1,273 @@
-/* eslint-disable max-classes-per-file */
-
-import { ModCallback } from "isaac-typescript-definitions";
+import {
+  FadeoutTarget,
+  ItemType,
+  ModCallback,
+  PickupVariant,
+  PlayerType,
+} from "isaac-typescript-definitions";
 import {
   Callback,
   CallbackCustom,
   game,
-  getHUDOffsetVector,
-  isBethany,
-  isJacobOrEsau,
+  getCharacterName,
+  log,
   ModCallbackCustom,
+  removeCollectibleFromItemTracker,
+  spawnPickup,
 } from "isaacscript-common";
-import {
-  SPRITE_BETHANY_OFFSET,
-  SPRITE_JACOB_ESAU_OFFSET,
-} from "../../../constants";
-import { shouldDrawPlaceLeftSprite } from "../../../features/race/placeLeft";
-import {
-  CHALLENGE_DEFINITIONS,
-  CUSTOM_CHALLENGES_SET,
-} from "../../../features/speedrun/constants";
-import { v } from "../../../features/speedrun/v";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { speedrunResetPersistentVars } from "../../../speedrun/resetVars";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import {
+  isRestartingOnNextFrame,
+  restartOnNextFrame,
+  setRestartCharacter,
+} from "../mandatory/misc/RestartOnNextFrame";
+import {
+  getCharacterOrder,
+  hasValidCharacterOrder,
+  speedrunGetFirstChosenCharacter,
+} from "./changeCharOrder/v";
+import { isOnFirstCharacter, v } from "./characterProgress/v";
+import { isSpeedrunWithRandomCharacterOrder } from "./RandomCharacterOrder";
+import {
+  speedrunResetFirstCharacterVars,
+  speedrunTimerCheckpointTouched,
+} from "./SpeedrunTimer";
 
-const STARTING_POSITION = Vector(23, 79);
-const RACE_PLACE_OFFSET = Vector(30, 0);
+const DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT = 30;
+const FADEOUT_SPEED = 0.0275;
 
-class CharacterProgressSprites {
-  digits = {
-    digit1: Sprite(),
-    digit2: Sprite(),
-    digit3: Sprite(),
-    digit4: Sprite(),
-  };
+/**
+ * After using the `Game.Fadeout` method, we will be taken to the main menu. We can interrupt this
+ * by restarting the game on the frame before the fade out ends. 69 is the latest frame that works,
+ * determined via trial and error. Doing this is necessary because we do not want the player to be
+ * able to reset to skip having to watch the fade out animation.
+ */
+const DELAY_FRAMES_AFTER_FADEOUT = 69;
 
-  slash = Sprite();
-  seasonIcon = Sprite();
+/** Tainted Cain will never be in a legitimate speedrun. */
+const DEFAULT_CHARACTER_ON_ERROR = PlayerType.CAIN_B;
 
-  constructor() {
-    for (const sprite of Object.values(this.digits)) {
-      sprite.Load("gfx/timer/timer.anm2", true);
-      sprite.SetFrame("Default", 0);
-
-      // Make the numbers a bit smaller than the ones used for the timer.
-      sprite.Scale = Vector(0.9, 0.9);
-    }
-
-    this.slash.Load("gfx/timer/slash.anm2", true);
-    this.slash.SetFrame("Default", 0);
-  }
-}
-
-const sprites = new CharacterProgressSprites();
-
-/** The sprite on the left hand side of the screen that shows "1 / 7". */
 export class CharacterProgress extends ChallengeModFeature {
   challenge = CUSTOM_CHALLENGES_SET;
+  v = v;
 
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
-    this.drawCharacterProgressAndSeasonIcon();
+    this.checkBeginFadeOutAfterCheckpoint();
+    this.checkManualResetAtEndOfFadeout();
   }
 
-  drawCharacterProgressAndSeasonIcon(): void {
-    const hud = game.GetHUD();
-    if (!hud.IsVisible()) {
+  checkBeginFadeOutAfterCheckpoint(): void {
+    const renderFrameCount = Isaac.GetFrameCount();
+
+    if (v.run.fadeFrame === null || renderFrameCount < v.run.fadeFrame) {
       return;
     }
 
-    let position = STARTING_POSITION;
-    const HUDOffsetVector = getHUDOffsetVector();
-    position = position.add(HUDOffsetVector);
+    // We grabbed the checkpoint, so fade out the screen before we reset.
+    v.run.fadeFrame = null;
+    game.Fadeout(FADEOUT_SPEED, FadeoutTarget.RESTART_RUN);
+    v.run.resetFrame = renderFrameCount + DELAY_FRAMES_AFTER_FADEOUT;
+  }
 
-    if (shouldDrawPlaceLeftSprite()) {
-      position = position.add(RACE_PLACE_OFFSET);
+  checkManualResetAtEndOfFadeout(): void {
+    const renderFrameCount = Isaac.GetFrameCount();
+
+    if (v.run.resetFrame === null || renderFrameCount < v.run.resetFrame) {
+      return;
     }
+    v.run.resetFrame = null;
 
-    const digitLength = 7.25;
-    let adjustment1 = 0;
-    let adjustment2 = 0;
-    if (v.persistent.characterNum > 9) {
-      adjustment1 = digitLength - 2;
-      adjustment2 = adjustment1 - 1;
+    // The screen is now black, so move us to the next character for the speedrun.
+    this.setNextCharacterAndRestart();
+  }
+
+  setNextCharacterAndRestart(): void {
+    v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again.
+    v.persistent.characterNum++;
+    restartOnNextFrame();
+    log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
+
+    // Speedruns with a random character order will set the next character using its own code.
+    if (!isSpeedrunWithRandomCharacterOrder()) {
+      const character = getCurrentCharacter();
+      setRestartCharacter(character);
+
+      const characterName = getCharacterName(character);
+      log(
+        `Speedrun: Set the next character to be ${characterName} (${character}) and set to restart on the next frame.`,
+      );
     }
+  }
 
-    // Certain characters have extra HUD elements, shifting the "No Achievements" icon down.
-    const player = Isaac.GetPlayer();
-    if (isBethany(player)) {
-      position = position.add(SPRITE_BETHANY_OFFSET);
-    } else if (isJacobOrEsau(player)) {
-      position = position.add(SPRITE_JACOB_ESAU_OFFSET);
-    }
+  // 34, 370
+  @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.TROPHY)
+  postPickupInitTrophy(pickup: EntityPickup): void {
+    this.removeAndSpawnBigChest(pickup);
+  }
 
-    // Draw the sprites for the character progress.
-    let digit1 = v.persistent.characterNum;
-    let digit2 = -1;
-    if (v.persistent.characterNum > 9) {
-      digit1 = 1;
-      digit2 = v.persistent.characterNum - 10;
-    }
-    const digit3 = 7; // Assume a 7 character speedrun by default.
+  /**
+   * Funnel all end-of-run decision making through code that runs on `POST_PICKUP_INIT` for Big
+   * Chests.
+   */
+  removeAndSpawnBigChest(pickup: EntityPickup): void {
+    pickup.Remove();
+    spawnPickup(PickupVariant.BIG_CHEST, 0, pickup.Position);
+  }
 
-    sprites.digits.digit1.SetFrame("Default", digit1);
-    sprites.digits.digit1.Render(position);
-
-    if (digit2 !== -1) {
-      sprites.digits.digit2.SetFrame("Default", digit2);
-      const digit2Modification = Vector(digitLength - 1, 0);
-      const digit2Position = position.add(digit2Modification);
-      sprites.digits.digit2.Render(digit2Position);
-    }
-
-    const slashModification = Vector(digitLength - 1 + adjustment1, 0);
-    const slashPosition = position.add(slashModification);
-    sprites.slash.Render(slashPosition);
-
-    sprites.digits.digit3.SetFrame("Default", digit3);
-    const digit3Modification = Vector(digitLength + adjustment2 + 5, 0);
-    const digit3Position = position.add(digit3Modification);
-    sprites.digits.digit3.Render(digit3Position);
-
-    // Draw the sprite for the season icon.
-    const spacing = 17;
-    const posSeason = Vector(digit3Position.X + spacing, digit3Position.Y);
-    sprites.seasonIcon.Render(posSeason);
+  /** Don't move to the first character of the speedrun if we die. */
+  @CallbackCustom(ModCallbackCustom.POST_GAME_END_FILTER, true)
+  postGameEndFilterTrue(): void {
+    v.persistent.performedFastReset = true;
   }
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
-    this.initSeasonIconSprite();
-  }
-
-  initSeasonIconSprite(): void {
-    const challenge = Isaac.GetChallenge();
-    const challengeDefinition = CHALLENGE_DEFINITIONS.get(challenge);
-    if (challengeDefinition === undefined) {
-      error("Failed to get the challenge definition.");
+    // Force them back to the first character if there are any errors.
+    if (hasErrors()) {
+      speedrunResetPersistentVars();
+      return;
     }
-    const abbreviation = challengeDefinition[0];
 
-    sprites.seasonIcon.Load(`gfx/speedrun/${abbreviation}.anm2`, true);
-    sprites.seasonIcon.SetFrame("Default", 0);
+    if (v.persistent.resetAllVarsOnNextReset) {
+      v.persistent.resetAllVarsOnNextReset = false;
+      speedrunResetPersistentVars();
+    }
+
+    const challenge = Isaac.GetChallenge();
+    if (challenge !== v.persistent.currentlyPlayingChallenge) {
+      v.persistent.currentlyPlayingChallenge = challenge;
+      speedrunResetPersistentVars();
+    }
+
+    this.liveSplitReset();
+
+    if (isRestartingOnNextFrame()) {
+      return;
+    }
+
+    if (!hasValidCharacterOrder()) {
+      return;
+    }
+
+    if (this.setCorrectCharacter()) {
+      return;
+    }
+
+    if (this.goBackToFirstCharacter()) {
+      return;
+    }
+
+    speedrunResetFirstCharacterVars();
   }
+
+  liveSplitReset(): void {
+    const player = Isaac.GetPlayer();
+
+    if (v.persistent.liveSplitReset) {
+      v.persistent.liveSplitReset = false;
+      player.AddCollectible(CollectibleTypeCustom.RESET);
+      log(
+        `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.RESET}.`,
+      );
+      removeCollectibleFromItemTracker(CollectibleTypeCustom.RESET);
+    }
+  }
+
+  /** @returns True if the current character was wrong. */
+  setCorrectCharacter(): boolean {
+    const player = Isaac.GetPlayer();
+    const character = player.GetPlayerType();
+
+    // Character order is explicitly handled in some seasons.
+    if (isSpeedrunWithRandomCharacterOrder()) {
+      return false;
+    }
+
+    const currentCharacter = getCurrentCharacter();
+    if (character !== currentCharacter) {
+      v.persistent.performedFastReset = true;
+      restartOnNextFrame();
+      setRestartCharacter(currentCharacter);
+      log(
+        `Restarting because we are on character ${character} and we need to be on character ${currentCharacter}.`,
+      );
+
+      return true;
+    }
+
+    return false;
+  }
+
+  goBackToFirstCharacter(): boolean {
+    if (v.persistent.performedFastReset) {
+      v.persistent.performedFastReset = false;
+      return false;
+    }
+
+    if (isOnFirstCharacter()) {
+      return false;
+    }
+
+    // They held R for a slow reset, and they are not on the first character, so they want to
+    // restart from the first character.
+    v.persistent.characterNum = 1;
+    restartOnNextFrame();
+
+    if (!isSpeedrunWithRandomCharacterOrder()) {
+      const firstCharacter = speedrunGetFirstChosenCharacter();
+      if (firstCharacter !== undefined) {
+        setRestartCharacter(firstCharacter);
+      }
+    }
+
+    log("Restarting because we want to start from the first character again.");
+
+    // Tell the LiveSplit AutoSplitter to reset.
+    v.persistent.liveSplitReset = true;
+
+    return true;
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.PRE_ITEM_PICKUP,
+    ItemType.PASSIVE,
+    CollectibleTypeCustom.CHECKPOINT,
+  )
+  preItemPickupCheckpoint(player: EntityPlayer): void {
+    const renderFrameCount = Isaac.GetFrameCount();
+
+    // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know
+    // when to split.)
+    player.AddCollectible(CollectibleTypeCustom.CHECKPOINT, 0, false);
+
+    // Freeze the player.
+    player.ControlsEnabled = false;
+
+    // Mark to fade out after the "Checkpoint" text has displayed on the screen for a little bit.
+    v.run.fadeFrame =
+      renderFrameCount + DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT;
+
+    speedrunTimerCheckpointTouched();
+  }
+}
+
+function getCurrentCharacter(): PlayerType {
+  const characterOrder = getCharacterOrder();
+  if (characterOrder === undefined) {
+    return DEFAULT_CHARACTER_ON_ERROR;
+  }
+
+  const arrayIndex = v.persistent.characterNum - 1;
+  const character = characterOrder[arrayIndex];
+  if (character === undefined) {
+    return DEFAULT_CHARACTER_ON_ERROR;
+  }
+
+  return character;
 }

@@ -49,9 +49,9 @@ import {
   getFastClearNumAliveBosses,
   getFastClearNumAliveEnemies,
 } from "../../../../features/optional/major/fastClear/v";
-import { onSeason } from "../../../../features/speedrun/speedrun";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

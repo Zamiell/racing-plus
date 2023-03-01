@@ -7,9 +7,9 @@ import {
   log,
 } from "isaacscript-common";
 import { mod } from "../../mod";
+import { onSeason } from "../../speedrun/utilsSpeedrun";
 import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
-import { onSeason } from "../speedrun/speedrun";
 
 enum PlanetariumFixWarpState {
   INITIAL,

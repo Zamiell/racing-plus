@@ -8,7 +8,6 @@ import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
-import * as tempMoreOptions from "./features/mandatory/tempMoreOptions";
 import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
 import * as roll from "./features/optional/hotkeys/roll";
@@ -22,7 +21,6 @@ import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
-import * as speedrunVars from "./features/speedrun/v";
 import { mod } from "./mod";
 import * as modConfigMenu from "./modConfigMenu";
 import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
@@ -35,12 +33,10 @@ export function initFeatureVariables(): void {
   socketClient.init();
   shadows.init();
   planetariumFix.init();
-  speedrunVars.init();
 
   // Mandatory
   streakText.init();
   replacePhotos.init();
-  tempMoreOptions.init();
   seededDrops.init();
   seededTeleports.init();
   seededFloors.init();

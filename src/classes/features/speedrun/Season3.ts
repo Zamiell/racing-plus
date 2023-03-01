@@ -63,10 +63,6 @@ import { ItLivesSituation } from "../../../enums/ItLivesSituation";
 import { Season3Goal } from "../../../enums/Season3Goal";
 import { isDreamCatcherWarping } from "../../../features/optional/quality/showDreamCatcherItem/v";
 import { giveDiversityItemsAndDoItemBans } from "../../../features/race/formatSetup";
-import {
-  isOnFinalCharacter,
-  isOnFirstCharacter,
-} from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import {
   addCollectibleAndRemoveFromPools,
@@ -74,6 +70,7 @@ import {
 } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { isOnFinalCharacter, isOnFirstCharacter } from "./characterProgress/v";
 import {
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,
   SEASON_3_GOALS,

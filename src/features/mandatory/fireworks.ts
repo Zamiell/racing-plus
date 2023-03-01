@@ -13,10 +13,10 @@ import {
   sfxManager,
   spawnEffect,
 } from "isaacscript-common";
+import { speedrunIsFinished } from "../../classes/features/speedrun/SpeedrunTimer";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
-import { speedrunIsFinished } from "../speedrun/v";
 
 const v = {
   run: {

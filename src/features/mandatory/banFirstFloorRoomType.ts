@@ -9,8 +9,9 @@ import {
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
+import { isOnFirstCharacter } from "../../classes/features/speedrun/characterProgress/v";
+import { onSeason } from "../../speedrun/utilsSpeedrun";
 import { inSeededRace } from "../race/v";
-import { isOnFirstCharacter, onSeason } from "../speedrun/speedrun";
 import { isPlanetariumFixWarping } from "./planetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES = [

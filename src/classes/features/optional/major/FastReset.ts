@@ -10,10 +10,10 @@ import {
   isKeyboardPressed,
   restart,
 } from "isaacscript-common";
-import { speedrunSetFastReset } from "../../../../features/speedrun/v";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { speedrunSetFastReset } from "../../speedrun/characterProgress/v";
 
 const v = {
   run: {

@@ -32,16 +32,13 @@ import {
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import {
-  isOnFinalCharacter,
-  isOnFirstCharacter,
-  onSeason,
-} from "../../../features/speedrun/speedrun";
 import { mod } from "../../../mod";
 import { hotkeys } from "../../../modConfigMenu";
+import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { isOnFinalCharacter, isOnFirstCharacter } from "./characterProgress/v";
 import {
   SEASON_4_BANNED_COLLECTIBLES,
   SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE,

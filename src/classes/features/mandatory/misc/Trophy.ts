@@ -14,11 +14,14 @@ import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { isSeededDeathActive } from "../../../../features/mandatory/seededDeath/v";
 import { raceFinish } from "../../../../features/race/raceFinish";
-import * as speedrun from "../../../../features/speedrun/speedrun";
-import { speedrunIsFinished } from "../../../../features/speedrun/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import {
+  speedrunIsFinished,
+  speedrunTimerFinish,
+} from "../../speedrun/SpeedrunTimer";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
 
@@ -87,8 +90,8 @@ export class Trophy extends MandatoryModFeature {
       "PlayerPickupSparkle2" as CollectibleAnimation,
     );
 
-    if (speedrun.inSpeedrun()) {
-      speedrun.finish(player);
+    if (inSpeedrun()) {
+      speedrunTimerFinish(player);
     } else {
       raceFinish();
     }

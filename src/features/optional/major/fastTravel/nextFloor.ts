@@ -20,9 +20,9 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import { onSeason } from "../../../speedrun/speedrun";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import { v } from "./v";
 

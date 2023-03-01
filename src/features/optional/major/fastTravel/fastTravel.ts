@@ -26,8 +26,8 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../utils";
-import { onSeason } from "../../../speedrun/speedrun";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,

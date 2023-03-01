@@ -7,8 +7,8 @@ import {
   setEntityOpacity,
 } from "isaacscript-common";
 import { SeededDeathState } from "../../../enums/SeededDeathState";
+import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { inSeededRace } from "../../race/v";
-import { onSeason } from "../../speedrun/speedrun";
 import { SEEDED_DEATH_DEBUG, SEEDED_DEATH_FADE_AMOUNT } from "./constants";
 import { v } from "./v";
 

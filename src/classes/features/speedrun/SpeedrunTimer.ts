@@ -1,25 +1,75 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
+  emptyArray,
   getScreenBottomY,
+  removeCollectibleFromItemTracker,
   RENDER_FRAMES_PER_SECOND,
   RESOLUTION_FULL_SCREEN,
+  sfxManager,
+  sumArray,
 } from "isaacscript-common";
 import {
   RACE_TIMER_POSITION_X,
   RACE_TIMER_POSITION_Y,
 } from "../../../constants";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { SoundEffectCustom } from "../../../enums/SoundEffectCustom";
 import { TimerType } from "../../../enums/TimerType";
 import { shouldDrawRaceTimer } from "../../../features/race/raceTimer";
-import { CUSTOM_CHALLENGES_SET } from "../../../features/speedrun/constants";
-import { isOnFirstCharacter } from "../../../features/speedrun/speedrun";
-import { v } from "../../../features/speedrun/v";
 import { config } from "../../../modConfigMenu";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
 import * as timer from "../../../timer";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import {
+  isOnFirstCharacter,
+  speedrunGetCharacterNum,
+} from "./characterProgress/v";
+
+const v = {
+  persistent: {
+    startedSpeedrunFrame: null as int | null,
+    startedCharacterFrame: null as int | null,
+    characterRunFrames: [] as int[],
+
+    resetAllVarsOnNextReset: false,
+  },
+
+  run: {
+    finished: false,
+    finishedFrames: null as int | null,
+  },
+
+  room: {
+    showEndOfRunText: false,
+  },
+};
 
 export class SpeedrunTimer extends ChallengeModFeature {
   challenge = CUSTOM_CHALLENGES_SET;
+  v = v;
+
+  // 1
+  @Callback(ModCallback.POST_UPDATE)
+  postUpdate(): void {
+    this.checkStartTimer();
+  }
+
+  /**
+   * We want to start the timer on the first game frame, as opposed to when the screen is fading in.
+   * Thus, we must check for this on every frame. This is to keep the timing consistent with
+   * historical timing of speedruns.
+   */
+  checkStartTimer(): void {
+    if (v.persistent.startedSpeedrunFrame !== null) {
+      return;
+    }
+
+    const renderFrameCount = Isaac.GetFrameCount();
+
+    v.persistent.startedSpeedrunFrame = renderFrameCount;
+    v.persistent.startedCharacterFrame = renderFrameCount;
+  }
 
   // 2
   @Callback(ModCallback.POST_RENDER)
@@ -88,4 +138,97 @@ export class SpeedrunTimer extends ChallengeModFeature {
       RACE_TIMER_POSITION_Y + 15,
     );
   }
+}
+
+export function speedrunGetAverageTimePerCharacter(): string {
+  const totalFrames = sumArray(v.persistent.characterRunFrames);
+  const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
+  const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
+
+  const { hours, minute1, minute2, second1, second2 } =
+    timer.convertSecondsToTimerValues(averageSeconds);
+
+  if (hours > 0) {
+    return "too long";
+  }
+
+  return `${minute1}${minute2}.${second1}${second2}`;
+}
+
+export function speedrunGetFinishedFrames(): number {
+  return v.run.finishedFrames === null ? 0 : v.run.finishedFrames;
+}
+
+export function speedrunIsFinished(): boolean {
+  return v.run.finished;
+}
+
+export function speedrunResetFirstCharacterVars(): void {
+  const characterNum = speedrunGetCharacterNum();
+  if (characterNum === 1) {
+    v.persistent.startedSpeedrunFrame = null;
+    v.persistent.startedCharacterFrame = null;
+    emptyArray(v.persistent.characterRunFrames);
+  }
+}
+
+export function speedrunShouldShowEndOfRunText(): boolean {
+  return v.room.showEndOfRunText;
+}
+
+/**
+ * When the player takes the "Checkpoint" custom item to move on to the next character in the
+ * speedrun.
+ */
+export function speedrunTimerCheckpointTouched(): void {
+  const renderFrameCount = Isaac.GetFrameCount();
+
+  // Record how long this run took.
+  if (v.persistent.startedCharacterFrame !== null) {
+    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
+    v.persistent.characterRunFrames.push(elapsedFrames);
+  }
+
+  // Mark our current frame as the starting time for the next character.
+  v.persistent.startedCharacterFrame = renderFrameCount;
+
+  // Show the run summary (including the average time per character for the run so far).
+  v.room.showEndOfRunText = true;
+}
+
+/** When the player takes the trophy at the end of a multi-character speedrun. */
+export function speedrunTimerFinish(player: EntityPlayer): void {
+  const renderFrameCount = Isaac.GetFrameCount();
+
+  sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
+
+  // Give them the Checkpoint custom item. (This is used by the AutoSplitter to know when to split.)
+  player.AddCollectible(CollectibleTypeCustom.CHECKPOINT);
+  removeCollectibleFromItemTracker(CollectibleTypeCustom.CHECKPOINT);
+
+  // Record how long this run took.
+  if (v.persistent.startedCharacterFrame !== null) {
+    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
+    v.persistent.characterRunFrames.push(elapsedFrames);
+  }
+
+  // Show the run summary (including the average time per character).
+  v.room.showEndOfRunText = true;
+
+  // Finish the speedrun.
+  v.run.finished = true;
+
+  if (v.persistent.startedSpeedrunFrame !== null) {
+    v.run.finishedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
+  }
+
+  v.persistent.resetAllVarsOnNextReset = true;
+
+  // Fireworks will play on the next frame (from the PostUpdate callback).
+}
+
+export function speedrunTimerResetPersistentVars(): void {
+  v.persistent.startedSpeedrunFrame = null;
+  v.persistent.startedCharacterFrame = null;
+  emptyArray(v.persistent.characterRunFrames);
 }

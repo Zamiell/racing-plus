@@ -32,7 +32,6 @@ import {
   addTrinketAndRemoveFromPools,
   serverCollectibleIDToCollectibleType,
 } from "../../utils";
-import * as tempMoreOptions from "../mandatory/tempMoreOptions";
 
 /**
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in
@@ -83,9 +82,9 @@ export function formatSetup(player: EntityPlayer): void {
     case RaceFormat.UNSEEDED: {
       if (g.race.ranked && g.race.solo) {
         unseededRankedSolo(player);
-      } else {
-        unseeded(player);
       }
+
+      // The More Options buff is given in "TempMoreOptions.ts".
 
       break;
     }
@@ -107,25 +106,6 @@ export function formatSetup(player: EntityPlayer): void {
 
   // Mute the transformation sound, if present.
   sfxManager.Stop(SoundEffect.POWER_UP_SPEWER);
-}
-
-/**
- * Unseeded is like vanilla, but the player will still start with More Options to reduce the
- * resetting time.
- */
-function unseeded(player: EntityPlayer) {
-  // If the race has not started yet, don't give the items.
-  if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
-  ) {
-    return;
-  }
-
-  // Avoid giving more options on Tainted Dead Lazarus.
-  if (!isCharacter(player, PlayerType.LAZARUS_2_B)) {
-    tempMoreOptions.give(player);
-  }
 }
 
 function unseededRankedSolo(player: EntityPlayer) {
@@ -219,11 +199,6 @@ export function giveDiversityItemsAndDoItemBans(
     log(`- ${getCollectibleName(collectibleType)}`);
   }
   log(`- ${getTrinketName(trinketType)}`);
-
-  // Avoid giving more options on Tainted Dead Lazarus.
-  if (!isCharacter(player, PlayerType.LAZARUS_2_B)) {
-    tempMoreOptions.give(player);
-  }
 
   // In Diversity, the player is given a random active item. If this particular character receives
   // the D6 as an active, then the Diversity item would overwrite it. If this is the case, give the

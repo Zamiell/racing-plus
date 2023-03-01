@@ -18,18 +18,18 @@ import {
   ReadonlySet,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { onSeason } from "../../../features/speedrun/speedrun";
-import {
-  speedrunGetCharacterNum,
-  speedrunSetFastReset,
-} from "../../../features/speedrun/v";
 import { g } from "../../../globals";
+import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../mandatory/misc/RestartOnNextFrame";
+import {
+  speedrunGetCharacterNum,
+  speedrunSetFastReset,
+} from "./characterProgress/v";
 import { season2ResetBuilds } from "./season2/v";
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 

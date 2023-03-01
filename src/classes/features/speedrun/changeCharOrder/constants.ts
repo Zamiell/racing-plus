@@ -1,6 +1,6 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { ReadonlyMap } from "isaacscript-common";
-import { ChallengeCustomAbbreviation } from "../../../../features/speedrun/constants";
+import { ChallengeCustomAbbreviation } from "../../../../speedrun/constantsSpeedrun";
 import {
   BuildPosition,
   CharPosition,

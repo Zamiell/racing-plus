@@ -13,14 +13,12 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
-import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
 import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
-import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -46,7 +44,6 @@ function main() {
   );
 
   // Mandatory
-  tempMoreOptions.postNewRoom();
   banFirstFloorRoomType.postNewRoom();
   preventSacrificeRoomTeleport.postNewRoom();
   seededDeathPostNewRoom();
@@ -54,7 +51,6 @@ function main() {
 
   // Major
   racePostNewRoom();
-  speedrunPostNewRoom();
   betterDevilAngelRoomsPostNewRoom();
   fastClearPostNewRoom();
   fastTravelPostNewRoom();

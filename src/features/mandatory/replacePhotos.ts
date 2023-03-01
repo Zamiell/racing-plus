@@ -12,8 +12,8 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
+import { inSpeedrun } from "../../speedrun/utilsSpeedrun";
 import { hasPolaroidOrNegative } from "../../utils";
-import { inSpeedrun } from "../speedrun/speedrun";
 
 enum PhotoSituation {
   POLAROID,

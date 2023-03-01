@@ -24,14 +24,11 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../../../enums/PlayerTypeCustom";
-import {
-  checkValidCharOrder,
-  inSpeedrun,
-  onSeason,
-} from "../../../../features/speedrun/speedrun";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
+import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
 import {
   getBuildBansTime,
   isSpeedrunWithRandomCharacterOrder,
@@ -286,7 +283,7 @@ function checkBabiesModEnabled() {
 }
 
 function checkInvalidCharOrder() {
-  if (inSpeedrun() && !checkValidCharOrder()) {
+  if (inSpeedrun() && !hasValidCharacterOrder()) {
     v.run.invalidCharOrder = true;
     log("Error: Invalid character order detected.");
   }

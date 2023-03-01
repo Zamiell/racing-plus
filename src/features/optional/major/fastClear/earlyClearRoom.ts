@@ -20,12 +20,12 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import { speedrunPostFastClear } from "../../../speedrun/fastClear";
+import { season3PostFastClear } from "../../../../classes/features/speedrun/season3/fastClear";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
 } from "./constants";
-import * as postItLivesOrHushPath from "./postItLivesOrHushPath";
+import { postItLivesOrHushPathPostFastClear } from "./postItLivesOrHushPath";
 import { v } from "./v";
 
 // ModCallback.POST_UPDATE (1)
@@ -109,9 +109,9 @@ function earlyClearRoom() {
 
   openAllDoors();
   killExtraEntities();
-  postItLivesOrHushPath.fastClear();
 
-  speedrunPostFastClear();
+  postItLivesOrHushPathPostFastClear();
+  season3PostFastClear();
 }
 
 function killExtraEntities() {

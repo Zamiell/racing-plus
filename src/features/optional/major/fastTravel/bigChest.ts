@@ -21,6 +21,10 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { spawnTrophy } from "../../../../classes/features/mandatory/misc/Trophy";
+import {
+  isOnFinalCharacter,
+  speedrunGetCharacterNum,
+} from "../../../../classes/features/speedrun/characterProgress/v";
 import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -30,14 +34,12 @@ import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
-import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import {
-  isOnFinalCharacter,
   onSeason,
   onSpeedrunWithDarkRoomGoal,
   postSpawnCheckpoint,
-} from "../../../speedrun/speedrun";
-import { speedrunGetCharacterNum } from "../../../speedrun/v";
+} from "../../../../speedrun/utilsSpeedrun";
+import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
 import * as fastTravel from "./fastTravel";
 
 enum SpeedrunDirection {

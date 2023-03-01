@@ -5,7 +5,6 @@ import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
-import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -20,7 +19,6 @@ function main() {
 
   // Major
   racePostUpdate();
-  speedrunPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();
 }

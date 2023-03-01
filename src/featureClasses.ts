@@ -115,10 +115,15 @@ export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn
 export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTeleport";
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
+export { AchievementItems } from "./classes/features/speedrun/AchievementItems";
 export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
 export { CharacterProgress } from "./classes/features/speedrun/CharacterProgress";
+export { DrawCharacterProgress } from "./classes/features/speedrun/DrawCharacterProgress";
+export { EmulateVanillaWomb2IAmError } from "./classes/features/speedrun/EmulateVanillaWomb2IAmError";
+export { PreventDevilRoomResets } from "./classes/features/speedrun/PreventDevilRoomResets";
 export { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";
 export { Season4 } from "./classes/features/speedrun/Season4";
+export { SpeedrunTimer } from "./classes/features/speedrun/SpeedrunTimer";
