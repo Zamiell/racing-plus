@@ -92,6 +92,7 @@ export { FastReset } from "./classes/features/optional/major/FastReset";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
 export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";
 export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCreepColor";
+export { ChargePocketItemFirst } from "./classes/features/optional/quality/ChargePocketItemFirst";
 export { CombinedDualityDoors } from "./classes/features/optional/quality/CombinedDualityDoors";
 export { DeleteVoidPortals } from "./classes/features/optional/quality/DeleteVoidPortals";
 export { DisplayExpansionPack } from "./classes/features/optional/quality/DisplayExpansionPack";
