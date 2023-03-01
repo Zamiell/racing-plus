@@ -24,7 +24,6 @@ import {
 } from "../../../utils";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
-import * as characterProgress from "../characterProgress";
 import { speedrunResetPersistentVars } from "../resetVars";
 import {
   checkValidCharOrder,
@@ -78,7 +77,6 @@ export function speedrunPostGameStarted(): void {
   }
 
   speedrunResetFirstCharacterVars();
-  characterProgress.postGameStarted();
   giveAchievementItems();
 
   // We give the More Options buff last in case one of the seasons grants a normal More Options.

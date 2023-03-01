@@ -18,6 +18,7 @@ export { DrawControls } from "./classes/features/mandatory/misc/DrawControls";
 export { LogConsoleCommands } from "./classes/features/mandatory/misc/LogConsoleCommands";
 export { ModConfigNotify } from "./classes/features/mandatory/misc/ModConfigNotify";
 export { PreserveCheckpoint } from "./classes/features/mandatory/misc/PreserveCheckpoint";
+export { PreserveCollectibles } from "./classes/features/mandatory/misc/PreserveCollectibles";
 export { RacingPlusIcon } from "./classes/features/mandatory/misc/RacingPlusIcon";
 export { RemoveBannedPillEffects } from "./classes/features/mandatory/misc/RemoveBannedPillEffects";
 export { RemoveGlitchedItems } from "./classes/features/mandatory/misc/RemoveGlitchedItems";
@@ -115,7 +116,7 @@ export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTele
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
-export { PreserveCollectibles } from "./classes/features/speedrun/PreserveCollectibles";
+export { CharacterProgress } from "./classes/features/speedrun/CharacterProgress";
 export { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";

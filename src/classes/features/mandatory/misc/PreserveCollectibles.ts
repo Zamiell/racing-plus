@@ -5,9 +5,9 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import { Callback, doesEntityExist } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
-import { inRoomWithSeason4StoredItems } from "./Season4";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import { inRoomWithSeason4StoredItems } from "../../speedrun/Season4";
 
 /** Used to preserve the Checkpoint and the collectibles in the starting room of season 4. */
 export class PreserveCollectibles extends MandatoryModFeature {

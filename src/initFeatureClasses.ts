@@ -27,6 +27,7 @@ const FEATURE_CLASSES = [
   fc.LogConsoleCommands,
   fc.ModConfigNotify,
   fc.PreserveCheckpoint,
+  fc.PreserveCollectibles,
   fc.RacingPlusIcon,
   fc.RemoveBannedPillEffects,
   fc.RemoveGlitchedItems,
@@ -45,8 +46,8 @@ const FEATURE_CLASSES = [
 
   // Speedrun
   fc.ChangeCharOrder,
+  fc.CharacterProgress,
   fc.RandomCharacterOrder, // This must be before the seasons.
-  fc.PreserveCollectibles,
   fc.Season1,
   fc.Season2,
   fc.Season3,
