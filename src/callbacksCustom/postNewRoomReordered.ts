@@ -19,7 +19,6 @@ import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
-import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
@@ -65,7 +64,6 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostNewRoom(); // 566
-  fastVanishingTwin.postNewRoom(); // 697
   subvertTeleport.postNewRoom();
 
   // Other

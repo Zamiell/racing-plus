@@ -19,7 +19,6 @@ import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
-import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
@@ -65,7 +64,6 @@ export function initFeatureVariables(): void {
 
   // QoL
   showDreamCatcherItemVars.init(); // 566
-  fastVanishingTwin.init(); // 697
   automaticItemInsertion.init();
   chargePocketItemFirst.init();
 

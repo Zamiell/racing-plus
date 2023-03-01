@@ -133,7 +133,7 @@ const FEATURE_CLASSES = [
   // - fc.ShowDreamCatcherItem, // 566 (collectible)
   fc.FastLuna, // 589 (collectible)
   fc.FadeVasculitisTears, // 657 (collectible)
-  // - fc.FastVanishingTwin, // 697 (collectible)
+  fc.FastVanishingTwin, // 697 (collectible)
   fc.FlipCustom, // 711 (collectible)
   fc.RemovePerfectionVelocity, // 145 (trinket)
   fc.RemovePerfectionOnEndFloors, // 145 (trinket)

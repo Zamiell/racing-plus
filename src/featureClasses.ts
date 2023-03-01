@@ -98,6 +98,7 @@ export { DisplayExpansionPack } from "./classes/features/optional/quality/Displa
 export { FadeDevilStatue } from "./classes/features/optional/quality/FadeDevilStatue";
 export { FadeVasculitisTears } from "./classes/features/optional/quality/FadeVasculitisTears";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";
+export { FastVanishingTwin } from "./classes/features/optional/quality/FastVanishingTwin";
 export { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
 export { LeadPencilChargeBar } from "./classes/features/optional/quality/LeadPencilChargeBar";
 export { RemoveFortuneCookieBanners } from "./classes/features/optional/quality/RemoveFortuneCookieBanners";

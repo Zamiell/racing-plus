@@ -2,7 +2,6 @@ import { game, log, ModCallbackCustom } from "isaacscript-common";
 import * as seededTeleports from "../features/mandatory/seededTeleports";
 import * as streakText from "../features/mandatory/streakText";
 import * as tempMoreOptions from "../features/mandatory/tempMoreOptions";
-import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { showDreamCatcherItemPostNewLevel } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewLevel";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import { mod } from "../mod";
@@ -32,5 +31,4 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostNewLevel(); // 566
-  fastVanishingTwin.postNewLevel(); // 697
 }

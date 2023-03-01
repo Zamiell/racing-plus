@@ -5,7 +5,6 @@ import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbac
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
 import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
-import * as fastVanishingTwin from "../features/optional/quality/fastVanishingTwin";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { speedrunPostUpdate } from "../features/speedrun/callbacks/postUpdate";
 import { mod } from "../mod";
@@ -26,7 +25,4 @@ function main() {
   changeCharOrderPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();
-
-  // QoL
-  fastVanishingTwin.postUpdate(); // 697
 }
