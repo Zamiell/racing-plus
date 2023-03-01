@@ -20,7 +20,6 @@ import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/bet
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
-import * as subvertTeleport from "../features/optional/quality/subvertTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { speedrunPostNewRoom } from "../features/speedrun/callbacks/postNewRoom";
 import { mod } from "../mod";
@@ -64,7 +63,6 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostNewRoom(); // 566
-  subvertTeleport.postNewRoom();
 
   // Other
   roll.postNewRoom();

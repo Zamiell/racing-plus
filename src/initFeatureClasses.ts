@@ -123,7 +123,7 @@ const FEATURE_CLASSES = [
   fc.ShowNumSacrifices,
   fc.ShowPills,
   fc.SpeedUpFadeIn,
-  // - fc.SubvertTeleport,
+  fc.SubvertTeleport,
   fc.TaintedSamsonChargeBar, // 27 (charge bar)
   fc.BloodyLustChargeBar, // 157 (charge bar)
   fc.LeadPencilChargeBar, // 444 (charge bar)
