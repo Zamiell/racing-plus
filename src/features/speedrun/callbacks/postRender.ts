@@ -6,7 +6,6 @@ import {
 } from "../../../classes/features/mandatory/misc/RestartOnNextFrame";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { getCurrentCharacter, inSpeedrun } from "../speedrun";
-import * as speedrunTimer from "../speedrunTimer";
 import { v } from "../v";
 
 const FADEOUT_SPEED = 0.0275;
@@ -26,8 +25,6 @@ export function speedrunPostRender(): void {
 
   checkBeginFadeOutAfterCheckpoint();
   checkManualResetAtEndOfFadeout();
-
-  speedrunTimer.postRender();
 }
 
 function checkBeginFadeOutAfterCheckpoint() {
