@@ -16,6 +16,7 @@ export { DisableMultiplayer } from "./classes/features/mandatory/misc/DisableMul
 export { DoubleAngelNerf } from "./classes/features/mandatory/misc/DoubleAngelNerf";
 export { DrawControls } from "./classes/features/mandatory/misc/DrawControls";
 export { LogConsoleCommands } from "./classes/features/mandatory/misc/LogConsoleCommands";
+export { ModConfigNotify } from "./classes/features/mandatory/misc/ModConfigNotify";
 export { PreserveCheckpoint } from "./classes/features/mandatory/misc/PreserveCheckpoint";
 export { RacingPlusIcon } from "./classes/features/mandatory/misc/RacingPlusIcon";
 export { RemoveBannedPillEffects } from "./classes/features/mandatory/misc/RemoveBannedPillEffects";
@@ -23,6 +24,7 @@ export { RemoveGlitchedItems } from "./classes/features/mandatory/misc/RemoveGli
 export { RemoveGloballyBannedItems } from "./classes/features/mandatory/misc/RemoveGloballyBannedItems";
 export { RestartOnNextFrame } from "./classes/features/mandatory/misc/RestartOnNextFrame";
 export { TimeConsoleUsed } from "./classes/features/mandatory/misc/TimeConsoleUsed";
+export { TopLeftText } from "./classes/features/mandatory/misc/TopLeftText";
 export { Trophy } from "./classes/features/mandatory/misc/Trophy";
 export { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
 export { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";

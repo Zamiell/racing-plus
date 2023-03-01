@@ -6,7 +6,6 @@ import {
 } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
 import * as fireworks from "../features/mandatory/fireworks";
-import * as modConfigNotify from "../features/mandatory/modConfigNotify";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
@@ -54,7 +53,6 @@ function main(isContinued: boolean) {
   }
 
   // Mandatory
-  modConfigNotify.postGameStarted();
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   streakText.postGameStarted();

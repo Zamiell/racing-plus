@@ -25,6 +25,7 @@ const FEATURE_CLASSES = [
   fc.DisableMultiplayer,
   fc.DoubleAngelNerf,
   fc.LogConsoleCommands,
+  fc.ModConfigNotify,
   fc.PreserveCheckpoint,
   fc.RacingPlusIcon,
   fc.RemoveBannedPillEffects,
@@ -32,6 +33,7 @@ const FEATURE_CLASSES = [
   fc.RemoveGloballyBannedItems,
   fc.RestartOnNextFrame,
   fc.TimeConsoleUsed,
+  fc.TopLeftText,
   fc.Trophy,
 
   // Items (mandatory)
