@@ -17,9 +17,10 @@ import {
 import { spawnDroppedChildsHeart } from "../../../classes/features/optional/characters/SamsonDropHeart";
 import { isSpeedrunWithRandomCharacterOrder } from "../../../classes/features/speedrun/RandomCharacterOrder";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { config } from "../../../modConfigMenu";
 import {
   addCollectibleAndRemoveFromPools,
-  giveTrinketAndRemoveFromPools,
+  addTrinketAndRemoveFromPools,
 } from "../../../utils";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/banFirstFloorRoomType";
 import * as tempMoreOptions from "../../mandatory/tempMoreOptions";
@@ -168,7 +169,7 @@ function giveAchievementItems() {
 
     // 2
     case PlayerType.CAIN: {
-      giveTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
+      addTrinketAndRemoveFromPools(player, TrinketType.PAPER_CLIP);
       break;
     }
 
@@ -180,7 +181,11 @@ function giveAchievementItems() {
 
     // 6
     case PlayerType.SAMSON: {
-      spawnDroppedChildsHeart(player);
+      if (config.SamsonDropHeart) {
+        spawnDroppedChildsHeart(player);
+      } else {
+        addTrinketAndRemoveFromPools(player, TrinketType.CHILDS_HEART);
+      }
       break;
     }
 
@@ -194,7 +199,7 @@ function giveAchievementItems() {
     // 14
     case PlayerType.KEEPER: {
       addCollectibleAndRemoveFromPools(player, CollectibleType.WOODEN_NICKEL);
-      giveTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
+      addTrinketAndRemoveFromPools(player, TrinketType.STORE_KEY);
       break;
     }
 

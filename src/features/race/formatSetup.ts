@@ -29,7 +29,7 @@ import { g } from "../../globals";
 import { ServerCollectibleID } from "../../types/ServerCollectibleID";
 import {
   addCollectibleAndRemoveFromPools,
-  giveTrinketAndRemoveFromPools,
+  addTrinketAndRemoveFromPools,
   serverCollectibleIDToCollectibleType,
 } from "../../utils";
 import * as tempMoreOptions from "../mandatory/tempMoreOptions";
@@ -238,7 +238,7 @@ export function giveDiversityItemsAndDoItemBans(
   }
 
   const trinketSituation = temporarilyRemoveTrinkets(player);
-  giveTrinketAndRemoveFromPools(player, trinketType);
+  addTrinketAndRemoveFromPools(player, trinketType);
   useActiveItemTemp(player, CollectibleType.SMELTER);
   giveTrinketsBack(player, trinketSituation);
 

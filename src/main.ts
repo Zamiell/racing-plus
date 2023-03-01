@@ -63,8 +63,8 @@ main();
 
 function main() {
   welcomeBanner();
-  initFeatureVariables();
   initFeatureClasses();
+  initFeatureVariables();
   initMinimapAPI();
 
   enableExtraConsoleCommandsRacingPlus();

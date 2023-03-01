@@ -56,6 +56,16 @@ export function addCollectibleAndRemoveFromPools(
   }
 }
 
+export function addTrinketAndRemoveFromPools(
+  player: EntityPlayer,
+  trinketType: TrinketType,
+): void {
+  const itemPool = game.GetItemPool();
+
+  player.AddTrinket(trinketType);
+  itemPool.RemoveTrinket(trinketType);
+}
+
 export function consoleCommand(command: string): void {
   log(`Executing console command: ${command}`);
   Isaac.ExecuteCommand(command);
@@ -70,16 +80,6 @@ export function getEffectiveDevilDeals(): int {
   return shouldConsistentDevilAngelRoomsApply()
     ? devilRoomDeals - 1
     : devilRoomDeals;
-}
-
-export function giveTrinketAndRemoveFromPools(
-  player: EntityPlayer,
-  trinketType: TrinketType,
-): void {
-  const itemPool = game.GetItemPool();
-
-  player.AddTrinket(trinketType);
-  itemPool.RemoveTrinket(trinketType);
 }
 
 /**

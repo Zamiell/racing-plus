@@ -2,7 +2,6 @@ import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
 import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import * as chargePocketItemFirst from "../features/optional/quality/chargePocketItemFirst";
-import * as combinedDualityDoors from "../features/optional/quality/combinedDualityDoors";
 import { racePostPEffectUpdate } from "../features/race/callbacks/postPEffectUpdate";
 import { mod } from "../mod";
 
@@ -18,9 +17,6 @@ function main(player: EntityPlayer) {
   // Major
   racePostPEffectUpdate(player);
   fastTravelPostPEffectUpdate(player);
-
-  // Gameplay
-  combinedDualityDoors.postPEffectUpdate(player);
 
   // QoL
   chargePocketItemFirst.postPEffectUpdate(player);

@@ -232,5 +232,10 @@ export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const effectiveDevilDeals = getEffectiveDevilDeals();
   const anyPlayerIsTheLost = anyPlayerIs(PlayerType.LOST, PlayerType.LOST_B);
 
-  return !v.run.tookDamage && effectiveDevilDeals === 0 && !anyPlayerIsTheLost;
+  return (
+    config.FreeDevilItem &&
+    !v.run.tookDamage &&
+    effectiveDevilDeals === 0 &&
+    !anyPlayerIsTheLost
+  );
 }

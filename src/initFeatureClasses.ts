@@ -15,6 +15,7 @@ import * as fc from "./featureClasses";
  * - Search for: "postNewRoom("
  * - Search for: "postGameStarted("
  * - Search for: "postGameStartedReordered(" (should have false suffix)
+ * - Search for: "postPEffectUpdate("
  * - Make SolCustom part of FastClear directory.
  * - Alphabetize "Removals" section + Config.ts.
  */
@@ -117,7 +118,7 @@ const FEATURE_CLASSES = [
   fc.FadeDevilStatue,
   fc.RunTimer,
   fc.ShowMaxFamiliars,
-  // - fc.ShowNumSacrifices,
+  fc.ShowNumSacrifices,
   fc.ShowPills,
   fc.SpeedUpFadeIn,
   // - fc.SubvertTeleport,
@@ -125,16 +126,16 @@ const FEATURE_CLASSES = [
   fc.BloodyLustChargeBar, // 157 (charge bar)
   fc.LeadPencilChargeBar, // 444 (charge bar)
   fc.AzazelsRageChargeBar, // 669 (charge bar)
-  // - fc.CombinedDualityDoors, // 498 (collectible)
-  // - fc.RemoveFortuneCookieBanners, // 557 (collectible)
+  fc.CombinedDualityDoors, // 498 (collectible)
+  fc.RemoveFortuneCookieBanners, // 557 (collectible)
   // - fc.ShowDreamCatcherItem, // 566 (collectible)
   fc.FastLuna, // 589 (collectible)
   fc.FadeVasculitisTears, // 657 (collectible)
   // - fc.FastVanishingTwin, // 697 (collectible)
   fc.FlipCustom, // 711 (collectible)
-  // - fc.RemovePerfectionVelocity, // 145 (trinket)
+  fc.RemovePerfectionVelocity, // 145 (trinket)
   fc.RemovePerfectionOnEndFloors, // 145 (trinket)
-  // - fc.DisplayExpansionPack, // 181 (trinket)
+  fc.DisplayExpansionPack, // 181 (trinket)
 
   // Quality of Life (mandatory)
   fc.CenterStart,

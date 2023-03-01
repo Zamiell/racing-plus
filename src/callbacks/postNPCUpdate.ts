@@ -1,5 +1,4 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import * as removeLambBody from "../classes/features/optional/bosses/RemoveLambBody";
 import * as fastClearPostNPCUpdate from "../features/optional/major/fastClear/callbacks/postNPCUpdate";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
@@ -17,12 +16,6 @@ export function init(): void {
     ModCallback.POST_NPC_UPDATE,
     dingle,
     EntityType.DINGLE, // 261
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_NPC_UPDATE,
-    lamb,
-    EntityType.THE_LAMB, // 273
   );
 
   mod.AddCallback(
@@ -51,11 +44,6 @@ function ragling(npc: EntityNPC) {
 // EntityType.DINGLE (261)
 function dingle(npc: EntityNPC) {
   fastClearPostNPCUpdate.dingle(npc);
-}
-
-// EntityType.THE_LAMB (273)
-function lamb(npc: EntityNPC) {
-  removeLambBody.postNPCUpdateLamb(npc);
 }
 
 // EntityType.STONEY (302)

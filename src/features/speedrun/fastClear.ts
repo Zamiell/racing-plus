@@ -10,9 +10,9 @@ import {
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";
+import { combineDevilAngelRoomDoors } from "../../classes/features/optional/quality/CombinedDualityDoors";
 import { season3FastClear } from "../../classes/features/speedrun/season3/fastClear";
 import { season3HasMotherGoal } from "../../classes/features/speedrun/season3/v";
-import * as combinedDualityDoors from "../optional/quality/combinedDualityDoors";
 import { inSpeedrun, onSeason } from "./speedrun";
 
 export function speedrunPostFastClear(): void {
@@ -48,8 +48,9 @@ function checkSpawnRepentanceDoor() {
       removeDoor(angelRoomDoor);
       room.TrySpawnSecretExit(true, true);
 
-      // Combine the Devil Door with the Angel Room door.
-      combinedDualityDoors.preSpawnClearAward();
+      // Leverage the "CombinedDualityDoors" feature to combine the Devil Room door with the Angel
+      // Room door.
+      combineDevilAngelRoomDoors(devilRoomDoor);
     }
   }
 }

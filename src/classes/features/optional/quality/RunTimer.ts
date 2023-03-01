@@ -7,13 +7,14 @@ import {
   VectorZero,
 } from "isaacscript-common";
 import { TimerType } from "../../../../enums/TimerType";
+import { config } from "../../../../modConfigMenu";
 import * as timer from "../../../../timer";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { ANOTHER_UI_ICON_OFFSET } from "../../major/FreeDevilItem";
 import {
   getTopLeftUIPositionShowMaxFamiliars,
-  hasMaxFamiliars,
+  showingMaxFamiliarsIcon,
 } from "./ShowMaxFamiliars";
 import { getNumIdentifiedPills } from "./ShowPills";
 
@@ -43,7 +44,7 @@ export class RunTimer extends ConfigurableModFeature {
       hud.IsVisible() &&
       isActionPressedOnAnyInput(ButtonAction.MAP) &&
       // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI.
-      getNumIdentifiedPills() < 11
+      (!config.ShowPills || getNumIdentifiedPills() < 11)
     );
   }
 
@@ -60,7 +61,7 @@ export class RunTimer extends ConfigurableModFeature {
 // features.
 function getTopLeftUIPositionRunTimer() {
   const topLeftUIPosition = getTopLeftUIPositionShowMaxFamiliars();
-  const maxFamiliarsOffset = hasMaxFamiliars()
+  const maxFamiliarsOffset = showingMaxFamiliarsIcon()
     ? ANOTHER_UI_ICON_OFFSET
     : VectorZero;
 

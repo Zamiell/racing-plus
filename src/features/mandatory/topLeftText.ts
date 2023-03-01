@@ -1,6 +1,3 @@
-// We want to place informational text for the player to the right of the heart containers (which
-// will depend on how many heart containers we have).
-
 import {
   game,
   getHeartsUIWidth,
@@ -10,13 +7,14 @@ import {
   RENDER_FRAMES_PER_SECOND,
   SECOND_IN_MILLISECONDS,
 } from "isaacscript-common";
-import { VERSION } from "../../constants";
-import { g } from "../../globals";
-import { mod } from "../../mod";
 import {
   getNumSacrifices,
   shouldShowNumSacrifices,
-} from "../optional/quality/showNumSacrifices";
+} from "../../classes/features/optional/quality/ShowNumSacrifices";
+import { MandatoryModFeature } from "../../classes/MandatoryModFeature";
+import { VERSION } from "../../constants";
+import { g } from "../../globals";
+import { mod } from "../../mod";
 import { shouldShowRaceID } from "../race/raceStart";
 import { inSeededRace, raceShouldShowEndOfRunText } from "../race/v";
 import { getNumVictoryLaps, shouldShowVictoryLaps } from "../race/victoryLap";
@@ -34,6 +32,12 @@ const STARTING_X = 55;
 const STARTING_Y = 10;
 
 const SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR = 3;
+
+/**
+ * We want to place informational text for the player to the right of the heart containers (which
+ * will depend on how many heart containers we have).
+ */
+export class TopLeftText extends MandatoryModFeature {}
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {

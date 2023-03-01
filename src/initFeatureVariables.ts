@@ -19,11 +19,8 @@ import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as chargePocketItemFirst from "./features/optional/quality/chargePocketItemFirst";
-import * as combinedDualityDoors from "./features/optional/quality/combinedDualityDoors";
 import * as fastVanishingTwin from "./features/optional/quality/fastVanishingTwin";
-import * as removePerfectionVelocity from "./features/optional/quality/removePerfectionVelocity";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
-import * as showNumSacrifices from "./features/optional/quality/showNumSacrifices";
 import * as customConsole from "./features/race/customConsole";
 import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
@@ -67,15 +64,10 @@ export function initFeatureVariables(): void {
   autofire.init();
 
   // QoL
-  showNumSacrifices.init();
   showDreamCatcherItemVars.init(); // 566
   fastVanishingTwin.init(); // 697
-  removePerfectionVelocity.init(); // 145
   automaticItemInsertion.init();
   chargePocketItemFirst.init();
-
-  // Gameplay
-  combinedDualityDoors.init();
 
   // Other
   customConsole.init();

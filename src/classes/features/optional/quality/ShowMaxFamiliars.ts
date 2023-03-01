@@ -6,6 +6,7 @@ import {
   MAX_NUM_FAMILIARS,
   VectorZero,
 } from "isaacscript-common";
+import { config } from "../../../../modConfigMenu";
 import { newSprite } from "../../../../sprite";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -65,6 +66,6 @@ export function getTopLeftUIPositionShowMaxFamiliars(): Vector {
   return topLeftUIPosition.add(freeDevilItemOffset);
 }
 
-export function hasMaxFamiliars(): boolean {
-  return v.run.hasMaxFamiliars;
+export function showingMaxFamiliarsIcon(): boolean {
+  return config.ShowMaxFamiliars && v.run.hasMaxFamiliars;
 }

@@ -4,7 +4,6 @@ import * as seededGBBug from "../features/mandatory/seededGBBug";
 import { betterDevilAngelRoomsPostPickupInitRedChest } from "../features/optional/major/betterDevilAngelRooms/callbacks/postPickupInit";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
-import * as removePerfectionVelocity from "../features/optional/quality/removePerfectionVelocity";
 import * as speedrunPostPickupInit from "../features/speedrun/callbacks/postPickupInit";
 import { mod } from "../mod";
 
@@ -15,12 +14,6 @@ export function init(): void {
     ModCallback.POST_PICKUP_INIT,
     bigChest,
     PickupVariant.BIG_CHEST, // 340
-  );
-
-  mod.AddCallback(
-    ModCallback.POST_PICKUP_INIT,
-    trinketCallback,
-    PickupVariant.TRINKET, // 350
   );
 
   mod.AddCallback(
@@ -50,13 +43,6 @@ function main(pickup: EntityPickup) {
 // PickupVariant.BIG_CHEST (340)
 function bigChest(pickup: EntityPickup) {
   fastTravelPostPickupInit.bigChest(pickup);
-}
-
-// PickupVariant.TRINKET (350)
-function trinketCallback(pickup: EntityPickup) {
-  const trinket = pickup as EntityPickupTrinket;
-
-  removePerfectionVelocity.postPickupInitTrinket(trinket);
 }
 
 // PickupVariant.RED_CHEST (360)
