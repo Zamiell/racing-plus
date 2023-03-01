@@ -44,7 +44,9 @@ const FEATURE_CLASSES = [
   fc.SolCustom,
 
   // Speedrun
+  fc.ChangeCharOrder,
   fc.RandomCharacterOrder, // This must be before the seasons.
+  fc.PreserveCollectibles,
   fc.Season1,
   fc.Season2,
   fc.Season3,

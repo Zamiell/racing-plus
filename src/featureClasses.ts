@@ -114,6 +114,8 @@ export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn
 export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTeleport";
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
+export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
+export { PreserveCollectibles } from "./classes/features/speedrun/PreserveCollectibles";
 export { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
 export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
