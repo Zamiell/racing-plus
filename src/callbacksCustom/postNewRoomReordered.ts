@@ -9,7 +9,6 @@ import {
   log,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { charCharOrderPostNewRoom } from "../features/changeCharOrder/callbacks/postNewRoom";
 import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
@@ -56,7 +55,6 @@ function main() {
   // Major
   racePostNewRoom();
   speedrunPostNewRoom();
-  charCharOrderPostNewRoom();
   betterDevilAngelRoomsPostNewRoom();
   fastClearPostNewRoom();
   fastTravelPostNewRoom();

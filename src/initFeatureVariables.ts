@@ -1,4 +1,3 @@
-import * as changeCharOrderVars from "./features/changeCharOrder/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -37,7 +36,6 @@ export function initFeatureVariables(): void {
   shadows.init();
   planetariumFix.init();
   speedrunVars.init();
-  changeCharOrderVars.init();
 
   // Mandatory
   streakText.init();

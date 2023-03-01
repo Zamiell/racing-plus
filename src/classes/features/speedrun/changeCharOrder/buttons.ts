@@ -17,12 +17,12 @@ import {
   spawnGridEntityWithVariant,
   VectorZero,
 } from "isaacscript-common";
-import { setBuildBansTime } from "../../classes/features/speedrun/RandomCharacterOrder";
-import { SEASON_2_STARTING_BUILDS } from "../../classes/features/speedrun/season2/constants";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
-import { newGlowingCollectibleSprite } from "../../sprite";
-import { ChallengeCustomAbbreviation } from "../speedrun/constants";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
+import { ChallengeCustomAbbreviation } from "../../../../features/speedrun/constants";
+import { newGlowingCollectibleSprite } from "../../../../sprite";
+import { setBuildBansTime } from "../RandomCharacterOrder";
+import { SEASON_2_STARTING_BUILDS } from "../season2/constants";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 import { getSeasonDescription, v } from "./v";
 
@@ -32,7 +32,7 @@ const FADE_RENDER_FRAMES = 38;
 const FADE_AMOUNT = 0.5;
 
 // ModCallback.POST_UPDATE (1)
-export function postUpdate(): void {
+export function changeCharOrderButtonsPostUpdate(): void {
   checkCreateButtons();
 }
 
@@ -141,7 +141,7 @@ function createBuildVetoButtons() {
 }
 
 // ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE
-export function postPressurePlateUpdate(
+export function changeCharOrderButtonsPostPressurePlateUpdate(
   pressurePlate: GridEntityPressurePlate,
 ): void {
   checkPressed(pressurePlate);

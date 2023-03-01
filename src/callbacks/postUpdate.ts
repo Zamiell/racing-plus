@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import { changeCharOrderPostUpdate } from "../features/changeCharOrder/callbacks/postUpdate";
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
@@ -22,7 +21,6 @@ function main() {
   // Major
   racePostUpdate();
   speedrunPostUpdate();
-  changeCharOrderPostUpdate();
   fastClearPostUpdate();
   fastTravelPostUpdate();
 }

@@ -1,6 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
-import { changeCharOrderPostRender } from "../features/changeCharOrder/callbacks/postRender";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
@@ -28,7 +27,6 @@ function main() {
   // Major
   racePostRender();
   speedrunPostRender();
-  changeCharOrderPostRender();
   fastTravelPostRender();
 
   // QoL

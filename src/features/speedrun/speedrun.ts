@@ -15,12 +15,12 @@ import {
   sfxManager,
   sumArray,
 } from "isaacscript-common";
+import { getCharacterOrder } from "../../classes/features/speedrun/changeCharOrder/v";
 import { ChallengeCustom } from "../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { SoundEffectCustom } from "../../enums/SoundEffectCustom";
 import { mod } from "../../mod";
 import * as timer from "../../timer";
-import { getCharacterOrder } from "../changeCharOrder/v";
 import { isSeededDeathActive } from "../mandatory/seededDeath/v";
 import { CHALLENGE_DEFINITIONS, CUSTOM_CHALLENGES_SET } from "./constants";
 import { speedrunGetCharacterNum, v } from "./v";

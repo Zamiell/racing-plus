@@ -1,13 +1,14 @@
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
-import { ChangeCharOrderPhase } from "../../enums/ChangeCharOrderPhase";
-import { mod } from "../../mod";
-import { SeasonDescription } from "../../types/SeasonDescription";
-import { ChallengeCustomAbbreviation } from "../speedrun/constants";
+import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
+import { ChallengeCustomAbbreviation } from "../../../../features/speedrun/constants";
+import { SeasonDescription } from "../../../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 
+// This is registered in "ChangeCharOrder.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   persistent: {
-    charOrders: new Map<ChallengeCustomAbbreviation, PlayerType[]>(),
+    charOrders: getBlankCharOrders(),
   },
 
   room: {
@@ -28,17 +29,18 @@ export const v = {
   },
 };
 
-export function init(): void {
-  // We must initialize the table with default values or else the merge script will not copy over
-  // old persistent data.
+/**
+ * We must initialize the persistent data with default values or else the save data merge will not
+ * copy over old persistent data.
+ */
+function getBlankCharOrders(): Map<ChallengeCustomAbbreviation, PlayerType[]> {
+  const charOrders = new Map<ChallengeCustomAbbreviation, PlayerType[]>();
+
   for (const challengeCustomAbbreviation of CHANGE_CHAR_ORDER_POSITIONS_MAP.keys()) {
-    v.persistent.charOrders.set(
-      challengeCustomAbbreviation,
-      [] as PlayerType[],
-    );
+    charOrders.set(challengeCustomAbbreviation, [] as PlayerType[]);
   }
 
-  mod.saveDataManager("changeCharOrder", v);
+  return charOrders;
 }
 
 export function getCharacterOrder(
