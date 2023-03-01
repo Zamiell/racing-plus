@@ -25,7 +25,6 @@ import * as postUsePill from "./callbacks/postUsePill";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preGetCollectible from "./callbacks/preGetCollectible";
-import * as preRoomEntitySpawn from "./callbacks/preRoomEntitySpawn";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
@@ -117,7 +116,6 @@ function registerCallbacksVanilla() {
   postEntityRemove.init(); // 67
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
-  preRoomEntitySpawn.init(); // 71
 }
 
 function registerCallbacksCustom() {

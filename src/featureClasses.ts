@@ -95,6 +95,7 @@ export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCree
 export { CombinedDualityDoors } from "./classes/features/optional/quality/CombinedDualityDoors";
 export { DeleteVoidPortals } from "./classes/features/optional/quality/DeleteVoidPortals";
 export { DisplayExpansionPack } from "./classes/features/optional/quality/DisplayExpansionPack";
+export { EasyFirstFloorItems } from "./classes/features/optional/quality/EasyFirstFloorItems";
 export { FadeDevilStatue } from "./classes/features/optional/quality/FadeDevilStatue";
 export { FadeVasculitisTears } from "./classes/features/optional/quality/FadeVasculitisTears";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";

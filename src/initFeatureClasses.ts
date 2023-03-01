@@ -116,7 +116,7 @@ const FEATURE_CLASSES = [
   fc.ChangeCreepColor,
   // - fc.ChargePocketItemFirst,
   fc.DeleteVoidPortals,
-  // - fc.EasyFirstFloorItems,
+  fc.EasyFirstFloorItems,
   fc.FadeDevilStatue,
   fc.RunTimer,
   fc.ShowMaxFamiliars,
