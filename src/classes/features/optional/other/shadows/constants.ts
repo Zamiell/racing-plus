@@ -12,7 +12,50 @@ pack/unpack reference:
 
 */
 
+import {
+  LevelStage,
+  PlayerType,
+  StageType,
+} from "isaac-typescript-definitions";
 import { RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
+
+export interface ShadowData {
+  userID: int;
+  x: float;
+  y: float;
+  stage: LevelStage;
+  stageType: StageType;
+
+  /** Equal to the room list index specifically. */
+  roomIndex: int;
+
+  character: PlayerType;
+  animation: string;
+  animationFrame: int;
+  overlayAnimation: string;
+  overlayAnimationFrame: int;
+  username: string;
+  frameUpdated: int;
+}
+
+export interface ShadowMessage {
+  raceID: int;
+  userID: int;
+  x: float;
+  y: float;
+  stage: LevelStage;
+  stageType: StageType;
+
+  /** Equal to the room list index specifically. */
+  roomIndex: int;
+
+  character: PlayerType;
+  animation: string;
+  animationFrame: int;
+  overlayAnimation: string;
+  overlayAnimationFrame: int;
+  username: string;
+}
 
 export const BEACON_INTERVAL = 10 * RENDER_FRAMES_PER_SECOND;
 export const BEACON_FIELDS = ["raceID", "userID", "message"] as const;

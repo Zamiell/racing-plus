@@ -3,7 +3,7 @@ import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
 import {
   ChallengeCustomAbbreviation,
   CHALLENGE_DEFINITIONS,
-} from "../../../../speedrun/constantsSpeedrun";
+} from "../../../../speedrun/constants";
 import { SeasonDescription } from "../../../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 

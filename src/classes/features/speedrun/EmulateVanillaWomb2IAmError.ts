@@ -16,7 +16,7 @@ import {
   onStage,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 
 /**

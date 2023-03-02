@@ -10,7 +10,7 @@ import {
 } from "isaacscript-common";
 import { isPlanetariumFixWarping } from "../../../features/mandatory/planetariumFix";
 import { mod } from "../../../mod";
-import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { setDevilAngelEmpty } from "../optional/major/BetterDevilAngelRooms";
 import { isOnFirstCharacter } from "./characterProgress/v";

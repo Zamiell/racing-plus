@@ -5,7 +5,7 @@ import {
 } from "isaac-typescript-definitions";
 import { CallbackCustom, game, ModCallbackCustom } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import {
   addCollectibleAndRemoveFromPools,
   addTrinketAndRemoveFromPools,

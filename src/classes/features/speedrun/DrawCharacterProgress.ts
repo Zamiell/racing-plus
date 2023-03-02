@@ -18,7 +18,7 @@ import { shouldDrawPlaceLeftSprite } from "../../../features/race/placeLeft";
 import {
   CHALLENGE_DEFINITIONS,
   CUSTOM_CHALLENGES_SET,
-} from "../../../speedrun/constantsSpeedrun";
+} from "../../../speedrun/constants";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { speedrunGetCharacterNum } from "./characterProgress/v";
 

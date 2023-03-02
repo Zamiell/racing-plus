@@ -18,7 +18,7 @@ import { SoundEffectCustom } from "../../../enums/SoundEffectCustom";
 import { TimerType } from "../../../enums/TimerType";
 import { shouldDrawRaceTimer } from "../../../features/race/raceTimer";
 import { config } from "../../../modConfigMenu";
-import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import * as timer from "../../../timer";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {

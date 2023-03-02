@@ -19,7 +19,7 @@ import {
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";
-import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
+import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { inSpeedrun, onSeason } from "../../../speedrun/utilsSpeedrun";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { combineDevilAngelRoomDoors } from "../optional/quality/CombinedDualityDoors";

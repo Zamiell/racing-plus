@@ -14,7 +14,7 @@ import {
   CUSTOM_CHALLENGES_SET,
   CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM,
   SEASON_NUM_TO_CHALLENGE,
-} from "./constantsSpeedrun";
+} from "./constants";
 
 export function inSpeedrun(): boolean {
   const challenge = Isaac.GetChallenge();

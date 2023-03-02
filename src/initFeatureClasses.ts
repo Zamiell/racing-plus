@@ -204,7 +204,7 @@ const FEATURE_CLASSES = [
 
   // Other
   fc.Chat,
-  // - fc.Shadows,
+  fc.Shadows,
 
   // Other (mandatory)
   fc.DrawVersion,

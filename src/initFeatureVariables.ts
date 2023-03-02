@@ -1,3 +1,4 @@
+import * as shadows from "./classes/features/optional/other/Shadows";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -11,7 +12,6 @@ import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as customConsole from "./features/race/customConsole";
-import * as shadows from "./features/race/shadows/shadows";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import { mod } from "./mod";

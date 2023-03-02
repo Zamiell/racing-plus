@@ -1,4 +1,5 @@
 import { log } from "isaacscript-common";
+import * as shadows from "../../../classes/features/optional/other/Shadows";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
@@ -8,7 +9,6 @@ import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import { raceStart } from "../raceStart";
 import * as raceTimer from "../raceTimer";
-import * as shadows from "../shadows/shadows";
 import * as socket from "../socket";
 import * as startingRoom from "../startingRoom";
 import * as topSprite from "../topSprite";
