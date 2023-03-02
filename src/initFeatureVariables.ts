@@ -1,4 +1,3 @@
-import * as shadows from "./classes/features/optional/other/Shadows";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -24,7 +23,6 @@ export function initFeatureVariables(): void {
   modConfigMenuVanilla.init();
   raceVars.init();
   socketClient.init();
-  shadows.init();
   planetariumFix.init();
 
   // Mandatory

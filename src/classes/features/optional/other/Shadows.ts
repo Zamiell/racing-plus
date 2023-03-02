@@ -82,7 +82,7 @@ export class Shadows extends MandatoryModFeature {
     this.drawShadows(); // We check for the config option here.
   }
 
-  /** We intentionally do not check for the config option here. */
+  /** We intentionally do not check for the "Shadows" config option here. */
   shouldSendShadows(): boolean {
     const seeds = game.GetSeeds();
     const startSeedString = seeds.GetStartSeedString();

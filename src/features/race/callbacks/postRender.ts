@@ -1,5 +1,4 @@
 import { log } from "isaacscript-common";
-import * as shadows from "../../../classes/features/optional/other/Shadows";
 import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
@@ -22,7 +21,6 @@ export function racePostRender(): void {
   raceTimer.postRender();
   placeLeft.postRender();
   endOfRaceButtons.postRender();
-  shadows.postRender();
 
   if (g.race.status !== RaceStatus.NONE) {
     checkGameOpenedInMiddleOfRace();
