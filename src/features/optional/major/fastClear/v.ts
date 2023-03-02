@@ -1,4 +1,4 @@
-import { game, getEntityID, log, logPtrHashes } from "isaacscript-common";
+import { game, getEntityID, log } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { FAST_CLEAR_DEBUG } from "./constants";
@@ -43,13 +43,6 @@ export function logFastClear(
     `Total fast-clear entities tracked on game frame ${gameFrameCount}: ${v.room.aliveEnemies.size}`,
   );
   log(`fastClearedRoom: ${v.room.fastClearedRoom}`);
-}
-
-// ts-prune-ignore-next
-export function logFastClearAliveEnemies(): void {
-  const ptrHashes = [...v.room.aliveEnemies];
-  log("Fast-clear currently alive enemies:");
-  logPtrHashes(ptrHashes);
 }
 
 export function getFastClearNumAliveEnemies(): number {

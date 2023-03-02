@@ -8,8 +8,6 @@ import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
-import * as fastDrop from "./features/optional/hotkeys/fastDrop";
-import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
@@ -47,10 +45,6 @@ export function initFeatureVariables(): void {
   fastClearVars.init();
   fastTravelVars.init();
   betterDevilAngelRoomsVars.init();
-
-  // Hotkeys
-  fastDrop.init();
-  schoolbagSwitch.init();
 
   // QoL
   showDreamCatcherItemVars.init(); // 566

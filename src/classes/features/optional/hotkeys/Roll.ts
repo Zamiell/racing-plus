@@ -44,7 +44,7 @@ export class Roll extends MandatoryModFeature {
   constructor() {
     super();
 
-    // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+    // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
     const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
     mod.setConditionalHotkey(keyboardFunc, rollHotkeyPressed);
   }

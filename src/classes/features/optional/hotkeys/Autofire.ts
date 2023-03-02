@@ -37,10 +37,10 @@ export class Autofire extends MandatoryModFeature {
   constructor() {
     super();
 
-    // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+    // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
     const keyboardFunc = () =>
       hotkeys.autofire === -1 ? undefined : hotkeys.autofire;
-    mod.setConditionalHotkey(keyboardFunc, toggleAutofire);
+    mod.setConditionalHotkey(keyboardFunc, autofireHotkeyPressed);
   }
 
   @CallbackCustom(
@@ -88,7 +88,7 @@ export class Autofire extends MandatoryModFeature {
   }
 }
 
-function toggleAutofire() {
+function autofireHotkeyPressed() {
   if (!shouldCheckForGameplayInputs()) {
     return;
   }

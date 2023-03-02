@@ -91,6 +91,8 @@ export { ScaredHeart } from "./classes/features/optional/graphics/ScaredHeart";
 export { StickyNickel } from "./classes/features/optional/graphics/StickyNickel";
 export { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCardBacks";
 export { Autofire } from "./classes/features/optional/hotkeys/Autofire";
+export { FastDrop } from "./classes/features/optional/hotkeys/FastDrop";
+export { SchoolbagSwitch } from "./classes/features/optional/hotkeys/SchoolbagSwitch";
 export { FastReset } from "./classes/features/optional/major/FastReset";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
 export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";

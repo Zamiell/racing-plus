@@ -80,9 +80,9 @@ const FEATURE_CLASSES = [
 
   // Hotkeys
   fc.Autofire,
-  // - fc.FastDrop,
-  // - fc.Roll,
-  // - fc.SchoolbagSwitch,
+  fc.FastDrop,
+  // fc.Roll,
+  fc.SchoolbagSwitch,
 
   // Characters
   fc.JudasAddBomb, // 3

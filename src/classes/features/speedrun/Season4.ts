@@ -72,7 +72,7 @@ export class Season4 extends ChallengeModFeature {
   constructor() {
     super();
 
-    // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+    // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
     const keyboardFunc = () =>
       hotkeys.storage === -1 ? undefined : hotkeys.storage;
     mod.setConditionalHotkey(keyboardFunc, checkStoreCollectible);
