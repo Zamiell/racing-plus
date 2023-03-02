@@ -203,8 +203,7 @@ const FEATURE_CLASSES = [
   fc.SilenceMomDad,
 
   // Other
-  // - fc.CharacterTimer,
-  // - fc.Chat,
+  fc.Chat,
   // - fc.Shadows,
 
   // Other (mandatory)

@@ -21,7 +21,7 @@ import {
   temporarilyRemoveTrinkets,
   useActiveItemTemp,
 } from "isaacscript-common";
-import { setStartedWithCompass } from "../../classes/features/mandatory/misc/RemoveGloballyBannedItems";
+import { setStartedWithCompass } from "../../classes/features/mandatory/removals/RemoveGloballyBannedItems";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";

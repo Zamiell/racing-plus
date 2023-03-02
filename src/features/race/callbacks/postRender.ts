@@ -3,7 +3,6 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import * as chat from "../chat";
 import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
@@ -30,7 +29,6 @@ export function racePostRender(): void {
     raceRoom.postRender();
     startingRoom.postRender();
     topSprite.postRender();
-    chat.postRender();
   }
 }
 
