@@ -24,7 +24,6 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../enums/ChangeCharOrderPhase";
 import { mod } from "../../../mod";
-import { CHANGE_CHAR_ORDER_PHASE_TEXT } from "../../../objects/changeCharOrderPhaseText";
 import { consoleCommand } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
@@ -37,6 +36,12 @@ import {
   CHANGE_CHAR_ORDER_ROOM_VARIANT,
 } from "./changeCharOrder/constants";
 import { getSeasonDescription, v } from "./changeCharOrder/v";
+
+const CHANGE_CHAR_ORDER_PHASE_TEXT = {
+  [ChangeCharOrderPhase.SEASON_SELECT]: "Choose your season",
+  [ChangeCharOrderPhase.CHARACTER_SELECT]: "Choose your character order",
+  [ChangeCharOrderPhase.BUILD_VETO]: "Choose your build vetos",
+} as const satisfies Record<ChangeCharOrderPhase, string>;
 
 export class ChangeCharOrder extends ChallengeModFeature {
   challenge = ChallengeCustom.CHANGE_CHAR_ORDER;

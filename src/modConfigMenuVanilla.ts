@@ -1,14 +1,18 @@
 import { deleteOldConfig, onOff } from "./modConfigMenu";
-import {
-  ANNOUNCER_VOICE_MODE_TO_TEXT,
-  DEFAULT_ANNOUNCER_VOICE_MODE_TEXT,
-} from "./objects/announcerVoiceModeToText";
-import {
-  CONSOLE_FONT_TO_TEXT,
-  DEFAULT_CONSOLE_FONT_TEXT,
-} from "./objects/consoleFontToText";
 
 const CATEGORY_NAME = "Vanilla Options";
+
+const CONSOLE_FONT_TO_TEXT = {
+  0: "Default",
+  1: "Small",
+  2: "Tiny",
+} as const satisfies Record<typeof Options.ConsoleFont, string>;
+
+const ANNOUNCER_VOICE_MODE_TO_TEXT = {
+  0: "Random",
+  1: "Always Off",
+  2: "Always On",
+} as const satisfies Record<typeof Options.AnnouncerVoiceMode, string>;
 
 export function init(): void {
   if (ModConfigMenu === undefined) {
@@ -228,21 +232,14 @@ export function init(): void {
   });
 }
 
-function getAnnouncerVoiceModeText() {
-  const announcerVoiceModeText =
-    ANNOUNCER_VOICE_MODE_TO_TEXT[Options.AnnouncerVoiceMode];
+function getAnnouncerVoiceModeText(): string {
   // Compare against undefined to be future-safe against new voice mode values.
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  return announcerVoiceModeText === undefined
-    ? DEFAULT_ANNOUNCER_VOICE_MODE_TEXT
-    : announcerVoiceModeText;
+  return ANNOUNCER_VOICE_MODE_TO_TEXT[Options.AnnouncerVoiceMode] ?? "Unknown";
 }
 
-function getConsoleFontText() {
-  const consoleFontText = CONSOLE_FONT_TO_TEXT[Options.ConsoleFont];
+function getConsoleFontText(): string {
   // Compare against undefined to be future-safe against new font text values.
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  return consoleFontText === undefined
-    ? DEFAULT_CONSOLE_FONT_TEXT
-    : consoleFontText;
+  return CONSOLE_FONT_TO_TEXT[Options.ConsoleFont] ?? "Unknown";
 }
