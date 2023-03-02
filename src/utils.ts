@@ -21,12 +21,22 @@ import {
   log,
   newPickingUpItem,
   onStage,
+  ReadonlyMap,
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./classes/features/optional/gameplay/extraStartingItems/constants";
+import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
-import { SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP } from "./maps/serverCollectibleIDToCollectibleTypeMap";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
+
+export const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new ReadonlyMap<
+  int,
+  CollectibleType
+>([
+  [1001, CollectibleTypeCustom.THIRTEEN_LUCK],
+  [1002, CollectibleTypeCustom.FIFTEEN_LUCK],
+  [1003, CollectibleTypeCustom.SAWBLADE],
+]);
 
 export function addCollectibleAndRemoveFromPools(
   player: EntityPlayer,

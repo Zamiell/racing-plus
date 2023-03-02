@@ -26,6 +26,7 @@ import {
   newPlayerHealth,
   PlayerHealth,
   ReadonlyMap,
+  ReadonlySet,
   removeAllFamiliars,
   removeAllMatchingEntities,
   removeDeadEyeMultiplier,
@@ -38,7 +39,6 @@ import {
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { ActiveCollectibleDescription } from "../../../interfaces/ActiveCollectibleDescription";
 import { mod } from "../../../mod";
-import { TRANSFORMATION_HELPERS_SET } from "../../../sets/transformationHelpersSet";
 import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
 import { v } from "./v";
@@ -96,6 +96,21 @@ const TRANSFORMATION_TO_HELPERS = new ReadonlyMap<PlayerForm, CollectibleType>([
     CollectibleTypeCustom.SPIDER_BABY_TRANSFORMATION_HELPER,
   ],
   // PlayerForm.STOMPY (13) is skipped since that is not based on items.
+]);
+
+const TRANSFORMATION_HELPERS_SET = new ReadonlySet<CollectibleType>([
+  CollectibleTypeCustom.GUPPY_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.BEELZEBUB_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.FUN_GUY_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.SERAPHIM_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.BOB_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.SPUN_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.YES_MOTHER_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.CONJOINED_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.LEVIATHAN_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.OH_CRAP_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.BOOKWORM_TRANSFORMATION_HELPER,
+  CollectibleTypeCustom.SPIDER_BABY_TRANSFORMATION_HELPER,
 ]);
 
 export function debuffOn(player: EntityPlayer): void {
