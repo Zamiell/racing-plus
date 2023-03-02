@@ -76,7 +76,10 @@ const FEATURE_CLASSES = [
   // - FastTravel,
 
   // Hotkeys
-  // TODO
+  fc.Autofire,
+  // - fc.FastDrop,
+  // - fc.Roll,
+  // - fc.SchoolbagSwitch,
 
   // Characters
   fc.JudasAddBomb, // 3

@@ -24,21 +24,21 @@ enum FastDropTarget {
  * check for keyboard inputs, and then iterate over the players if an input is pressed.
  */
 export function init(): void {
-  const keyboardFuncAll = () =>
+  const keyboardFuncFastDropAll = () =>
     hotkeys.fastDropAll === -1 ? undefined : hotkeys.fastDropAll;
-  mod.setConditionalHotkey(keyboardFuncAll, () => {
+  mod.setConditionalHotkey(keyboardFuncFastDropAll, () => {
     fastDrop(FastDropTarget.ALL);
   });
 
-  const keyboardFunTrinkets = () =>
+  const keyboardFuncFastDropTrinkets = () =>
     hotkeys.fastDropTrinkets === -1 ? undefined : hotkeys.fastDropTrinkets;
-  mod.setConditionalHotkey(keyboardFunTrinkets, () => {
+  mod.setConditionalHotkey(keyboardFuncFastDropTrinkets, () => {
     fastDrop(FastDropTarget.TRINKETS);
   });
 
-  const keyboardFuncPocket = () =>
+  const keyboardFuncFastDropPocket = () =>
     hotkeys.fastDropPocket === -1 ? undefined : hotkeys.fastDropPocket;
-  mod.setConditionalHotkey(keyboardFuncPocket, () => {
+  mod.setConditionalHotkey(keyboardFuncFastDropPocket, () => {
     fastDrop(FastDropTarget.POCKET_ITEMS);
   });
 }

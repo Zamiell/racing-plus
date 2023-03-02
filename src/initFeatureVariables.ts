@@ -8,7 +8,6 @@ import * as seededFloors from "./features/mandatory/seededFloors";
 import * as seededGBBug from "./features/mandatory/seededGBBug";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
-import * as autofire from "./features/optional/hotkeys/autofire";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
 import * as roll from "./features/optional/hotkeys/roll";
 import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
@@ -53,7 +52,6 @@ export function initFeatureVariables(): void {
   // Hotkeys
   fastDrop.init();
   schoolbagSwitch.init();
-  autofire.init();
 
   // QoL
   showDreamCatcherItemVars.init(); // 566

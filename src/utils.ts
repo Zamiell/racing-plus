@@ -29,7 +29,7 @@ import { automaticItemInsertionPreItemPickup } from "./features/optional/quality
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
 
-export const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new ReadonlyMap<
+const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new ReadonlyMap<
   int,
   CollectibleType
 >([
