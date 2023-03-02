@@ -9,7 +9,6 @@ import * as seededGBBug from "./features/mandatory/seededGBBug";
 import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as fastDrop from "./features/optional/hotkeys/fastDrop";
-import * as roll from "./features/optional/hotkeys/roll";
 import * as schoolbagSwitch from "./features/optional/hotkeys/schoolbagSwitch";
 import * as betterDevilAngelRoomsVars from "./features/optional/major/betterDevilAngelRooms/v";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
@@ -59,7 +58,6 @@ export function initFeatureVariables(): void {
 
   // Other
   customConsole.init();
-  roll.init();
 
   // Now that all of the features have been initialized, we can get the save data manager to load
   // data from disk before the first run begins. (This prevents bugs with `isaacscript-watcher` when

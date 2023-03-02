@@ -5,16 +5,19 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   capitalizeFirstLetter,
   getDirectionName,
   isActionPressedOnAnyInput,
   isCharacter,
   isJacobOrEsau,
+  ModCallbackCustom,
   VectorZero,
 } from "isaacscript-common";
-import { mod } from "../../../mod";
-import { hotkeys } from "../../../modConfigMenu";
-import { shouldCheckForGameplayInputs } from "../../../utils";
+import { mod } from "../../../../mod";
+import { hotkeys } from "../../../../modConfigMenu";
+import { shouldCheckForGameplayInputs } from "../../../../utils";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const FEATURE_NAME = "roll";
 
@@ -33,23 +36,82 @@ const v = {
   },
 };
 
-export function init(): void {
-  mod.saveDataManager(FEATURE_NAME, v, featureEnabled);
+/** TODO: Change from mandatory to season 6. */
+// ts-prune-ignore-next
+export class Roll extends MandatoryModFeature {
+  v = v;
 
-  // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
-  const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
-  mod.setConditionalHotkey(keyboardFunc, checkStartRoll);
+  constructor() {
+    super();
+
+    // See the comment in the "fastDrop.ts" file about reading keyboard inputs.
+    const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
+    mod.setConditionalHotkey(keyboardFunc, rollHotkeyPressed);
+  }
+
+  @CallbackCustom(ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER)
+  entityTakeDmgPlayer(player: EntityPlayer): boolean | undefined {
+    if (v.run.rolling) {
+      stopRoll(player);
+    }
+
+    return undefined;
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    if (v.run.rolling) {
+      const player = getRollPlayer();
+      stopRoll(player);
+    }
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
+  postPEffectUpdateReordered(player: EntityPlayer): void {
+    if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
+      return;
+    }
+
+    if (isCharacter(player, PlayerType.ESAU)) {
+      this.checkRollEsau(player);
+    } else {
+      this.checkRoll(player);
+    }
+  }
+
+  checkRoll(player: EntityPlayer): void {
+    if (!v.run.rolling) {
+      return;
+    }
+
+    const sprite = player.GetSprite();
+    const frame = sprite.GetFrame();
+    if (frame >= ROLL_STOP_FRAME) {
+      stopRoll(player);
+      return;
+    }
+
+    const rollSpeed = ROLL_SPEED * player.MoveSpeed;
+    player.Velocity = v.run.originalVelocity.Normalized().mul(rollSpeed);
+  }
+
+  checkRollEsau(player: EntityPlayer): void {
+    if (!v.run.rolling2) {
+      return;
+    }
+
+    const rollSpeed = ROLL_SPEED * player.MoveSpeed;
+    player.Velocity = v.run.originalVelocity2.Normalized().mul(rollSpeed);
+  }
 }
 
-function featureEnabled() {
-  // Hard-coded for now.
-  return false;
-}
-
-function checkStartRoll() {
-  if (!featureEnabled()) {
+function rollHotkeyPressed() {
+  // TODO
+  /*
+  if (!onSeason(6)) {
     return;
   }
+  */
 
   if (!shouldCheckForGameplayInputs()) {
     return;
@@ -57,12 +119,12 @@ function checkStartRoll() {
 
   const player = getRollPlayer();
 
-  if (playerCanRoll(player)) {
+  if (canPlayerRoll(player)) {
     startRoll(player);
   }
 }
 
-function playerCanRoll(player: EntityPlayer) {
+function canPlayerRoll(player: EntityPlayer) {
   const effects = player.GetEffects();
 
   return (
@@ -111,48 +173,6 @@ function getRollingAnimation(direction: Direction) {
   return `Rolling${capitalizedSuffix}`;
 }
 
-// ModCallback.POST_PEFFECT_UPDATE (4)
-export function postPEffectUpdate(player: EntityPlayer): void {
-  if (!featureEnabled()) {
-    return;
-  }
-
-  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
-    return;
-  }
-
-  if (isCharacter(player, PlayerType.ESAU)) {
-    checkRollEsau(player);
-  } else {
-    checkRoll(player);
-  }
-}
-
-function checkRoll(player: EntityPlayer) {
-  if (!v.run.rolling) {
-    return;
-  }
-
-  const sprite = player.GetSprite();
-  const frame = sprite.GetFrame();
-  if (frame >= ROLL_STOP_FRAME) {
-    stopRoll(player);
-    return;
-  }
-
-  const rollSpeed = ROLL_SPEED * player.MoveSpeed;
-  player.Velocity = v.run.originalVelocity.Normalized().mul(rollSpeed);
-}
-
-function checkRollEsau(player: EntityPlayer) {
-  if (!v.run.rolling2) {
-    return;
-  }
-
-  const rollSpeed = ROLL_SPEED * player.MoveSpeed;
-  player.Velocity = v.run.originalVelocity2.Normalized().mul(rollSpeed);
-}
-
 function stopRoll(player: EntityPlayer) {
   player.Velocity = v.run.originalVelocity;
   if (isJacobOrEsau(player)) {
@@ -168,22 +188,6 @@ function stopRoll(player: EntityPlayer) {
   v.run.originalVelocity2 = VectorZero;
 
   mod.enableAllInputs(FEATURE_NAME);
-}
-
-// ModCallback.POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  if (v.run.rolling) {
-    const player = getRollPlayer();
-    stopRoll(player);
-  }
-}
-
-// ModCallback.ENTITY_TAKE_DMG (11)
-// EntityType.PLAYER (1)
-export function entityTakeDmgPlayer(player: EntityPlayer): void {
-  if (v.run.rolling) {
-    stopRoll(player);
-  }
 }
 
 function getRollPlayer() {

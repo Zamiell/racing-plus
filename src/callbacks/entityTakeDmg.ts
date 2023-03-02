@@ -3,7 +3,6 @@ import {
   EntityType,
   ModCallback,
 } from "isaac-typescript-definitions";
-import * as roll from "../features/optional/hotkeys/roll";
 import { fastTravelEntityTakeDmgPlayer } from "../features/optional/major/fastTravel/callbacks/entityTakeDmg";
 import { mod } from "../mod";
 
@@ -30,9 +29,6 @@ function entityTakeDmgPlayer(
 
   // Major
   fastTravelEntityTakeDmgPlayer(damageFlags);
-
-  // Other
-  roll.entityTakeDmgPlayer(player);
 
   return undefined;
 }

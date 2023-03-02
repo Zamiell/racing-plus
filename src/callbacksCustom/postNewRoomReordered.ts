@@ -13,7 +13,6 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
-import * as roll from "../features/optional/hotkeys/roll";
 import { betterDevilAngelRoomsPostNewRoom } from "../features/optional/major/betterDevilAngelRooms/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
@@ -57,7 +56,4 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostNewRoom(); // 566
-
-  // Other
-  roll.postNewRoom();
 }
