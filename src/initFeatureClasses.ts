@@ -36,6 +36,7 @@ const FEATURE_CLASSES = [
   fc.RemoveGlitchedItems,
   fc.RemoveGloballyBannedItems,
   fc.RestartOnNextFrame,
+  fc.PreventConsole,
   fc.TempMoreOptions,
   fc.TimeConsoleUsed,
   fc.TopLeftText,
@@ -47,6 +48,9 @@ const FEATURE_CLASSES = [
   fc.NLuck,
   fc.Sawblade,
   fc.SolCustom,
+
+  // Race
+  // TODO
 
   // Speedrun (utils)
   fc.AchievementItems,

@@ -117,6 +117,7 @@ export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn
 export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTeleport";
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
+export { PreventConsole } from "./classes/features/race/PreventConsole";
 export { AchievementItems } from "./classes/features/speedrun/AchievementItems";
 export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
 export { CharacterProgress } from "./classes/features/speedrun/CharacterProgress";

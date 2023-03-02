@@ -57,7 +57,7 @@ export function inDiversityRace(): boolean {
   return inRace() && g.race.format === RaceFormat.DIVERSITY;
 }
 
-function inRace(): boolean {
+export function inRace(): boolean {
   return (
     config.ClientCommunication &&
     g.race.status === RaceStatus.IN_PROGRESS &&

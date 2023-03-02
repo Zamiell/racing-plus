@@ -5,7 +5,6 @@ import {
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
 import * as entityTakeDmg from "./callbacks/entityTakeDmg";
-import * as inputAction from "./callbacks/inputAction";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
@@ -96,7 +95,6 @@ function registerCallbacksVanilla() {
   postUseCard.init(); // 5
   postUsePill.init(); // 10
   entityTakeDmg.init(); // 11
-  inputAction.init(); // 13
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
