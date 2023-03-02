@@ -19,6 +19,9 @@ import * as fc from "./featureClasses";
  * - Make SolCustom part of FastClear directory.
  * - Alphabetize "Removals" section + Config.ts.
  * - Try combining the various speedrun class v.ts with the parent class.
+ * - Check refactor `DreamCatcherWarpState`.
+ * - Check refactor fast-travel related enums & interfaces.
+ * - Check refactor `ActiveCollectibleDescription` after seeded death.
  */
 const FEATURE_CLASSES = [
   // Mandatory (TODO - sort)

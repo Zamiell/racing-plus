@@ -4,12 +4,28 @@ import {
   isJacobOrEsau,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { Holiday } from "../../../../enums/Holiday";
 import { NullItemIDCustom } from "../../../../enums/NullItemIDCustom";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-const CURRENT_HOLIDAY = Holiday.NONE as Holiday;
+enum Holiday {
+  NONE,
+
+  /** January 1st */
+  NEW_YEARS,
+
+  /** March 17th */
+  SAINT_PATRICKS_DAY,
+
+  /** October 31st */
+  HALLOWEEN,
+
+  /** November 24th */
+  THANKSGIVING,
+
+  /** December 25th */
+  CHRISTMAS,
+}
 
 const HOLIDAY_TO_NULL_ITEM_ID = {
   [Holiday.NONE]: undefined,
@@ -19,6 +35,8 @@ const HOLIDAY_TO_NULL_ITEM_ID = {
   [Holiday.THANKSGIVING]: NullItemIDCustom.THANKSGIVING,
   [Holiday.CHRISTMAS]: NullItemID.CHRISTMAS,
 } as const satisfies Record<Holiday, NullItemID | undefined>;
+
+const CURRENT_HOLIDAY = Holiday.NONE as Holiday;
 
 /** Conditionally show a festive hat. (It is disabled if it is not currently a holiday.) */
 export class HolidayHats extends ConfigurableModFeature {
