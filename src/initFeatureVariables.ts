@@ -5,8 +5,6 @@ import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
-import * as seededGBBug from "./features/mandatory/seededGBBug";
-import * as seededTeleports from "./features/mandatory/seededTeleports";
 import * as streakText from "./features/mandatory/streakText";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
@@ -33,9 +31,7 @@ export function initFeatureVariables(): void {
   streakText.init();
   replacePhotos.init();
   seededDrops.init();
-  seededTeleports.init();
   seededFloors.init();
-  seededGBBug.init();
   fireworks.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();

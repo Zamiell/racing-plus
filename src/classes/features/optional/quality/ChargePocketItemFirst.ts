@@ -24,7 +24,7 @@ import {
   getTotalCharge,
   inRoomType,
   isActiveSlotEmpty,
-  log,
+  logError,
   ModCallbackCustom,
   playChargeSoundEffect,
   PlayerIndex,
@@ -400,7 +400,7 @@ function checkActiveItemsChargeChange(player: EntityPlayer) {
     player,
   );
   if (activeItemCharges.size === 0) {
-    log(
+    logError(
       'Error: The activeItemCharges map was not initialized yet in the "checkActiveItemsChargeChange" function.',
     );
     return false;
@@ -434,7 +434,7 @@ function rewindActiveChargesToLastFrame(player: EntityPlayer) {
     player,
   );
   if (activeItemCharges.size === 0) {
-    log(
+    logError(
       'Error: The activeItemCharges map was not initialized yet in the "rewindActiveChargesToLastFrame" function.',
     );
     return;

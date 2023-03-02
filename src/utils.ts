@@ -19,6 +19,7 @@ import {
   inRoomType,
   isRoomInsideGrid,
   log,
+  logError,
   newPickingUpItem,
   onStage,
   ReadonlyMap,
@@ -182,7 +183,7 @@ export function serverCollectibleIDToCollectibleType(
   const collectibleType =
     SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP.get(serverCollectibleID);
   if (collectibleType === undefined) {
-    log(
+    logError(
       `Error: Failed to find a corresponding collectible type for the server collectible ID of: ${serverCollectibleID}`,
     );
     return CollectibleType.SAD_ONION;

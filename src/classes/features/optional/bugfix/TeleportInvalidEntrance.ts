@@ -66,9 +66,6 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
     // Don't bother fixing entrances in big room, as teleporting the player to a valid door can
     // cause the camera to jerk in a buggy way.
     if (roomShape >= RoomShape.SHAPE_1x2) {
-      log(
-        "Not fixing an invalid entrance teleport due to being in a large room.",
-      );
       return;
     }
 

@@ -4,7 +4,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   isEven,
-  log,
   removeCollectibleFromAllPlayers,
   removeCollectiblePickupDelay,
 } from "isaacscript-common";
@@ -43,7 +42,6 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
 }
 
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
-  log("Spawned a Checkpoint custom collectible.");
   removeCollectiblePickupDelay(checkpoint);
 
   // IBS can cause the Checkpoint to be overridden with poop, causing a soft-lock.

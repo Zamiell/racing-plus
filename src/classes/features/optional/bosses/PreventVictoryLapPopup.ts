@@ -15,7 +15,6 @@ import {
   getNPCs,
   inRoomType,
   isRoomInsideGrid,
-  log,
   onDarkRoom,
   openAllDoors,
   sfxManager,
@@ -108,7 +107,6 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
       VectorZero,
     );
     effect.ClearEntityFlags(EntityFlag.APPEAR);
-    log('Spawned the "Room Clear Delay Effect" custom entity (for The Lamb).');
     // - This will not work to delay the room clearing if "debug 10" is turned on.
     // - This will not die if the player uses Blood Rights or Plan C, since it is an effect.
   }

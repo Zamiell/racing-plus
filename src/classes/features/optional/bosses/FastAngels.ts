@@ -16,9 +16,7 @@ import {
   doesEntityExist,
   findFreePosition,
   game,
-  getCollectibleName,
   inRoomType,
-  log,
   ModCallbackCustom,
   newRNG,
   setSeed,
@@ -60,7 +58,6 @@ export class FastAngels extends ConfigurableModFeature {
       pickup.SpawnerType === EntityType.GABRIEL // 272
     ) {
       pickup.Remove();
-      log("Removed a vanilla Angel drop.");
     }
   }
 
@@ -127,9 +124,6 @@ export class FastAngels extends ConfigurableModFeature {
       false,
       true,
     );
-
-    const collectibleName = getCollectibleName(collectibleType);
-    log(`Spawned fast-angel item: ${collectibleName} (${collectibleType})`);
   }
 
   getAngelCollectibleType(

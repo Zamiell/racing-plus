@@ -3,7 +3,7 @@ import {
   ModCallback,
   NPCState,
 } from "isaac-typescript-definitions";
-import { Callback, DefaultMap, log } from "isaacscript-common";
+import { Callback, DefaultMap } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -49,7 +49,6 @@ export class GlobinSoftlock extends ConfigurableModFeature {
 
     if (numNewGlobinRegenerations === MAX_REGENERATIONS) {
       npc.Kill();
-      log("Manually killed a Globin to prevent a softlock.");
     }
   }
 }

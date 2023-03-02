@@ -15,7 +15,6 @@ import {
   getAngelRoomDoor,
   getDevilRoomDoor,
   inRoomType,
-  log,
   ModCallbackCustom,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
@@ -88,11 +87,6 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
     } else {
       level.InitializeDevilAngelRoom(true, false);
     }
-
-    const roomTypeString = playerOnDevilSide ? "Devil" : "Angel";
-    log(
-      `Initialized a ${roomTypeString} Room for the custom Duality mechanic.`,
-    );
   }
 
   getPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor): boolean {

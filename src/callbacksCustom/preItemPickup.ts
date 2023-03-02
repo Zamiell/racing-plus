@@ -8,12 +8,6 @@ export function init(): void {
 }
 
 function main(player: EntityPlayer, pickingUpItem: PickingUpItem) {
-  /*
-  log(
-    `MC_PRE_ITEM_PICKUP - Type: ${pickingUpItem.type} - ID: ${pickingUpItem.id}`,
-  );
-  */
-
   // Mandatory
   streakText.preItemPickup(pickingUpItem);
 

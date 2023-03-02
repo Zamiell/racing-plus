@@ -13,9 +13,7 @@ import {
   CallbackCustom,
   findFreePosition,
   game,
-  getCollectibleName,
   getRandom,
-  log,
   ModCallbackCustom,
   newRNG,
   nextSeed,
@@ -58,7 +56,6 @@ export class FastKrampus extends ConfigurableModFeature {
     // NPC can drop a collectible is Krampus dropping A Lump of Coal or Krampus' Head.
     if (pickup.SpawnerType === EntityType.FALLEN) {
       pickup.Remove();
-      log("Removed a vanilla Krampus drop.");
     }
   }
 
@@ -82,9 +79,6 @@ export class FastKrampus extends ConfigurableModFeature {
       false,
       true,
     );
-
-    const collectibleName = getCollectibleName(collectibleType);
-    log(`Spawned fast-Krampus item: ${collectibleName} (${collectibleType})`);
   }
 
   getKrampusCollectibleType(): CollectibleType {

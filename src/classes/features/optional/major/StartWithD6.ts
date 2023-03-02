@@ -14,13 +14,11 @@ import {
   findFreePosition,
   game,
   getCollectibleMaxCharges,
-  getPlayerName,
   getTotalCharge,
   hasOpenActiveItemSlot,
   isCharacter,
   isJacobOrEsau,
   isTaintedLazarus,
-  log,
   mapSetPlayer,
   ModCallbackCustom,
   PlayerIndex,
@@ -258,9 +256,6 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {
     giveActiveItem(player, pocketItem, pocketItemCharge);
   }
-
-  const playerName = getPlayerName(player);
-  log(`Awarded a pocket active D6 to: ${playerName}`);
 }
 
 function giveActiveItem(

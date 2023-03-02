@@ -18,7 +18,7 @@ import {
   getScreenBottomY,
   isActionPressedOnAnyInput,
   KColorDefault,
-  log,
+  logError,
   ModCallbackCustom,
   NUM_PILLS_IN_POOL,
   ReadonlyMap,
@@ -192,7 +192,7 @@ export class ShowPills extends ConfigurableModFeature {
       const position = Vector(x, y);
       const sprite = pillSprites.get(pillEntry.color);
       if (sprite === undefined) {
-        log(
+        logError(
           `Error: Failed to find the sprite for pill color: ${pillEntry.color}, effect: ${pillEntry.effect}, i: ${i}`,
         );
         return;

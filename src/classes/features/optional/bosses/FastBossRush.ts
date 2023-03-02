@@ -26,7 +26,6 @@ import {
   getRandomArrayElement,
   gridCoordinatesToWorldPosition,
   inRoomType,
-  log,
   logError,
   ModCallbackCustom,
   musicManager,
@@ -184,10 +183,6 @@ export class FastBossRush extends ConfigurableModFeature {
       return;
     }
 
-    log(
-      `Boss Rush wave ${v.room.currentWave} completed. Total bosses defeated so far: ${totalBossesDefeatedIfWaveIsClear}`,
-    );
-
     if (v.room.currentWave > 0) {
       addRoomClearCharges();
     }
@@ -240,10 +235,6 @@ export class FastBossRush extends ConfigurableModFeature {
     // Display the wave number as streak text.
     const totalWaves = math.floor(NUM_TOTAL_BOSSES / NUM_BOSSES_PER_WAVE);
     setStreakText(`Wave ${v.room.currentWave} / ${totalWaves}`);
-
-    log(
-      `Spawned Boss Rush wave ${v.room.currentWave} on game frame: ${gameFrameCount}`,
-    );
   }
 
   getNumBossSegments(entityType: EntityType): int {

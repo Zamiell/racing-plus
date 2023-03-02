@@ -9,7 +9,6 @@ import {
   asNumber,
   countEntities,
   getPlayersOfType,
-  log,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 
@@ -51,9 +50,6 @@ function checkDuplicatedDarkEsau(npc: EntityNPC) {
     // Both normal Dark Esau's and Dark Esau pits should be removed in an identical manner. (The pit
     // spawns on the same frame after the Dark Esau does.)
     npc.Remove();
-    log(
-      `Removed a Dark Esau since an extra one was detected. (There are ${numDarkEsaus} Dark Esaus and there should be ${normalAmountOfDarkEsaus}.)`,
-    );
   }
 }
 

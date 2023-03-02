@@ -8,7 +8,6 @@ import {
   Callback,
   game,
   isGlitchedCollectible,
-  log,
   ReadonlySet,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
@@ -78,9 +77,6 @@ export class RemoveGlitchedItems extends MandatoryModFeature {
         storedCollectibleType,
         collectible.Position,
         collectible.InitSeed,
-      );
-      log(
-        `Deleted a glitched collectible on frame ${collectible.FrameCount} and replaced it with the previous item of: ${storedCollectibleType}`,
       );
     }
   }

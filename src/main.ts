@@ -9,7 +9,6 @@ import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postEntityRemove from "./callbacks/postEntityRemove";
-import * as postFamiliarRender from "./callbacks/postFamiliarRender";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
@@ -24,7 +23,6 @@ import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
-import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
 import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postFlip from "./callbacksCustom/postFlip";
@@ -97,7 +95,6 @@ function registerCallbacksVanilla() {
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
-  postFamiliarRender.init(); // 25
   postNPCInit.init(); // 27
   postPickupInit.init(); // 34
   postProjectileInit.init(); // 43
@@ -110,7 +107,6 @@ function registerCallbacksVanilla() {
 }
 
 function registerCallbacksCustom() {
-  postCursedTeleport.init();
   postCustomRevive.init();
   postFirstFlip.init();
   postFlip.init();

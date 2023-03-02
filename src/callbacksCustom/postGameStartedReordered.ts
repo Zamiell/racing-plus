@@ -8,7 +8,6 @@ import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
 import * as fireworks from "../features/mandatory/fireworks";
 import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
-import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as streakText from "../features/mandatory/streakText";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
@@ -54,7 +53,6 @@ function main(isContinued: boolean) {
   seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   streakText.postGameStarted();
-  seededGBBug.postGameStarted();
   fireworks.postGameStarted();
 
   // Major

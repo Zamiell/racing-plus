@@ -10,7 +10,6 @@ import {
   anyPlayerHasCollectible,
   game,
   inMegaSatanRoom,
-  log,
   onCathedral,
   onChest,
   onDarkRoom,
@@ -21,10 +20,7 @@ import {
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { spawnTrophy } from "../../../../classes/features/mandatory/misc/Trophy";
-import {
-  isOnFinalCharacter,
-  speedrunGetCharacterNum,
-} from "../../../../classes/features/speedrun/characterProgress/v";
+import { isOnFinalCharacter } from "../../../../classes/features/speedrun/characterProgress/v";
 import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
 import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
@@ -57,9 +53,6 @@ const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
 export function postPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
-  log(
-    `Big Chest detected, doing action: ${BigChestReplacementAction[replacementAction]}`,
-  );
 }
 
 function getReplacementAction() {
@@ -144,13 +137,9 @@ function speedrunUp() {
 function speedrunAlternate() {
   // Some seasons alternate between directions, so we need to make sure we only handle the intended
   // direction.
-  const characterNum = speedrunGetCharacterNum();
   const direction = onSpeedrunWithDarkRoomGoal()
     ? SpeedrunDirection.DOWN
     : SpeedrunDirection.UP;
-  log(
-    `Season 2 - Big chest situation, character number: ${characterNum}, direction: ${SpeedrunDirection[direction]} (${direction})`,
-  );
 
   // The Polaroid / The Negative is optional in seasons that alternate direction.
   if (onCathedral()) {

@@ -1,7 +1,9 @@
 // We must put the feature classes in a separate file as a workaround for Lua having a limit of 200
 // local variables.
 
+export { SeededGBBug } from "./classes/features/mandatory/bugfix/SeededGBBug";
 export { SeededGlitterBombs } from "./classes/features/mandatory/bugfix/SeededGlitterBombs";
+export { SeededTeleports } from "./classes/features/mandatory/bugfix/SeededTeleports";
 export { NerfCardReading } from "./classes/features/mandatory/gameplay/NerfCardReading";
 export { DebugItem } from "./classes/features/mandatory/items/DebugItem";
 export { Magic8BallSeeded } from "./classes/features/mandatory/items/Magic8BallSeeded";

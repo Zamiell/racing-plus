@@ -1,5 +1,11 @@
 import { GameStateFlag, ItemType } from "isaac-typescript-definitions";
-import { game, getRoomVariant, log, PickingUpItem } from "isaacscript-common";
+import {
+  game,
+  getRoomVariant,
+  log,
+  logError,
+  PickingUpItem,
+} from "isaacscript-common";
 import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
@@ -110,7 +116,7 @@ function read() {
   if (socketFunction !== undefined) {
     socketFunction(parsedData);
   } else {
-    log(`Error: Received an unknown socket command: ${command}`);
+    logError(`Error: Received an unknown socket command: ${command}`);
   }
 
   return true;

@@ -12,7 +12,6 @@ import {
   game,
   getNPCs,
   inBossRoomOf,
-  log,
   ModCallbackCustom,
   newRNG,
   spawnWithSeed,
@@ -45,7 +44,6 @@ export class FastSatan extends ConfigurableModFeature {
     if (this.inUnclearedSatanRoom()) {
       this.spawnEnemies();
       this.primeStatue();
-      log("Sped up Satan.");
     }
   }
 

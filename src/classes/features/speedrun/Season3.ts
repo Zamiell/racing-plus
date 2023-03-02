@@ -32,7 +32,6 @@ import {
   inRoomType,
   inStartingRoom,
   isRoomInsideGrid,
-  log,
   ModCallbackCustom,
   newRNG,
   onCathedral,
@@ -414,7 +413,6 @@ export class Season3 extends ChallengeModFeature {
       VectorZero,
     );
     roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
-    log('Spawned the "Room Clear Delay NPC" custom entity (for Dogma).');
   }
 
   /**

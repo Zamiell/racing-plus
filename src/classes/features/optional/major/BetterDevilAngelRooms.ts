@@ -18,7 +18,6 @@ import {
   emptyRoom,
   game,
   getAllPlayers,
-  getCollectibleName,
   getCollectibleQuality,
   getPlayerFromIndex,
   getPlayerIndex,
@@ -28,7 +27,6 @@ import {
   inGenesisRoom,
   inRoomType,
   itemConfig,
-  log,
   ModCallbackCustom,
   onStage,
   repeat,
@@ -147,16 +145,7 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
       return CollectibleTypeCustom.DEBUG;
     }
 
-    const collectibleTypeInOrder =
-      this.getDevilOrAngelCollectibleInOrder(itemPoolType);
-    const collectibleName =
-      collectibleTypeInOrder === undefined
-        ? "Unknown"
-        : getCollectibleName(collectibleTypeInOrder);
-    log(
-      `Custom Devil/Angel room in-order collectible: ${collectibleName} (${collectibleTypeInOrder})`,
-    );
-    return collectibleTypeInOrder;
+    return this.getDevilOrAngelCollectibleInOrder(itemPoolType);
   }
 
   getDevilOrAngelCollectibleInOrder(

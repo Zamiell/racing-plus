@@ -32,9 +32,6 @@ const FEATURE_CLASSES = [
   fc.PreserveCheckpoint,
   fc.PreserveCollectibles,
   fc.RacingPlusIcon,
-  fc.RemoveBannedPillEffects,
-  fc.RemoveGlitchedItems,
-  fc.RemoveGloballyBannedItems,
   fc.RestartOnNextFrame,
   fc.TempMoreOptions,
   fc.TimeConsoleUsed,
@@ -172,9 +169,9 @@ const FEATURE_CLASSES = [
   fc.NerfCardReading,
 
   // Removals (mandatory) (not alphabetized)
-  // - fc.RemoveGloballyBannedItems,
-  // - fc.RemoveGlitchedItems,
-  // - fc.RemoveBannedPillEffects,
+  fc.RemoveGloballyBannedItems,
+  fc.RemoveGlitchedItems,
+  fc.RemoveBannedPillEffects,
 
   // Cutscenes
   fc.FastTeleport,
@@ -189,8 +186,8 @@ const FEATURE_CLASSES = [
   fc.TeleportInvalidEntrance,
 
   // Bug Fixes (mandatory)
-  // - fc.SeededTeleports, // 44
-  // - fc.SeededGBBug, // 405
+  fc.SeededTeleports, // 44
+  fc.SeededGBBug, // 405
   fc.SeededGlitterBombs, // 432
 
   // Graphics

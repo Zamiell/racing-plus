@@ -3,7 +3,6 @@ import {
   anyPlayerHasCollectible,
   asCollectibleType,
   game,
-  log,
   newRNG,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../enums/PickupVariantCustom";
@@ -63,12 +62,6 @@ function preventVanillaPhotos(
       collectibleType === CollectibleType.NEGATIVE)
   ) {
     v.room.vanillaPhotosLeftToSpawn--;
-
-    const photoName =
-      collectibleType === CollectibleType.POLAROID ? "Polaroid" : "Negative";
-    const gameFrameCount = game.GetFrameCount();
-    const text = `Preventing a vanilla ${photoName} from spawning on game frame: ${gameFrameCount}`;
-    log(text);
 
     return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
   }

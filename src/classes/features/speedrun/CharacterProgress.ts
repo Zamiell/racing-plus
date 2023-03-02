@@ -172,9 +172,6 @@ export class CharacterProgress extends ChallengeModFeature {
     if (v.persistent.liveSplitReset) {
       v.persistent.liveSplitReset = false;
       player.AddCollectible(CollectibleTypeCustom.RESET);
-      log(
-        `Reset the LiveSplit AutoSplitter by giving "Reset", item ID ${CollectibleTypeCustom.RESET}.`,
-      );
       removeCollectibleFromItemTracker(CollectibleTypeCustom.RESET);
     }
   }

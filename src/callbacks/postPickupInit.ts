@@ -1,6 +1,5 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
-import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
 import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
 import { mod } from "../mod";
@@ -22,7 +21,6 @@ export function init(): void {
 }
 
 function main(pickup: EntityPickup) {
-  seededGBBug.postPickupInit(pickup);
   automaticItemInsertionPostPickupInit(pickup);
 }
 
