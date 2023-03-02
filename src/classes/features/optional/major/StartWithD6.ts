@@ -25,10 +25,10 @@ import {
   ModCallbackCustom,
   PlayerIndex,
 } from "isaacscript-common";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { mod } from "../../../mod";
-import { Config } from "../../Config";
-import { ConfigurableModFeature } from "../../ConfigurableModFeature";
+import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { mod } from "../../../../mod";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const D6_STARTING_CHARGE = getCollectibleMaxCharges(CollectibleType.D6);
 

@@ -28,12 +28,12 @@ import {
   VectorZero,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
-import { PickupPriceCustom } from "../../../enums/PickupPriceCustom";
-import { inSeededRaceWithAllAngelRooms } from "../../../features/race/consistentDevilAngelRooms";
-import { config } from "../../../modConfigMenu";
-import { getEffectiveDevilDeals } from "../../../utils";
-import { Config } from "../../Config";
-import { ConfigurableModFeature } from "../../ConfigurableModFeature";
+import { PickupPriceCustom } from "../../../../enums/PickupPriceCustom";
+import { inSeededRaceWithAllAngelRooms } from "../../../../features/race/consistentDevilAngelRooms";
+import { config } from "../../../../modConfigMenu";
+import { getEffectiveDevilDeals } from "../../../../utils";
+import { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const TOP_LEFT_UI_POSITION = Vector(42, 51); // To the right of the coin count.
 const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);

@@ -17,10 +17,7 @@ XML_FILES_TO_CONVERT = [
 JSON_OUTPUT_DIRECTORY = os.path.join(
     PROJECT_DIRECTORY,
     "src",
-    "features",
-    "optional",
-    "major",
-    "betterDevilAngelRooms",
+    "json",
 )
 
 

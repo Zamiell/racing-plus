@@ -3,11 +3,11 @@ import {
   getRandomJSONRoom,
   JSONRoom,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
-import * as angelRooms from "./angelRooms.json";
+import * as angelRooms from "../../../../../json/angelRooms.json";
+import { mod } from "../../../../../mod";
 import { v } from "./v";
 
-export function angel(): void {
+export function setupSeededAngelRoom(): void {
   const jsonRooms = angelRooms.rooms.room;
 
   let jsonRoom: JSONRoom;

@@ -1,9 +1,6 @@
 // We must put the feature classes in a separate file as a workaround for Lua having a limit of 200
 // local variables.
 
-export { DisableCurses } from "./classes/features/major/DisableCurses";
-export { FreeDevilItem } from "./classes/features/major/FreeDevilItem";
-export { StartWithD6 } from "./classes/features/major/StartWithD6";
 export { SeededGlitterBombs } from "./classes/features/mandatory/bugfix/SeededGlitterBombs";
 export { NerfCardReading } from "./classes/features/mandatory/gameplay/NerfCardReading";
 export { DebugItem } from "./classes/features/mandatory/items/DebugItem";
@@ -93,7 +90,11 @@ export { UniqueCardBacks } from "./classes/features/optional/graphics/UniqueCard
 export { Autofire } from "./classes/features/optional/hotkeys/Autofire";
 export { FastDrop } from "./classes/features/optional/hotkeys/FastDrop";
 export { SchoolbagSwitch } from "./classes/features/optional/hotkeys/SchoolbagSwitch";
+export { BetterDevilAngelRooms } from "./classes/features/optional/major/BetterDevilAngelRooms";
+export { DisableCurses } from "./classes/features/optional/major/DisableCurses";
 export { FastReset } from "./classes/features/optional/major/FastReset";
+export { FreeDevilItem } from "./classes/features/optional/major/FreeDevilItem";
+export { StartWithD6 } from "./classes/features/optional/major/StartWithD6";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
 export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";
 export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCreepColor";

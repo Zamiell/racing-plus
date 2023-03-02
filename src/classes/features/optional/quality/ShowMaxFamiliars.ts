@@ -14,7 +14,7 @@ import {
   ANOTHER_UI_ICON_OFFSET,
   getTopLeftUIPositionFreeDevilItem,
   shouldGetFreeDevilItemOnThisRun,
-} from "../../major/FreeDevilItem";
+} from "../major/FreeDevilItem";
 
 const maxFamiliarsSprite = newSprite("gfx/ui/max_familiars.anm2");
 // We move it slightly upwards so that it matches a standard collectible sprite from

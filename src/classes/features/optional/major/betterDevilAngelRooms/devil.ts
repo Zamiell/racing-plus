@@ -17,16 +17,16 @@ import {
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
-import { getEffectiveDevilDeals } from "../../../../utils";
-import * as devilRooms from "./devilRooms.json";
+import * as devilRooms from "../../../../../json/devilRooms.json";
+import { mod } from "../../../../../mod";
+import { getEffectiveDevilDeals } from "../../../../../utils";
 import { v } from "./v";
 
 const NORMAL_ROOM_SUBTYPE = 0;
 const NUMBER_MAGNET_ROOM_SUBTYPE = 1;
 const KRAMPUS_CHANCE = 0.4; // Matches vanilla
 
-export function devil(): void {
+export function setupSeededDevilRoom(): void {
   const hasNumberMagnet = anyPlayerHasTrinket(TrinketType.NUMBER_MAGNET);
 
   // First, find out if we should encounter Krampus instead of getting a normal Devil Room.

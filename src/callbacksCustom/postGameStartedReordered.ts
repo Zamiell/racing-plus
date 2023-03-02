@@ -10,7 +10,6 @@ import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as seededGBBug from "../features/mandatory/seededGBBug";
 import * as streakText from "../features/mandatory/streakText";
-import { betterDevilAngelRoomsPostGameStarted } from "../features/optional/major/betterDevilAngelRooms/callbacks/postGameStarted";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
 import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
@@ -60,7 +59,6 @@ function main(isContinued: boolean) {
 
   // Major
   racePostGameStarted();
-  betterDevilAngelRoomsPostGameStarted();
 
   // QoL
   showDreamCatcherItemPostGameStarted();

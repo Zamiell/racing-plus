@@ -18,10 +18,10 @@ mod/resources/**/*.anm2
 
 # @template-customization-start
 
-# The mod checksums.
+# Mod checksums
 sha1.json
 
-# The JSON rooms.
-src/features/optional/major/betterDevilAngelRooms/*.json
+# JSON rooms
+src/json/*.json
 
 # @template-customization-end

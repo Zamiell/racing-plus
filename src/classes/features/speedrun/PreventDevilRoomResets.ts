@@ -9,10 +9,10 @@ import {
   removeAllPickups,
 } from "isaacscript-common";
 import { isPlanetariumFixWarping } from "../../../features/mandatory/planetariumFix";
-import { setDevilAngelEmpty } from "../../../features/optional/major/betterDevilAngelRooms/v";
 import { mod } from "../../../mod";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constantsSpeedrun";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import { setDevilAngelEmpty } from "../optional/major/BetterDevilAngelRooms";
 import { isOnFirstCharacter } from "./characterProgress/v";
 
 /** Prevent players from resetting for a Devil Room item on the first character. */

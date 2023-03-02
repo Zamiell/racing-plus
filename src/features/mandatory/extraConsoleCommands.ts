@@ -20,6 +20,7 @@ import {
   restart,
 } from "isaacscript-common";
 import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/misc/RacingPlusIcon";
+import { setDevilAngelDebugRoom } from "../../classes/features/optional/major/BetterDevilAngelRooms";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugCode";
@@ -32,7 +33,6 @@ import { g } from "../../globals";
 import { mod } from "../../mod";
 import { setAllModConfigMenuSettings } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
-import { setDevilAngelDebugRoom } from "../optional/major/betterDevilAngelRooms/v";
 import * as socketClient from "../race/socketClient";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [

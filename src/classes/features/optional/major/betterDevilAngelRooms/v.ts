@@ -1,7 +1,7 @@
-import { newRNG, PlayerIndex, setAllRNGToStartSeed } from "isaacscript-common";
-import { mod } from "../../../../mod";
-import { config } from "../../../../modConfigMenu";
+import { newRNG, PlayerIndex } from "isaacscript-common";
 
+// This is registered in "BetterDevilAngelRooms.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
     metKrampus: false,
@@ -38,23 +38,3 @@ export const v = {
     usedD4Frame: null as int | null,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager("betterDevilAngelRooms", v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.BetterDevilAngelRooms;
-}
-
-export function initBetterDevilAngelRoomsRNG(): void {
-  setAllRNGToStartSeed(v.run.rng);
-}
-
-export function setDevilAngelEmpty(): void {
-  v.run.intentionallyLeaveEmpty = true;
-}
-
-export function setDevilAngelDebugRoom(num: int): void {
-  v.run.debugRoomNum = num;
-}

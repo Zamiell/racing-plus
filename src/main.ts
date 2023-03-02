@@ -22,7 +22,6 @@ import * as postUseItem from "./callbacks/postUseItem";
 import * as postUsePill from "./callbacks/postUsePill";
 import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
-import * as preGetCollectible from "./callbacks/preGetCollectible";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
 import * as postCursedTeleport from "./callbacksCustom/postCursedTeleport";
@@ -105,7 +104,6 @@ function registerCallbacksVanilla() {
   postLaserInit.init(); // 47
   postEffectInit.init(); // 54
   postEffectUpdate.init(); // 55
-  preGetCollectible.init(); // 62
   postEntityRemove.init(); // 67
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70

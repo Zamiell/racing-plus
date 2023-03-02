@@ -72,7 +72,7 @@ const FEATURE_CLASSES = [
   // - fc.ClientCommunication,
   fc.StartWithD6,
   fc.DisableCurses,
-  // - fc.BetterDevilAngelRooms,
+  fc.BetterDevilAngelRooms,
   fc.FreeDevilItem,
   fc.FastReset,
   // - FastClear,

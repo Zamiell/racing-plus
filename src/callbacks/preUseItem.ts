@@ -6,7 +6,6 @@ import {
 } from "isaac-typescript-definitions";
 import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import * as streakText from "../features/mandatory/streakText";
-import { betterDevilAngelRoomsPreUseItemD4 } from "../features/optional/major/betterDevilAngelRooms/callbacks/preUseItem";
 import { mod } from "../mod";
 
 export function init(): void {
@@ -64,7 +63,6 @@ function d4(
   _activeSlot: ActiveSlot,
   _customVarData: int,
 ): boolean | undefined {
-  betterDevilAngelRoomsPreUseItemD4();
   setCollectiblesRerolledForItemTracker();
 
   return undefined;

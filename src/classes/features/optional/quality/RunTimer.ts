@@ -11,7 +11,7 @@ import { config } from "../../../../modConfigMenu";
 import * as timer from "../../../../timer";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
-import { ANOTHER_UI_ICON_OFFSET } from "../../major/FreeDevilItem";
+import { ANOTHER_UI_ICON_OFFSET } from "../major/FreeDevilItem";
 import {
   getTopLeftUIPositionShowMaxFamiliars,
   showingMaxFamiliarsIcon,
