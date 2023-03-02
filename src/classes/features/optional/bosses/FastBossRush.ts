@@ -199,8 +199,6 @@ export class FastBossRush extends ConfigurableModFeature {
   }
 
   spawnNextWave(): void {
-    const gameFrameCount = game.GetFrameCount();
-
     for (let i = 0; i < NUM_BOSSES_PER_WAVE; i++) {
       // Get the boss to spawn.
       const bossIndex =
