@@ -43,6 +43,11 @@ const CHANGE_CHAR_ORDER_PHASE_TEXT = {
   [ChangeCharOrderPhase.BUILD_VETO]: "Choose your build vetos",
 } as const satisfies Record<ChangeCharOrderPhase, string>;
 
+/**
+ * Handles everything related to the "Change Char Order" custom challenge.
+ *
+ * Button logic is handled in "buttons.ts".
+ */
 export class ChangeCharOrder extends ChallengeModFeature {
   challenge = ChallengeCustom.CHANGE_CHAR_ORDER;
   v = v;
