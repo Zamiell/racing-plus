@@ -54,6 +54,11 @@ export class CheckErrors extends MandatoryModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
+    // Don't draw error text on top of Mod Config Menu.
+    if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+      return;
+    }
+
     if (v.run.afterbirthPlus) {
       this.drawErrorText(
         "You must have the Repentance DLC installed in order to use Racing+.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.",
