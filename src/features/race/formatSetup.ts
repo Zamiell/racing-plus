@@ -31,6 +31,7 @@ import { ServerCollectibleID } from "../../types/ServerCollectibleID";
 import {
   addCollectibleAndRemoveFromPools,
   addTrinketAndRemoveFromPools,
+  collectibleTypeToServerCollectibleID,
   serverCollectibleIDToCollectibleType,
 } from "../../utils";
 
@@ -69,6 +70,10 @@ export const BANNED_DIVERSITY_COLLECTIBLES = [
 
 /** These are trinkets that are banned from the trinket pool in all diversity races. */
 export const BANNED_DIVERSITY_TRINKETS = [TrinketType.DICE_BAG] as const;
+
+const SAWBLADE_COLLECTIBLE_ID =
+  collectibleTypeToServerCollectibleID(CollectibleTypeCustom.SAWBLADE) ??
+  error("Failed to get the Sawblade server collectible ID.");
 
 export function formatSetup(player: EntityPlayer): void {
   if (
@@ -142,7 +147,7 @@ function seeded(player: EntityPlayer) {
 
   // Manually handle the Sawblade build, which grants flight from Fate but should not grant an
   // eternal heart.
-  if (g.race.startingItems.includes(CollectibleTypeCustom.SAWBLADE)) {
+  if (g.race.startingItems.includes(SAWBLADE_COLLECTIBLE_ID)) {
     player.AddEternalHearts(-1);
   }
 

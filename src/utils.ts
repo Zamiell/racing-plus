@@ -16,6 +16,7 @@ import {
   getEntities,
   getFamiliars,
   getPlayers,
+  getReversedMap,
   inRoomType,
   isRoomInsideGrid,
   log,
@@ -38,6 +39,10 @@ const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new ReadonlyMap<
   [1002, CollectibleTypeCustom.FIFTEEN_LUCK],
   [1003, CollectibleTypeCustom.SAWBLADE],
 ]);
+
+const COLLECTIBLE_TYPE_TO_SERVER_COLLECTIBLE_ID_MAP = getReversedMap(
+  SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP,
+);
 
 export function addCollectibleAndRemoveFromPools(
   player: EntityPlayer,
@@ -190,6 +195,14 @@ export function serverCollectibleIDToCollectibleType(
   }
 
   return collectibleType;
+}
+
+export function collectibleTypeToServerCollectibleID(
+  collectibleType: CollectibleType,
+): ServerCollectibleID | undefined {
+  const serverCollectibleID =
+    COLLECTIBLE_TYPE_TO_SERVER_COLLECTIBLE_ID_MAP.get(collectibleType);
+  return serverCollectibleID as ServerCollectibleID | undefined;
 }
 
 /**
