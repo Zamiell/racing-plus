@@ -73,12 +73,12 @@ export class RestartOnNextFrame extends MandatoryModFeature {
     restart();
   }
 
-  /** Change the challenge of the run and restart the game. */
+  /** Change the challenge of the run and restart the run. */
   restartChallenge(challenge: Challenge): void {
     consoleCommand(`challenge ${challenge}`);
   }
 
-  /** Change the seed of the run and restart the game. */
+  /** Change the seed of the run and restart the run. */
   restartSeed(seed: string): void {
     consoleCommand(`seed ${seed}`);
   }

@@ -67,7 +67,7 @@ export const MAJOR_CHANGES = [
       ModConfigMenuOptionType.BOOLEAN,
       "006",
       "Fast reset",
-      "Instantaneously restart the game as soon as you press the R key.",
+      "Instantaneously restart the run as soon as you press the R key.",
     ],
   ],
   [

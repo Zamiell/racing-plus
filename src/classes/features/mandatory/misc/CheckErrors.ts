@@ -86,7 +86,7 @@ export class CheckErrors extends MandatoryModFeature {
       );
     } else if (v.run.season4StorageHotkeyNotSet) {
       this.drawErrorText(
-        "You must set a hotkey to store items using Mod Config Menu. (Restart the game after this is done.)",
+        "You must set a hotkey to store items using Mod Config Menu. (Restart the run after this is done.)",
       );
     } else if (v.run.seasonGameRecentlyOpened) {
       const text = this.getSeasonErrorMessage(
