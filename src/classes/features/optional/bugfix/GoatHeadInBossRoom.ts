@@ -15,7 +15,14 @@ export class GoatHeadInBossRoom extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
+    const room = game.GetRoom();
+    const roomClear = room.IsClear();
+
     if (!inRoomType(RoomType.BOSS)) {
+      return;
+    }
+
+    if (!roomClear) {
       return;
     }
 
@@ -33,7 +40,6 @@ export class GoatHeadInBossRoom extends ConfigurableModFeature {
       return;
     }
 
-    const room = game.GetRoom();
     room.TrySpawnDevilRoomDoor(true);
   }
 }

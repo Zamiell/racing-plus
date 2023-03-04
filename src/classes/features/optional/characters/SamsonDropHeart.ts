@@ -24,11 +24,9 @@ export class SamsonDropHeart extends ConfigurableModFeature {
 
     for (const samson of samsons) {
       const removed = samson.TryRemoveTrinket(TrinketType.CHILDS_HEART);
-      if (!removed) {
-        return;
+      if (removed) {
+        spawnDroppedChildsHeart(samson);
       }
-
-      spawnDroppedChildsHeart(samson);
     }
   }
 }
