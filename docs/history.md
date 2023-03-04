@@ -7,6 +7,7 @@
 
 - Fixed the bug where Samson would automatically pick up his Child's Heart. (Thanks TNTerminator)
 - Fixed the bug where a Season 2 error message could happen in other seasons. (Thanks mgln)
+- Fixed the bug where the first floor Treasure Room replacements were not applying. (Thanks sisuka)
 
 ### _v0.97.2_ - March 4th, 2023
 
