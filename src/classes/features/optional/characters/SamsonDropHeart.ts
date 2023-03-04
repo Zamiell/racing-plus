@@ -5,7 +5,6 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   getPlayersOfType,
   ModCallbackCustom,
   spawnTrinket,
@@ -35,11 +34,9 @@ export class SamsonDropHeart extends ConfigurableModFeature {
 }
 
 export function spawnDroppedChildsHeart(player: EntityPlayer): void {
-  const room = game.GetRoom();
-  const bottomRightPosition = room.GetGridPosition(BOTTOM_LEFT_GRID_INDEX);
   const childsHeart = spawnTrinket(
     TrinketType.CHILDS_HEART,
-    bottomRightPosition,
+    BOTTOM_LEFT_GRID_INDEX,
     VectorZero,
     player,
     player.InitSeed,

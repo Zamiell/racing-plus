@@ -182,6 +182,9 @@ Post-flip actions:
 - `0302` <!-- FastBossRush --> The Boss Rush is customized to include Womb bosses and Repentance bosses (in order to increase the variety). Additionally, three bosses will spawn at a time instead of two. The unnecessary waiting between waves is removed.
 
 - `0303` <!-- RemoveArmor --> Bosses no longer have armor (i.e. damage scaling).
+
+> Why? Damage scaling makes your build decisions matter less. It also makes individual boss fights take too long when compared to other bosses or the rest of the run in general.
+
 - `0304` <!-- FastMom 45, 78 --> All extra enemies will now properly die after defeating Mom, Mom's Heart, or It Lives!
 - `0305` <!-- FastPin 62 --> Pin, Frail, Scolex, and Wormwood will now spend less time underground.
 - `0306` <!-- PreventDeathSlow 66 --> Death will no longer perform his "slow" attack.
