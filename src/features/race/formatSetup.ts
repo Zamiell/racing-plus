@@ -22,6 +22,7 @@ import {
   useActiveItemTemp,
 } from "isaacscript-common";
 import { setStartedWithCompass } from "../../classes/features/mandatory/removals/RemoveGloballyBannedItems";
+import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -137,6 +138,12 @@ function seeded(player: EntityPlayer) {
     const collectibleType =
       serverCollectibleIDToCollectibleType(serverCollectibleID);
     addCollectibleAndRemoveFromPools(player, collectibleType);
+  }
+
+  // Manually handle the Sawblade build, which grants flight from Fate but should not grant an
+  // eternal heart.
+  if (g.race.startingItems.includes(CollectibleTypeCustom.SAWBLADE)) {
+    player.AddEternalHearts(-1);
   }
 
   // If we are Tainted Eden, prevent the starting items for the race from being rerolled by giving

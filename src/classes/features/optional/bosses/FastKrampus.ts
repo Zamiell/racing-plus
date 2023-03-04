@@ -6,9 +6,11 @@ import {
   LevelStage,
   ModCallback,
   PickupVariant,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
+  anyPlayerHasTrinket,
   Callback,
   CallbackCustom,
   findFreePosition,
@@ -122,7 +124,8 @@ export class FastKrampus extends ConfigurableModFeature {
       anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL);
     const headBanned =
       v.run.startedWithHeadOfKrampus ||
-      anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS);
+      anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS) ||
+      anyPlayerHasTrinket(TrinketType.NO);
 
     return { coalBanned, headBanned };
   }

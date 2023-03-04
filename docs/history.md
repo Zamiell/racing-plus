@@ -6,6 +6,9 @@
 ### _v0.97.0_ - February 29th, 2023 (Unreleased)
 
 - Fixed the (vanilla) bug where picking up Goat Head or Eucharist in a Boss Room would not immediately open the Devil Room / Angel Room door.
+- Fixed the bug where the NO! trinket did not properly prevent Krampus' Head from dropping. (Thanks cutifire)
+- Fixed the bug where the server had the wrong mapping of build anti-synergies. (Thanks MoucheronQuipet)
+- Fixed the bug where the seeded Sawblade build granted an eternal heart. (Thanks AshDown)
 
 ### _v0.96.0_ - February 28th, 2023
 
