@@ -377,7 +377,7 @@ export const BOSS_CHANGES_2 = [
   [
     "PreventEndMegaSatan", // 275
     [
-      ModConfigMenuOptionType.TEXT,
+      ModConfigMenuOptionType.BOOLEAN,
       "0316",
       "Prevent Mega Satan ending",
       "Defeating Mega Satan no longer has a chance to immediately end the run.",
@@ -444,7 +444,7 @@ export const BOSS_CHANGES_3 = [
   [
     "PreventEndBeast", // 951
     [
-      ModConfigMenuOptionType.TEXT,
+      ModConfigMenuOptionType.BOOLEAN,
       "0323",
       "Prevent The Beast ending",
       "Defeating The Beast no longer has a chance to immediately end the run.",

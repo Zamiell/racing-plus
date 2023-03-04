@@ -1,4 +1,9 @@
-import { GridCollisionClass, LevelStage } from "isaac-typescript-definitions";
+import {
+  GridCollisionClass,
+  LevelStage,
+  PickupVariant,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   CallbackCustom,
   findFreePosition,
@@ -32,7 +37,11 @@ export class RemovePerfectionVelocity extends ConfigurableModFeature {
   configKey: keyof Config = "RemovePerfectionVelocity";
   v = v;
 
-  @CallbackCustom(ModCallbackCustom.POST_PICKUP_INIT_FILTER)
+  @CallbackCustom(
+    ModCallbackCustom.POST_PICKUP_INIT_FILTER,
+    PickupVariant.TRINKET,
+    TrinketType.PERFECTION,
+  )
   postPickupInitPerfection(pickup: EntityPickup): void {
     if (v.run.spawnedPerfection) {
       return;
