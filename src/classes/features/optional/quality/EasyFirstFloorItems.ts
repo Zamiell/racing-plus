@@ -26,7 +26,11 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
   // 71
   @Callback(ModCallback.PRE_ROOM_ENTITY_SPAWN)
   preRoomEntitySpawn(
+    _entityTypeOrGridEntityXMLType: EntityType | GridEntityXMLType,
+    _variant: int,
+    _subType: int,
     gridIndex: int,
+    _seed: Seed,
   ): [EntityType | GridEntityXMLType, int, int] | undefined {
     const room = game.GetRoom();
     const roomFrameCount = room.GetFrameCount();
@@ -45,6 +49,7 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
       case 11: {
         const rockReplaceIndexes = new ReadonlySet([66, 68, 82]);
         if (rockReplaceIndexes.has(gridIndex)) {
+          Isaac.DebugString("GETTING HERE 2");
           return [GridEntityXMLType.SPIKES, 0, 0];
         }
 
