@@ -1,4 +1,5 @@
 import {
+  Challenge,
   FadeoutTarget,
   GridEntityType,
   PlayerType,
@@ -262,9 +263,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.challengeCustomAbbreviation,
       v.room.charOrder,
     );
-    game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
-    v.room.challengeTarget = ChallengeCustom.SEASON_1;
-    v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
+    fadeOut(ChallengeCustom.SEASON_1);
   }
 }
 
@@ -363,8 +362,12 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.buildsChosen as PlayerType[],
     );
     setBuildBansTime();
-    game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
-    v.room.challengeTarget = ChallengeCustom.SEASON_2;
-    v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
+    fadeOut(ChallengeCustom.SEASON_2);
   }
+}
+
+function fadeOut(challengeTarget: Challenge) {
+  game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
+  v.room.challengeTarget = challengeTarget;
+  v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
 }

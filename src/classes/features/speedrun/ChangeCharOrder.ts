@@ -78,14 +78,14 @@ export class ChangeCharOrder extends ChallengeModFeature {
 
   checkReset(): void {
     const renderFrameCount = Isaac.GetFrameCount();
+
     if (
-      v.room.resetRenderFrame === null ||
-      renderFrameCount < v.room.resetRenderFrame
+      v.room.resetRenderFrame !== null &&
+      renderFrameCount >= v.room.resetRenderFrame
     ) {
-      return;
+      v.room.resetRenderFrame = null;
+      consoleCommand(`challenge ${v.room.challengeTarget}`);
     }
-    v.room.resetRenderFrame = null;
-    consoleCommand(`challenge ${v.room.challengeTarget}`);
   }
 
   draw(): void {
