@@ -19,11 +19,17 @@ import {
   inRoomType,
   ModCallbackCustom,
   newRNG,
+  ReadonlySet,
   setSeed,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+
+const ANGEL_ENTITY_TYPES = new ReadonlySet([
+  EntityType.URIEL, // 271
+  EntityType.GABRIEL, // 272
+]);
 
 const v = {
   run: {
@@ -61,27 +67,19 @@ export class FastAngels extends ConfigurableModFeature {
     }
   }
 
-  @CallbackCustom(
-    ModCallbackCustom.POST_ENTITY_KILL_FILTER,
-    EntityType.URIEL,
-    AngelVariant.NORMAL,
-  )
-  postEntityKillUriel(entity: Entity): void {
-    this.spawnKeyPiece(entity);
-  }
-
-  @CallbackCustom(
-    ModCallbackCustom.POST_ENTITY_KILL_FILTER,
-    EntityType.GABRIEL,
-    AngelVariant.NORMAL,
-  )
-  postEntityKillGabriel(entity: Entity): void {
+  // 68
+  @Callback(ModCallback.POST_ENTITY_KILL)
+  postEntityKill(entity: Entity): void {
     if (this.shouldSpawnKeyPiece(entity)) {
       this.spawnKeyPiece(entity);
     }
   }
 
   shouldSpawnKeyPiece(entity: Entity): boolean {
+    if (!ANGEL_ENTITY_TYPES.has(entity.Type)) {
+      return false;
+    }
+
     // Fallen Angels do not drop key pieces.
     if (entity.Variant !== asNumber(AngelVariant.NORMAL)) {
       return false;
