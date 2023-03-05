@@ -5,6 +5,7 @@
 
 ### _v0.97.3_ - March 5th, 2023 (Unreleased)
 
+- In season 4, Tainted Azazel has been replaced by Azazel.
 - In season 4, you can no longer get a free shovel in the Dark Room. (Thanks Moucheron Quipet)
 
 ### _v0.97.3_ - March 4th, 2023
