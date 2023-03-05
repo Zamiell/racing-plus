@@ -17,15 +17,18 @@ import {
   game,
   getCharacterStartingCollectibles,
   getPlayerIndex,
+  getRoomName,
   hasCollectibleInActiveSlot,
   inStartingRoom,
   isActiveCollectible,
   isPickingUpItemCollectible,
   ModCallbackCustom,
   newCollectibleSprite,
+  onDarkRoom,
   onFirstFloor,
   PickingUpItem,
   PlayerIndex,
+  removeAllCollectibles,
   removeCollectible,
   removeCollectibleFromPools,
   sfxManager,
@@ -179,6 +182,19 @@ export class Season4 extends ChallengeModFeature {
         sprite.Scale = Vector(0.666, 0.666);
       }
     });
+  }
+
+  /** Prevent getting a free shovel from the random dirt patch room. */
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReorderedFalse(): void {
+    if (!onDarkRoom()) {
+      return;
+    }
+
+    const roomName = getRoomName();
+    if (roomName.includes("Grave Room")) {
+      removeAllCollectibles(CollectibleType.WE_NEED_TO_GO_DEEPER);
+    }
   }
 
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
