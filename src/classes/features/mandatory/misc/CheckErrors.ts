@@ -97,13 +97,13 @@ export class CheckErrors extends MandatoryModFeature {
     } else if (v.run.seasonConsoleRecentlyUsed) {
       const text = this.getSeasonErrorMessage(
         "using the console",
-        getTimeConsoleUsed() ?? 0,
+        getTimeConsoleUsed() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
-    } else if (v.run.seasonBansRecentlySet) {
+    } else if (v.run.season2BansRecentlySet) {
       const text = this.getSeasonErrorMessage(
         `assigning your ${SEASON_2_NUM_BANS} build bans`,
-        getBuildBansTime() ?? 0,
+        getBuildBansTime() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
     }
@@ -348,7 +348,7 @@ function checkBansRecentlySet() {
   const time = Isaac.GetTime();
   const bansUnlockTime = buildBansTime + RANDOM_CHARACTER_LOCK_MILLISECONDS;
   if (time <= bansUnlockTime) {
-    v.run.seasonBansRecentlySet = true;
+    v.run.season2BansRecentlySet = true;
     log("Error: Build bans recently set.");
   }
 }

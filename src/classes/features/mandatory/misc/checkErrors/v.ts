@@ -15,7 +15,7 @@ export const v = {
     season4StorageHotkeyNotSet: false,
     seasonGameRecentlyOpened: false,
     seasonConsoleRecentlyUsed: false,
-    seasonBansRecentlySet: false,
+    season2BansRecentlySet: false,
   },
 };
 
