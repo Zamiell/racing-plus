@@ -20,14 +20,15 @@ export class FadeHungryTears extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_TEAR_INIT_LATE)
   postTearInitLate(tear: EntityTear): void {
     if (this.isHungryTear(tear)) {
+      // We copy the tear fade amount from the `FadeVasculitisTears` feature.
       setEntityOpacity(tear, FADE_TEAR_AMOUNT);
     }
   }
 
   /**
    * Normal tears have both `tear.Parent` and `tear.SpawnerEntity` equal to the player. However,
-   * Lachryphagy/hungry tears will have `tear.Parent` equal to the undefined and
-   * `tear.SpawnerEntity` equal to the player.
+   * Lachryphagy/hungry tears will have `tear.Parent` equal to undefined and `tear.SpawnerEntity`
+   * equal to the player.
    */
   isHungryTear(tear: EntityTear): boolean {
     return (
