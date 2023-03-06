@@ -292,30 +292,31 @@ Post-flip actions:
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `0518` <!-- RemoveFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `0518` <!-- FadeHungryTears 532 --> Lachryphagy tears are faded.
+- `0519` <!-- RemoveFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `0519` <!-- ShowDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `0520` <!-- ShowDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `0520` <!-- FastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `0521` <!-- FadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `0521` <!-- FastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `0522` <!-- FadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `0522` <!-- FastVanishingTwin 697 --> The Vanishing Twin familiar is replaced by a custom version that activates instantly.
-- `0523` <!-- FlipCustom 711 --> Flip will now more clearly show what each item will change into.
-- `0524` <!-- RemovePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `0523` <!-- FastVanishingTwin 697 --> The Vanishing Twin familiar is replaced by a custom version that activates instantly.
+- `0524` <!-- FlipCustom 711 --> Flip will now more clearly show what each item will change into.
+- `0525` <!-- RemovePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `0525` <!-- RemovePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `0526` <!-- RemovePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `0526` <!-- DisplayExpansionPack 181 --> The random active item chosen by Expansion Pack will be drawn on the screen as streak text.
+- `0527` <!-- DisplayExpansionPack 181 --> The random active item chosen by Expansion Pack will be drawn on the screen as streak text.
 
 - <!-- CenterStart --> Players will start in the center of the room (instead of at the bottom).
 

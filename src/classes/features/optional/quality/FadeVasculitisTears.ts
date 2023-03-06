@@ -8,7 +8,7 @@ import {
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-const FADE_AMOUNT = 0.1;
+export const FADE_TEAR_AMOUNT = 0.1;
 
 /**
  * Vasculitis causes tears to explode out of enemies. This is very confusing and makes it hard to
@@ -18,19 +18,21 @@ export class FadeVasculitisTears extends ConfigurableModFeature {
   configKey: keyof Config = "FadeVasculitisTears";
 
   /** Setting the fade does not work in the `POST_TEAR_INIT` callback, so we have to do it here. */
-  @CallbackCustom(ModCallbackCustom.POST_TEAR_INIT_LATE, TearVariant.BLOOD)
-  postTearInitLateBlood(tear: EntityTear): void {
+  @CallbackCustom(ModCallbackCustom.POST_TEAR_INIT_LATE)
+  postTearInitLate(tear: EntityTear): void {
     if (this.isVasculitisTear(tear)) {
-      setEntityOpacity(tear, FADE_AMOUNT);
+      setEntityOpacity(tear, FADE_TEAR_AMOUNT);
     }
   }
 
   /**
-   * Both `tear.Parent` and `tear.SpawnerEntity` will be equal to undefined if it is a Vasculitis
+   * Normal tears have both `tear.Parent` and `tear.SpawnerEntity` equal to the player. However,
+   * both `tear.Parent` and `tear.SpawnerEntity` will be equal to undefined if it is a Vasculitis
    * tear, because it is originating from the entity (and not the player or any familiar).
    */
   isVasculitisTear(tear: EntityTear): boolean {
     return (
+      tear.Variant === TearVariant.BLOOD &&
       tear.Parent === undefined &&
       tear.SpawnerEntity === undefined &&
       anyPlayerHasCollectible(CollectibleType.VASCULITIS)

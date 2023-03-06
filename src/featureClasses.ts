@@ -108,6 +108,7 @@ export { DeleteVoidPortals } from "./classes/features/optional/quality/DeleteVoi
 export { DisplayExpansionPack } from "./classes/features/optional/quality/DisplayExpansionPack";
 export { EasyFirstFloorItems } from "./classes/features/optional/quality/EasyFirstFloorItems";
 export { FadeDevilStatue } from "./classes/features/optional/quality/FadeDevilStatue";
+export { FadeHungryTears } from "./classes/features/optional/quality/FadeHungryTears";
 export { FadeVasculitisTears } from "./classes/features/optional/quality/FadeVasculitisTears";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";
 export { FastVanishingTwin } from "./classes/features/optional/quality/FastVanishingTwin";
