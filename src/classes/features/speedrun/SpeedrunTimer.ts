@@ -37,7 +37,8 @@ const v = {
 
   run: {
     finished: false,
-    finishedFrames: null as int | null,
+    finishedSpeedrunFrames: null as int | null,
+    finishedCharacterFrames: null as int | null,
   },
 
   room: {
@@ -89,8 +90,8 @@ export class SpeedrunTimer extends ChallengeModFeature {
 
     // Find out how much time has passed since the speedrun started.
     let elapsedFrames: int;
-    if (v.run.finished && v.run.finishedFrames !== null) {
-      elapsedFrames = v.run.finishedFrames;
+    if (v.run.finished && v.run.finishedSpeedrunFrames !== null) {
+      elapsedFrames = v.run.finishedSpeedrunFrames;
     } else if (v.persistent.startedSpeedrunFrame === null) {
       elapsedFrames = 0;
     } else {
@@ -122,8 +123,8 @@ export class SpeedrunTimer extends ChallengeModFeature {
     // Find out how much time has passed since the last "split" (e.g. when the last checkpoint was
     // touched).
     let elapsedFrames: int;
-    if (v.run.finished && v.run.finishedFrames !== null) {
-      elapsedFrames = v.run.finishedFrames;
+    if (v.run.finished && v.run.finishedCharacterFrames !== null) {
+      elapsedFrames = v.run.finishedCharacterFrames;
     } else if (v.persistent.startedCharacterFrame === null) {
       elapsedFrames = 0;
     } else {
@@ -156,7 +157,9 @@ export function speedrunGetAverageTimePerCharacter(): string {
 }
 
 export function speedrunGetFinishedFrames(): number {
-  return v.run.finishedFrames === null ? 0 : v.run.finishedFrames;
+  return v.run.finishedSpeedrunFrames === null
+    ? 0
+    : v.run.finishedSpeedrunFrames;
 }
 
 export function speedrunIsFinished(): boolean {
@@ -219,7 +222,13 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
   v.run.finished = true;
 
   if (v.persistent.startedSpeedrunFrame !== null) {
-    v.run.finishedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
+    v.run.finishedSpeedrunFrames =
+      renderFrameCount - v.persistent.startedSpeedrunFrame;
+  }
+
+  if (v.persistent.startedCharacterFrame !== null) {
+    v.run.finishedCharacterFrames =
+      renderFrameCount - v.persistent.startedCharacterFrame;
   }
 
   v.persistent.resetAllVarsOnNextReset = true;
