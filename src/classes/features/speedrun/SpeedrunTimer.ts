@@ -24,6 +24,7 @@ import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
   isOnFirstCharacter,
   speedrunGetCharacterNum,
+  speedrunResetAllVarsOnNextReset,
 } from "./characterProgress/v";
 
 const v = {
@@ -31,8 +32,6 @@ const v = {
     startedSpeedrunFrame: null as int | null,
     startedCharacterFrame: null as int | null,
     characterRunFrames: [] as int[],
-
-    resetAllVarsOnNextReset: false,
   },
 
   run: {
@@ -205,7 +204,8 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
 
   sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
 
-  // Give them the Checkpoint custom item. (This is used by the AutoSplitter to know when to split.)
+  // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know when
+  // to split.)
   player.AddCollectible(CollectibleTypeCustom.CHECKPOINT);
   removeCollectibleFromItemTracker(CollectibleTypeCustom.CHECKPOINT);
 
@@ -231,9 +231,9 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
       renderFrameCount - v.persistent.startedCharacterFrame;
   }
 
-  v.persistent.resetAllVarsOnNextReset = true;
+  speedrunResetAllVarsOnNextReset();
 
-  // Fireworks will play on the next frame (from the PostUpdate callback).
+  // Fireworks will play on the next frame (from the `POST_UPDATE` callback).
 }
 
 export function speedrunTimerResetPersistentVars(): void {

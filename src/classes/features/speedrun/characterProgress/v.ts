@@ -51,3 +51,11 @@ export function speedrunGetCharacterNum(): number {
 export function speedrunSetFastReset(): void {
   v.persistent.performedFastReset = true;
 }
+
+export function speedrunSetCharacterNum(num: number): void {
+  v.persistent.characterNum = num;
+}
+
+export function speedrunResetAllVarsOnNextReset(): void {
+  v.persistent.resetAllVarsOnNextReset = true;
+}

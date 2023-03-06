@@ -21,6 +21,7 @@ import {
 } from "isaacscript-common";
 import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/misc/RacingPlusIcon";
 import { setDevilAngelDebugRoom } from "../../classes/features/optional/major/BetterDevilAngelRooms";
+import { speedrunSetCharacterNum } from "../../classes/features/speedrun/characterProgress/v";
 import { logRaceData, RaceData } from "../../classes/RaceData";
 import { VERSION } from "../../constants";
 import { debugFunction } from "../../debugCode";
@@ -78,6 +79,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("seededRaceGoal", seededRaceGoal);
   mod.addConsoleCommand("seededRaceOff", seededRaceOff);
   mod.addConsoleCommand("seededRaceSeed", seededRaceSeed);
+  mod.addConsoleCommand("speedrunChar", speedrunChar);
   mod.removeConsoleCommand("unseed");
   mod.addConsoleCommand("unseed", unseedCommand);
   mod.addConsoleCommand("version", version);
@@ -346,6 +348,21 @@ function seededRaceSeed(params: string) {
 
   print(`Set the seeded race seed to: ${params}`);
   restart();
+}
+
+function speedrunChar(params: string) {
+  if (params === "") {
+    print("You must specify a character number.");
+    return;
+  }
+
+  const num = tonumber(params);
+  if (num === undefined) {
+    print("That is an invalid character number.");
+    return;
+  }
+
+  speedrunSetCharacterNum(num);
 }
 
 function unseedCommand() {

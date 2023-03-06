@@ -6,6 +6,8 @@
 ### _v0.97.4_ - March 6th, 2023
 
 - Fixed the bug where Horse Pills would not display properly. (Thanks Monkeypot)
+- Fixed the bug where the character timer would not work properly when finishing a speedrun. (Thanks Gamonymous)
+- Fixed the bug where resetting the run after finishing a speedrun would not work properly.
 
 ### _v0.97.4_ - March 5th, 2023
 

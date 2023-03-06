@@ -49,7 +49,6 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
       case 11: {
         const rockReplaceIndexes = new ReadonlySet([66, 68, 82]);
         if (rockReplaceIndexes.has(gridIndex)) {
-          Isaac.DebugString("GETTING HERE 2");
           return [GridEntityXMLType.SPIKES, 0, 0];
         }
 
