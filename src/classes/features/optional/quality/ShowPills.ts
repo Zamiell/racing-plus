@@ -12,6 +12,7 @@ import {
   fonts,
   game,
   getFalsePHDPillEffect,
+  getNormalPillColorFromHorse,
   getNormalPillColors,
   getPHDPillEffect,
   getPillEffectName,
@@ -29,8 +30,8 @@ import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 interface PillDescription {
-  color: PillColor;
-  effect: PillEffect;
+  pillColor: PillColor;
+  pillEffect: PillEffect;
 }
 
 const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
@@ -106,7 +107,7 @@ export class ShowPills extends ConfigurableModFeature {
 
     // Change the text for any identified pills.
     for (const pillEntry of v.run.pillsUsed) {
-      pillEntry.effect = getPHDPillEffect(pillEntry.effect);
+      pillEntry.pillEffect = getPHDPillEffect(pillEntry.pillEffect);
     }
   }
 
@@ -124,7 +125,9 @@ export class ShowPills extends ConfigurableModFeature {
 
     // Change the text for any identified pills.
     for (const pillEntry of v.run.pillsUsed) {
-      pillEntry.effect = this.getFalsePHDPillEffectRacingPlus(pillEntry.effect);
+      pillEntry.pillEffect = this.getFalsePHDPillEffectRacingPlus(
+        pillEntry.pillEffect,
+      );
     }
   }
 
@@ -190,17 +193,17 @@ export class ShowPills extends ConfigurableModFeature {
       // Show the pill sprite.
       const y = baseY + 20 * (i + 1);
       const position = Vector(x, y);
-      const sprite = pillSprites.get(pillEntry.color);
+      const sprite = pillSprites.get(pillEntry.pillColor);
       if (sprite === undefined) {
         logError(
-          `Error: Failed to find the sprite for pill color: ${pillEntry.color}, effect: ${pillEntry.effect}, i: ${i}`,
+          `Error: Failed to find the sprite for pill color: ${pillEntry.pillColor}, effect: ${pillEntry.pillEffect}, i: ${i}`,
         );
         return;
       }
       sprite.Render(position);
 
       // Show the pill effect as text.
-      let pillEffectName = getPillEffectName(pillEntry.effect);
+      let pillEffectName = getPillEffectName(pillEntry.pillEffect);
       if (pillEffectName === "Feels like I'm walking on sunshine!") {
         pillEffectName = "Walking on sunshine!";
       }
@@ -215,20 +218,22 @@ export class ShowPills extends ConfigurableModFeature {
   }
 
   checkNewUsedPill(pillEffect: PillEffect, pillColor: PillColor): void {
-    if (this.isPillColorRecordedAlready(pillColor)) {
+    const normalizedPillColor = getNormalPillColorFromHorse(pillColor);
+
+    if (this.isPillColorRecordedAlready(normalizedPillColor)) {
       return;
     }
 
     // This is the first time we have used this pill, so keep track of the pill color and effect.
     const pillDescription: PillDescription = {
-      color: pillColor,
-      effect: pillEffect,
+      pillColor: normalizedPillColor,
+      pillEffect,
     };
     v.run.pillsUsed.push(pillDescription);
   }
 
   isPillColorRecordedAlready(pillColor: PillColor): boolean {
-    return v.run.pillsUsed.some((pill) => pill.color === pillColor);
+    return v.run.pillsUsed.some((pill) => pill.pillColor === pillColor);
   }
 }
 
