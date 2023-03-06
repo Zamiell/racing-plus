@@ -236,7 +236,7 @@ Some builds are banned on certain characters:
 
 #### Basic Description
 
-- When holding a collectible above your head, you can hold down the a button to activate a "storage" mechanic.
+- When holding a collectible above your head, you can hold down a button to activate a "storage" mechanic.
 - When a collectible is stored, it will not be granted to the player, but will go into storage instead.
 - All stored collectibles will appear in the starting room of the next character in the speedrun.
 - If you do not take a stored collectible in the starting room, it will continue to be stored for future characters.
