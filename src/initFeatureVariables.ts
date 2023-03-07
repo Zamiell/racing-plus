@@ -8,7 +8,6 @@ import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
 import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
-import * as automaticItemInsertion from "./features/optional/quality/automaticItemInsertion/v";
 import * as showDreamCatcherItemVars from "./features/optional/quality/showDreamCatcherItem/v";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
@@ -40,7 +39,6 @@ export function initFeatureVariables(): void {
 
   // QoL
   showDreamCatcherItemVars.init(); // 566
-  automaticItemInsertion.init();
 
   // Other
   customConsole.init();

@@ -1,12 +1,9 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import { PickupVariantCustom } from "../enums/PickupVariantCustom";
 import * as fastTravelPostPickupInit from "../features/optional/major/fastTravel/callbacks/postPickupInit";
-import { automaticItemInsertionPostPickupInit } from "../features/optional/quality/automaticItemInsertion/callbacks/postPickupInit";
 import { mod } from "../mod";
 
 export function init(): void {
-  mod.AddCallback(ModCallback.POST_PICKUP_INIT, main);
-
   mod.AddCallback(
     ModCallback.POST_PICKUP_INIT,
     bigChest,
@@ -18,10 +15,6 @@ export function init(): void {
     invisiblePickup,
     PickupVariantCustom.INVISIBLE_PICKUP,
   );
-}
-
-function main(pickup: EntityPickup) {
-  automaticItemInsertionPostPickupInit(pickup);
 }
 
 // PickupVariant.BIG_CHEST (340)

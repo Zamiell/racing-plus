@@ -8,8 +8,7 @@ import {
   isBethany,
   isJacobOrEsau,
 } from "isaacscript-common";
-import { config } from "../../../../../modConfigMenu";
-import { v } from "../v";
+import { v } from "./v";
 
 const UI_X = 35;
 const COINS_X_OFFSET = 10; // For Deep Pockets
@@ -24,11 +23,7 @@ const BETHANY_Y_BOMB_OFFSET = -1;
 const BETHANY_Y_KEY_OFFSET = -2;
 const JACOB_ESAU_Y_OFFSET = 14;
 
-export function automaticItemInsertionPostRender(): void {
-  if (!config.AutomaticItemInsertion) {
-    return;
-  }
-
+export function drawDeltas(): void {
   const hud = game.GetHUD();
   if (!hud.IsVisible()) {
     return;

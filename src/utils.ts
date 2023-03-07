@@ -11,7 +11,6 @@ import {
 import {
   game,
   getCollectibleInitCharge,
-  getCollectibleItemType,
   getCollectibleMaxCharges,
   getEntities,
   getFamiliars,
@@ -21,13 +20,12 @@ import {
   isRoomInsideGrid,
   log,
   logError,
-  newPickingUpItem,
   onStage,
   ReadonlyMap,
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./classes/features/optional/gameplay/extraStartingItems/constants";
+import { automaticItemInsertionCheckIfCollectibleDropsPickups } from "./classes/features/optional/quality/AutomaticItemInsertion";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
-import { automaticItemInsertionPreItemPickup } from "./features/optional/quality/automaticItemInsertion/callbacks/preItemPickup";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
 
@@ -52,11 +50,7 @@ export function addCollectibleAndRemoveFromPools(
 
   // Before adding the new collectible, pretend like the item is becoming queued so that the
   // automatic item insertion feature works properly.
-  const itemType = getCollectibleItemType(collectibleType);
-  const pickingUpItem = newPickingUpItem();
-  pickingUpItem.itemType = itemType;
-  pickingUpItem.subType = collectibleType;
-  automaticItemInsertionPreItemPickup(player, pickingUpItem);
+  automaticItemInsertionCheckIfCollectibleDropsPickups(player, collectibleType);
 
   const initCharges = getCollectibleInitCharge(collectibleType);
   const maxCharges = getCollectibleMaxCharges(collectibleType);

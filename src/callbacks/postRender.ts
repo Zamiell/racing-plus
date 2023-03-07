@@ -3,7 +3,6 @@ import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
 import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import { fastTravelPostRender } from "../features/optional/major/fastTravel/callbacks/postRender";
-import { automaticItemInsertionPostRender } from "../features/optional/quality/automaticItemInsertion/callbacks/postRender";
 import { showDreamCatcherItemPostRender } from "../features/optional/quality/showDreamCatcherItem/callbacks/postRender";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
@@ -29,9 +28,6 @@ function main() {
 
   // QoL
   showDreamCatcherItemPostRender(); // 566
-
-  // Should be after the "Show Max Familiars" feature so that the text has priority.
-  automaticItemInsertionPostRender();
 
   // Other
   customConsole.postRender();

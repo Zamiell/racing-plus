@@ -99,6 +99,7 @@ export { FreeDevilItem } from "./classes/features/optional/major/FreeDevilItem";
 export { StartWithD6 } from "./classes/features/optional/major/StartWithD6";
 export { Chat } from "./classes/features/optional/other/Chat";
 export { Shadows } from "./classes/features/optional/other/Shadows";
+export { AutomaticItemInsertion } from "./classes/features/optional/quality/AutomaticItemInsertion";
 export { AzazelsRageChargeBar } from "./classes/features/optional/quality/AzazelsRageChargeBar";
 export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyLustChargeBar";
 export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCreepColor";

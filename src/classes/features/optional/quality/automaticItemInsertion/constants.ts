@@ -1,4 +1,5 @@
 import {
+  CardType,
   CollectibleType,
   PickupVariant,
   TrinketType,
@@ -104,4 +105,9 @@ export const DETRIMENTAL_TRINKETS = new ReadonlySet<TrinketType>([
   TrinketType.FADED_POLAROID, // 69
   TrinketType.OUROBOROS_WORM, // 96
   TrinketType.M, // 138
+]);
+
+export const CARD_TYPES_THAT_DROP_ONLY_HEARTS = new ReadonlySet<CardType>([
+  CardType.HIEROPHANT, // 6
+  CardType.LOVERS, // 7
 ]);

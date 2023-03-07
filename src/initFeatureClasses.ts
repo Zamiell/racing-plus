@@ -130,7 +130,7 @@ const FEATURE_CLASSES = [
   fc.DummyDPS, // 964
 
   // Quality of Life
-  // - fc.AutomaticItemInsertion,
+  fc.AutomaticItemInsertion,
   fc.ChangeCreepColor,
   fc.ChargePocketItemFirst,
   fc.DeleteVoidPortals,

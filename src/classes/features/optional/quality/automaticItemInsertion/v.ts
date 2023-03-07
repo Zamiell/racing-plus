@@ -1,13 +1,13 @@
 import { PickupVariant } from "isaac-typescript-definitions";
 import { PlayerIndex } from "isaacscript-common";
-import { mod } from "../../../../mod";
-import { config } from "../../../../modConfigMenu";
 
 export interface PickupQueueEntry {
   readonly pickupVariant: PickupVariant;
   readonly playerIndex: PlayerIndex;
 }
 
+// This is registered in "AutomaticItemInsertion.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
     /**
@@ -34,11 +34,3 @@ export const v = {
     pickupQueue: [] as PickupQueueEntry[],
   },
 };
-
-export function init(): void {
-  mod.saveDataManager("automaticItemInsertion", v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.AutomaticItemInsertion;
-}
