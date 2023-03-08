@@ -44,15 +44,15 @@ import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { setStreakText } from "../../../../features/mandatory/streakText";
-import {
-  getFastClearNumAliveBosses,
-  getFastClearNumAliveEnemies,
-} from "../../../../features/optional/major/fastClear/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import {
+  getFastClearNumAliveBosses,
+  getFastClearNumAliveEnemies,
+} from "../major/fastClear/v";
 
 const SPLITTING_BOSS_ENTITY_TYPE_SET = new ReadonlySet<EntityType>([
   EntityType.FISTULA_BIG, // 71

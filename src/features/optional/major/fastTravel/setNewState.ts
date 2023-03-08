@@ -283,7 +283,7 @@ function setGoingToNewFloor() {
   // executing the stage transition, this bug goes away.)
 
   // Defer going to the next floor if we need to visit other rooms first. (The
-  // "finishGoingToNewFloor" function will be manually called later in the PostUpdate callback.)
+  // "finishGoingToNewFloor" function will be manually called later in the `POST_UPDATE` callback.)
   if (shouldApplyPlanetariumFix()) {
     planetariumFixBeginWarp();
     return;

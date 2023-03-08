@@ -30,7 +30,7 @@ function main(isContinued: boolean) {
   const characterName = getCharacterName(character);
 
   log(
-    `MC_POST_GAME_STARTED_REORDERED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued} - Character: ${characterName} (${character})`,
+    `POST_GAME_STARTED_REORDERED - Seed: ${startSeedString} - Render frame: ${renderFrameCount} - Continued: ${isContinued} - Character: ${characterName} (${character})`,
   );
 
   // Make sure that the MinimapAPI is enabled. (We may have disabled it in a previous run.)

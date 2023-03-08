@@ -8,12 +8,9 @@ import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
-import * as postEntityRemove from "./callbacks/postEntityRemove";
 import * as postLaserInit from "./callbacks/postLaserInit";
-import * as postNPCInit from "./callbacks/postNPCInit";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postPickupInit from "./callbacks/postPickupInit";
-import * as postProjectileInit from "./callbacks/postProjectileInit";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as postUseCard from "./callbacks/postUseCard";
@@ -36,7 +33,6 @@ import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered"
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
-import * as postRoomClearChanged from "./callbacksCustom/postRoomClearChanged";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
@@ -95,13 +91,10 @@ function registerCallbacksVanilla() {
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
-  postNPCInit.init(); // 27
   postPickupInit.init(); // 34
-  postProjectileInit.init(); // 43
   postLaserInit.init(); // 47
   postEffectInit.init(); // 54
   postEffectUpdate.init(); // 55
-  postEntityRemove.init(); // 67
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
 }
@@ -120,7 +113,6 @@ function registerCallbacksCustom() {
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
   postPressurePlateUpdate.init();
-  postRoomClearChanged.init();
   postSacrifice.init();
   postTransformation.init();
   preCustomRevive.init();

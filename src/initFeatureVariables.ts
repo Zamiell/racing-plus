@@ -6,7 +6,6 @@ import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
-import * as fastClearVars from "./features/optional/major/fastClear/v";
 import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
@@ -33,7 +32,6 @@ export function initFeatureVariables(): void {
   seededDeath.init();
 
   // Major
-  fastClearVars.init();
   fastTravelVars.init();
 
   // Other

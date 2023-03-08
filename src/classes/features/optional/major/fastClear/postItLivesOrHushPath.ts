@@ -22,21 +22,23 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { season3GetItLivesSituation } from "../../../../classes/features/speedrun/Season3";
-import { ItLivesSituation } from "../../../../enums/ItLivesSituation";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
+import { ItLivesSituation } from "../../../../../enums/ItLivesSituation";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { g } from "../../../../../globals";
 import {
   inSpeedrun,
   onSeason,
   onSpeedrunWithDarkRoomGoal,
-} from "../../../../speedrun/utilsSpeedrun";
-import { hasPolaroidOrNegative } from "../../../../utils";
+} from "../../../../../speedrun/utilsSpeedrun";
+import { hasPolaroidOrNegative } from "../../../../../utils";
+import { season3GetItLivesSituation } from "../../../speedrun/Season3";
 
-// The trapdoor / heaven door positions after Hush are not in the center of the room; they are near
-// the top wall.
+/**
+ * The trapdoor / heaven door positions after Hush are not in the center of the room; they are near
+ * the top wall.
+ */
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
 /** Triggered when a room is fast-cleared. */
@@ -215,7 +217,7 @@ function spawnTrapdoor(position: Vector) {
 }
 
 // ModCallback.POST_NEW_ROOM (19)
-export function postNewRoom(): void {
+export function fastClearPostNewRoom(): void {
   checkItLivesWrongPath();
 }
 

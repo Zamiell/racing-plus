@@ -1,7 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import { fastClearPostEntityKill } from "../features/optional/major/fastClear/callbacks/postEntityKill";
 import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { mod } from "../mod";
@@ -37,11 +36,10 @@ function main(entity: Entity) {
     const stateText = state === undefined ? "n/a" : state.toString();
 
     log(
-      `MC_POST_ENTITY_KILL - ${entityID} (state: ${stateText}) (on game frame ${gameFrameCount})`,
+      `POST_ENTITY_KILL - ${entityID} (state: ${stateText}) (on game frame ${gameFrameCount})`,
     );
   }
 
-  fastClearPostEntityKill(entity);
   fastTravelPostEntityKill.main(entity);
 }
 

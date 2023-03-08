@@ -20,8 +20,8 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import { season3PostFastClear } from "../../../../classes/features/speedrun/season3/fastClear";
-import { spawnRepentanceDoorPostFastClear } from "../../../../classes/features/speedrun/SpawnRepentanceDoor";
+import { season3PostFastClear } from "../../../speedrun/season3/fastClear";
+import { spawnRepentanceDoorPostFastClear } from "../../../speedrun/SpawnRepentanceDoor";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,
@@ -30,7 +30,7 @@ import { postItLivesOrHushPathPostFastClear } from "./postItLivesOrHushPath";
 import { v } from "./v";
 
 // ModCallback.POST_UPDATE (1)
-export function postUpdate(): void {
+export function fastClearPostUpdate(): void {
   checkEarlyClearRoom();
 }
 

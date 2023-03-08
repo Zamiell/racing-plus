@@ -15,7 +15,7 @@ function main() {
   const renderFrameCount = Isaac.GetFrameCount();
 
   log(
-    `MC_POST_NEW_LEVEL_REORDERED - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
+    `POST_NEW_LEVEL_REORDERED - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
 
   // Mandatory

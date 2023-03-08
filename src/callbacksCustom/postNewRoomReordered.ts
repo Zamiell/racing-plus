@@ -13,7 +13,6 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
-import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
@@ -37,7 +36,7 @@ function main() {
     roomGridIndex >= 0 ? "" : ` (GridRoom.${GridRoom[roomGridIndex]})`;
 
   log(
-    `MC_POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Grid index: ${roomGridIndex}${roomGridIndexSuffix} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
+    `POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Grid index: ${roomGridIndex}${roomGridIndexSuffix} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
 
   // Mandatory
@@ -48,6 +47,5 @@ function main() {
 
   // Major
   racePostNewRoom();
-  fastClearPostNewRoom();
   fastTravelPostNewRoom();
 }

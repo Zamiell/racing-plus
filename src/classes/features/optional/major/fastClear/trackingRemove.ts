@@ -3,7 +3,7 @@ import { game } from "isaacscript-common";
 import { logFastClear, v } from "./v";
 
 // ModCallback.POST_ENTITY_REMOVE (67)
-export function postEntityRemove(entity: Entity): void {
+export function fastClearPostEntityRemove(entity: Entity): void {
   const npc = entity.ToNPC();
   if (npc === undefined) {
     return;
@@ -11,20 +11,20 @@ export function postEntityRemove(entity: Entity): void {
 
   // We cannot completely rely on the `POST_ENTITY_KILL` callback because it is not fired for
   // certain NPCs (like when Daddy Long Legs does a stomp attack or a Portal despawns).
-  checkRemove(npc, false, "MC_POST_ENTITY_REMOVE");
+  fastClearCheckRemove(npc, false, "POST_ENTITY_REMOVE");
 }
 
 // ModCallback.POST_ENTITY_KILL (68)
-export function postEntityKill(entity: Entity): void {
+export function fastClearPostEntityKill(entity: Entity): void {
   const npc = entity.ToNPC();
   if (npc === undefined) {
     return;
   }
 
-  checkRemove(npc, true, "MC_POST_ENTITY_KILL");
+  fastClearCheckRemove(npc, true, "POST_ENTITY_KILL");
 }
 
-export function checkRemove(
+export function fastClearCheckRemove(
   npc: EntityNPC,
   callbackIsPostEntityKill: boolean,
   parentCallback: string,
@@ -63,6 +63,6 @@ function remove(npc: EntityNPC, ptrHash: PtrHash, parentCallback: string) {
   // doors to give time for splitting enemies to spawn their children.
   v.room.delayClearUntilGameFrame = gameFrameCount + 1;
 
-  // Next, we check on every frame to see if the "aliveEnemies" set is empty in the PostUpdate
+  // Next, we check on every frame to see if the `aliveEnemies` set is empty in the `POST_UPDATE`
   // callback.
 }

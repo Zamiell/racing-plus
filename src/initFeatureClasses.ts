@@ -72,8 +72,8 @@ const FEATURE_CLASSES = [
   fc.BetterDevilAngelRooms,
   fc.FreeDevilItem,
   fc.FastReset,
-  // - FastClear,
-  // - FastTravel,
+  fc.FastClear,
+  // - fc.FastTravel,
 
   // Hotkeys
   fc.Autofire,

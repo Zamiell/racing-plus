@@ -62,7 +62,7 @@ export function postRender(): void {
 
 function emulateGapingMaws() {
   // Hold the player in place when in the Race Room (to emulate the Gaping Maws effect). This looks
-  // glitchy and jittery if it is done in the PostUpdate callback, so we do it here instead.
+  // glitchy and jittery if it is done in the `POST_UPDATE` callback, so we do it here instead.
   for (const player of getPlayers()) {
     player.Position = RACE_ROOM_POSITION;
   }

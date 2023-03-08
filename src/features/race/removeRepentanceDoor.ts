@@ -13,7 +13,7 @@ import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 
-// MC_POST_NEW_ROOM (18)
+// ModCallback.POST_NEW_ROOM (18)
 export function postNewRoom(): void {
   checkRemoveRepentanceDoor();
 }

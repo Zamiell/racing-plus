@@ -33,9 +33,7 @@ function main(
   initSeed: int,
 ): [EntityType, int, int, int] | undefined {
   if (DEBUG) {
-    log(
-      `MC_PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`,
-    );
+    log(`PRE_ENTITY_SPAWN - ${entityType}.${variant}.${subType} - ${initSeed}`);
   }
 
   const preEntityFunction = preEntitySpawnFunctions.get(entityType);

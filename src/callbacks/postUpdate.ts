@@ -2,7 +2,6 @@ import { ModCallback } from "isaac-typescript-definitions";
 import * as fireworks from "../features/mandatory/fireworks";
 import { seededDeathPostUpdate } from "../features/mandatory/seededDeath/callbacks/postUpdate";
 import * as showLevelTextOnTab from "../features/mandatory/showLevelTextOnTab";
-import { fastClearPostUpdate } from "../features/optional/major/fastClear/callbacks/postUpdate";
 import { fastTravelPostUpdate } from "../features/optional/major/fastTravel/callbacks/postUpdate";
 import { racePostUpdate } from "../features/race/callbacks/postUpdate";
 import { mod } from "../mod";
@@ -19,6 +18,5 @@ function main() {
 
   // Major
   racePostUpdate();
-  fastClearPostUpdate();
   fastTravelPostUpdate();
 }

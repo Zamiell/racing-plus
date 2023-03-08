@@ -94,6 +94,7 @@ export { FastDrop } from "./classes/features/optional/hotkeys/FastDrop";
 export { SchoolbagSwitch } from "./classes/features/optional/hotkeys/SchoolbagSwitch";
 export { BetterDevilAngelRooms } from "./classes/features/optional/major/BetterDevilAngelRooms";
 export { DisableCurses } from "./classes/features/optional/major/DisableCurses";
+export { FastClear } from "./classes/features/optional/major/FastClear";
 export { FastReset } from "./classes/features/optional/major/FastReset";
 export { FreeDevilItem } from "./classes/features/optional/major/FreeDevilItem";
 export { StartWithD6 } from "./classes/features/optional/major/StartWithD6";

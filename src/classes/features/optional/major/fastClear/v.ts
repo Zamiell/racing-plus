@@ -1,8 +1,8 @@
 import { game, getEntityID, log } from "isaacscript-common";
-import { mod } from "../../../../mod";
-import { config } from "../../../../modConfigMenu";
 import { FAST_CLEAR_DEBUG } from "./constants";
 
+// This is registered in "FastClear.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   room: {
     aliveEnemies: new Set<PtrHash>(),
@@ -11,14 +11,6 @@ export const v = {
     fastClearedRoom: false,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager("fastClear", v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.FastClear;
-}
 
 export function logFastClear(
   added: boolean,
