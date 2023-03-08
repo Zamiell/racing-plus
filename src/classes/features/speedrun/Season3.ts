@@ -60,7 +60,6 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../enums/EntityTypeCustom";
 import { ItLivesSituation } from "../../../enums/ItLivesSituation";
 import { Season3Goal } from "../../../enums/Season3Goal";
-import { isDreamCatcherWarping } from "../../../features/optional/quality/showDreamCatcherItem/v";
 import { giveDiversityItemsAndDoItemBans } from "../../../features/race/formatSetup";
 import { mod } from "../../../mod";
 import {
@@ -69,6 +68,7 @@ import {
 } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { isDreamCatcherWarping } from "../optional/quality/showDreamCatcher/v";
 import { isOnFinalCharacter, isOnFirstCharacter } from "./characterProgress/v";
 import {
   NUM_DIVERSITY_PASSIVE_COLLECTIBLES,

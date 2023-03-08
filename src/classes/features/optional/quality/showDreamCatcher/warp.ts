@@ -20,20 +20,17 @@ import {
   onSetSeed,
   spawnEffect,
 } from "isaacscript-common";
-import { shouldRemoveEndGamePortals } from "../../../../classes/features/mandatory/gameplay/NerfCardReading";
-import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
-import { mod } from "../../../../mod";
-import * as seededFloors from "../../../mandatory/seededFloors";
-import { spawnHoles } from "../../major/fastTravel/setNewState";
-import {
-  CardReadingPortalDescription,
-  DREAM_CATCHER_FEATURE_NAME,
-  v,
-} from "./v";
+import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
+import * as seededFloors from "../../../../../features/mandatory/seededFloors";
+import { spawnHoles } from "../../../../../features/optional/major/fastTravel/setNewState";
+import { mod } from "../../../../../mod";
+import { shouldRemoveEndGamePortals } from "../../../mandatory/gameplay/NerfCardReading";
+import { DREAM_CATCHER_FEATURE_NAME } from "./constants";
+import { CardReadingPortalDescription, v } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;
 
-export function checkStartDreamCatcherWarp(): void {
+export function showDreamCatcherCheckStartWarp(): void {
   const isGreedMode = game.IsGreedMode();
   const onTheAscent = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
   const room = game.GetRoom();
@@ -107,7 +104,7 @@ function startWarp() {
   changeRoom(roomGridIndex);
 }
 
-export function warpToNextDreamCatcherRoom(): void {
+export function showDreamCatcherWarpToNextRoom(): void {
   const room = game.GetRoom();
   const players = getPlayers();
 

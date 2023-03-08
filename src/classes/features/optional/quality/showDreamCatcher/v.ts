@@ -4,17 +4,15 @@ import {
   EntityType,
 } from "isaac-typescript-definitions";
 import { PlayerHealth } from "isaacscript-common";
-import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
-import { mod } from "../../../../mod";
-import { config } from "../../../../modConfigMenu";
+import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 
 export interface CardReadingPortalDescription {
   readonly subType: int;
   readonly position: Vector;
 }
 
-export const DREAM_CATCHER_FEATURE_NAME = "showDreamCatcherItem";
-
+// This is registered in "ShowDreamCatcher.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   level: {
     __ignoreGlowingHourGlass: true, // Tell the Save Data Manager to not revert this variable.
@@ -31,14 +29,6 @@ export const v = {
     arrivedOnNewFloor: false,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager(DREAM_CATCHER_FEATURE_NAME, v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.ShowDreamCatcherItem;
-}
 
 export function isDreamCatcherWarping(): boolean {
   return v.level.warpState === DreamCatcherWarpState.WARPING;

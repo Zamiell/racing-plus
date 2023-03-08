@@ -1,6 +1,6 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
 import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
-import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
+import { newGlowingCollectibleSprite, newSprite } from "../../../../../sprite";
 import { BOSS_PNG_MAP } from "./bossPNGMap";
 import { v } from "./v";
 
@@ -11,9 +11,9 @@ let dreamCatcherSprite: Sprite | undefined;
 const itemSprites: Sprite[] = [];
 const bossSprites: Sprite[] = [];
 
-export function set(): void {
+export function showDreamCatcherSetSprites(): void {
   if (!shouldShowSprites()) {
-    reset();
+    showDreamCatcherResetSprites();
     return;
   }
 
@@ -65,7 +65,7 @@ function initBossSprite(entityType: EntityType, variant: int) {
   return newSprite("gfx/boss.anm2", pngPath);
 }
 
-export function reset(): void {
+export function showDreamCatcherResetSprites(): void {
   dreamCatcherSprite = undefined;
   emptyArray(itemSprites);
   emptyArray(bossSprites);
@@ -83,7 +83,7 @@ function shouldShowSprites() {
   );
 }
 
-export function draw(): void {
+export function showDreamCatcherDrawSprites(): void {
   const isPaused = game.IsPaused();
   const hud = game.GetHUD();
   const room = game.GetRoom();

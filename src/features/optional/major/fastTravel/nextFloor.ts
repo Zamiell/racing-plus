@@ -16,6 +16,7 @@ import {
   removeAllMatchingEntities,
   setStage,
 } from "isaacscript-common";
+import { setDreamCatcherArrivedOnNewFloor } from "../../../../classes/features/optional/quality/showDreamCatcher/v";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
@@ -23,7 +24,6 @@ import { g } from "../../../../globals";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../utils";
 import * as seededFloors from "../../../mandatory/seededFloors";
-import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcherItem/v";
 import { v } from "./v";
 
 export function goto(upwards: boolean): void {

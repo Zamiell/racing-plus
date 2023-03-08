@@ -10,7 +10,6 @@ import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
 import { fastTravelPostGameStartedContinued } from "../features/optional/major/fastTravel/callbacks/postGameStartedContinued";
-import { showDreamCatcherItemPostGameStarted } from "../features/optional/quality/showDreamCatcherItem/callbacks/postGameStarted";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { mod } from "../mod";
 
@@ -57,9 +56,6 @@ function main(isContinued: boolean) {
 
   // Major
   racePostGameStarted();
-
-  // QoL
-  showDreamCatcherItemPostGameStarted();
 }
 
 function postGameStartedContinued() {

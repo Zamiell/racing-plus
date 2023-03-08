@@ -119,6 +119,7 @@ export { RemoveFortuneCookieBanners } from "./classes/features/optional/quality/
 export { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 export { RemovePerfectionVelocity } from "./classes/features/optional/quality/RemovePerfectionVelocity";
 export { RunTimer } from "./classes/features/optional/quality/RunTimer";
+export { ShowDreamCatcher } from "./classes/features/optional/quality/ShowDreamCatcher";
 export { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 export { ShowNumSacrifices } from "./classes/features/optional/quality/ShowNumSacrifices";
 export { ShowPills } from "./classes/features/optional/quality/ShowPills";

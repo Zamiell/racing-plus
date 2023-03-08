@@ -297,7 +297,7 @@ Post-flip actions:
 
 > Why? The large banner text blocks gameplay.
 
-- `0520` <!-- ShowDreamCatcherItem 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `0520` <!-- ShowDreamCatcher 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 

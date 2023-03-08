@@ -764,7 +764,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "ShowDreamCatcherItem", // 566 (collectible)
+    "ShowDreamCatcher", // 566 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0520",

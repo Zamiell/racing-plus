@@ -149,7 +149,7 @@ const FEATURE_CLASSES = [
   fc.CombinedDualityDoors, // 498 (collectible)
   fc.FadeHungryTears, // 532 (collectible)
   fc.RemoveFortuneCookieBanners, // 557 (collectible)
-  // - fc.ShowDreamCatcherItem, // 566 (collectible)
+  fc.ShowDreamCatcher, // 566 (collectible)
   fc.FastLuna, // 589 (collectible)
   fc.FadeVasculitisTears, // 657 (collectible)
   fc.FastVanishingTwin, // 697 (collectible)

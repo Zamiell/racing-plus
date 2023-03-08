@@ -15,7 +15,6 @@ import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacr
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
 import { fastClearPostNewRoom } from "../features/optional/major/fastClear/callbacks/postNewRoom";
 import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
-import { showDreamCatcherItemPostNewRoom } from "../features/optional/quality/showDreamCatcherItem/callbacks/postNewRoom";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
 
@@ -51,7 +50,4 @@ function main() {
   racePostNewRoom();
   fastClearPostNewRoom();
   fastTravelPostNewRoom();
-
-  // QoL
-  showDreamCatcherItemPostNewRoom(); // 566
 }

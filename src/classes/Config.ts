@@ -78,7 +78,7 @@ export class Config {
   CombinedDualityDoors = true; // 498 (collectible)
   FadeHungryTears = true; // 532 (collectible)
   RemoveFortuneCookieBanners = true; // 557 (collectible)
-  ShowDreamCatcherItem = true; // 566 (collectible)
+  ShowDreamCatcher = true; // 566 (collectible)
   FastLuna = true; // 589 (collectible)
   FadeVasculitisTears = true; // 657 (collectible)
   FastVanishingTwin = true; // 697 (collectible)
