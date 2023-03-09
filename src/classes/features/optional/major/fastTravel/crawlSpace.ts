@@ -29,12 +29,12 @@ import {
   spawnTeleporter,
   teleport,
 } from "isaacscript-common";
-import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
-import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { mod } from "../../../../mod";
-import { movePlayersAndFamiliars } from "../../../../utils";
+import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
+import { mod } from "../../../../../mod";
+import { movePlayersAndFamiliars } from "../../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import * as fastTravel from "./fastTravel";
+import * as fastTravel from "./fastTravelEntity";
 import * as state from "./state";
 import { v } from "./v";
 
@@ -325,7 +325,11 @@ export function postGridEntityInitCrawlSpace(gridEntity: GridEntity): void {
     return;
   }
 
-  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  fastTravel.initFastTravelEntity(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+    shouldSpawnOpen,
+  );
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
@@ -355,8 +359,15 @@ export function postGridEntityUpdateCrawlSpace(gridEntity: GridEntity): void {
   gridEntity.State = CrawlSpaceState.CLOSED;
 
   checkShouldClose(gridEntity);
-  fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+  fastTravel.checkFastTravelEntityShouldOpen(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+  );
+  fastTravel.checkPlayerTouchedFastTravelEntity(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+    touched,
+  );
 }
 
 // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from

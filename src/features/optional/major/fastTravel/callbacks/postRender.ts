@@ -1,9 +1,9 @@
 import { game, getPlayers, VectorZero } from "isaacscript-common";
+import * as blackSprite from "../../../../../classes/features/optional/major/fastTravel/blackSprite";
+import * as checkStateComplete from "../../../../../classes/features/optional/major/fastTravel/checkStateComplete";
+import { v } from "../../../../../classes/features/optional/major/fastTravel/v";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { config } from "../../../../../modConfigMenu";
-import * as blackSprite from "../blackSprite";
-import * as checkStateComplete from "../checkStateComplete";
-import { v } from "../v";
 
 export function fastTravelPostRender(): void {
   if (!config.FastTravel) {

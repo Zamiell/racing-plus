@@ -1,7 +1,7 @@
 import { game } from "isaacscript-common";
+import { finishGoingToNewFloor } from "../../../../../classes/features/optional/major/fastTravel/setNewState";
+import { v } from "../../../../../classes/features/optional/major/fastTravel/v";
 import { config } from "../../../../../modConfigMenu";
-import { finishGoingToNewFloor } from "../setNewState";
-import { v } from "../v";
 
 export function fastTravelPostUpdate(): void {
   if (!config.FastTravel) {

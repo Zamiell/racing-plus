@@ -22,9 +22,9 @@ import {
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 import * as seededFloors from "../../../../../features/mandatory/seededFloors";
-import { spawnHoles } from "../../../../../features/optional/major/fastTravel/setNewState";
 import { mod } from "../../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/gameplay/NerfCardReading";
+import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { DREAM_CATCHER_FEATURE_NAME } from "./constants";
 import { CardReadingPortalDescription, v } from "./v";
 

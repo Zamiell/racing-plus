@@ -1,7 +1,7 @@
 import { HeavenLightDoorSubType } from "isaac-typescript-definitions";
 import { asNumber } from "isaacscript-common";
+import * as heavenDoor from "../../../../../classes/features/optional/major/fastTravel/heavenDoor";
 import { config } from "../../../../../modConfigMenu";
-import * as heavenDoor from "../heavenDoor";
 
 export function heavenLightDoor(effect: EntityEffect): void {
   if (!config.FastTravel) {

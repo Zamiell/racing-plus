@@ -12,13 +12,13 @@ import {
   inRoomType,
   onStage,
 } from "isaacscript-common";
-import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
-import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
-import * as fastTravel from "./fastTravel";
+import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { g } from "../../../../../globals";
+import * as fastTravel from "./fastTravelEntity";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
@@ -39,8 +39,16 @@ export function postEffectUpdate(effect: EntityEffect): void {
 
   // We can't initialize the entity in the PostEffectInit callback because that fires before the
   // `POST_NEW_ROOM` callback.
-  fastTravel.init(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
-  fastTravel.checkPlayerTouched(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
+  fastTravel.initFastTravelEntity(
+    effect,
+    FAST_TRAVEL_ENTITY_TYPE,
+    shouldSpawnOpen,
+  );
+  fastTravel.checkPlayerTouchedFastTravelEntity(
+    effect,
+    FAST_TRAVEL_ENTITY_TYPE,
+    touched,
+  );
 }
 
 function shouldRemove(effect: EntityEffect) {

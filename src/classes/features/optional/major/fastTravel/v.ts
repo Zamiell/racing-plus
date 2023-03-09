@@ -1,11 +1,10 @@
 import { Direction } from "isaac-typescript-definitions";
 import { game } from "isaacscript-common";
-import { FastTravelState } from "../../../../enums/FastTravelState";
-import { FastTravelEntityDescription } from "../../../../interfaces/FastTravelEntityDescription";
-import { mod } from "../../../../mod";
-import { config } from "../../../../modConfigMenu";
-import { FAST_TRAVEL_FEATURE_NAME } from "./constants";
+import { FastTravelState } from "../../../../../enums/FastTravelState";
+import { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
 
+// This is registered in "FastTravel.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
     state: FastTravelState.DISABLED,
@@ -89,14 +88,6 @@ export const v = {
     teleporterSpawned: false,
   },
 };
-
-export function init(): void {
-  mod.saveDataManager(FAST_TRAVEL_FEATURE_NAME, v, featureEnabled);
-}
-
-function featureEnabled() {
-  return config.FastTravel;
-}
 
 export function isFastTravelHappening(): boolean {
   return v.run.state > FastTravelState.DISABLED;

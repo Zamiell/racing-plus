@@ -23,23 +23,26 @@ import {
   spawnEffect,
   VectorZero,
 } from "isaacscript-common";
-import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/season3/constants";
-import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
-import { FastTravelState } from "../../../../enums/FastTravelState";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
-import { mod } from "../../../../mod";
-import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { inClearedMomBossRoom, moveEsauNextToJacob } from "../../../../utils";
+import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
+import { FastTravelState } from "../../../../../enums/FastTravelState";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
 import {
   planetariumFixBeginWarp,
   shouldApplyPlanetariumFix,
-} from "../../../mandatory/planetariumFix";
+} from "../../../../../features/mandatory/planetariumFix";
+import { g } from "../../../../../globals";
+import { mod } from "../../../../../mod";
+import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
+import {
+  inClearedMomBossRoom,
+  moveEsauNextToJacob,
+} from "../../../../../utils";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/constants";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
-import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravel";
+import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravelEntity";
 import * as nextFloor from "./nextFloor";
 import { v } from "./v";
 

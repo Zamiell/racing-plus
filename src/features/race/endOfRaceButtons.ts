@@ -17,9 +17,9 @@ import {
   spawnNPC,
   VectorZero,
 } from "isaacscript-common";
+import { setFadingToBlack } from "../../classes/features/optional/major/fastTravel/setNewState";
 import { g } from "../../globals";
 import { newGlowingCollectibleSprite } from "../../sprite";
-import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
 import { v } from "./v";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);

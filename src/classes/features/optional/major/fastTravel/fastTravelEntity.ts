@@ -17,17 +17,17 @@ import {
   onRepentanceStage,
   onStage,
 } from "isaacscript-common";
-import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../../classes/features/speedrun/season3/constants";
-import { FastTravelEntityState } from "../../../../enums/FastTravelEntityState";
-import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { FastTravelState } from "../../../../enums/FastTravelState";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
-import { mod } from "../../../../mod";
-import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { inClearedMomBossRoom } from "../../../../utils";
+import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
+import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
+import { FastTravelState } from "../../../../../enums/FastTravelState";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { g } from "../../../../../globals";
+import { mod } from "../../../../../mod";
+import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
+import { inClearedMomBossRoom } from "../../../../../utils";
+import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/constants";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
@@ -38,7 +38,7 @@ import { v } from "./v";
 /** One tile away from the top door in a 1x1 room. */
 export const NORMAL_TRAPDOOR_GRID_INDEX = 37;
 
-export function init(
+export function initFastTravelEntity(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   // This must be passed a function instead of a boolean because we need to initialize the
@@ -189,7 +189,7 @@ function getCustomSpriteFilename(
   }
 }
 
-export function checkShouldOpen(
+export function checkFastTravelEntityShouldOpen(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
@@ -202,7 +202,7 @@ export function checkShouldOpen(
   }
 }
 
-export function checkPlayerTouched(
+export function checkPlayerTouchedFastTravelEntity(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   touchedFunction: (

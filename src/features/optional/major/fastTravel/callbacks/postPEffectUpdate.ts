@@ -1,5 +1,5 @@
+import * as crawlSpace from "../../../../../classes/features/optional/major/fastTravel/crawlSpace";
 import { config } from "../../../../../modConfigMenu";
-import * as crawlSpace from "../crawlSpace";
 
 export function fastTravelPostPEffectUpdate(player: EntityPlayer): void {
   if (!config.FastTravel) {

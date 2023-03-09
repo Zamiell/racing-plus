@@ -22,10 +22,10 @@ import {
   onStage,
   ReadonlySet,
 } from "isaacscript-common";
-import { isFastTravelHappening } from "../../../../features/optional/major/fastTravel/v";
 import { moveEsauNextToJacob } from "../../../../utils";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { isFastTravelHappening } from "../major/fastTravel/v";
 
 const DOOR_HOLE_ROOM_TYPES = new ReadonlySet([
   RoomType.SECRET, // 7

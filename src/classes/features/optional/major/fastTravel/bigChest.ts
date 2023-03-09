@@ -19,24 +19,24 @@ import {
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { spawnTrophy } from "../../../../classes/features/mandatory/misc/Trophy";
-import { isOnFinalCharacter } from "../../../../classes/features/speedrun/characterProgress/v";
-import { season3GetBigChestReplacementAction } from "../../../../classes/features/speedrun/Season3";
-import { BigChestReplacementAction } from "../../../../enums/BigChestReplacementAction";
-import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
-import { mod } from "../../../../mod";
+import { BigChestReplacementAction } from "../../../../../enums/BigChestReplacementAction";
+import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
+import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { spawnVictoryLapButton } from "../../../../../features/race/endOfRaceButtons";
+import { g } from "../../../../../globals";
+import { mod } from "../../../../../mod";
 import {
   onSeason,
   onSpeedrunWithDarkRoomGoal,
   postSpawnCheckpoint,
-} from "../../../../speedrun/utilsSpeedrun";
-import { spawnVictoryLapButton } from "../../../race/endOfRaceButtons";
-import * as fastTravel from "./fastTravel";
+} from "../../../../../speedrun/utilsSpeedrun";
+import { spawnTrophy } from "../../../mandatory/misc/Trophy";
+import { isOnFinalCharacter } from "../../../speedrun/characterProgress/v";
+import { season3GetBigChestReplacementAction } from "../../../speedrun/Season3";
+import * as fastTravel from "./fastTravelEntity";
 
 enum SpeedrunDirection {
   /** To The Chest & Blue Baby. */
@@ -264,7 +264,11 @@ function replace(
       // This will get naturally initialized by the fast-travel system on the next frame. However,
       // we explicitly initialize it now to prevent indexing errors later on this frame (when the
       // room is cleared).
-      fastTravel.init(heavenDoor, FastTravelEntityType.HEAVEN_DOOR, () => true);
+      fastTravel.initFastTravelEntity(
+        heavenDoor,
+        FastTravelEntityType.HEAVEN_DOOR,
+        () => true,
+      );
 
       break;
     }

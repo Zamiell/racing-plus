@@ -1,5 +1,5 @@
+import * as crawlSpace from "../../../../../classes/features/optional/major/fastTravel/crawlSpace";
 import { config } from "../../../../../modConfigMenu";
-import * as crawlSpace from "../crawlSpace";
 
 // GridEntityType.TELEPORTER (23)
 export function fastTravelPostGridEntityStateChangedTeleporter(

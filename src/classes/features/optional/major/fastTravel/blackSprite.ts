@@ -1,8 +1,8 @@
 // We draw a black sprite on top of the screen in order to fade everything to black.
 
 import { setSpriteOpacity, VectorZero } from "isaacscript-common";
-import { FastTravelState } from "../../../../enums/FastTravelState";
-import { newSprite } from "../../../../sprite";
+import { FastTravelState } from "../../../../../enums/FastTravelState";
+import { newSprite } from "../../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
 import { v } from "./v";
 

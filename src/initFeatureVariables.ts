@@ -1,3 +1,4 @@
+import * as fastTravelVars from "./classes/features/optional/major/fastTravel/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -6,7 +7,6 @@ import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
-import * as fastTravelVars from "./features/optional/major/fastTravel/v";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";

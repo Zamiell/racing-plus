@@ -6,9 +6,9 @@ import {
   getRoomGridIndexesForType,
   log,
 } from "isaacscript-common";
+import { setFastTravelResumeGameFrame } from "../../classes/features/optional/major/fastTravel/v";
 import { mod } from "../../mod";
 import { onSeason } from "../../speedrun/utilsSpeedrun";
-import { setFastTravelResumeGameFrame } from "../optional/major/fastTravel/v";
 import { inSeededRace } from "../race/v";
 
 enum PlanetariumFixWarpState {

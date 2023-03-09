@@ -36,10 +36,10 @@ import {
   sfxManager,
   spawnNPC,
 } from "isaacscript-common";
+import { setFastTravelTookDamage } from "../../../classes/features/optional/major/fastTravel/v";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { ActiveCollectibleDescription } from "../../../interfaces/ActiveCollectibleDescription";
 import { mod } from "../../../mod";
-import { setFastTravelTookDamage } from "../../optional/major/fastTravel/v";
 import { applySeededGhostFade } from "./seededDeath";
 import { v } from "./v";
 

@@ -1,6 +1,6 @@
+import * as cs from "../../../../../classes/features/optional/major/fastTravel/crawlSpace";
+import * as td from "../../../../../classes/features/optional/major/fastTravel/trapdoor";
 import { config } from "../../../../../modConfigMenu";
-import * as cs from "../crawlSpace";
-import * as td from "../trapdoor";
 
 // GridEntityType.TRAPDOOR (17)
 export function trapdoor(gridEntity: GridEntity): void {

@@ -20,19 +20,19 @@ import {
   onStageOrLower,
   removeGridEntity,
 } from "isaacscript-common";
+import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
+import { RaceGoal } from "../../../../../enums/RaceGoal";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { g } from "../../../../../globals";
+import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import {
   season3HasOnlyBossRushLeft,
   season3HasOnlyHushLeft,
   season3HasOnlyMotherLeft,
-} from "../../../../classes/features/speedrun/season3/v";
-import { FastTravelEntityType } from "../../../../enums/FastTravelEntityType";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { g } from "../../../../globals";
-import { onSeason } from "../../../../speedrun/utilsSpeedrun";
+} from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import * as fastTravel from "./fastTravel";
+import * as fastTravel from "./fastTravelEntity";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 import { v } from "./v";
@@ -52,7 +52,11 @@ export function postGridEntityInitTrapdoor(gridEntity: GridEntity): void {
     return;
   }
 
-  fastTravel.init(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  fastTravel.initFastTravelEntity(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+    shouldSpawnOpen,
+  );
 }
 
 // ModCallbackCustom.POST_GRID_ENTITY_UPDATE
@@ -72,8 +76,15 @@ export function postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
   // Keep it closed on every frame so that we can implement our own custom functionality.
   gridEntity.State = TrapdoorState.CLOSED;
 
-  fastTravel.checkShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  fastTravel.checkPlayerTouched(gridEntity, FAST_TRAVEL_ENTITY_TYPE, touched);
+  fastTravel.checkFastTravelEntityShouldOpen(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+  );
+  fastTravel.checkPlayerTouchedFastTravelEntity(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+    touched,
+  );
 }
 
 // ModCallbackCustom.POST_GRID_ENTITY_REMOVE

@@ -4,9 +4,9 @@ import {
   removeDoor,
   removeGridEntity,
 } from "isaacscript-common";
-import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../../../features/optional/major/fastTravel/fastTravel";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../utils";
+import { NORMAL_TRAPDOOR_GRID_INDEX } from "../../optional/major/fastTravel/fastTravelEntity";
 import { season3HasHushGoal, season3HasOnlyDogmaLeft } from "./v";
 
 export function season3PostFastClear(): void {
