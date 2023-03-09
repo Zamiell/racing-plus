@@ -1,4 +1,3 @@
-import * as fastTravelVars from "./classes/features/optional/major/fastTravel/v";
 import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
@@ -30,9 +29,6 @@ export function initFeatureVariables(): void {
   fireworks.init();
   preventSacrificeRoomTeleport.init();
   seededDeath.init();
-
-  // Major
-  fastTravelVars.init();
 
   // Other
   customConsole.init();
