@@ -1,5 +1,4 @@
 import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
-import { fastTravelPostPEffectUpdate } from "../features/optional/major/fastTravel/callbacks/postPEffectUpdate";
 import { racePostPEffectUpdate } from "../features/race/callbacks/postPEffectUpdate";
 import { mod } from "../mod";
 
@@ -14,5 +13,4 @@ function main(player: EntityPlayer) {
 
   // Major
   racePostPEffectUpdate(player);
-  fastTravelPostPEffectUpdate(player);
 }

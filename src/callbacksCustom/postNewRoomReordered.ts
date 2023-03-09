@@ -13,7 +13,6 @@ import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomT
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { seededDeathPostNewRoom } from "../features/mandatory/seededDeath/callbacks/postNewRoom";
-import { fastTravelPostNewRoom } from "../features/optional/major/fastTravel/callbacks/postNewRoom";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
 
@@ -47,5 +46,4 @@ function main() {
 
   // Major
   racePostNewRoom();
-  fastTravelPostNewRoom();
 }

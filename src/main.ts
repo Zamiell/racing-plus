@@ -4,7 +4,6 @@ import {
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
-import * as entityTakeDmg from "./callbacks/entityTakeDmg";
 import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
@@ -24,10 +23,6 @@ import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postFlip from "./callbacksCustom/postFlip";
 import * as postGameStartedReordered from "./callbacksCustom/postGameStartedReordered";
-import * as postGridEntityInit from "./callbacksCustom/postGridEntityInit";
-import * as postGridEntityRemove from "./callbacksCustom/postGridEntityRemove";
-import * as postGridEntityStateChanged from "./callbacksCustom/postGridEntityStateChanged";
-import * as postGridEntityUpdate from "./callbacksCustom/postGridEntityUpdate";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
@@ -87,7 +82,6 @@ function registerCallbacksVanilla() {
   postUseItem.init(); // 3
   postUseCard.init(); // 5
   postUsePill.init(); // 10
-  entityTakeDmg.init(); // 11
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
@@ -104,10 +98,6 @@ function registerCallbacksCustom() {
   postFirstFlip.init();
   postFlip.init();
   postGameStartedReordered.init();
-  postGridEntityInit.init();
-  postGridEntityRemove.init();
-  postGridEntityStateChanged.init();
-  postGridEntityUpdate.init();
   postItemPickup.init();
   postNewLevelReordered.init();
   postNewRoomReordered.init();
