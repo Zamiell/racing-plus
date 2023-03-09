@@ -31,8 +31,9 @@ import * as showEdenStartingItems from "../../optional/characters/ShowEdenStarti
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 
 export const BANNED_COLLECTIBLES = new ReadonlySet<CollectibleType>([
-  CollectibleType.MERCURIUS,
-  CollectibleType.TMTRAINER,
+  CollectibleType.BLACK_CANDLE, // 260
+  CollectibleType.MERCURIUS, // 590
+  CollectibleType.TMTRAINER, // 721
 ]);
 
 const BANNED_COLLECTIBLES_WITH_VOID = new ReadonlySet<CollectibleType>([

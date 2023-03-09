@@ -57,7 +57,7 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 ### 3) No Curses
 
-- `0003` <!-- DisableCurses --> All curses are automatically disabled.
+- `0003` <!-- DisableCurses --> All curses are automatically disabled. (Black Candle is also removed from all pools, since it now has mostly no purpose.)
 
 > Why? Curses make the game less-skilled based, robbing the player of meaningful decision-making and strategy.
 
