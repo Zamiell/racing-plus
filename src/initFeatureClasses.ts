@@ -73,7 +73,7 @@ const FEATURE_CLASSES = [
   fc.FreeDevilItem,
   fc.FastReset,
   fc.FastClear,
-  // - fc.FastTravel,
+  fc.FastTravel,
 
   // Hotkeys
   fc.Autofire,

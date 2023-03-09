@@ -96,6 +96,7 @@ export { BetterDevilAngelRooms } from "./classes/features/optional/major/BetterD
 export { DisableCurses } from "./classes/features/optional/major/DisableCurses";
 export { FastClear } from "./classes/features/optional/major/FastClear";
 export { FastReset } from "./classes/features/optional/major/FastReset";
+export { FastTravel } from "./classes/features/optional/major/FastTravel";
 export { FreeDevilItem } from "./classes/features/optional/major/FreeDevilItem";
 export { StartWithD6 } from "./classes/features/optional/major/StartWithD6";
 export { Chat } from "./classes/features/optional/other/Chat";
