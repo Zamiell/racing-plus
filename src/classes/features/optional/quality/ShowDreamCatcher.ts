@@ -88,7 +88,11 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
       }
     });
 
-    setFloorDisplayFlags(v.level.floorDisplayFlags);
+    // After using Glowing Hourglass, the minimap will be bugged. Earlier, we saved the minimap
+    // data, so now we can restore it since we are finished warping.
+    if (MinimapAPI === undefined) {
+      setFloorDisplayFlags(v.level.floorDisplayFlags);
+    }
 
     // Restore the player's health.
     const player = Isaac.GetPlayer();

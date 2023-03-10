@@ -73,8 +73,10 @@ function startWarp() {
   }
 
   // After using Glowing Hourglass, the minimap will be bugged. We can work around this by manually
-  // recording all of the minimap state beforehand, and then restoring it later.
-  v.level.floorDisplayFlags = getFloorDisplayFlags();
+  // recording the minimap state now, and then restore it later.
+  if (MinimapAPI === undefined) {
+    v.level.floorDisplayFlags = getFloorDisplayFlags();
+  }
 
   // Once we warp away, any Card Reading portals will be destroyed, so record what they are.
   // (Glowing Hourglass does not properly restore Card Reading portals.)
