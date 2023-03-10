@@ -23,12 +23,12 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
     "isaac-typescript-definitions": "^13.0.7",
-    "isaacscript": "^3.6.40",
-    "isaacscript-common": "^29.6.1",
+    "isaacscript": "^3.6.42",
+    "isaacscript-common": "^30.4.2",
     "isaacscript-lint": "^4.16.8",
-    "isaacscript-spell": "^1.2.37",
+    "isaacscript-spell": "^1.2.39",
     "isaacscript-tsconfig": "^4.0.0",
     "typescript": "^4.9.5",
-    "typescript-to-lua": "^1.13.2"
+    "typescript-to-lua": "^1.13.3"
   }
 }

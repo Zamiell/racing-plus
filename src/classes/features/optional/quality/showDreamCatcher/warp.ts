@@ -8,6 +8,7 @@ import {
 import {
   anyPlayerHasCollectible,
   changeRoom,
+  copyArray,
   game,
   getEffects,
   getFloorDisplayFlags,
@@ -63,9 +64,8 @@ export function showDreamCatcherCheckStartWarp(): void {
 }
 
 function startWarp() {
-  v.level.warpRoomGridIndexes = getRoomGridIndexesForType(
-    RoomType.TREASURE,
-    RoomType.BOSS,
+  v.level.warpRoomGridIndexes = copyArray(
+    getRoomGridIndexesForType(RoomType.TREASURE, RoomType.BOSS),
   );
 
   if (v.level.warpRoomGridIndexes.length === 0) {

@@ -5,7 +5,9 @@
 
 ### _v0.99.0_ - March 6th, 2023
 
-- Black Candle is now removed from all pools.
+- Black Candle is now removed from all pools. (Thanks Gamonymous)
+- Fixed the bug where rotten hearts would be taken away when traveling to a new floor under certain conditions. (Thanks ArutheArrow)
+- Fixed the bug where Alabaster Box charges would be taken away when traveling to a new floor under certain conditions. (Thanks ArutheArrow)
 
 ### _v0.98.0_ - March 6th, 2023
 

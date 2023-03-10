@@ -1,6 +1,7 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
   changeRoom,
+  copyArray,
   game,
   getRoomGridIndex,
   getRoomGridIndexesForType,
@@ -36,9 +37,8 @@ export function shouldApplyPlanetariumFix(): boolean {
     return false;
   }
 
-  v.level.warpRoomGridIndexes = getRoomGridIndexesForType(
-    RoomType.TREASURE,
-    RoomType.PLANETARIUM,
+  v.level.warpRoomGridIndexes = copyArray(
+    getRoomGridIndexesForType(RoomType.TREASURE, RoomType.PLANETARIUM),
   );
   return v.level.warpRoomGridIndexes.length > 0;
 }
