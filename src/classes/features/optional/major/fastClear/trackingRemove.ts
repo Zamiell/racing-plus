@@ -3,7 +3,7 @@ import { game } from "isaacscript-common";
 import { logFastClear, v } from "./v";
 
 // ModCallback.POST_ENTITY_REMOVE (67)
-export function fastClearPostEntityRemove(entity: Entity): void {
+export function trackingRemovePostEntityRemove(entity: Entity): void {
   const npc = entity.ToNPC();
   if (npc === undefined) {
     return;
@@ -15,7 +15,7 @@ export function fastClearPostEntityRemove(entity: Entity): void {
 }
 
 // ModCallback.POST_ENTITY_KILL (68)
-export function fastClearPostEntityKill(entity: Entity): void {
+export function trackingRemovePostEntityKill(entity: Entity): void {
   const npc = entity.ToNPC();
   if (npc === undefined) {
     return;

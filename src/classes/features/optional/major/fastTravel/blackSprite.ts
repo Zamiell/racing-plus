@@ -8,7 +8,12 @@ import { v } from "./v";
 
 const sprite = newSprite("gfx/black.anm2");
 
-export function draw(): void {
+// ModCallback.POST_RENDER (2)
+export function blackSpritePostRender(): void {
+  draw();
+}
+
+function draw() {
   if (v.run.state === FastTravelState.DISABLED) {
     return;
   }

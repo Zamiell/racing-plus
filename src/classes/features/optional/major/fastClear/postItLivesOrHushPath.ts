@@ -41,6 +41,72 @@ import { season3GetItLivesSituation } from "../../../speedrun/Season3";
  */
 const GRID_INDEX_CENTER_OF_HUSH_ROOM = 126;
 
+// ModCallback.POST_NEW_ROOM (19)
+export function postItLivesOrHushPathPostNewRoom(): void {
+  checkItLivesWrongPath();
+}
+
+/**
+ * Killing It Lives should always trigger fast-clear. If for some reason it does not, then the
+ * correct path will never be spawned, and the player can be potentially soft-locked.
+ *
+ * Check for this situation and spawn the appropriate path if needed.
+ */
+function checkItLivesWrongPath() {
+  const room = game.GetRoom();
+
+  if (!inItLivesOrHushBossRoom()) {
+    return;
+  }
+
+  const roomClear = room.IsClear();
+  if (!roomClear) {
+    return;
+  }
+
+  const situation = getItLivesSituation();
+  const positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+
+  switch (situation) {
+    case ItLivesSituation.NEITHER: {
+      break;
+    }
+
+    case ItLivesSituation.HEAVEN_DOOR: {
+      const heavenDoorsExist = doesEntityExist(
+        EntityType.EFFECT,
+        EffectVariant.HEAVEN_LIGHT_DOOR,
+      );
+      if (!heavenDoorsExist) {
+        spawnHeavenDoor(positionCenter);
+        log(
+          "Manually spawned a heaven door to prevent a soft-lock. (It Lives must not have been killed with fast-clear.)",
+        );
+      }
+
+      break;
+    }
+
+    case ItLivesSituation.TRAPDOOR: {
+      const trapdoors = getGridEntities(GridEntityType.TRAPDOOR);
+      if (trapdoors.length === 0) {
+        spawnTrapdoor(positionCenter);
+        log(
+          "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
+        );
+      }
+
+      break;
+    }
+
+    case ItLivesSituation.BOTH: {
+      // In vanilla, both paths appear by default, so we don't have to do anything. The exception is
+      // if we are on a custom challenge that allows both paths, but ignore this edge-case.
+      break;
+    }
+  }
+}
+
 /** Triggered when a room is fast-cleared. */
 export function postItLivesOrHushPathPostFastClear(): void {
   if (inItLivesOrHushBossRoom()) {
@@ -214,70 +280,4 @@ function spawnTrapdoor(position: Vector) {
     TrapdoorVariant.NORMAL,
     gridIndex,
   );
-}
-
-// ModCallback.POST_NEW_ROOM (19)
-export function fastClearPostNewRoom(): void {
-  checkItLivesWrongPath();
-}
-
-/**
- * Killing It Lives should always trigger fast-clear. If for some reason it does not, then the
- * correct path will never be spawned, and the player can be potentially soft-locked.
- *
- * Check for this situation and spawn the appropriate path if needed.
- */
-function checkItLivesWrongPath() {
-  const room = game.GetRoom();
-
-  if (!inItLivesOrHushBossRoom()) {
-    return;
-  }
-
-  const roomClear = room.IsClear();
-  if (!roomClear) {
-    return;
-  }
-
-  const situation = getItLivesSituation();
-  const positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
-
-  switch (situation) {
-    case ItLivesSituation.NEITHER: {
-      break;
-    }
-
-    case ItLivesSituation.HEAVEN_DOOR: {
-      const heavenDoorsExist = doesEntityExist(
-        EntityType.EFFECT,
-        EffectVariant.HEAVEN_LIGHT_DOOR,
-      );
-      if (!heavenDoorsExist) {
-        spawnHeavenDoor(positionCenter);
-        log(
-          "Manually spawned a heaven door to prevent a soft-lock. (It Lives must not have been killed with fast-clear.)",
-        );
-      }
-
-      break;
-    }
-
-    case ItLivesSituation.TRAPDOOR: {
-      const trapdoors = getGridEntities(GridEntityType.TRAPDOOR);
-      if (trapdoors.length === 0) {
-        spawnTrapdoor(positionCenter);
-        log(
-          "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
-        );
-      }
-
-      break;
-    }
-
-    case ItLivesSituation.BOTH: {
-      // In vanilla, both paths appear by default, so we don't have to do anything. The exception is
-      // if we are on a custom challenge that allows both paths, but ignore this edge-case.
-      break;
-    }
-  }
 }

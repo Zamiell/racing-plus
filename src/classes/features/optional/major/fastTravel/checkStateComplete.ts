@@ -8,7 +8,7 @@ import { setNewFastTravelState, setPlayersVisible } from "./setNewState";
 import { v } from "./v";
 
 // ModCallback.POST_RENDER (2)
-export function postRender(): void {
+export function checkStateCompletePostRender(): void {
   switch (v.run.state) {
     case FastTravelState.DISABLED: {
       break;

@@ -12,7 +12,7 @@ import * as trackingRemove from "./trackingRemove";
 import { logFastClear, v } from "./v";
 
 // ModCallback.POST_NPC_UPDATE (0)
-export function fastClearPostNPCUpdate(npc: EntityNPC): void {
+export function trackingAddPostNPCUpdate(npc: EntityNPC): void {
   // Friendly enemies (from Delirious or Friendly Ball) will be added to the `aliveEnemies` set
   // because there are no flags set yet in the `POST_NPC_INIT` callback. Thus, we have to wait until
   // they are initialized before we remove them from the table.
@@ -41,12 +41,12 @@ export function fastClearPostNPCUpdate(npc: EntityNPC): void {
 }
 
 // ModCallback.POST_NPC_INIT (27)
-export function fastClearPostNPCInit(npc: EntityNPC): void {
+export function trackingAddPostNPCInit(npc: EntityNPC): void {
   checkAdd(npc, "POST_NPC_INIT");
 }
 
 // ModCallback.POST_PROJECTILE_INIT (43)
-export function fastClearPostProjectileInitMeat(
+export function trackingAddPostProjectileInitMeat(
   projectile: EntityProjectile,
 ): void {
   checkAdd(projectile, "POST_PROJECTILE_INIT_MEAT");

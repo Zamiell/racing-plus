@@ -23,17 +23,17 @@ import {
 import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
-import { fastClearPostUpdate } from "./fastClear/earlyClearRoom";
-import { fastClearPostNewRoom } from "./fastClear/postItLivesOrHushPath";
+import { earlyClearRoomPostUpdate } from "./fastClear/earlyClearRoom";
+import { postItLivesOrHushPathPostNewRoom } from "./fastClear/postItLivesOrHushPath";
 import {
-  fastClearPostNPCInit,
-  fastClearPostNPCUpdate,
-  fastClearPostProjectileInitMeat,
+  trackingAddPostNPCInit,
+  trackingAddPostNPCUpdate,
+  trackingAddPostProjectileInitMeat,
 } from "./fastClear/trackingAdd";
 import {
   fastClearCheckRemove,
-  fastClearPostEntityKill,
-  fastClearPostEntityRemove,
+  trackingRemovePostEntityKill,
+  trackingRemovePostEntityRemove,
 } from "./fastClear/trackingRemove";
 import { v } from "./fastClear/v";
 
@@ -45,7 +45,7 @@ export class FastClear extends ConfigurableModFeature {
   // 0
   @Callback(ModCallback.POST_NPC_UPDATE)
   postNPCUpdate(npc: EntityNPC): void {
-    fastClearPostNPCUpdate(npc);
+    trackingAddPostNPCUpdate(npc);
   }
 
   /**
@@ -74,37 +74,37 @@ export class FastClear extends ConfigurableModFeature {
   // 1
   @Callback(ModCallback.POST_UPDATE)
   postUpdate(): void {
-    fastClearPostUpdate();
+    earlyClearRoomPostUpdate();
   }
 
   // 27
   @Callback(ModCallback.POST_NPC_INIT)
   postNPCInit(npc: EntityNPC): void {
-    fastClearPostNPCInit(npc);
+    trackingAddPostNPCInit(npc);
   }
 
   // 43, 11
   @Callback(ModCallback.POST_PROJECTILE_INIT, ProjectileVariant.MEAT)
   postProjectileInitMeat(projectile: EntityProjectile): void {
-    fastClearPostProjectileInitMeat(projectile);
+    trackingAddPostProjectileInitMeat(projectile);
   }
 
   // 67
   @Callback(ModCallback.POST_ENTITY_REMOVE)
   postEntityRemove(entity: Entity): void {
-    fastClearPostEntityRemove(entity);
+    trackingRemovePostEntityRemove(entity);
   }
 
   // 68
   @Callback(ModCallback.POST_ENTITY_KILL)
   postEntityKill(entity: Entity): void {
-    fastClearPostEntityKill(entity);
+    trackingRemovePostEntityKill(entity);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
     this.checkBugTwoHeavenDoors();
-    fastClearPostNewRoom();
+    postItLivesOrHushPathPostNewRoom();
   }
 
   /**

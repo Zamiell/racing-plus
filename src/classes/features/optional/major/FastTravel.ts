@@ -10,14 +10,18 @@ import {
   Callback,
   CallbackCustom,
   game,
+  getAllPlayers,
   isSelfDamage,
   ModCallbackCustom,
+  VectorZero,
 } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { bigChestPostPickupInitBigChest } from "./fastTravel/bigChest";
+import { blackSpritePostRender } from "./fastTravel/blackSprite";
+import { checkStateCompletePostRender } from "./fastTravel/checkStateComplete";
 import { FAST_TRAVEL_FEATURE_NAME } from "./fastTravel/constants";
 import {
   crawlSpacePostGridEntityInitCrawlSpace,
@@ -31,7 +35,10 @@ import {
   heavenDoorPostEffectUpdateHeavenDoor,
   heavenDoorPreSpawnClearAward,
 } from "./fastTravel/heavenDoor";
-import { setNewFastTravelState } from "./fastTravel/setNewState";
+import {
+  finishGoingToNewFloor,
+  setNewFastTravelState,
+} from "./fastTravel/setNewState";
 import { spawnPerfectionPostEntityKill } from "./fastTravel/spawnPerfection";
 import {
   trapdoorPostGridEntityInitTrapdoor,
@@ -43,6 +50,50 @@ import { v } from "./fastTravel/v";
 export class FastTravel extends ConfigurableModFeature {
   configKey: keyof Config = "FastClear";
   v = v;
+
+  // 1
+  @Callback(ModCallback.POST_UPDATE)
+  postUpdate(): void {
+    if (v.level.resumeGameFrame === null) {
+      return;
+    }
+
+    const gameFrameCount = game.GetFrameCount();
+    if (gameFrameCount >= v.level.resumeGameFrame) {
+      v.level.resumeGameFrame = null;
+      finishGoingToNewFloor();
+    }
+  }
+
+  // 2
+  @Callback(ModCallback.POST_RENDER)
+  postRender(): void {
+    checkStateCompletePostRender();
+    blackSpritePostRender();
+    this.keepPlayerInPosition();
+  }
+
+  /**
+   * If a player is using a Mega Blast and uses a fast-travel entity, then they will slide in the
+   * direction of the blast. Prevent this from happening by snapping them to the grid on every
+   * render frame.
+   */
+  keepPlayerInPosition(): void {
+    if (
+      v.run.state !== FastTravelState.FADING_TO_BLACK &&
+      v.run.state !== FastTravelState.FADING_IN
+    ) {
+      return;
+    }
+
+    for (const player of getAllPlayers()) {
+      const room = game.GetRoom();
+      const gridIndex = room.GetGridIndex(player.Position);
+      const gridPosition = room.GetGridPosition(gridIndex);
+      player.Position = gridPosition;
+      player.Velocity = VectorZero;
+    }
+  }
 
   // 34, 340
   @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.BIG_CHEST)

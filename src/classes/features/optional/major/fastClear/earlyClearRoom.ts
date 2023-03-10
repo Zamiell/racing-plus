@@ -30,7 +30,7 @@ import { postItLivesOrHushPathPostFastClear } from "./postItLivesOrHushPath";
 import { v } from "./v";
 
 // ModCallback.POST_UPDATE (1)
-export function fastClearPostUpdate(): void {
+export function earlyClearRoomPostUpdate(): void {
   checkEarlyClearRoom();
 }
 
