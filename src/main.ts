@@ -5,11 +5,9 @@ import {
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
 import * as postEffectInit from "./callbacks/postEffectInit";
-import * as postEffectUpdate from "./callbacks/postEffectUpdate";
 import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
-import * as postPickupInit from "./callbacks/postPickupInit";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
 import * as postUseCard from "./callbacks/postUseCard";
@@ -85,10 +83,8 @@ function registerCallbacksVanilla() {
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
-  postPickupInit.init(); // 34
   postLaserInit.init(); // 47
   postEffectInit.init(); // 54
-  postEffectUpdate.init(); // 55
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
 }

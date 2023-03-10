@@ -1,15 +1,9 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import { game, getEntityID, log } from "isaacscript-common";
 import * as replacePhotos from "../features/mandatory/replacePhotos";
-import * as fastTravelPostEntityKill from "../features/optional/major/fastTravel/callbacks/postEntityKill";
 import * as racePostEntityKill from "../features/race/callbacks/postEntityKill";
 import { mod } from "../mod";
 
-const POST_ENTITY_KILL_DEBUG = false as boolean;
-
 export function init(): void {
-  mod.AddCallback(ModCallback.POST_ENTITY_KILL, main);
-
   mod.AddCallback(
     ModCallback.POST_ENTITY_KILL,
     mom,
@@ -21,26 +15,6 @@ export function init(): void {
     hush,
     EntityType.HUSH, // 407
   );
-}
-
-function main(entity: Entity) {
-  if (POST_ENTITY_KILL_DEBUG) {
-    const gameFrameCount = game.GetFrameCount();
-    const entityID = getEntityID(entity);
-
-    let state: int | undefined;
-    const npc = entity.ToNPC();
-    if (npc !== undefined) {
-      state = npc.State;
-    }
-    const stateText = state === undefined ? "n/a" : state.toString();
-
-    log(
-      `POST_ENTITY_KILL - ${entityID} (state: ${stateText}) (on game frame ${gameFrameCount})`,
-    );
-  }
-
-  fastTravelPostEntityKill.main(entity);
 }
 
 // EntityType.MOM (45)

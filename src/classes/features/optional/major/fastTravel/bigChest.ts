@@ -50,7 +50,7 @@ const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
 
 // ModCallback.POST_PICKUP_INIT (34)
 // PickupVariant.BIG_CHEST (340)
-export function postPickupInitBigChest(pickup: EntityPickup): void {
+export function bigChestPostPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
   replace(pickup, replacementAction);
 }

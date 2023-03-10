@@ -24,8 +24,30 @@ import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 
-// ModCallback.POST_EFFECT_UPDATE (55)
-export function postEffectUpdate(effect: EntityEffect): void {
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
+export function heavenDoorPreSpawnClearAward(): void {
+  openClosedHeavenDoors();
+}
+
+function openClosedHeavenDoors() {
+  const heavenDoors = getEffects(
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
+  );
+  for (const heavenDoor of heavenDoors) {
+    const entityState = state.get(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
+    if (entityState === FastTravelEntityState.CLOSED) {
+      state.open(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
+    }
+  }
+}
+
+// ModCallbackCustom.POST_EFFECT_UPDATE_FILTER
+// EffectVariant.HEAVEN_LIGHT_DOOR
+// HeavenLightDoorSubType.HEAVEN_DOOR
+export function heavenDoorPostEffectUpdateHeavenDoor(
+  effect: EntityEffect,
+): void {
   // In some situations, heaven doors should be removed entirely.
   if (shouldRemove(effect)) {
     effect.Remove();
@@ -112,22 +134,4 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   }
 
   setFadingToBlack(player, entity.Position, true);
-}
-
-// ModCallbackCustom.POST_ROOM_CLEAR
-export function postRoomClear(): void {
-  openClosedHeavenDoors();
-}
-
-function openClosedHeavenDoors() {
-  const heavenDoors = getEffects(
-    EffectVariant.HEAVEN_LIGHT_DOOR,
-    HeavenLightDoorSubType.HEAVEN_DOOR,
-  );
-  for (const heavenDoor of heavenDoors) {
-    const entityState = state.get(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
-    if (entityState === FastTravelEntityState.CLOSED) {
-      state.open(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
-    }
-  }
 }

@@ -14,6 +14,7 @@ export { CheckErrors } from "./classes/features/mandatory/misc/CheckErrors";
 export { DisableMultiplayer } from "./classes/features/mandatory/misc/DisableMultiplayer";
 export { DoubleAngelNerf } from "./classes/features/mandatory/misc/DoubleAngelNerf";
 export { DrawControls } from "./classes/features/mandatory/misc/DrawControls";
+export { InvisiblePickup } from "./classes/features/mandatory/misc/InvisiblePickup";
 export { LogConsoleCommands } from "./classes/features/mandatory/misc/LogConsoleCommands";
 export { ModConfigNotify } from "./classes/features/mandatory/misc/ModConfigNotify";
 export { PreserveCheckpoint } from "./classes/features/mandatory/misc/PreserveCheckpoint";

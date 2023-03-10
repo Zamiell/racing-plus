@@ -27,6 +27,7 @@ const FEATURE_CLASSES = [
   fc.CheckErrors,
   fc.DisableMultiplayer,
   fc.DoubleAngelNerf,
+  fc.InvisiblePickup,
   fc.LogConsoleCommands,
   fc.ModConfigNotify,
   fc.PreserveCheckpoint,

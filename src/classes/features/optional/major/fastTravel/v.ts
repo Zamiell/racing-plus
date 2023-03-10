@@ -1,5 +1,4 @@
 import { Direction } from "isaac-typescript-definitions";
-import { game } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
 
@@ -91,11 +90,6 @@ export const v = {
 
 export function isFastTravelHappening(): boolean {
   return v.run.state > FastTravelState.DISABLED;
-}
-
-export function setFastTravelClearFrame(): void {
-  const gameFrameCount = game.GetFrameCount();
-  v.room.clearFrame = gameFrameCount;
 }
 
 export function setFastTravelResumeGameFrame(resumeGameFrame: int): void {

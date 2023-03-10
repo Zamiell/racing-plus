@@ -20,7 +20,7 @@ const SPLITTING_BOSSES = new ReadonlySet<EntityType>([
 ]);
 
 // ModCallback.POST_ENTITY_KILL (68)
-export function postEntityKill(entity: Entity): void {
+export function spawnPerfectionPostEntityKill(entity: Entity): void {
   if (v.run.perfection.spawned) {
     return;
   }

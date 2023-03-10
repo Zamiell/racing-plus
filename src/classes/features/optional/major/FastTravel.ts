@@ -1,18 +1,38 @@
-import { DamageFlag, GridEntityType } from "isaac-typescript-definitions";
 import {
+  DamageFlag,
+  EffectVariant,
+  GridEntityType,
+  HeavenLightDoorSubType,
+  ModCallback,
+  PickupVariant,
+} from "isaac-typescript-definitions";
+import {
+  Callback,
   CallbackCustom,
+  game,
   isSelfDamage,
   ModCallbackCustom,
 } from "isaacscript-common";
+import { FastTravelState } from "../../../../enums/FastTravelState";
+import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { bigChestPostPickupInitBigChest } from "./fastTravel/bigChest";
+import { FAST_TRAVEL_FEATURE_NAME } from "./fastTravel/constants";
 import {
   crawlSpacePostGridEntityInitCrawlSpace,
   crawlSpacePostGridEntityRemoveCrawlSpace,
   crawlSpacePostGridEntityStateChangedTeleporter,
   crawlSpacePostGridEntityUpdateCrawlSpace,
+  crawlSpacePostNewRoomReordered,
   crawlSpacePostPEffectUpdateReordered,
 } from "./fastTravel/crawlSpace";
+import {
+  heavenDoorPostEffectUpdateHeavenDoor,
+  heavenDoorPreSpawnClearAward,
+} from "./fastTravel/heavenDoor";
+import { setNewFastTravelState } from "./fastTravel/setNewState";
+import { spawnPerfectionPostEntityKill } from "./fastTravel/spawnPerfection";
 import {
   trapdoorPostGridEntityInitTrapdoor,
   trapdoorPostGridEntityRemoveTrapdoor,
@@ -23,6 +43,27 @@ import { v } from "./fastTravel/v";
 export class FastTravel extends ConfigurableModFeature {
   configKey: keyof Config = "FastClear";
   v = v;
+
+  // 34, 340
+  @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.BIG_CHEST)
+  postPickupInit(pickup: EntityPickup): void {
+    bigChestPostPickupInitBigChest(pickup);
+  }
+
+  // 68
+  @Callback(ModCallback.POST_ENTITY_KILL)
+  postEntityKill(entity: Entity): void {
+    spawnPerfectionPostEntityKill(entity);
+  }
+
+  // 70
+  @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
+  preSpawnClearAward(): boolean | undefined {
+    v.room.clearFrame = game.GetFrameCount();
+    heavenDoorPreSpawnClearAward();
+
+    return undefined;
+  }
 
   @CallbackCustom(ModCallbackCustom.ENTITY_TAKE_DMG_PLAYER)
   entityTakeDmgPlayer(
@@ -38,6 +79,24 @@ export class FastTravel extends ConfigurableModFeature {
     }
 
     return undefined;
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.POST_EFFECT_UPDATE_FILTER,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
+  )
+  postEffectUpdateHeavenDoor(effect: EntityEffect): void {
+    heavenDoorPostEffectUpdateHeavenDoor(effect);
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, true)
+  postGameStartedReorderedTrue(): void {
+    // Cancel fast-travel if we save & quit in the middle of the jumping animation.
+    if (v.run.state === FastTravelState.FADING_TO_BLACK) {
+      setNewFastTravelState(FastTravelState.DISABLED);
+      mod.enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
+    }
   }
 
   @CallbackCustom(
@@ -102,6 +161,11 @@ export class FastTravel extends ConfigurableModFeature {
       oldState,
       newState,
     );
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    crawlSpacePostNewRoomReordered();
   }
 
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
