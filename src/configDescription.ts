@@ -40,7 +40,7 @@ export const MAJOR_CHANGES = [
       ModConfigMenuOptionType.BOOLEAN,
       "003",
       "Disable curses",
-      "Disables all curses, like Curse of the Maze.",
+      "Disables all curses, like Curse of the Maze, and removes Black Candle from all pools.",
     ],
   ],
   [
