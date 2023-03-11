@@ -73,7 +73,8 @@ function startWarp() {
   }
 
   // After using Glowing Hourglass, the minimap will be bugged. We can work around this by manually
-  // recording the minimap state now, and then restore it later.
+  // recording the minimap state now, and then restore it later. (The bug only happens with the
+  // vanilla minimap.)
   if (MinimapAPI === undefined) {
     v.level.floorDisplayFlags = getFloorDisplayFlags();
   }

@@ -89,7 +89,8 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
     });
 
     // After using Glowing Hourglass, the minimap will be bugged. Earlier, we saved the minimap
-    // data, so now we can restore it since we are finished warping.
+    // data, so now we can restore it since we are finished warping. (The bug only happens with the
+    // vanilla minimap.)
     if (MinimapAPI === undefined) {
       setFloorDisplayFlags(v.level.floorDisplayFlags);
     }

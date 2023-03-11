@@ -300,7 +300,6 @@ export class FlipCustom extends ConfigurableModFeature {
       return;
     }
 
-    // Spawn a new empty pedestal, since the purchased collectible will disappear a frame from now.
     spawnEmptyCollectible(collectible.Position, collectible.InitSeed);
 
     // We do not have to transfer the entry in the `flippedCollectibleTypes` map to the new
