@@ -29,16 +29,16 @@ export class PreventDevilRoomResets extends ChallengeModFeature {
   }
 
   checkFirstCharacterFirstFloorDevilRoom(): void {
-    const previousRoomDescription = mod.getPreviousRoomDescription();
-
     if (!isOnFirstCharacter() || !onFirstFloor() || isPlanetariumFixWarping()) {
       return;
     }
 
-    if (
-      inRoomType(RoomType.DEVIL, RoomType.ANGEL) &&
-      previousRoomDescription.roomType === RoomType.CURSE
-    ) {
+    if (!inRoomType(RoomType.DEVIL, RoomType.ANGEL)) {
+      return;
+    }
+
+    const previousRoomDescription = mod.getPreviousRoomDescription();
+    if (previousRoomDescription.roomType === RoomType.CURSE) {
       this.emptyDevilAngelRoom();
 
       // Later on in this callback, the Devil Room or Angel Room will be replaced with a seeded
