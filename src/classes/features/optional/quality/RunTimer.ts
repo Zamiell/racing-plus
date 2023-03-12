@@ -8,7 +8,7 @@ import {
 } from "isaacscript-common";
 import { TimerType } from "../../../../enums/TimerType";
 import { config } from "../../../../modConfigMenu";
-import * as timer from "../../../../timer";
+import { timerDraw } from "../../../../timer";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { ANOTHER_UI_ICON_OFFSET } from "../major/FreeDevilItem";
@@ -53,12 +53,7 @@ export class RunTimer extends ConfigurableModFeature {
     const gameFrameCount = game.GetFrameCount();
     const elapsedSeconds = gameFrameCount / GAME_FRAMES_PER_SECOND;
     const position = getTopLeftUIPositionRunTimer();
-    timer.timerDraw(
-      TimerType.RUN_REAL_TIME,
-      elapsedSeconds,
-      position.X,
-      position.Y,
-    );
+    timerDraw(TimerType.RUN_REAL_TIME, elapsedSeconds, position.X, position.Y);
   }
 }
 

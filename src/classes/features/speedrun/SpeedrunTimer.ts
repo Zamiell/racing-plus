@@ -19,7 +19,7 @@ import { TimerType } from "../../../enums/TimerType";
 import { shouldDrawRaceTimer } from "../../../features/race/raceTimer";
 import { config } from "../../../modConfigMenu";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
-import * as timer from "../../../timer";
+import { convertSecondsToTimerValues, timerDraw } from "../../../timer";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import {
   isOnFirstCharacter,
@@ -98,7 +98,7 @@ export class SpeedrunTimer extends ChallengeModFeature {
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
-    timer.timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
+    timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
   }
 
   drawSpeedrunCharacterTimer(): void {
@@ -131,7 +131,7 @@ export class SpeedrunTimer extends ChallengeModFeature {
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
-    timer.timerDraw(
+    timerDraw(
       TimerType.SPEEDRUN_CHARACTER,
       seconds,
       RACE_TIMER_POSITION_X,
@@ -146,7 +146,7 @@ export function speedrunGetAverageTimePerCharacter(): string {
   const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
 
   const { hours, minute1, minute2, second1, second2 } =
-    timer.convertSecondsToTimerValues(averageSeconds);
+    convertSecondsToTimerValues(averageSeconds);
 
   if (hours > 0) {
     return "too long";

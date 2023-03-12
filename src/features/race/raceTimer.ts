@@ -1,7 +1,7 @@
 import { RacerStatus } from "../../enums/RacerStatus";
 import { TimerType } from "../../enums/TimerType";
 import { g } from "../../globals";
-import * as timer from "../../timer";
+import { timerDraw } from "../../timer";
 import { inRaceRoom } from "./raceRoom";
 
 // ModCallback.POST_RENDER (2)
@@ -21,7 +21,7 @@ function drawRaceTimer() {
   }
   const seconds = elapsedTimeMilliseconds / 1000;
 
-  timer.timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
+  timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
 }
 
 export function shouldDrawRaceTimer(): boolean {
