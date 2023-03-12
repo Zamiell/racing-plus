@@ -2,7 +2,6 @@ import * as fireworks from "./features/mandatory/fireworks";
 import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as preventSacrificeRoomTeleport from "./features/mandatory/preventSacrificeRoomTeleport";
 import * as replacePhotos from "./features/mandatory/replacePhotos";
-import * as seededDeath from "./features/mandatory/seededDeath/v";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
@@ -28,7 +27,6 @@ export function initFeatureVariables(): void {
   seededFloors.init();
   fireworks.init();
   preventSacrificeRoomTeleport.init();
-  seededDeath.init();
 
   // Other
   customConsole.init();

@@ -82,11 +82,13 @@ export function consoleCommand(command: string): void {
   log(`Finished executing console command: ${command}`);
 }
 
+/**
+ * In seeded races, we arbitrarily increase the Devil Room deals counter by one, so account for
+ * this.
+ */
 export function getEffectiveDevilDeals(): int {
   const devilRoomDeals = game.GetDevilRoomDeals();
 
-  // In seeded races, we arbitrarily increase the Devil Room deals counter by one, so account for
-  // this.
   return shouldConsistentDevilAngelRoomsApply()
     ? devilRoomDeals - 1
     : devilRoomDeals;

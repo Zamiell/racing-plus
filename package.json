@@ -23,8 +23,8 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
     "isaac-typescript-definitions": "^13.0.7",
-    "isaacscript": "^3.6.42",
-    "isaacscript-common": "^30.4.3",
+    "isaacscript": "^3.6.44",
+    "isaacscript-common": "^30.4.5",
     "isaacscript-lint": "^4.16.8",
     "isaacscript-spell": "^1.2.39",
     "isaacscript-tsconfig": "^4.0.0",

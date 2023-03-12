@@ -12,7 +12,6 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
-import { isSeededDeathActive } from "../../../../features/mandatory/seededDeath/v";
 import { raceFinish } from "../../../../features/race/raceFinish";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
@@ -22,6 +21,7 @@ import {
   speedrunIsFinished,
   speedrunTimerFinish,
 } from "../../speedrun/SpeedrunTimer";
+import { isSeededDeathActive } from "./seededDeath/v";
 
 const TROPHY_TOUCH_DISTANCE = 24; // 25 is a bit too big
 

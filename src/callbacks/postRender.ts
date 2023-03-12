@@ -1,6 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
-import { seededDeathPostRender } from "../features/mandatory/seededDeath/callbacks/postRender";
 import * as streakText from "../features/mandatory/streakText";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
@@ -18,7 +17,6 @@ function main() {
 
   // Mandatory
   streakText.postRender();
-  seededDeathPostRender();
 
   // Major
   racePostRender();

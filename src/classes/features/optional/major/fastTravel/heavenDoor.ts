@@ -59,7 +59,7 @@ export function heavenDoorPostEffectUpdateHeavenDoor(
   // vanilla functionality by setting the state to 0 on every frame.
   effect.State = 0;
 
-  // We can't initialize the entity in the PostEffectInit callback because that fires before the
+  // We can't initialize the entity in the `POST_EFFECT_INIT` callback because that fires before the
   // `POST_NEW_ROOM` callback.
   fastTravel.initFastTravelEntity(
     effect,

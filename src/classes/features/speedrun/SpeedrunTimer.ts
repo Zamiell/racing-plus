@@ -98,7 +98,7 @@ export class SpeedrunTimer extends ChallengeModFeature {
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
-    timer.draw(TimerType.RACE_OR_SPEEDRUN, seconds);
+    timer.timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
   }
 
   drawSpeedrunCharacterTimer(): void {
@@ -131,7 +131,7 @@ export class SpeedrunTimer extends ChallengeModFeature {
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
-    timer.draw(
+    timer.timerDraw(
       TimerType.SPEEDRUN_CHARACTER,
       seconds,
       RACE_TIMER_POSITION_X,

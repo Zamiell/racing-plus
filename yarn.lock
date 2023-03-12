@@ -2711,10 +2711,10 @@ isaacscript-common-ts@^10.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-10.0.0.tgz#f1037ad8856ef37860964b2987b913aa2e289280"
   integrity sha512-lacHMi0+2ovSuMrtz253XjvDX1i4bER5eNbWsRBTOQp56ZTX5aGC9zKg6GyaDULTfwL/K/bD1mVG69qvsAqChQ==
 
-isaacscript-common@^30.4.3:
-  version "30.4.3"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.4.3.tgz#ca7cc987765e49f310879bd838500433fa568e26"
-  integrity sha512-Tzee0DBu+fswu5O5bGZ6XiaFUXaOJ6+fixDLLzAsFuHa8bPadOJaZ9wz5hlcdJTm+lOF2cBTR4o5nT78YN6x1w==
+isaacscript-common@^30.4.5:
+  version "30.4.5"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.4.5.tgz#98476fe8bc9c7154b2edd14a5e925ad9bfbdaa17"
+  integrity sha512-uQMCMr6qkABv9SOIJC2PalMEzHBxSicDzWaUP3neWc02dcvcUbq77bPVPGs3s/3g4TdgM7MTnfTFWRF6ajMilA==
   dependencies:
     isaac-typescript-definitions "^13.0.7"
 
@@ -2761,10 +2761,10 @@ isaacscript-tsconfig@^4.0.0:
   dependencies:
     "@tsconfig/strictest" "^1.0.2"
 
-isaacscript@^3.6.42:
-  version "3.6.42"
-  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.42.tgz#6f642184c982c6128902bc78c0da4f4831cea52b"
-  integrity sha512-eO2tLW2xOlx4ny1Rv7C2iIf9sV/Xb45sRkf6V7mlXR3XQLnccACdlW4L0GSUo0sbtK74WS6QJpucMfLJRhl/fg==
+isaacscript@^3.6.44:
+  version "3.6.44"
+  resolved "https://registry.yarnpkg.com/isaacscript/-/isaacscript-3.6.44.tgz#6fbd11ea6f79bd695e66b074bfd90abe5a3b4a01"
+  integrity sha512-pcV947jnRu2mGulGm7vyo4y4/eZqOzasleplsyW86cTvpbFyjl0i3c3NNhFRw2gPCmtf3Oc5FiR6Cikqvel8+A==
   dependencies:
     ajv "^8.12.0"
     chalk "4.1.2"
@@ -2775,13 +2775,13 @@ isaacscript@^3.6.42:
     jsonc-parser "^3.2.0"
     klaw-sync "^6.0.0"
     moment "^2.29.4"
-    npm-check-updates "^16.7.10"
+    npm-check-updates "^16.7.12"
     prompt "^1.3.0"
     source-map "^0.7.4"
     source-map-support "^0.5.21"
     sync-directory "^6.0.3"
     tslib "^2.5.0"
-    typescript-to-lua "^1.13.2"
+    typescript-to-lua "^1.13.3"
     xml2js "^0.4.23"
     yaml "^2.2.1"
     yargs "^17.7.1"
@@ -3285,7 +3285,7 @@ npm-bundled@^3.0.0:
   dependencies:
     npm-normalize-package-bin "^3.0.0"
 
-npm-check-updates@^16.7.10:
+npm-check-updates@^16.7.12:
   version "16.7.12"
   resolved "https://registry.yarnpkg.com/npm-check-updates/-/npm-check-updates-16.7.12.tgz#228342fe666e0df5296f70feaf0963376a4c6d01"
   integrity sha512-ejYl/BiWhkUxDs1ISQd/6blgTIfHabSdsfR5JWoA7PK+cGn8hCqVKO5p+nNI2PqX+0F21ExGqkt8b7cg2yxuYg==
@@ -4366,7 +4366,7 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript-to-lua@^1.13.2, typescript-to-lua@^1.13.3:
+typescript-to-lua@^1.13.3:
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.13.3.tgz#3a1507d4d4cd96fd5367302c0c14f4ef60c82f55"
   integrity sha512-/qOg6MGdwliH5m92yTqDs3pKToO4DDVIRPtyr4DsAbFk1YbsDxcmVhC9qNR9+rcHGun/XxTX+Ed1kYBMkgDW1Q==

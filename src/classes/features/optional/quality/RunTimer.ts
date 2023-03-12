@@ -53,7 +53,12 @@ export class RunTimer extends ConfigurableModFeature {
     const gameFrameCount = game.GetFrameCount();
     const elapsedSeconds = gameFrameCount / GAME_FRAMES_PER_SECOND;
     const position = getTopLeftUIPositionRunTimer();
-    timer.draw(TimerType.RUN_REAL_TIME, elapsedSeconds, position.X, position.Y);
+    timer.timerDraw(
+      TimerType.RUN_REAL_TIME,
+      elapsedSeconds,
+      position.X,
+      position.Y,
+    );
   }
 }
 

@@ -153,8 +153,8 @@ function getIndex(
     }
 
     case FastTravelEntityType.HEAVEN_DOOR: {
-      // "effect.Index" is not yet initialized in the PostEffectInit callback. Use the grid index as
-      // the index for conformity with the other fast-travel entities.
+      // "effect.Index" is not yet initialized in the `POST_EFFECT_INIT` callback. Use the grid
+      // index as the index for conformity with the other fast-travel entities.
       return room.GetGridIndex(entity.Position);
     }
   }

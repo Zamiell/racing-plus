@@ -4,9 +4,7 @@ import {
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
-import * as postEffectInit from "./callbacks/postEffectInit";
 import * as postEntityKill from "./callbacks/postEntityKill";
-import * as postLaserInit from "./callbacks/postLaserInit";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
@@ -17,9 +15,7 @@ import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
-import * as postCustomRevive from "./callbacksCustom/postCustomRevive";
 import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
-import * as postFlip from "./callbacksCustom/postFlip";
 import * as postGameStartedReordered from "./callbacksCustom/postGameStartedReordered";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
@@ -28,7 +24,6 @@ import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdate
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
-import * as preCustomRevive from "./callbacksCustom/preCustomRevive";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
@@ -83,16 +78,12 @@ function registerCallbacksVanilla() {
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   preEntitySpawn.init(); // 24
-  postLaserInit.init(); // 47
-  postEffectInit.init(); // 54
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
 }
 
 function registerCallbacksCustom() {
-  postCustomRevive.init();
   postFirstFlip.init();
-  postFlip.init();
   postGameStartedReordered.init();
   postItemPickup.init();
   postNewLevelReordered.init();
@@ -101,6 +92,5 @@ function registerCallbacksCustom() {
   postPressurePlateUpdate.init();
   postSacrifice.init();
   postTransformation.init();
-  preCustomRevive.init();
   preItemPickup.init();
 }

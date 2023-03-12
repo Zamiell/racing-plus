@@ -1,10 +1,11 @@
 import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
-import { PlayerIndex } from "isaacscript-common";
-import { SeededDeathState } from "../../../enums/SeededDeathState";
-import { ActiveCollectibleDescription } from "../../../interfaces/ActiveCollectibleDescription";
-import { mod } from "../../../mod";
-import { SEEDED_DEATH_FEATURE_NAME } from "./constants";
+import { log, PlayerIndex } from "isaacscript-common";
+import { SeededDeathState } from "../../../../../enums/SeededDeathState";
+import { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
+import { SEEDED_DEATH_DEBUG } from "./constants";
 
+// This is registered in "SeededDeath.ts".
+// eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
     state: SeededDeathState.DISABLED,
@@ -35,10 +36,18 @@ export const v = {
   },
 };
 
-export function init(): void {
-  mod.saveDataManager(SEEDED_DEATH_FEATURE_NAME, v);
-}
-
 export function isSeededDeathActive(): boolean {
   return v.run.state !== SeededDeathState.DISABLED;
+}
+
+export function setSeededDeathState(state: SeededDeathState): void {
+  v.run.state = state;
+
+  if (SEEDED_DEATH_DEBUG) {
+    log(
+      `Seeded death state changed: ${SeededDeathState[v.run.state]} (${
+        v.run.state
+      })`,
+    );
+  }
 }

@@ -40,7 +40,17 @@ import { v } from "./fastClear/v";
 export class FastClear extends ConfigurableModFeature {
   configKey: keyof Config = "FastClear";
   v = v;
-  override shouldCallbackMethodsFire = shouldEnableFastClear;
+
+  override shouldCallbackMethodsFire = (): boolean => {
+    const seeds = game.GetSeeds();
+
+    return (
+      config.FastClear &&
+      !game.IsGreedMode() &&
+      // Fast-clear does not work with the "PAC1F1CM" seed / Easter Egg.
+      !seeds.HasSeedEffect(SeedEffect.PACIFIST)
+    );
+  };
 
   // 0
   @Callback(ModCallback.POST_NPC_UPDATE)
@@ -169,15 +179,4 @@ export class FastClear extends ConfigurableModFeature {
       log("Vanilla room clear detected.");
     }
   }
-}
-
-function shouldEnableFastClear(): boolean {
-  const seeds = game.GetSeeds();
-
-  return (
-    config.FastClear &&
-    !game.IsGreedMode() &&
-    // Fast-clear does not work with the "PAC1F1CM" seed / Easter Egg.
-    !seeds.HasSeedEffect(SeedEffect.PACIFIST)
-  );
 }

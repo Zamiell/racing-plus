@@ -9,7 +9,6 @@ import {
   HeartSubType,
   LostSoulState,
   NullItemID,
-  PlayerForm,
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
@@ -23,97 +22,53 @@ import {
   getTransformationsForCollectibleType,
   isActiveSlotEmpty,
   isCharacter,
+  isJacobOrEsau,
   newPlayerHealth,
   PlayerHealth,
-  ReadonlyMap,
-  ReadonlySet,
   removeAllFamiliars,
   removeAllMatchingEntities,
   removeDeadEyeMultiplier,
   repeat,
   setActiveItem,
+  setEntityOpacity,
   setPlayerHealth,
   sfxManager,
   spawnNPC,
 } from "isaacscript-common";
-import { setFastTravelTookDamage } from "../../../classes/features/optional/major/fastTravel/v";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
-import { ActiveCollectibleDescription } from "../../../interfaces/ActiveCollectibleDescription";
-import { mod } from "../../../mod";
-import { applySeededGhostFade } from "./seededDeath";
+import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
+import { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
+import { mod } from "../../../../../mod";
+import { setFastTravelTookDamage } from "../../../optional/major/fastTravel/v";
+import {
+  SEEDED_DEATH_FADE_AMOUNT,
+  TRANSFORMATION_HELPERS_SET,
+  TRANSFORMATION_TO_HELPERS,
+} from "./constants";
 import { v } from "./v";
 
 const NUM_FRAMES_AFTER_STATE_CHANGE_UNTIL_LOST_SOUL_DIES = 4;
 
-const TRANSFORMATION_TO_HELPERS = new ReadonlyMap<PlayerForm, CollectibleType>([
-  [
-    PlayerForm.GUPPY, // 0
-    CollectibleTypeCustom.GUPPY_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.BEELZEBUB, // 1
-    CollectibleTypeCustom.BEELZEBUB_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.FUN_GUY, // 2
-    CollectibleTypeCustom.FUN_GUY_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.SERAPHIM, // 3
-    CollectibleTypeCustom.SERAPHIM_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.BOB, // 4
-    CollectibleTypeCustom.BOB_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.SPUN, // 5
-    CollectibleTypeCustom.SPUN_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.YES_MOTHER, // 6
-    CollectibleTypeCustom.YES_MOTHER_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.CONJOINED, // 7
-    CollectibleTypeCustom.CONJOINED_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.LEVIATHAN, // 8
-    CollectibleTypeCustom.LEVIATHAN_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.OH_CRAP, // 9
-    CollectibleTypeCustom.OH_CRAP_TRANSFORMATION_HELPER,
-  ],
-  [
-    PlayerForm.BOOKWORM, // 10
-    CollectibleTypeCustom.BOOKWORM_TRANSFORMATION_HELPER,
-  ],
-  // PlayerForm.ADULTHOOD (11) is skipped since that is not based on items.
-  [
-    PlayerForm.SPIDER_BABY, // 12
-    CollectibleTypeCustom.SPIDER_BABY_TRANSFORMATION_HELPER,
-  ],
-  // PlayerForm.STOMPY (13) is skipped since that is not based on items.
-]);
+export function seededDeathApplyGhostFade(
+  player: EntityPlayer,
+  enabled: boolean,
+): void {
+  const alpha = enabled ? SEEDED_DEATH_FADE_AMOUNT : 1;
+  setEntityOpacity(player, alpha);
 
-const TRANSFORMATION_HELPERS_SET = new ReadonlySet<CollectibleType>([
-  CollectibleTypeCustom.GUPPY_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.BEELZEBUB_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.FUN_GUY_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.SERAPHIM_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.BOB_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.SPUN_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.YES_MOTHER_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.CONJOINED_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.LEVIATHAN_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.OH_CRAP_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.BOOKWORM_TRANSFORMATION_HELPER,
-  CollectibleTypeCustom.SPIDER_BABY_TRANSFORMATION_HELPER,
-]);
+  if (isCharacter(player, PlayerType.SOUL)) {
+    const forgottenBodies = getFamiliars(FamiliarVariant.FORGOTTEN_BODY);
+    for (const forgottenBody of forgottenBodies) {
+      setEntityOpacity(forgottenBody, alpha);
+    }
+  } else if (isJacobOrEsau(player)) {
+    const twin = player.GetOtherTwin();
+    if (twin !== undefined) {
+      setEntityOpacity(twin, alpha);
+    }
+  }
+}
 
-export function debuffOn(player: EntityPlayer): void {
+export function seededDeathDebuffOn(player: EntityPlayer): void {
   const level = game.GetLevel();
 
   // Make them take "red heart damage" for the purposes of getting a Devil Deal.
@@ -131,7 +86,7 @@ export function debuffOn(player: EntityPlayer): void {
   debuffOnRemoveAllWisps(player);
   removeDeadEyeMultiplier(player);
   debuffOnRemoveDarkEsau();
-  setCheckpointCollision(false);
+  seededDeathSetCheckpointCollision(false);
 }
 
 function debuffOnRemoveSize(player: EntityPlayer) {
@@ -320,7 +275,7 @@ function debuffOnRemoveDarkEsau() {
   }
 }
 
-export function setCheckpointCollision(enabled: boolean): void {
+export function seededDeathSetCheckpointCollision(enabled: boolean): void {
   const newCollisionClass = enabled
     ? EntityCollisionClass.ALL
     : EntityCollisionClass.NONE;
@@ -331,14 +286,14 @@ export function setCheckpointCollision(enabled: boolean): void {
   }
 }
 
-export function debuffOff(player: EntityPlayer): void {
-  applySeededGhostFade(player, false);
+export function seededDeathDebuffOff(player: EntityPlayer): void {
+  seededDeathApplyGhostFade(player, false);
   debuffOffRestoreSize(player);
   debuffOffAddActiveCollectibles(player);
   debuffOffAddAllCollectibles(player);
   debuffOffAddGoldenBombAndKey(player);
   debuffOffAddDarkEsau();
-  setCheckpointCollision(true);
+  seededDeathSetCheckpointCollision(true);
 }
 
 function debuffOffRestoreSize(player: EntityPlayer) {

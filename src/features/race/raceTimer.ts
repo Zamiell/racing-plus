@@ -21,7 +21,7 @@ function drawRaceTimer() {
   }
   const seconds = elapsedTimeMilliseconds / 1000;
 
-  timer.draw(TimerType.RACE_OR_SPEEDRUN, seconds);
+  timer.timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
 }
 
 export function shouldDrawRaceTimer(): boolean {

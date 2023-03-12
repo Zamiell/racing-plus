@@ -36,7 +36,7 @@ const spriteCollectionMap = new DefaultMap<int, TimerSprites>(
 );
 
 /** By default, it will use the draw position of the race/speedrun timer. */
-export function draw(
+export function timerDraw(
   timerType: TimerType,
   seconds: int,
   startingX = RACE_TIMER_POSITION_X,

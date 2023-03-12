@@ -7,8 +7,8 @@ import {
   removeCollectibleFromAllPlayers,
   removeCollectiblePickupDelay,
 } from "isaacscript-common";
+import { isSeededDeathActive } from "../classes/features/mandatory/misc/seededDeath/v";
 import { speedrunGetCharacterNum } from "../classes/features/speedrun/characterProgress/v";
-import { isSeededDeathActive } from "../features/mandatory/seededDeath/v";
 import { mod } from "../mod";
 import {
   CUSTOM_CHALLENGES_SET,
