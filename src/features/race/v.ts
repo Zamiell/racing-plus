@@ -1,5 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { RaceFormat } from "../../enums/RaceFormat";
+import { RaceGoal } from "../../enums/RaceGoal";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
@@ -45,6 +46,14 @@ function featureEnabled() {
   return config.ClientCommunication;
 }
 
+export function inRace(): boolean {
+  return (
+    config.ClientCommunication &&
+    g.race.status === RaceStatus.IN_PROGRESS &&
+    g.race.myStatus === RacerStatus.RACING
+  );
+}
+
 export function inUnseededRace(): boolean {
   return inRace() && g.race.format === RaceFormat.UNSEEDED;
 }
@@ -57,11 +66,10 @@ export function inDiversityRace(): boolean {
   return inRace() && g.race.format === RaceFormat.DIVERSITY;
 }
 
-export function inRace(): boolean {
+export function inRaceToDarkRoom(): boolean {
   return (
-    config.ClientCommunication &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
+    inRace() &&
+    (g.race.goal === RaceGoal.THE_LAMB || g.race.goal === RaceGoal.MEGA_SATAN)
   );
 }
 

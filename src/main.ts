@@ -22,7 +22,6 @@ import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered"
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
-import * as postSacrifice from "./callbacksCustom/postSacrifice";
 import * as postTransformation from "./callbacksCustom/postTransformation";
 import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
@@ -90,7 +89,6 @@ function registerCallbacksCustom() {
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
   postPressurePlateUpdate.init();
-  postSacrifice.init();
   postTransformation.init();
   preItemPickup.init();
 }

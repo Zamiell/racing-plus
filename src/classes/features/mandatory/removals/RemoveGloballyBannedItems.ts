@@ -31,7 +31,6 @@ import * as showEdenStartingItems from "../../optional/characters/ShowEdenStarti
 import { PLACEHOLDER_COLLECTIBLE_TYPES } from "../../optional/gameplay/extraStartingItems/constants";
 
 export const BANNED_COLLECTIBLES = new ReadonlySet<CollectibleType>([
-  CollectibleType.BLACK_CANDLE, // 260
   CollectibleType.MERCURIUS, // 590
   CollectibleType.TMTRAINER, // 721
 ]);
@@ -47,6 +46,10 @@ export const BANNED_TRINKETS = new ReadonlySet<TrinketType>([
 ]);
 
 const BANNED_COLLECTIBLES_ON_SEEDED_RACES = new ReadonlySet<CollectibleType>([
+  // It changes the selection of rooms in an unknown way, which was discovered in March 2023.
+  // https://github.com/UnderscoreKilburn/repentance-issues/issues/1752
+  CollectibleType.BLACK_CANDLE, // 260
+
   // Since drops are seeded and given in order, Glyph of Balance does not work properly.
   CollectibleType.GLYPH_OF_BALANCE, // 464
 

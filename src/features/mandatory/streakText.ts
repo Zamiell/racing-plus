@@ -313,6 +313,6 @@ export function setStreakText(text: string): void {
   v.run.renderFrameSet = Isaac.GetFrameCount();
 }
 
-export function setStreakTextTab(value: string | null): void {
+export function setStreakTextMap(value: string | null): void {
   v.run.tabText = value;
 }

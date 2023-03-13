@@ -11,7 +11,6 @@ import {
 } from "isaacscript-common";
 import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
-import * as preventSacrificeRoomTeleport from "../features/mandatory/preventSacrificeRoomTeleport";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
 
@@ -39,7 +38,6 @@ function main() {
 
   // Mandatory
   banFirstFloorRoomType.postNewRoom();
-  preventSacrificeRoomTeleport.postNewRoom();
   planetariumFix.postNewRoom();
 
   // Major
