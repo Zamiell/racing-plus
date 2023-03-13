@@ -5,6 +5,7 @@ import {
   LevelCurse,
   ModCallback,
   PillColor,
+  PlayerType,
   PocketItemSlot,
   RoomType,
   TrinketSlot,
@@ -22,6 +23,7 @@ import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   inBeastRoom,
   inRoomType,
+  isCharacter,
   isJacobOrEsau,
   isKeeper,
   ModCallbackCustom,
@@ -133,9 +135,10 @@ export class SeededDeath extends MandatoryModFeature {
     setSeededDeathState(SeededDeathState.GHOST_FORM);
     mod.enableAllInputs(SEEDED_DEATH_FEATURE_NAME);
 
-    // Since Keeper only has one coin container, he gets a bonus usage of Holy Card. We grant it
-    // here so that it does not cancel the "AppearVanilla" animation.
-    if (isKeeper(player)) {
+    // - Since Keeper only has one coin container, he gets a bonus usage of Holy Card. We grant it
+    //   here so that it does not cancel the "AppearVanilla" animation.
+    // - We also grant a Holy Card effect to Tainted Lost.
+    if (isKeeper(player) || isCharacter(player, PlayerType.LOST_B)) {
       player.UseCard(CardType.HOLY);
     }
   }
