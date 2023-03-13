@@ -40,6 +40,7 @@ Regardless of the format:
 
 #### Item Removals
 
+- Black Candle is removed from all pools (since it changes level generation).
 - Sol is removed from all pools (since it is practically useless if you already have the Compass).
 - Glyph of Balance is removed from all pools (since it changes drop-generation).
 - Duality is removed from all pools (since Devil Rooms and Angel Rooms are seeded).
