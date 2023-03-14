@@ -11,11 +11,11 @@ import {
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
-import { isPlanetariumFixWarping } from "../../../../features/mandatory/planetariumFix";
 import { inSeededRace } from "../../../../features/race/v";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { isOnFirstCharacter } from "../../speedrun/characterProgress/v";
+import { isPlanetariumFixWarping } from "./PlanetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES = [
   RoomType.MINI_BOSS, // 6

@@ -1,4 +1,3 @@
-import * as planetariumFix from "./features/mandatory/planetariumFix";
 import * as streakText from "./features/mandatory/streakText";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
@@ -13,7 +12,6 @@ export function initFeatureVariables(): void {
   modConfigMenuVanilla.init();
   raceVars.init();
   socketClient.init();
-  planetariumFix.init();
 
   // Mandatory
   streakText.init();

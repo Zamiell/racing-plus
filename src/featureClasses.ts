@@ -19,6 +19,7 @@ export { Fireworks } from "./classes/features/mandatory/misc/Fireworks";
 export { InvisibleEntities } from "./classes/features/mandatory/misc/InvisibleEntities";
 export { LogConsoleCommands } from "./classes/features/mandatory/misc/LogConsoleCommands";
 export { ModConfigNotify } from "./classes/features/mandatory/misc/ModConfigNotify";
+export { PlanetariumFix } from "./classes/features/mandatory/misc/PlanetariumFix";
 export { PreserveCheckpoint } from "./classes/features/mandatory/misc/PreserveCheckpoint";
 export { PreserveCollectibles } from "./classes/features/mandatory/misc/PreserveCollectibles";
 export { PreventSacrificeRoomTeleport } from "./classes/features/mandatory/misc/PreventSacrificeRoomTeleport";

@@ -8,10 +8,10 @@ import {
   PriorityCallbackCustom,
   removeAllPickups,
 } from "isaacscript-common";
-import { isPlanetariumFixWarping } from "../../../features/mandatory/planetariumFix";
 import { mod } from "../../../mod";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
+import { isPlanetariumFixWarping } from "../mandatory/misc/PlanetariumFix";
 import { setDevilAngelEmpty } from "../optional/major/BetterDevilAngelRooms";
 import { isOnFirstCharacter } from "./characterProgress/v";
 

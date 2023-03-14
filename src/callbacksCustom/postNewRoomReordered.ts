@@ -9,7 +9,6 @@ import {
   log,
   ModCallbackCustom,
 } from "isaacscript-common";
-import * as planetariumFix from "../features/mandatory/planetariumFix";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
 
@@ -34,9 +33,6 @@ function main() {
   log(
     `POST_NEW_ROOM_REORDERED - Room: ${roomType}.${roomVariant}.${roomSubType} - Stage ID: ${roomStageID} - Stage: ${stage}.${stageType} - Grid index: ${roomGridIndex}${roomGridIndexSuffix} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
-
-  // Mandatory
-  planetariumFix.postNewRoom();
 
   // Major
   racePostNewRoom();

@@ -1,16 +1,19 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   changeRoom,
   copyArray,
   game,
   getRoomGridIndex,
   getRoomGridIndexesForType,
   log,
+  ModCallbackCustom,
 } from "isaacscript-common";
-import { setFastTravelResumeGameFrame } from "../../classes/features/optional/major/fastTravel/v";
-import { mod } from "../../mod";
-import { onSeason } from "../../speedrun/utilsSpeedrun";
-import { inSeededRace } from "../race/v";
+import { inSeededRace } from "../../../../features/race/v";
+import { mod } from "../../../../mod";
+import { onSeason } from "../../../../speedrun/utilsSpeedrun";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import { setFastTravelResumeGameFrame } from "../../optional/major/fastTravel/v";
 
 enum PlanetariumFixWarpState {
   INITIAL,
@@ -18,7 +21,7 @@ enum PlanetariumFixWarpState {
   FINISHED,
 }
 
-const FEATURE_NAME = "planetariumFix";
+const PLANETARIUM_FIX_FEATURE_NAME = "PlanetariumFix";
 
 const v = {
   level: {
@@ -28,8 +31,21 @@ const v = {
   },
 };
 
-export function init(): void {
-  mod.saveDataManager(FEATURE_NAME, v);
+export class PlanetariumFix extends MandatoryModFeature {
+  v = v;
+
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    if (v.level.warpState !== PlanetariumFixWarpState.WARPING) {
+      return;
+    }
+
+    // The game requires that you are in the room for at least a frame before the Planetarium odds
+    // will change.
+    mod.runNextGameFrame(() => {
+      warpToNextRoom();
+    });
+  }
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
@@ -37,10 +53,11 @@ export function shouldApplyPlanetariumFix(): boolean {
     return false;
   }
 
-  v.level.warpRoomGridIndexes = copyArray(
-    getRoomGridIndexesForType(RoomType.TREASURE, RoomType.PLANETARIUM),
+  const roomIndexes = getRoomGridIndexesForType(
+    RoomType.TREASURE,
+    RoomType.PLANETARIUM,
   );
-  return v.level.warpRoomGridIndexes.length > 0;
+  return roomIndexes.length > 0;
 }
 
 /**
@@ -53,13 +70,16 @@ export function planetariumFixBeginWarp(): void {
   const roomGridIndex = getRoomGridIndex();
 
   v.level.warpState = PlanetariumFixWarpState.WARPING;
-  // The "v.level.warpRoomGridIndexes" array is set in the "shouldApplyPlanetariumFix" function.
-  // Append the room that we are in, so that we can warp back at the end. (The room that initiates
-  // stage travel will influence the destination.)
+  v.level.warpRoomGridIndexes = copyArray(
+    getRoomGridIndexesForType(RoomType.TREASURE, RoomType.PLANETARIUM),
+  );
+
+  // Append the room that we are in, so that we can warp back at the end. (We need to warp back
+  // because the room that initiates stage travel will influence the destination floor.)
   v.level.warpRoomGridIndexes.push(roomGridIndex);
 
   hud.SetVisible(false); // It looks confusing if the minimap changes as we warp around.
-  mod.disableAllSound(FEATURE_NAME);
+  mod.disableAllSound(PLANETARIUM_FIX_FEATURE_NAME);
   warpToNextRoom();
 }
 
@@ -79,23 +99,11 @@ function warpToNextRoom() {
   }
 
   log("Planetarium Fix - Finished warping.");
+
   // We only re-enable the hud once we have reached the new floor.
-  mod.enableAllSound(FEATURE_NAME);
+  mod.enableAllSound(PLANETARIUM_FIX_FEATURE_NAME);
   const gameFrameCount = game.GetFrameCount();
   setFastTravelResumeGameFrame(gameFrameCount);
-}
-
-// ModCallback.POST_NEW_ROOM (19)
-export function postNewRoom(): void {
-  if (v.level.warpState !== PlanetariumFixWarpState.WARPING) {
-    return;
-  }
-
-  // The game requires that you are in the room for at least a frame before the Planetarium odds
-  // will change.
-  mod.runNextGameFrame(() => {
-    warpToNextRoom();
-  });
 }
 
 export function isPlanetariumFixWarping(): boolean {

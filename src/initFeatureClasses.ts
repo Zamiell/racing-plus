@@ -32,6 +32,7 @@ const FEATURE_CLASSES = [
   fc.InvisibleEntities,
   fc.LogConsoleCommands,
   fc.ModConfigNotify,
+  fc.PlanetariumFix,
   fc.PreserveCheckpoint,
   fc.PreserveCollectibles,
   fc.PreventSacrificeRoomTeleport,

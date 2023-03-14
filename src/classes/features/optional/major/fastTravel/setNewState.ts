@@ -28,10 +28,6 @@ import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
-import {
-  planetariumFixBeginWarp,
-  shouldApplyPlanetariumFix,
-} from "../../../../../features/mandatory/planetariumFix";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
@@ -39,6 +35,10 @@ import {
   inClearedMomBossRoom,
   moveEsauNextToJacob,
 } from "../../../../../utils";
+import {
+  planetariumFixBeginWarp,
+  shouldApplyPlanetariumFix,
+} from "../../../mandatory/misc/PlanetariumFix";
 import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/constants";
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
