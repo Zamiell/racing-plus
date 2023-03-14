@@ -11,7 +11,6 @@ import * as postUpdate from "./callbacks/postUpdate";
 import * as postUseCard from "./callbacks/postUseCard";
 import * as postUseItem from "./callbacks/postUseItem";
 import * as postUsePill from "./callbacks/postUsePill";
-import * as preEntitySpawn from "./callbacks/preEntitySpawn";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
@@ -76,7 +75,6 @@ function registerCallbacksVanilla() {
   postUsePill.init(); // 10
   preGameExit.init(); // 17
   preUseItem.init(); // 23
-  preEntitySpawn.init(); // 24
   postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
 }

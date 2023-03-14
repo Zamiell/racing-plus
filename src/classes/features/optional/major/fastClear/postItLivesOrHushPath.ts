@@ -32,7 +32,7 @@ import {
   onSeason,
   onSpeedrunWithDarkRoomGoal,
 } from "../../../../../speedrun/utilsSpeedrun";
-import { hasPolaroidOrNegative } from "../../../../../utils";
+import { getPhotoStatus } from "../../../../../utils";
 import { season3GetItLivesSituation } from "../../../speedrun/Season3";
 
 /**
@@ -167,7 +167,7 @@ function getItLivesSituation(): ItLivesSituation {
     }
   }
 
-  const [hasPolaroid, hasNegative] = hasPolaroidOrNegative();
+  const { hasPolaroid, hasNegative } = getPhotoStatus();
 
   if (hasPolaroid && hasNegative) {
     // The player has both photos (which can occur if the player is Eden or is in a diversity race).

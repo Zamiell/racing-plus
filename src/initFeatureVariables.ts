@@ -1,5 +1,4 @@
 import * as planetariumFix from "./features/mandatory/planetariumFix";
-import * as replacePhotos from "./features/mandatory/replacePhotos";
 import * as seededDrops from "./features/mandatory/seededDrops";
 import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
@@ -20,7 +19,6 @@ export function initFeatureVariables(): void {
 
   // Mandatory
   streakText.init();
-  replacePhotos.init();
   seededDrops.init();
   seededFloors.init();
 

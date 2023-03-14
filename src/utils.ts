@@ -9,6 +9,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  anyPlayerHasCollectible,
   game,
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
@@ -98,26 +99,14 @@ export function getEffectiveDevilDeals(): int {
  * We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true if
  * they are holding the Mysterious Paper trinket.
  */
-export function hasPolaroidOrNegative(): [boolean, boolean] {
-  const players = getPlayers();
+export function getPhotoStatus(): {
+  hasPolaroid: boolean;
+  hasNegative: boolean;
+} {
+  const hasPolaroid = anyPlayerHasCollectible(CollectibleType.POLAROID, true);
+  const hasNegative = anyPlayerHasCollectible(CollectibleType.NEGATIVE, true);
 
-  const hasPolaroid = players.some((player) => {
-    const numPolaroids = player.GetCollectibleNum(
-      CollectibleType.POLAROID,
-      true,
-    );
-    return numPolaroids > 0;
-  });
-
-  const hasNegative = players.some((player) => {
-    const numNegatives = player.GetCollectibleNum(
-      CollectibleType.NEGATIVE,
-      true,
-    );
-    return numNegatives > 0;
-  });
-
-  return [hasPolaroid, hasNegative];
+  return { hasPolaroid, hasNegative };
 }
 
 export function inClearedMomBossRoom(): boolean {

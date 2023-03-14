@@ -35,6 +35,7 @@ const FEATURE_CLASSES = [
   fc.PreserveCollectibles,
   fc.PreventSacrificeRoomTeleport,
   fc.RacingPlusIcon,
+  fc.ReplacePhotos,
   fc.RestartOnNextFrame,
   fc.SeededDeath,
   fc.ShowLevelTextOnMap,

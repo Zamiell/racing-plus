@@ -22,6 +22,7 @@ export { PreserveCheckpoint } from "./classes/features/mandatory/misc/PreserveCh
 export { PreserveCollectibles } from "./classes/features/mandatory/misc/PreserveCollectibles";
 export { PreventSacrificeRoomTeleport } from "./classes/features/mandatory/misc/PreventSacrificeRoomTeleport";
 export { RacingPlusIcon } from "./classes/features/mandatory/misc/RacingPlusIcon";
+export { ReplacePhotos } from "./classes/features/mandatory/misc/ReplacePhotos";
 export { RestartOnNextFrame } from "./classes/features/mandatory/misc/RestartOnNextFrame";
 export { SeededDeath } from "./classes/features/mandatory/misc/SeededDeath";
 export { ShowLevelTextOnMap } from "./classes/features/mandatory/misc/ShowLevelTextOnMap";
