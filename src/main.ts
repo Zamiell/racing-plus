@@ -10,7 +10,6 @@ import * as postUpdate from "./callbacks/postUpdate";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
-import * as postFirstFlip from "./callbacksCustom/postFirstFlip";
 import * as postGameStartedReordered from "./callbacksCustom/postGameStartedReordered";
 import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
@@ -70,7 +69,6 @@ function registerCallbacksVanilla() {
 }
 
 function registerCallbacksCustom() {
-  postFirstFlip.init();
   postGameStartedReordered.init();
   postItemPickup.init();
   postNewLevelReordered.init();

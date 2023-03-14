@@ -15,7 +15,6 @@ import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as consistentDevilAngelRooms from "../consistentDevilAngelRooms";
-import { formatSetup } from "../formatSetup";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import * as socket from "../socket";
@@ -40,7 +39,6 @@ export function racePostGameStarted(): void {
   }
   socket.send("runMatchesRuleset");
 
-  formatSetup(player);
   raceRoom.initSprites();
   startingRoom.initSprites();
   topSprite.postGameStarted();

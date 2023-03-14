@@ -140,6 +140,7 @@ export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTele
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
 export { PreventConsole } from "./classes/features/race/PreventConsole";
+export { RaceFormatSetup } from "./classes/features/race/RaceFormatSetup";
 export { AchievementItems } from "./classes/features/speedrun/AchievementItems";
 export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
 export { CharacterProgress } from "./classes/features/speedrun/CharacterProgress";

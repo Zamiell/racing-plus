@@ -54,6 +54,20 @@ export function inRace(): boolean {
   );
 }
 
+function inPreRace(): boolean {
+  return (
+    config.ClientCommunication &&
+    (g.race.status === RaceStatus.OPEN ||
+      g.race.status === RaceStatus.STARTING) &&
+    (g.race.myStatus === RacerStatus.READY ||
+      g.race.myStatus === RacerStatus.NOT_READY)
+  );
+}
+
+export function inRaceOrPreRace(): boolean {
+  return inRace() || inPreRace();
+}
+
 export function inUnseededRace(): boolean {
   return inRace() && g.race.format === RaceFormat.UNSEEDED;
 }

@@ -57,6 +57,7 @@ const FEATURE_CLASSES = [
 
   // Race
   fc.PreventConsole,
+  fc.RaceFormatSetup,
 
   // Speedrun (utils)
   fc.AchievementItems,

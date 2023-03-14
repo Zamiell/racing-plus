@@ -5,6 +5,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   characterStartsWithActiveItem,
   copyArray,
   game,
@@ -14,6 +15,7 @@ import {
   isCharacter,
   isEden,
   log,
+  ModCallbackCustom,
   ReadonlySet,
   removeCollectibleFromPools,
   removeTrinketFromPools,
@@ -21,19 +23,20 @@ import {
   temporarilyRemoveTrinkets,
   useActiveItemTemp,
 } from "isaacscript-common";
-import { setStartedWithCompass } from "../../classes/features/mandatory/removals/RemoveGloballyBannedItems";
-import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
-import { RaceFormat } from "../../enums/RaceFormat";
-import { RacerStatus } from "../../enums/RacerStatus";
-import { RaceStatus } from "../../enums/RaceStatus";
-import { g } from "../../globals";
-import { ServerCollectibleID } from "../../types/ServerCollectibleID";
+import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
+import { RaceFormat } from "../../../enums/RaceFormat";
+import { inRace, inRaceOrPreRace } from "../../../features/race/v";
+import { g } from "../../../globals";
+import { ServerCollectibleID } from "../../../types/ServerCollectibleID";
 import {
   addCollectibleAndRemoveFromPools,
   addTrinketAndRemoveFromPools,
   collectibleTypeToServerCollectibleID,
   serverCollectibleIDToCollectibleType,
-} from "../../utils";
+} from "../../../utils";
+import { Config } from "../../Config";
+import { ConfigurableModFeature } from "../../ConfigurableModFeature";
+import { setStartedWithCompass } from "../mandatory/removals/RemoveGloballyBannedItems";
 
 /**
  * In vanilla, most of these characters have a pocket item, which is made to be the active item in
@@ -75,33 +78,44 @@ const SAWBLADE_COLLECTIBLE_ID =
   collectibleTypeToServerCollectibleID(CollectibleTypeCustom.SAWBLADE) ??
   error("Failed to get the Sawblade server collectible ID.");
 
-export function formatSetup(player: EntityPlayer): void {
-  if (
-    g.race.myStatus === RacerStatus.FINISHED ||
-    g.race.myStatus === RacerStatus.QUIT ||
-    g.race.myStatus === RacerStatus.DISQUALIFIED
-  ) {
+export class RaceFormatSetup extends ConfigurableModFeature {
+  configKey: keyof Config = "ClientCommunication";
+
+  @CallbackCustom(ModCallbackCustom.POST_FIRST_FLIP)
+  postFirstFlip(player: EntityPlayer): void {
+    formatSetup(player);
+  }
+
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    const player = Isaac.GetPlayer();
+    formatSetup(player);
+  }
+}
+
+function formatSetup(player: EntityPlayer) {
+  // We want the starting items to be granted in the pre-race room (except for in diversity races).
+  if (!inRaceOrPreRace()) {
     return;
   }
 
   switch (g.race.format) {
     case RaceFormat.UNSEEDED: {
       if (g.race.ranked && g.race.solo) {
-        unseededRankedSolo(player);
+        formatSetupUnseededRankedSolo(player);
       }
 
       // The More Options buff is given in "TempMoreOptions.ts".
-
       break;
     }
 
     case RaceFormat.SEEDED: {
-      seeded(player);
+      formatSetupSeeded(player);
       break;
     }
 
     case RaceFormat.DIVERSITY: {
-      diversity(player);
+      formatSetupDiversity(player);
       break;
     }
 
@@ -114,7 +128,7 @@ export function formatSetup(player: EntityPlayer): void {
   sfxManager.Stop(SoundEffect.POWER_UP_SPEWER);
 }
 
-function unseededRankedSolo(player: EntityPlayer) {
+function formatSetupUnseededRankedSolo(player: EntityPlayer) {
   // The client will populate the starting items for the current season into the "startingItems"
   // variable.
   for (const startingItem of g.race.startingItems) {
@@ -125,7 +139,7 @@ function unseededRankedSolo(player: EntityPlayer) {
   }
 }
 
-function seeded(player: EntityPlayer) {
+function formatSetupSeeded(player: EntityPlayer) {
   const itemPool = game.GetItemPool();
 
   // All seeded races start with the Compass to reduce mapping RNG.
@@ -175,12 +189,9 @@ function seeded(player: EntityPlayer) {
   // Other collectible/trinket pool removals are done in the "removeGloballyBannedItems" feature.
 }
 
-function diversity(player: EntityPlayer) {
-  // If the race has not started yet, don't give the items.
-  if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
-  ) {
+function formatSetupDiversity(player: EntityPlayer) {
+  // If we are still in the pre-race room, don't give the items.
+  if (!inRace()) {
     return;
   }
 
