@@ -1,18 +1,21 @@
 import {
   CollectibleAnimation,
   EntityPartition,
+  EntityType,
   ModCallback,
   PlayerItemAnimation,
 } from "isaac-typescript-definitions";
 import {
   Callback,
   doesEntityExist,
+  game,
   getEntities,
   logError,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { raceFinish } from "../../../../features/race/raceFinish";
+import { inRaceToHush } from "../../../../features/race/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
@@ -94,6 +97,16 @@ export class Trophy extends MandatoryModFeature {
       speedrunTimerFinish(player);
     } else {
       raceFinish();
+    }
+  }
+
+  // 68, 407
+  @Callback(ModCallback.POST_ENTITY_KILL, EntityType.HUSH)
+  postEntityKillHush(): void {
+    if (inRaceToHush()) {
+      const room = game.GetRoom();
+      const centerPos = room.GetCenterPos();
+      spawnTrophy(centerPos);
     }
   }
 }

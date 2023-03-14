@@ -4,7 +4,6 @@ import {
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
-import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
@@ -67,7 +66,6 @@ function registerCallbacksVanilla() {
   postRender.init(); // 2
   preGameExit.init(); // 17
   preUseItem.init(); // 23
-  postEntityKill.init(); // 68
   preSpawnClearAward.init(); // 70
 }
 

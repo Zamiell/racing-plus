@@ -73,6 +73,10 @@ export function inRaceToDarkRoom(): boolean {
   );
 }
 
+export function inRaceToHush(): boolean {
+  return inRace() && g.race.goal === RaceGoal.HUSH;
+}
+
 export function raceShouldShowEndOfRunText(): boolean {
   return v.room.showEndOfRunText;
 }
