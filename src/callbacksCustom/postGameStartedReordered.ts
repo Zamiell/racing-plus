@@ -5,7 +5,6 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
-import * as seededDrops from "../features/mandatory/seededDrops";
 import * as seededFloors from "../features/mandatory/seededFloors";
 import * as streakText from "../features/mandatory/streakText";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
@@ -46,7 +45,6 @@ function main(isContinued: boolean) {
   }
 
   // Mandatory
-  seededDrops.postGameStarted();
   seededFloors.postGameStarted();
   streakText.postGameStarted();
 

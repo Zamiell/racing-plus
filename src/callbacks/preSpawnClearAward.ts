@@ -1,5 +1,4 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import * as seededDrops from "../features/mandatory/seededDrops";
 import { racePreSpawnClearAward } from "../features/race/callbacks/preSpawnClearAward";
 import { mod } from "../mod";
 
@@ -11,5 +10,5 @@ function main(_rng: RNG, _spawnPosition: Vector): boolean | undefined {
   // Major
   racePreSpawnClearAward();
 
-  return seededDrops.preSpawnClearAward();
+  return undefined;
 }
