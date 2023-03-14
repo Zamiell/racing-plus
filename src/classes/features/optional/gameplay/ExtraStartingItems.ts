@@ -16,9 +16,9 @@ import {
   removeCollectibleFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
-import { shouldBanFirstFloorTreasureRoom } from "../../../../features/mandatory/banFirstFloorRoomType";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/misc/BanFirstFloorRoomType";
 import {
   COLLECTIBLE_REPLACEMENT_MAP,
   PLACEHOLDER_COLLECTIBLE_TYPES,

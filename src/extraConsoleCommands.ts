@@ -19,22 +19,22 @@ import {
   onSetSeed,
   restart,
 } from "isaacscript-common";
-import { setUnseededWithRacingPlusLogic } from "../../classes/features/mandatory/misc/RacingPlusIcon";
-import { setDevilAngelDebugRoom } from "../../classes/features/optional/major/BetterDevilAngelRooms";
-import { speedrunSetCharacterNum } from "../../classes/features/speedrun/characterProgress/v";
-import { logRaceData, RaceData } from "../../classes/RaceData";
-import { VERSION } from "../../constants";
-import { debugFunction } from "../../debugCode";
-import { ChallengeCustom } from "../../enums/ChallengeCustom";
-import { RaceFormat } from "../../enums/RaceFormat";
-import { RaceGoal } from "../../enums/RaceGoal";
-import { RacerStatus } from "../../enums/RacerStatus";
-import { RaceStatus } from "../../enums/RaceStatus";
-import { g } from "../../globals";
-import { mod } from "../../mod";
-import { setAllModConfigMenuSettings } from "../../modConfigMenu";
-import { consoleCommand } from "../../utils";
-import * as socketClient from "../race/socketClient";
+import { setUnseededWithRacingPlusLogic } from "./classes/features/mandatory/misc/RacingPlusIcon";
+import { setDevilAngelDebugRoom } from "./classes/features/optional/major/BetterDevilAngelRooms";
+import { speedrunSetCharacterNum } from "./classes/features/speedrun/characterProgress/v";
+import { logRaceData, RaceData } from "./classes/RaceData";
+import { VERSION } from "./constants";
+import { debugFunction } from "./debugCode";
+import { ChallengeCustom } from "./enums/ChallengeCustom";
+import { RaceFormat } from "./enums/RaceFormat";
+import { RaceGoal } from "./enums/RaceGoal";
+import { RacerStatus } from "./enums/RacerStatus";
+import { RaceStatus } from "./enums/RaceStatus";
+import * as socketClient from "./features/race/socketClient";
+import { g } from "./globals";
+import { mod } from "./mod";
+import { setAllModConfigMenuSettings } from "./modConfigMenu";
+import { consoleCommand } from "./utils";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
   CollectibleType.CRICKETS_HEAD,

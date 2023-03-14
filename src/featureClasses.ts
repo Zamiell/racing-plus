@@ -10,6 +10,7 @@ export { Magic8BallSeeded } from "./classes/features/mandatory/items/Magic8BallS
 export { NLuck } from "./classes/features/mandatory/items/NLuck";
 export { Sawblade } from "./classes/features/mandatory/items/Sawblade";
 export { SolCustom } from "./classes/features/mandatory/items/SolCustom";
+export { BanFirstFloorRoomType } from "./classes/features/mandatory/misc/BanFirstFloorRoomType";
 export { CheckErrors } from "./classes/features/mandatory/misc/CheckErrors";
 export { DisableMultiplayer } from "./classes/features/mandatory/misc/DisableMultiplayer";
 export { DoubleAngelNerf } from "./classes/features/mandatory/misc/DoubleAngelNerf";

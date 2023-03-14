@@ -24,6 +24,7 @@ import * as fc from "./featureClasses";
  */
 const FEATURE_CLASSES = [
   // Mandatory (TODO - sort)
+  fc.BanFirstFloorRoomType,
   fc.CheckErrors,
   fc.DisableMultiplayer,
   fc.DoubleAngelNerf,

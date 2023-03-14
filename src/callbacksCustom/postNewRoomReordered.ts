@@ -9,7 +9,6 @@ import {
   log,
   ModCallbackCustom,
 } from "isaacscript-common";
-import * as banFirstFloorRoomType from "../features/mandatory/banFirstFloorRoomType";
 import * as planetariumFix from "../features/mandatory/planetariumFix";
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
@@ -37,7 +36,6 @@ function main() {
   );
 
   // Mandatory
-  banFirstFloorRoomType.postNewRoom();
   planetariumFix.postNewRoom();
 
   // Major

@@ -9,11 +9,11 @@ import {
   removeCollectibleCostume,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";
-import { shouldBanFirstFloorTreasureRoom } from "../../../../features/mandatory/banFirstFloorRoomType";
 import { inDiversityRace, inUnseededRace } from "../../../../features/race/v";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { isOnFirstCharacter } from "../../speedrun/characterProgress/v";
+import { shouldBanFirstFloorTreasureRoom } from "./BanFirstFloorRoomType";
 
 const v = {
   run: {
