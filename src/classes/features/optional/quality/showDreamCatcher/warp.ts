@@ -22,9 +22,9 @@ import {
   spawnEffect,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
-import * as seededFloors from "../../../../../features/mandatory/seededFloors";
 import { mod } from "../../../../../mod";
 import { shouldRemoveEndGamePortals } from "../../../mandatory/gameplay/NerfCardReading";
+import { seededFloorsAfter } from "../../../mandatory/misc/SeededFloors";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { DREAM_CATCHER_FEATURE_NAME } from "./constants";
 import { CardReadingPortalDescription, v } from "./v";
@@ -151,7 +151,7 @@ export function showDreamCatcherWarpToNextRoom(): void {
 
   // Using the Glowing Hourglass will reset any health or inventory modifications that were set by
   // the seeded floors feature. To work around this, re-run the "after" function.
-  seededFloors.after();
+  seededFloorsAfter();
 
   // Using the Glowing Hourglass will revert any heart containers that were granted by an eternal
   // heart upon reaching this floor. Manually apply any eternal hearts.

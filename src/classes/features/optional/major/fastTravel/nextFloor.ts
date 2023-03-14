@@ -19,10 +19,13 @@ import {
 import { RaceGoal } from "../../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
-import * as seededFloors from "../../../../../features/mandatory/seededFloors";
 import { g } from "../../../../../globals";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../../utils";
+import {
+  seededFloorsAfter,
+  seededFloorsBefore,
+} from "../../../mandatory/misc/SeededFloors";
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcher/v";
 import { v } from "./v";
 
@@ -62,7 +65,7 @@ export function goto(upwards: boolean): void {
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications.
-  seededFloors.before();
+  seededFloorsBefore();
 
   // If we do a "stage" command to go to the same floor that we are already on, it will use the same
   // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
@@ -74,7 +77,7 @@ export function goto(upwards: boolean): void {
   setStage(nextStage, nextStageType, reseed);
 
   // Revert the health and inventory modifications.
-  seededFloors.after();
+  seededFloorsAfter();
 
   // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp.
   setDreamCatcherArrivedOnNewFloor();

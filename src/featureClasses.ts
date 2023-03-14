@@ -26,6 +26,7 @@ export { RacingPlusIcon } from "./classes/features/mandatory/misc/RacingPlusIcon
 export { ReplacePhotos } from "./classes/features/mandatory/misc/ReplacePhotos";
 export { RestartOnNextFrame } from "./classes/features/mandatory/misc/RestartOnNextFrame";
 export { SeededDeath } from "./classes/features/mandatory/misc/SeededDeath";
+export { SeededDrops } from "./classes/features/mandatory/misc/SeededDrops";
 export { ShowLevelTextOnMap } from "./classes/features/mandatory/misc/ShowLevelTextOnMap";
 export { TempMoreOptions } from "./classes/features/mandatory/misc/TempMoreOptions";
 export { TimeConsoleUsed } from "./classes/features/mandatory/misc/TimeConsoleUsed";

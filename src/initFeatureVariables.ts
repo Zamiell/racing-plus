@@ -1,5 +1,4 @@
 import * as planetariumFix from "./features/mandatory/planetariumFix";
-import * as seededFloors from "./features/mandatory/seededFloors";
 import * as streakText from "./features/mandatory/streakText";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
@@ -18,7 +17,6 @@ export function initFeatureVariables(): void {
 
   // Mandatory
   streakText.init();
-  seededFloors.init();
 
   // Other
   customConsole.init();

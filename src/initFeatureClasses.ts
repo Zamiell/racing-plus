@@ -39,6 +39,7 @@ const FEATURE_CLASSES = [
   fc.ReplacePhotos,
   fc.RestartOnNextFrame,
   fc.SeededDeath,
+  fc.SeededDrops,
   fc.ShowLevelTextOnMap,
   fc.TempMoreOptions,
   fc.TimeConsoleUsed,

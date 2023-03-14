@@ -1,14 +1,3 @@
-// Different inventory and health conditions can affect special room generation. And different
-// special rooms can also sometimes change the actual room selection of non-special rooms. This is
-// bad for seeded races; we want to ensure consistent floors.
-
-// Thus, we arbitrarily set inventory and health conditions before going to the next floor, and then
-// swap them back:
-// https://bindingofisaacrebirth.gamepedia.com/Level_Generation
-
-// This feature is not configurable because it could change floors, causing a seed to be different.
-// This feature relies on fast travel to function.
-
 import {
   CollectibleType,
   GameStateFlag,
@@ -18,6 +7,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
   characterCanHaveRedHearts,
   characterGetsBlackHeartFromEternalHeart,
   game,
@@ -25,15 +15,16 @@ import {
   getRandom,
   isCharacter,
   log,
+  ModCallbackCustom,
   newRNG,
   PlayerHealth,
   removeAllPlayerHealth,
   repeat,
   setPlayerHealth,
 } from "isaacscript-common";
-import { mod } from "../../mod";
-import { config } from "../../modConfigMenu";
-import { inSeededRace } from "../race/v";
+import { inSeededRace } from "../../../../features/race/v";
+import { config } from "../../../../modConfigMenu";
+import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 interface GameStateFlags {
   devilRoomVisited: boolean;
@@ -54,28 +45,37 @@ const v = {
   },
 };
 
-export function init(): void {
-  mod.saveDataManager("seededFloors", v, featureEnabled);
+/**
+ * Different inventory and health conditions can affect special room generation. And different
+ * special rooms can also sometimes change the actual room selection of non-special rooms. This is
+ * bad for seeded races; we want to ensure consistent floors.
+ *
+ * Thus, we arbitrarily set inventory and health conditions before going to the next floor, and then
+ * swap them back:
+ * https://bindingofisaacrebirth.gamepedia.com/Level_Generation
+ *
+ * This feature is not configurable because it could change floors, causing a seed to be different.
+ * This feature relies on fast travel to function.
+ */
+export class SeededFloors extends MandatoryModFeature {
+  v = v;
+
+  /**
+   * We may have had the Curse of the Unknown seed enabled in a previous run, so ensure that it is
+   * removed.
+   */
+  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
+  postGameStartedReorderedFalse(): void {
+    const seeds = game.GetSeeds();
+    seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
+  }
 }
 
-function featureEnabled() {
-  return config.FastTravel;
-}
-
-/** Only swap things if we are playing a seeded race. */
 function shouldSeededFloorsApply() {
   return config.FastTravel && inSeededRace();
 }
 
-// ModCallback.POST_GAME_STARTED (15)
-export function postGameStarted(): void {
-  // We may have had the Curse of the Unknown seed enabled in a previous run, so ensure that it is
-  // removed.
-  const seeds = game.GetSeeds();
-  seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
-}
-
-export function before(): void {
+export function seededFloorsBefore(): void {
   if (!shouldSeededFloorsApply()) {
     return;
   }
@@ -118,13 +118,14 @@ export function before(): void {
 
   // Modification 1: Devil Room visited
   game.SetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED, true);
+
   // `GameStateFlag.DEVIL_ROOM_VISITED` affects the chances of a Curse Room being generated.
   // However, in seeded races, we always start off the player with one Devil Room item taken (for
   // the consistent Devil/Angel room feature). Thus, default to always having this flag set to true,
   // which will result in slightly more Curse Rooms on the first two floors than normal, but that is
   // okay.
 
-  // Modification 2: Book touched.
+  // Modification 2: Book touched
   // - Vanilla is bugged so that the flag never gets set to true, so we copy this behavior and do
   //   nothing.
 
@@ -177,7 +178,29 @@ export function before(): void {
   }
 }
 
-export function after(): void {
+function getGameStateFlags(): GameStateFlags {
+  const devilVisited = game.GetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED);
+  const bookPickedUp = game.GetStateFlag(GameStateFlag.BOOK_PICKED_UP);
+
+  return {
+    devilRoomVisited: devilVisited,
+    bookTouched: bookPickedUp,
+  };
+}
+
+function getInventory(player: EntityPlayer): Inventory {
+  const coins = player.GetNumCoins();
+  const bombs = player.GetNumBombs();
+  const keys = player.GetNumKeys();
+
+  return {
+    coins,
+    bombs,
+    keys,
+  };
+}
+
+export function seededFloorsAfter(): void {
   if (!shouldSeededFloorsApply()) {
     return;
   }
@@ -204,34 +227,12 @@ export function after(): void {
   seeds.RemoveSeedEffect(SeedEffect.PERMANENT_CURSE_UNKNOWN);
 }
 
-function getGameStateFlags(): GameStateFlags {
-  const devilVisited = game.GetStateFlag(GameStateFlag.DEVIL_ROOM_VISITED);
-  const bookPickedUp = game.GetStateFlag(GameStateFlag.BOOK_PICKED_UP);
-
-  return {
-    devilRoomVisited: devilVisited,
-    bookTouched: bookPickedUp,
-  };
-}
-
 function setGameStateFlags(gameStateFlags: GameStateFlags) {
   game.SetStateFlag(
     GameStateFlag.DEVIL_ROOM_VISITED,
     gameStateFlags.devilRoomVisited,
   );
   game.SetStateFlag(GameStateFlag.BOOK_PICKED_UP, gameStateFlags.bookTouched);
-}
-
-function getInventory(player: EntityPlayer): Inventory {
-  const coins = player.GetNumCoins();
-  const bombs = player.GetNumBombs();
-  const keys = player.GetNumKeys();
-
-  return {
-    coins,
-    bombs,
-    keys,
-  };
 }
 
 function setInventory(player: EntityPlayer, inventory: Inventory) {
