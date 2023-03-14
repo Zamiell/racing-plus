@@ -1,5 +1,4 @@
 import { game, log, ModCallbackCustom } from "isaacscript-common";
-import * as streakText from "../features/mandatory/streakText";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import { mod } from "../mod";
 
@@ -17,9 +16,6 @@ function main() {
   log(
     `POST_NEW_LEVEL_REORDERED - Stage: ${stage}.${stageType} - Game frame: ${gameFrameCount} - Render frame: ${renderFrameCount}`,
   );
-
-  // Mandatory
-  streakText.postNewLevel();
 
   // Major
   racePostNewLevel();

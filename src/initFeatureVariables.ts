@@ -1,4 +1,3 @@
-import * as streakText from "./features/mandatory/streakText";
 import * as customConsole from "./features/race/customConsole";
 import * as socketClient from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
@@ -12,9 +11,6 @@ export function initFeatureVariables(): void {
   modConfigMenuVanilla.init();
   raceVars.init();
   socketClient.init();
-
-  // Mandatory
-  streakText.init();
 
   // Other
   customConsole.init();

@@ -1,6 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
-import * as streakText from "../features/mandatory/streakText";
 import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
 import { mod } from "../mod";
@@ -14,9 +13,6 @@ function main() {
   if (hasErrors()) {
     return;
   }
-
-  // Mandatory
-  streakText.postRender();
 
   // Major
   racePostRender();

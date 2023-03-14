@@ -5,7 +5,6 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
-import * as streakText from "../features/mandatory/streakText";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { mod } from "../mod";
 
@@ -42,9 +41,6 @@ function main(isContinued: boolean) {
   if (hasErrors()) {
     return;
   }
-
-  // Mandatory
-  streakText.postGameStarted();
 
   // Major
   racePostGameStarted();

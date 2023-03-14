@@ -9,11 +9,11 @@ import {
   isShootAction,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { setStreakText } from "../../../../features/mandatory/streakText";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import { setStreakText } from "../../mandatory/misc/StreakText";
 
 /** Release the key on every other frame. */
 const NORMAL_FRAME_DELAY = 2;

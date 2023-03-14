@@ -43,12 +43,12 @@ import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
-import { setStreakText } from "../../../../features/mandatory/streakText";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { setStreakText } from "../../mandatory/misc/StreakText";
 import {
   getFastClearNumAliveBosses,
   getFastClearNumAliveEnemies,

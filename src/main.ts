@@ -8,9 +8,6 @@ import * as postEntityKill from "./callbacks/postEntityKill";
 import * as postNPCUpdate from "./callbacks/postNPCUpdate";
 import * as postRender from "./callbacks/postRender";
 import * as postUpdate from "./callbacks/postUpdate";
-import * as postUseCard from "./callbacks/postUseCard";
-import * as postUseItem from "./callbacks/postUseItem";
-import * as postUsePill from "./callbacks/postUsePill";
 import * as preGameExit from "./callbacks/preGameExit";
 import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
 import * as preUseItem from "./callbacks/preUseItem";
@@ -21,8 +18,6 @@ import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered"
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
 import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
-import * as postTransformation from "./callbacksCustom/postTransformation";
-import * as preItemPickup from "./callbacksCustom/preItemPickup";
 import { MOD_NAME, VERSION } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
 import { enableExtraConsoleCommandsRacingPlus } from "./extraConsoleCommands";
@@ -70,9 +65,6 @@ function registerCallbacksVanilla() {
   postNPCUpdate.init(); // 0
   postUpdate.init(); // 1
   postRender.init(); // 2
-  postUseItem.init(); // 3
-  postUseCard.init(); // 5
-  postUsePill.init(); // 10
   preGameExit.init(); // 17
   preUseItem.init(); // 23
   postEntityKill.init(); // 68
@@ -87,6 +79,4 @@ function registerCallbacksCustom() {
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
   postPressurePlateUpdate.init();
-  postTransformation.init();
-  preItemPickup.init();
 }

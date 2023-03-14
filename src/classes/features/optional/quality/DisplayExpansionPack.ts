@@ -5,9 +5,9 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import { addFlag, Callback, getCollectibleName } from "isaacscript-common";
-import { setStreakText } from "../../../../features/mandatory/streakText";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { setStreakText } from "../../mandatory/misc/StreakText";
 
 const EXPANSION_PACK_USE_FLAGS = addFlag(
   UseFlag.NO_ANIMATION, // 1 << 0

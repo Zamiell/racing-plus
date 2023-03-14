@@ -42,7 +42,7 @@ const FEATURE_CLASSES = [
   fc.SeededDeath,
   fc.SeededDrops,
   fc.SeededFloors,
-  fc.ShowLevelTextOnMap,
+  fc.StreakText,
   fc.TempMoreOptions,
   fc.TimeConsoleUsed,
   fc.TopLeftText,
