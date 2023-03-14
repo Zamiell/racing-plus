@@ -25,7 +25,6 @@ import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType"
 import { RaceGoal } from "../../../../../enums/RaceGoal";
 import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { spawnVictoryLapButton } from "../../../../../features/race/endOfRaceButtons";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import {
@@ -34,6 +33,7 @@ import {
   postSpawnCheckpoint,
 } from "../../../../../speedrun/utilsSpeedrun";
 import { spawnTrophy } from "../../../mandatory/misc/Trophy";
+import { spawnVictoryLapButton } from "../../../race/EndOfRaceButtons";
 import { isOnFinalCharacter } from "../../../speedrun/characterProgress/v";
 import { season3GetBigChestReplacementAction } from "../../../speedrun/Season3";
 import * as fastTravel from "./fastTravelEntity";

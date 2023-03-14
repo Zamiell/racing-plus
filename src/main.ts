@@ -15,7 +15,6 @@ import * as postItemPickup from "./callbacksCustom/postItemPickup";
 import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
 import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
 import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
-import * as postPressurePlateUpdate from "./callbacksCustom/postPressurePlateUpdate";
 import { MOD_NAME, VERSION } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
 import { enableExtraConsoleCommandsRacingPlus } from "./extraConsoleCommands";
@@ -74,5 +73,4 @@ function registerCallbacksCustom() {
   postNewLevelReordered.init();
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
-  postPressurePlateUpdate.init();
 }

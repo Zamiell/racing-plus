@@ -139,6 +139,7 @@ export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn
 export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTeleport";
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";
 export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad";
+export { EndOfRaceButtons } from "./classes/features/race/EndOfRaceButtons";
 export { PreventConsole } from "./classes/features/race/PreventConsole";
 export { RaceFormatSetup } from "./classes/features/race/RaceFormatSetup";
 export { AchievementItems } from "./classes/features/speedrun/AchievementItems";

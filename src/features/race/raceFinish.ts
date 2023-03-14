@@ -1,6 +1,6 @@
 import { log } from "isaacscript-common";
+import { spawnEndOfRaceButtons } from "../../classes/features/race/EndOfRaceButtons";
 import { g } from "../../globals";
-import { spawnEndOfRaceButtons } from "./endOfRaceButtons";
 import * as socket from "./socket";
 import { v } from "./v";
 

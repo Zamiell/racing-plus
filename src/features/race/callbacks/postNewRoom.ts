@@ -5,7 +5,6 @@ import {
   LAST_STAGE,
 } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
-import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
@@ -38,7 +37,6 @@ export function racePostNewRoom(): void {
   removeVoidDoor.postNewRoom();
   replaceScolex.postNewRoom();
   seeded3DollarBill.postNewRoom();
-  endOfRaceButtons.postNewRoom();
   victoryLap.postNewRoom();
   recordMegaSatanRoom();
 }

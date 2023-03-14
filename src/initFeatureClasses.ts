@@ -56,6 +56,7 @@ const FEATURE_CLASSES = [
   fc.SolCustom,
 
   // Race
+  fc.EndOfRaceButtons,
   fc.PreventConsole,
   fc.RaceFormatSetup,
 

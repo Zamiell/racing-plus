@@ -3,7 +3,6 @@ import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
-import * as endOfRaceButtons from "../endOfRaceButtons";
 import * as placeLeft from "../placeLeft";
 import * as raceRoom from "../raceRoom";
 import { raceStart } from "../raceStart";
@@ -20,7 +19,6 @@ export function racePostRender(): void {
   socket.postRender();
   raceTimer.postRender();
   placeLeft.postRender();
-  endOfRaceButtons.postRender();
 
   if (g.race.status !== RaceStatus.NONE) {
     checkGameOpenedInMiddleOfRace();
