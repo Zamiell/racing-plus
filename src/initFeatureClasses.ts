@@ -40,6 +40,7 @@ const FEATURE_CLASSES = [
   fc.RestartOnNextFrame,
   fc.SeededDeath,
   fc.SeededDrops,
+  fc.SeededFloors,
   fc.ShowLevelTextOnMap,
   fc.TempMoreOptions,
   fc.TimeConsoleUsed,

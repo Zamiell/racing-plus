@@ -26,10 +26,12 @@ import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-const HP_MULTIPLIER = 0.75; // Matches vanilla
+const VANISHING_TWIN_BOSS_HP_MULTIPLIER = 0.75; // Matches vanilla
+const VANISHING_TWIN_BOSS_SPEED_MULTIPLIER = 0.75; // Matches vanilla
 
 const v = {
   room: {
+    duplicatedBossPtrHash: null as PtrHash | null,
     shouldSpawnTwoBossItems: false,
     spawnClearAwardFrame: null as int | null,
   },
@@ -78,6 +80,22 @@ export class FastVanishingTwin extends ConfigurableModFeature {
     return collectibles.find((collectible) => collectible.FrameCount === 0);
   }
 
+  // 28
+  @Callback(ModCallback.POST_NPC_RENDER)
+  postNPCRender(npc: EntityNPC): void {
+    if (v.room.duplicatedBossPtrHash === null) {
+      return;
+    }
+
+    const ptrHash = GetPtrHash(npc);
+    if (ptrHash !== v.room.duplicatedBossPtrHash) {
+      return;
+    }
+
+    const sprite = npc.GetSprite();
+    sprite.PlaybackSpeed = VANISHING_TWIN_BOSS_SPEED_MULTIPLIER;
+  }
+
   // 70
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
@@ -85,8 +103,8 @@ export class FastVanishingTwin extends ConfigurableModFeature {
       return undefined;
     }
 
-    const gameFrameCount = game.GetFrameCount();
-    v.room.spawnClearAwardFrame = gameFrameCount;
+    v.room.shouldSpawnTwoBossItems = false;
+    v.room.spawnClearAwardFrame = game.GetFrameCount();
 
     return undefined;
   }
@@ -121,8 +139,6 @@ export class FastVanishingTwin extends ConfigurableModFeature {
       return;
     }
 
-    // It is difficult to properly duplicate double champion bosses or multi-segment bosses. Use the
-    // vanilla behavior in these cases.
     const bosses = getBosses();
 
     // Dark Esau counts as a boss, so we need to filter him out, if present.
@@ -130,6 +146,8 @@ export class FastVanishingTwin extends ConfigurableModFeature {
       (boss) => boss.Type !== EntityType.DARK_ESAU,
     );
 
+    // It is difficult to properly duplicate double champion bosses or multi-segment bosses. Use the
+    // vanilla behavior in these cases.
     if (filteredBosses.length !== 1) {
       return;
     }
@@ -175,10 +193,12 @@ export class FastVanishingTwin extends ConfigurableModFeature {
 
     // Account for the vanilla mechanic where duplicated bosses have a portion of their HP taken
     // away.
-    boss.HitPoints *= HP_MULTIPLIER;
-    duplicatedBoss.HitPoints *= HP_MULTIPLIER;
+    boss.HitPoints *= VANISHING_TWIN_BOSS_HP_MULTIPLIER;
+    duplicatedBoss.HitPoints *= VANISHING_TWIN_BOSS_HP_MULTIPLIER;
 
     // Update it so that the collision pushes it away from the other boss.
     duplicatedBoss.Update();
+
+    v.room.duplicatedBossPtrHash = GetPtrHash(duplicatedBoss);
   }
 }
