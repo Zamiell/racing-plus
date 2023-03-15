@@ -17,10 +17,13 @@ import {
   spawnGridEntity,
 } from "isaacscript-common";
 import { inRaceToHush } from "../../../features/race/v";
-import { MandatoryModFeature } from "../../MandatoryModFeature";
+import { Config } from "../../Config";
+import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 import { spawnTrophy } from "../mandatory/misc/Trophy";
 
-export class RaceHushGoal extends MandatoryModFeature {
+export class RaceHushGoal extends ConfigurableModFeature {
+  configKey: keyof Config = "ClientCommunication";
+
   // 68, 407
   @Callback(ModCallback.POST_ENTITY_KILL, EntityType.HUSH)
   postEntityKillHush(): void {
