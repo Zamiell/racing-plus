@@ -9,7 +9,6 @@ import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
 import * as removeRepentanceDoor from "../removeRepentanceDoor";
 import * as removeStrangeDoor from "../removeStrangeDoor";
-import * as removeVoidDoor from "../removeVoidDoor";
 import * as replaceScolex from "../replaceScolex";
 import * as seeded3DollarBill from "../seeded3DollarBill";
 import * as socket from "../socket";
@@ -34,7 +33,6 @@ export function racePostNewRoom(): void {
   makeBossRushItemsFree.postNewRoom();
   removeStrangeDoor.postNewRoom();
   removeRepentanceDoor.postNewRoom();
-  removeVoidDoor.postNewRoom();
   replaceScolex.postNewRoom();
   seeded3DollarBill.postNewRoom();
   victoryLap.postNewRoom();

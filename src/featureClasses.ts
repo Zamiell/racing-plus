@@ -142,6 +142,7 @@ export { SilenceMomDad } from "./classes/features/optional/sounds/SilenceMomDad"
 export { EndOfRaceButtons } from "./classes/features/race/EndOfRaceButtons";
 export { PreventConsole } from "./classes/features/race/PreventConsole";
 export { RaceFormatSetup } from "./classes/features/race/RaceFormatSetup";
+export { RaceHushGoal } from "./classes/features/race/RaceHushGoal";
 export { AchievementItems } from "./classes/features/speedrun/AchievementItems";
 export { ChangeCharOrder } from "./classes/features/speedrun/ChangeCharOrder";
 export { CharacterProgress } from "./classes/features/speedrun/CharacterProgress";
