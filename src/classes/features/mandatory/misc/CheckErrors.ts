@@ -148,7 +148,7 @@ export class CheckErrors extends MandatoryModFeature {
     if (secondsRemaining > RANDOM_CHARACTER_LOCK_SECONDS) {
       return onSeason(2)
         ? 'Please set your item vetos for Season 2 again in the "Change Char Order" custom challenge.'
-        : "Please restart the run. If this message persists, try restarting your computer.";
+        : "Please restart the run. If this message persists, try setting the character order for one of the seasons or restart your computer.";
     }
 
     const suffix = secondsRemaining > 1 ? "s" : "";
