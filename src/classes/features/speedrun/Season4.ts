@@ -52,7 +52,6 @@ import {
 } from "./season4/constants";
 
 const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
-  // newSprite("gfx/speedrun/storage.anm2"),
   newCollectibleSprite(CollectibleType.SCHOOLBAG),
 );
 

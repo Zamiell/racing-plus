@@ -38,7 +38,7 @@ export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
     ChallengeCustom.SEASON_4,
     {
       challengeCustomAbbreviation: ChallengeCustomAbbreviation.SEASON_4,
-      numElements: 0, // There are no choices for Season 4.
+      numElements: 7,
     },
   ],
 ]);
