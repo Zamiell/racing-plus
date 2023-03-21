@@ -40,10 +40,7 @@ import {
   spawnPickup,
 } from "isaacscript-common";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
-import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../enums/RacerStatus";
-import { g } from "../../../../globals";
+import { inRaceToBossRush } from "../../../../features/race/v";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { Config } from "../../../Config";
@@ -368,11 +365,7 @@ export class FastBossRush extends ConfigurableModFeature {
       return;
     }
 
-    if (
-      g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.goal === RaceGoal.BOSS_RUSH
-    ) {
+    if (inRaceToBossRush()) {
       // The big chest will get replaced with a trophy on the next frame.
       spawnPickup(PickupVariant.BIG_CHEST, 0, position);
     }

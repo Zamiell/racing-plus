@@ -7,11 +7,9 @@ import {
   onStageWithSecretExitToMausoleum,
   removeDoor,
 } from "isaacscript-common";
-import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceGoal } from "../../enums/RaceGoal";
-import { RaceStatus } from "../../enums/RaceStatus";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
+import { inRaceToBeast, inSeededRace } from "./v";
 
 // ModCallback.POST_NEW_ROOM (18)
 export function postNewRoom(): void {
@@ -27,12 +25,7 @@ function checkRemoveRepentanceDoor() {
   const room = game.GetRoom();
   const roomClear = room.IsClear();
 
-  if (
-    !roomClear ||
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING ||
-    !inRoomType(RoomType.BOSS)
-  ) {
+  if (!roomClear || !inRoomType(RoomType.BOSS)) {
     return;
   }
 
@@ -54,7 +47,7 @@ function checkRemoveRepentanceDoor() {
  */
 function shouldRemoveRepentanceDoorOnSeededRace() {
   return (
-    g.race.format === RaceFormat.SEEDED &&
+    inSeededRace() &&
     g.race.goal !== RaceGoal.MOTHER &&
     g.race.goal !== RaceGoal.CUSTOM &&
     !g.race.solo
@@ -66,9 +59,7 @@ function shouldRemoveRepentanceDoorOnSeededRace() {
  * the Mausoleum floors by deleting the doors.
  */
 function shouldRemoveRepentanceDoorOnBeastRace() {
-  return (
-    g.race.goal === RaceGoal.THE_BEAST && onStageWithSecretExitToMausoleum()
-  );
+  return inRaceToBeast() && onStageWithSecretExitToMausoleum();
 }
 
 function removeRepentanceDoor() {

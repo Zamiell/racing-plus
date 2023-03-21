@@ -17,10 +17,7 @@ import {
   removeAllMatchingEntities,
   setStage,
 } from "isaacscript-common";
-import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
-import { g } from "../../../../../globals";
+import { inRaceToBeast } from "../../../../../features/race/v";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../../utils";
 import {
@@ -157,10 +154,5 @@ function getNextStageTypeCustom(
  * Specific races and multi-character speedruns take the player to The Ascent in a non-vanilla way.
  */
 function isAscentGoal(): boolean {
-  return (
-    (g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.goal === RaceGoal.THE_BEAST) ||
-    onSeason(3)
-  );
+  return inRaceToBeast() || onSeason(3);
 }

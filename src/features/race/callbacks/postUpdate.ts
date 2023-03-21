@@ -4,11 +4,9 @@ import {
   doesTrophyExist,
   spawnTrophy,
 } from "../../../classes/features/mandatory/misc/Trophy";
-import { RaceGoal } from "../../../enums/RaceGoal";
-import { RaceStatus } from "../../../enums/RaceStatus";
-import { RacerStatus } from "../../../enums/RacerStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
+import { inRaceToBossRush } from "../v";
 
 export function racePostUpdate(): void {
   if (!config.ClientCommunication) {
@@ -24,9 +22,7 @@ function spawnBossRushTrophy() {
 
   if (
     !doesTrophyExist() &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.BOSS_RUSH &&
+    inRaceToBossRush() &&
     !g.raceVars.finished &&
     inRoomType(RoomType.BOSS_RUSH) &&
     bossRushDone

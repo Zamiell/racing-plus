@@ -23,8 +23,7 @@ import { BigChestReplacementAction } from "../../../../../enums/BigChestReplacem
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
+import { inRace } from "../../../../../features/race/v";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import {
@@ -81,10 +80,7 @@ function getReplacementAction() {
     return BigChestReplacementAction.VICTORY_LAP;
   }
 
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
-  ) {
+  if (inRace()) {
     if (g.race.goal === RaceGoal.BLUE_BABY) {
       return blueBaby();
     }

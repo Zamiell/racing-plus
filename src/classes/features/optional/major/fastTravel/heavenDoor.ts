@@ -15,10 +15,7 @@ import {
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
-import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
-import { g } from "../../../../../globals";
+import { inRaceToHush } from "../../../../../features/race/v";
 import {
   checkPlayerTouchedFastTravelEntity,
   initFastTravelEntity,
@@ -74,14 +71,8 @@ function shouldRemove(effect: EntityEffect) {
     return false;
   }
 
-  // - If the goal of the race is Hush, delete the heaven door that spawns after It Lives!
-  // - If the goal of the race is Hush, delete the heaven door that spawns after Hush.
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.HUSH &&
-    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)
-  ) {
+  // If the goal of the race is Hush, delete the heaven door that spawns after It Lives or Hush.
+  if (inRaceToHush() && onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)) {
     return true;
   }
 

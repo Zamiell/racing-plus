@@ -22,10 +22,11 @@ import {
   removeGridEntity,
 } from "isaacscript-common";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
-import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
-import { g } from "../../../../../globals";
+import {
+  inRaceToBossRush,
+  inRaceToHush,
+  inRaceToMother,
+} from "../../../../../features/race/v";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import {
   season3HasOnlyBossRushLeft,
@@ -129,19 +130,15 @@ function shouldRemove() {
   const repentanceStage = onRepentanceStage();
   const secretExit = inSecretExit();
 
-  // If the goal of the race/speedrun is the Boss Rush, delete any Womb trapdoors on Depths 2.
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.BOSS_RUSH &&
-    onStage(LevelStage.DEPTHS_2)
-  ) {
+  // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
+  if (inRaceToBossRush() && onStage(LevelStage.DEPTHS_2)) {
     log(
       `Removed a vanilla trapdoor on Depths 2 (for a race Boss Rush goal) on game frame: ${gameFrameCount}`,
     );
     return true;
   }
 
+  // If the goal of the speedrun is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
     onSeason(3) &&
     season3HasOnlyBossRushLeft() &&
@@ -153,11 +150,9 @@ function shouldRemove() {
     return true;
   }
 
-  // If the goal of the race/speedrun is Hush, delete the trapdoor that spawns after It Lives!
+  // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.HUSH &&
+    inRaceToHush() &&
     onStage(LevelStage.WOMB_2) &&
     roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
@@ -167,6 +162,7 @@ function shouldRemove() {
     return true;
   }
 
+  // If the goal of the speedrun is Hush, delete the trapdoor that spawns after It Lives!
   if (
     onSeason(3) &&
     season3HasOnlyHushLeft() &&
@@ -181,9 +177,7 @@ function shouldRemove() {
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after Hush.
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.HUSH &&
+    inRaceToHush() &&
     onStage(LevelStage.BLUE_WOMB) &&
     roomGridIndex !== asNumber(GridRoom.THE_VOID)
   ) {
@@ -195,12 +189,7 @@ function shouldRemove() {
 
   // If the goal of the race is Mother, remove trapdoors after bosses on most floors. (But leave
   // trapdoors created by shovels and in I AM ERROR rooms.)
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.MOTHER &&
-    inRoomType(RoomType.BOSS)
-  ) {
+  if (inRaceToMother() && inRoomType(RoomType.BOSS)) {
     if (onStageOrLower(LevelStage.DEPTHS_1) && !repentanceStage) {
       log(
         `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a race Mother goal) on game frame: ${gameFrameCount}`,

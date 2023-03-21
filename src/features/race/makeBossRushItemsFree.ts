@@ -4,11 +4,7 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import { anyPlayerIs, getCollectibles, inRoomType } from "isaacscript-common";
-import { RaceGoal } from "../../enums/RaceGoal";
-import { RaceStatus } from "../../enums/RaceStatus";
-import { RacerStatus } from "../../enums/RacerStatus";
-import { g } from "../../globals";
-import { v } from "./v";
+import { inRaceToBossRush, v } from "./v";
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -18,9 +14,7 @@ export function postNewRoom(): void {
 
   if (
     !v.run.madeBossRushItemsFree &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.BOSS_RUSH &&
+    inRaceToBossRush() &&
     inRoomType(RoomType.BOSS_RUSH)
   ) {
     v.run.madeBossRushItemsFree = true;

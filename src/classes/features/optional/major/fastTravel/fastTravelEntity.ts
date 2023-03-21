@@ -20,10 +20,7 @@ import {
 import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
-import { g } from "../../../../../globals";
+import { inRaceToBeast } from "../../../../../features/race/v";
 import { mod } from "../../../../../mod";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import { inClearedMomBossRoom } from "../../../../../utils";
@@ -93,9 +90,7 @@ function getCustomSpriteFilename(
 
       // Trapdoors that have to do with specific kinds of races.
       if (
-        g.race.status === RaceStatus.IN_PROGRESS &&
-        g.race.myStatus === RacerStatus.RACING &&
-        g.race.goal === RaceGoal.THE_BEAST &&
+        inRaceToBeast() &&
         clearedMomBossRoom &&
         !repentanceStage &&
         gridIndex === NORMAL_TRAPDOOR_GRID_INDEX

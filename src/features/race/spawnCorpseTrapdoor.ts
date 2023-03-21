@@ -12,11 +12,7 @@ import {
   inRoomType,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { RaceGoal } from "../../enums/RaceGoal";
-import { RaceStatus } from "../../enums/RaceStatus";
-import { RacerStatus } from "../../enums/RacerStatus";
-import { g } from "../../globals";
-import { v } from "./v";
+import { inRaceToMother, v } from "./v";
 
 const NORMAL_TRAPDOOR_POSITION = Vector(320, 200); // Near the top door
 
@@ -29,9 +25,7 @@ export function postNewRoom(): void {
 
   if (
     !v.run.spawnedCorpseTrapdoor &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.goal === RaceGoal.MOTHER &&
+    inRaceToMother() &&
     mausoleumHeartKilled &&
     inRoomType(RoomType.BOSS)
   ) {

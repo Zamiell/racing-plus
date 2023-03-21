@@ -91,6 +91,18 @@ export function inRaceToHush(): boolean {
   return inRace() && g.race.goal === RaceGoal.HUSH;
 }
 
+export function inRaceToMother(): boolean {
+  return inRace() && g.race.goal === RaceGoal.MOTHER;
+}
+
+export function inRaceToBeast(): boolean {
+  return inRace() && g.race.goal === RaceGoal.THE_BEAST;
+}
+
+export function inRaceToBossRush(): boolean {
+  return inRace() && g.race.goal === RaceGoal.BOSS_RUSH;
+}
+
 export function raceShouldShowEndOfRunText(): boolean {
   return v.room.showEndOfRunText;
 }

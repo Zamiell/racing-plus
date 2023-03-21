@@ -26,10 +26,7 @@ import {
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RaceStatus } from "../../../../../enums/RaceStatus";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
-import { g } from "../../../../../globals";
+import { inRaceToBeast } from "../../../../../features/race/v";
 import { mod } from "../../../../../mod";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import {
@@ -134,10 +131,7 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
   const clearedMomBossRoom = inClearedMomBossRoom();
 
   return (
-    ((g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      g.race.goal === RaceGoal.THE_BEAST &&
-      gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
+    ((inRaceToBeast() && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
       (onSeason(3) && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX)) &&
     clearedMomBossRoom &&
     !repentanceStage
