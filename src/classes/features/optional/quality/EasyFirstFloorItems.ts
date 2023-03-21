@@ -6,11 +6,11 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
+  ReadonlySet,
   game,
   getRoomVariant,
   inRoomType,
   onFirstFloor,
-  ReadonlySet,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { Config } from "../../../Config";
@@ -66,8 +66,11 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
           20, 47, 48, 62, 77, 78, 82, 95, 109,
         ]);
         if (rockDeleteIndexes.has(gridIndex)) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT).
-          return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
+          return [
+            GridEntityXMLType.EFFECT,
+            EffectVariantCustom.INVISIBLE_EFFECT,
+            0,
+          ];
         }
 
         return undefined;
@@ -77,8 +80,11 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
       case 41: {
         const spikeIndexes = new ReadonlySet([48, 50, 78, 80]);
         if (spikeIndexes.has(gridIndex)) {
-          // In this callback, 999 is equal to 1000 (i.e. EntityType.EFFECT).
-          return [999, EffectVariantCustom.INVISIBLE_EFFECT, 0];
+          return [
+            GridEntityXMLType.EFFECT,
+            EffectVariantCustom.INVISIBLE_EFFECT,
+            0,
+          ];
         }
 
         return undefined;

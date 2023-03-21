@@ -12,8 +12,10 @@ import {
   TeleporterState,
 } from "isaac-typescript-definitions";
 import {
-  asNumber,
   DISTANCE_OF_GRID_TILE,
+  LadderSubTypeCustom,
+  ReadonlyMap,
+  asNumber,
   game,
   getCrawlSpaces,
   getEffects,
@@ -21,9 +23,7 @@ import {
   inCrawlSpace,
   inSecretShop,
   isRoomInsideGrid,
-  LadderSubTypeCustom,
   log,
-  ReadonlyMap,
   removeGridEntity,
   spawnEffect,
   spawnTeleporter,
@@ -43,8 +43,7 @@ const GRID_INDEX_SECRET_SHOP_LADDER = 25;
 const TOP_OF_LADDER_POSITION = Vector(120, 160);
 
 /** Chosen to not overlap with the vanilla `LadderSubTypeCustom` entries. */
-// eslint-disable-next-line isaacscript/strict-enums
-const CUSTOM_SECRET_SHOP_LADDER_SUB_TYPE: LadderSubTypeCustom = 200;
+const CUSTOM_SECRET_SHOP_LADDER_SUB_TYPE = 200 as LadderSubTypeCustom;
 
 const DEVIL_ANGEL_EXIT_MAP = new ReadonlyMap<int, Direction>([
   [7, Direction.UP], // Top door
