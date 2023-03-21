@@ -6,13 +6,13 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   game,
   getRandom,
-  ModCallbackCustom,
   newRNG,
   setSeed,
   spawnPickup,
-  VectorZero,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

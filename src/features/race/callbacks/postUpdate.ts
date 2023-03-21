@@ -5,8 +5,8 @@ import {
   spawnTrophy,
 } from "../../../classes/features/mandatory/misc/Trophy";
 import { RaceGoal } from "../../../enums/RaceGoal";
-import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
+import { RacerStatus } from "../../../enums/RacerStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 

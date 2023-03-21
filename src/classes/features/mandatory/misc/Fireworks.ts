@@ -7,10 +7,10 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   doesEntityExist,
   game,
   getPlayers,
-  ModCallbackCustom,
   newRNG,
   repeat,
   setSeed,

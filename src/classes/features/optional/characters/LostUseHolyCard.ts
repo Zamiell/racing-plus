@@ -7,9 +7,9 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   getEnumValues,
   getPlayersOfType,
-  ModCallbackCustom,
   sfxManager,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

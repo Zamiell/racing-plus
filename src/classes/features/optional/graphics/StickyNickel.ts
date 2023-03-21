@@ -6,11 +6,11 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   getLastFrameOfAnimation,
   isCoin,
-  ModCallbackCustom,
   spawnEffect,
-  VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { Config } from "../../../Config";

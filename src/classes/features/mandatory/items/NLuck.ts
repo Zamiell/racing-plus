@@ -6,11 +6,11 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  PlayerIndex,
   isEden,
   mapGetPlayer,
   mapSetPlayer,
-  ModCallbackCustom,
-  PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

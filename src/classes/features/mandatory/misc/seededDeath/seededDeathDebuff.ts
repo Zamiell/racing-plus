@@ -13,6 +13,7 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
+  PlayerHealth,
   emptyArray,
   game,
   getCollectibles,
@@ -24,7 +25,6 @@ import {
   isCharacter,
   isJacobOrEsau,
   newPlayerHealth,
-  PlayerHealth,
   removeAllFamiliars,
   removeAllMatchingEntities,
   removeDeadEyeMultiplier,

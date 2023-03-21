@@ -5,10 +5,10 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  getPlayersOfType,
   ModCallbackCustom,
-  spawnTrinket,
   VectorZero,
+  getPlayersOfType,
+  spawnTrinket,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

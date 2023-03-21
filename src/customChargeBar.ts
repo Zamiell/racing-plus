@@ -5,12 +5,12 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
+  VectorZero,
   doesEntityExist,
   game,
   hasCollectible,
   isCharacter,
   isReflectionRender,
-  VectorZero,
 } from "isaacscript-common";
 import { isMaxBloodyLustCharges } from "./classes/features/optional/quality/bloodyLustChargeBar/v";
 import { CustomChargeBarType } from "./enums/CustomChargeBarType";

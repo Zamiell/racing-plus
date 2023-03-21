@@ -12,12 +12,12 @@ import {
   Callback,
   CallbackCustom,
   ColorDefault,
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
+  ModCallbackCustom,
   game,
   getEffects,
-  GRID_INDEX_CENTER_OF_1X1_ROOM,
   isRaglingDeathPatch,
   log,
-  ModCallbackCustom,
   removeEntities,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";

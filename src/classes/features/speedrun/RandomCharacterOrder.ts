@@ -8,24 +8,24 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  ReadonlySet,
   copyArray,
   emptyArray,
   getRandomArrayElementAndRemove,
   inRoomType,
   isRoomInsideGrid,
-  ModCallbackCustom,
   onEffectiveStage,
-  ReadonlySet,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { g } from "../../../globals";
 import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   restartOnNextFrame,
   setRestartCharacter,
 } from "../mandatory/misc/RestartOnNextFrame";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   speedrunGetCharacterNum,
   speedrunSetFastReset,

@@ -3,7 +3,7 @@ import {
   PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
-import { CallbackCustom, game, ModCallbackCustom } from "isaacscript-common";
+import { CallbackCustom, ModCallbackCustom, game } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import {

@@ -9,11 +9,11 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   game,
   getAllPlayers,
   isSelfDamage,
-  ModCallbackCustom,
-  VectorZero,
 } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { mod } from "../../../../mod";

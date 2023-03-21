@@ -8,12 +8,12 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
+  PlayerIndex,
   getCollectibleMaxCharges,
   getPlayerFromIndex,
   getPlayerIndex,
   getTotalCharge,
   hasFlag,
-  PlayerIndex,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";

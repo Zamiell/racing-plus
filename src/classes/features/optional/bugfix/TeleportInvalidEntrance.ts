@@ -6,9 +6,11 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
+  CallbackCustom,
+  ModCallbackCustom,
+  ReadonlySet,
   anyPlayerCloserThan,
   asNumber,
-  CallbackCustom,
   game,
   getAllPlayers,
   getDoorEnterPosition,
@@ -18,9 +20,7 @@ import {
   inStartingRoom,
   isRoomInsideGrid,
   log,
-  ModCallbackCustom,
   onStage,
-  ReadonlySet,
 } from "isaacscript-common";
 import { moveEsauNextToJacob } from "../../../../utils";
 import { Config } from "../../../Config";

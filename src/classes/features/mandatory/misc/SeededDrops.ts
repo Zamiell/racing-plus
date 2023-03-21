@@ -7,15 +7,15 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  anyPlayerHasCollectible,
   findFreePosition,
   game,
   getTotalPlayerCollectibles,
   inRoomType,
   log,
-  ModCallbackCustom,
   newRNG,
   onSetSeed,
   removeCollectibleFromPools,

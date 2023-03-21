@@ -10,8 +10,8 @@ import {
 } from "../../../classes/features/mandatory/misc/RestartOnNextFrame";
 import { RaceDifficulty } from "../../../enums/RaceDifficulty";
 import { RaceFormat } from "../../../enums/RaceFormat";
-import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
+import { RacerStatus } from "../../../enums/RacerStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as consistentDevilAngelRooms from "../consistentDevilAngelRooms";

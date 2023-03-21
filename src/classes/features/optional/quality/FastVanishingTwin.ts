@@ -10,6 +10,8 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  VectorOne,
   checkFamiliarFromCollectibles,
   game,
   getBosses,
@@ -17,10 +19,8 @@ import {
   getFamiliars,
   inRoomType,
   isStoryBoss,
-  ModCallbackCustom,
   spawnEffect,
   spawnNPC,
-  VectorOne,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";

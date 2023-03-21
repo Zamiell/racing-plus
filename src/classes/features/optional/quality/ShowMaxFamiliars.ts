@@ -1,10 +1,10 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
-  countEntities,
-  game,
   MAX_NUM_FAMILIARS,
   VectorZero,
+  countEntities,
+  game,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { newSprite } from "../../../../sprite";

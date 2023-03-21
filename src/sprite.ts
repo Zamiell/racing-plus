@@ -1,13 +1,13 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
+  FIRST_COLLECTIBLE_TYPE,
+  LAST_VANILLA_COLLECTIBLE_TYPE,
   asCollectibleType,
   asNumber,
-  FIRST_COLLECTIBLE_TYPE,
   getCollectibleGfxFilename,
   getLastElement,
   isGoldenTrinketType,
   isModdedCollectibleType,
-  LAST_VANILLA_COLLECTIBLE_TYPE,
 } from "isaacscript-common";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";

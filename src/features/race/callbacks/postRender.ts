@@ -1,6 +1,6 @@
 import { log } from "isaacscript-common";
-import { RacerStatus } from "../../../enums/RacerStatus";
 import { RaceStatus } from "../../../enums/RaceStatus";
+import { RacerStatus } from "../../../enums/RacerStatus";
 import { g } from "../../../globals";
 import { config } from "../../../modConfigMenu";
 import * as placeLeft from "../placeLeft";

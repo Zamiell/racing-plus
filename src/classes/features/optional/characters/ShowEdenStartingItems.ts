@@ -7,12 +7,12 @@ import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/Ca
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  PriorityCallbackCustom,
   game,
   inStartingRoom,
   isEden,
-  ModCallbackCustom,
   onFirstFloor,
-  PriorityCallbackCustom,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { newGlowingCollectibleSprite } from "../../../../sprite";

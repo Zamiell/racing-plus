@@ -6,11 +6,11 @@ import {
   log,
   onFirstFloor,
 } from "isaacscript-common";
+import { RaceData, RaceDataType } from "../../classes/RaceData";
 import {
   restartOnNextFrame,
   setRestartSeed,
 } from "../../classes/features/mandatory/misc/RestartOnNextFrame";
-import { RaceData, RaceDataType } from "../../classes/RaceData";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";

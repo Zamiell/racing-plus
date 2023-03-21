@@ -1,6 +1,6 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { jsonDecode, log } from "isaacscript-common";
-import { cloneRaceData, RaceData } from "../../classes/RaceData";
+import { RaceData, cloneRaceData } from "../../classes/RaceData";
 import { g } from "../../globals";
 import { ChatMessage } from "../../interfaces/ChatMessage";
 import { SocketCommandIn } from "../../types/SocketCommands";

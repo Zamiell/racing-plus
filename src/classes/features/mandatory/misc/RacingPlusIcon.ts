@@ -7,12 +7,12 @@ import {
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  PriorityCallback,
   game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
-  ModCallbackCustom,
-  PriorityCallback,
   setUnseeded,
 } from "isaacscript-common";
 import {

@@ -14,8 +14,8 @@ import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  spawnEffect,
   VectorZero,
+  spawnEffect,
 } from "isaacscript-common";
 import { TargetSubTypeCustom } from "../../../../enums/TargetSubTypeCustom";
 import { Config } from "../../../Config";

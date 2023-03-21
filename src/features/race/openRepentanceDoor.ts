@@ -8,8 +8,8 @@ import {
   isRoomInsideGrid,
 } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 
 // ModCallback.PRE_SPAWN_CLEAR_AWARD (70)

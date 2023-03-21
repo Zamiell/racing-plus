@@ -10,6 +10,8 @@ import {
   Callback,
   CallbackCustom,
   DefaultMap,
+  ModCallbackCustom,
+  PlayerIndex,
   defaultMapGetPlayer,
   findFreePosition,
   game,
@@ -20,8 +22,6 @@ import {
   isJacobOrEsau,
   isTaintedLazarus,
   mapSetPlayer,
-  ModCallbackCustom,
-  PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";

@@ -23,8 +23,8 @@ import { BigChestReplacementAction } from "../../../../../enums/BigChestReplacem
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import {
@@ -34,8 +34,8 @@ import {
 } from "../../../../../speedrun/utilsSpeedrun";
 import { spawnTrophy } from "../../../mandatory/misc/Trophy";
 import { spawnVictoryLapButton } from "../../../race/EndOfRaceButtons";
-import { isOnFinalCharacter } from "../../../speedrun/characterProgress/v";
 import { season3GetBigChestReplacementAction } from "../../../speedrun/Season3";
+import { isOnFinalCharacter } from "../../../speedrun/characterProgress/v";
 import * as fastTravel from "./fastTravelEntity";
 
 enum SpeedrunDirection {

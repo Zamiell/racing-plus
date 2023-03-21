@@ -10,10 +10,13 @@ import {
 } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
-  anyPlayerHasCollectible,
-  anyPlayerIs,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  PickingUpItem,
+  PriorityCallback,
+  anyPlayerHasCollectible,
+  anyPlayerIs,
   collectibleHasTag,
   game,
   getClosestEntityTo,
@@ -24,9 +27,6 @@ import {
   isBethany,
   isFirstPlayer,
   isKeeper,
-  ModCallbackCustom,
-  PickingUpItem,
-  PriorityCallback,
   repeat,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";

@@ -1,9 +1,9 @@
 import { EntityType, RoomType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  getNPCs,
   ModCallbackCustom,
   ReadonlySet,
+  getNPCs,
   setRoomCleared,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

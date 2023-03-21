@@ -6,6 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   doesAnyEntityExist,
   game,
   getAllPlayers,
@@ -13,7 +14,6 @@ import {
   getFamiliars,
   isCharacter,
   log,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { moveEsauNextToJacob } from "../../../../utils";

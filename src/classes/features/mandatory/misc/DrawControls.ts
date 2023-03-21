@@ -2,17 +2,17 @@ import { EffectVariant, StageType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
   ColorDefault,
+  ModCallbackCustom,
   game,
   inStartingRoom,
-  ModCallbackCustom,
   onFirstFloor,
   onStageType,
   spawnEffect,
 } from "isaacscript-common";
 import { CreepRedSubTypeCustom } from "../../../../enums/CreepRedSubTypeCustom";
 import { RaceFormat } from "../../../../enums/RaceFormat";
-import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../enums/RacerStatus";
 import { g } from "../../../../globals";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

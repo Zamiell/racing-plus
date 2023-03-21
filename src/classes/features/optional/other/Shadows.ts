@@ -6,13 +6,13 @@ import {
 import {
   Callback,
   DefaultMap,
+  RENDER_FRAMES_PER_SECOND,
+  VectorZero,
   fonts,
   game,
   getRoomListIndex,
   isActionPressedOnAnyInput,
-  RENDER_FRAMES_PER_SECOND,
   setSpriteOpacity,
-  VectorZero,
 } from "isaacscript-common";
 import * as socket from "../../../../features/race/socket";
 import { inSeededRace } from "../../../../features/race/v";
@@ -28,12 +28,12 @@ import {
   BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
   DEFAULT_CHARACTER_PNG,
-  ShadowData,
-  ShadowMessage,
   SHADOW_DATA_FORMAT,
   SHADOW_FADE_AMOUNT,
   SHADOW_FIELDS,
   SHADOW_INTERVAL_RENDER_FRAMES,
+  ShadowData,
+  ShadowMessage,
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 

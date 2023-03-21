@@ -10,16 +10,16 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   game,
   getClosestPlayer,
   getRoomListIndex,
   inMegaSatanRoom,
-  ModCallbackCustom,
   onStage,
   openAllDoors,
   spawnGridEntityWithVariant,
   spawnNPC,
-  VectorZero,
 } from "isaacscript-common";
 import { v } from "../../../features/race/v";
 import { g } from "../../../globals";

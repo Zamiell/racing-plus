@@ -6,8 +6,8 @@ import {
 import {
   Callback,
   FIRST_CHARACTER,
-  game,
   LAST_VANILLA_CHARACTER,
+  game,
   log,
   restart,
 } from "isaacscript-common";

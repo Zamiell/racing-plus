@@ -93,8 +93,8 @@ export { VulnerableGhosts } from "./classes/features/optional/enemies/Vulnerable
 export { ConsistentTrollBombs } from "./classes/features/optional/gameplay/ConsistentTrollBombs";
 export { ExtraStartingItems } from "./classes/features/optional/gameplay/ExtraStartingItems";
 export { PillsCancelAnimations } from "./classes/features/optional/gameplay/PillsCancelAnimations";
-export { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 export { HUDOffsetFix } from "./classes/features/optional/graphics/HUDOffsetFix";
+export { HolidayHats } from "./classes/features/optional/graphics/HolidayHats";
 export { PaschalCandle } from "./classes/features/optional/graphics/PaschalCandle";
 export { ScaredHeart } from "./classes/features/optional/graphics/ScaredHeart";
 export { StickyNickel } from "./classes/features/optional/graphics/StickyNickel";

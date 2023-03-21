@@ -6,8 +6,8 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
-  checkFamiliarFromCollectibles,
   VectorZero,
+  checkFamiliarFromCollectibles,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { FamiliarVariantCustom } from "../../../../enums/FamiliarVariantCustom";

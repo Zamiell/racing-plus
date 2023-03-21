@@ -1,7 +1,7 @@
 import { ModCallback, PickupVariant } from "isaac-typescript-definitions";
 import {
-  Callback,
   COLLECTIBLE_INITIAL_WAIT,
+  Callback,
   DefaultMap,
   game,
 } from "isaacscript-common";

@@ -6,8 +6,8 @@ import {
 import {
   CallbackCustom,
   ColorDefault,
-  getNPCs,
   ModCallbackCustom,
+  getNPCs,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

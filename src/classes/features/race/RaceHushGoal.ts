@@ -9,10 +9,10 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   inRoomType,
   isRoomInsideGrid,
-  ModCallbackCustom,
   onStage,
   spawnGridEntity,
 } from "isaacscript-common";

@@ -9,10 +9,10 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getNPCs,
   inBossRoomOf,
-  ModCallbackCustom,
   newRNG,
   spawnWithSeed,
 } from "isaacscript-common";

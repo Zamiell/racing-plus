@@ -1,5 +1,5 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
-import { Callback, getNPCs, ReadonlySet } from "isaacscript-common";
+import { Callback, ReadonlySet, getNPCs } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

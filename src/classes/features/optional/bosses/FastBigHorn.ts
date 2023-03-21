@@ -3,7 +3,7 @@ import {
   EntityType,
   ModCallback,
 } from "isaac-typescript-definitions";
-import { asNPCState, Callback } from "isaacscript-common";
+import { Callback, asNPCState } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

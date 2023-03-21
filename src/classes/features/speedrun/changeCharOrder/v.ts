@@ -1,8 +1,8 @@
 import { Challenge, PlayerType } from "isaac-typescript-definitions";
 import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
 import {
-  ChallengeCustomAbbreviation,
   CHALLENGE_DEFINITIONS,
+  ChallengeCustomAbbreviation,
 } from "../../../../speedrun/constants";
 import { SeasonDescription } from "../../../../types/SeasonDescription";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";

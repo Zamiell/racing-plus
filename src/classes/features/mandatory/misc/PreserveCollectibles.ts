@@ -4,7 +4,7 @@ import {
   ModCallback,
   PickupVariant,
 } from "isaac-typescript-definitions";
-import { Callback, doesEntityExist, ReadonlySet } from "isaacscript-common";
+import { Callback, ReadonlySet, doesEntityExist } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { inRoomWithSeason4StoredItems } from "../../speedrun/Season4";

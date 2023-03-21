@@ -1,10 +1,10 @@
 import { Keyboard, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
+  RENDER_FRAMES_PER_SECOND,
   game,
   getScreenCenterPos,
   isKeyboardPressed,
-  RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 import { VERSION } from "../../../../constants";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

@@ -11,11 +11,11 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getRandomArrayElement,
   getRandomInt,
   getRooms,
-  ModCallbackCustom,
   newRNG,
   onStage,
   repeat,

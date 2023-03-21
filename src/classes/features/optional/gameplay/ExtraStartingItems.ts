@@ -8,10 +8,10 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   doesEntityExist,
   game,
   getCollectibles,
-  ModCallbackCustom,
   onFirstFloor,
   removeCollectibleFromPools,
   setCollectibleSubType,

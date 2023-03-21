@@ -4,7 +4,7 @@ import {
   NPCState,
   PinVariant,
 } from "isaac-typescript-definitions";
-import { asNumber, Callback, getNPCs } from "isaacscript-common";
+import { Callback, asNumber, getNPCs } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

@@ -6,15 +6,15 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerIs,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  anyPlayerIs,
   copySet,
   game,
   getRandomArrayElementAndRemove,
   hasFlyingTransformation,
   isFlyingCharacter,
-  ModCallbackCustom,
   removeCollectibleCostume,
   smeltTrinket,
 } from "isaacscript-common";
@@ -24,8 +24,8 @@ import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
-import { getCharacterOrder } from "./changeCharOrder/v";
 import { getRandomlySelectedStartingCharacter } from "./RandomCharacterOrder";
+import { getCharacterOrder } from "./changeCharOrder/v";
 import {
   NUM_REVELATION_SOUL_HEARTS,
   SEASON_2_FORGOTTEN_EXCEPTIONS,

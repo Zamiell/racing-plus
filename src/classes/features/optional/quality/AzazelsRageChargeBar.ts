@@ -1,9 +1,9 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
 import {
-  drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
   NUM_ROOMS_TO_CHARGE_AZAZELS_RAGE,
+  drawCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";

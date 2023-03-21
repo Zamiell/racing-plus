@@ -6,12 +6,12 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   ModCallbackCustom,
+  VectorZero,
+  game,
   onStage,
   spawnNPC,
   spawnPickup,
-  VectorZero,
 } from "isaacscript-common";
 import { consoleCommand } from "../../../../utils";
 import { Config } from "../../../Config";

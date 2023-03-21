@@ -9,6 +9,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  ReadonlyMap,
   anyPlayerHasCollectible,
   game,
   getCollectibleInitCharge,
@@ -22,7 +23,6 @@ import {
   log,
   logError,
   onStage,
-  ReadonlyMap,
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./classes/features/optional/gameplay/extraStartingItems/constants";
 import { automaticItemInsertionCheckIfCollectibleDropsPickups } from "./classes/features/optional/quality/AutomaticItemInsertion";

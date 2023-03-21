@@ -6,9 +6,13 @@ import {
   PillEffect,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
   Callback,
   CallbackCustom,
+  KColorDefault,
+  ModCallbackCustom,
+  NUM_PILLS_IN_POOL,
+  ReadonlyMap,
+  anyPlayerHasCollectible,
   fonts,
   game,
   getFalsePHDPillEffect,
@@ -18,11 +22,7 @@ import {
   getPillEffectName,
   getScreenBottomY,
   isActionPressedOnAnyInput,
-  KColorDefault,
   logError,
-  ModCallbackCustom,
-  NUM_PILLS_IN_POOL,
-  ReadonlyMap,
 } from "isaacscript-common";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { newSprite } from "../../../../sprite";

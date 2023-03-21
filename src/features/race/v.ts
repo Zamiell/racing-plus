@@ -1,8 +1,8 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceGoal } from "../../enums/RaceGoal";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";

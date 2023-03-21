@@ -1,11 +1,11 @@
 import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   game,
   hasCollectible,
   hasDoorType,
   inRoomType,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

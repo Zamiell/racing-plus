@@ -4,8 +4,8 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import {
-  drawCustomChargeBar,
   NUM_FRAMES_IN_CHARGING_ANIMATION,
+  drawCustomChargeBar,
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";

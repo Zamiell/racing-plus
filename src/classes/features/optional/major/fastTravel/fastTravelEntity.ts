@@ -21,8 +21,8 @@ import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityStat
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";

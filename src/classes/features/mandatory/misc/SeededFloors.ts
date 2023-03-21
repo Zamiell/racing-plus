@@ -8,6 +8,8 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  PlayerHealth,
   characterCanHaveRedHearts,
   characterGetsBlackHeartFromEternalHeart,
   game,
@@ -15,9 +17,7 @@ import {
   getRandom,
   isCharacter,
   log,
-  ModCallbackCustom,
   newRNG,
-  PlayerHealth,
   removeAllPlayerHealth,
   repeat,
   setPlayerHealth,

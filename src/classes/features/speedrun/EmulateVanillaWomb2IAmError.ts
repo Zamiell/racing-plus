@@ -8,11 +8,11 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getEffects,
   getRandom,
   inRoomType,
-  ModCallbackCustom,
   onStage,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";

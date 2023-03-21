@@ -9,12 +9,14 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
-  anyPlayerIs,
-  asNumber,
   Callback,
   CallbackCustom,
   DefaultMap,
+  ModCallbackCustom,
+  VectorZero,
+  anyPlayerHasCollectible,
+  anyPlayerIs,
+  asNumber,
   game,
   getHUDOffsetVector,
   inRoomType,
@@ -22,10 +24,8 @@ import {
   isCharacter,
   isChildPlayer,
   isSelfDamage,
-  ModCallbackCustom,
   newCollectibleSprite,
   onDarkRoom,
-  VectorZero,
   wouldDamageTaintedMagdaleneNonTemporaryHeartContainers,
 } from "isaacscript-common";
 import { PickupPriceCustom } from "../../../../enums/PickupPriceCustom";

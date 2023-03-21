@@ -4,7 +4,7 @@ import {
   ModCallback,
   NPCState,
 } from "isaac-typescript-definitions";
-import { asNumber, Callback, ReadonlySet } from "isaacscript-common";
+import { Callback, ReadonlySet, asNumber } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

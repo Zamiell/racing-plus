@@ -5,7 +5,7 @@ import {
   FamiliarVariant,
   ModCallback,
 } from "isaac-typescript-definitions";
-import { asNumber, Callback, copyColor } from "isaacscript-common";
+import { Callback, asNumber, copyColor } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

@@ -8,10 +8,10 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
+  GRID_INDEX_CENTER_OF_1X1_ROOM,
   doesEntityExist,
   game,
   getGridEntities,
-  GRID_INDEX_CENTER_OF_1X1_ROOM,
   inRoomType,
   isRoomInsideGrid,
   log,
@@ -24,8 +24,8 @@ import {
 } from "isaacscript-common";
 import { ItLivesSituation } from "../../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
 import {
   inSpeedrun,

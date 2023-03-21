@@ -4,8 +4,8 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import {
-  addFlag,
   Callback,
+  addFlag,
   getActiveItemSlots,
   getTotalCharge,
   hasArmor,

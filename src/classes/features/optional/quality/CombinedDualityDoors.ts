@@ -6,16 +6,16 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
-  asNumber,
   Callback,
   CallbackCustom,
   DOOR_HITBOX_RADIUS,
+  ModCallbackCustom,
+  anyPlayerHasCollectible,
+  asNumber,
   game,
   getAngelRoomDoor,
   getDevilRoomDoor,
   inRoomType,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";

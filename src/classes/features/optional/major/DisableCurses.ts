@@ -1,5 +1,5 @@
 import { LevelCurse, ModCallback } from "isaac-typescript-definitions";
-import { bitFlags, Callback } from "isaacscript-common";
+import { Callback, bitFlags } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

@@ -6,9 +6,9 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
+  ReadonlySet,
   game,
   isGlitchedCollectible,
-  ReadonlySet,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

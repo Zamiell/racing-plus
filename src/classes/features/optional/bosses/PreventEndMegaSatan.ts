@@ -4,8 +4,8 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
-  addRoomClearCharges,
   Callback,
+  addRoomClearCharges,
   game,
   spawnPickup,
 } from "isaacscript-common";

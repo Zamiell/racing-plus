@@ -1,11 +1,11 @@
 import { ActiveSlot, SlotVariant } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getTotalCharge,
   isActiveSlotDoubleCharged,
   isActiveSlotEmpty,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

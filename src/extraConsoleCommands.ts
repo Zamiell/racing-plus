@@ -5,31 +5,31 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  CHARACTER_NAME_TO_TYPE_MAP,
+  FIRST_CHARACTER,
+  LAST_VANILLA_CHARACTER,
   asCollectibleType,
   asNumber,
-  CHARACTER_NAME_TO_TYPE_MAP,
   copyArray,
-  FIRST_CHARACTER,
   game,
   getCharacterName,
   getEnumValues,
   getMapPartialMatch,
-  LAST_VANILLA_CHARACTER,
   logAndPrint,
   onSetSeed,
   restart,
 } from "isaacscript-common";
+import { RaceData, logRaceData } from "./classes/RaceData";
 import { setUnseededWithRacingPlusLogic } from "./classes/features/mandatory/misc/RacingPlusIcon";
 import { setDevilAngelDebugRoom } from "./classes/features/optional/major/BetterDevilAngelRooms";
 import { speedrunSetCharacterNum } from "./classes/features/speedrun/characterProgress/v";
-import { logRaceData, RaceData } from "./classes/RaceData";
 import { VERSION } from "./constants";
 import { debugFunction } from "./debugCode";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { RaceFormat } from "./enums/RaceFormat";
 import { RaceGoal } from "./enums/RaceGoal";
-import { RacerStatus } from "./enums/RacerStatus";
 import { RaceStatus } from "./enums/RaceStatus";
+import { RacerStatus } from "./enums/RacerStatus";
 import * as socketClient from "./features/race/socketClient";
 import { g } from "./globals";
 import { mod } from "./mod";

@@ -10,8 +10,8 @@ import {
   spawnWithSeed,
 } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 
 const SCOLEX_TYPE = EntityType.PIN;

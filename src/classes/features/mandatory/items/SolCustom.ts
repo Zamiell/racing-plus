@@ -9,11 +9,13 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
+  Callback,
+  CallbackCustom,
+  ModCallbackCustom,
+  PlayerIndex,
   addCollectibleCostume,
   addRoomDisplayFlag,
   anyPlayerHasCollectible,
-  Callback,
-  CallbackCustom,
   game,
   getPlayerFromIndex,
   getPlayerIndex,
@@ -21,8 +23,6 @@ import {
   getRoomGridIndex,
   getRoomGridIndexesForType,
   inRoomType,
-  ModCallbackCustom,
-  PlayerIndex,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { Config } from "../../../Config";

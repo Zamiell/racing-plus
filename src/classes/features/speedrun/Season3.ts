@@ -18,12 +18,14 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  arrayRemoveInPlace,
   Callback,
   CallbackCustom,
+  DOGMA_ROOM_GRID_INDEX,
+  ModCallbackCustom,
+  VectorZero,
+  arrayRemoveInPlace,
   changeRoom,
   copyArray,
-  DOGMA_ROOM_GRID_INDEX,
   game,
   getBlueWombDoor,
   getRandomArrayElement,
@@ -32,7 +34,6 @@ import {
   inRoomType,
   inStartingRoom,
   isRoomInsideGrid,
-  ModCallbackCustom,
   newRNG,
   onCathedral,
   onChest,
@@ -52,7 +53,6 @@ import {
   spawnNPCWithSeed,
   spawnPickup,
   spawnTrapdoorWithVariant,
-  VectorZero,
 } from "isaacscript-common";
 import { BigChestReplacementAction } from "../../../enums/BigChestReplacementAction";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";

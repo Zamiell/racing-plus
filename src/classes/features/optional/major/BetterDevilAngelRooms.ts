@@ -14,6 +14,7 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   emptyArray,
   emptyRoom,
   game,
@@ -27,7 +28,6 @@ import {
   inGenesisRoom,
   inRoomType,
   itemConfig,
-  ModCallbackCustom,
   onStage,
   repeat,
   setAllRNGToStartSeed,

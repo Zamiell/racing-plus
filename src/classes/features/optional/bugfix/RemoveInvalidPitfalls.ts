@@ -1,8 +1,8 @@
 import { EntityType, PitfallVariant } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   ModCallbackCustom,
+  game,
   removeAllMatchingEntities,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

@@ -13,11 +13,14 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
-  addRoomClearCharges,
   AmbushType,
-  anyPlayerCloserThan,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  ReadonlySet,
+  VectorZero,
+  addRoomClearCharges,
+  anyPlayerCloserThan,
   copySet,
   findFreePosition,
   game,
@@ -27,22 +30,19 @@ import {
   gridCoordinatesToWorldPosition,
   inRoomType,
   logError,
-  ModCallbackCustom,
   musicManager,
   newRNG,
   openAllDoors,
   parseEntityTypeVariantString,
-  ReadonlySet,
   repeat,
   sfxManager,
   spawnNPC,
   spawnPickup,
-  VectorZero,
 } from "isaacscript-common";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../enums/RacerStatus";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";

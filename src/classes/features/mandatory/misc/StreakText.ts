@@ -11,10 +11,12 @@ import {
   UseFlag,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerIs,
-  asCollectibleType,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  PickingUpItem,
+  anyPlayerIs,
+  asCollectibleType,
   fonts,
   game,
   getCardName,
@@ -28,10 +30,8 @@ import {
   getTrinketName,
   hasFlag,
   isActionPressedOnAnyInput,
-  ModCallbackCustom,
   newRNG,
   onFirstFloor,
-  PickingUpItem,
   setSeed,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";

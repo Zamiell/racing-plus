@@ -22,8 +22,8 @@ import {
 } from "isaacscript-common";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";
 import {

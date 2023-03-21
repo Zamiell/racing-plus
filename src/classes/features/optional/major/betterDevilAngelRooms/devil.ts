@@ -5,6 +5,7 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  JSONRoom,
   anyPlayerHasTrinket,
   emptyRoom,
   game,
@@ -13,7 +14,6 @@ import {
   getRandom,
   getRandomJSONRoom,
   inRoomType,
-  JSONRoom,
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";

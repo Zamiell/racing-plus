@@ -1,9 +1,9 @@
 import { CardType, RoomType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   getDoors,
   gridCoordinatesToWorldPosition,
-  ModCallbackCustom,
   spawnCard,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

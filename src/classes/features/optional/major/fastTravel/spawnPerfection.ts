@@ -4,10 +4,10 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  ReadonlySet,
   game,
   getAliveBosses,
   inRoomType,
-  ReadonlySet,
   spawnTrinket,
 } from "isaacscript-common";
 import { v } from "./v";

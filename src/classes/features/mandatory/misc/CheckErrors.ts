@@ -5,22 +5,22 @@ import {
 } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
+  Callback,
+  LAST_VANILLA_COLLECTIBLE_TYPE,
+  ModCallbackCustom,
+  PriorityCallbackCustom,
+  TIME_GAME_OPENED,
   asCollectibleType,
   asNumber,
-  Callback,
   getCollectibleName,
   getEnumLength,
   getRoomVisitedCount,
   inStartingRoom,
   isCharacter,
   isRepentance,
-  LAST_VANILLA_COLLECTIBLE_TYPE,
   log,
-  ModCallbackCustom,
   onFirstFloor,
-  PriorityCallbackCustom,
   removeAllDoors,
-  TIME_GAME_OPENED,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { PlayerTypeCustom } from "../../../../enums/PlayerTypeCustom";
@@ -28,16 +28,16 @@ import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
-import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
 import {
-  getBuildBansTime,
-  isSpeedrunWithRandomCharacterOrder,
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
   RANDOM_CHARACTER_LOCK_SECONDS,
+  getBuildBansTime,
+  isSpeedrunWithRandomCharacterOrder,
 } from "../../speedrun/RandomCharacterOrder";
+import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
 import { SEASON_2_NUM_BANS } from "../../speedrun/season2/constants";
-import { hasErrors, v } from "./checkErrors/v";
 import { getTimeConsoleUsed } from "./TimeConsoleUsed";
+import { hasErrors, v } from "./checkErrors/v";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
 const NUM_BABIES_MOD_ITEMS = 17;

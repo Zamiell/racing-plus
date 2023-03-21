@@ -1,9 +1,9 @@
 import { CollectibleType, PlayerForm } from "isaac-typescript-definitions";
 import {
   GAME_FRAMES_PER_SECOND,
+  RENDER_FRAMES_PER_SECOND,
   ReadonlyMap,
   ReadonlySet,
-  RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
 

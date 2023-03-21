@@ -6,8 +6,8 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  inRoomType,
   ModCallbackCustom,
+  inRoomType,
   onRepentanceStage,
   onStage,
   onStageOrHigher,

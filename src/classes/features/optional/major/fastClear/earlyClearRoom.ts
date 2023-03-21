@@ -20,8 +20,8 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import { season3PostFastClear } from "../../../speedrun/season3/fastClear";
 import { spawnRepentanceDoorPostFastClear } from "../../../speedrun/SpawnRepentanceDoor";
+import { season3PostFastClear } from "../../../speedrun/season3/fastClear";
 import {
   CREEP_VARIANTS_TO_KILL,
   EARLY_CLEAR_ROOM_TYPE_BLACKLIST,

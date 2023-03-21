@@ -4,9 +4,9 @@ import {
   EntityType,
 } from "isaac-typescript-definitions";
 import {
-  asNPCState,
   CallbackCustom,
   ModCallbackCustom,
+  asNPCState,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

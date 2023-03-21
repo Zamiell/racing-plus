@@ -1,10 +1,10 @@
 import { ButtonAction, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
-  game,
   GAME_FRAMES_PER_SECOND,
-  isActionPressedOnAnyInput,
   VectorZero,
+  game,
+  isActionPressedOnAnyInput,
 } from "isaacscript-common";
 import { TimerType } from "../../../../enums/TimerType";
 import { config } from "../../../../modConfigMenu";

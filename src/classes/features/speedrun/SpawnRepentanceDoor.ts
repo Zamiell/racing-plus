@@ -7,6 +7,7 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getAngelRoomDoor,
   getDevilRoomDoor,
@@ -15,7 +16,6 @@ import {
   hasUnusedDoorSlot,
   inRoomType,
   isRoomInsideGrid,
-  ModCallbackCustom,
   onRepentanceStage,
   removeDoor,
 } from "isaacscript-common";

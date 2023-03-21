@@ -9,13 +9,13 @@ import {
   StageType,
 } from "isaac-typescript-definitions";
 import {
-  asNumber,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  asNumber,
   doesEntityExist,
   game,
   getRoomSubType,
-  ModCallbackCustom,
   onStage,
   onStageType,
   removeAllDoors,

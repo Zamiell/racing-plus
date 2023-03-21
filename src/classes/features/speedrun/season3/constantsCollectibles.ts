@@ -4,10 +4,10 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  isActiveCollectible,
-  isPassiveCollectible,
   ReadonlyMap,
   ReadonlySet,
+  isActiveCollectible,
+  isPassiveCollectible,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removals/RemoveGloballyBannedItems";

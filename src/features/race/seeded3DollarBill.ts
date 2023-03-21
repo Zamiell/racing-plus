@@ -2,8 +2,8 @@ import { CollectibleType } from "isaac-typescript-definitions";
 import { game, getPlayers, getRandomArrayIndex } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../enums/CollectibleTypeCustom";
 import { RaceFormat } from "../../enums/RaceFormat";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 import { v } from "./v";
 

@@ -7,9 +7,9 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getPickups,
-  ModCallbackCustom,
   newRNG,
   setSeed,
   spawnPickup,

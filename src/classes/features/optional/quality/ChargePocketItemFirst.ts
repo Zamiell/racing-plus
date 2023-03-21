@@ -14,10 +14,12 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  asNumber,
   Callback,
   CallbackCustom,
   DefaultMap,
+  ModCallbackCustom,
+  PlayerIndex,
+  asNumber,
   defaultMapGetPlayer,
   game,
   getCollectibleMaxCharges,
@@ -25,9 +27,7 @@ import {
   inRoomType,
   isActiveSlotEmpty,
   logError,
-  ModCallbackCustom,
   playChargeSoundEffect,
-  PlayerIndex,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

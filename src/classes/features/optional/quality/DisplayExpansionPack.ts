@@ -4,7 +4,7 @@ import {
   TrinketType,
   UseFlag,
 } from "isaac-typescript-definitions";
-import { addFlag, Callback, getCollectibleName } from "isaacscript-common";
+import { Callback, addFlag, getCollectibleName } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";

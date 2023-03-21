@@ -1,11 +1,11 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
+  GAME_FRAMES_PER_SECOND,
+  KColorDefault,
   fonts,
   game,
-  GAME_FRAMES_PER_SECOND,
   getScreenBottomRightPos,
-  KColorDefault,
   round,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

@@ -9,14 +9,14 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
-  anyPlayerHasTrinket,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  anyPlayerHasCollectible,
+  anyPlayerHasTrinket,
   findFreePosition,
   game,
   getRandom,
-  ModCallbackCustom,
   newRNG,
   nextSeed,
   onEffectiveStage,

@@ -9,6 +9,8 @@ import {
   PlayerVariant,
 } from "isaac-typescript-definitions";
 import {
+  ReadonlySet,
+  VectorZero,
   changeRoom,
   game,
   getFamiliars,
@@ -19,15 +21,13 @@ import {
   log,
   onRepentanceStage,
   onStage,
-  ReadonlySet,
   spawnEffect,
-  VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../../enums/EffectVariantCustom";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
-import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
+import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
 import { mod } from "../../../../../mod";
 import { onSeason } from "../../../../../speedrun/utilsSpeedrun";

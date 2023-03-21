@@ -7,8 +7,8 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   ModCallbackCustom,
+  game,
   sfxManager,
 } from "isaacscript-common";
 import { Config } from "../../../Config";

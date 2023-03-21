@@ -6,6 +6,8 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  ReadonlySet,
   characterStartsWithActiveItem,
   copyArray,
   game,
@@ -15,8 +17,6 @@ import {
   isCharacter,
   isEden,
   log,
-  ModCallbackCustom,
-  ReadonlySet,
   removeCollectibleFromPools,
   removeTrinketFromPools,
   sfxManager,

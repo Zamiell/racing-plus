@@ -7,8 +7,8 @@ import {
 } from "isaac-typescript-definitions";
 import { game, onStage, sfxManager } from "isaacscript-common";
 import { RaceGoal } from "../../enums/RaceGoal";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 
 // ModCallback.POST_NEW_LEVEL (18)

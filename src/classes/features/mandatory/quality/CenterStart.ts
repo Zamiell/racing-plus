@@ -6,10 +6,10 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getPlayers,
   isCharacter,
-  ModCallbackCustom,
   movePlayersToCenter,
 } from "isaacscript-common";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

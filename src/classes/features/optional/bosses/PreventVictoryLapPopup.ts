@@ -8,9 +8,10 @@ import {
   SoundEffect,
 } from "isaac-typescript-definitions";
 import {
+  Callback,
+  VectorZero,
   addRoomClearCharges,
   asNumber,
-  Callback,
   game,
   getNPCs,
   inRoomType,
@@ -20,7 +21,6 @@ import {
   sfxManager,
   spawnEffect,
   spawnPickup,
-  VectorZero,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { mod } from "../../../../mod";

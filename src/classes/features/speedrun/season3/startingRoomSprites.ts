@@ -1,9 +1,9 @@
 import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
+  KColorDefault,
   fonts,
   getPlayerName,
   getScreenCenterPos,
-  KColorDefault,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import {

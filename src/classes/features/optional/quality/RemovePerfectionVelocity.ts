@@ -6,11 +6,11 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   findFreePosition,
   game,
-  ModCallbackCustom,
   onStage,
-  VectorZero,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";

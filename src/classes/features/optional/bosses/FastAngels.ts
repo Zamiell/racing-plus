@@ -8,18 +8,18 @@ import {
   TrinketType,
 } from "isaac-typescript-definitions";
 import {
+  Callback,
+  CallbackCustom,
+  ModCallbackCustom,
+  ReadonlySet,
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
   asNumber,
-  Callback,
-  CallbackCustom,
   doesEntityExist,
   findFreePosition,
   game,
   inRoomType,
-  ModCallbackCustom,
   newRNG,
-  ReadonlySet,
   setSeed,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";

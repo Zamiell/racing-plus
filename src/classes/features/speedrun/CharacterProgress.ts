@@ -8,10 +8,10 @@ import {
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getCharacterName,
   log,
-  ModCallbackCustom,
   removeCollectibleFromItemTracker,
   spawnPickup,
 } from "isaacscript-common";
@@ -19,23 +19,23 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { speedrunResetPersistentVars } from "../../../speedrun/resetVars";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
-import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   isRestartingOnNextFrame,
   restartOnNextFrame,
   setRestartCharacter,
 } from "../mandatory/misc/RestartOnNextFrame";
+import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { isSpeedrunWithRandomCharacterOrder } from "./RandomCharacterOrder";
+import {
+  speedrunResetFirstCharacterVars,
+  speedrunTimerCheckpointTouched,
+} from "./SpeedrunTimer";
 import {
   getCharacterOrder,
   hasValidCharacterOrder,
   speedrunGetFirstChosenCharacter,
 } from "./changeCharOrder/v";
 import { isOnFirstCharacter, v } from "./characterProgress/v";
-import { isSpeedrunWithRandomCharacterOrder } from "./RandomCharacterOrder";
-import {
-  speedrunResetFirstCharacterVars,
-  speedrunTimerCheckpointTouched,
-} from "./SpeedrunTimer";
 
 const DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT = 30;
 const FADEOUT_SPEED = 0.0275;

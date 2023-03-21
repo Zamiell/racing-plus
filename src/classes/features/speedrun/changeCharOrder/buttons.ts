@@ -7,6 +7,7 @@ import {
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
 import {
+  VectorZero,
   emptyArray,
   game,
   getPlayers,
@@ -16,7 +17,6 @@ import {
   removeGridEntity,
   setSpriteOpacity,
   spawnGridEntityWithVariant,
-  VectorZero,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";

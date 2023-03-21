@@ -2,10 +2,10 @@ import { CollectibleType, RoomType } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
   CallbackCustom,
-  inRoomType,
   ModCallbackCustom,
-  onFirstFloor,
   PriorityCallbackCustom,
+  inRoomType,
+  onFirstFloor,
   removeCollectibleCostume,
   removeCollectibleFromItemTracker,
 } from "isaacscript-common";

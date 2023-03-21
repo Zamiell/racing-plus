@@ -5,12 +5,12 @@ import {
   PickupVariant,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
-  asCollectibleType,
   Callback,
   CallbackCustom,
-  game,
   ModCallbackCustom,
+  anyPlayerHasCollectible,
+  asCollectibleType,
+  game,
   newRNG,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";

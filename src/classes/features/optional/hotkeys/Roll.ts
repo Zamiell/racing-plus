@@ -6,13 +6,13 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
+  VectorZero,
   capitalizeFirstLetter,
   getDirectionName,
   isActionPressedOnAnyInput,
   isCharacter,
   isJacobOrEsau,
-  ModCallbackCustom,
-  VectorZero,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";

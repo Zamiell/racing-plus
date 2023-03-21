@@ -9,10 +9,11 @@ import {
   RoomType,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
-  asNumber,
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
+  anyPlayerHasCollectible,
+  asNumber,
   game,
   getBosses,
   getCollectibles,
@@ -22,7 +23,6 @@ import {
   inStartingRoom,
   isArrayInArray,
   log,
-  ModCallbackCustom,
   movePlayersToCenter,
   setFloorDisplayFlags,
   setPlayerHealth,

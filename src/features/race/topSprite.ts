@@ -5,8 +5,8 @@
 // 4) Once we have finished a race, the final place.
 
 import { game, getScreenCenterPos } from "isaacscript-common";
-import { RacerStatus } from "../../enums/RacerStatus";
 import { RaceStatus } from "../../enums/RaceStatus";
+import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
 import { newSprite } from "../../sprite";
 

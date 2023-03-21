@@ -5,9 +5,9 @@ import {
 } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
+  ModCallbackCustom,
   game,
   isShootAction,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";

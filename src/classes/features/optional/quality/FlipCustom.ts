@@ -8,10 +8,11 @@ import {
   RenderMode,
 } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
   Callback,
   CallbackCustom,
   DefaultMap,
+  ModCallbackCustom,
+  anyPlayerHasCollectible,
   game,
   getCollectibleMaxCharges,
   getCollectibles,
@@ -19,7 +20,6 @@ import {
   inDeathCertificateArea,
   isBlindCollectible,
   isTaintedLazarus,
-  ModCallbackCustom,
   newCollectibleSprite,
   setCollectibleSubType,
   setSpriteOpacity,

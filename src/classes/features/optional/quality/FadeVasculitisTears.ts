@@ -1,8 +1,8 @@
 import { CollectibleType, TearVariant } from "isaac-typescript-definitions";
 import {
-  anyPlayerHasCollectible,
   CallbackCustom,
   ModCallbackCustom,
+  anyPlayerHasCollectible,
   setEntityOpacity,
 } from "isaacscript-common";
 import { Config } from "../../../Config";
