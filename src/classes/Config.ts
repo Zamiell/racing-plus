@@ -75,6 +75,7 @@ export class Config {
   BloodyLustChargeBar = true; // 157 (charge bar)
   LeadPencilChargeBar = true; // 444 (charge bar)
   AzazelsRageChargeBar = true; // 669 (charge bar)
+  FastForgetMeNow = true; // 127 (collectible)
   CombinedDualityDoors = true; // 498 (collectible)
   FadeHungryTears = true; // 532 (collectible)
   RemoveFortuneCookieBanners = true; // 557 (collectible)

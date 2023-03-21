@@ -1,5 +1,6 @@
 import {
   BossID,
+  Direction,
   EffectVariant,
   HeavenLightDoorSubType,
   LevelStage,
@@ -18,7 +19,10 @@ import { RaceGoal } from "../../../../../enums/RaceGoal";
 import { RaceStatus } from "../../../../../enums/RaceStatus";
 import { RacerStatus } from "../../../../../enums/RacerStatus";
 import { g } from "../../../../../globals";
-import * as fastTravel from "./fastTravelEntity";
+import {
+  checkPlayerTouchedFastTravelEntity,
+  initFastTravelEntity,
+} from "./fastTravelEntity";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
@@ -61,16 +65,8 @@ export function heavenDoorPostEffectUpdateHeavenDoor(
 
   // We can't initialize the entity in the `POST_EFFECT_INIT` callback because that fires before the
   // `POST_NEW_ROOM` callback.
-  fastTravel.initFastTravelEntity(
-    effect,
-    FAST_TRAVEL_ENTITY_TYPE,
-    shouldSpawnOpen,
-  );
-  fastTravel.checkPlayerTouchedFastTravelEntity(
-    effect,
-    FAST_TRAVEL_ENTITY_TYPE,
-    touched,
-  );
+  initFastTravelEntity(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
+  checkPlayerTouchedFastTravelEntity(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
 }
 
 function shouldRemove(effect: EntityEffect) {
@@ -133,5 +129,5 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     return;
   }
 
-  setFadingToBlack(player, entity.Position, true);
+  setFadingToBlack(player, entity.Position, Direction.UP);
 }

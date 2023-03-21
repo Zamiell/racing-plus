@@ -36,7 +36,7 @@ import { spawnTrophy } from "../../../mandatory/misc/Trophy";
 import { spawnVictoryLapButton } from "../../../race/EndOfRaceButtons";
 import { season3GetBigChestReplacementAction } from "../../../speedrun/Season3";
 import { isOnFinalCharacter } from "../../../speedrun/characterProgress/v";
-import * as fastTravel from "./fastTravelEntity";
+import { initFastTravelEntity } from "./fastTravelEntity";
 
 enum SpeedrunDirection {
   /** To The Chest & Blue Baby. */
@@ -264,7 +264,7 @@ function replace(
       // This will get naturally initialized by the fast-travel system on the next frame. However,
       // we explicitly initialize it now to prevent indexing errors later on this frame (when the
       // room is cleared).
-      fastTravel.initFastTravelEntity(
+      initFastTravelEntity(
         heavenDoor,
         FastTravelEntityType.HEAVEN_DOOR,
         () => true,

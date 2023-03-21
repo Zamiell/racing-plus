@@ -34,7 +34,11 @@ import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType"
 import { mod } from "../../../../../mod";
 import { movePlayersAndFamiliars } from "../../../../../utils";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import * as fastTravel from "./fastTravelEntity";
+import {
+  checkFastTravelEntityShouldOpen,
+  checkPlayerTouchedFastTravelEntity,
+  initFastTravelEntity,
+} from "./fastTravelEntity";
 import * as state from "./state";
 import { v } from "./v";
 
@@ -94,11 +98,7 @@ export function crawlSpacePostGridEntityInitCrawlSpace(
     return;
   }
 
-  fastTravel.initFastTravelEntity(
-    gridEntity,
-    FAST_TRAVEL_ENTITY_TYPE,
-    shouldSpawnOpen,
-  );
+  initFastTravelEntity(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
 function replaceWithTeleportPad(gridEntity: GridEntity) {
@@ -130,11 +130,8 @@ export function crawlSpacePostGridEntityUpdateCrawlSpace(
   gridEntity.State = CrawlSpaceState.CLOSED;
 
   checkShouldClose(gridEntity);
-  fastTravel.checkFastTravelEntityShouldOpen(
-    gridEntity,
-    FAST_TRAVEL_ENTITY_TYPE,
-  );
-  fastTravel.checkPlayerTouchedFastTravelEntity(
+  checkFastTravelEntityShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  checkPlayerTouchedFastTravelEntity(
     gridEntity,
     FAST_TRAVEL_ENTITY_TYPE,
     touched,

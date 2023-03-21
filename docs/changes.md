@@ -288,35 +288,36 @@ Post-flip actions:
 - `0514` <!-- BloodyLustChargeBar 157 --> Bloody Lust now shows a charge bar.
 - `0515` <!-- LeadPencilChargeBar 444 --> Lead Pencil now shows a charge bar.
 - `0516` <!-- AzazelsRageChargeBar 699 --> Azazel's Rage now shows a charge bar.
-- `0517` <!-- CombinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
+- `0517` <!-- FastForgetMeNow 127 --> Forget Me Now will now have a faster animation.
+- `0518` <!-- CombinedDualityDoors 498 --> If the player has Duality and there are not any door slots left for an Angel Room, the Devil Room door and the Angel Room door will be combined.
 
 > Why? In many boss rooms, there are not enough locations for both doors, which causes the Angel Room door to be deleted.
 
-- `0518` <!-- FadeHungryTears 532 --> Lachryphagy tears are faded.
-- `0519` <!-- RemoveFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
+- `0519` <!-- FadeHungryTears 532 --> Lachryphagy tears are faded.
+- `0520` <!-- RemoveFortuneCookieBanners 557 --> Fortune Cookie banner text is removed.
 
 > Why? The large banner text blocks gameplay.
 
-- `0520` <!-- ShowDreamCatcher 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
+- `0521` <!-- ShowDreamCatcher 566 --> If you have Dream Catcher, the Treasure Room item and the boss will be shown in the starting room.
 
 > Why? Since the Fast-Travel feature removes the floor transition cutscene, this is the only way to see what the Dream Catcher items are.
 
-- `0521` <!-- FastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
-- `0522` <!-- FadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
+- `0522` <!-- FastLuna 589 --> Moonlights from Luna can now be entered as soon as they spawn.
+- `0523` <!-- FadeVasculitisTears 657 --> The tears that explode out of enemies when you have Vasculitis are faded.
 
 > Why? It can be very difficult to distinguish between friendly Vasculitis tears and enemy tears, since they will often be the same color.
 
-- `0523` <!-- FastVanishingTwin 697 --> The Vanishing Twin familiar is replaced by a custom version that activates instantly.
-- `0524` <!-- FlipCustom 711 --> Flip will now more clearly show what each item will change into.
-- `0525` <!-- RemovePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
+- `0524` <!-- FastVanishingTwin 697 --> The Vanishing Twin familiar is replaced by a custom version that activates instantly.
+- `0525` <!-- FlipCustom 711 --> Flip will now more clearly show what each item will change into.
+- `0526` <!-- RemovePerfectionVelocity 145 --> The Perfection trinket will no longer have velocity.
 
 > Why? This can prevent the trinket from being stuck over a pit.
 
-- `0526` <!-- RemovePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
+- `0527` <!-- RemovePerfectionOnEndFloors 145 --> The Perfection trinket will no longer spawn on the final floor of a run.
 
 > Why? This can interfere with finishing the run.
 
-- `0527` <!-- DisplayExpansionPack 181 --> The random active item chosen by Expansion Pack will be drawn on the screen as streak text.
+- `0528` <!-- DisplayExpansionPack 181 --> The random active item chosen by Expansion Pack will be drawn on the screen as streak text.
 
 - <!-- CenterStart --> Players will start in the center of the room (instead of at the bottom).
 

@@ -159,6 +159,7 @@ const FEATURE_CLASSES = [
   fc.BloodyLustChargeBar, // 157 (charge bar)
   fc.LeadPencilChargeBar, // 444 (charge bar)
   fc.AzazelsRageChargeBar, // 669 (charge bar)
+  fc.FastForgetMeNow, // 127 (collectible)
   fc.CombinedDualityDoors, // 498 (collectible)
   fc.FadeHungryTears, // 532 (collectible)
   fc.RemoveFortuneCookieBanners, // 557 (collectible)

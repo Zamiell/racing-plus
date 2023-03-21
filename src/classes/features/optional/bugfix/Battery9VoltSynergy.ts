@@ -15,7 +15,6 @@ import {
   getTotalCharge,
   hasFlag,
 } from "isaacscript-common";
-import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -58,10 +57,6 @@ export class Battery9VoltSynergy extends ConfigurableModFeature {
     useFlags: BitFlags<UseFlag>,
     activeSlot: ActiveSlot,
   ): boolean | undefined {
-    if (!config.Battery9VoltSynergy) {
-      return undefined;
-    }
-
     if (!hasFlag(useFlags, UseFlag.OWNED)) {
       return undefined;
     }

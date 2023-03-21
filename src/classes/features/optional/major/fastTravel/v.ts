@@ -9,7 +9,7 @@ export const v = {
     state: FastTravelState.DISABLED,
     renderFramesPassed: 0,
 
-    upwards: false,
+    travelDirection: Direction.NO_DIRECTION,
 
     perfection: {
       floorsWithoutDamage: 0,

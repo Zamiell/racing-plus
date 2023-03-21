@@ -1,4 +1,5 @@
 import {
+  Direction,
   EntityType,
   GameStateFlag,
   LevelStage,
@@ -29,12 +30,12 @@ import {
 import { setDreamCatcherArrivedOnNewFloor } from "../../quality/showDreamCatcher/v";
 import { v } from "./v";
 
-export function goto(upwards: boolean): void {
+export function gotoNextFloor(travelDirection: Direction): void {
   const hud = game.GetHUD();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
   const nextStage = getNextStageCustom();
-  const nextStageType = getNextStageTypeCustom(upwards);
+  const nextStageType = getNextStageTypeCustom(travelDirection);
 
   // The effect of Reverse Empress cards are supposed to end after one minute passive. However,
   // taking away the health and re-adding it will cause the extra two red heart containers to not be
@@ -110,7 +111,7 @@ function getNextStageCustom() {
   return getNextStage();
 }
 
-function getNextStageTypeCustom(upwards: boolean) {
+function getNextStageTypeCustom(travelDirection: Direction) {
   const backwardsPathInit = game.GetStateFlag(
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
@@ -136,6 +137,7 @@ function getNextStageTypeCustom(upwards: boolean) {
     return StageType.WRATH_OF_THE_LAMB;
   }
 
+  const upwards = travelDirection === Direction.UP;
   return getNextStageType(upwards);
 }
 

@@ -1,5 +1,6 @@
 import {
   CollectibleType,
+  Direction,
   EntityType,
   GridEntityType,
   LevelStage,
@@ -167,7 +168,7 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     v.run.numVictoryLaps++;
 
     // Call the fast-travel function directly to emulate the player having touched a heaven door.
-    setFadingToBlack(player, gridEntity.Position, true);
+    setFadingToBlack(player, gridEntity.Position, Direction.UP);
   }
 }
 

@@ -1,4 +1,5 @@
 import {
+  Direction,
   GameStateFlag,
   GridRoom,
   LevelStage,
@@ -32,7 +33,11 @@ import {
   season3HasOnlyMotherLeft,
 } from "../../../speedrun/season3/v";
 import { FAST_TRAVEL_DEBUG } from "./constants";
-import * as fastTravel from "./fastTravelEntity";
+import {
+  checkFastTravelEntityShouldOpen,
+  checkPlayerTouchedFastTravelEntity,
+  initFastTravelEntity,
+} from "./fastTravelEntity";
 import { setFadingToBlack } from "./setNewState";
 import * as state from "./state";
 import { v } from "./v";
@@ -54,11 +59,7 @@ export function trapdoorPostGridEntityInitTrapdoor(
     return;
   }
 
-  fastTravel.initFastTravelEntity(
-    gridEntity,
-    FAST_TRAVEL_ENTITY_TYPE,
-    shouldSpawnOpen,
-  );
+  initFastTravelEntity(gridEntity, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
 }
 
 // ModCallbackCustom.POST_GRID_ENTITY_UPDATE
@@ -80,11 +81,8 @@ export function trapdoorPostGridEntityUpdateTrapdoor(
   // Keep it closed on every frame so that we can implement our own custom functionality.
   gridEntity.State = TrapdoorState.CLOSED;
 
-  fastTravel.checkFastTravelEntityShouldOpen(
-    gridEntity,
-    FAST_TRAVEL_ENTITY_TYPE,
-  );
-  fastTravel.checkPlayerTouchedFastTravelEntity(
+  checkFastTravelEntityShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  checkPlayerTouchedFastTravelEntity(
     gridEntity,
     FAST_TRAVEL_ENTITY_TYPE,
     touched,
@@ -290,5 +288,5 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     log("Touched a trapdoor.");
   }
 
-  setFadingToBlack(player, entity.Position, false);
+  setFadingToBlack(player, entity.Position, Direction.DOWN);
 }

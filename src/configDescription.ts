@@ -737,10 +737,19 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     ],
   ],
   [
-    "CombinedDualityDoors", // 498 (collectible)
+    "FastForgetMeNow", // 127 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0517",
+      "Fast Forget Me Now",
+      "Make Forget Me Now have a faster animation.",
+    ],
+  ],
+  [
+    "CombinedDualityDoors", // 498 (collectible)
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0518",
       "Duality revamp",
       "Make Duality combine the Devil Room door and the Angel Room door together.",
     ],
@@ -749,7 +758,7 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "FadeHungryTears", // 532 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0518",
+      "0519",
       "Fade Lachryphagy tears",
       "Fade the tears that come from Lachryphagy.",
     ],
@@ -758,18 +767,9 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
     "RemoveFortuneCookieBanners", // 557 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0519",
+      "0520",
       "Remove Fortune Cookie UI",
       "Remove the banners that occur when you use Fortune Cookie.",
-    ],
-  ],
-  [
-    "ShowDreamCatcher", // 566 (collectible)
-    [
-      ModConfigMenuOptionType.BOOLEAN,
-      "0520",
-      "Show the Dream Catcher item",
-      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
     ],
   ],
 ] as const satisfies ConfigDescriptions;
@@ -777,10 +777,19 @@ export const QUALITY_OF_LIFE_CHANGES_2 = [
 // 0521-0530
 export const QUALITY_OF_LIFE_CHANGES_3 = [
   [
-    "FastLuna", // 589 (collectible)
+    "ShowDreamCatcher", // 566 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0521",
+      "Show the Dream Catcher item",
+      "If you have Dream Catcher, draw the Treasure Room item while in the starting room of the floor.",
+    ],
+  ],
+  [
+    "FastLuna", // 589 (collectible)
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0522",
       "Fast Luna",
       "Make Moonlights from Luna able to be entered as soon as they spawn.",
     ],
@@ -789,7 +798,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "FadeVasculitisTears", // 657 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0522",
+      "0523",
       "Fade Vasculitis tears",
       "Fade the tears that explode out of enemies when you have Vasculitis.",
     ],
@@ -798,7 +807,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "FastVanishingTwin", // 697 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0523",
+      "0524",
       "Fast Vanishing Twin",
       "Speed up the Vanishing Twin familiar by replacing it with a custom implementation.",
     ],
@@ -807,7 +816,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "FlipCustom", // 711 (collectible)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0524",
+      "0525",
       "Custom Flip",
       "Replace Flip with a custom version that more clearly shows what each item will change into.",
     ],
@@ -816,7 +825,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "RemovePerfectionVelocity", // 145 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0525",
+      "0526",
       "Remove Perfection velocity",
       "Make the Perfection trinket spawn in a stationary spot so that it won't go over a pit.",
     ],
@@ -825,7 +834,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "RemovePerfectionOnEndFloors", // 145 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0526",
+      "0527",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],
@@ -834,7 +843,7 @@ export const QUALITY_OF_LIFE_CHANGES_3 = [
     "DisplayExpansionPack", // 181 (trinket)
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0527",
+      "0528",
       "Remove Perfection at the end",
       "Prevent the Perfection trinket from spawning on the final floor of a run.",
     ],

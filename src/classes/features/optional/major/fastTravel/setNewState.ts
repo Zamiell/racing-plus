@@ -1,5 +1,6 @@
 import {
   ButtonAction,
+  Direction,
   EntityCollisionClass,
   EntityType,
   FamiliarVariant,
@@ -43,7 +44,7 @@ import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3
 import * as blackSprite from "./blackSprite";
 import { FAST_TRAVEL_DEBUG, FAST_TRAVEL_FEATURE_NAME } from "./constants";
 import { NORMAL_TRAPDOOR_GRID_INDEX } from "./fastTravelEntity";
-import * as nextFloor from "./nextFloor";
+import { gotoNextFloor } from "./nextFloor";
 import { v } from "./v";
 
 export function setNewFastTravelState(fastTravelState: FastTravelState): void {
@@ -76,13 +77,13 @@ export function setNewFastTravelState(fastTravelState: FastTravelState): void {
 export function setFadingToBlack(
   player: EntityPlayer,
   position: Vector,
-  upwards: boolean,
+  travelDirection: Direction,
 ): void {
   // Begin the process of moving the player to the next floor. If this is a multiplayer game, only
   // the player who touched the trapdoor / heaven door will play the traveling animation.
   v.run.state = FastTravelState.FADING_TO_BLACK;
   v.run.renderFramesPassed = 0;
-  v.run.upwards = upwards;
+  v.run.travelDirection = travelDirection;
   v.run.repentanceSecretExit = inSecretExit();
   logFastTravelStateChanged();
 
@@ -99,7 +100,7 @@ export function setFadingToBlack(
   setPlayerAttributes(player, position);
   warpForgottenBody(player);
   dropTaintedForgotten(player);
-  playTravelingAnimation(player, upwards);
+  playTravelingAnimation(player, travelDirection);
 }
 
 function setGameStateFlags(position: Vector) {
@@ -239,12 +240,15 @@ function dropTaintedForgotten(player: EntityPlayer) {
   }
 }
 
-function playTravelingAnimation(player: EntityPlayer, upwards: boolean) {
+function playTravelingAnimation(
+  player: EntityPlayer,
+  travelDirection: Direction,
+) {
   // Playing the vanilla animations results in the player re-appearing, because the animations are
   // not long enough to last for the full fade-out. Instead, use custom animations that are 40
   // frames long.
   let animation: string;
-  if (upwards) {
+  if (travelDirection === Direction.UP) {
     // The vanilla "LightTravel" animation is 28 frames long.
     animation = "LightTravelCustom";
   } else {
@@ -300,7 +304,7 @@ function setGoingToNewFloor() {
  * the final logic into a separate function allows other features to resume fast-travel.
  */
 export function finishGoingToNewFloor(): void {
-  nextFloor.goto(v.run.upwards);
+  gotoNextFloor(v.run.travelDirection);
   setNewFastTravelState(FastTravelState.FADING_IN);
 }
 

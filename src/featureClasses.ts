@@ -123,6 +123,7 @@ export { EasyFirstFloorItems } from "./classes/features/optional/quality/EasyFir
 export { FadeDevilStatue } from "./classes/features/optional/quality/FadeDevilStatue";
 export { FadeHungryTears } from "./classes/features/optional/quality/FadeHungryTears";
 export { FadeVasculitisTears } from "./classes/features/optional/quality/FadeVasculitisTears";
+export { FastForgetMeNow } from "./classes/features/optional/quality/FastForgetMeNow";
 export { FastLuna } from "./classes/features/optional/quality/FastLuna";
 export { FastVanishingTwin } from "./classes/features/optional/quality/FastVanishingTwin";
 export { FlipCustom } from "./classes/features/optional/quality/FlipCustom";
