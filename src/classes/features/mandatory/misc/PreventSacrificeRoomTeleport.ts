@@ -7,10 +7,6 @@ import {
   removeGridEntity,
 } from "isaacscript-common";
 import { inRaceToDarkRoom } from "../../../../features/race/v";
-import {
-  inSpeedrun,
-  onSpeedrunWithDarkRoomGoal,
-} from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const NUM_SACRIFICES_FOR_GABRIEL = 11;
@@ -21,6 +17,12 @@ const v = {
   },
 };
 
+/**
+ * We prevent the sacrifice room teleport by deleting the spikes when Gabriel spawns.
+ *
+ * Note that this does not have to be performed inside of a speedrun because the vanilla game
+ * prevents the teleport when the challenge has the following tags: `endstage="11" altpath="true"`
+ */
 export class PreventSacrificeRoomTeleport extends MandatoryModFeature {
   v = v;
 
@@ -55,7 +57,6 @@ function checkDeleteSpikes() {
 
 function shouldDeleteSpikes() {
   return (
-    v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL &&
-    (inRaceToDarkRoom() || (inSpeedrun() && onSpeedrunWithDarkRoomGoal()))
+    v.level.numSacrifices >= NUM_SACRIFICES_FOR_GABRIEL && inRaceToDarkRoom()
   );
 }
