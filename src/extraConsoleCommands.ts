@@ -278,6 +278,9 @@ function seededRace(params: string) {
 
   print(`Enabled fake seeded race mode for seed: ${startSeedString}`);
   print("You can go back to normal by using the command of: seededRaceOff");
+  print(
+    'You can also use the commands of "seededRaceItem" or "seededRaceGoal" or "seededRaceSeed" for further customizations.',
+  );
   restart(g.race.character);
 }
 
