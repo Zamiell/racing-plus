@@ -4,12 +4,12 @@ import {
   fonts,
   getPlayerName,
   getScreenCenterPos,
+  newSprite,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import {
   newGlowingCollectibleSprite,
   newGlowingTrinketSprite,
-  newSprite,
 } from "../../../../sprite";
 
 const GFX_PATH = "gfx/race/starting-room";

@@ -23,9 +23,9 @@ import {
   getScreenBottomY,
   isActionPressedOnAnyInput,
   logError,
+  newSprite,
 } from "isaacscript-common";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { newSprite } from "../../../../sprite";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

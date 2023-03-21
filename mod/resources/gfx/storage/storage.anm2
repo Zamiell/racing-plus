@@ -2,9 +2,9 @@
 	<Info CreatedBy="andre" CreatedOn="20/03/2023 17:44:23" Version="1" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="storage temp image.png" Id="0"/>
+			<Spritesheet Path="storage.png" Id="0"/>
 			<Spritesheet Path="shadow.png" Id="1"/>
-			<Spritesheet Path="collectible_Necrosis.png" Id="2"/>
+			<Spritesheet Path="../Items/Collectibles/Collectibles_001_TheSadOnion.png" Id="2"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="body" Id="0" SpritesheetId="0"/>

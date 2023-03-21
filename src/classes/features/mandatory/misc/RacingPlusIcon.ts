@@ -13,6 +13,7 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  newSprite,
   setUnseeded,
 } from "isaacscript-common";
 import {
@@ -22,7 +23,6 @@ import {
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../../../constants";
 import * as socketClient from "../../../../features/race/socketClient";
-import { newSprite } from "../../../../sprite";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 enum RacingPlusSpriteLayer {

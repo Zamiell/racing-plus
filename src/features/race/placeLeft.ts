@@ -1,11 +1,10 @@
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen.
 
-import { game } from "isaacscript-common";
+import { game, newSprite } from "isaacscript-common";
 import { getRacingPlusIconPosition } from "../../classes/features/mandatory/misc/RacingPlusIcon";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { RacerStatus } from "../../enums/RacerStatus";
 import { g } from "../../globals";
-import { newSprite } from "../../sprite";
 import { inRaceRoom } from "./raceRoom";
 
 const GFX_PATH = "gfx/race/place-left";

@@ -271,7 +271,7 @@ function playTravelingAnimation(player: EntityPlayer, upwards: boolean) {
 function setGoingToNewFloor() {
   const roomGridIndex = getRoomGridIndex();
 
-  blackSprite.setFullyOpaque();
+  blackSprite.setBlackSpriteFullyOpaque();
 
   // Before moving to the next floor, we need to change the room so that health from a Strength card
   // is properly decremented. We arbitrarily reload the current room (instead of e.g. teleporting to
@@ -382,7 +382,7 @@ export function setPlayersVisible(
 }
 
 function setDisabled() {
-  blackSprite.setFullyTransparent();
+  blackSprite.setBlackSpriteFullyTransparent();
   mod.enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
 }
 

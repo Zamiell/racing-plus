@@ -9,6 +9,7 @@ import {
   getRoomStageID,
   getRoomVariant,
   getScreenCenterPos,
+  newSprite,
   onStage,
   onStageType,
   removeAllDoors,
@@ -18,7 +19,6 @@ import {
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { mod } from "../../mod";
-import { newSprite } from "../../sprite";
 import { consoleCommand } from "../../utils";
 import {
   RACE_ROOM_LEVEL as RACE_ROOM_LEVEL_STAGE,

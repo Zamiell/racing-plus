@@ -1,6 +1,12 @@
 import { CollectibleType, EntityType } from "isaac-typescript-definitions";
-import { emptyArray, game, inStartingRoom, logError } from "isaacscript-common";
-import { newGlowingCollectibleSprite, newSprite } from "../../../../../sprite";
+import {
+  emptyArray,
+  game,
+  inStartingRoom,
+  logError,
+  newSprite,
+} from "isaacscript-common";
+import { newGlowingCollectibleSprite } from "../../../../../sprite";
 import { BOSS_PNG_MAP } from "./bossPNGMap";
 import { v } from "./v";
 
@@ -35,7 +41,7 @@ export function showDreamCatcherSetSprites(): void {
       const boss = v.level.bosses[i];
       if (boss !== undefined) {
         const [entityType, variant] = boss;
-        const bossSprite = initBossSprite(entityType, variant);
+        const bossSprite = newBossSprite(entityType, variant);
         if (bossSprite !== undefined) {
           bossSprites[i] = bossSprite;
         }
@@ -44,7 +50,10 @@ export function showDreamCatcherSetSprites(): void {
   }
 }
 
-function initBossSprite(entityType: EntityType, variant: int) {
+function newBossSprite(
+  entityType: EntityType,
+  variant: int,
+): Sprite | undefined {
   const pngArray = BOSS_PNG_MAP.get(entityType);
   if (pngArray === undefined) {
     logError(
@@ -71,7 +80,7 @@ export function showDreamCatcherResetSprites(): void {
   emptyArray(bossSprites);
 }
 
-function shouldShowSprites() {
+function shouldShowSprites(): boolean {
   const isGreedMode = game.IsGreedMode();
 
   return (

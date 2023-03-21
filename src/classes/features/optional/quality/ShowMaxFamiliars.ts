@@ -5,9 +5,9 @@ import {
   VectorZero,
   countEntities,
   game,
+  newSprite,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { newSprite } from "../../../../sprite";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import {

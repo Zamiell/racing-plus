@@ -1,7 +1,13 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { fonts, game, getPlayerName, KColorDefault } from "isaacscript-common";
+import {
+  fonts,
+  game,
+  getPlayerName,
+  KColorDefault,
+  newSprite,
+} from "isaacscript-common";
 import { mod } from "../../../../mod";
-import { newGlowingCollectibleSprite, newSprite } from "../../../../sprite";
+import { newGlowingCollectibleSprite } from "../../../../sprite";
 
 const GFX_PATH = "gfx/race/starting-room";
 

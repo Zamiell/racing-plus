@@ -5,10 +5,10 @@ import {
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
+  newSprite,
 } from "isaacscript-common";
 import { RACE_TIMER_POSITION_X, RACE_TIMER_POSITION_Y } from "./constants";
 import { TimerType } from "./enums/TimerType";
-import { newSprite } from "./sprite";
 
 class TimerSprites {
   clock = newSprite("gfx/timer/clock.anm2");

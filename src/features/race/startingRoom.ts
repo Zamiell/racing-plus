@@ -1,5 +1,5 @@
 import { TrinketType } from "isaac-typescript-definitions";
-import { game, getScreenCenterPos } from "isaacscript-common";
+import { game, getScreenCenterPos, newSprite } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { RacerStatus } from "../../enums/RacerStatus";
@@ -8,7 +8,6 @@ import { mod } from "../../mod";
 import {
   newGlowingCollectibleSpriteFromServerCollectibleID,
   newGlowingTrinketSprite,
-  newSprite,
 } from "../../sprite";
 
 const GFX_PATH = "gfx/race/starting-room";

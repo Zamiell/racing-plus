@@ -8,6 +8,7 @@ import {
   getLastElement,
   isGoldenTrinketType,
   isModdedCollectibleType,
+  newSprite,
 } from "isaacscript-common";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { ServerCollectibleID } from "./types/ServerCollectibleID";
@@ -128,21 +129,4 @@ function getFileNum(itemID: int) {
 
   // Past Golden Sigil of Baphomet.
   return defaultReturn;
-}
-
-export function newSprite(anm2Path: string, pngPath?: string): Sprite {
-  const sprite = Sprite();
-
-  if (pngPath === undefined) {
-    sprite.Load(anm2Path, true);
-  } else {
-    sprite.Load(anm2Path, false);
-    sprite.ReplaceSpritesheet(0, pngPath);
-    sprite.LoadGraphics();
-  }
-
-  const defaultAnimation = sprite.GetDefaultAnimation();
-  sprite.Play(defaultAnimation, true);
-
-  return sprite;
 }

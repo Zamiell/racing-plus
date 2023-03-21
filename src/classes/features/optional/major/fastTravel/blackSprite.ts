@@ -1,8 +1,5 @@
-// We draw a black sprite on top of the screen in order to fade everything to black.
-
-import { setSpriteOpacity, VectorZero } from "isaacscript-common";
+import { newSprite, setSpriteOpacity, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import { newSprite } from "../../../../../sprite";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
 import { v } from "./v";
 
@@ -10,10 +7,11 @@ const sprite = newSprite("gfx/black.anm2");
 
 // ModCallback.POST_RENDER (2)
 export function blackSpritePostRender(): void {
-  draw();
+  drawBlackSprite();
 }
 
-function draw() {
+/** We draw a black sprite on top of the screen in order to fade everything to black. */
+function drawBlackSprite() {
   if (v.run.state === FastTravelState.DISABLED) {
     return;
   }
@@ -30,10 +28,10 @@ function draw() {
   sprite.Render(VectorZero);
 }
 
-export function setFullyOpaque(): void {
+export function setBlackSpriteFullyOpaque(): void {
   setSpriteOpacity(sprite, 1);
 }
 
-export function setFullyTransparent(): void {
+export function setBlackSpriteFullyTransparent(): void {
   setSpriteOpacity(sprite, 0);
 }
