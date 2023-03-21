@@ -20,7 +20,7 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
   [
     ChallengeCustomAbbreviation.SEASON_1,
     {
-      X: 4,
+      X: 2,
       Y: 2,
       numChars: 7,
       charPositions: [
@@ -36,10 +36,10 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
         new CharPosition(PlayerType.LOST, 0, 3), // 10
         new CharPosition(PlayerType.LOST_B, 2, 3),
 
-        new CharPosition(PlayerType.KEEPER, 10, 3), // 12
+        new CharPosition(PlayerType.KEEPER, 10, 3), // 14
         new CharPosition(PlayerType.KEEPER_B, 12, 3),
 
-        new CharPosition(PlayerType.APOLLYON, 0, 5), // 13
+        new CharPosition(PlayerType.APOLLYON, 0, 5), // 15
         new CharPosition(PlayerType.APOLLYON_B, 2, 5),
 
         new CharPosition(PlayerType.BETHANY, 10, 5), // 18
@@ -51,7 +51,7 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
   [
     ChallengeCustomAbbreviation.SEASON_2,
     {
-      X: 8,
+      X: 6,
       Y: 2,
       numChars: 7,
       charPositions: [],
@@ -89,6 +89,24 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
         new BuildPosition(26, 8, 4),
       ],
       numBuildVetos: 3,
+    },
+  ],
+
+  [
+    ChallengeCustomAbbreviation.SEASON_4,
+    {
+      X: 10,
+      Y: 2,
+      numChars: 7,
+      charPositions: [
+        new CharPosition(PlayerType.ISAAC, 2, 1), // 0
+        new CharPosition(PlayerType.JUDAS, 4, 1), // 3
+        new CharPosition(PlayerType.AZAZEL, 6, 1), // 7
+        new CharPosition(PlayerType.LOST, 8, 1), // 10
+        new CharPosition(PlayerType.LILITH, 10, 1), // 13
+        new CharPosition(PlayerType.BETHANY, 2, 3), // 18
+        new CharPosition(PlayerType.MAGDALENE_B, 10, 3), // 22
+      ],
     },
   ],
 ]);

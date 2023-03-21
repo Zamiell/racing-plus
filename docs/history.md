@@ -5,10 +5,13 @@
 
 ### _v0.101.0_ - March 21st, 2023
 
+- !Forget Me Now now has a custom animation.
+- In season 4, there is now a chosen character order.
 - In seeded races, Tainted Lost is now granted a Holy Card effect upon dying. (Thanks Gamonymous)
 - Fixed the bug where the photos could spawn before the Mom room was cleared under certain conditions. (Thanks Toooschi)
 - Fixed the bug where Vanishing Twin would not slow down some bosses. (Thanks Gamonymous)
 - Fixed the bug where saving and quitting with Krampus alive would cause him to be duplicated. (Thanks Fallenfor)
+- Fixed the bug where the paths after It Lives would not be properly spawned under certain circumstances. (Thanks AshDown)
 
 ### _v0.100.0_ - March 13th, 2023
 

@@ -43,7 +43,6 @@ export const RANDOM_CHARACTER_LOCK_MILLISECONDS =
 const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER = [
   ChallengeCustom.SEASON_2,
   ChallengeCustom.SEASON_3,
-  ChallengeCustom.SEASON_4,
 ] as const;
 
 const CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET = new ReadonlySet<Challenge>(
@@ -69,16 +68,6 @@ const SEASON_CHARACTERS = {
     PlayerType.JUDAS_B, // 24
     PlayerType.EVE_B, // 26
     PlayerType.JACOB_B, // 37
-  ],
-
-  [ChallengeCustom.SEASON_4]: [
-    PlayerType.ISAAC, // 0
-    PlayerType.JUDAS, // 3
-    PlayerType.AZAZEL, // 7
-    PlayerType.LOST, // 10
-    PlayerType.LILITH, // 13
-    PlayerType.BETHANY, // 18
-    PlayerType.MAGDALENE_B, // 22
   ],
 } as const;
 
