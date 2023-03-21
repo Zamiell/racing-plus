@@ -29,7 +29,7 @@ const v = {
   run: {
     /**
      * We cannot use "entity.InitSeed" as the seed for keys because it will cause bugs with the
-     * "preventItemRotate" feature of the standard library.
+     * "preventItemRotate" feature of `isaacscript-common`.
      */
     collectibleRNG: newRNG(),
 
