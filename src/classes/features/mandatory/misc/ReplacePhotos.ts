@@ -32,10 +32,6 @@ const PEDESTAL_POSITION_LEFT = Vector(280, 360);
 const PEDESTAL_POSITION_RIGHT = Vector(360, 360);
 
 const v = {
-  level: {
-    manuallySpawnedPhotos: false,
-  },
-
   room: {
     vanillaPhotosLeftToSpawn: 0,
   },
@@ -94,16 +90,9 @@ export function replacePhotosPreFastClear(): void {
 }
 
 export function replacePhotosPostFastClear(): void {
-  if (!inClearedMomBossRoom()) {
-    return;
+  if (inClearedMomBossRoom()) {
+    manuallySpawnPhotos();
   }
-
-  if (v.level.manuallySpawnedPhotos) {
-    return;
-  }
-
-  v.level.manuallySpawnedPhotos = true;
-  manuallySpawnPhotos();
 }
 
 function manuallySpawnPhotos() {
