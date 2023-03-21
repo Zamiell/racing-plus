@@ -43,6 +43,13 @@ export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
   ],
 ]);
 
+export const CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM = {
+  [ChallengeCustomAbbreviation.SEASON_1]: ChallengeCustom.SEASON_1,
+  [ChallengeCustomAbbreviation.SEASON_2]: ChallengeCustom.SEASON_2,
+  [ChallengeCustomAbbreviation.SEASON_3]: ChallengeCustom.SEASON_3,
+  [ChallengeCustomAbbreviation.SEASON_4]: ChallengeCustom.SEASON_4,
+} as const satisfies Record<ChallengeCustomAbbreviation, Challenge>;
+
 export const CUSTOM_CHALLENGES_SET = new ReadonlySet<Challenge>(
   CHALLENGE_DEFINITIONS.keys(),
 );

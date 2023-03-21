@@ -1,5 +1,4 @@
 import {
-  Challenge,
   FadeoutTarget,
   GridEntityType,
   PlayerType,
@@ -18,9 +17,11 @@ import {
   setSpriteOpacity,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
-import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
-import { ChallengeCustomAbbreviation } from "../../../../speedrun/constants";
+import {
+  CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM,
+  ChallengeCustomAbbreviation,
+} from "../../../../speedrun/constants";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
 import { setBuildBansTime } from "../RandomCharacterOrder";
 import { SEASON_2_STARTING_BUILDS } from "../season2/constants";
@@ -263,7 +264,7 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.challengeCustomAbbreviation,
       v.room.charOrder,
     );
-    fadeOut(ChallengeCustom.SEASON_1);
+    fadeOutToChallenge();
   }
 }
 
@@ -362,12 +363,20 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.buildsChosen as PlayerType[],
     );
     setBuildBansTime();
-    fadeOut(ChallengeCustom.SEASON_2);
+    fadeOutToChallenge();
   }
 }
 
-function fadeOut(challengeTarget: Challenge) {
+function fadeOutToChallenge() {
   game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
-  v.room.challengeTarget = challengeTarget;
+
+  if (v.room.challengeCustomAbbreviation === null) {
+    v.room.challengeTarget = null;
+  } else {
+    v.room.challengeTarget =
+      CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
+        v.room.challengeCustomAbbreviation
+      ];
+  }
   v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
 }
