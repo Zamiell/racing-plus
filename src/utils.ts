@@ -99,7 +99,7 @@ export function getEffectiveDevilDeals(): int {
  * We must use "GetCollectibleNum" instead of "HasCollectible" because the latter will be true if
  * they are holding the Mysterious Paper trinket.
  */
-export function getPhotoStatus(): {
+export function getPlayerPhotoStatus(): {
   hasPolaroid: boolean;
   hasNegative: boolean;
 } {
