@@ -5,7 +5,7 @@
 
 ### _v0.101.0_ - March 21st, 2023
 
-- !Forget Me Now now has a custom animation.
+- Forget Me Now now has a custom animation.
 - In season 4, there is now a chosen character order.
 - In seeded races, Tainted Lost is now granted a Holy Card effect upon dying. (Thanks Gamonymous)
 - Fixed the bug where the photos could spawn before the Mom room was cleared under certain conditions. (Thanks Toooschi)

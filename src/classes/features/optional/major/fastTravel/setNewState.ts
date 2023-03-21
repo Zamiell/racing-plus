@@ -74,7 +74,7 @@ export function setNewFastTravelState(fastTravelState: FastTravelState): void {
   }
 }
 
-export function setFadingToBlack(
+export function setFastTravelFadingToBlack(
   player: EntityPlayer,
   position: Vector,
   travelDirection: Direction,
@@ -248,12 +248,12 @@ function playTravelingAnimation(
   // not long enough to last for the full fade-out. Instead, use custom animations that are 40
   // frames long.
   let animation: string;
-  if (travelDirection === Direction.UP) {
-    // The vanilla "LightTravel" animation is 28 frames long.
-    animation = "LightTravelCustom";
+  if (travelDirection === Direction.NO_DIRECTION) {
+    animation = "AppearVanilla"; // The "Appear" animation has 0 frames.
+  } else if (travelDirection === Direction.UP) {
+    animation = "LightTravelCustom"; // The vanilla "LightTravel" animation is 28 frames long.
   } else {
-    // The vanilla "Trapdoor" animation is 16 frames long.
-    animation = "TrapdoorCustom";
+    animation = "TrapdoorCustom"; // The vanilla "Trapdoor" animation is 16 frames long.
   }
   player.PlayExtraAnimation(animation);
 

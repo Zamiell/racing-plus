@@ -1,6 +1,7 @@
 import {
   ActiveSlot,
   CollectibleType,
+  Direction,
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
@@ -8,6 +9,7 @@ import { Callback, hasFlag } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+import { setFastTravelFadingToBlack } from "../major/fastTravel/setNewState";
 
 export class FastForgetMeNow extends ConfigurableModFeature {
   configKey: keyof Config = "FastForgetMeNow";
@@ -35,6 +37,9 @@ export class FastForgetMeNow extends ConfigurableModFeature {
       undefined,
       activeSlot,
     );
+
+    // Call the fast-travel function directly to emulate the player having touched a trapdoor.
+    setFastTravelFadingToBlack(player, player.Position, Direction.NO_DIRECTION);
 
     // Cancel the original effect.
     return true;

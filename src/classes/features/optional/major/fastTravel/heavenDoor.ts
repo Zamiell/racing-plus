@@ -23,7 +23,7 @@ import {
   checkPlayerTouchedFastTravelEntity,
   initFastTravelEntity,
 } from "./fastTravelEntity";
-import { setFadingToBlack } from "./setNewState";
+import { setFastTravelFadingToBlack } from "./setNewState";
 import * as state from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
@@ -129,5 +129,5 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     return;
   }
 
-  setFadingToBlack(player, entity.Position, Direction.UP);
+  setFastTravelFadingToBlack(player, entity.Position, Direction.UP);
 }

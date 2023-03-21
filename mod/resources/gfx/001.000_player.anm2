@@ -1,11 +1,11 @@
 <!--
 
 Changes from vanilla:
-- Moved the "Appear" animation to "AppearVanilla"
-- Set the "Appear" animation to have 0 frames instead of 40
-- Made a "TrapdoorCustom" animation that is 40 frames long instead of 16
-- Made a "LightTravelCustom" animation that is 40 frames long instead of 36
-- Added the 4 "Rolling" animations
+- Copied the "Appear" animation to "AppearVanilla".
+- Set the "Appear" animation to have 0 frames instead of 40.
+- Made a "TrapdoorCustom" animation that is 40 frames long instead of 16.
+- Made a "LightTravelCustom" animation that is 40 frames long instead of 36.
+- Added the 4 "Rolling" animations.
 
 -->
 

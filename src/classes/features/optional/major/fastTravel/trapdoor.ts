@@ -38,7 +38,7 @@ import {
   checkPlayerTouchedFastTravelEntity,
   initFastTravelEntity,
 } from "./fastTravelEntity";
-import { setFadingToBlack } from "./setNewState";
+import { setFastTravelFadingToBlack } from "./setNewState";
 import * as state from "./state";
 import { v } from "./v";
 
@@ -288,5 +288,5 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
     log("Touched a trapdoor.");
   }
 
-  setFadingToBlack(player, entity.Position, Direction.DOWN);
+  setFastTravelFadingToBlack(player, entity.Position, Direction.DOWN);
 }

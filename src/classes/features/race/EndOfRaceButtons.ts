@@ -27,7 +27,7 @@ import { g } from "../../../globals";
 import { newGlowingCollectibleSprite } from "../../../sprite";
 import { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
-import { setFadingToBlack } from "../optional/major/fastTravel/setNewState";
+import { setFastTravelFadingToBlack } from "../optional/major/fastTravel/setNewState";
 
 const SPRITE_OFFSET_SHOPKEEPER = Vector(0, -20);
 const SPRITE_OFFSET_COLLECTIBLE = Vector(0, -40);
@@ -168,7 +168,7 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     v.run.numVictoryLaps++;
 
     // Call the fast-travel function directly to emulate the player having touched a heaven door.
-    setFadingToBlack(player, gridEntity.Position, Direction.UP);
+    setFastTravelFadingToBlack(player, gridEntity.Position, Direction.UP);
   }
 }
 

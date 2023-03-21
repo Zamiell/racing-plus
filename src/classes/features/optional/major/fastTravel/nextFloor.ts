@@ -34,8 +34,8 @@ export function gotoNextFloor(travelDirection: Direction): void {
   const hud = game.GetHUD();
 
   // We use custom functions to handle Racing+ specific logic for floor travel.
-  const nextStage = getNextStageCustom();
-  const nextStageType = getNextStageTypeCustom(travelDirection);
+  const nextStage = getNextStageCustom(travelDirection);
+  const nextStageType = getNextStageTypeCustom(travelDirection, nextStage);
 
   // The effect of Reverse Empress cards are supposed to end after one minute passive. However,
   // taking away the health and re-adding it will cause the extra two red heart containers to not be
@@ -88,19 +88,23 @@ export function gotoNextFloor(travelDirection: Direction): void {
   hud.SetVisible(true);
 }
 
-function getNextStageCustom() {
+function getNextStageCustom(travelDirection: Direction): LevelStage {
   const backwardsPathInit = game.GetStateFlag(
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
   const level = game.GetLevel();
   const stage = level.GetStage();
   const repentanceStage = onRepentanceStage();
-  const raceDestinationTheAscent = isRaceDestinationTheAscent();
+  const ascentGoal = isAscentGoal();
   const clearedMomBossRoom = inClearedMomBossRoom();
+
+  if (travelDirection === Direction.NO_DIRECTION) {
+    return stage;
+  }
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    raceDestinationTheAscent &&
+    ascentGoal &&
     clearedMomBossRoom &&
     !repentanceStage &&
     backwardsPathInit
@@ -111,18 +115,26 @@ function getNextStageCustom() {
   return getNextStage();
 }
 
-function getNextStageTypeCustom(travelDirection: Direction) {
+function getNextStageTypeCustom(
+  travelDirection: Direction,
+  nextStage: LevelStage,
+): StageType {
   const backwardsPathInit = game.GetStateFlag(
     GameStateFlag.BACKWARDS_PATH_INIT,
   );
+  const level = game.GetLevel();
+  const stageType = level.GetStageType();
   const repentanceStage = onRepentanceStage();
-  const nextStage = getNextStageCustom();
-  const raceDestinationTheAscent = isRaceDestinationTheAscent();
+  const ascentGoal = isAscentGoal();
   const clearedMomBossRoom = inClearedMomBossRoom();
+
+  if (travelDirection === Direction.NO_DIRECTION) {
+    return stageType;
+  }
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    raceDestinationTheAscent &&
+    ascentGoal &&
     clearedMomBossRoom &&
     !repentanceStage &&
     backwardsPathInit &&
@@ -133,7 +145,7 @@ function getNextStageTypeCustom(travelDirection: Direction) {
 
   // In races to The Beast, spawn the player directly in Dark Home since going to Mom's Bed and
   // going back to Dogma is pointless.
-  if (raceDestinationTheAscent && nextStage === LevelStage.HOME) {
+  if (ascentGoal && nextStage === LevelStage.HOME) {
     return StageType.WRATH_OF_THE_LAMB;
   }
 
@@ -144,7 +156,7 @@ function getNextStageTypeCustom(travelDirection: Direction) {
 /**
  * Specific races and multi-character speedruns take the player to The Ascent in a non-vanilla way.
  */
-function isRaceDestinationTheAscent(): boolean {
+function isAscentGoal(): boolean {
   return (
     (g.race.status === RaceStatus.IN_PROGRESS &&
       g.race.myStatus === RacerStatus.RACING &&

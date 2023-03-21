@@ -37,8 +37,12 @@ export class CenterStart extends MandatoryModFeature {
     }
   }
 
-  @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
-  postGameStartedReorderedFalse(): void {
+  /**
+   * We use the `POST_NEW_LEVEL_REORDERED` callback instead of the `POST_GAME_STARTED_REORDERED`
+   * callback so that we can handle the case of using a Forget Me Now on the first floor.
+   */
+  @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)
+  postNewLevelReordered(): void {
     movePlayersToCenter();
     this.pickUpTaintedForgotten();
   }
