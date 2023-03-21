@@ -17,7 +17,11 @@ import { inRace } from "../../../../features/race/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
-import { getPlayerPhotoStatus, inClearedMomBossRoom } from "../../../../utils";
+import {
+  getPlayerPhotoStatus,
+  inClearedMomBossRoom,
+  inMomBossRoom,
+} from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 enum PhotoSituation {
@@ -43,6 +47,22 @@ const v = {
  */
 export class ReplacePhotos extends MandatoryModFeature {
   v = v;
+
+  /**
+   * We put this in the `POST_NEW_ROOM_REORDERED` callback instead of in the `PRE_FAST_CLEAR`
+   * callback to account for situations where vanilla clear happens in the Mom room.
+   */
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    const room = game.GetRoom();
+    const roomClear = room.IsClear();
+
+    if (inMomBossRoom() && !roomClear) {
+      // The two vanilla photos will spawn when the fast-clear feature executes the
+      // `Room.TriggerClear` method. Mark to delete them as soon as they spawn.
+      v.room.vanillaPhotosLeftToSpawn = 2;
+    }
+  }
 
   @CallbackCustom(
     ModCallbackCustom.PRE_ENTITY_SPAWN_FILTER,
@@ -81,12 +101,6 @@ export class ReplacePhotos extends MandatoryModFeature {
 
     return undefined;
   }
-}
-
-export function replacePhotosPreFastClear(): void {
-  // The two vanilla photos will spawn when the fast-clear feature executes the `Room.TriggerClear`
-  // method. Mark to delete them as soon as they spawn.
-  v.room.vanillaPhotosLeftToSpawn = 2;
 }
 
 export function replacePhotosPostFastClear(): void {

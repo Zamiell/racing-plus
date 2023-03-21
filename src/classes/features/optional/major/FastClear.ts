@@ -23,7 +23,10 @@ import {
 import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
-import { earlyClearRoomPostUpdate } from "./fastClear/earlyClearRoom";
+import {
+  earlyClearRoomPostUpdate,
+  postFastClear,
+} from "./fastClear/earlyClearRoom";
 import { postItLivesOrHushPathPostNewRoom } from "./fastClear/postItLivesOrHushPath";
 import {
   trackingAddPostNPCInit,
@@ -169,14 +172,17 @@ export class FastClear extends ConfigurableModFeature {
   }
 
   /** This intentionally does not use the `PRE_SPAWN_CLEAR_AWARD` callback. */
-  @CallbackCustom(ModCallbackCustom.POST_ROOM_CLEAR_CHANGED)
-  postRoomClearChanged(roomClear: boolean): void {
+  @CallbackCustom(ModCallbackCustom.POST_ROOM_CLEAR_CHANGED, true)
+  postRoomClearChangedTrue(roomClear: boolean): void {
     this.checkVanillaRoomClear(roomClear);
   }
 
   checkVanillaRoomClear(roomClear: boolean): void {
     if (roomClear && !v.room.fastClearedRoom) {
-      log("Vanilla room clear detected.");
+      log(
+        "Vanilla room clear detected; executing post-fast-clear functions manually.",
+      );
+      postFastClear();
     }
   }
 }

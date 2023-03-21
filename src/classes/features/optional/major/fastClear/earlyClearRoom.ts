@@ -20,10 +20,7 @@ import {
   openAllDoors,
   spawnNPC,
 } from "isaacscript-common";
-import {
-  replacePhotosPostFastClear,
-  replacePhotosPreFastClear,
-} from "../../../mandatory/misc/ReplacePhotos";
+import { replacePhotosPostFastClear } from "../../../mandatory/misc/ReplacePhotos";
 import { spawnRepentanceDoorPostFastClear } from "../../../speedrun/SpawnRepentanceDoor";
 import { season3PostFastClear } from "../../../speedrun/season3/fastClear";
 import {
@@ -107,8 +104,6 @@ function earlyClearRoom() {
     `Fast-clearing room ${roomID} (${roomName}) on game frame: ${gameFrameCount}`,
   );
 
-  preFastClear();
-
   // The `Room.TriggerClear` method must be before other logic because extra doors can be spawned by
   // clearing the room.
   room.TriggerClear();
@@ -120,12 +115,7 @@ function earlyClearRoom() {
   postFastClear();
 }
 
-function preFastClear() {
-  // Mandatory
-  replacePhotosPreFastClear();
-}
-
-function postFastClear() {
+export function postFastClear(): void {
   // Mandatory
   replacePhotosPostFastClear();
 

@@ -112,6 +112,12 @@ export function getPlayerPhotoStatus(): {
 export function inClearedMomBossRoom(): boolean {
   const room = game.GetRoom();
   const roomClear = room.IsClear();
+
+  return inMomBossRoom() && roomClear;
+}
+
+export function inMomBossRoom(): boolean {
+  const room = game.GetRoom();
   const bossID = room.GetBossID();
   const roomInsideGrid = isRoomInsideGrid();
 
@@ -119,7 +125,6 @@ export function inClearedMomBossRoom(): boolean {
     onStage(LevelStage.DEPTHS_2) &&
     inRoomType(RoomType.BOSS) &&
     roomInsideGrid &&
-    roomClear &&
     // We want to filter out the situations where the Dad's Note room is cleared.
     bossID === BossID.MOM
   );

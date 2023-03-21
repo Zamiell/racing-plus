@@ -107,7 +107,10 @@ function checkItLivesWrongPath() {
   }
 }
 
-/** Triggered when a room is fast-cleared. */
+/**
+ * This cannot be in the `PRE_SPAWN_CLEAR_AWARD` callback because the trapdoor and the heaven door
+ * are not yet spawned at that point.
+ */
 export function postItLivesOrHushPathPostFastClear(): void {
   if (inItLivesOrHushBossRoom()) {
     manuallySpawn();
@@ -148,10 +151,9 @@ function getItLivesSituation(): ItLivesSituation {
       return season3GetItLivesSituation();
     }
 
-    const itLivesSituation = onSpeedrunWithDarkRoomGoal()
+    return onSpeedrunWithDarkRoomGoal()
       ? ItLivesSituation.TRAPDOOR
       : ItLivesSituation.HEAVEN_DOOR;
-    return itLivesSituation;
   }
 
   if (
@@ -232,23 +234,21 @@ function doItLivesSituation(situation: ItLivesSituation) {
   switch (situation) {
     case ItLivesSituation.NEITHER: {
       log(
-        `It Lives! or Hush killed on game frame ${gameFrameCount}; no paths will be spawned.`,
+        `It Lives or Hush killed on game frame ${gameFrameCount}; no paths will be spawned.`,
       );
       break;
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
       spawnHeavenDoor(positionCenter);
-      log(
-        `It Lives! or Hush killed on game frame ${gameFrameCount}; going up.`,
-      );
+      log(`It Lives or Hush killed on game frame ${gameFrameCount}; going up.`);
       break;
     }
 
     case ItLivesSituation.TRAPDOOR: {
       spawnTrapdoor(positionCenter);
       log(
-        `It Lives! or Hush killed on game frame ${gameFrameCount}; going down.`,
+        `It Lives or Hush killed on game frame ${gameFrameCount}; going down.`,
       );
       break;
     }
@@ -257,7 +257,7 @@ function doItLivesSituation(situation: ItLivesSituation) {
       spawnTrapdoor(positionLeft);
       spawnHeavenDoor(positionRight);
       log(
-        `It Lives! or Hush killed on game frame ${gameFrameCount}; spawning both paths.`,
+        `It Lives or Hush killed on game frame ${gameFrameCount}; spawning both paths.`,
       );
       break;
     }
