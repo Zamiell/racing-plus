@@ -5,6 +5,11 @@
 
 ### _v0.101.0_ - March 21st, 2023
 
+- R+7 Season 3 is finished!
+  - Congratulations to Adrayon for the best time of 47:15, mgln for the second best time of 47:38, and sisuka for the third best time of 48:43.
+  - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
+- [Season 4](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-4-storage) has officially begun!
 - Forget Me Now now has a custom animation.
 - In season 4, there is now a chosen character order.
 - In seeded races, Tainted Lost is now granted a Holy Card effect upon dying. (Thanks Gamonymous)
@@ -347,7 +352,7 @@
 - R+7 Season 2 is finished!
   - Congratulations to mgln for the best time of 45:16, Finalkids for the second best time of 45:38, and tayu for the third best time of 48:08.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S7) category will continue to be tracked on speedrun.com, but the official competition will move on to season 3.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 3](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-3-diversity) has officially begun!
 - In season 3, Clog will no longer appear in the Boss Rush. (Thanks Hispa)
 
@@ -656,7 +661,7 @@
 - R+7 Season 1 is finished!
   - Congratulations to Finalkids for the best time of 1:01:09, mgln for the second best time of 1:01:27, and Greg420 for the third best time of 1:03:49.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S7) category will continue to be tracked on speedrun.com, but the official competition will move on to season 2.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 2](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-2-instant-start) has officially begun!
 - The console is now enabled in season 2 by default.
 - Fixed the (vanilla) bug where Battery Bums will not charge pocket items if you do not have an active item. (Thanks Fallenfor)
@@ -2075,7 +2080,7 @@
 - Season 7 is finished!
   - Congratulations to Dea1h for the best time of 49:34, thereisnofuture for the second best time of 49:41, and mgln for the third best time of 49:45.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S7) category will continue to be tracked on speedrun.com, but the official competition will move on to season 8.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 8](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md#r7-season-8-the-shared-item-pool-season) has officially begun!
 - The R+ sprite will now always show, which fixes the bug where the place sprite would overlap with the stats. (Thanks Gamonymous)
 - Added an error message for when you try to continue a run that was played prior to opening the game. (Thanks mgln)
@@ -2313,7 +2318,7 @@ Mod changes:
 - Season 6 is finished!
   - Congratulations to Shigan\_ for the best time of 44:04, thereisnofuture for the second best time of 45:54, and Greg570 for the third best time of 46:30.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S6) category will continue to be tracked on speedrun.com, but the official competition will move on to season 7.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 7](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md#r7-season-7-the-diversity-season) has officially begun!
 
 ### _v0.45.11_ - October 31st, 2019
@@ -2676,7 +2681,7 @@ Mod changes:
 - Season 5 is finished!
   - Congratulations to Dea1h for the best time of 1:02:53, Cyber_1 for the second best time of 1:03:26, and CrafterLynx for the third best time of 1:04:17.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S5) category will continue to be tracked on speedrun.com, but the official competition will move on to season 6.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 6](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md#r7-season-6) has officially begun! The new season will be considered beta for the first 2-3 weeks.
 - Hundreds of API calls have been cached, so the mod should run better on slow computers.
 - Mom will now always immediately stomp upon starting the fight, similar to how it works in vanilla.
@@ -2775,7 +2780,7 @@ Mod changes:
 - Season 4 is finished!
   - Congratulations to antizoubilamakA for the best time of 56:46, Cyber_1 for the second best time of 57:55, and leo_ze_tron for the third best time of 58:42.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S4) category will continue to be tracked on speedrun.com, but the official competition will move on to season 5.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 5](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md#r7-season-5) has officially begun!
 - Diagonal knife throws will now have a 3-frame window instead of a 1-frame window.
 - Fixed the bug where Contract From Below would result in errors when clearing a room on a set seed. (Thanks mgln)
@@ -3328,7 +3333,7 @@ Mod Changes:
 - Season 3 is finished!
   - Congratulations to Dea1h for the best time of 1:03:17, ReidMercury for the second best time of 1:04:04, and BMZ_Loop for the third best time of 1:08:11.
   - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
-  - If you want to beat these times, the R+7 (S3) category will continue to be tracked on speedrun.com, but the official competition will move on to season 4.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - [Season 4](https://github.com/Zamiell/isaac-racing-client/blob/master/mod/CHANGES-CHALLENGES.md#r7-season-4) has officially begun!
 - There is a new death mechanic for seeded races:
   - Upon dying, you will respawn in the previous room with 1.5 soul hearts.
@@ -3563,7 +3568,7 @@ News:
 - Season 2 is finished!
   - Congratulations to Dea1h for the best time of 1:01:13, Shigan for the second best time of 1:07:13, and ceehe for the third best time of 1:09:18.
   - The top 10 times will be stored in a hall of fame page on the website in the future.
-  - If you want to beat these times, the R+7 (S2) category will continue to be tracked on speedrun.com, but the official competition will move on to season 3.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
   - If you tried out Season 2 and did not like it, Samael is being heavily buffed in this patch with the goal of making him more fun to play (see below).
 - Season 3 has officially begun!
 - Thanks goes to [DeadInfinity](http://steamcommunity.com/profiles/76561198172774482/myworkshopfiles/?appid=250900), who created the [Jr. Fetus](http://steamcommunity.com/sharedfiles/filedetails/?id=1145038762) boss, who is featured in season 3 at the end of Cathedral / Sheol.
@@ -4042,7 +4047,7 @@ News:
   - Congratulations to Cyber_1 for the best R+9 time of 1:31:02 and Dea1h on the second best time of 1:33:27. I was luckily able to nab third place with 1:33:49.
   - Congratulations to Dea1h for the best R+14 time of 2:41:37, Shigan for the second best time of 2:49:48, and CrafterLynx for the third best time of 2:54:08.
   - The top 10 times will be stored in a hall of fame page on the website in the future.
-  - If you want to beat these times, the R+9 and R+14 categories will continue to be tracked on speedrun.com, but the official competition will move on to season 2.
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
 - Season 2 has officially begun!
 - If you have ideas for season 3, send them to me on Discord, which is planned for November 2017.
 
