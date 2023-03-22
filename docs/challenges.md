@@ -223,8 +223,6 @@ Some builds are banned on certain characters:
 - Lilith starts with Birthright.
 - Bethany starts with Duality.
 - Tainted Magdalene starts with Steven and Birthright.
-- You are randomly assigned a character at the beginning of the run. (You cannot choose the order of the characters.)
-- Bethany and Tainted Magdalene will never be assigned for the first or second character of the challenge. (This gives you some time to store items for them.)
 - If you transform into a different character mid-way through the run, all of the starting items granted to the old character will be removed.
 
 ### Goal
