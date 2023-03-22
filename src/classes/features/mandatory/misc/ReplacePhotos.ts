@@ -10,6 +10,7 @@ import {
   asCollectibleType,
   game,
   newRNG,
+  spawnCollectibleUnsafe,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
@@ -35,35 +36,18 @@ const PEDESTAL_POSITION_CENTER = Vector(320, 360);
 const PEDESTAL_POSITION_LEFT = Vector(280, 360);
 const PEDESTAL_POSITION_RIGHT = Vector(360, 360);
 
-const v = {
-  room: {
-    vanillaPhotosLeftToSpawn: 0,
-  },
-};
-
 /**
  * Racing+ spawns the photos after the Mom fight manually so that they work properly with
  * fast-clear, multi-character speedruns, and other special situations.
  */
 export class ReplacePhotos extends MandatoryModFeature {
-  v = v;
-
   /**
-   * We put this in the `POST_NEW_ROOM_REORDERED` callback instead of in the `PRE_FAST_CLEAR`
-   * callback to account for situations where vanilla clear happens in the Mom room.
+   * We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those
+   * manually to speed up the Mom fight.
+   *
+   * We differentiate between a vanilla photo and a custom photo by the spawner; Racing+ will always
+   * use the player as the spawner for custom photos.
    */
-  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
-  postNewRoomReordered(): void {
-    const room = game.GetRoom();
-    const roomClear = room.IsClear();
-
-    if (inMomBossRoom() && !roomClear) {
-      // The two vanilla photos will spawn when the fast-clear feature executes the
-      // `Room.TriggerClear` method. Mark to delete them as soon as they spawn.
-      v.room.vanillaPhotosLeftToSpawn = 2;
-    }
-  }
-
   @CallbackCustom(
     ModCallbackCustom.PRE_ENTITY_SPAWN_FILTER,
     EntityType.PICKUP,
@@ -75,31 +59,24 @@ export class ReplacePhotos extends MandatoryModFeature {
     subType: int,
     _position: Vector,
     _velocity: Vector,
-    _spawner: Entity | undefined,
+    spawner: Entity | undefined,
     _initSeed: int,
   ): [EntityType, int, int, int] | undefined {
-    const collectibleType = asCollectibleType(subType);
-    return this.preventVanillaPhotos(collectibleType);
-  }
-
-  /**
-   * We need to prevent the vanilla Polaroid and Negative from spawning because Racing+ spawns those
-   * manually to speed up the Mom fight.
-   */
-  preventVanillaPhotos(
-    collectibleType: CollectibleType,
-  ): [EntityType, int, int, int] | undefined {
-    if (
-      v.room.vanillaPhotosLeftToSpawn > 0 &&
-      (collectibleType === CollectibleType.POLAROID ||
-        collectibleType === CollectibleType.NEGATIVE)
-    ) {
-      v.room.vanillaPhotosLeftToSpawn--;
-
+    if (this.isVanillaPhotoAfterMom(subType, spawner)) {
       return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
     }
 
     return undefined;
+  }
+
+  isVanillaPhotoAfterMom(subType: int, spawner: Entity | undefined): boolean {
+    const collectibleType = asCollectibleType(subType);
+    return (
+      (collectibleType === CollectibleType.POLAROID ||
+        collectibleType === CollectibleType.NEGATIVE) &&
+      spawner === undefined &&
+      inMomBossRoom()
+    );
   }
 }
 
@@ -176,6 +153,7 @@ function doPhotoSituation(situation: PhotoSituation) {
   const room = game.GetRoom();
   const roomSeed = room.GetSpawnSeed();
   const rng = newRNG(roomSeed);
+  const player = Isaac.GetPlayer();
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
@@ -183,6 +161,9 @@ function doPhotoSituation(situation: PhotoSituation) {
         CollectibleType.POLAROID,
         PEDESTAL_POSITION_CENTER,
         rng,
+        true,
+        false,
+        player,
       );
 
       break;
@@ -193,6 +174,9 @@ function doPhotoSituation(situation: PhotoSituation) {
         CollectibleType.NEGATIVE,
         PEDESTAL_POSITION_CENTER,
         rng,
+        true,
+        false,
+        player,
       );
 
       break;
@@ -204,6 +188,8 @@ function doPhotoSituation(situation: PhotoSituation) {
         PEDESTAL_POSITION_LEFT,
         rng,
         true,
+        false,
+        player,
       );
 
       mod.spawnCollectible(
@@ -211,6 +197,8 @@ function doPhotoSituation(situation: PhotoSituation) {
         PEDESTAL_POSITION_RIGHT,
         rng,
         true,
+        false,
+        player,
       );
 
       break;
@@ -221,21 +209,21 @@ function doPhotoSituation(situation: PhotoSituation) {
       // the room seed instead.
       if (anyPlayerHasCollectible(CollectibleType.THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1.
-        mod.spawnCollectible(
+        spawnCollectibleUnsafe(
           CollectibleType.NULL,
           PEDESTAL_POSITION_LEFT,
           rng,
           true,
         );
 
-        mod.spawnCollectible(
+        spawnCollectibleUnsafe(
           CollectibleType.NULL,
           PEDESTAL_POSITION_RIGHT,
           rng,
           true,
         );
       } else {
-        mod.spawnCollectible(
+        spawnCollectibleUnsafe(
           CollectibleType.NULL,
           PEDESTAL_POSITION_CENTER,
           rng,
