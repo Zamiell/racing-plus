@@ -62,19 +62,26 @@ export class ReplacePhotos extends MandatoryModFeature {
     spawner: Entity | undefined,
     _initSeed: int,
   ): [EntityType, int, int, int] | undefined {
-    if (this.isVanillaPhotoAfterMom(subType, spawner)) {
+    if (this.isVanillaPhotoAfterKillingMom(subType, spawner)) {
       return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
     }
 
     return undefined;
   }
 
-  isVanillaPhotoAfterMom(subType: int, spawner: Entity | undefined): boolean {
+  isVanillaPhotoAfterKillingMom(
+    subType: int,
+    spawner: Entity | undefined,
+  ): boolean {
+    const room = game.GetRoom();
+    const roomFrameCount = room.GetFrameCount();
     const collectibleType = asCollectibleType(subType);
+
     return (
       (collectibleType === CollectibleType.POLAROID ||
         collectibleType === CollectibleType.NEGATIVE) &&
       spawner === undefined &&
+      roomFrameCount > 0 && // We could be re-entering the room.
       inMomBossRoom()
     );
   }
