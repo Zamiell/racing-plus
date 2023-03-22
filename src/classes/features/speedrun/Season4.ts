@@ -58,10 +58,10 @@ const playersStoringSprites = new DefaultMap<PlayerIndex, Sprite>(() =>
 const v = {
   persistent: {
     storedCollectibles: [] as CollectibleType[],
-    storedCollectiblesOnThisRun: [] as CollectibleType[],
   },
 
   run: {
+    storedCollectiblesOnThisRun: [] as CollectibleType[],
     playersCurrentlyStoring: new Set<PlayerIndex>(),
     playersStartingCharacter: new Map<PlayerIndex, PlayerType>(),
     playersRemovedExtraStartingItems: new Set<PlayerIndex>(),
@@ -139,12 +139,7 @@ export class Season4 extends ChallengeModFeature {
   resetDataStructures(): void {
     if (isOnFirstCharacter()) {
       emptyArray(v.persistent.storedCollectibles);
-    } else {
-      for (const collectibleType of v.persistent.storedCollectiblesOnThisRun) {
-        arrayRemoveInPlace(v.persistent.storedCollectibles, collectibleType);
-      }
     }
-    emptyArray(v.persistent.storedCollectiblesOnThisRun);
     playersStoringSprites.clear();
   }
 
@@ -184,9 +179,13 @@ export class Season4 extends ChallengeModFeature {
     });
   }
 
-  /** Prevent getting a free shovel from the random dirt patch room. */
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReorderedFalse(): void {
+    this.preventFreeShovel();
+  }
+
+  /** Prevent getting a free shovel from the random dirt patch room. */
+  preventFreeShovel(): void {
     if (!onDarkRoom()) {
       return;
     }
@@ -301,7 +300,7 @@ export class Season4 extends ChallengeModFeature {
     CollectibleTypeCustom.CHECKPOINT,
   )
   preItemPickupCheckpoint(): void {
-    emptyArray(v.persistent.storedCollectiblesOnThisRun);
+    v.persistent.storedCollectibles.push(...v.run.storedCollectiblesOnThisRun);
   }
 }
 
@@ -340,8 +339,7 @@ function storeCollectible(
 ) {
   dequeueItem(player);
 
-  v.persistent.storedCollectibles.push(collectibleType);
-  v.persistent.storedCollectiblesOnThisRun.push(collectibleType);
+  v.run.storedCollectiblesOnThisRun.push(collectibleType);
 
   const playerIndex = getPlayerIndex(player);
   v.run.playersCurrentlyStoring.add(playerIndex);
