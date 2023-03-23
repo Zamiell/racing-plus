@@ -7,6 +7,8 @@ import {
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { mod } from "../mod";
+import { speedrunResetPersistentVars } from "../speedrun/resetVars";
+import { inSpeedrun } from "../speedrun/utilsSpeedrun";
 
 export function init(): void {
   mod.AddCallbackCustom(
@@ -31,6 +33,10 @@ function main(isContinued: boolean) {
   // Make sure that the MinimapAPI is enabled. (We may have disabled it in a previous run.)
   if (MinimapAPI !== undefined) {
     MinimapAPI.Config.Disable = false;
+  }
+
+  if (!inSpeedrun()) {
+    speedrunResetPersistentVars();
   }
 
   if (isContinued) {
