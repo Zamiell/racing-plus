@@ -1,4 +1,4 @@
-import { CollectibleType, Keyboard } from "isaac-typescript-definitions";
+import { Keyboard } from "isaac-typescript-definitions";
 import { log, logAndPrint, setLogFunctionsGlobal } from "isaacscript-common";
 import { g } from "./globals";
 import { mod } from "./mod";
@@ -11,8 +11,6 @@ import { hotkeys } from "./modConfigMenu";
  */
 function debugCode(_params?: string) {
   // Add code here.
-  const player = Isaac.GetPlayer();
-  player.AddCollectible(CollectibleType.FORGET_ME_NOW);
 }
 
 /** Hotkey 1 is bound to F2. */

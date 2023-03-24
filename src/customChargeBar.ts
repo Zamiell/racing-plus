@@ -29,6 +29,7 @@ const LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES = [
   CollectibleType.MONSTROS_LUNG, // 229
   CollectibleType.TECH_X, // 395
   CollectibleType.HAEMOLACRIA, // 531
+  CollectibleType.SPIRIT_SWORD, // 579
 ] as const;
 
 // Azazels' Rage constants.
