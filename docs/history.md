@@ -5,7 +5,7 @@
 
 ### _v0.101.6_ - March 26th, 2023
 
-- !Fixed the bug where Glowing Hour Glass would not work in the first room of a new floor. (Thanks Monkeypot)
+- Fixed the bug where Glowing Hour Glass would not work in the first room of a new floor. (Thanks Monkeypot)
 - Fixed the bug where Sol would not work properly after saving and quitting under certain conditions. (Thanks Fallenfor)
 
 ### _v0.101.5_ - March 24th, 2023

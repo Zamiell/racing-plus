@@ -1,4 +1,5 @@
 import {
+  CollectibleType,
   DamageFlag,
   EffectVariant,
   GridEntityType,
@@ -13,6 +14,7 @@ import {
   VectorZero,
   game,
   getAllPlayers,
+  inStartingRoom,
   isSelfDamage,
 } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
@@ -93,6 +95,24 @@ export class FastTravel extends ConfigurableModFeature {
       player.Position = gridPosition;
       player.Velocity = VectorZero;
     }
+  }
+
+  /**
+   * Manually fix the softlock that occurs with fast-travel when using Glowing Hour Glass in the
+   * first room of a floor.
+   */
+  @Callback(ModCallback.POST_USE_ITEM, CollectibleType.GLOWING_HOUR_GLASS)
+  postUseItemGlowingHourGlass(): boolean | undefined {
+    const room = game.GetRoom();
+    const isFirstVisit = room.IsFirstVisit();
+
+    if (inStartingRoom() && isFirstVisit) {
+      mod.runNextRoom(() => {
+        v.run.state = FastTravelState.DISABLED;
+      });
+    }
+
+    return undefined;
   }
 
   // 34, 340
