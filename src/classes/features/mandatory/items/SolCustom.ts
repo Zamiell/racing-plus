@@ -42,6 +42,8 @@ const v = {
  * of a boss' death animation (instead of at the end).
  *
  * For this reason, this feature depends on fast-clear.
+ *
+ * @see https://bindingofisaacrebirth.fandom.com/wiki/Sol
  */
 export class SolCustom extends ConfigurableModFeature {
   configKey: keyof Config = "FastClear";
@@ -123,7 +125,6 @@ export class SolCustom extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)
   postNewLevelReordered(): void {
     this.checkRemoveSolBuff();
-    this.checkApplySolMapEffect();
   }
 
   checkRemoveSolBuff(): void {
@@ -136,6 +137,15 @@ export class SolCustom extends ConfigurableModFeature {
         evaluateItems(player);
       }
     }
+  }
+
+  /**
+   * We check to apply the map effect on every room instead of on every new level because the player
+   * could save and quit in the middle of a floor.
+   */
+  @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
+  postNewRoomReordered(): void {
+    this.checkApplySolMapEffect();
   }
 
   checkApplySolMapEffect(): void {
