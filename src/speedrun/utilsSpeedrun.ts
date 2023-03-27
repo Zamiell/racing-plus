@@ -1,10 +1,7 @@
+import { EntityCollisionClass } from "isaac-typescript-definitions";
 import {
-  CollectibleType,
-  EntityCollisionClass,
-} from "isaac-typescript-definitions";
-import {
+  anyPlayerHoldingItem,
   isEven,
-  removeCollectibleFromAllPlayers,
   removeCollectiblePickupDelay,
 } from "isaacscript-common";
 import { isSeededDeathActive } from "../classes/features/mandatory/misc/seededDeath/v";
@@ -43,25 +40,35 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
 
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
   removeCollectiblePickupDelay(checkpoint);
+  setSeededDeathCollectibleIntangible(checkpoint);
 
-  // IBS can cause the Checkpoint to be overridden with poop, causing a soft-lock.
-  removeCollectibleFromAllPlayers(CollectibleType.IBS);
-
-  // If the player kills the final boss while the seeded death mechanic is active, they should not
-  // be able to take the checkpoint.
-  if (isSeededDeathActive()) {
-    // The collision class on the collectible will be updated 4 frames from now, so if we set a new
-    // collision class now, it will be overwritten. Thus, we have to wait at least 4 frames.
-
-    // First, set the "Wait" property to an arbitrary value longer than 4 frames to prevent the
-    // player from picking up the Checkpoint.
-    checkpoint.Wait = 10;
-
-    const checkpointPtr = EntityPtr(checkpoint);
-    mod.runInNGameFrames(() => {
-      if (checkpointPtr.Ref !== undefined && checkpointPtr.Ref.Exists()) {
-        checkpoint.EntityCollisionClass = EntityCollisionClass.NONE;
-      }
-    }, 4);
+  // If the player is holding a poop from IBS, they should not be able to take the checkpoint (since
+  // throwing the poop can cause a race condition where the checkpoint will be deleted).
+  if (anyPlayerHoldingItem()) {
+    checkpoint.Wait = 20; // 20 is the vanilla/normal value.
   }
+}
+
+/**
+ * If the player kills the final boss while the seeded death mechanic is active, they should not be
+ * able to take the checkpoint.
+ */
+function setSeededDeathCollectibleIntangible(checkpoint: EntityPickup) {
+  if (!isSeededDeathActive()) {
+    return;
+  }
+
+  // The collision class on the collectible will be updated 4 frames from now, so if we set a new
+  // collision class now, it will be overwritten. Thus, we have to wait at least 4 frames.
+
+  // First, set the "Wait" property to an arbitrary value longer than 4 frames to prevent the player
+  // from picking up the Checkpoint.
+  checkpoint.Wait = 20; // 20 is the vanilla/normal value.
+
+  const checkpointPtr = EntityPtr(checkpoint);
+  mod.runInNGameFrames(() => {
+    if (checkpointPtr.Ref !== undefined && checkpointPtr.Ref.Exists()) {
+      checkpoint.EntityCollisionClass = EntityCollisionClass.NONE;
+    }
+  }, 4);
 }
