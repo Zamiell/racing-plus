@@ -5,6 +5,7 @@
 
 ### _v0.101.7_ - March 27th, 2023
 
+- Fixed the bug where it was not possible to go from Basement 1 to Home. (Thanks Gamonymous)
 - Fixed the bug where it was possible for an IBS poop to overwrite the checkpoint under certain conditions. (Thanks Moucheron Quipet)
 
 ### _v0.101.6_ - March 26th, 2023
