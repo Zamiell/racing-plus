@@ -8,6 +8,7 @@ import {
   getRoomGridIndexesForType,
   log,
   ModCallbackCustom,
+  onAscent,
 } from "isaacscript-common";
 import { inSeededRace } from "../../../../features/race/v";
 import { mod } from "../../../../mod";
@@ -49,7 +50,7 @@ export class PlanetariumFix extends MandatoryModFeature {
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
-  if (!inSeededRace() && !onSeason(2)) {
+  if (!inSeededRace() && !onSeason(2) && !onAscent()) {
     return false;
   }
 
