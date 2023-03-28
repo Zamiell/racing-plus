@@ -11,8 +11,6 @@ import { hotkeys } from "./modConfigMenu";
  */
 function debugCode(_params?: string) {
   // Add code here.
-  const player = Isaac.GetPlayer();
-  player.Position = Vector(300, 275);
 }
 
 /** Hotkey 1 is bound to F2. */

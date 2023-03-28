@@ -18,6 +18,7 @@ import {
   isAllPressurePlatesPushed,
   log,
   openAllDoors,
+  removeAllEffects,
   spawnNPC,
 } from "isaacscript-common";
 import { replacePhotosPostFastClear } from "../../../mandatory/misc/ReplacePhotos";
@@ -131,6 +132,10 @@ function killExtraEntities() {
   killDeathsHeads();
   killFleshDeathsHeads();
   killCreep();
+
+  // The fart wave attack from Clog can cause a softlock since the wave creates poops and the poops
+  // can overwrite the trapdoor grid entity.
+  removeAllEffects(EffectVariant.FART_WAVE);
 }
 
 function killDeathsHeads() {

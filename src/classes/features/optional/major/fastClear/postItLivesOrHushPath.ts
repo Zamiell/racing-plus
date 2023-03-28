@@ -5,7 +5,6 @@ import {
   HeavenLightDoorSubType,
   LevelStage,
   RoomType,
-  TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
@@ -21,7 +20,7 @@ import {
   removeAllMatchingEntities,
   removeAllMatchingGridEntities,
   spawnEffect,
-  spawnGridEntityWithVariant,
+  spawnGridEntity,
 } from "isaacscript-common";
 import { ItLivesSituation } from "../../../../../enums/ItLivesSituation";
 import { RaceGoal } from "../../../../../enums/RaceGoal";
@@ -281,11 +280,5 @@ function spawnHeavenDoor(position: Vector) {
 }
 
 function spawnTrapdoor(position: Vector) {
-  const room = game.GetRoom();
-  const gridIndex = room.GetGridIndex(position);
-  spawnGridEntityWithVariant(
-    GridEntityType.TRAPDOOR,
-    TrapdoorVariant.NORMAL,
-    gridIndex,
-  );
+  spawnGridEntity(GridEntityType.TRAPDOOR, position);
 }
