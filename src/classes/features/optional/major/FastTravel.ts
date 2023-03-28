@@ -34,6 +34,7 @@ import {
   crawlSpacePostPEffectUpdateReordered,
 } from "./fastTravel/crawlSpace";
 import {
+  heavenDoorPostEffectInitHeavenDoor,
   heavenDoorPostEffectUpdateHeavenDoor,
   heavenDoorPreSpawnClearAward,
 } from "./fastTravel/heavenDoor";
@@ -150,6 +151,15 @@ export class FastTravel extends ConfigurableModFeature {
     }
 
     return undefined;
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.POST_EFFECT_INIT_FILTER,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+    HeavenLightDoorSubType.HEAVEN_DOOR,
+  )
+  postEffectInitHeavenDoor(effect: EntityEffect): void {
+    heavenDoorPostEffectInitHeavenDoor(effect);
   }
 
   @CallbackCustom(

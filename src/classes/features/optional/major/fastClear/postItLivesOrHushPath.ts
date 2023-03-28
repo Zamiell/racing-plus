@@ -9,9 +9,10 @@ import {
 } from "isaac-typescript-definitions";
 import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
+  VectorZero,
   doesEntityExist,
+  doesGridEntityExist,
   game,
-  getGridEntities,
   inRoomType,
   isRoomInsideGrid,
   log,
@@ -88,8 +89,8 @@ function checkItLivesWrongPath() {
     }
 
     case ItLivesSituation.TRAPDOOR: {
-      const trapdoors = getGridEntities(GridEntityType.TRAPDOOR);
-      if (trapdoors.length === 0) {
+      const trapdoorsExist = doesGridEntityExist(GridEntityType.TRAPDOOR);
+      if (!trapdoorsExist) {
         spawnTrapdoor(positionCenter);
         log(
           "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
@@ -264,11 +265,18 @@ function doItLivesSituation(situation: ItLivesSituation) {
   }
 }
 
+/**
+ * We spawn all heaven doors using the player as a spawner to distinguish between vanilla heaven
+ * doors and custom heaven doors.
+ */
 function spawnHeavenDoor(position: Vector) {
+  const player = Isaac.GetPlayer();
   spawnEffect(
     EffectVariant.HEAVEN_LIGHT_DOOR,
     HeavenLightDoorSubType.HEAVEN_DOOR,
     position,
+    VectorZero,
+    player,
   );
 }
 

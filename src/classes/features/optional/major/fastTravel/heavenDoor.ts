@@ -50,18 +50,37 @@ function openClosedHeavenDoors() {
   }
 }
 
+// ModCallbackCustom.POST_EFFECT_INIT_FILTER
+// EffectVariant.HEAVEN_LIGHT_DOOR
+// HeavenLightDoorSubType.HEAVEN_DOOR
+export function heavenDoorPostEffectInitHeavenDoor(effect: EntityEffect): void {
+  // In some situations, heaven doors should be removed entirely.
+  if (shouldRemove(effect)) {
+    effect.Remove();
+  }
+}
+
+function shouldRemove(effect: EntityEffect) {
+  // Delete all vanilla heaven doors. (We explicitly spawn all custom heaven doors using the player
+  // as the spawner.)
+  if (effect.SpawnerEntity === undefined) {
+    return true;
+  }
+
+  // If the goal of the race is Hush, delete the heaven door that spawns after It Lives or Hush.
+  if (inRaceToHush() && onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)) {
+    return true;
+  }
+
+  return false;
+}
+
 // ModCallbackCustom.POST_EFFECT_UPDATE_FILTER
 // EffectVariant.HEAVEN_LIGHT_DOOR
 // HeavenLightDoorSubType.HEAVEN_DOOR
 export function heavenDoorPostEffectUpdateHeavenDoor(
   effect: EntityEffect,
 ): void {
-  // In some situations, heaven doors should be removed entirely.
-  if (shouldRemove(effect)) {
-    effect.Remove();
-    return;
-  }
-
   // Beams of light start at state 0 and get incremented by 1 on every frame. Players can only get
   // taken up by heaven doors if the state is at a high enough value. Thus, we can disable the
   // vanilla functionality by setting the state to 0 on every frame.
@@ -71,19 +90,6 @@ export function heavenDoorPostEffectUpdateHeavenDoor(
   // `POST_NEW_ROOM` callback.
   initFastTravelEntity(effect, FAST_TRAVEL_ENTITY_TYPE, shouldSpawnOpen);
   checkPlayerTouchedFastTravelEntity(effect, FAST_TRAVEL_ENTITY_TYPE, touched);
-}
-
-function shouldRemove(effect: EntityEffect) {
-  if (effect.FrameCount > 1) {
-    return false;
-  }
-
-  // If the goal of the race is Hush, delete the heaven door that spawns after It Lives or Hush.
-  if (inRaceToHush() && onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)) {
-    return true;
-  }
-
-  return false;
 }
 
 function shouldSpawnOpen() {
