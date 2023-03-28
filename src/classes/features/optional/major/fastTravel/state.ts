@@ -49,7 +49,6 @@ function setOpenClose(
   }
   const animation = `${animationPrefix} Custom`;
   sprite.Play(animation, true);
-  Isaac.DebugString(`GETTING HERE - animation: ${animation}`);
 
   if (FAST_TRAVEL_DEBUG) {
     log(

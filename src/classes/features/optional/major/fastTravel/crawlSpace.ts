@@ -134,6 +134,22 @@ export function crawlSpacePostGridEntityUpdateCrawlSpace(
   // Keep it closed on every frame so that we can implement our own custom functionality.
   gridEntity.State = CrawlSpaceState.CLOSED;
 
+  /**
+   * Prevent the bug where the vanilla loading zone will still trigger if the "Open Animation
+   * Custom" is finished and the player is small.
+   *
+   * Steps to reproduce:
+   * - seed YR72 L93J
+   * - stage 7
+   * - secret
+   * - g pluto
+   * - l Isaac.GetPlayer().Position = Vector(300, 275)
+   */
+  const sprite = gridEntity.GetSprite();
+  if (sprite.IsFinished("Open Animation Custom")) {
+    sprite.Play("Opened Custom", true);
+  }
+
   checkShouldClose(gridEntity);
   checkFastTravelEntityShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   checkPlayerTouchedFastTravelEntity(
