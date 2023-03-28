@@ -65,7 +65,8 @@ function shouldRemove(effect: EntityEffect) {
   const roomFrameCount = room.GetFrameCount();
 
   // Delete all vanilla heaven doors that are spawned midway through the room. (We explicitly spawn
-  // all custom heaven doors using the player as the spawner.)
+  // all custom heaven doors using the player as the spawner. The game will naturally respawn heaven
+  // doors when the player re-enters the room, and these will not have an explicit spawner.)
   if (effect.SpawnerEntity === undefined && roomFrameCount > 0) {
     return true;
   }
