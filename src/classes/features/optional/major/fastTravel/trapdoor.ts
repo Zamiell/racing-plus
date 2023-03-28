@@ -40,7 +40,10 @@ import {
   initFastTravelEntity,
 } from "./fastTravelEntity";
 import { setFastTravelFadingToBlack } from "./setNewState";
-import * as state from "./state";
+import {
+  deleteFastTravelEntityDescription,
+  shouldOpenFastTravelEntity,
+} from "./state";
 import { v } from "./v";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.TRAPDOOR;
@@ -93,7 +96,7 @@ export function trapdoorPostGridEntityUpdateTrapdoor(
 // ModCallbackCustom.POST_GRID_ENTITY_REMOVE
 // GridEntityType.TRAPDOOR (17)
 export function trapdoorPostGridEntityRemoveTrapdoor(gridIndex: int): void {
-  state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
+  deleteFastTravelEntityDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
@@ -269,7 +272,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
   // If we just entered a new room that is already cleared, spawn the trapdoor closed if we are
   // standing close to it, and open otherwise.
-  return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
+  return shouldOpenFastTravelEntity(entity, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {

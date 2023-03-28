@@ -12,7 +12,7 @@ import {
 } from "./constants";
 import { v } from "./v";
 
-export function open(
+export function fastTravelEntityOpen(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   initial = false,
@@ -20,7 +20,7 @@ export function open(
   setOpenClose(true, entity, fastTravelEntityType, initial);
 }
 
-export function close(
+export function fastTravelEntityClose(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
@@ -36,7 +36,7 @@ function setOpenClose(
   const state = isOpen
     ? FastTravelEntityState.OPEN
     : FastTravelEntityState.CLOSED;
-  set(entity, fastTravelEntityType, state);
+  setFastTravelEntityState(entity, fastTravelEntityType, state);
 
   const sprite = entity.GetSprite();
   let animationPrefix = isOpen ? "Opened" : "Closed";
@@ -57,11 +57,14 @@ function setOpenClose(
   }
 }
 
-export function get(
+export function getFastTravelEntityState(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): FastTravelEntityState | undefined {
-  const entityDescription = getDescription(entity, fastTravelEntityType);
+  const entityDescription = getFastTravelEntityDescription(
+    entity,
+    fastTravelEntityType,
+  );
   if (entityDescription === undefined) {
     return undefined;
   }
@@ -69,12 +72,15 @@ export function get(
   return entityDescription.state;
 }
 
-function set(
+function setFastTravelEntityState(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   state: FastTravelEntityState,
 ) {
-  const entityDescription = getDescription(entity, fastTravelEntityType);
+  const entityDescription = getFastTravelEntityDescription(
+    entity,
+    fastTravelEntityType,
+  );
   if (entityDescription === undefined) {
     error(
       `Failed to set a new fast-travel entity state for a ${FastTravelEntityType[fastTravelEntityType]}: ${FastTravelEntityState[state]} (${state})`,
@@ -102,7 +108,7 @@ function getFastTravelMap(
   }
 }
 
-export function initDescription(
+export function initFastTravelEntityDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
@@ -117,7 +123,7 @@ export function initDescription(
   fastTravelMap.set(index, description);
 }
 
-export function getDescription(
+export function getFastTravelEntityDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): FastTravelEntityDescription | undefined {
@@ -127,7 +133,7 @@ export function getDescription(
   return fastTravelMap.get(index);
 }
 
-export function deleteDescription(
+export function deleteFastTravelEntityDescription(
   index: int,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
@@ -160,11 +166,14 @@ function getIndex(
   }
 }
 
-export function shouldOpen(
+export function shouldOpenFastTravelEntity(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): boolean {
-  const entityDescription = getDescription(entity, fastTravelEntityType);
+  const entityDescription = getFastTravelEntityDescription(
+    entity,
+    fastTravelEntityType,
+  );
   if (entityDescription === undefined) {
     return false;
   }

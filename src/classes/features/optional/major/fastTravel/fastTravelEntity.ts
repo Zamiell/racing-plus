@@ -29,7 +29,13 @@ import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
   TRAPDOOR_TOUCH_DISTANCE,
 } from "./constants";
-import * as state from "./state";
+import {
+  fastTravelEntityClose,
+  fastTravelEntityOpen,
+  getFastTravelEntityState,
+  initFastTravelEntityDescription,
+  shouldOpenFastTravelEntity,
+} from "./state";
 import { v } from "./v";
 
 /** One tile away from the top door in a 1x1 room. */
@@ -56,12 +62,12 @@ export function initFastTravelEntity(
   );
 
   sprite.Load(customFileName, true);
-  state.initDescription(entity, fastTravelEntityType);
+  initFastTravelEntityDescription(entity, fastTravelEntityType);
 
   if (shouldSpawnOpen(entity)) {
-    state.open(entity, fastTravelEntityType, true);
+    fastTravelEntityOpen(entity, fastTravelEntityType, true);
   } else {
-    state.close(entity, fastTravelEntityType);
+    fastTravelEntityClose(entity, fastTravelEntityType);
   }
 }
 
@@ -188,12 +194,12 @@ export function checkFastTravelEntityShouldOpen(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
-  const entityState = state.get(entity, fastTravelEntityType);
+  const entityState = getFastTravelEntityState(entity, fastTravelEntityType);
   if (
     entityState === FastTravelEntityState.CLOSED &&
-    state.shouldOpen(entity, fastTravelEntityType)
+    shouldOpenFastTravelEntity(entity, fastTravelEntityType)
   ) {
-    state.open(entity, fastTravelEntityType);
+    fastTravelEntityOpen(entity, fastTravelEntityType);
   }
 }
 
@@ -209,7 +215,7 @@ export function checkPlayerTouchedFastTravelEntity(
     return;
   }
 
-  const entityState = state.get(entity, fastTravelEntityType);
+  const entityState = getFastTravelEntityState(entity, fastTravelEntityType);
   if (entityState === FastTravelEntityState.CLOSED) {
     return;
   }

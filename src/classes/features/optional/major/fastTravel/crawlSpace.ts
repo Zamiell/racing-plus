@@ -39,7 +39,12 @@ import {
   checkPlayerTouchedFastTravelEntity,
   initFastTravelEntity,
 } from "./fastTravelEntity";
-import * as state from "./state";
+import {
+  deleteFastTravelEntityDescription,
+  fastTravelEntityClose,
+  getFastTravelEntityState,
+  shouldOpenFastTravelEntity,
+} from "./state";
 import { v } from "./v";
 
 const GRID_INDEX_TOP_OF_CRAWLSPACE_LADDER = 2;
@@ -141,9 +146,12 @@ export function crawlSpacePostGridEntityUpdateCrawlSpace(
 // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
 // sprites.
 function checkShouldClose(gridEntity: GridEntity) {
-  const entityState = state.get(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+  const entityState = getFastTravelEntityState(
+    gridEntity,
+    FAST_TRAVEL_ENTITY_TYPE,
+  );
   if (entityState === FastTravelEntityState.OPEN && mod.anyPlayerUsingPony()) {
-    state.close(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
+    fastTravelEntityClose(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   }
 }
 
@@ -168,7 +176,7 @@ export function crawlSpacePostGridEntityStateChangedTeleporter(
 // ModCallbackCustom.POST_GRID_ENTITY_REMOVE
 // GridEntityType.CRAWL_SPACE (18)
 export function crawlSpacePostGridEntityRemoveCrawlSpace(gridIndex: int): void {
-  state.deleteDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
+  deleteFastTravelEntityDescription(gridIndex, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
@@ -199,7 +207,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
   // If we just entered a new room that is already cleared, spawn the crawl space closed if we are
   // standing close to it, and open otherwise.
-  return state.shouldOpen(entity, FAST_TRAVEL_ENTITY_TYPE);
+  return shouldOpenFastTravelEntity(entity, FAST_TRAVEL_ENTITY_TYPE);
 }
 
 function touched(entity: GridEntity | EntityEffect) {
@@ -308,7 +316,7 @@ function checkExitingCrawlSpace() {
   // Account for this by manually setting every crawl space to be closed.
   const crawlSpaces = getCrawlSpaces();
   for (const crawlSpace of crawlSpaces) {
-    state.close(crawlSpace, FAST_TRAVEL_ENTITY_TYPE);
+    fastTravelEntityClose(crawlSpace, FAST_TRAVEL_ENTITY_TYPE);
   }
 }
 

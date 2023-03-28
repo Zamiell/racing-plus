@@ -21,7 +21,11 @@ import {
   initFastTravelEntity,
 } from "./fastTravelEntity";
 import { setFastTravelFadingToBlack } from "./setNewState";
-import * as state from "./state";
+import {
+  fastTravelEntityOpen,
+  getFastTravelEntityDescription,
+  getFastTravelEntityState,
+} from "./state";
 
 const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.HEAVEN_DOOR;
 
@@ -36,9 +40,12 @@ function openClosedHeavenDoors() {
     HeavenLightDoorSubType.HEAVEN_DOOR,
   );
   for (const heavenDoor of heavenDoors) {
-    const entityState = state.get(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
+    const entityState = getFastTravelEntityState(
+      heavenDoor,
+      FAST_TRAVEL_ENTITY_TYPE,
+    );
     if (entityState === FastTravelEntityState.CLOSED) {
-      state.open(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
+      fastTravelEntityOpen(heavenDoor, FAST_TRAVEL_ENTITY_TYPE);
     }
   }
 }
@@ -103,7 +110,7 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
   const effect = entity as EntityEffect;
 
   // Perform some extra checks before we consider the player to have activated the heaven door.
-  const entityDescription = state.getDescription(
+  const entityDescription = getFastTravelEntityDescription(
     entity,
     FAST_TRAVEL_ENTITY_TYPE,
   );
