@@ -27,7 +27,7 @@ import { inClearedMomBossRoom } from "../../../../../utils";
 import { SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX } from "../../../speedrun/season3/constants";
 import {
   ANIMATIONS_THAT_PREVENT_FAST_TRAVEL,
-  TRAPDOOR_TOUCH_DISTANCE,
+  TRAPDOOR_AND_CRAWL_SPACE_TOUCH_DISTANCE,
 } from "./constants";
 import {
   fastTravelEntityClose,
@@ -222,7 +222,7 @@ export function checkPlayerTouchedFastTravelEntity(
 
   const playersTouching = Isaac.FindInRadius(
     entity.Position,
-    TRAPDOOR_TOUCH_DISTANCE,
+    TRAPDOOR_AND_CRAWL_SPACE_TOUCH_DISTANCE,
     EntityPartition.PLAYER,
   );
 

@@ -6,8 +6,8 @@ import { FastTravelEntityDescription } from "../../../../../interfaces/FastTrave
 import { mod } from "../../../../../mod";
 import {
   FAST_TRAVEL_DEBUG,
+  TRAPDOOR_AND_CRAWL_SPACE_OPEN_DISTANCE,
   TRAPDOOR_BOSS_REACTION_FRAMES,
-  TRAPDOOR_OPEN_DISTANCE,
   TRAPDOOR_OPEN_DISTANCE_AFTER_BOSS,
 } from "./constants";
 import { v } from "./v";
@@ -49,6 +49,7 @@ function setOpenClose(
   }
   const animation = `${animationPrefix} Custom`;
   sprite.Play(animation, true);
+  Isaac.DebugString(`GETTING HERE - animation: ${animation}`);
 
   if (FAST_TRAVEL_DEBUG) {
     log(
@@ -179,7 +180,10 @@ export function shouldOpenFastTravelEntity(
   }
 
   return (
-    !anyPlayerCloserThan(entity.Position, TRAPDOOR_OPEN_DISTANCE) &&
+    !anyPlayerCloserThan(
+      entity.Position,
+      TRAPDOOR_AND_CRAWL_SPACE_OPEN_DISTANCE,
+    ) &&
     !playerCloseAfterBoss(entity.Position) &&
     !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial) &&
     // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
