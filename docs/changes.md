@@ -191,7 +191,7 @@ Post-flip actions:
 
 > Why? It doesn't make sense that Death's slow effect can persist on the player even after Death has been defeated.
 
-- `0307` <!-- FastBlastocyst 74 --> The death animation of Blastocyst is sped up.
+- `0307` <!-- FastBlastocyst 74 --> The appear animation and death animation of Blastocyst is sped up.
 - `0308` <!-- FastKrampus 81 --> Krampus will immediately drop his item once he is killed.
 - `0309` <!-- FastSatan 84 --> The unnecessary waiting during the Satan fight is removed.
 - `0310` <!-- FastHaunt 260 --> The unnecessary waiting during the Haunt fight is removed.
