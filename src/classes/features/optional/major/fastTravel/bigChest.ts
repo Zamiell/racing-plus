@@ -7,6 +7,7 @@ import {
   TrapdoorVariant,
 } from "isaac-typescript-definitions";
 import {
+  VectorZero,
   anyPlayerHasCollectible,
   game,
   inMegaSatanRoom,
@@ -51,7 +52,7 @@ const DEFAULT_REPLACEMENT_ACTION = BigChestReplacementAction.LEAVE_ALONE;
 // PickupVariant.BIG_CHEST (340)
 export function bigChestPostPickupInitBigChest(pickup: EntityPickup): void {
   const replacementAction = getReplacementAction();
-  replace(pickup, replacementAction);
+  replaceBigChest(pickup, replacementAction);
 }
 
 function getReplacementAction() {
@@ -220,7 +221,7 @@ function bossRush() {
     : DEFAULT_REPLACEMENT_ACTION;
 }
 
-function replace(
+function replaceBigChest(
   pickup: EntityPickup,
   replacementAction: BigChestReplacementAction,
 ) {
@@ -233,9 +234,6 @@ function replace(
 
   switch (replacementAction) {
     case BigChestReplacementAction.LEAVE_ALONE: {
-      // Hijack the normally-unused "Touched" property to signify that we should leave it here. (We
-      // will ignore it on subsequent frames.)
-      pickup.Touched = true;
       break;
     }
 
@@ -251,10 +249,14 @@ function replace(
     }
 
     case BigChestReplacementAction.HEAVEN_DOOR: {
+      // The fast-travel feature expects heaven doors to have the player as the spawner.
+      const player = Isaac.GetPlayer();
       const heavenDoor = spawnEffect(
         EffectVariant.HEAVEN_LIGHT_DOOR,
         HeavenLightDoorSubType.HEAVEN_DOOR,
         pickup.Position,
+        VectorZero,
+        player,
       );
 
       // This will get naturally initialized by the fast-travel system on the next frame. However,

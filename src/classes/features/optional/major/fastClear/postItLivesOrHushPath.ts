@@ -132,11 +132,7 @@ function inItLivesOrHushBossRoom() {
 function manuallySpawn() {
   // First, remove any existing trapdoors or heaven doors. Afterward, we will respawn them in an
   // appropriate way.
-  removeAllMatchingEntities(
-    EntityType.EFFECT,
-    EffectVariant.HEAVEN_LIGHT_DOOR,
-    HeavenLightDoorSubType.HEAVEN_DOOR,
-  );
+  removeAllMatchingEntities(EntityType.EFFECT, EffectVariant.HEAVEN_LIGHT_DOOR);
   removeAllMatchingGridEntities(GridEntityType.TRAPDOOR);
 
   const situation = getItLivesSituation();
