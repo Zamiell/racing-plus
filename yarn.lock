@@ -2737,10 +2737,10 @@ isaacscript-common-ts@^10.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-10.0.0.tgz#f1037ad8856ef37860964b2987b913aa2e289280"
   integrity sha512-lacHMi0+2ovSuMrtz253XjvDX1i4bER5eNbWsRBTOQp56ZTX5aGC9zKg6GyaDULTfwL/K/bD1mVG69qvsAqChQ==
 
-isaacscript-common@^30.9.1:
-  version "30.9.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.9.1.tgz#c83096598eac69ed02de527ce89036bdbfd084ba"
-  integrity sha512-fPKv42ByHbidbOHPkiHbZD/kRvTwr5OVia1Xlv0koruzpuQCJ681CnqdGggk/WxWiwWaw05+3RzDSc/CGsD9AA==
+isaacscript-common@^30.10.0:
+  version "30.10.0"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.10.0.tgz#0c3372ffbbede96d3cf55ff6ef5f3ad816bfdb4b"
+  integrity sha512-tbEyiGf+ghmLUoQlAxrXkLdY/UQN7+LOD8NEiN2dPVLeItvFwoVFCX3oJyfOPY9mqrTaA4YjrniHaXXc2UFH7g==
   dependencies:
     isaac-typescript-definitions "^13.0.10"
 
@@ -4412,10 +4412,10 @@ typescript-to-lua@^1.13.3, typescript-to-lua@^1.14.0:
     resolve "^1.15.1"
     source-map "^0.7.3"
 
-typescript@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.2.tgz#891e1a90c5189d8506af64b9ef929fca99ba1ee5"
-  integrity sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==
+typescript@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.3.tgz#fe976f0c826a88d0a382007681cbb2da44afdedf"
+  integrity sha512-xv8mOEDnigb/tN9PSMTwSEqAnUvkoXMQlicOb0IUVDBSQCgBSaAAROUZYy2IcUy5qU6XajK5jjjO7TMWqBTKZA==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"

@@ -3,23 +3,10 @@ import {
   ModCallback,
   PlayerType,
 } from "isaac-typescript-definitions";
-import {
-  Callback,
-  CallbackCustom,
-  ModCallbackCustom,
-  PlayerIndex,
-  isEden,
-  mapGetPlayer,
-  mapSetPlayer,
-} from "isaacscript-common";
+import { Callback, PlayerStat } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+import { mod } from "../../../../mod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
-
-const v = {
-  run: {
-    edenBaseLuckMap: new Map<PlayerIndex, float>(),
-  },
-};
 
 /**
  * This is the logic for the custom items "13 Luck" and "15 Luck".
@@ -28,8 +15,6 @@ const v = {
  * should be impossible and it makes the code more complicated.
  */
 export class NLuck extends MandatoryModFeature {
-  v = v;
-
   // 8, 1 << 10
   @Callback(ModCallback.EVALUATE_CACHE, CacheFlag.LUCK)
   evaluateCacheLuck(player: EntityPlayer): void {
@@ -42,7 +27,7 @@ export class NLuck extends MandatoryModFeature {
       return;
     }
 
-    const targetLuck = has15Luck ? 15 : 13;
+    const targetLuck = has13Luck ? 13 : 15;
     const luckModifier = this.getCharacterLuckModifier(player);
     const totalLuck = targetLuck - luckModifier;
     player.Luck += totalLuck;
@@ -63,7 +48,7 @@ export class NLuck extends MandatoryModFeature {
       // 9, 30
       case PlayerType.EDEN:
       case PlayerType.EDEN_B: {
-        const baseLuck = mapGetPlayer(v.run.edenBaseLuckMap, player);
+        const baseLuck = mod.getEdenStartingStat(player, PlayerStat.LUCK);
         return baseLuck === undefined ? 0 : baseLuck;
       }
 
@@ -90,13 +75,6 @@ export class NLuck extends MandatoryModFeature {
       default: {
         return 0;
       }
-    }
-  }
-
-  @CallbackCustom(ModCallbackCustom.POST_PLAYER_INIT_FIRST)
-  postPlayerInitFirst(player: EntityPlayer): void {
-    if (isEden(player)) {
-      mapSetPlayer(v.run.edenBaseLuckMap, player, player.Luck);
     }
   }
 }
