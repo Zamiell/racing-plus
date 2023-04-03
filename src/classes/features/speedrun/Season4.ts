@@ -229,6 +229,17 @@ export class Season4 extends ChallengeModFeature {
       return;
     }
 
+    v.run.playersRemovedExtraStartingItems.add(playerIndex);
+
+    this.changedCharacter(player, startingCharacter, character);
+  }
+
+  /** Remove the starting items to nerf Judas' Shadow. */
+  changedCharacter(
+    player: EntityPlayer,
+    startingCharacter: PlayerType,
+    character: PlayerType,
+  ): void {
     const startingCollectibleTypes =
       getCharacterStartingCollectibles(startingCharacter);
     for (const collectibleType of startingCollectibleTypes) {
@@ -252,7 +263,10 @@ export class Season4 extends ChallengeModFeature {
       removeCollectible(player, ...extraStartingCollectibleTypes);
     }
 
-    v.run.playersRemovedExtraStartingItems.add(playerIndex);
+    // Fix the bug where Dark Judas will get Book of Belial from Birthright.
+    if (character === PlayerType.DARK_JUDAS) {
+      player.RemoveCollectible(CollectibleType.BOOK_OF_BELIAL_BIRTHRIGHT);
+    }
   }
 
   @CallbackCustom(ModCallbackCustom.POST_PLAYER_INIT_LATE)
