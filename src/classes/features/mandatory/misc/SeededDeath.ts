@@ -2,6 +2,7 @@ import {
   CardType,
   CollectibleType,
   EffectVariant,
+  LaserVariant,
   LevelCurse,
   ModCallback,
   PillColor,
@@ -163,20 +164,33 @@ export class SeededDeath extends MandatoryModFeature {
     timerDraw(TimerType.SEEDED_DEATH, seconds, startingX, startingY);
   }
 
+  /**
+   * If a player triggers seeded death while using Mega Blast, it will continue to fire once they
+   * revive, so we need to manually stop it from firing. There is no way in the API to properly stop
+   * a Mega Blast while it is currently going, so as a workaround, we remove all
+   * `LaserVariant.GIANT_RED` lasers spawned by the player upon initialization.
+   */
   // 47
-  @Callback(ModCallback.POST_LASER_INIT)
+  @Callback(ModCallback.POST_LASER_INIT, LaserVariant.GIANT_RED)
   postLaserInit(laser: EntityLaser): void {
+    if (laser.SpawnerEntity === undefined) {
+      return;
+    }
+
+    const player = laser.SpawnerEntity.ToPlayer();
+    if (player === undefined) {
+      return;
+    }
+
     if (v.run.debuffEndFrame === null) {
       return;
     }
 
-    // There is no way to stop a Mega Blast while it is currently going. As a workaround, remove all
-    // `LaserVariant.GIANT_RED` lasers on initialization.
     laser.Remove();
 
-    // Even though we delete it, it will still show up for a frame. Thus, the Mega Blast laser will
-    // look like it is intermittently shooting, even though it deals no damage. Make it invisible to
-    // fix this. (This also has the side effect of muting the sound effects.)
+    // Even though we delete the laser, it will still show up for a frame. Thus, the Mega Blast
+    // laser will look like it is intermittently shooting, even though it deals no damage. Make it
+    // invisible to fix this. (This also has the side effect of muting the sound effects.)
     laser.Visible = false;
   }
 

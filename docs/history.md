@@ -3,6 +3,11 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.102.2_ - April 3rd, 2023
+
+- Fixed the bug in season 4 where Dark Judas would revive with Book of Belial under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug with seeded death where some lasers were getting incorrectly removed. (Thanks Fallenfor)
+
 ### _v0.102.1_ - April 1st, 2023
 
 - Fixed the bug where 13 Luck and 15 Luck would not work properly with Eden. (Thanks AshDown)
