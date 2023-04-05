@@ -7,7 +7,6 @@ import {
   Callback,
   DefaultMap,
   RENDER_FRAMES_PER_SECOND,
-  VectorZero,
   fonts,
   game,
   getRoomListIndex,
@@ -297,7 +296,7 @@ export class Shadows extends MandatoryModFeature {
     const font = fonts.pfTempestaSevenCondensed;
     const positionGame = Vector(shadowData.x, shadowData.y);
     const position = Isaac.WorldToScreen(positionGame);
-    sprite.Render(position, VectorZero, VectorZero);
+    sprite.Render(position);
 
     // Additionally, show the username of the player above the sprite if they are holding down the
     // map button.

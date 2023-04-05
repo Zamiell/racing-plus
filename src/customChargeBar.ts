@@ -5,7 +5,6 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import {
-  VectorZero,
   doesEntityExist,
   game,
   hasCollectible,
@@ -51,8 +50,6 @@ export function drawCustomChargeBar(
   barFrame: int,
   chargeBarType: CustomChargeBarType,
 ): void {
-  const room = game.GetRoom();
-
   // For vanilla charge bars, as the player grows bigger, the charge bar offset increases.
   const sizeOffset = VANILLA_CHARGE_BAR_OFFSET.mul(player.SpriteScale);
 
@@ -74,8 +71,8 @@ export function drawCustomChargeBar(
   // Render it
   barFrame = Math.round(barFrame);
   sprite.SetFrame("Charging", barFrame);
-  const position = room.WorldToScreenPosition(adjustedPosition);
-  sprite.Render(position, VectorZero, VectorZero);
+  const position = Isaac.WorldToScreen(adjustedPosition);
+  sprite.Render(position);
 }
 
 function getNumHigherPrecedenceCustomChargeBars(

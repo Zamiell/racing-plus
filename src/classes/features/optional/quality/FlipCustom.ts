@@ -265,7 +265,10 @@ export class FlipCustom extends ConfigurableModFeature {
       flippedCollectibleType,
       pickup,
     );
-    const pickupRenderPosition = Isaac.WorldToScreen(pickup.Position);
+
+    // We intentionally do not use the `WorldToScreen` method here, as it will result in bugged
+    // locations in 2x2 rooms.
+    const pickupRenderPosition = Isaac.WorldToRenderPosition(pickup.Position);
     const renderPosition = pickupRenderPosition
       .add(renderOffset)
       .add(FLIPPED_COLLECTIBLE_DRAW_OFFSET);

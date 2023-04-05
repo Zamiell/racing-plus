@@ -12,7 +12,6 @@ import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  VectorZero,
   game,
   getClosestPlayer,
   getRoomListIndex,
@@ -52,7 +51,6 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
   drawSprites(): void {
     const isPaused = game.IsPaused();
     const hud = game.GetHUD();
-    const room = game.GetRoom();
 
     if (!hud.IsVisible()) {
       return;
@@ -71,11 +69,8 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
       v.level.dpsButton.roomListIndex === roomListIndex &&
       !v.level.dpsButton.pressed
     ) {
-      DPSSprite.Render(
-        room.WorldToScreenPosition(v.level.dpsButton.spritePosition),
-        VectorZero,
-        VectorZero,
-      );
+      const position = Isaac.WorldToScreen(v.level.dpsButton.spritePosition);
+      DPSSprite.Render(position);
     }
 
     if (
@@ -83,11 +78,10 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
       v.level.victoryLapButton.roomListIndex === roomListIndex &&
       !v.level.victoryLapButton.pressed
     ) {
-      victoryLapSprite.Render(
-        room.WorldToScreenPosition(v.level.victoryLapButton.spritePosition),
-        VectorZero,
-        VectorZero,
+      const position = Isaac.WorldToScreen(
+        v.level.victoryLapButton.spritePosition,
       );
+      victoryLapSprite.Render(position);
     }
   }
 

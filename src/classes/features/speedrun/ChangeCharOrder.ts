@@ -9,7 +9,6 @@ import {
   CallbackCustom,
   KColorDefault,
   ModCallbackCustom,
-  VectorZero,
   fonts,
   game,
   getNPCs,
@@ -152,7 +151,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
       const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
       const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
       renderPosition.Y += 10; // Nudge it a bit upwards to make it look better.
-      characterSprite.Render(renderPosition, VectorZero, VectorZero);
+      characterSprite.Render(renderPosition);
     });
   }
 
@@ -175,7 +174,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
       const { x, y } = buildPosition;
       const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
       const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
-      characterSprite.Render(renderPosition, VectorZero, VectorZero);
+      characterSprite.Render(renderPosition);
     });
   }
 
