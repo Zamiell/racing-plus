@@ -35,9 +35,14 @@ export class FastHands extends ConfigurableModFeature {
   }
 
   speedUpInitialDelay(npc: EntityNPC): void {
-    // StateFrame starts between 0 and a random negative value and ticks upwards.
+    // `StateFrame` starts between 0 and a random negative value and ticks upwards.
     if (npc.StateFrame < START_FRAME) {
       npc.StateFrame = START_FRAME;
+    }
+
+    // Prevent the bug where confused hands will take longer to fall.
+    if (npc.StateFrame < 0) {
+      npc.RemoveStatusEffects();
     }
   }
 
