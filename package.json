@@ -1,6 +1,6 @@
 {
   "name": "racing-plus",
-  "version": "0.102.4",
+  "version": "0.102.5",
   "description": "A mod for The Binding of Isaac: Repentance",
   "keywords": [
     "isaac",
@@ -28,7 +28,7 @@
     "isaacscript-lint": "^4.16.9",
     "isaacscript-spell": "^1.2.39",
     "isaacscript-tsconfig": "^4.0.0",
-    "typescript": "^5.0.3",
+    "typescript": "^5.0.4",
     "typescript-to-lua": "^1.14.0"
   }
 }

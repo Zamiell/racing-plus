@@ -9,6 +9,7 @@ import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const SHADOW_APPEAR_FRAME = 40;
 const START_FRAME = SHADOW_APPEAR_FRAME - 15;
+const HAND_GROUND_IMPACT_FRAME = 89;
 const DELAY_FRAMES = 4;
 
 export class FastHands extends ConfigurableModFeature {
@@ -41,7 +42,7 @@ export class FastHands extends ConfigurableModFeature {
     }
 
     // Prevent the bug where confused hands will take longer to fall.
-    if (npc.StateFrame < 0) {
+    if (npc.StateFrame < HAND_GROUND_IMPACT_FRAME) {
       npc.RemoveStatusEffects();
     }
   }
