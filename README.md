@@ -10,7 +10,7 @@ Please visit [the website for Racing+](https://isaacracing.net/) or [subscribe t
 
 ## Description
 
-This is the mod for Racing+, a _Binding of Isaac: Repentance_ racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
+This is the mod for Racing+, a _[Binding of Isaac: Repentance](https://store.steampowered.com/app/1426300/The_Binding_of_Isaac_Repentance/)_ racing platform. Normally a single player game, the mod, client, and server allow players to be able to race each other in real time.
 
 This mod is written using [IsaacScript](https://isaacscript.github.io/).
 
