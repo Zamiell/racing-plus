@@ -83,6 +83,10 @@ const BANNED_TRINKETS_ON_SEEDED_RACES = new ReadonlySet<TrinketType>([
 
   // Dice Bag is seeded per room entrance instead of per room.
   TrinketType.DICE_BAG, // 154
+
+  // The game is bugged such that the collectibles granted from Modeling Clay will also be removed
+  // from pools.
+  TrinketType.MODELING_CLAY, // 166
 ]);
 
 const v = {
