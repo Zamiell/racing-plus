@@ -9,6 +9,7 @@ import {
   anyPlayerHasCollectible,
   asCollectibleType,
   game,
+  log,
   newRNG,
   spawnCollectibleUnsafe,
 } from "isaacscript-common";
@@ -63,6 +64,7 @@ export class ReplacePhotos extends MandatoryModFeature {
     _initSeed: int,
   ): [EntityType, int, int, int] | undefined {
     if (this.isVanillaPhotoAfterKillingMom(subType, spawner)) {
+      log(`Removing a vanilla ${CollectibleType[subType]} after killing Mom.`);
       return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
     }
 
@@ -156,6 +158,10 @@ function getPhotoSituationRace(goal: RaceGoal): PhotoSituation {
   }
 }
 
+/**
+ * We must spawn the photos using a spawner of the player (so that they are distinguished from
+ * vanilla photos).
+ */
 function doPhotoSituation(situation: PhotoSituation) {
   const room = game.GetRoom();
   const roomSeed = room.GetSpawnSeed();
