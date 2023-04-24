@@ -14,14 +14,18 @@ import {
   ReadonlySet,
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
+  asCollectibleType,
   asNumber,
   doesEntityExist,
   findFreePosition,
   game,
+  getCollectibleName,
   inRoomType,
+  log,
   newRNG,
   setSeed,
 } from "isaacscript-common";
+import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -50,22 +54,6 @@ const v = {
 export class FastAngels extends ConfigurableModFeature {
   configKey: keyof Config = "FastAngels";
   v = v;
-
-  // 34, 100
-  @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.COLLECTIBLE)
-  postPickupInitCollectible(pickup: EntityPickup): void {
-    this.checkRemoveVanillaAngelDrop(pickup);
-  }
-
-  checkRemoveVanillaAngelDrop(pickup: EntityPickup): void {
-    // We don't check for the collectible type in case the player has Filigree Feather.
-    if (
-      pickup.SpawnerType === EntityType.URIEL || // 271
-      pickup.SpawnerType === EntityType.GABRIEL // 272
-    ) {
-      pickup.Remove();
-    }
-  }
 
   // 68
   @Callback(ModCallback.POST_ENTITY_KILL)
@@ -198,5 +186,41 @@ export class FastAngels extends ConfigurableModFeature {
     const seeds = game.GetSeeds();
     const startSeed = seeds.GetStartSeed();
     setSeed(v.run.collectibleRNG, startSeed);
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.PRE_ENTITY_SPAWN_FILTER,
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+  )
+  preEntitySpawnFilterCollectible(
+    _entityType: EntityType,
+    _variant: int,
+    subType: int,
+    _position: Vector,
+    _velocity: Vector,
+    spawner: Entity | undefined,
+    _initSeed: Seed,
+  ): [EntityType, int, int, int] | undefined {
+    return this.checkRemoveVanillaAngelDrop(subType, spawner);
+  }
+
+  checkRemoveVanillaAngelDrop(
+    subType: int,
+    spawner: Entity | undefined,
+  ): [EntityType, int, int, int] | undefined {
+    if (spawner === undefined) {
+      return undefined;
+    }
+
+    if (ANGEL_ENTITY_TYPES.has(spawner.Type)) {
+      const collectibleName = getCollectibleName(asCollectibleType(subType));
+      log(
+        `Preventing a vanilla angel collectible from spawning: ${collectibleName} (${subType})`,
+      );
+      return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
+    }
+
+    return undefined;
   }
 }

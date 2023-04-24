@@ -8,6 +8,7 @@
 - In season 4, you can no longer store items in the starting room of the run.
 - In season 4, Wild Card and ? Card are removed from pools on the first character.
 - Fixed the bug where angels could be damaged by light beam attacks under certain conditions. (Thanks Fallenfor)
+- Fixed the bug where Filigree Feather would cause extra items to be removed from pools. (Thanks Adrayon)
 
 ### _v0.102.7_ - April 20th, 2023
 
