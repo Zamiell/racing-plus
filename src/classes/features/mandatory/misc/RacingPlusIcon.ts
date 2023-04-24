@@ -111,6 +111,12 @@ export function setUnseededWithRacingPlusLogic(): void {
  * will have no effect since all curses are removed in the `POST_CURSE_EVAL` callback anyway.
  *
  * Note that not all easter eggs prevent achievements, but this one does.
+ *
+ * We also want to disable achievements so that Eden's Blessing does not grant an extra item. (For
+ * example, someone could give themselves 100 Eden's Blessings in the pre-race room and it would be
+ * cumbersome to check for and remove additional items at the beginning of a race. Furthermore,
+ * Eden's Blessing would increase the variance in a multi-character speedrun because you could get a
+ * Mom's Knife and completely skip the resetting phase.)
  */
 function disableAchievements() {
   const seeds = game.GetSeeds();

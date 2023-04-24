@@ -14,18 +14,14 @@ import {
   ReadonlySet,
   anyPlayerHasCollectible,
   anyPlayerHasTrinket,
-  asCollectibleType,
   asNumber,
   doesEntityExist,
   findFreePosition,
   game,
-  getCollectibleName,
   inRoomType,
-  log,
   newRNG,
   setSeed,
 } from "isaacscript-common";
-import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";
 import { mod } from "../../../../mod";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -60,6 +56,7 @@ export class FastAngels extends ConfigurableModFeature {
   postEntityKill(entity: Entity): void {
     if (this.shouldSpawnKeyPiece(entity)) {
       this.spawnKeyPiece(entity);
+      this.morphDyingAngel(entity);
     }
   }
 
@@ -96,6 +93,30 @@ export class FastAngels extends ConfigurableModFeature {
     }
 
     return true;
+  }
+
+  /**
+   * Morph the boss into an arbitrary other boss so that it does not drop a vanilla key piece or
+   * Angel Room item (with Filigree Feather). This is a better solution that removing the extra
+   * collectible in the `PRE_ENTITY_SPAWN` or `POST_PICKUP_INIT` callbacks because it would
+   * decrement items from pools if the player has Filigree Feather.
+   */
+  morphDyingAngel(entity: Entity): void {
+    const npc = entity.ToNPC();
+    if (npc === undefined) {
+      return;
+    }
+
+    const sprite = npc.GetSprite();
+    const fileName = sprite.GetFilename();
+    const animation = sprite.GetAnimation();
+    const frameNum = sprite.GetFrame();
+
+    npc.Morph(EntityType.MONSTRO, 0, 0, -1);
+
+    sprite.Load(fileName, true);
+    sprite.SetAnimation(animation);
+    sprite.SetFrame(frameNum);
   }
 
   spawnKeyPiece(entity: Entity): void {
@@ -186,41 +207,5 @@ export class FastAngels extends ConfigurableModFeature {
     const seeds = game.GetSeeds();
     const startSeed = seeds.GetStartSeed();
     setSeed(v.run.collectibleRNG, startSeed);
-  }
-
-  @CallbackCustom(
-    ModCallbackCustom.PRE_ENTITY_SPAWN_FILTER,
-    EntityType.PICKUP,
-    PickupVariant.COLLECTIBLE,
-  )
-  preEntitySpawnFilterCollectible(
-    _entityType: EntityType,
-    _variant: int,
-    subType: int,
-    _position: Vector,
-    _velocity: Vector,
-    spawner: Entity | undefined,
-    _initSeed: Seed,
-  ): [EntityType, int, int, int] | undefined {
-    return this.checkRemoveVanillaAngelDrop(subType, spawner);
-  }
-
-  checkRemoveVanillaAngelDrop(
-    subType: int,
-    spawner: Entity | undefined,
-  ): [EntityType, int, int, int] | undefined {
-    if (spawner === undefined) {
-      return undefined;
-    }
-
-    if (ANGEL_ENTITY_TYPES.has(spawner.Type)) {
-      const collectibleName = getCollectibleName(asCollectibleType(subType));
-      log(
-        `Preventing a vanilla angel collectible from spawning: ${collectibleName} (${subType})`,
-      );
-      return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
-    }
-
-    return undefined;
   }
 }
