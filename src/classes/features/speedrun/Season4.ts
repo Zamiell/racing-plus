@@ -338,12 +338,18 @@ export class Season4 extends ChallengeModFeature {
 }
 
 function checkStoreCollectible() {
-  // We have to explicitly check for the challenge since this is not fired from a callback.
+  // We have to explicitly check for the challenge since this is fired from the hotkey callback and
+  // is not part of the `ModFeature` class.
   if (!onSeason(4)) {
     return;
   }
 
   if (isOnFinalCharacter()) {
+    return;
+  }
+
+  // Don't allow players to re-store collectibles from the starting room of the run.
+  if (onFirstFloor() && inStartingRoom()) {
     return;
   }
 

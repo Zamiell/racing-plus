@@ -5,6 +5,7 @@
 
 ### _v0.102.8_ - April 24th, 2023
 
+- In season 4, you can no longer store items in the starting room of the run.
 - In season 4, Wild Card and ? Card are removed from pools on the first character.
 
 ### _v0.102.7_ - April 20th, 2023
