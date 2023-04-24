@@ -1,4 +1,8 @@
-import { CollectibleType, PlayerType } from "isaac-typescript-definitions";
+import {
+  CardType,
+  CollectibleType,
+  PlayerType,
+} from "isaac-typescript-definitions";
 import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 
@@ -24,13 +28,20 @@ export const SEASON_4_EXTRA_STARTING_COLLECTIBLE_TYPES_MAP = new ReadonlyMap<
   ],
 ]);
 
+/** A list of collectibles that are removed from pools at the beginning of every run. */
 export const SEASON_4_BANNED_COLLECTIBLES = [
   CollectibleType.WE_NEED_TO_GO_DEEPER, // 84
   CollectibleType.GENESIS, // 622
 ] as const;
 
+/** A list of collectibles that cannot be stored with the storage mechanic. */
 export const SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE =
   new ReadonlySet<CollectibleType>([CollectibleTypeCustom.CHECKPOINT]);
+
+export const SEASON_4_BANNED_CARDS_ON_FIRST_CHARACTER = new ReadonlySet([
+  CardType.WILD,
+  CardType.QUESTION_MARK,
+]);
 
 export const SEASON_4_STORED_ITEM_POSITIONS = [
   // Row 1 left

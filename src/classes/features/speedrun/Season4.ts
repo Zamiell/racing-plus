@@ -43,6 +43,7 @@ import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import { isOnFinalCharacter, isOnFirstCharacter } from "./characterProgress/v";
 import {
+  SEASON_4_BANNED_CARDS_ON_FIRST_CHARACTER,
   SEASON_4_BANNED_COLLECTIBLES,
   SEASON_4_BANNED_COLLECTIBLES_WITH_STORAGE,
   SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH,
@@ -92,6 +93,24 @@ export class Season4 extends ChallengeModFeature {
       player.AnimateSad();
       player.Kill();
     }
+  }
+
+  @Callback(ModCallback.GET_CARD)
+  getCard(
+    _rng: RNG,
+    cardType: CardType,
+    _includePlayingCards: boolean,
+    _includeRunes: boolean,
+    _onlyRunes: boolean,
+  ): CardType | undefined {
+    if (
+      isOnFirstCharacter() &&
+      SEASON_4_BANNED_CARDS_ON_FIRST_CHARACTER.has(cardType)
+    ) {
+      return CardType.FOOL;
+    }
+
+    return undefined;
   }
 
   // 23, 347
