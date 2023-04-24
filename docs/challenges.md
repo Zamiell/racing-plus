@@ -252,6 +252,9 @@ Some builds are banned on certain characters:
 - The following items are removed from all pools:
   - 84 - We Need to Go Deeper
   - 622 - Genesis
+- The following cards are removed on the first character:
+  - Wild Card
+  - ? Card
 
 <br>
 
