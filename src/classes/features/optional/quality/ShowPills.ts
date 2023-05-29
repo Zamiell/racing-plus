@@ -34,6 +34,7 @@ interface PillDescription {
   pillEffect: PillEffect;
 }
 
+/** Racing+ has different False PHD conversions than in vanilla. */
 const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   PillEffect,
   PillEffect
@@ -196,7 +197,7 @@ export class ShowPills extends ConfigurableModFeature {
       const sprite = pillSprites.get(pillEntry.pillColor);
       if (sprite === undefined) {
         logError(
-          `Error: Failed to find the sprite for pill color: ${pillEntry.pillColor}, effect: ${pillEntry.pillEffect}, i: ${i}`,
+          `Failed to find the sprite for pill color: ${pillEntry.pillColor}, effect: ${pillEntry.pillEffect}, i: ${i}`,
         );
         return;
       }

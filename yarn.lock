@@ -2725,10 +2725,10 @@ is-yarn-global@^0.4.0:
   resolved "https://registry.yarnpkg.com/is-yarn-global/-/is-yarn-global-0.4.1.tgz#b312d902b313f81e4eaf98b6361ba2b45cd694bb"
   integrity sha512-/kppl+R+LO5VmhYSEWARUFjodS25D68gvj8W7z0I7OWhUla5xWu8KL6CtB2V0R6yqhnRgbcaREMr4EEM6htLPQ==
 
-isaac-typescript-definitions@^13.0.11:
-  version "13.0.11"
-  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-13.0.11.tgz#a0e7a3fe95a09c57cad4c49af65864a83c2dd2c2"
-  integrity sha512-UZ/AYQUuYnV2KzGPVSpEFe9qF7Gu+Tz04k+VKa+lais5qpl3AmzsjgZbxsBD5/YuwHm0UZXz4VGhtIOhBkCZFA==
+isaac-typescript-definitions@^13.0.14:
+  version "13.0.14"
+  resolved "https://registry.yarnpkg.com/isaac-typescript-definitions/-/isaac-typescript-definitions-13.0.14.tgz#7c31a491ffb5d8fed3a658d76a18542100b38299"
+  integrity sha512-Nse6HIGXTJAxEy1FdvGMOFLjyZ+I2ImE/VZLtFdTO/Tjx/XiZr8HbdRS19lK4IhoP1sX17w4iDyDwiDtTNYAhA==
   dependencies:
     lua-types "^2.13.1"
 
@@ -2737,12 +2737,12 @@ isaacscript-common-ts@^10.0.0:
   resolved "https://registry.yarnpkg.com/isaacscript-common-ts/-/isaacscript-common-ts-10.0.0.tgz#f1037ad8856ef37860964b2987b913aa2e289280"
   integrity sha512-lacHMi0+2ovSuMrtz253XjvDX1i4bER5eNbWsRBTOQp56ZTX5aGC9zKg6GyaDULTfwL/K/bD1mVG69qvsAqChQ==
 
-isaacscript-common@^30.11.1:
-  version "30.11.1"
-  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.11.1.tgz#f5d77354005d0350f78ee7e5a808b2652d49c6ed"
-  integrity sha512-Y2hMsECjT2y47g7jyw2g1UYf0oPeD27LACYWcI/fm8UcBP75diI/5n8MlzPFhvq4/bxdAMKazDmfgdI+ZEbXaA==
+isaacscript-common@^30.11.4:
+  version "30.11.4"
+  resolved "https://registry.yarnpkg.com/isaacscript-common/-/isaacscript-common-30.11.4.tgz#c8742898ce7204daa27a85d8ff5f6837ab15ee0d"
+  integrity sha512-JWdIVHnJ/PcYFrbTVWtQZZKcIoyiWnDlx01osHfFaXd/bmsnuex5qoH75gYfxQaOtC45nuboyCmni3SIYuu5Qg==
   dependencies:
-    isaac-typescript-definitions "^13.0.11"
+    isaac-typescript-definitions "^13.0.14"
 
 isaacscript-lint@^4.16.9:
   version "4.16.9"
@@ -4402,10 +4402,20 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript-to-lua@^1.13.3, typescript-to-lua@^1.14.0:
+typescript-to-lua@^1.13.3:
   version "1.14.0"
   resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.14.0.tgz#6c8a5e7178278a6ad9b97b1e8afcb10d9d469775"
   integrity sha512-4vkqh6urP0TF7xDL69dh7GcGUMdeIhnq5WBc05VUVHA5gXQiEBTqNW78D8A4OQM9dxdYJSPMIoRiF9SQSV6z3A==
+  dependencies:
+    "@typescript-to-lua/language-extensions" "1.0.0"
+    enhanced-resolve "^5.8.2"
+    resolve "^1.15.1"
+    source-map "^0.7.3"
+
+typescript-to-lua@^1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/typescript-to-lua/-/typescript-to-lua-1.15.1.tgz#6d593aaa3da10b1a053055f688389e106faba7c5"
+  integrity sha512-LBsGtRStTYQKTp521w4vIFPBLu59p+DtfxKHp+cMXuQdjMxY55dQb5FN6mrDEx6gPT+FhbRSJMe8Fu6G4wJwqw==
   dependencies:
     "@typescript-to-lua/language-extensions" "1.0.0"
     enhanced-resolve "^5.8.2"
