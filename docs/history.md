@@ -5,7 +5,7 @@
 
 ### _v0.102.11_ - May 29th, 2023
 
-- Combined Duality doors no longer use the player's velocity when calculating which side they are on. This should reduce situations where you the mod sends you to the "wrong" location. It is recommended that you do not move diagonally through a combined Duality door, since you might flip the destination on the same frame that you enter the door.
+- Combined Duality doors no longer use the player's velocity when calculating which side they are on. This should reduce situations where you the mod sends you to the "wrong" location. It is recommended that you do not move diagonally through a combined Duality door, since you might flip the destination on the same frame that you enter the door. (Thanks Gamonymous)
 
 ### _v0.102.10_ - May 29th, 2023
 
