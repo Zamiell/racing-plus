@@ -21,12 +21,12 @@ import { config } from "../../../../modConfigMenu";
 import { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-const FRAME_LAYER = 3;
+const FRAME_LAYER_OF_DOOR_ANM2 = 3;
 
 const v = {
   room: {
     modifiedDevilDoorSlot: null as DoorSlot | null,
-    initializedRoomType: null as RoomType | null,
+    initializedDestinationRoomType: null as RoomType | null,
   },
 };
 
@@ -64,15 +64,17 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
       return;
     }
 
-    const inHitbox =
-      door.Position.Distance(player.Position) <= DOOR_HITBOX_RADIUS;
-    if (!inHitbox) {
+    // We don't want to do anything if the player is far away from the door, since initializing the
+    // room data over and over might be expensive.
+    const closeToDoor =
+      door.Position.Distance(player.Position) <= DOOR_HITBOX_RADIUS * 1.5;
+    if (!closeToDoor) {
       return;
     }
 
-    const playerOnDevilSide = this.getPlayerOnDevilSide(player, door);
+    const playerOnDevilSide = this.isPlayerOnDevilSide(player, door);
     const targetRoomType = playerOnDevilSide ? RoomType.DEVIL : RoomType.ANGEL;
-    if (targetRoomType === v.room.initializedRoomType) {
+    if (targetRoomType === v.room.initializedDestinationRoomType) {
       return;
     }
 
@@ -87,30 +89,27 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
     } else {
       level.InitializeDevilAngelRoom(true, false);
     }
+
+    v.room.initializedDestinationRoomType = targetRoomType;
   }
 
-  getPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor): boolean {
+  isPlayerOnDevilSide(player: EntityPlayer, door: GridEntityDoor): boolean {
     const useYAxis = asNumber(door.Slot) % 2 === 0;
     const invertDirection = this.shouldInvertDirection(door.Slot);
 
-    // We combine position and velocity to project where the player will be a frame from now. We do
-    // this instead of simply using the position in order to be more accurate when the player is
-    // moving diagonally.
-    const projectedPosition = player.Position.add(player.Velocity);
-
     if (useYAxis) {
       if (invertDirection) {
-        return projectedPosition.Y < door.Position.Y;
+        return player.Position.Y < door.Position.Y;
       }
 
-      return projectedPosition.Y > door.Position.Y;
+      return player.Position.Y > door.Position.Y;
     }
 
     if (invertDirection) {
-      return projectedPosition.X > door.Position.X;
+      return player.Position.X > door.Position.X;
     }
 
-    return projectedPosition.X < door.Position.X;
+    return player.Position.X < door.Position.X;
   }
 
   shouldInvertDirection(slot: DoorSlot): boolean {
@@ -167,6 +166,9 @@ export function combineDevilAngelRoomDoors(door: GridEntityDoor): void {
 
   // Modify the sprite for the door so that it looks half Devil and half Angel.
   const sprite = door.GetSprite();
-  sprite.ReplaceSpritesheet(FRAME_LAYER, "gfx/grid/door_07_combineddoor.png");
+  sprite.ReplaceSpritesheet(
+    FRAME_LAYER_OF_DOOR_ANM2,
+    "gfx/grid/door_07_combineddoor.png",
+  );
   sprite.LoadGraphics();
 }
