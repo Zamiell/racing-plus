@@ -3,6 +3,10 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.102.11_ - May 29th, 2023
+
+- Combined Duality doors no longer use the player's velocity when calculating which side they are on. This should reduce situations where you the mod sends you to the "wrong" location. It is recommended that you do not move diagonally through a combined Duality door, since you might flip the destination on the same frame that you enter the door.
+
 ### _v0.102.10_ - May 29th, 2023
 
 - Fixed the bug where using a reverse Temperance card would cause errors. (Thanks mgln)
