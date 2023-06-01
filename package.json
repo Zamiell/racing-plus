@@ -28,7 +28,7 @@
     "isaacscript-lint": "^4.16.9",
     "isaacscript-spell": "^1.2.39",
     "isaacscript-tsconfig": "^4.0.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.3",
     "typescript-to-lua": "^1.15.1"
   }
 }
