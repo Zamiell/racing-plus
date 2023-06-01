@@ -53,19 +53,21 @@ export function postItLivesOrHushPathPostNewRoom(): void {
  * Check for this situation and spawn the appropriate path if needed.
  */
 function checkItLivesWrongPath() {
-  const room = game.GetRoom();
-
   if (!inItLivesOrHushBossRoom()) {
     return;
   }
 
+  const room = game.GetRoom();
   const roomClear = room.IsClear();
+
   if (!roomClear) {
     return;
   }
 
   const situation = getItLivesSituation();
   const positionCenter = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM);
+  const positionLeft = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM - 1);
+  const positionRight = room.GetGridPosition(GRID_INDEX_CENTER_OF_1X1_ROOM + 1);
 
   switch (situation) {
     case ItLivesSituation.NEITHER: {
@@ -73,38 +75,48 @@ function checkItLivesWrongPath() {
     }
 
     case ItLivesSituation.HEAVEN_DOOR: {
-      const heavenDoorsExist = doesEntityExist(
-        EntityType.EFFECT,
-        EffectVariant.HEAVEN_LIGHT_DOOR,
-      );
-      if (!heavenDoorsExist) {
-        spawnHeavenDoor(positionCenter);
-        log(
-          "Manually spawned a heaven door to prevent a soft-lock. (It Lives must not have been killed with fast-clear.)",
-        );
-      }
-
+      spawnHeavenDoorIfNotExists(positionCenter);
       break;
     }
 
     case ItLivesSituation.TRAPDOOR: {
-      const trapdoorsExist = doesGridEntityExist(GridEntityType.TRAPDOOR);
-      if (!trapdoorsExist) {
-        spawnTrapdoor(positionCenter);
-        log(
-          "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
-        );
-      }
-
+      spawnTrapdoorIfNotExists(positionCenter);
       break;
     }
 
     case ItLivesSituation.BOTH: {
-      // In vanilla, both paths appear by default, so we don't have to do anything. The exception is
-      // if we are on a custom challenge that allows both paths, but ignore this edge-case.
+      spawnTrapdoorIfNotExists(positionLeft);
+      spawnHeavenDoorIfNotExists(positionRight);
       break;
     }
   }
+}
+
+function spawnHeavenDoorIfNotExists(position: Vector) {
+  const heavenDoorsExist = doesEntityExist(
+    EntityType.EFFECT,
+    EffectVariant.HEAVEN_LIGHT_DOOR,
+  );
+  if (heavenDoorsExist) {
+    return;
+  }
+
+  spawnHeavenDoor(position);
+  log(
+    "Manually spawned a heaven door to prevent a soft-lock. (It Lives must not have been killed with fast-clear.)",
+  );
+}
+
+function spawnTrapdoorIfNotExists(position: Vector) {
+  const trapdoorsExist = doesGridEntityExist(GridEntityType.TRAPDOOR);
+  if (trapdoorsExist) {
+    return;
+  }
+
+  spawnTrapdoor(position);
+  log(
+    "Manually spawned a trapdoor to prevent a soft-lock. (It Lives! must not have been killed with fast-clear.)",
+  );
 }
 
 /**
