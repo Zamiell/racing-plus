@@ -3,6 +3,7 @@ import {
   CollectibleType,
   EntityType,
   ModCallback,
+  NPCState,
   PickupVariant,
   RoomType,
   TrinketType,
@@ -112,7 +113,14 @@ export class FastAngels extends ConfigurableModFeature {
     const animation = sprite.GetAnimation();
     const frameNum = sprite.GetFrame();
 
+    // We must change the state to prevent Monstro from doing an attack as he dies. We do it before
+    // and after the morph to be safe.
+    // https://clips.twitch.tv/AmazingPiercingStrawberryDancingBanana-YIyY5ZCoLcH3WJ14
+    npc.State = NPCState.APPEAR;
+
     npc.Morph(EntityType.MONSTRO, 0, 0, -1);
+
+    npc.State = NPCState.APPEAR;
 
     sprite.Load(fileName, true);
     sprite.SetAnimation(animation);
