@@ -73,4 +73,6 @@ function registerCallbacksCustom() {
   postNewLevelReordered.init();
   postNewRoomReordered.init();
   postPEffectUpdateReordered.init();
+
+  Isaac.DebugString("RACING+ INIT - ZZZZZZZZZZZ");
 }
