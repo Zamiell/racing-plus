@@ -14,11 +14,17 @@ import { v } from "./v";
 
 const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
 
+/**
+ * This has to be different from the `SPLITTING_BOSS_ENTITY_TYPE_SET` used in the Boss Rush since we
+ * want to exclude the lowest form. (In other words, Perfection should not spawn from Fistula
+ * medium, but it should spawn from Fistula small.)
+ */
 const SPLITTING_BOSSES = new ReadonlySet<EntityType>([
   EntityType.FISTULA_BIG, // 71
   EntityType.FISTULA_MEDIUM, // 72
   EntityType.BLASTOCYST_BIG, // 74
   EntityType.BLASTOCYST_MEDIUM, // 75
+  EntityType.BROWNIE, // 402
 ]);
 
 // ModCallback.POST_ENTITY_KILL (68)
