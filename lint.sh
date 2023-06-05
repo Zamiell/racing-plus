@@ -50,6 +50,7 @@ WINDOWS_FILES=$(
   --binary \
   --perl-regexp \
   --exclude-dir='.git' \
+  --exclude-dir='.yarn' \
   --exclude-dir='node_modules' \
   --exclude-dir='rooms' \
   --exclude-dir='pre-flipped' \
