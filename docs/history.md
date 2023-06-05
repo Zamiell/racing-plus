@@ -7,6 +7,7 @@
 
 - Fixed the bug where killing an angel could cause a Monstro attack under certain circumstances. (Thanks Monkeypot)
 - Fixed the bug where the Checkpoint could rotate under certain circumstances. (Thanks Toooschi & Gamonymous)
+- Fixed the bug where Perfection would not spawn properly with Blastocyst. (Thanks Gamonymous)
 
 ### _v0.102.12_ - June 1st, 2023
 

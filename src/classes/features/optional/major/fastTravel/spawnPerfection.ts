@@ -17,6 +17,8 @@ const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vani
 const SPLITTING_BOSSES = new ReadonlySet<EntityType>([
   EntityType.FISTULA_BIG, // 71
   EntityType.FISTULA_MEDIUM, // 72
+  EntityType.BLASTOCYST_BIG, // 74
+  EntityType.BLASTOCYST_MEDIUM, // 75
 ]);
 
 // ModCallback.POST_ENTITY_KILL (68)
