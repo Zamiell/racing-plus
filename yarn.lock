@@ -3686,9 +3686,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.6.47":
-  version: 3.6.47
-  resolution: "isaacscript@npm:3.6.47"
+"isaacscript@npm:^3.6.48":
+  version: 3.6.48
+  resolution: "isaacscript@npm:3.6.48"
   dependencies:
     ajv: ^8.12.0
     chalk: 4.1.2
@@ -3705,7 +3705,7 @@ __metadata:
     source-map-support: ^0.5.21
     sync-directory: ^6.0.4
     tslib: ^2.5.3
-    typescript-to-lua: ^1.15.1
+    typescript-to-lua: 1.15.1
     xml2js: ^0.6.0
     yaml: ^2.3.1
     yargs: ^17.7.2
@@ -3713,7 +3713,7 @@ __metadata:
     typescript: ">= 4.0.0"
   bin:
     isaacscript: src/main.js
-  checksum: 9906667d396c9354a9effab8e0355acb783f55047a496091276f6e64958df8039cb759b7449806063a58a6c40c2ab63fc4cb2466b71f11e73151f46572f1e929
+  checksum: de2cbf2b4e6fdebc75f26f04fb1f9dfc440d57d9f7f50a79dad706d3a313afbbd9d2836557aa409e26b38a579f63b6a1f97899d0ad8188c59582d206e6b25026
   languageName: node
   linkType: hard
 
@@ -4934,7 +4934,7 @@ __metadata:
   dependencies:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^13.0.14
-    isaacscript: ^3.6.47
+    isaacscript: ^3.6.48
     isaacscript-common: ^30.11.6
     isaacscript-lint: ^4.16.10
     isaacscript-spell: ^1.2.39
@@ -5899,22 +5899,6 @@ __metadata:
   bin:
     tstl: dist/tstl.js
   checksum: 591e1fe4202bcab31543d4c655cd1fde22a421eec4ce72e2a5531acfe1e5ac5da428a209d276f27dd79cd9e3a9fddfab3e31bf2527a6a70e732880eb821e7768
-  languageName: node
-  linkType: hard
-
-"typescript-to-lua@npm:^1.15.1":
-  version: 1.16.0
-  resolution: "typescript-to-lua@npm:1.16.0"
-  dependencies:
-    "@typescript-to-lua/language-extensions": 1.0.0
-    enhanced-resolve: ^5.8.2
-    resolve: ^1.15.1
-    source-map: ^0.7.3
-  peerDependencies:
-    typescript: ~5.1.3
-  bin:
-    tstl: dist/tstl.js
-  checksum: 096f035a86ffa6a99413a1b63e4647b05f602d6d2ee441b76706c1cef237f9d682d1b494e57d3c5606b4366770a3d463cbfd4608c14697cffd5349420f60e571
   languageName: node
   linkType: hard
 
