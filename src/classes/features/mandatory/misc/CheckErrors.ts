@@ -23,7 +23,6 @@ import {
   removeAllDoors,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { PlayerTypeCustom } from "../../../../enums/PlayerTypeCustom";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
@@ -275,7 +274,13 @@ function checkBabiesModEnabled() {
   }
 
   const player = Isaac.GetPlayer();
-  const isRandomBaby = isCharacter(player, PlayerTypeCustom.RANDOM_BABY);
+
+  /**
+   * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
+   */
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+
+  const isRandomBaby = isCharacter(player, randomBaby);
   const roomVisitedCount = getRoomVisitedCount();
 
   if (

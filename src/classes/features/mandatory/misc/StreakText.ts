@@ -35,7 +35,6 @@ import {
   setSeed,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
-import { PlayerTypeCustom } from "../../../../enums/PlayerTypeCustom";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
@@ -292,6 +291,12 @@ export class StreakText extends MandatoryModFeature {
   shouldShowLevelText(): boolean {
     const challenge = Isaac.GetChallenge();
 
+    /**
+     * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
+     * -1.)
+     */
+    const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+
     return (
       // There is no need to show the level text in the Change Char Order custom challenge.
       challenge !== ChallengeCustom.CHANGE_CHAR_ORDER &&
@@ -300,7 +305,7 @@ export class StreakText extends MandatoryModFeature {
       !g.raceVars.finished &&
       // If one or more players are playing as "Random Baby", the baby descriptions will overlap
       // with the stage text, so don't bother showing it.
-      !anyPlayerIs(PlayerTypeCustom.RANDOM_BABY)
+      !anyPlayerIs(randomBaby)
     );
   }
 
