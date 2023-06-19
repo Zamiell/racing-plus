@@ -13,6 +13,7 @@ import {
   copySet,
   game,
   getRandomArrayElementAndRemove,
+  hasCollectible,
   hasFlyingTransformation,
   isFlyingCharacter,
   removeCollectibleCostume,
@@ -96,13 +97,7 @@ export class Season2 extends ChallengeModFeature {
     const flyingCollectibles = copySet(mod.getFlyingCollectibles(false));
     flyingCollectibles.delete(CollectibleType.REVELATION);
 
-    for (const collectibleType of flyingCollectibles) {
-      if (player.HasCollectible(collectibleType)) {
-        return true;
-      }
-    }
-
-    return false;
+    return hasCollectible(player, ...flyingCollectibles);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)

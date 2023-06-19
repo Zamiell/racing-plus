@@ -3626,12 +3626,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^30.11.7":
-  version: 30.11.7
-  resolution: "isaacscript-common@npm:30.11.7"
+"isaacscript-common@npm:^30.11.8":
+  version: 30.11.8
+  resolution: "isaacscript-common@npm:30.11.8"
   dependencies:
     isaac-typescript-definitions: ^13.0.14
-  checksum: ca150c7adfca163ad58f762f81db1a51591c8267b20bd1dae1f9f2545f7c6d11df2d88c8acae42a2cb0a2d4c87a4912d4bebc0cf9998c4f8579daec7893540d9
+  checksum: 3ae0aa3f0c2ed08168788d2865d061273d3d58398fb761c7a0b35f2f8055776d8a4061e97e56828d7185a8bb0c7ed209d3d4dbf7702b8feb6449771f55376f47
   languageName: node
   linkType: hard
 
@@ -4935,12 +4935,12 @@ __metadata:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^13.0.14
     isaacscript: ^3.6.49
-    isaacscript-common: ^30.11.7
+    isaacscript-common: ^30.11.8
     isaacscript-lint: ^4.16.10
     isaacscript-spell: ^1.2.39
     isaacscript-tsconfig: ^4.0.0
     typescript: ^5.1.3
-    typescript-to-lua: ^1.16.1
+    typescript-to-lua: ^1.16.2
   languageName: unknown
   linkType: soft
 
@@ -5902,9 +5902,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-to-lua@npm:^1.16.1":
-  version: 1.16.1
-  resolution: "typescript-to-lua@npm:1.16.1"
+"typescript-to-lua@npm:^1.16.2":
+  version: 1.16.2
+  resolution: "typescript-to-lua@npm:1.16.2"
   dependencies:
     "@typescript-to-lua/language-extensions": 1.0.0
     enhanced-resolve: ^5.8.2
@@ -5914,7 +5914,7 @@ __metadata:
     typescript: ~5.1.3
   bin:
     tstl: dist/tstl.js
-  checksum: 2c491bbfeeb5c426ddcb4680231063a0e9d664aceb8fa9620f8e4049c193feb9ba47c10a69ee0762614edb3819c3b93c4fd348a60c4c5332f48781e300f8233a
+  checksum: 53627145923f9f27eb5958ff09e909c0c10198fe9e7d412857dc40a1d5d747e1f615d6ad05ef2a069595a7fe3399614f74b3e1bb516c76e848d574c49024ee25
   languageName: node
   linkType: hard
 
