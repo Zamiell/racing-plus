@@ -7,7 +7,9 @@ import { Callback } from "isaacscript-common";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const VANILLA_GABRIEL_HP_AMOUNT = 660;
-const NERFED_GABRIEL_HP_AMOUNT = 400;
+const VANILLA_URIEL_HP_AMOUNT = 400;
+
+const NERFED_GABRIEL_HP_AMOUNT = VANILLA_URIEL_HP_AMOUNT;
 
 /** This feature is not configurable since it overall a nerf to vanilla. */
 export class DoubleAngelNerf extends MandatoryModFeature {
