@@ -30,7 +30,7 @@ import { RaceFormat } from "./enums/RaceFormat";
 import { RaceGoal } from "./enums/RaceGoal";
 import { RaceStatus } from "./enums/RaceStatus";
 import { RacerStatus } from "./enums/RacerStatus";
-import * as socketClient from "./features/race/socketClient";
+import { socketClientIsActive } from "./features/race/socketClient";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { setAllModConfigMenuSettings } from "./modConfigMenu";
@@ -121,7 +121,7 @@ function diversityRace(params: string) {
     return;
   }
 
-  if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
+  if (!socketClientIsActive() || g.race.status !== RaceStatus.NONE) {
     print(
       'You must be connected to the Racing+ client in order to use the "diversityRace" command. (The R+ icon should be green.)',
     );
@@ -250,7 +250,7 @@ function seededRace(params: string) {
     return;
   }
 
-  if (!socketClient.isActive() || g.race.status !== RaceStatus.NONE) {
+  if (!socketClientIsActive() || g.race.status !== RaceStatus.NONE) {
     print(
       'You must be connected to the Racing+ client in order to use the "seededRace" command. (The R+ icon should be green.)',
     );

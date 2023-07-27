@@ -1,5 +1,5 @@
 import * as customConsole from "./features/race/customConsole";
-import * as socketClient from "./features/race/socketClient";
+import { socketClientInit } from "./features/race/socketClient";
 import * as raceVars from "./features/race/v";
 import { mod } from "./mod";
 import * as modConfigMenu from "./modConfigMenu";
@@ -10,7 +10,7 @@ export function initFeatureVariables(): void {
   modConfigMenu.init();
   modConfigMenuVanilla.init();
   raceVars.init();
-  socketClient.init();
+  socketClientInit();
 
   // Other
   customConsole.init();

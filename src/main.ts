@@ -4,17 +4,17 @@ import {
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
-import * as postNPCUpdate from "./callbacks/postNPCUpdate";
-import * as postRender from "./callbacks/postRender";
-import * as postUpdate from "./callbacks/postUpdate";
-import * as preGameExit from "./callbacks/preGameExit";
-import * as preSpawnClearAward from "./callbacks/preSpawnClearAward";
-import * as preUseItem from "./callbacks/preUseItem";
-import * as postGameStartedReordered from "./callbacksCustom/postGameStartedReordered";
-import * as postItemPickup from "./callbacksCustom/postItemPickup";
-import * as postNewLevelReordered from "./callbacksCustom/postNewLevelReordered";
-import * as postNewRoomReordered from "./callbacksCustom/postNewRoomReordered";
-import * as postPEffectUpdateReordered from "./callbacksCustom/postPEffectUpdateReordered";
+import { postNPCUpdateInit } from "./callbacks/postNPCUpdate";
+import { postNPCRenderInit } from "./callbacks/postRender";
+import { postUpdateInit } from "./callbacks/postUpdate";
+import { preGameExitInit } from "./callbacks/preGameExit";
+import { preSpawnClearAwardInit } from "./callbacks/preSpawnClearAward";
+import { preUseItemInit } from "./callbacks/preUseItem";
+import { postGameStartedReorderedInit } from "./callbacksCustom/postGameStartedReordered";
+import { postItemPickupInit } from "./callbacksCustom/postItemPickup";
+import { postNewLevelReorderedInit } from "./callbacksCustom/postNewLevelReordered";
+import { postNewRoomReorderedInit } from "./callbacksCustom/postNewRoomReordered";
+import { postPEffectUpdateReorderedInit } from "./callbacksCustom/postPEffectUpdateReordered";
 import { MOD_NAME, VERSION } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
 import { enableExtraConsoleCommandsRacingPlus } from "./extraConsoleCommands";
@@ -59,18 +59,18 @@ function welcomeBanner() {
 }
 
 function registerCallbacksVanilla() {
-  postNPCUpdate.init(); // 0
-  postUpdate.init(); // 1
-  postRender.init(); // 2
-  preGameExit.init(); // 17
-  preUseItem.init(); // 23
-  preSpawnClearAward.init(); // 70
+  postNPCUpdateInit(); // 0
+  postUpdateInit(); // 1
+  postNPCRenderInit(); // 2
+  preGameExitInit(); // 17
+  preUseItemInit(); // 23
+  preSpawnClearAwardInit(); // 70
 }
 
 function registerCallbacksCustom() {
-  postGameStartedReordered.init();
-  postItemPickup.init();
-  postNewLevelReordered.init();
-  postNewRoomReordered.init();
-  postPEffectUpdateReordered.init();
+  postGameStartedReorderedInit();
+  postItemPickupInit();
+  postNewLevelReorderedInit();
+  postNewRoomReorderedInit();
+  postPEffectUpdateReorderedInit();
 }

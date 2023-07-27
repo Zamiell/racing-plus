@@ -22,7 +22,7 @@ import {
   SPRITE_DIFFICULTY_OFFSET,
   SPRITE_JACOB_ESAU_OFFSET,
 } from "../../../../constants";
-import * as socketClient from "../../../../features/race/socketClient";
+import { socketClientIsActive } from "../../../../features/race/socketClient";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 enum RacingPlusSpriteLayer {
@@ -52,7 +52,7 @@ export class RacingPlusIcon extends MandatoryModFeature {
       return;
     }
 
-    const spriteLayer = socketClient.isActive()
+    const spriteLayer = socketClientIsActive()
       ? RacingPlusSpriteLayer.GREEN
       : RacingPlusSpriteLayer.BLUE;
     const position = getRacingPlusIconPosition();

@@ -2,7 +2,7 @@ import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { racePostNPCUpdateDarkEsau } from "../features/race/callbacks/postNPCUpdate";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postNPCUpdateInit(): void {
   mod.AddCallback(
     ModCallback.POST_NPC_UPDATE,
     darkEsau,

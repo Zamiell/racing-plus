@@ -10,7 +10,7 @@ import { mod } from "../mod";
 import { speedrunResetPersistentVars } from "../speedrun/resetVars";
 import { inSpeedrun } from "../speedrun/utilsSpeedrun";
 
-export function init(): void {
+export function postGameStartedReorderedInit(): void {
   mod.AddCallbackCustom(
     ModCallbackCustom.POST_GAME_STARTED_REORDERED,
     main,

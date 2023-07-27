@@ -13,7 +13,7 @@ let clientUDP: SocketClient | undefined;
  * Racing+ installs a sandbox that prevents mods from doing unsafe things. If the sandbox is in
  * place, then we should be clear to request a socket later on.
  */
-export function init(): void {
+export function socketClientInit(): void {
   const [ok, requiredSandbox] = pcall(require, "sandbox");
   if (!ok) {
     log("Did not detect the sandbox environment.");
@@ -41,7 +41,7 @@ export function init(): void {
   log("Detected the sandbox environment.");
 }
 
-export function connect(): boolean {
+export function socketClientConnect(): boolean {
   // Do nothing if the sandbox is not present.
   if (sandbox === undefined) {
     return false;
@@ -75,12 +75,12 @@ export function connect(): boolean {
   return true;
 }
 
-export function disconnect(): void {
+export function socketClientDisconnect(): void {
   clientTCP = undefined;
   clientUDP = undefined;
 }
 
-export function send(packedMsg: string): {
+export function socketClientSendTCP(packedMsg: string): {
   sentBytes: number | undefined;
   errMsg: string;
 } {
@@ -98,7 +98,7 @@ export function send(packedMsg: string): {
   };
 }
 
-export function sendUDP(packedMsg: string): {
+export function socketClientSendUDP(packedMsg: string): {
   sentBytes: number | undefined;
   errMsg: string;
 } {
@@ -110,7 +110,10 @@ export function sendUDP(packedMsg: string): {
   return { sentBytes, errMsg };
 }
 
-export function receive(): { data: string | undefined; errMsg: string } {
+export function socketClientReceiveTCP(): {
+  data: string | undefined;
+  errMsg: string;
+} {
   if (clientTCP === undefined) {
     return { data: undefined, errMsg: "TCP client is not initialized" };
   }
@@ -119,7 +122,10 @@ export function receive(): { data: string | undefined; errMsg: string } {
   return { data, errMsg };
 }
 
-export function receiveUDP(): { data: string | undefined; errMsg: string } {
+export function socketClientReceiveUDP(): {
+  data: string | undefined;
+  errMsg: string;
+} {
   if (clientUDP === undefined) {
     return { data: undefined, errMsg: "UDP client is not initialized" };
   }
@@ -128,6 +134,6 @@ export function receiveUDP(): { data: string | undefined; errMsg: string } {
   return { data, errMsg };
 }
 
-export function isActive(): boolean {
+export function socketClientIsActive(): boolean {
   return clientTCP !== undefined && clientUDP !== undefined;
 }

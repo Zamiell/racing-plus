@@ -4,7 +4,7 @@ import { racePostRender } from "../features/race/callbacks/postRender";
 import * as customConsole from "../features/race/customConsole";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postNPCRenderInit(): void {
   mod.AddCallback(ModCallback.POST_RENDER, main);
 }
 

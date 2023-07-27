@@ -88,6 +88,7 @@
   },
   // @template-customization-start
   "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.formatOnSave": true,
     "editor.tabSize": 4,
   },

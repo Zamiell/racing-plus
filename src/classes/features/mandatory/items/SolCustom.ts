@@ -94,8 +94,11 @@ export class SolCustom extends ConfigurableModFeature {
         ActiveSlot.SECONDARY,
         ActiveSlot.POCKET,
       ]) {
-        // In vanilla, Sol will grant 12 charges, which is likely a bug. Racing+ will replicate this
-        // behavior for now.
+        // In vanilla, Sol will grant a full 12 charges, which is likely a bug. Racing+ will
+        // replicate this behavior. Note that Mega Blast has a hardcoded nerf such that when the
+        // `EntityPlayer.FullCharge` method is used, it will only grant 3 charges instead of 12.
+        // Unfortunately, Mega Mush does not have this hard-coded nerf, so it will be fully charged
+        // by Sol.
         player.FullCharge(activeSlot);
 
         player.UseCard(CardType.SUN, UseFlag.NO_ANIMATION);

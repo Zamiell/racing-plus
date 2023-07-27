@@ -2,7 +2,7 @@ import { isChildPlayer, ModCallbackCustom } from "isaacscript-common";
 import { racePostPEffectUpdate } from "../features/race/callbacks/postPEffectUpdate";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postPEffectUpdateReorderedInit(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED, main);
 }
 

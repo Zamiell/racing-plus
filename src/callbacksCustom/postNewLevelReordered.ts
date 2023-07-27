@@ -2,7 +2,7 @@ import { game, log, ModCallbackCustom } from "isaacscript-common";
 import { racePostNewLevel } from "../features/race/callbacks/postNewLevel";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postNewLevelReorderedInit(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED, main);
 }
 

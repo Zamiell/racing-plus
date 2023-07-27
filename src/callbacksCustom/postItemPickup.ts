@@ -2,7 +2,7 @@ import { ModCallbackCustom, PickingUpItem } from "isaacscript-common";
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postItemPickupInit(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_ITEM_PICKUP, main);
 }
 

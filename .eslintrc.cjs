@@ -21,6 +21,24 @@ const config = {
 
   rules: {
     // Insert changed or disabled rules here, if necessary.
+
+    // @template-customization-start
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector: "MethodDefinition[accessibility='public']",
+        message: 'Using "public" class method modifiers are not allowed.',
+      },
+      {
+        selector: "MethodDefinition[accessibility='private']",
+        message: 'Using "private" class method modifiers are not allowed.',
+      },
+      {
+        selector: "MethodDefinition[accessibility='protected']",
+        message: 'Using "protected" class method modifiers are not allowed.',
+      },
+    ],
+    // @template-customization-end
   },
 };
 

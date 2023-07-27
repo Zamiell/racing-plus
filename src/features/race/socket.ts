@@ -12,7 +12,15 @@ import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
-import * as socketClient from "./socketClient";
+import {
+  socketClientConnect,
+  socketClientDisconnect,
+  socketClientIsActive,
+  socketClientReceiveTCP,
+  socketClientReceiveUDP,
+  socketClientSendTCP,
+  socketClientSendUDP,
+} from "./socketClient";
 import { SOCKET_DEBUG, reset, socketFunctions } from "./socketFunctions";
 
 // ModCallback.POST_RENDER (2)
@@ -21,7 +29,7 @@ export function postRender(): void {
     return;
   }
 
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return;
   }
 
@@ -29,7 +37,7 @@ export function postRender(): void {
   send("ping");
 
   // Do nothing further if the ping failed.
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return;
   }
 
@@ -44,8 +52,8 @@ export function postGameStarted(): void {
   const seeds = game.GetSeeds();
   const startSeedString = seeds.GetStartSeedString();
 
-  if (!socketClient.isActive()) {
-    if (!socketClient.connect()) {
+  if (!socketClientIsActive()) {
+    if (!socketClientConnect()) {
       g.race = new RaceData();
     }
   }
@@ -92,15 +100,15 @@ export function postItemPickup(pickingUpItem: PickingUpItem): void {
 }
 
 function read() {
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return false;
   }
 
-  const { data, errMsg } = socketClient.receive();
+  const { data, errMsg } = socketClientReceiveTCP();
   if (data === undefined) {
     if (errMsg !== "timeout") {
       log(`Error: Failed to read data: ${errMsg}`);
-      socketClient.disconnect();
+      socketClientDisconnect();
       reset();
     }
 
@@ -123,15 +131,15 @@ function read() {
 }
 
 export function readUDP(): string | undefined {
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return undefined;
   }
 
-  const { data, errMsg } = socketClient.receiveUDP();
+  const { data, errMsg } = socketClientReceiveUDP();
   if (data === undefined) {
     if (errMsg !== "timeout") {
       log(`Error: Failed to read data: ${errMsg}`);
-      socketClient.disconnect();
+      socketClientDisconnect();
       reset();
     }
 
@@ -142,7 +150,7 @@ export function readUDP(): string | undefined {
 }
 
 export function send(command: SocketCommandOut, data = ""): void {
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return;
   }
 
@@ -151,23 +159,23 @@ export function send(command: SocketCommandOut, data = ""): void {
   }
 
   const packedMsg = packSocketMsg(command, data);
-  const { sentBytes, errMsg } = socketClient.send(packedMsg);
+  const { sentBytes, errMsg } = socketClientSendTCP(packedMsg);
   if (sentBytes === undefined) {
     log(`Error: Failed to send data over the TCP socket: ${errMsg}`);
-    socketClient.disconnect();
+    socketClientDisconnect();
     reset();
   }
 }
 
 export function sendUDP(data: string): void {
-  if (!socketClient.isActive()) {
+  if (!socketClientIsActive()) {
     return;
   }
 
-  const { sentBytes, errMsg } = socketClient.sendUDP(data);
+  const { sentBytes, errMsg } = socketClientSendUDP(data);
   if (sentBytes === undefined) {
     log(`Error: Failed to send data over the UDP socket: ${errMsg}`);
-    socketClient.disconnect();
+    socketClientDisconnect();
     reset();
   }
 }

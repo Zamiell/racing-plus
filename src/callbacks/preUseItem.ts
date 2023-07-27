@@ -7,7 +7,7 @@ import {
 import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import { mod } from "../mod";
 
-export function init(): void {
+export function preUseItemInit(): void {
   mod.AddCallback(
     ModCallback.PRE_USE_ITEM,
     d100,

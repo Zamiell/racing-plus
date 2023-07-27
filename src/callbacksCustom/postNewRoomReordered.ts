@@ -12,7 +12,7 @@ import {
 import { racePostNewRoom } from "../features/race/callbacks/postNewRoom";
 import { mod } from "../mod";
 
-export function init(): void {
+export function postNewRoomReorderedInit(): void {
   mod.AddCallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED, main);
 }
 
