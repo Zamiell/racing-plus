@@ -150,7 +150,7 @@ function registerPresets() {
   });
 }
 
-function isAllConfigSetTo(value: boolean) {
+function isAllConfigSetTo(value: boolean): boolean {
   for (const key of Object.keys(config)) {
     const assertedKey = key as keyof Config;
     const currentValue = config[assertedKey];
@@ -240,7 +240,7 @@ function registerSubMenuHotkeys(
   }
 }
 
-function getDefaultValue(optionType: ModConfigMenuOptionType) {
+function getDefaultValue(optionType: ModConfigMenuOptionType): true | -1 {
   switch (optionType) {
     case ModConfigMenuOptionType.BOOLEAN: {
       return true;
@@ -261,7 +261,7 @@ function getDisplayTextBoolean(
   configName: keyof Config,
   code: string,
   shortDescription: string,
-) {
+): string {
   if (code === "") {
     return `${shortDescription}: n/a`;
   }
@@ -274,7 +274,7 @@ function getDisplayTextKeyboardController(
   configName: keyof Hotkeys,
   optionType: ModConfigMenuOptionType,
   shortDescription: string,
-) {
+): string {
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       const currentValue = hotkeys[configName];
@@ -311,7 +311,7 @@ export function onOff(setting: boolean): string {
 function getPopupDescription(
   configName: keyof Hotkeys,
   optionType: ModConfigMenuOptionType,
-) {
+): string {
   const currentValue = hotkeys[configName];
 
   const deviceString = popupGetDeviceString(optionType);
@@ -320,7 +320,9 @@ function getPopupDescription(
   return `Press a button on your ${deviceString} to change this setting.$newline$newline${keepSettingString}Press "${backKeyText}" to go back and clear this setting.`;
 }
 
-function popupGetDeviceString(optionType: ModConfigMenuOptionType) {
+function popupGetDeviceString(
+  optionType: ModConfigMenuOptionType,
+): "keyboard" | "controller" {
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       return "keyboard";
@@ -339,7 +341,7 @@ function popupGetDeviceString(optionType: ModConfigMenuOptionType) {
 function popupGetKeepSettingString(
   optionType: ModConfigMenuOptionType,
   currentValue: int,
-) {
+): string {
   if (currentValue === -1) {
     return "";
   }
