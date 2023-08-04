@@ -67,8 +67,6 @@ export class Autofire extends MandatoryModFeature {
     super();
 
     // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
-    const keyboardFunc = () =>
-      hotkeys.autofire === -1 ? undefined : hotkeys.autofire;
     mod.setConditionalHotkey(keyboardFunc, autofireHotkeyPressed);
   }
 
@@ -207,6 +205,10 @@ export class Autofire extends MandatoryModFeature {
 
     return hasPowerfulCollectible && pressedShootRecently;
   }
+}
+
+function keyboardFunc() {
+  return hotkeys.autofire === -1 ? undefined : hotkeys.autofire;
 }
 
 function autofireHotkeyPressed() {

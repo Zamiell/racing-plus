@@ -76,8 +76,6 @@ export class Season4 extends ChallengeModFeature {
     super();
 
     // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
-    const keyboardFunc = () =>
-      hotkeys.storage === -1 ? undefined : hotkeys.storage;
     mod.setConditionalHotkey(keyboardFunc, checkStoreCollectible);
   }
 
@@ -337,6 +335,10 @@ export class Season4 extends ChallengeModFeature {
   preItemPickupCheckpoint(): void {
     v.persistent.storedCollectibles.push(...v.run.storedCollectiblesOnThisRun);
   }
+}
+
+function keyboardFunc() {
+  return hotkeys.storage === -1 ? undefined : hotkeys.storage;
 }
 
 function checkStoreCollectible() {

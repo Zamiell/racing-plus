@@ -409,9 +409,7 @@ function checkTouchingLadderExitTile(player: EntityPlayer) {
   v.level.crawlSpace.amExiting = true;
 
   const returnRoomGridIndex =
-    v.level.crawlSpace.returnRoomGridIndex === null
-      ? startingRoomGridIndex
-      : v.level.crawlSpace.returnRoomGridIndex;
+    v.level.crawlSpace.returnRoomGridIndex ?? startingRoomGridIndex;
 
   teleport(returnRoomGridIndex, Direction.UP, RoomTransitionAnim.WALK);
 }

@@ -149,7 +149,7 @@ function checkModifyDevilRoomDoor() {
     return;
   }
 
-  const door = devilRoomDoor === undefined ? angelRoomDoor : devilRoomDoor;
+  const door = devilRoomDoor ?? angelRoomDoor;
   if (door === undefined) {
     return;
   }

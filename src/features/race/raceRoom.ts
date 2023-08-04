@@ -135,7 +135,7 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
     }
 
     default: {
-      return error(`Race room sprites named "${spriteName}" are unsupported.`);
+      error(`Race room sprites named "${spriteName}" are unsupported.`);
     }
   }
 }

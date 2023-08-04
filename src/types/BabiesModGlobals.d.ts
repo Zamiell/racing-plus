@@ -1,1 +1,1 @@
-declare const BabiesModGlobals: unknown | undefined;
+declare const BabiesModGlobals: unknown;

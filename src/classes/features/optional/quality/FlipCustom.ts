@@ -122,9 +122,7 @@ function newFlippedCollectibleType(collectible: EntityPickup): CollectibleType {
 
   const replacementCollectibleType =
     COLLECTIBLE_REPLACEMENT_MAP.get(collectibleType);
-  return replacementCollectibleType === undefined
-    ? collectibleType
-    : replacementCollectibleType;
+  return replacementCollectibleType ?? collectibleType;
 }
 
 export class FlipCustom extends ConfigurableModFeature {

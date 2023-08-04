@@ -137,7 +137,7 @@ export class ShowPills extends ConfigurableModFeature {
     const newPillEffect = getFalsePHDPillEffect(pillEffect);
     const racingPlusEffect =
       FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS.get(newPillEffect);
-    return racingPlusEffect === undefined ? newPillEffect : racingPlusEffect;
+    return racingPlusEffect ?? newPillEffect;
   }
 
   // 2

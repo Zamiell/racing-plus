@@ -9,10 +9,12 @@ export class SchoolbagSwitch extends MandatoryModFeature {
     super();
 
     // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
-    const keyboardFunc = () =>
-      hotkeys.schoolbagSwitch === -1 ? undefined : hotkeys.schoolbagSwitch;
     mod.setConditionalHotkey(keyboardFunc, schoolbagSwitchHotkeyPressed);
   }
+}
+
+function keyboardFunc() {
+  return hotkeys.schoolbagSwitch === -1 ? undefined : hotkeys.schoolbagSwitch;
 }
 
 function schoolbagSwitchHotkeyPressed() {

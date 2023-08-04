@@ -62,7 +62,7 @@ export class FastHands extends ConfigurableModFeature {
   isOtherHandOverlapping(initialHand: EntityNPC): boolean {
     const momsHands = getNPCs(EntityType.MOMS_HAND);
     const momsDeadHands = getNPCs(EntityType.MOMS_DEAD_HAND);
-    const hands = momsHands.concat(momsDeadHands);
+    const hands = [...momsHands, ...momsDeadHands];
 
     return hands.some(
       (hand) =>

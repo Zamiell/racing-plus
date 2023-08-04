@@ -28,24 +28,30 @@ export class FastDrop extends MandatoryModFeature {
   constructor() {
     super();
 
-    const keyboardFuncFastDropAll = () =>
-      hotkeys.fastDropAll === -1 ? undefined : hotkeys.fastDropAll;
     mod.setConditionalHotkey(keyboardFuncFastDropAll, () => {
       fastDropHotkeyPressed(FastDropTarget.ALL);
     });
 
-    const keyboardFuncFastDropTrinkets = () =>
-      hotkeys.fastDropTrinkets === -1 ? undefined : hotkeys.fastDropTrinkets;
     mod.setConditionalHotkey(keyboardFuncFastDropTrinkets, () => {
       fastDropHotkeyPressed(FastDropTarget.TRINKETS);
     });
 
-    const keyboardFuncFastDropPocket = () =>
-      hotkeys.fastDropPocket === -1 ? undefined : hotkeys.fastDropPocket;
     mod.setConditionalHotkey(keyboardFuncFastDropPocket, () => {
       fastDropHotkeyPressed(FastDropTarget.POCKET_ITEMS);
     });
   }
+}
+
+function keyboardFuncFastDropAll() {
+  return hotkeys.fastDropAll === -1 ? undefined : hotkeys.fastDropAll;
+}
+
+function keyboardFuncFastDropTrinkets() {
+  return hotkeys.fastDropTrinkets === -1 ? undefined : hotkeys.fastDropTrinkets;
+}
+
+function keyboardFuncFastDropPocket() {
+  return hotkeys.fastDropPocket === -1 ? undefined : hotkeys.fastDropPocket;
 }
 
 function fastDropHotkeyPressed(target: FastDropTarget) {

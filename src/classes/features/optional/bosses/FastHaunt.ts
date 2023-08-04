@@ -43,9 +43,9 @@ export class FastHaunt extends ConfigurableModFeature {
     const attachedLilHaunts = this.getAttachedLilHaunts(npc);
     if (colorIdx === BLACK_CHAMPION_COLOR_IDX) {
       // The black champion Haunt detaches all of his children at the same time.
-      attachedLilHaunts.forEach((lilHaunt: EntityNPC) => {
+      for (const lilHaunt of attachedLilHaunts) {
         this.detachLilHaunt(lilHaunt);
-      });
+      }
     } else {
       // Only detach the one with the lowest index.
       const lowestIndexLilHaunt =
@@ -78,6 +78,7 @@ export class FastHaunt extends ConfigurableModFeature {
       return undefined;
     }
 
+    // eslint-disable-next-line unicorn/no-array-reduce
     return lilHaunts.reduce((lowestIndexLilHaunt, lilHaunt) =>
       lilHaunt.Index < lowestIndexLilHaunt.Index
         ? lilHaunt

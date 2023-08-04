@@ -14,6 +14,7 @@ let clientUDP: SocketClient | undefined;
  * place, then we should be clear to request a socket later on.
  */
 export function socketClientInit(): void {
+  // eslint-disable-next-line unicorn/prefer-module
   const [ok, requiredSandbox] = pcall(require, "sandbox");
   if (!ok) {
     log("Did not detect the sandbox environment.");

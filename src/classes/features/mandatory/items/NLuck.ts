@@ -49,7 +49,7 @@ export class NLuck extends MandatoryModFeature {
       case PlayerType.EDEN:
       case PlayerType.EDEN_B: {
         const baseLuck = mod.getEdenStartingStat(player, PlayerStat.LUCK);
-        return baseLuck === undefined ? 0 : baseLuck;
+        return baseLuck ?? 0;
       }
 
       // 14

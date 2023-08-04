@@ -148,8 +148,7 @@ export class FastClear extends ConfigurableModFeature {
       return;
     }
 
-    const heavenDoorToKeep =
-      heavenDoorInCenter === undefined ? firstHeavenDoor : heavenDoorInCenter;
+    const heavenDoorToKeep = heavenDoorInCenter ?? firstHeavenDoor;
     const heavenDoorsToRemove = heavenDoors.filter(
       (heavenDoor) => heavenDoor.Index !== heavenDoorToKeep.Index,
     );

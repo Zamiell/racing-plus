@@ -45,7 +45,6 @@ export class Roll extends MandatoryModFeature {
     super();
 
     // See the comment in the "FastDrop.ts" file about reading keyboard inputs.
-    const keyboardFunc = () => (hotkeys.roll === -1 ? undefined : hotkeys.roll);
     mod.setConditionalHotkey(keyboardFunc, rollHotkeyPressed);
   }
 
@@ -103,6 +102,10 @@ export class Roll extends MandatoryModFeature {
     const rollSpeed = ROLL_SPEED * player.MoveSpeed;
     player.Velocity = v.run.originalVelocity2.Normalized().mul(rollSpeed);
   }
+}
+
+function keyboardFunc() {
+  return hotkeys.roll === -1 ? undefined : hotkeys.roll;
 }
 
 function rollHotkeyPressed() {
@@ -166,8 +169,7 @@ function getRollingAnimation(direction: Direction) {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const defaultDirectionName = getDirectionName(Direction.DOWN)!;
   const directionName = getDirectionName(direction);
-  const suffix =
-    directionName === undefined ? defaultDirectionName : directionName;
+  const suffix = directionName ?? defaultDirectionName;
   const capitalizedSuffix = capitalizeFirstLetter(suffix);
 
   return `Rolling${capitalizedSuffix}`;

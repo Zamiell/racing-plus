@@ -156,9 +156,7 @@ export function speedrunGetAverageTimePerCharacter(): string {
 }
 
 export function speedrunGetFinishedFrames(): number {
-  return v.run.finishedSpeedrunFrames === null
-    ? 0
-    : v.run.finishedSpeedrunFrames;
+  return v.run.finishedSpeedrunFrames ?? 0;
 }
 
 export function speedrunIsFinished(): boolean {

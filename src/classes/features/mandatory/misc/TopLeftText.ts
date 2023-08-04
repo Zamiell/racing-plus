@@ -98,8 +98,7 @@ export class TopLeftText extends MandatoryModFeature {
 
       // Draw a 3rd line to show the total frames.
       if (!inSpeedrun() || isOnFinalCharacter()) {
-        let frames: int;
-        frames = inSpeedrun()
+        const frames = inSpeedrun()
           ? speedrunGetFinishedFrames()
           : g.raceVars.finishedRenderFrames;
         const seconds = Math.floor(frames / 60);

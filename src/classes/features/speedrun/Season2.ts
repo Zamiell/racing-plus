@@ -214,19 +214,13 @@ export class Season2 extends ChallengeModFeature {
 
   getBuildIndexFor(collectibleType: CollectibleType): int {
     for (const [i, build] of SEASON_2_STARTING_BUILDS.entries()) {
-      if (build === undefined) {
-        continue;
-      }
-
       const firstCollectible = build[0];
       if (firstCollectible === collectibleType) {
         return i;
       }
     }
 
-    return error(
-      `Failed to find the season 2 build index for: ${collectibleType}`,
-    );
+    error(`Failed to find the season 2 build index for: ${collectibleType}`);
   }
 
   giveStartingItems(
