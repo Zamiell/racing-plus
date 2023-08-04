@@ -50,8 +50,7 @@ export function postNewRoom(): void {
     // We don't want to spawn both of them on top of each other since that would make them behave a
     // little glitchy. Note that pos.X += 200 causes the hitbox to appear too close to the
     // left/right side, causing damage if the player moves into the room too quickly.
-    let modification: Vector;
-    modification = i === 0 ? Vector(-150, 0) : Vector(150, 0);
+    const modification = i === 0 ? Vector(-150, 0) : Vector(150, 0);
     const position = centerPos.add(modification);
     const seed = rng.Next();
     const frail = spawnWithSeed(

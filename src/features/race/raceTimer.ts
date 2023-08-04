@@ -13,8 +13,9 @@ export function postRender(): void {
 
 function drawRaceTimer() {
   // Find out how much time has passed since the race started.
-  let elapsedTimeMilliseconds: float;
-  elapsedTimeMilliseconds = g.raceVars.finished ? g.raceVars.finishedTime : Isaac.GetTime() - g.raceVars.startedTime;
+  const elapsedTimeMilliseconds = g.raceVars.finished
+    ? g.raceVars.finishedTime
+    : Isaac.GetTime() - g.raceVars.startedTime;
   const seconds = elapsedTimeMilliseconds / 1000;
 
   timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);

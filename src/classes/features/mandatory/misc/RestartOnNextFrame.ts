@@ -1,9 +1,5 @@
-import type {
-  Challenge,
-  PlayerType} from "isaac-typescript-definitions";
-import {
-  ModCallback
-} from "isaac-typescript-definitions";
+import type { Challenge, PlayerType } from "isaac-typescript-definitions";
+import { ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
   FIRST_CHARACTER,
@@ -97,7 +93,7 @@ export function setRestartCharacter(character: PlayerType): void {
   // Prevent crashing the game when switching to a character that does not exist.
   if (character < FIRST_CHARACTER || character > LAST_VANILLA_CHARACTER) {
     if (
-       
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       character === LAST_VANILLA_CHARACTER + 1 &&
       BabiesModGlobals !== undefined
     ) {

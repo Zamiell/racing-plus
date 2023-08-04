@@ -3817,15 +3817,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^13.0.16":
-  version: 13.0.16
-  resolution: "isaac-typescript-definitions@npm:13.0.16"
-  dependencies:
-    lua-types: ^2.13.1
-  checksum: dff334dea8b8b28628de80e4e0259727906e1d58ef7a6c6c855e8048f81144b36b949100ab5ae9ac4ee4e1ee08e2191628c6ce5885b48fe65b00a7624ea6f8d3
-  languageName: node
-  linkType: hard
-
 "isaac-typescript-definitions@npm:^13.0.17":
   version: 13.0.17
   resolution: "isaac-typescript-definitions@npm:13.0.17"
@@ -3835,12 +3826,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^30.12.3":
-  version: 30.12.3
-  resolution: "isaacscript-common@npm:30.12.3"
+"isaacscript-common@npm:^30.12.4":
+  version: 30.12.4
+  resolution: "isaacscript-common@npm:30.12.4"
   dependencies:
-    isaac-typescript-definitions: ^13.0.16
-  checksum: 100ecab57ec43b37d352b1ba1c97c87ef3c4d188e246085ca5eb672f92c89f1be5e5885cbc22d7cc117b26fb4552a2201f5140ea91a801a66664938aca2dc60a
+    isaac-typescript-definitions: ^13.0.17
+  checksum: 10e734611717a3792644f91e06a2fe71fee9d49293254441f4e416336bc7d9d42ede2cc0ac936f772c1d29209c4c91b7c68f73210fe7ecc4d072cb0f371f3471
   languageName: node
   linkType: hard
 
@@ -3892,9 +3883,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.6.52":
-  version: 3.6.52
-  resolution: "isaacscript@npm:3.6.52"
+"isaacscript@npm:^3.6.53":
+  version: 3.6.53
+  resolution: "isaacscript@npm:3.6.53"
   dependencies:
     ajv: ^8.12.0
     chalk: 4.1.2
@@ -3917,7 +3908,7 @@ __metadata:
     typescript: ">= 4.0.0"
   bin:
     isaacscript: src/main.js
-  checksum: 5cbab3ab61bafc1cf54d341d1f314e9d3f645a2a99ff3a3eada0a6828e354fbc201a83aa328037cc14400dc72e3c5002a5f9e72e67b9948187df53f65190e559
+  checksum: 5ca505b83ce6347bd1d449e0abe33a96d3e05c1b7365e349c8b7837b351cd15a75340ef920760cb50691f122b717107f266bbb1752de00ada8a262a347e1c590
   languageName: node
   linkType: hard
 
@@ -5231,8 +5222,8 @@ __metadata:
   dependencies:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^13.0.17
-    isaacscript: ^3.6.52
-    isaacscript-common: ^30.12.3
+    isaacscript: ^3.6.53
+    isaacscript-common: ^30.12.4
     isaacscript-lint: ^5.0.0
     isaacscript-spell: ^1.2.40
     isaacscript-tsconfig: ^4.0.0

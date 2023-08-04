@@ -191,45 +191,45 @@ function initSeededSprites() {
   );
 
   switch (startingItems.length) {
-  case 1: {
-    sprites.seededItemCenter =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
-  
-  break;
-  }
-  case 2: {
-    sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
-      startingItems[0],
-    );
-    sprites.seededItemRight =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
-  
-  break;
-  }
-  case 3: {
-    sprites.seededItemCenter =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
-    sprites.seededItemFarLeft =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
-    sprites.seededItemFarRight =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
-  
-  break;
-  }
-  case 4: {
-    sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
-      startingItems[0],
-    );
-    sprites.seededItemRight =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
-    sprites.seededItemFarLeft =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
-    sprites.seededItemFarRight =
-      newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
-  
-  break;
-  }
-  // No default
+    case 1: {
+      sprites.seededItemCenter =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+
+      break;
+    }
+
+    case 2: {
+      sprites.seededItemLeft =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+      sprites.seededItemRight =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+
+      break;
+    }
+
+    case 3: {
+      sprites.seededItemCenter =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+      sprites.seededItemFarLeft =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+      sprites.seededItemFarRight =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
+
+      break;
+    }
+
+    case 4: {
+      sprites.seededItemLeft =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
+      sprites.seededItemRight =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
+      sprites.seededItemFarLeft =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
+      sprites.seededItemFarRight =
+        newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
+
+      break;
+    }
   }
 }
 

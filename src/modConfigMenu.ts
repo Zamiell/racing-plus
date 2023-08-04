@@ -1,10 +1,9 @@
-import type { Controller} from "isaac-typescript-definitions";
+import type { Controller } from "isaac-typescript-definitions";
 import { Keyboard } from "isaac-typescript-definitions";
 import { controllerToString } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
-import type {
-  ConfigDescriptions} from "./configDescription";
+import type { ConfigDescriptions } from "./configDescription";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
@@ -279,9 +278,7 @@ function getDisplayTextKeyboardController(
   switch (optionType) {
     case ModConfigMenuOptionType.KEY_BIND_KEYBOARD: {
       const currentValue = hotkeys[configName];
-
-      let text: string;
-      text = currentValue === -1 ? "None" : Keyboard[currentValue];
+      const text = currentValue === -1 ? "None" : Keyboard[currentValue];
 
       return `${shortDescription}: ${text} (keyboard)`;
     }

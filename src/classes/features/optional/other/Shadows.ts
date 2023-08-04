@@ -1,9 +1,5 @@
-import type {
-  PlayerType} from "isaac-typescript-definitions";
-import {
-  ButtonAction,
-  ModCallback
-} from "isaac-typescript-definitions";
+import type { PlayerType } from "isaac-typescript-definitions";
+import { ButtonAction, ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
   DefaultMap,
@@ -21,9 +17,7 @@ import { config } from "../../../../modConfigMenu";
 import type { Config } from "../../../Config";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { CHARACTER_PNG_MAP } from "./shadows/characterPNGMap";
-import type {
-  ShadowData,
-  ShadowMessage} from "./shadows/constants";
+import type { ShadowData, ShadowMessage } from "./shadows/constants";
 import {
   BEACON_DATA_FORMAT,
   BEACON_FIELDS,
@@ -34,7 +28,7 @@ import {
   SHADOW_DATA_FORMAT,
   SHADOW_FADE_AMOUNT,
   SHADOW_FIELDS,
-  SHADOW_INTERVAL_RENDER_FRAMES
+  SHADOW_INTERVAL_RENDER_FRAMES,
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 
@@ -246,7 +240,7 @@ export class Shadows extends MandatoryModFeature {
 
     for (const shadowData of v.run.shadows.values()) {
       const framesSinceLastUpdate = renderFrameCount - shadowData.frameUpdated;
-      if (framesSinceLastUpdate > Number(RENDER_FRAMES_PER_SECOND)) {
+      if (framesSinceLastUpdate > RENDER_FRAMES_PER_SECOND) {
         continue;
       }
 

@@ -169,7 +169,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
 function open() {
   consoleOpen = true;
   mod.disableAllInputs(FEATURE_NAME);
-  AwaitingTextInput = true;
+  AwaitingTextInput = true; // eslint-disable-line no-implicit-globals
 
   log("Console opened.");
 }
@@ -181,7 +181,7 @@ function close(execute = true) {
 
   consoleOpen = false;
   mod.enableAllInputs(FEATURE_NAME);
-  AwaitingTextInput = false;
+  AwaitingTextInput = false; // eslint-disable-line no-implicit-globals
 
   if (!execute || inputText === "") {
     savedText = "";
@@ -260,8 +260,7 @@ export function drawText(
   const y = position.Y;
 
   for (const textSegment of textSegments) {
-    const hexColor =
-      textSegment.color === undefined ? HexColors.WHITE : textSegment.color;
+    const hexColor = textSegment.color ?? HexColors.WHITE;
     const kColor = hexToKColor(hexColor, alpha);
     font.DrawString(textSegment.text, x, y, kColor, 0, true);
 

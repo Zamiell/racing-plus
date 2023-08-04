@@ -111,7 +111,10 @@ export function placeChanged(): void {
   }
 
   // The client won't send a new place for solo races.
-  sprite = g.race.place > MAX_PLACE ? undefined : newSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
+  sprite =
+    g.race.place > MAX_PLACE
+      ? undefined
+      : newSprite(`${GFX_PATH}/place-top/${g.race.place}.anm2`);
 }
 
 export function setErrorNormalMode(): void {

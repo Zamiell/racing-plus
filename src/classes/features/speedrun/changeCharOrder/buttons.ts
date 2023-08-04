@@ -1,5 +1,4 @@
-import type {
-  PlayerType} from "isaac-typescript-definitions";
+import type { PlayerType } from "isaac-typescript-definitions";
 import {
   FadeoutTarget,
   GridEntityType,
@@ -251,7 +250,9 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   sprite.SetFrame("Default", v.room.charOrder.length);
   setSpriteOpacity(sprite, 1); // Remove the fade.
 
-  if (v.room.challengeCustomAbbreviation === "R7S1") {
+  if (
+    v.room.challengeCustomAbbreviation === ChallengeCustomAbbreviation.SEASON_1
+  ) {
     season1DeleteOtherCharButton(i);
   }
 
@@ -269,16 +270,14 @@ function characterButtonPressed(gridEntity: GridEntity, i: int) {
   }
 }
 
+/**
+ * - If the index is even, a normal character was chosen. Delete the corresponding tainted character
+ *   button.
+ * - If the index is odd, a tainted character was chosen. Delete the corresponding normal character
+ *   button.
+ */
 function season1DeleteOtherCharButton(i: int) {
-  let otherCharIndex: int;
-  if (isEven(i)) {
-    // A normal character was chosen. Delete the corresponding tainted character button.
-    otherCharIndex = i + 1;
-  } else {
-    // A tainted character was chosen. Delete the corresponding normal character button.
-    otherCharIndex = i - 1;
-  }
-
+  const otherCharIndex = isEven(i) ? i + 1 : i - 1;
   deleteCharacterButtonAtIndex(otherCharIndex);
 }
 
@@ -371,8 +370,11 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
 function fadeOutToChallenge() {
   game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
 
-  v.room.challengeTarget = v.room.challengeCustomAbbreviation === null ? null : CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
-        v.room.challengeCustomAbbreviation
-      ];
+  v.room.challengeTarget =
+    v.room.challengeCustomAbbreviation === null
+      ? null
+      : CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
+          v.room.challengeCustomAbbreviation
+        ];
   v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
 }

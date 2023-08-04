@@ -52,53 +52,55 @@ export function season2InitStartingRoomSprites(
   );
 
   switch (startingBuild.length) {
-  case 1: {
-    sprites.seededItemCenter = newGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  
-  break;
-  }
-  case 2: {
-    sprites.seededItemLeft = newGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemRight = newGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  
-  break;
-  }
-  case 3: {
-    sprites.seededItemCenter = newGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarRight = newGlowingCollectibleSprite(
-      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  
-  break;
-  }
-  case 4: {
-    sprites.seededItemLeft = newGlowingCollectibleSprite(
-      startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemRight = newGlowingCollectibleSprite(
-      startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-      startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-    sprites.seededItemFarRight = newGlowingCollectibleSprite(
-      startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-    );
-  
-  break;
-  }
-  // No default
+    case 1: {
+      sprites.seededItemCenter = newGlowingCollectibleSprite(
+        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+
+      break;
+    }
+
+    case 2: {
+      sprites.seededItemLeft = newGlowingCollectibleSprite(
+        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemRight = newGlowingCollectibleSprite(
+        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+
+      break;
+    }
+
+    case 3: {
+      sprites.seededItemCenter = newGlowingCollectibleSprite(
+        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
+        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemFarRight = newGlowingCollectibleSprite(
+        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+
+      break;
+    }
+
+    case 4: {
+      sprites.seededItemLeft = newGlowingCollectibleSprite(
+        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemRight = newGlowingCollectibleSprite(
+        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
+        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+      sprites.seededItemFarRight = newGlowingCollectibleSprite(
+        startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      );
+
+      break;
+    }
   }
 }
 

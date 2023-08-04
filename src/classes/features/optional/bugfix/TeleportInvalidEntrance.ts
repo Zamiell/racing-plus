@@ -116,10 +116,6 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
 
   getFirstNonSecretDoor(): GridEntityDoor | undefined {
     const doors = getDoors();
-    const nonSecretRoomDoor = doors.find(
-      (door) => !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType),
-    );
-
-    return nonSecretRoomDoor;
+    return doors.find((door) => !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType));
   }
 }

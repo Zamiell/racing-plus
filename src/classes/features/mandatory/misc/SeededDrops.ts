@@ -158,10 +158,11 @@ export class SeededDrops extends MandatoryModFeature {
     // Hard mode has a chance to remove a heart drop.
     if (
       game.Difficulty === Difficulty.HARD &&
-      pickupVariant === PickupVariant.HEART
-     && rng.RandomInt(100) >= 35) {
-        pickupVariant = PickupVariant.NULL;
-      }
+      pickupVariant === PickupVariant.HEART &&
+      rng.RandomInt(100) >= 35
+    ) {
+      pickupVariant = PickupVariant.NULL;
+    }
 
     // Broken Modem has a chance to increase the amount of pickups that drop.
     if (pickupCount >= 1) {
