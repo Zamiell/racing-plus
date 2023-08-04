@@ -22,14 +22,14 @@
   "type": "commonjs",
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaac-typescript-definitions": "^13.0.16",
-    "isaacscript": "^3.6.50",
-    "isaacscript-common": "^30.12.2",
-    "isaacscript-lint": "^4.16.10",
+    "isaac-typescript-definitions": "^13.0.17",
+    "isaacscript": "^3.6.52",
+    "isaacscript-common": "^30.12.3",
+    "isaacscript-lint": "^5.0.0",
     "isaacscript-spell": "^1.2.40",
     "isaacscript-tsconfig": "^4.0.0",
     "typescript": "^5.1.6",
-    "typescript-to-lua": "^1.16.3"
+    "typescript-to-lua": "^1.17.0"
   },
   "packageManager": "yarn@3.6.1"
 }
