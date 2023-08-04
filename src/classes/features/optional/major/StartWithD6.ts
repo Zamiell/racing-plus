@@ -1,14 +1,12 @@
-import type {
-  UseFlag} from "isaac-typescript-definitions";
+import type { UseFlag } from "isaac-typescript-definitions";
 import {
   ActiveSlot,
   CollectibleType,
   ItemType,
   ModCallback,
-  PlayerType
+  PlayerType,
 } from "isaac-typescript-definitions";
-import type {
-  PlayerIndex} from "isaacscript-common";
+import type { PlayerIndex } from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,

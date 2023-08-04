@@ -1,5 +1,4 @@
-import type {
-  CollectibleAnimation} from "isaac-typescript-definitions";
+import type { CollectibleAnimation } from "isaac-typescript-definitions";
 import {
   EntityPartition,
   ModCallback,

@@ -1,5 +1,4 @@
-import type {
-  PlayerType} from "isaac-typescript-definitions";
+import type { PlayerType } from "isaac-typescript-definitions";
 import {
   Challenge,
   CollectibleType,

@@ -51,9 +51,12 @@ export class FastHands extends ConfigurableModFeature {
     // Check to see if there are any other hands in the room with this state frame. If so, we have
     // to do a small adjustment because if multiple hands fall at the exact same time, they will
     // stack on top of each other and appear as a single hand.
-    if (npc.StateFrame === SHADOW_APPEAR_FRAME && this.isOtherHandOverlapping(npc)) {
-        npc.StateFrame += DELAY_FRAMES;
-      }
+    if (
+      npc.StateFrame === SHADOW_APPEAR_FRAME &&
+      this.isOtherHandOverlapping(npc)
+    ) {
+      npc.StateFrame += DELAY_FRAMES;
+    }
   }
 
   isOtherHandOverlapping(initialHand: EntityNPC): boolean {

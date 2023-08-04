@@ -13,8 +13,7 @@ import {
   SlotVariant,
   TrinketType,
 } from "isaac-typescript-definitions";
-import type {
-  PlayerIndex} from "isaacscript-common";
+import type { PlayerIndex } from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,

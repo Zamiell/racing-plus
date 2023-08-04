@@ -1,9 +1,8 @@
 import type {
   CollectibleType,
-  TrinketType} from "isaac-typescript-definitions";
-import {
-  PlayerType
+  TrinketType,
 } from "isaac-typescript-definitions";
+import { PlayerType } from "isaac-typescript-definitions";
 import { arrayToString, isArray, log } from "isaacscript-common";
 import { RaceDifficulty } from "../enums/RaceDifficulty";
 import { RaceFormat } from "../enums/RaceFormat";

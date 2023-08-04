@@ -1,9 +1,5 @@
-import type {
-  DamageFlag} from "isaac-typescript-definitions";
-import {
-  EntityType,
-  ModCallback,
-} from "isaac-typescript-definitions";
+import type { DamageFlag } from "isaac-typescript-definitions";
+import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 

@@ -12,8 +12,7 @@ import {
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
-import type {
-  PlayerHealth} from "isaacscript-common";
+import type { PlayerHealth } from "isaacscript-common";
 import {
   emptyArray,
   game,

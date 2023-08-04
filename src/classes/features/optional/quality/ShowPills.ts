@@ -1,5 +1,4 @@
-import type {
-  PillColor} from "isaac-typescript-definitions";
+import type { PillColor } from "isaac-typescript-definitions";
 import {
   ButtonAction,
   CollectibleType,

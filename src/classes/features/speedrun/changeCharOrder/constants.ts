@@ -1,11 +1,10 @@
 import { PlayerType } from "isaac-typescript-definitions";
 import { ReadonlyMap } from "isaacscript-common";
 import { ChallengeCustomAbbreviation } from "../../../../speedrun/constants";
-import type {
-  SeasonDescription} from "../../../../types/SeasonDescription";
+import type { SeasonDescription } from "../../../../types/SeasonDescription";
 import {
   BuildPosition,
-  CharPosition
+  CharPosition,
 } from "../../../../types/SeasonDescription";
 
 /** We use the Cellar because it is the cleanest floor. */

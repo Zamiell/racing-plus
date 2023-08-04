@@ -1,17 +1,14 @@
 import { GameStateFlag, ItemType } from "isaac-typescript-definitions";
-import type {
-  PickingUpItem} from "isaacscript-common";
-import {
-  game,
-  getRoomVariant,
-  log,
-  logError,
-} from "isaacscript-common";
+import type { PickingUpItem } from "isaacscript-common";
+import { game, getRoomVariant, log, logError } from "isaacscript-common";
 import { RaceData, cloneRaceData } from "../../classes/RaceData";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
-import type { SocketCommandIn, SocketCommandOut } from "../../types/SocketCommands";
+import type {
+  SocketCommandIn,
+  SocketCommandOut,
+} from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 import {
   socketClientConnect,
@@ -54,8 +51,8 @@ export function postGameStarted(): void {
   const startSeedString = seeds.GetStartSeedString();
 
   if (!socketClientIsActive() && !socketClientConnect()) {
-      g.race = new RaceData();
-    }
+    g.race = new RaceData();
+  }
 
   send("seed", startSeedString);
 }

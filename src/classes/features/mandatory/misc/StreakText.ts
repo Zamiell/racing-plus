@@ -1,7 +1,8 @@
 import type {
   ActiveSlot,
   PillEffect,
-  PlayerForm} from "isaac-typescript-definitions";
+  PlayerForm,
+} from "isaac-typescript-definitions";
 import {
   ButtonAction,
   CardType,
@@ -11,8 +12,7 @@ import {
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
-import type {
-  PickingUpItem} from "isaacscript-common";
+import type { PickingUpItem } from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,

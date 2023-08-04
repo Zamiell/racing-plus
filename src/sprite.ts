@@ -1,4 +1,7 @@
-import type { CollectibleType, TrinketType } from "isaac-typescript-definitions";
+import type {
+  CollectibleType,
+  TrinketType,
+} from "isaac-typescript-definitions";
 import {
   FIRST_COLLECTIBLE_TYPE,
   LAST_VANILLA_COLLECTIBLE_TYPE,

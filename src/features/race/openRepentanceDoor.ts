@@ -34,7 +34,7 @@ function openRepentanceDoor() {
   if (inRoomType(RoomType.BOSS) && roomInsideGrid && roomClear) {
     const repentanceDoor = getRepentanceDoor();
     if (repentanceDoor !== undefined && repentanceDoor.IsLocked()) {
-        repentanceDoor.TryUnlock(player, true);
-      }
+      repentanceDoor.TryUnlock(player, true);
+    }
   }
 }

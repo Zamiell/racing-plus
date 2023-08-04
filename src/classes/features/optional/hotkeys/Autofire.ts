@@ -1,5 +1,4 @@
-import type {
-  ButtonAction} from "isaac-typescript-definitions";
+import type { ButtonAction } from "isaac-typescript-definitions";
 import {
   CollectibleType,
   InputHook,

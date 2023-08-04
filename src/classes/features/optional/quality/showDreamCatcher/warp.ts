@@ -27,7 +27,7 @@ import { shouldRemoveEndGamePortals } from "../../../mandatory/gameplay/NerfCard
 import { seededFloorsAfter } from "../../../mandatory/misc/SeededFloors";
 import { spawnHoles } from "../../major/fastTravel/setNewState";
 import { DREAM_CATCHER_FEATURE_NAME } from "./constants";
-import type { CardReadingPortalDescription} from "./v";
+import type { CardReadingPortalDescription } from "./v";
 import { v } from "./v";
 
 const STAIRWAY_GRID_INDEX = 25;

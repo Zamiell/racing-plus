@@ -1,5 +1,5 @@
 import type { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
-import type { PlayerIndex} from "isaacscript-common";
+import type { PlayerIndex } from "isaacscript-common";
 import { log } from "isaacscript-common";
 import { SeededDeathState } from "../../../../../enums/SeededDeathState";
 import type { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";

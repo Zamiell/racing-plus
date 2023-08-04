@@ -1,5 +1,4 @@
-import type {
-  PlayerIndex} from "isaacscript-common";
+import type { PlayerIndex } from "isaacscript-common";
 import {
   CallbackCustom,
   DefaultMap,
@@ -7,7 +6,7 @@ import {
   getPlayerFromEntity,
   getPlayerIndex,
   isTearFromPlayer,
-  ModCallbackCustom
+  ModCallbackCustom,
 } from "isaacscript-common";
 import {
   drawCustomChargeBar,

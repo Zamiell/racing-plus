@@ -1,5 +1,4 @@
-import type {
-  TrinketType} from "isaac-typescript-definitions";
+import type { TrinketType } from "isaac-typescript-definitions";
 import {
   BossID,
   CollectibleType,
@@ -7,7 +6,7 @@ import {
   LevelStage,
   PlayerType,
   PlayerVariant,
-  RoomType
+  RoomType,
 } from "isaac-typescript-definitions";
 import {
   ReadonlyMap,

@@ -9,8 +9,7 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
-import type {
-  PickingUpItem} from "isaacscript-common";
+import type { PickingUpItem } from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
@@ -40,7 +39,7 @@ import {
 } from "./automaticItemInsertion/constants";
 import { drawDeltas } from "./automaticItemInsertion/drawDeltas";
 import { insertPickup } from "./automaticItemInsertion/insertPickup";
-import type { PickupQueueEntry} from "./automaticItemInsertion/v";
+import type { PickupQueueEntry } from "./automaticItemInsertion/v";
 import { v } from "./automaticItemInsertion/v";
 
 export class AutomaticItemInsertion extends ConfigurableModFeature {
