@@ -6,7 +6,7 @@ import {
   NPCState,
 } from "isaac-typescript-definitions";
 import { Callback, getNPCs } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class FastHeretic extends ConfigurableModFeature {

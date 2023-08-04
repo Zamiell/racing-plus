@@ -29,7 +29,7 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { COLLECTIBLE_REPLACEMENT_MAP } from "../gameplay/extraStartingItems/constants";
 

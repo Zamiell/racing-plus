@@ -5,7 +5,7 @@ import {
   inRectangle,
   setEntityOpacity,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const FADE_AMOUNT = 0.3;

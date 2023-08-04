@@ -4,8 +4,9 @@ import {
   RoomType,
   TrinketType,
 } from "isaac-typescript-definitions";
+import type {
+  JSONRoom} from "isaacscript-common";
 import {
-  JSONRoom,
   anyPlayerHasTrinket,
   emptyRoom,
   game,

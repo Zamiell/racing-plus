@@ -1,7 +1,8 @@
-import { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
-import { PlayerIndex, log } from "isaacscript-common";
+import type { ActiveSlot, CollectibleType } from "isaac-typescript-definitions";
+import type { PlayerIndex} from "isaacscript-common";
+import { log } from "isaacscript-common";
 import { SeededDeathState } from "../../../../../enums/SeededDeathState";
-import { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
+import type { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
 import { SEEDED_DEATH_DEBUG } from "./constants";
 
 // This is registered in "SeededDeath.ts".

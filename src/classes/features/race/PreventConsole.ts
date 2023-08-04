@@ -3,7 +3,7 @@ import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { inRace } from "../../../features/race/v";
 import { g } from "../../../globals";
-import { Config } from "../../Config";
+import type { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 
 export class PreventConsole extends ConfigurableModFeature {

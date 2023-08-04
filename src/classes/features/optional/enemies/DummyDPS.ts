@@ -8,7 +8,7 @@ import {
   getScreenBottomRightPos,
   round,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const DPS_TEXT_Y_OFFSET = -40;

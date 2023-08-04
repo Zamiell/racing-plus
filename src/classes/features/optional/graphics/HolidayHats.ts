@@ -5,7 +5,7 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { NullItemIDCustom } from "../../../../enums/NullItemIDCustom";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 enum Holiday {

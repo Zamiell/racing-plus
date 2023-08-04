@@ -1,4 +1,4 @@
-import { TrinketType } from "isaac-typescript-definitions";
+import type { TrinketType } from "isaac-typescript-definitions";
 import { game, getScreenCenterPos, newSprite } from "isaacscript-common";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceStatus } from "../../enums/RaceStatus";
@@ -190,23 +190,33 @@ function initSeededSprites() {
     `${GFX_PATH}/seeded-starting-${title}.anm2`,
   );
 
-  if (startingItems.length === 1) {
+  switch (startingItems.length) {
+  case 1: {
     sprites.seededItemCenter =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
-  } else if (startingItems.length === 2) {
+  
+  break;
+  }
+  case 2: {
     sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
       startingItems[0],
     );
     sprites.seededItemRight =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
-  } else if (startingItems.length === 3) {
+  
+  break;
+  }
+  case 3: {
     sprites.seededItemCenter =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[0]);
     sprites.seededItemFarLeft =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[1]);
     sprites.seededItemFarRight =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
-  } else if (startingItems.length === 4) {
+  
+  break;
+  }
+  case 4: {
     sprites.seededItemLeft = newGlowingCollectibleSpriteFromServerCollectibleID(
       startingItems[0],
     );
@@ -216,6 +226,10 @@ function initSeededSprites() {
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[2]);
     sprites.seededItemFarRight =
       newGlowingCollectibleSpriteFromServerCollectibleID(startingItems[3]);
+  
+  break;
+  }
+  // No default
   }
 }
 

@@ -126,14 +126,14 @@ export class CheckErrors extends MandatoryModFeature {
   getSplitLines(line: string): string[] {
     let spaceLeft = MAX_CHARACTERS_PER_LINE;
     const words = line.split(" ");
-    words.forEach((word, i) => {
+    for (const [i, word] of words.entries()) {
       if (word.length + 1 > spaceLeft) {
         words[i] = `\n${word}`;
         spaceLeft = MAX_CHARACTERS_PER_LINE - word.length;
       } else {
         spaceLeft -= word.length + 1;
       }
-    });
+    }
 
     return words.join(" ").split("\n");
   }

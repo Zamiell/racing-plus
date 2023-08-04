@@ -1,7 +1,8 @@
+import type {
+  PlayerType} from "isaac-typescript-definitions";
 import {
   ButtonAction,
-  ModCallback,
-  PlayerType,
+  ModCallback
 } from "isaac-typescript-definitions";
 import {
   Callback,
@@ -17,9 +18,12 @@ import * as socket from "../../../../features/race/socket";
 import { inSeededRace } from "../../../../features/race/v";
 import { g } from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { CHARACTER_PNG_MAP } from "./shadows/characterPNGMap";
+import type {
+  ShadowData,
+  ShadowMessage} from "./shadows/constants";
 import {
   BEACON_DATA_FORMAT,
   BEACON_FIELDS,
@@ -30,9 +34,7 @@ import {
   SHADOW_DATA_FORMAT,
   SHADOW_FADE_AMOUNT,
   SHADOW_FIELDS,
-  SHADOW_INTERVAL_RENDER_FRAMES,
-  ShadowData,
-  ShadowMessage,
+  SHADOW_INTERVAL_RENDER_FRAMES
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 
@@ -184,13 +186,13 @@ export class Shadows extends MandatoryModFeature {
   unpackShadowMessage(rawData: string): ShadowMessage {
     const dataArray = [...struct.unpack(SHADOW_DATA_FORMAT, rawData)];
     const shadowMessage: Record<string, unknown> = {};
-    SHADOW_FIELDS.forEach((field, i) => {
+    for (const [i, field] of SHADOW_FIELDS.entries()) {
       let fieldData = dataArray[i];
       if (typeof fieldData === "string") {
         fieldData = fieldData.trim();
       }
       shadowMessage[field] = fieldData;
-    });
+    }
 
     return shadowMessage as unknown as ShadowMessage;
   }
@@ -244,7 +246,7 @@ export class Shadows extends MandatoryModFeature {
 
     for (const shadowData of v.run.shadows.values()) {
       const framesSinceLastUpdate = renderFrameCount - shadowData.frameUpdated;
-      if (framesSinceLastUpdate > 1 * RENDER_FRAMES_PER_SECOND) {
+      if (framesSinceLastUpdate > Number(RENDER_FRAMES_PER_SECOND)) {
         continue;
       }
 

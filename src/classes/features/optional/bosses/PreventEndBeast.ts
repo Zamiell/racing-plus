@@ -14,7 +14,7 @@ import {
   spawnPickup,
 } from "isaacscript-common";
 import { consoleCommand } from "../../../../utils";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {

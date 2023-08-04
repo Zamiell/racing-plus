@@ -1,4 +1,4 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import type { CollectibleType } from "isaac-typescript-definitions";
 import { RaceFormat } from "../../enums/RaceFormat";
 import { RaceGoal } from "../../enums/RaceGoal";
 import { RaceStatus } from "../../enums/RaceStatus";

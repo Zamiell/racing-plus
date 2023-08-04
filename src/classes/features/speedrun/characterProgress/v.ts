@@ -1,4 +1,4 @@
-import { Challenge } from "isaac-typescript-definitions";
+import type { Challenge } from "isaac-typescript-definitions";
 
 // This is registered in "CharacterProgress.ts".
 // eslint-disable-next-line isaacscript/require-v-registration

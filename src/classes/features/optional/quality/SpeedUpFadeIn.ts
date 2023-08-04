@@ -1,6 +1,6 @@
 import { ModCallback } from "isaac-typescript-definitions";
 import { Callback, game } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** This is fine tuned from trial and error to be a good speed. */

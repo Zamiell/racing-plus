@@ -7,7 +7,7 @@ import {
   hasDoorType,
   inRoomType,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class GoatHeadInBossRoom extends ConfigurableModFeature {

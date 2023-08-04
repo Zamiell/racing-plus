@@ -1,9 +1,9 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import type { CollectibleType } from "isaac-typescript-definitions";
 import { jsonDecode, log } from "isaacscript-common";
 import { RaceData, cloneRaceData } from "../../classes/RaceData";
 import { g } from "../../globals";
-import { ChatMessage } from "../../interfaces/ChatMessage";
-import { SocketCommandIn } from "../../types/SocketCommands";
+import type { ChatMessage } from "../../interfaces/ChatMessage";
+import type { SocketCommandIn } from "../../types/SocketCommands";
 import { checkRaceChanged } from "./checkRaceChanged";
 
 export const SOCKET_DEBUG = false as boolean;

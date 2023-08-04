@@ -1,6 +1,6 @@
 import { Direction } from "isaac-typescript-definitions";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
-import { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
+import type { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
 
 // This is registered in "FastTravel.ts".
 // eslint-disable-next-line isaacscript/require-v-registration

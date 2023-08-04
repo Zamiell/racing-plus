@@ -1,4 +1,4 @@
-import { Challenge } from "isaac-typescript-definitions";
+import type { Challenge } from "isaac-typescript-definitions";
 import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
 import { ChallengeCustom } from "../enums/ChallengeCustom";
 

@@ -9,7 +9,7 @@ import {
 import { TimerType } from "../../../../enums/TimerType";
 import { config } from "../../../../modConfigMenu";
 import { timerDraw } from "../../../../timer";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { ANOTHER_UI_ICON_OFFSET } from "../major/FreeDevilItem";
 import {

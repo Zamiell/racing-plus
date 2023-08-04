@@ -1,6 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** Adjust the counter for multiple Needles so that each one jumps individually. */

@@ -5,7 +5,7 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import { Callback, setEntityOpacity } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** The floating heart animation must be separately faded in "statuseffects.anm2". */

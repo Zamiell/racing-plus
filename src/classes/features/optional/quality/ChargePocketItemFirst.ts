@@ -13,12 +13,13 @@ import {
   SlotVariant,
   TrinketType,
 } from "isaac-typescript-definitions";
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   DefaultMap,
   ModCallbackCustom,
-  PlayerIndex,
   asNumber,
   defaultMapGetPlayer,
   game,
@@ -29,7 +30,7 @@ import {
   logError,
   playChargeSoundEffect,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 interface ChargeSituation {

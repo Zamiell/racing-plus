@@ -3,5 +3,5 @@ export enum CreepRedSubTypeCustom {
   VANILLA = 0,
 
   /** We re-use the same sub-type that is used in StageAPI for consistency. */
-  FLOOR_EFFECT_CREEP = 12345,
+  FLOOR_EFFECT_CREEP = 12_345,
 }

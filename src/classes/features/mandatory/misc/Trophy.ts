@@ -1,5 +1,6 @@
+import type {
+  CollectibleAnimation} from "isaac-typescript-definitions";
 import {
-  CollectibleAnimation,
   EntityPartition,
   ModCallback,
   PlayerItemAnimation,

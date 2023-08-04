@@ -1,6 +1,6 @@
 import { LevelCurse, ModCallback } from "isaac-typescript-definitions";
 import { Callback, bitFlags } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class DisableCurses extends ConfigurableModFeature {

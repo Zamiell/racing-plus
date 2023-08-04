@@ -1,7 +1,8 @@
-import {
+import type {
   CollectibleType,
-  PlayerType,
-  TrinketType,
+  TrinketType} from "isaac-typescript-definitions";
+import {
+  PlayerType
 } from "isaac-typescript-definitions";
 import { arrayToString, isArray, log } from "isaacscript-common";
 import { RaceDifficulty } from "../enums/RaceDifficulty";
@@ -9,7 +10,7 @@ import { RaceFormat } from "../enums/RaceFormat";
 import { RaceGoal } from "../enums/RaceGoal";
 import { RaceStatus } from "../enums/RaceStatus";
 import { RacerStatus } from "../enums/RacerStatus";
-import { ServerCollectibleID } from "../types/ServerCollectibleID";
+import type { ServerCollectibleID } from "../types/ServerCollectibleID";
 
 /** The possible types for values of `RaceData`. */
 export type RaceDataType = boolean | number | string | int[];

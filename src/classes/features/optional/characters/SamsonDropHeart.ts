@@ -10,7 +10,7 @@ import {
   getPlayersOfType,
   spawnTrinket,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const BOTTOM_LEFT_GRID_INDEX = 106;

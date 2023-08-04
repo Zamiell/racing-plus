@@ -1,4 +1,4 @@
-import { EffectVariant } from "isaac-typescript-definitions";
+import type { EffectVariant } from "isaac-typescript-definitions";
 import { validateCustomEnum } from "isaacscript-common";
 
 /** For `EntityType.EFFECT` (1000). */

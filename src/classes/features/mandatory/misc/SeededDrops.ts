@@ -159,11 +159,9 @@ export class SeededDrops extends MandatoryModFeature {
     if (
       game.Difficulty === Difficulty.HARD &&
       pickupVariant === PickupVariant.HEART
-    ) {
-      if (rng.RandomInt(100) >= 35) {
+     && rng.RandomInt(100) >= 35) {
         pickupVariant = PickupVariant.NULL;
       }
-    }
 
     // Broken Modem has a chance to increase the amount of pickups that drop.
     if (pickupCount >= 1) {

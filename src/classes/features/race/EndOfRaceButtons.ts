@@ -24,7 +24,7 @@ import {
 import { v } from "../../../features/race/v";
 import { g } from "../../../globals";
 import { newGlowingCollectibleSprite } from "../../../sprite";
-import { Config } from "../../Config";
+import type { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 import { setFastTravelFadingToBlack } from "../optional/major/fastTravel/setNewState";
 

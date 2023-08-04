@@ -12,8 +12,9 @@ import {
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
+import type {
+  PlayerHealth} from "isaacscript-common";
 import {
-  PlayerHealth,
   emptyArray,
   game,
   getCollectibles,
@@ -36,7 +37,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../../enums/CollectibleTypeCustom";
-import { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
+import type { ActiveCollectibleDescription } from "../../../../../interfaces/ActiveCollectibleDescription";
 import { mod } from "../../../../../mod";
 import { setFastTravelTookDamage } from "../../../optional/major/fastTravel/v";
 import {

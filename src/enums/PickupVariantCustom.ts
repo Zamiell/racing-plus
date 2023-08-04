@@ -1,4 +1,4 @@
-import { PickupVariant } from "isaac-typescript-definitions";
+import type { PickupVariant } from "isaac-typescript-definitions";
 import { validateCustomEnum } from "isaacscript-common";
 
 /** For `EntityType.PICKUP` (5). */

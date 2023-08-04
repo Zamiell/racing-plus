@@ -6,7 +6,7 @@ import {
   log,
   onFirstFloor,
 } from "isaacscript-common";
-import { RaceData, RaceDataType } from "../../classes/RaceData";
+import type { RaceData, RaceDataType } from "../../classes/RaceData";
 import {
   restartOnNextFrame,
   setRestartSeed,
@@ -66,9 +66,9 @@ function raceValueChanged(
       error("The old race value was not an array.");
     }
 
-    oldValue.forEach((element, i) => {
+    for (const [i, element] of oldValue.entries()) {
       log(`Old array: ${i}) - ${element}`);
-    });
+    }
   }
 
   if (type(newValue) === "table") {
@@ -76,9 +76,9 @@ function raceValueChanged(
       error("The new race value was not an array.");
     }
 
-    newValue.forEach((element, i) => {
+    for (const [i, element] of newValue.entries()) {
       log(`New array: ${i}) - ${element}`);
-    });
+    }
   }
 
   const changedFunction = functionMap.get(property);

@@ -1,7 +1,8 @@
+import type {
+  DamageFlag} from "isaac-typescript-definitions";
 import {
   CollectibleSpriteLayer,
   CollectibleType,
-  DamageFlag,
   ModCallback,
   PickupPrice,
   PickupVariant,
@@ -32,7 +33,7 @@ import { PickupPriceCustom } from "../../../../enums/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../../../features/race/consistentDevilAngelRooms";
 import { config } from "../../../../modConfigMenu";
 import { getEffectiveDevilDeals } from "../../../../utils";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const TOP_LEFT_UI_POSITION = Vector(42, 51); // To the right of the coin count.

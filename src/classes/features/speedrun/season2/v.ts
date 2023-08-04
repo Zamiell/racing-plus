@@ -8,6 +8,7 @@ export const v = {
   persistent: {
     selectedBuildIndexes: [] as int[],
     remainingBuildIndexes: [] as int[],
+
     /** Never start the same build twice in a row. */
     lastSelectedBuildIndex: null as int | null,
   },

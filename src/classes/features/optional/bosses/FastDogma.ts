@@ -26,7 +26,7 @@ import {
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { consoleCommand } from "../../../../utils";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { doesTrophyExist } from "../../mandatory/misc/Trophy";
 

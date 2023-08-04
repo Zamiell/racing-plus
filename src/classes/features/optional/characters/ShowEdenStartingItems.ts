@@ -16,7 +16,7 @@ import {
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** Near the top-left. */

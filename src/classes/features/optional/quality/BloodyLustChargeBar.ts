@@ -10,7 +10,7 @@ import {
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { MAX_BLOODY_LUST_CHARGES, v } from "./bloodyLustChargeBar/v";
 

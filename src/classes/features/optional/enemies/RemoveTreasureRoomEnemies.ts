@@ -6,7 +6,7 @@ import {
   getNPCs,
   setRoomCleared,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new ReadonlySet<EntityType>([

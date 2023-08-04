@@ -1,4 +1,4 @@
-import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
+import type { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   KColorDefault,
   fonts,

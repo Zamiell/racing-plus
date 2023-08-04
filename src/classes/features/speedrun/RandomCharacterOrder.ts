@@ -1,5 +1,6 @@
+import type {
+  Challenge} from "isaac-typescript-definitions";
 import {
-  Challenge,
   LevelStage,
   ModCallback,
   PlayerType,

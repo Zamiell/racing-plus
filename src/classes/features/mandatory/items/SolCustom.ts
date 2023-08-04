@@ -8,11 +8,12 @@ import {
   RoomType,
   UseFlag,
 } from "isaac-typescript-definitions";
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  PlayerIndex,
   addCollectibleCostume,
   addRoomDisplayFlag,
   anyPlayerHasCollectible,
@@ -25,7 +26,7 @@ import {
   inRoomType,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const OLD_COLLECTIBLE_TYPE = CollectibleType.SOL;

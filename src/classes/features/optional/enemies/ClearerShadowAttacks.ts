@@ -18,7 +18,7 @@ import {
   spawnEffect,
 } from "isaacscript-common";
 import { TargetSubTypeCustom } from "../../../../enums/TargetSubTypeCustom";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const LIGHT_BLUE = Color(0, 0, 0.5, 0.5);

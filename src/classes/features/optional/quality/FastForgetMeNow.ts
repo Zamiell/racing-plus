@@ -1,5 +1,6 @@
+import type {
+  ActiveSlot} from "isaac-typescript-definitions";
 import {
-  ActiveSlot,
   CollectibleType,
   Direction,
   ModCallback,
@@ -7,7 +8,7 @@ import {
 } from "isaac-typescript-definitions";
 import { Callback, hasFlag } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { setFastTravelFadingToBlack } from "../major/fastTravel/setNewState";
 

@@ -23,7 +23,7 @@ import {
   spawnNPC,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const VANISHING_TWIN_BOSS_HP_MULTIPLIER = 0.75; // Matches vanilla

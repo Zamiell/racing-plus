@@ -1,5 +1,5 @@
-import { PickupVariant } from "isaac-typescript-definitions";
-import { PlayerIndex } from "isaacscript-common";
+import type { PickupVariant } from "isaac-typescript-definitions";
+import type { PlayerIndex } from "isaacscript-common";
 
 export interface PickupQueueEntry {
   readonly pickupVariant: PickupVariant;

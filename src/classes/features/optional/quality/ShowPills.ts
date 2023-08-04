@@ -1,8 +1,9 @@
+import type {
+  PillColor} from "isaac-typescript-definitions";
 import {
   ButtonAction,
   CollectibleType,
   ModCallback,
-  PillColor,
   PillEffect,
 } from "isaac-typescript-definitions";
 import {
@@ -26,7 +27,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 interface PillDescription {
@@ -190,7 +191,7 @@ export class ShowPills extends ConfigurableModFeature {
     const pillsIdentifiedText = `Pills identified: ${v.run.pillsUsed.length} / ${NUM_PILLS_IN_POOL}`;
     font.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
 
-    v.run.pillsUsed.forEach((pillEntry, i) => {
+    for (const [i, pillEntry] of v.run.pillsUsed.entries()) {
       // Show the pill sprite.
       const y = baseY + 20 * (i + 1);
       const position = Vector(x, y);
@@ -199,7 +200,7 @@ export class ShowPills extends ConfigurableModFeature {
         logError(
           `Failed to find the sprite for pill color: ${pillEntry.pillColor}, effect: ${pillEntry.pillEffect}, i: ${i}`,
         );
-        return;
+        continue;
       }
       sprite.Render(position);
 
@@ -209,7 +210,7 @@ export class ShowPills extends ConfigurableModFeature {
         pillEffectName = "Walking on sunshine!";
       }
       font.DrawString(pillEffectName, x + 15, y - 9, KColorDefault);
-    });
+    }
   }
 
   // 10

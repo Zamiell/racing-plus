@@ -1,7 +1,8 @@
+import type {
+  JSONRoom} from "isaacscript-common";
 import {
   getJSONRoomOfVariant,
-  getRandomJSONRoom,
-  JSONRoom,
+  getRandomJSONRoom
 } from "isaacscript-common";
 import * as angelRooms from "../../../../../json/angelRooms.json";
 import { mod } from "../../../../../mod";

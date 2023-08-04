@@ -1,6 +1,6 @@
 import { BombVariant, ModCallback } from "isaac-typescript-definitions";
 import { Callback, GAME_FRAMES_PER_SECOND } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const CONSISTENT_EXPLOSION_TIME_IN_SECONDS = 2;

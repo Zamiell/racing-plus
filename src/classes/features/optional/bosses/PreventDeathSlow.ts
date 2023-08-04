@@ -8,7 +8,7 @@ import {
   ModCallbackCustom,
   asNPCState,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** Stop Death from performing the attack that slows down the player. */

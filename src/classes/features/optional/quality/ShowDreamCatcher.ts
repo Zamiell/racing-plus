@@ -32,7 +32,7 @@ import { DreamCatcherWarpState } from "../../../../enums/DreamCatcherWarpState";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { DREAM_CATCHER_FEATURE_NAME } from "./showDreamCatcher/constants";
 import {
@@ -81,12 +81,12 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
     // player's position was updated.
     const customPitfalls = getEffects(EffectVariantCustom.PITFALL_CUSTOM);
     const players = getPlayers();
-    customPitfalls.forEach((pitfall, i) => {
+    for (const [i, pitfall] of customPitfalls.entries()) {
       const player = players[i];
       if (player !== undefined) {
         pitfall.Position = player.Position;
       }
-    });
+    }
 
     // After using Glowing Hourglass, the minimap will be bugged. Earlier, we saved the minimap
     // data, so now we can restore it since we are finished warping. (The bug only happens with the

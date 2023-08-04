@@ -43,7 +43,7 @@ import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { inRaceToBossRush } from "../../../../features/race/v";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
 import {

@@ -1,17 +1,19 @@
+import type {
+  UseFlag} from "isaac-typescript-definitions";
 import {
   ActiveSlot,
   CollectibleType,
   ItemType,
   ModCallback,
-  PlayerType,
-  UseFlag,
+  PlayerType
 } from "isaac-typescript-definitions";
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   DefaultMap,
   ModCallbackCustom,
-  PlayerIndex,
   defaultMapGetPlayer,
   findFreePosition,
   game,
@@ -25,7 +27,7 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const D6_STARTING_CHARGE = getCollectibleMaxCharges(CollectibleType.D6);

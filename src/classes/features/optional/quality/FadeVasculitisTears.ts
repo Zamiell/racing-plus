@@ -5,7 +5,7 @@ import {
   anyPlayerHasCollectible,
   setEntityOpacity,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export const FADE_TEAR_AMOUNT = 0.1;

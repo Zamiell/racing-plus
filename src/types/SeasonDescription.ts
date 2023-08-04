@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 
-import { PlayerType } from "isaac-typescript-definitions";
+import type { PlayerType } from "isaac-typescript-definitions";
 
 export class CharPosition {
   readonly character: PlayerType;

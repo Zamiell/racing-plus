@@ -18,7 +18,7 @@ import {
   inRoomType,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const FRAME_LAYER_OF_DOOR_ANM2 = 3;

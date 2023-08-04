@@ -1,4 +1,5 @@
-import { CollectibleType, EntityType } from "isaac-typescript-definitions";
+import type { EntityType } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
   emptyArray,
   game,
@@ -116,19 +117,19 @@ export function showDreamCatcherDrawSprites(): void {
     dreamCatcherSprite.Render(renderPosition);
   }
 
-  itemSprites.forEach((sprite, i) => {
+  for (const [i, sprite] of itemSprites.entries()) {
     const renderPosition = Isaac.WorldToScreen(nextToDreamCatcherPosition);
     const numRightShifts = i;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
     sprite.Render(position);
-  });
+  }
 
-  bossSprites.forEach((sprite, i) => {
+  for (const [i, sprite] of bossSprites.entries()) {
     const renderPosition = Isaac.WorldToScreen(nextToDreamCatcherPosition);
     const numRightShifts = i + itemSprites.length;
     const positionAdjustment = Vector(SPRITE_SPACING * numRightShifts, 0);
     const position = renderPosition.add(positionAdjustment);
     sprite.Render(position);
-  });
+  }
 }

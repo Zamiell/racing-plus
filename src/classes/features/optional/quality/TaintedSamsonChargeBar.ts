@@ -9,7 +9,7 @@ import {
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const chargeBarSprite = Sprite();

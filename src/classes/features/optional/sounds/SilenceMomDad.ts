@@ -5,7 +5,7 @@ import {
   sfxManager,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const MOM_AND_DAD_SOUND_EFFECTS = [

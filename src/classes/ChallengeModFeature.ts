@@ -1,4 +1,4 @@
-import { Challenge } from "isaac-typescript-definitions";
+import type { Challenge } from "isaac-typescript-definitions";
 import { isNumber, ModFeature } from "isaacscript-common";
 import { mod } from "../mod";
 

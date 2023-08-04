@@ -13,7 +13,7 @@ import {
   spawnEffect,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {
@@ -95,7 +95,7 @@ export class StickyNickel extends ConfigurableModFeature {
     );
 
     // Make it render below most things.
-    effect.RenderZOffset = -10000;
+    effect.RenderZOffset = -10_000;
 
     const sprite = pickup.GetSprite();
     const effectSprite = effect.GetSprite();

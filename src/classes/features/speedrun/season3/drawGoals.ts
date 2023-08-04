@@ -23,8 +23,8 @@ function drawGoals() {
   font.DrawString(pillsIdentifiedText, x, baseY - 9 + 20, KColorDefault);
 
   baseY += 20;
-  v.persistent.remainingGoals.forEach((goal, i) => {
+  for (const [i, goal] of v.persistent.remainingGoals.entries()) {
     const y = baseY + 20 * (i + 1);
     font.DrawString(`- ${goal}`, x, y - 9, KColorDefault);
-  });
+  }
 }

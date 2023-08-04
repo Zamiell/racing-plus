@@ -1,4 +1,5 @@
-import { CollectibleType, PlayerForm } from "isaac-typescript-definitions";
+import type { CollectibleType} from "isaac-typescript-definitions";
+import { PlayerForm } from "isaac-typescript-definitions";
 import {
   GAME_FRAMES_PER_SECOND,
   RENDER_FRAMES_PER_SECOND,

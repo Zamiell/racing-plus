@@ -1,6 +1,6 @@
 import { HeartSubType, PickupVariant } from "isaac-typescript-definitions";
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class ScaredHeart extends ConfigurableModFeature {

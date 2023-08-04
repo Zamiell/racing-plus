@@ -6,7 +6,7 @@ import {
 } from "isaac-typescript-definitions";
 import { Callback, ReadonlySet, asNumber } from "isaacscript-common";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const FADE_AMOUNT = 0.4;

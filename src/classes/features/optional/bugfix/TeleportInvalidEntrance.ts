@@ -23,7 +23,7 @@ import {
   onStage,
 } from "isaacscript-common";
 import { moveEsauNextToJacob } from "../../../../utils";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { isFastTravelHappening } from "../major/fastTravel/v";
 
@@ -116,10 +116,10 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
 
   getFirstNonSecretDoor(): GridEntityDoor | undefined {
     const doors = getDoors();
-    const nonSecretRoomDoors = doors.filter(
+    const nonSecretRoomDoor = doors.find(
       (door) => !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType),
     );
 
-    return nonSecretRoomDoors[0];
+    return nonSecretRoomDoor;
   }
 }

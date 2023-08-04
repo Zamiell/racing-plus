@@ -1,7 +1,8 @@
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   DefaultMap,
-  defaultMapGetPlayer,
-  PlayerIndex,
+  defaultMapGetPlayer
 } from "isaacscript-common";
 
 export const MAX_BLOODY_LUST_CHARGES = 6;

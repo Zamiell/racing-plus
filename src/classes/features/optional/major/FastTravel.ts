@@ -1,6 +1,7 @@
+import type {
+  DamageFlag} from "isaac-typescript-definitions";
 import {
   CollectibleType,
-  DamageFlag,
   EffectVariant,
   GridEntityType,
   HeavenLightDoorSubType,
@@ -19,7 +20,7 @@ import {
 } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { bigChestPostPickupInitBigChest } from "./fastTravel/bigChest";
 import { blackSpritePostRender } from "./fastTravel/blackSprite";

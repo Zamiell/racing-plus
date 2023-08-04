@@ -9,7 +9,7 @@ import {
   ModCallbackCustom,
   getNPCs,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;

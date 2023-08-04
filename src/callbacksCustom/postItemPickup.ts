@@ -1,4 +1,5 @@
-import { ModCallbackCustom, PickingUpItem } from "isaacscript-common";
+import type { PickingUpItem } from "isaacscript-common";
+import { ModCallbackCustom } from "isaacscript-common";
 import * as racePostItemPickup from "../features/race/callbacks/postItemPickup";
 import { mod } from "../mod";
 

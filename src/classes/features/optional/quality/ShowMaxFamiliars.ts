@@ -8,7 +8,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import {
   ANOTHER_UI_ICON_OFFSET,

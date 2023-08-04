@@ -1,4 +1,4 @@
-import { PickingUpItem } from "isaacscript-common";
+import type { PickingUpItem } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as socket from "../socket";
 

@@ -1,4 +1,4 @@
-import { Keyboard } from "isaac-typescript-definitions";
+import type { Keyboard } from "isaac-typescript-definitions";
 
 export class Hotkeys {
   fastDropAll: Keyboard | -1 = -1;

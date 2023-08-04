@@ -12,7 +12,7 @@ pack/unpack reference:
 
 */
 
-import {
+import type {
   LevelStage,
   PlayerType,
   StageType,

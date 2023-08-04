@@ -6,7 +6,7 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import { Callback, asNumber, copyColor } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class ChangeCreepColor extends ConfigurableModFeature {

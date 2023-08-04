@@ -1,4 +1,4 @@
-import { HexColors } from "../enums/HexColors";
+import type { HexColors } from "../enums/HexColors";
 
 export interface TextSegment {
   text: string;

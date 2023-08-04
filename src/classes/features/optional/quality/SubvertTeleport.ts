@@ -17,7 +17,7 @@ import {
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { moveEsauNextToJacob } from "../../../../utils";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const ENTITY_TYPES_THAT_CAUSE_TELEPORT = [

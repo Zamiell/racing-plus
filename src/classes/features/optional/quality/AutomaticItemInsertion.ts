@@ -9,11 +9,12 @@ import {
   PlayerType,
 } from "isaac-typescript-definitions";
 import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
+import type {
+  PickingUpItem} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  PickingUpItem,
   PriorityCallback,
   anyPlayerHasCollectible,
   anyPlayerIs,
@@ -30,7 +31,7 @@ import {
   repeat,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import {
   CARD_TYPES_THAT_DROP_ONLY_HEARTS,
@@ -39,7 +40,8 @@ import {
 } from "./automaticItemInsertion/constants";
 import { drawDeltas } from "./automaticItemInsertion/drawDeltas";
 import { insertPickup } from "./automaticItemInsertion/insertPickup";
-import { PickupQueueEntry, v } from "./automaticItemInsertion/v";
+import type { PickupQueueEntry} from "./automaticItemInsertion/v";
+import { v } from "./automaticItemInsertion/v";
 
 export class AutomaticItemInsertion extends ConfigurableModFeature {
   configKey: keyof Config = "AutomaticItemInsertion";

@@ -1,7 +1,8 @@
+import type {
+  PlayerType} from "isaac-typescript-definitions";
 import {
   Challenge,
   CollectibleType,
-  PlayerType,
   TrinketType,
 } from "isaac-typescript-definitions";
 import {

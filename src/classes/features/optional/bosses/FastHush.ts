@@ -8,7 +8,7 @@ import {
   CallbackCustom,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class FastHush extends ConfigurableModFeature {

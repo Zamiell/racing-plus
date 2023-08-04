@@ -1,5 +1,5 @@
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const ANIMATION_SPEED_MULTIPLIER = 1.66;

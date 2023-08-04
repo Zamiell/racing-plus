@@ -1,7 +1,10 @@
-import { Controller, Keyboard } from "isaac-typescript-definitions";
+import type { Controller} from "isaac-typescript-definitions";
+import { Keyboard } from "isaac-typescript-definitions";
 import { controllerToString } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
+import type {
+  ConfigDescriptions} from "./configDescription";
 import {
   ALL_CONFIG_DESCRIPTIONS,
   ALL_HOTKEY_DESCRIPTIONS,
@@ -13,7 +16,6 @@ import {
   CHARACTER_CHANGES,
   CUSTOM_HOTKEYS,
   CUTSCENE_CHANGES,
-  ConfigDescriptions,
   ENEMY_CHANGES_1,
   ENEMY_CHANGES_2,
   GAMEPLAY_CHANGES,
@@ -279,11 +281,7 @@ function getDisplayTextKeyboardController(
       const currentValue = hotkeys[configName];
 
       let text: string;
-      if (currentValue === -1) {
-        text = "None";
-      } else {
-        text = Keyboard[currentValue];
-      }
+      text = currentValue === -1 ? "None" : Keyboard[currentValue];
 
       return `${shortDescription}: ${text} (keyboard)`;
     }

@@ -1,21 +1,23 @@
 // In vanilla, The Battery & 9 Volt do not synergize together.
 
+import type {
+  ActiveSlot} from "isaac-typescript-definitions";
 import {
-  ActiveSlot,
   CollectibleType,
   ModCallback,
   UseFlag,
 } from "isaac-typescript-definitions";
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   Callback,
-  PlayerIndex,
   getCollectibleMaxCharges,
   getPlayerFromIndex,
   getPlayerIndex,
   getTotalCharge,
   hasFlag,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {

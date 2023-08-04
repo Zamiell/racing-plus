@@ -1,11 +1,12 @@
+import type {
+  CollectibleType} from "isaac-typescript-definitions";
 import {
-  CollectibleType,
   ModCallback,
   TrinketType,
   UseFlag,
 } from "isaac-typescript-definitions";
 import { Callback, addFlag, getCollectibleName } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
 

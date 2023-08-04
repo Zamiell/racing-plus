@@ -1,3 +1,5 @@
+import type {
+  TrinketType} from "isaac-typescript-definitions";
 import {
   CollectibleType,
   DogmaVariant,
@@ -14,8 +16,7 @@ import {
   RoomType,
   SoundEffect,
   StageType,
-  TrapdoorVariant,
-  TrinketType,
+  TrapdoorVariant
 } from "isaac-typescript-definitions";
 import {
   Callback,

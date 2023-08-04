@@ -5,7 +5,7 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { inSeededRace } from "../../../../features/race/v";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class TaintedKeeperExtraMoney extends ConfigurableModFeature {

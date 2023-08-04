@@ -1,20 +1,22 @@
-import {
+import type {
   ActiveSlot,
+  PillEffect,
+  PlayerForm} from "isaac-typescript-definitions";
+import {
   ButtonAction,
   CardType,
   CollectibleType,
   FamiliarVariant,
   ItemType,
   ModCallback,
-  PillEffect,
-  PlayerForm,
   UseFlag,
 } from "isaac-typescript-definitions";
+import type {
+  PickingUpItem} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  PickingUpItem,
   anyPlayerIs,
   asCollectibleType,
   fonts,
@@ -246,10 +248,10 @@ export class StreakText extends MandatoryModFeature {
     player.UseActiveItem(randomCollectible, UseFlag.OWNED, activeSlot);
 
     const collectibleName = getCollectibleName(randomCollectible);
-    if (VanillaStreakText !== undefined) {
-      hud.ShowItemText(collectibleName);
-    } else {
+    if (VanillaStreakText === undefined) {
       setStreakText(collectibleName);
+    } else {
+      hud.ShowItemText(collectibleName);
     }
 
     return true;

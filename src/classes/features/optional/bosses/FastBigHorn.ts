@@ -4,7 +4,7 @@ import {
   ModCallback,
 } from "isaac-typescript-definitions";
 import { Callback, asNPCState } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** Speed up coming out of the ground. */

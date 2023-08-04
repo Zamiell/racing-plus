@@ -3,7 +3,7 @@ import {
   HeavenLightDoorSubType,
 } from "isaac-typescript-definitions";
 import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const ACTIVATION_STATE = 60;

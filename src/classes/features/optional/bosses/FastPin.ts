@@ -5,7 +5,7 @@ import {
   PinVariant,
 } from "isaac-typescript-definitions";
 import { Callback, asNumber, getNPCs } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const PIN_ATTACK_STATE_FRAME_IN_GROUND = 90;

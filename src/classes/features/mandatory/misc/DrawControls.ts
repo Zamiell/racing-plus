@@ -14,7 +14,7 @@ import { RaceFormat } from "../../../../enums/RaceFormat";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { RacerStatus } from "../../../../enums/RacerStatus";
 import { g } from "../../../../globals";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const BURNING_BASEMENT_COLOR = Color(0.5, 0.5, 0.5);
@@ -69,7 +69,7 @@ export class DrawControls extends ConfigurableModFeature {
     );
 
     controlsEffect.CollisionDamage = 0;
-    controlsEffect.Timeout = 1000000;
+    controlsEffect.Timeout = 1_000_000;
     const controlsSprite = controlsEffect.GetSprite();
     controlsSprite.Load("gfx/backdrop/controls_custom.anm2", true);
     controlsSprite.Play("Idle", true);

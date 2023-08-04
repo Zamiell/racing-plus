@@ -4,7 +4,7 @@ import {
   getPlayersOfType,
   ModCallbackCustom,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** We grant Judas an extra bomb so that the character is slightly more skill based. */

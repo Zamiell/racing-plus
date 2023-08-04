@@ -1,9 +1,9 @@
-import {
+import type {
   CollectibleType,
   DisplayFlag,
   EntityType,
 } from "isaac-typescript-definitions";
-import { PlayerHealth } from "isaacscript-common";
+import type { PlayerHealth } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 
 export interface CardReadingPortalDescription {

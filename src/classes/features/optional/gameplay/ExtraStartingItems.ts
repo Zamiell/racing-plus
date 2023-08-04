@@ -16,7 +16,7 @@ import {
   removeCollectibleFromPools,
   setCollectibleSubType,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/misc/BanFirstFloorRoomType";
 import {

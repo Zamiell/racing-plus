@@ -1,7 +1,8 @@
+import type {
+  PlayerType} from "isaac-typescript-definitions";
 import {
   FadeoutTarget,
   GridEntityType,
-  PlayerType,
   PressurePlateState,
   PressurePlateVariant,
 } from "isaac-typescript-definitions";
@@ -214,7 +215,7 @@ function checkPressedPhaseCharacterSelect(
 ) {
   const seasonDescription = getSeasonDescription();
 
-  seasonDescription.charPositions.forEach((charPosition, i) => {
+  for (const [i, charPosition] of seasonDescription.charPositions.entries()) {
     const { x, y } = charPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
@@ -225,7 +226,7 @@ function checkPressedPhaseCharacterSelect(
     ) {
       characterButtonPressed(pressurePlate, i);
     }
-  });
+  }
 }
 
 function characterButtonPressed(gridEntity: GridEntity, i: int) {
@@ -307,7 +308,7 @@ function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
     error("buildPositions is undefined.");
   }
 
-  seasonDescription.buildPositions.forEach((buildPosition, i) => {
+  for (const [i, buildPosition] of seasonDescription.buildPositions.entries()) {
     const { x, y } = buildPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
@@ -318,7 +319,7 @@ function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
     ) {
       buildButtonPressed(pressurePlate, i);
     }
-  });
+  }
 }
 
 function buildButtonPressed(gridEntity: GridEntity, i: int) {
@@ -370,13 +371,8 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
 function fadeOutToChallenge() {
   game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
 
-  if (v.room.challengeCustomAbbreviation === null) {
-    v.room.challengeTarget = null;
-  } else {
-    v.room.challengeTarget =
-      CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
+  v.room.challengeTarget = v.room.challengeCustomAbbreviation === null ? null : CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
         v.room.challengeCustomAbbreviation
       ];
-  }
   v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
 }

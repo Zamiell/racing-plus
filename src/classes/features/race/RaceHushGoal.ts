@@ -17,7 +17,7 @@ import {
   spawnGridEntity,
 } from "isaacscript-common";
 import { inRaceToHush } from "../../../features/race/v";
-import { Config } from "../../Config";
+import type { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 import { spawnTrophy } from "../mandatory/misc/Trophy";
 

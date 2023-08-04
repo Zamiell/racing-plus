@@ -1,4 +1,4 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import type { CollectibleType } from "isaac-typescript-definitions";
 import {
   fonts,
   game,
@@ -51,18 +51,25 @@ export function season2InitStartingRoomSprites(
     `${GFX_PATH}/seeded-starting-${title}.anm2`,
   );
 
-  if (startingBuild.length === 1) {
+  switch (startingBuild.length) {
+  case 1: {
     sprites.seededItemCenter = newGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-  } else if (startingBuild.length === 2) {
+  
+  break;
+  }
+  case 2: {
     sprites.seededItemLeft = newGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
     sprites.seededItemRight = newGlowingCollectibleSprite(
       startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-  } else if (startingBuild.length === 3) {
+  
+  break;
+  }
+  case 3: {
     sprites.seededItemCenter = newGlowingCollectibleSprite(
       startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
@@ -72,7 +79,10 @@ export function season2InitStartingRoomSprites(
     sprites.seededItemFarRight = newGlowingCollectibleSprite(
       startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
-  } else if (startingBuild.length === 4) {
+  
+  break;
+  }
+  case 4: {
     sprites.seededItemLeft = newGlowingCollectibleSprite(
       startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
@@ -85,6 +95,10 @@ export function season2InitStartingRoomSprites(
     sprites.seededItemFarRight = newGlowingCollectibleSprite(
       startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
     );
+  
+  break;
+  }
+  // No default
   }
 }
 

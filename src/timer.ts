@@ -8,7 +8,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { RACE_TIMER_POSITION_X, RACE_TIMER_POSITION_Y } from "./constants";
-import { TimerType } from "./enums/TimerType";
+import type { TimerType } from "./enums/TimerType";
 
 class TimerSprites {
   clock = newSprite("gfx/timer/clock.anm2");

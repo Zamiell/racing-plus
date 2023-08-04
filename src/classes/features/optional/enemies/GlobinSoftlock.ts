@@ -4,7 +4,7 @@ import {
   NPCState,
 } from "isaac-typescript-definitions";
 import { Callback, DefaultMap } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const MAX_REGENERATIONS = 4;

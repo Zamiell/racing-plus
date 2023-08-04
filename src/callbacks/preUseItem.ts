@@ -1,8 +1,9 @@
-import {
+import type {
   ActiveSlot,
+  UseFlag} from "isaac-typescript-definitions";
+import {
   CollectibleType,
-  ModCallback,
-  UseFlag,
+  ModCallback
 } from "isaac-typescript-definitions";
 import { setCollectiblesRerolledForItemTracker } from "isaacscript-common";
 import { mod } from "../mod";

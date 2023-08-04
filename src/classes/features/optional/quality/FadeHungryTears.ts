@@ -5,7 +5,7 @@ import {
   ModCallbackCustom,
   setEntityOpacity,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { FADE_TEAR_AMOUNT } from "./FadeVasculitisTears";
 

@@ -69,11 +69,7 @@ export function statusOrMyStatusChanged(): void {
 
 export function placeChanged(): void {
   // Update the place graphic with our final race place.
-  if (g.race.place === -1 || g.race.place > MAX_PLACE) {
-    sprite = undefined;
-  } else {
-    sprite = newSprite(`${GFX_PATH}/${g.race.place}.anm2`);
-  }
+  sprite = g.race.place === -1 || g.race.place > MAX_PLACE ? undefined : newSprite(`${GFX_PATH}/${g.race.place}.anm2`);
 }
 
 export function placeMidChanged(): void {
@@ -86,11 +82,7 @@ export function placeMidChanged(): void {
 
   // Update the place graphic with our mid-race place. A place of -1 represents that we have just
   // started the race or just reset.
-  if (g.race.placeMid === -1 || g.race.placeMid > MAX_PLACE) {
-    sprite = undefined;
-  } else {
-    sprite = newSprite(`${GFX_PATH}/${g.race.placeMid}.anm2`);
-  }
+  sprite = g.race.placeMid === -1 || g.race.placeMid > MAX_PLACE ? undefined : newSprite(`${GFX_PATH}/${g.race.placeMid}.anm2`);
 }
 
 export function resetSprite(): void {

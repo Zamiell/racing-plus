@@ -11,9 +11,10 @@ import {
   RoomType,
   TeleporterState,
 } from "isaac-typescript-definitions";
+import type {
+  LadderSubTypeCustom} from "isaacscript-common";
 import {
   DISTANCE_OF_GRID_TILE,
-  LadderSubTypeCustom,
   ReadonlyMap,
   asNumber,
   game,

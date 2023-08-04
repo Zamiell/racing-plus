@@ -142,7 +142,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
 
     const seasonDescription = getSeasonDescription();
 
-    v.room.sprites.characters.forEach((characterSprite, i) => {
+    for (const [i, characterSprite] of v.room.sprites.characters.entries()) {
       const charPosition = seasonDescription.charPositions[i];
       if (charPosition === undefined) {
         error(`Failed to find the positions for character: ${i}`);
@@ -152,7 +152,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
       const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
       renderPosition.Y += 10; // Nudge it a bit upwards to make it look better.
       characterSprite.Render(renderPosition);
-    });
+    }
   }
 
   drawBuildVetoSprites(): void {
@@ -162,7 +162,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
 
     const seasonDescription = getSeasonDescription();
 
-    v.room.sprites.characters.forEach((characterSprite, i) => {
+    for (const [i, characterSprite] of v.room.sprites.characters.entries()) {
       if (seasonDescription.buildPositions === undefined) {
         error("buildPositions was undefined.");
       }
@@ -175,7 +175,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
       const oneTileAboveButton = gridCoordinatesToWorldPosition(x, y - 1);
       const renderPosition = Isaac.WorldToScreen(oneTileAboveButton);
       characterSprite.Render(renderPosition);
-    });
+    }
   }
 
   @CallbackCustom(ModCallbackCustom.POST_PRESSURE_PLATE_UPDATE)

@@ -15,7 +15,7 @@ import {
 import { HexColors } from "../../enums/HexColors";
 import { RaceStatus } from "../../enums/RaceStatus";
 import { g } from "../../globals";
-import { TextSegment } from "../../interfaces/TextSegment";
+import type { TextSegment } from "../../interfaces/TextSegment";
 import { mod } from "../../mod";
 import { hotkeys } from "../../modConfigMenu";
 import { consoleCommand } from "../../utils";
@@ -31,6 +31,7 @@ const DEFAULT_CONSOLE_OPEN_INPUT = Keyboard.ENTER;
 let consoleOpen = false;
 let inputText = "";
 let inputTextIndex = 0;
+
 /** Used to save a partially completed message when recalling history. */
 let savedText = "";
 let historyIndex = -1;

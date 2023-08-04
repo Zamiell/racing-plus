@@ -1,4 +1,4 @@
-import { ChatMessage } from "../interfaces/ChatMessage";
+import type { ChatMessage } from "../interfaces/ChatMessage";
 import { RaceData } from "./RaceData";
 import { RaceVars } from "./RaceVars";
 

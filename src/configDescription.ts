@@ -1,6 +1,6 @@
-import { TupleWithMaxLength } from "isaacscript-common";
-import { Config } from "./classes/Config";
-import { Hotkeys } from "./classes/Hotkeys";
+import type { TupleWithMaxLength } from "isaacscript-common";
+import type { Config } from "./classes/Config";
+import type { Hotkeys } from "./classes/Hotkeys";
 
 type ConfigDescription = readonly [
   keyof Config | keyof Hotkeys | "",

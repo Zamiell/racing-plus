@@ -6,7 +6,7 @@ import {
   PoofSubType,
 } from "isaac-typescript-definitions";
 import { Callback, asNPCState, spawnEffect } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /**

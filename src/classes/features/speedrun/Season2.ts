@@ -213,8 +213,7 @@ export class Season2 extends ChallengeModFeature {
   }
 
   getBuildIndexFor(collectibleType: CollectibleType): int {
-    for (let i = 0; i < SEASON_2_STARTING_BUILDS.length; i++) {
-      const build = SEASON_2_STARTING_BUILDS[i];
+    for (const [i, build] of SEASON_2_STARTING_BUILDS.entries()) {
       if (build === undefined) {
         continue;
       }

@@ -9,8 +9,8 @@ import {
 } from "../../../../features/race/customConsole";
 import { inRace } from "../../../../features/race/v";
 import { g } from "../../../../globals";
-import { TextSegment } from "../../../../interfaces/TextSegment";
-import { Config } from "../../../Config";
+import type { TextSegment } from "../../../../interfaces/TextSegment";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));

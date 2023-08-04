@@ -1,3 +1,5 @@
+import type {
+  TrinketType} from "isaac-typescript-definitions";
 import {
   BossID,
   CollectibleType,
@@ -5,8 +7,7 @@ import {
   LevelStage,
   PlayerType,
   PlayerVariant,
-  RoomType,
-  TrinketType,
+  RoomType
 } from "isaac-typescript-definitions";
 import {
   ReadonlyMap,
@@ -28,7 +29,7 @@ import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./classes/features/optional
 import { automaticItemInsertionCheckIfCollectibleDropsPickups } from "./classes/features/optional/quality/AutomaticItemInsertion";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
-import { ServerCollectibleID } from "./types/ServerCollectibleID";
+import type { ServerCollectibleID } from "./types/ServerCollectibleID";
 
 const SERVER_COLLECTIBLE_ID_TO_COLLECTIBLE_TYPE_MAP = new ReadonlyMap<
   int,

@@ -1,4 +1,4 @@
-import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
+import type { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   FIRST_COLLECTIBLE_TYPE,
   LAST_VANILLA_COLLECTIBLE_TYPE,
@@ -11,7 +11,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
-import { ServerCollectibleID } from "./types/ServerCollectibleID";
+import type { ServerCollectibleID } from "./types/ServerCollectibleID";
 import { serverCollectibleIDToCollectibleType } from "./utils";
 
 /** e.g. Swallowed Penny is located in file "collectibles_2001.png". */
@@ -118,12 +118,12 @@ function getFileNum(itemID: int) {
   }
 
   // Between Sigil of Baphomet and Golden Swallowed Penny.
-  if (itemID > 2189 && itemID < 32769) {
+  if (itemID > 2189 && itemID < 32_769) {
     return defaultReturn;
   }
 
   // Between Golden Swallowed Penny and Golden Sigil of Baphomet.
-  if (itemID >= 32769 && itemID <= 32957) {
+  if (itemID >= 32_769 && itemID <= 32_957) {
     return itemID.toString();
   }
 

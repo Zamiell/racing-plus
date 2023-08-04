@@ -4,7 +4,7 @@ import {
   NPCState,
 } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /** The appear animation and death animation of Blastocyst is sped up. */

@@ -1,4 +1,5 @@
-import { newRNG, PlayerIndex } from "isaacscript-common";
+import type { PlayerIndex } from "isaacscript-common";
+import { newRNG } from "isaacscript-common";
 
 // This is registered in "BetterDevilAngelRooms.ts".
 // eslint-disable-next-line isaacscript/require-v-registration

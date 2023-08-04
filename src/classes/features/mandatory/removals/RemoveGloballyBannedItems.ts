@@ -244,11 +244,9 @@ function isBannedCollectible(collectible: EntityPickupCollectible) {
     return true;
   }
 
-  if (inSeededRace()) {
-    if (BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(collectible.SubType)) {
+  if (inSeededRace() && BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(collectible.SubType)) {
       return true;
     }
-  }
 
   if (
     anyPlayerIs(PlayerType.MAGDALENE_B) &&

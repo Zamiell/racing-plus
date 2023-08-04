@@ -1,3 +1,5 @@
+import type {
+  PlayerIndex} from "isaacscript-common";
 import {
   CallbackCustom,
   DefaultMap,
@@ -5,8 +7,7 @@ import {
   getPlayerFromEntity,
   getPlayerIndex,
   isTearFromPlayer,
-  ModCallbackCustom,
-  PlayerIndex,
+  ModCallbackCustom
 } from "isaacscript-common";
 import {
   drawCustomChargeBar,
@@ -14,7 +15,7 @@ import {
   shouldDrawCustomChargeBar,
 } from "../../../../customChargeBar";
 import { CustomChargeBarType } from "../../../../enums/CustomChargeBarType";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const NUM_TEARS_UNTIL_LEAD_PENCIL_FIRES = 15;

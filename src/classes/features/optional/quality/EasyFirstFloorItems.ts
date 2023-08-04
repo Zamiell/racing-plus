@@ -1,5 +1,6 @@
+import type {
+  EntityType} from "isaac-typescript-definitions";
 import {
-  EntityType,
   GridEntityXMLType,
   ModCallback,
   RoomType,
@@ -13,7 +14,7 @@ import {
   onFirstFloor,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /**

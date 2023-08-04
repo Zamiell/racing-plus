@@ -6,7 +6,7 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const v = {

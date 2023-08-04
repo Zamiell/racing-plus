@@ -1,6 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { Callback, ReadonlySet, getNPCs } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const BUGGED_NPC_TYPES = new ReadonlySet<EntityType>([

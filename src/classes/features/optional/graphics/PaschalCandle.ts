@@ -1,6 +1,6 @@
 import { FamiliarVariant, ModCallback } from "isaac-typescript-definitions";
 import { Callback } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const CUSTOM_ANM2_PATH = "gfx/003.221_paschal candle custom.anm2";

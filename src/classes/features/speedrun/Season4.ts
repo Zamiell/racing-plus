@@ -7,13 +7,14 @@ import {
   PlayerType,
   SoundEffect,
 } from "isaac-typescript-definitions";
+import type {
+  PickingUpItem,
+  PlayerIndex} from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
   DefaultMap,
   ModCallbackCustom,
-  PickingUpItem,
-  PlayerIndex,
   arrayRemoveInPlace,
   dequeueItem,
   emptyArray,
@@ -176,7 +177,7 @@ export class Season4 extends ChallengeModFeature {
   }
 
   spawnStoredCollectibles(): void {
-    v.persistent.storedCollectibles.forEach((collectibleType, i) => {
+    for (const [i, collectibleType] of v.persistent.storedCollectibles.entries()) {
       // If there are so many stored collectibles that they take up every available position in the
       // room, then start spawning them on an overlap starting at the top left again.
       const safeIndex = i % SEASON_4_STORED_ITEM_POSITIONS.length;
@@ -195,7 +196,7 @@ export class Season4 extends ChallengeModFeature {
         const sprite = collectible.GetSprite();
         sprite.Scale = Vector(0.666, 0.666);
       }
-    });
+    }
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)

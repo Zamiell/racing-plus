@@ -12,7 +12,7 @@ import {
   game,
   onStage,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 // On stage 8, we do not want the Perfection Trinket to be close to the trapdoor or the beam of

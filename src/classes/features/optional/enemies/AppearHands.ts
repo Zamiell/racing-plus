@@ -9,7 +9,7 @@ import {
   ModCallbackCustom,
   sfxManager,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 export class AppearHands extends ConfigurableModFeature {

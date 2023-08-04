@@ -27,14 +27,14 @@ import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { inRace, inRaceOrPreRace } from "../../../features/race/v";
 import { g } from "../../../globals";
-import { ServerCollectibleID } from "../../../types/ServerCollectibleID";
+import type { ServerCollectibleID } from "../../../types/ServerCollectibleID";
 import {
   addCollectibleAndRemoveFromPools,
   addTrinketAndRemoveFromPools,
   collectibleTypeToServerCollectibleID,
   serverCollectibleIDToCollectibleType,
 } from "../../../utils";
-import { Config } from "../../Config";
+import type { Config } from "../../Config";
 import { ConfigurableModFeature } from "../../ConfigurableModFeature";
 import { setStartedWithCompass } from "../mandatory/removals/RemoveGloballyBannedItems";
 

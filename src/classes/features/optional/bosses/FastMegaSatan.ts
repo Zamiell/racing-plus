@@ -1,6 +1,6 @@
 import { EntityType, ModCallback } from "isaac-typescript-definitions";
 import { Callback, ReadonlySet } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const MEGA_SATAN_REMOVE_ANIMATIONS = new ReadonlySet<string>([

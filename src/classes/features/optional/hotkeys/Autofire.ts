@@ -1,5 +1,6 @@
+import type {
+  ButtonAction} from "isaac-typescript-definitions";
 import {
-  ButtonAction,
   CollectibleType,
   InputHook,
   ModCallback,

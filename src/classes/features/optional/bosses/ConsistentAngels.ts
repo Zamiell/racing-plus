@@ -10,7 +10,7 @@ import {
   ModCallbackCustom,
   game,
 } from "isaacscript-common";
-import { Config } from "../../../Config";
+import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER = 2;
