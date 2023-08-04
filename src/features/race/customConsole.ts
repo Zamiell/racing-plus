@@ -169,7 +169,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
 function open() {
   consoleOpen = true;
   mod.disableAllInputs(FEATURE_NAME);
-  AwaitingTextInput = true; // eslint-disable-line no-implicit-globals
+  AwaitingTextInput = true;
 
   log("Console opened.");
 }
@@ -181,7 +181,7 @@ function close(execute = true) {
 
   consoleOpen = false;
   mod.enableAllInputs(FEATURE_NAME);
-  AwaitingTextInput = false; // eslint-disable-line no-implicit-globals
+  AwaitingTextInput = false;
 
   if (!execute || inputText === "") {
     savedText = "";
