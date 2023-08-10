@@ -24,9 +24,7 @@ import { initFeatureVariables } from "./initFeatureVariables";
 import { initMinimapAPI } from "./minimapAPI";
 import { mod } from "./mod";
 
-main();
-
-function main() {
+export function main(): void {
   welcomeBanner();
   initFeatureClasses();
   initFeatureVariables();

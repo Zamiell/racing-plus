@@ -94,10 +94,7 @@ function earlyClearRoom() {
   const gameFrameCount = game.GetFrameCount();
   const room = game.GetRoom();
   const roomData = getRoomData();
-  const roomID =
-    roomData === undefined
-      ? "[unknown]"
-      : `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
+  const roomID = `${roomData.Type}.${roomData.Variant}.${roomData.Subtype}`;
   const roomName = getRoomName();
 
   v.room.fastClearedRoom = true;

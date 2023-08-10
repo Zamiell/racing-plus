@@ -23,10 +23,10 @@ import {
   getPickups,
   getPlayerFromIndex,
   getPlayerIndex,
-  initArray,
   isBethany,
   isFirstPlayer,
   isKeeper,
+  newArray,
   repeat,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
@@ -68,7 +68,7 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
   insertHeartsFromCard(player: EntityPlayer): void {
     const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
     const numHearts = hasTarotCloth ? 3 : 2;
-    const pickupVariants = initArray(PickupVariant.HEART, numHearts);
+    const pickupVariants = newArray(PickupVariant.HEART, numHearts);
 
     for (const pickupVariant of pickupVariants) {
       const pickup = getClosestPickupToPlayer(player, pickupVariant);
