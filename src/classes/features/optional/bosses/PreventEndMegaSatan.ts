@@ -7,6 +7,7 @@ import {
   Callback,
   addRoomClearCharges,
   game,
+  log,
   spawnPickup,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
@@ -30,6 +31,7 @@ export class PreventEndMegaSatan extends ConfigurableModFeature {
     const room = game.GetRoom();
     room.SetClear(true);
     addRoomClearCharges();
+    log("Manually set the room to be clear after Mega Satan 2 died.");
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
     const position = room.GetCenterPos();
