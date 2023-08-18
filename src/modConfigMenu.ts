@@ -1,6 +1,6 @@
 import type { Controller } from "isaac-typescript-definitions";
 import { Keyboard } from "isaac-typescript-definitions";
-import { controllerToString } from "isaacscript-common";
+import { asString, controllerToString } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";
 import type { ConfigDescriptions } from "./configDescription";
@@ -93,9 +93,11 @@ export function deleteOldConfig(categoryName: string): void {
   }
 }
 
-// The descriptions are typed as having keys of `keyof Config | keyof Hotkeys`. Thus, it is
-// impossible for them to contain any incorrect data. However, the inverse is not true (i.e. a
-// config value can be missing a description). So, we check this at runtime.
+/**
+ * The descriptions are typed as having keys of `keyof Config | keyof Hotkeys | ""`. Thus, it is
+ * impossible for them to contain any incorrect data. However, the inverse is not true (i.e. a
+ * config value can be missing a description). So, we check this at runtime.
+ */
 function validateConfigDescriptions() {
   for (const key of Object.keys(config)) {
     if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
@@ -106,6 +108,26 @@ function validateConfigDescriptions() {
   for (const key of Object.keys(hotkeys)) {
     if (!ALL_HOTKEY_DESCRIPTIONS.some((array) => key === array[0])) {
       error(`Failed to find key "${key}" in the hotkey descriptions.`);
+    }
+  }
+
+  // Check for duplicate codes.
+  const codes = new Set<string>();
+  for (const element of Object.values(ALL_CONFIG_DESCRIPTIONS)) {
+    const [name, configValues] = element;
+    const [_optionType, code, title, description] = configValues;
+
+    if (codes.has(code)) {
+      error(`There is a duplicate config description code of: ${code}`);
+    }
+    codes.add(code);
+
+    if (asString(title) === "") {
+      error(`The title for config description "${name}" is blank.`);
+    }
+
+    if (asString(description) === "") {
+      error(`The description for config description "${name}" is blank.`);
     }
   }
 }

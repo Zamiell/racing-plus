@@ -53,6 +53,7 @@ export class Config {
   FastGhosts = true; // 219, 285
   ReplaceCodWorms = true; // 221
   RemoveStrayPitfalls = true; // 291
+  PitfallStatusImmunity = true; // 291
   FastPolties = true; // 816
   FastNeedles = true; // 881
   FastDusts = true; // 882

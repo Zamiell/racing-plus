@@ -4,7 +4,12 @@ import type { Hotkeys } from "./classes/Hotkeys";
 
 type ConfigDescription = readonly [
   keyof Config | keyof Hotkeys | "",
-  readonly [ModConfigMenuOptionType, string, string, string],
+  readonly [
+    optionType: ModConfigMenuOptionType,
+    code: string,
+    title: string,
+    description: string,
+  ],
 ];
 
 export type ConfigDescriptions = TupleWithMaxLength<
@@ -549,10 +554,19 @@ export const ENEMY_CHANGES_1 = [
 // 0411-0420
 export const ENEMY_CHANGES_2 = [
   [
-    "FastPolties", // 816
+    "PitfallStatusImmunity", // 291
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0411",
+      "Pitfall immunity",
+      "Make Pitfalls immune to all status effects.",
+    ],
+  ],
+  [
+    "FastPolties", // 816
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0412",
       "Fast Polties/Kinetis",
       "Make Polties & Kinetis show themselves immediately upon entering the room.",
     ],
@@ -561,7 +575,7 @@ export const ENEMY_CHANGES_2 = [
     "FastNeedles", // 881
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0412",
+      "0413",
       "Fast Needles/Pasties",
       "Make Needles & Pasties spend less time underground.",
     ],
@@ -570,7 +584,7 @@ export const ENEMY_CHANGES_2 = [
     "FastDusts", // 882
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0413",
+      "0414",
       "Fast Dusts",
       "Make Dusts never disappear.",
     ],
@@ -579,7 +593,7 @@ export const ENEMY_CHANGES_2 = [
     "DummyDPS", // 964
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0414",
+      "0415",
       "Dummy DPS",
       "Make Dummies show the damage per second.",
     ],
