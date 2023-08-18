@@ -19,11 +19,7 @@ import { inRace } from "../../../../features/race/v";
 import { g } from "../../../../globals";
 import { mod } from "../../../../mod";
 import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
-import {
-  getPlayerPhotoStatus,
-  inClearedMomBossRoom,
-  inMomBossRoom,
-} from "../../../../utils";
+import { getPlayerPhotoStatus, inMomBossRoom } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 enum PhotoSituation {
@@ -90,7 +86,7 @@ export class ReplacePhotos extends MandatoryModFeature {
 }
 
 export function replacePhotosPostFastClear(): void {
-  if (inClearedMomBossRoom()) {
+  if (inMomBossRoom()) {
     manuallySpawnPhotos();
   }
 }

@@ -125,7 +125,7 @@ export function inMomBossRoom(): boolean {
     onStage(LevelStage.DEPTHS_2) &&
     inRoomType(RoomType.BOSS) &&
     roomInsideGrid &&
-    // We want to filter out the situations where the Dad's Note room is cleared.
+    // Filter out the situations where the Dad's Note room is cleared.
     bossID === BossID.MOM
   );
 }
