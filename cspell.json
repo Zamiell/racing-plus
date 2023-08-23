@@ -7,6 +7,10 @@
   "enableGlobDot": true,
   "useGitignore": true,
   "ignorePaths": [
+    // @template-customization-start
+    "mod/resources/fortunes.txt",
+    "sha1.json",
+    // @template-customization-end
     "*.anm2",
     "*.ogg",
     "*.pyc",
@@ -17,16 +21,10 @@
     "dist/**",
     "mod/main.lua",
     "mod/content/rooms/**",
-    // @template-customization-start
-    "mod/resources/fortunes.txt",
-    // @template-customization-end
     "mod/resources/rooms/**",
     "node_modules/**",
     "package-lock.json",
     "pnpm-lock.yaml",
-    // @template-customization-start
-    "sha1.json",
-    // @template-customization-end
     "yarn.lock"
   ],
   "words": [

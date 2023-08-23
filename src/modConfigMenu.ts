@@ -113,7 +113,7 @@ function validateConfigDescriptions() {
 
   // Check for duplicate codes.
   const codes = new Set<string>();
-  for (const element of Object.values(ALL_CONFIG_DESCRIPTIONS)) {
+  for (const element of ALL_CONFIG_DESCRIPTIONS) {
     const [name, configValues] = element;
     const [_optionType, code, title, description] = configValues;
 
