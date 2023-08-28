@@ -117,7 +117,7 @@ function validateConfigDescriptions() {
     const [name, configValues] = element;
     const [_optionType, code, title, description] = configValues;
 
-    if (codes.has(code)) {
+    if (code !== "" && codes.has(code)) {
       error(`There is a duplicate config description code of: ${code}`);
     }
     codes.add(code);
