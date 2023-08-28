@@ -74,6 +74,7 @@ socketFunctions.set("set", (rawData: string) => {
       break;
     }
 
+    // eslint-disable-next-line isaacscript/require-break
     default: {
       error(`Setting race types of "${previousValueType}" are not supported.`);
     }
