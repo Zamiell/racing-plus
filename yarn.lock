@@ -1152,16 +1152,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/scope-manager@npm:6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/scope-manager@npm:6.4.1"
-  dependencies:
-    "@typescript-eslint/types": 6.4.1
-    "@typescript-eslint/visitor-keys": 6.4.1
-  checksum: 8f7f90aa378a19838301b31cfa58a4b0641d2b84891705c8c006c67aacb5c0d07112b714e1f0e7a159c5736779c934ec26dadef42a0711fccb635596aba391fc
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/scope-manager@npm:6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/scope-manager@npm:6.5.0"
@@ -1172,7 +1162,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:6.5.0":
+"@typescript-eslint/type-utils@npm:6.5.0, @typescript-eslint/type-utils@npm:^6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/type-utils@npm:6.5.0"
   dependencies:
@@ -1189,23 +1179,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/type-utils@npm:^6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/type-utils@npm:6.4.1"
-  dependencies:
-    "@typescript-eslint/typescript-estree": 6.4.1
-    "@typescript-eslint/utils": 6.4.1
-    debug: ^4.3.4
-    ts-api-utils: ^1.0.1
-  peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 33bcdd48bd4e07258ed1919b598d50354dd67d8f01702cd2fd46aa9250b7b7cba9caab640df01f4dc0e45dabeddbb3ca47bee88f81fe2087350ed6f70a4cbe5d
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/types@npm:5.62.0":
   version: 5.62.0
   resolution: "@typescript-eslint/types@npm:5.62.0"
@@ -1213,14 +1186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/types@npm:6.4.1, @typescript-eslint/types@npm:^6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/types@npm:6.4.1"
-  checksum: 16ba46140dbe426407bbb940e87fb347e7eb53b64f74e8f6a819cd662aa25ccd0c25b1e588867ce3cd36a8b4eccea7bd81f4d429595e6e86d9a24c655b1c8617
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/types@npm:6.5.0":
+"@typescript-eslint/types@npm:6.5.0, @typescript-eslint/types@npm:^6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/types@npm:6.5.0"
   checksum: 950ec16991d71494d10cb752535bbc4395295e3f03a716d53ec55bbb0aaff487aa774cc5002f775ffcc80b9f0e16ac53ecebf7cac1444ca4f7a847b0859ffbfb
@@ -1245,24 +1211,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/typescript-estree@npm:6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/typescript-estree@npm:6.4.1"
-  dependencies:
-    "@typescript-eslint/types": 6.4.1
-    "@typescript-eslint/visitor-keys": 6.4.1
-    debug: ^4.3.4
-    globby: ^11.1.0
-    is-glob: ^4.0.3
-    semver: ^7.5.4
-    ts-api-utils: ^1.0.1
-  peerDependenciesMeta:
-    typescript:
-      optional: true
-  checksum: 34c289e50a6337321154efe6c20c762e94fea308f9032971e356a266f63e99b908b1a00dd8cf51eba50a6f69db01d665faf2cf13454b355767fd167eebe60f1c
-  languageName: node
-  linkType: hard
-
 "@typescript-eslint/typescript-estree@npm:6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/typescript-estree@npm:6.5.0"
@@ -1281,24 +1229,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.4.1, @typescript-eslint/utils@npm:^6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/utils@npm:6.4.1"
-  dependencies:
-    "@eslint-community/eslint-utils": ^4.4.0
-    "@types/json-schema": ^7.0.12
-    "@types/semver": ^7.5.0
-    "@typescript-eslint/scope-manager": 6.4.1
-    "@typescript-eslint/types": 6.4.1
-    "@typescript-eslint/typescript-estree": 6.4.1
-    semver: ^7.5.4
-  peerDependencies:
-    eslint: ^7.0.0 || ^8.0.0
-  checksum: 54e642a345790f912393a6f2821495e2359eff0f874a94cbe6fb3ef4411702983ed54fe88ca3ea9d28f2e93800a74dee22b7888838154bc1afd57c7e119e17ec
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/utils@npm:6.5.0":
+"@typescript-eslint/utils@npm:6.5.0, @typescript-eslint/utils@npm:^6.5.0":
   version: 6.5.0
   resolution: "@typescript-eslint/utils@npm:6.5.0"
   dependencies:
@@ -1340,16 +1271,6 @@ __metadata:
     "@typescript-eslint/types": 5.62.0
     eslint-visitor-keys: ^3.3.0
   checksum: 976b05d103fe8335bef5c93ad3f76d781e3ce50329c0243ee0f00c0fcfb186c81df50e64bfdd34970148113f8ade90887f53e3c4938183afba830b4ba8e30a35
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/visitor-keys@npm:6.4.1":
-  version: 6.4.1
-  resolution: "@typescript-eslint/visitor-keys@npm:6.4.1"
-  dependencies:
-    "@typescript-eslint/types": 6.4.1
-    eslint-visitor-keys: ^3.4.1
-  checksum: bd9cd56fc793e1d880c24193f939c4992b2653f330baece41cd461d1fb48edb2c53696987cba0e29074bbb452dd181fd009db92dd19060fdcc417ad76768f18a
   languageName: node
   linkType: hard
 
@@ -2660,18 +2581,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-isaacscript@npm:^3.5.1":
-  version: 3.5.1
-  resolution: "eslint-plugin-isaacscript@npm:3.5.1"
+"eslint-plugin-isaacscript@npm:^3.5.4":
+  version: 3.5.4
+  resolution: "eslint-plugin-isaacscript@npm:3.5.4"
   dependencies:
-    "@typescript-eslint/type-utils": ^6.4.1
-    "@typescript-eslint/types": ^6.4.1
-    "@typescript-eslint/utils": ^6.4.1
+    "@typescript-eslint/type-utils": ^6.5.0
+    "@typescript-eslint/types": ^6.5.0
+    "@typescript-eslint/utils": ^6.5.0
   peerDependencies:
     "@typescript-eslint/eslint-plugin": ">= 6.0.0"
     eslint: ">= 8.0.0"
     typescript: ">= 5.0.0"
-  checksum: 1c65f182dd042b119ebedd2d0ec7d7a993db3315a5da70058900f36ff6483dfad7ce655382bb1a4846cfefb800c9d4298bac45411388ddf54b894badd0b08f2c
+  checksum: dab98bea1f7ed6be9b954486d2a949bdcaa84663383f55b64363a5be48fa9180cf5d475112e6e31d0cd1e1135d7a69c5870eea38919b7355d239e50b25d1f953
   languageName: node
   linkType: hard
 
@@ -3763,7 +3684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^13.0.26, isaac-typescript-definitions@npm:^13.0.27":
+"isaac-typescript-definitions@npm:^13.0.27":
   version: 13.0.27
   resolution: "isaac-typescript-definitions@npm:13.0.27"
   dependencies:
@@ -3779,18 +3700,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^31.5.0":
-  version: 31.5.0
-  resolution: "isaacscript-common@npm:31.5.0"
+"isaacscript-common@npm:^31.7.1":
+  version: 31.7.1
+  resolution: "isaacscript-common@npm:31.7.1"
   dependencies:
-    isaac-typescript-definitions: ^13.0.26
-  checksum: 1a89cd01e11de14af49258107782d7b8f5a124c0cc591225d4127430bc8e3e54bd6d41ac6a96cf3ba12611e3c1ba4fd3b2ca0620cc571a9b44850fe830c46ae7
+    isaac-typescript-definitions: ^13.0.27
+  checksum: 75d8638fc85bb6acc2a3a59f969e2441c6696cf3c5556c4c1f15a971afce070bde0c37a29275786264aeeab3fbf5056ec35803af6889ddc97b9949854d326f7f
   languageName: node
   linkType: hard
 
-"isaacscript-lint@npm:^5.8.1":
-  version: 5.8.1
-  resolution: "isaacscript-lint@npm:5.8.1"
+"isaacscript-lint@npm:^5.8.4":
+  version: 5.8.4
+  resolution: "isaacscript-lint@npm:5.8.4"
   dependencies:
     "@prettier/plugin-xml": ^3.2.0
     "@typescript-eslint/eslint-plugin": ^6.5.0
@@ -3803,7 +3724,7 @@ __metadata:
     eslint-plugin-deprecation: ^1.5.0
     eslint-plugin-eslint-comments: ^3.2.0
     eslint-plugin-import: "npm:eslint-plugin-i@latest"
-    eslint-plugin-isaacscript: ^3.5.1
+    eslint-plugin-isaacscript: ^3.5.4
     eslint-plugin-jsdoc: ^46.5.0
     eslint-plugin-n: ^16.0.2
     eslint-plugin-no-autofix: ^1.2.3
@@ -3815,7 +3736,7 @@ __metadata:
     ts-prune-2: ^0.10.7
   peerDependencies:
     typescript: ">= 4.0.0"
-  checksum: 729334b719895edd3a46ecab4b2d0200a58d86795531fac3a90d3af0c7bf12df45dca2f40c441464a8b73a34cd88bb0daad5564c2b319d874fc3e2feae7606c8
+  checksum: 913af3c7f80a1c435404d355634104e90d090bf80b2003c51ba42c95ba17445d1a37251506f34fcd36e78524438ecfff4c3ddc0a1d36a411228eee2d5e273bf8
   languageName: node
   linkType: hard
 
@@ -5093,8 +5014,8 @@ __metadata:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^13.0.27
     isaacscript: ^3.10.0
-    isaacscript-common: ^31.5.0
-    isaacscript-lint: ^5.8.1
+    isaacscript-common: ^31.7.1
+    isaacscript-lint: ^5.8.4
     isaacscript-spell: ^1.2.41
     isaacscript-tsconfig: ^4.0.0
     typescript: ^5.2.2
