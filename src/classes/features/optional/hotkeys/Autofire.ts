@@ -31,7 +31,7 @@ const NORMAL_GAME_FRAME_DELAY = 2;
  *
  * TODO: Change from 3 to 5 in R+7 Season 5.
  */
-const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 5;
+const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 15;
 
 const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
@@ -69,6 +69,14 @@ const v = {
      * what autofire can do.
      */
     shootHistoryMap: new DefaultMap<ButtonAction, boolean[]>(() => []),
+
+    /**
+     * A tuple of button action and button value.
+     *
+     * Used to prevent the players who are not using the autofire feature from doing better than
+     * what autofire can do. (A shot is queued if they happen to be on lockout.)
+     */
+    queuedShot: null as [ButtonAction, float] | null,
   },
 };
 
@@ -236,25 +244,32 @@ export class Autofire extends MandatoryModFeature {
   /**
    * For players who are not using autofire, prevent the shoot button from being pressed in
    * situations where players are spamming faster than autofire allows. If an illegal input is
-   * detected, queue it until the next allowed frame. TODO
+   * detected, queue it until the next allowed frame.
    */
   inputActionPlayerShootActionPreventSpam(
     player: EntityPlayer,
     inputHook: InputHook,
     buttonAction: ButtonAction,
-  ): boolean | undefined {
-    // We only need to record and manipulate inputs in the `InputHook.IS_ACTION_PRESSED` callback,
-    // which simplifies things.
-    if (inputHook !== InputHook.IS_ACTION_PRESSED) {
-      return undefined;
-    }
-
+  ): boolean | float | undefined {
     const shootHistory = v.run.shootHistoryMap.getAndSetDefault(buttonAction);
     const onLockout = this.shouldShootBeOnLockoutToPreventSpamming(
       player,
       buttonAction,
       shootHistory,
     );
+
+    // We only need to record and manipulate inputs in the `InputHook.IS_ACTION_PRESSED` callback,
+    // which simplifies things.
+    if (inputHook !== InputHook.IS_ACTION_PRESSED) {
+      if (!onLockout && v.run.queuedShot !== null) {
+        const [_, value] = v.run.queuedShot;
+        v.run.queuedShot = null;
+
+        return value;
+      }
+
+      return undefined;
+    }
 
     // Even if the player is not on lockout, we must record the input so that we can track illegal
     // presses in the future.
@@ -268,8 +283,19 @@ export class Autofire extends MandatoryModFeature {
     }
 
     if (onLockout) {
-      Isaac.DebugString(`GETTING HERE - lockout: ${game.GetFrameCount()}`);
+      if (v.run.queuedShot === null) {
+        const value = Input.GetActionValue(
+          buttonAction,
+          player.ControllerIndex,
+        );
+        v.run.queuedShot = [buttonAction, value];
+      }
+
       return lockoutInput;
+    }
+
+    if (v.run.queuedShot !== null) {
+      return true;
     }
 
     return undefined;
