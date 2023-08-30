@@ -1,7 +1,11 @@
+// TODO:
+// - fix autofire right + down fast
+
 import type { ButtonAction } from "isaac-typescript-definitions";
 import {
   CollectibleType,
   InputHook,
+  KnifeVariant,
   ModCallback,
 } from "isaac-typescript-definitions";
 import {
@@ -14,12 +18,22 @@ import {
   getShootActions,
   hasCollectible,
   isShootAction,
+  newArray,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
+
+interface QueuedShot {
+  buttonAction: ButtonAction;
+  value: float;
+  press: boolean;
+
+  /** We press and release an input for 2 render frames. */
+  count: 1 | 2;
+}
 
 /** Release the key on every other frame for e.g. Anti-Gravity. */
 const NORMAL_GAME_FRAME_DELAY = 2;
@@ -37,6 +51,13 @@ const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
   CollectibleType.CHOCOLATE_MILK,
 ] as const;
+
+/**
+ * We only want to track inputs for as long as the lockout could exist. We need to multiply by 2
+ * because the array tracks inputs on render frames, not game frames. We minus two to adjust for the
+ * fact that otherwise, queued shots would come out at N + 1 game frames instead of N.
+ */
+const SHOOT_HISTORY_SIZE = POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY * 2 - 2;
 
 const v = {
   run: {
@@ -62,6 +83,12 @@ const v = {
      */
     startCounter: 0,
 
+    /*
+     * Used to prevent the players who are not using the autofire feature from doing better than
+     * what autofire can do.
+     */
+    shootLockoutButtons: new Set<ButtonAction>(),
+
     /**
      * A map to track the past N frames of whether a shoot button was being pressed.
      *
@@ -76,7 +103,7 @@ const v = {
      * Used to prevent the players who are not using the autofire feature from doing better than
      * what autofire can do. (A shot is queued if they happen to be on lockout.)
      */
-    queuedShot: null as [ButtonAction, float] | null,
+    queuedShot: null as QueuedShot | null,
   },
 };
 
@@ -86,6 +113,7 @@ const v = {
  */
 export class Autofire extends MandatoryModFeature {
   v = v;
+  private frameLastSpawned = 0;
 
   constructor() {
     super();
@@ -141,7 +169,7 @@ export class Autofire extends MandatoryModFeature {
 
   inputActionPlayerShootAction(
     player: EntityPlayer,
-    inputHook: InputHook,
+    inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
     // Handle autofire.
@@ -164,7 +192,7 @@ export class Autofire extends MandatoryModFeature {
 
   inputActionPlayerShootActionAutofire(
     player: EntityPlayer,
-    inputHook: InputHook,
+    inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
     // If the player is not pressing down the shoot button, then don't change any inputs.
@@ -206,7 +234,7 @@ export class Autofire extends MandatoryModFeature {
 
   autofireShouldPressKey(
     player: EntityPlayer,
-    inputHook: InputHook,
+    inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
     buttonAction: ButtonAction,
   ): boolean {
     const gameFrameCount = game.GetFrameCount();
@@ -243,75 +271,121 @@ export class Autofire extends MandatoryModFeature {
 
   /**
    * For players who are not using autofire, prevent the shoot button from being pressed in
-   * situations where players are spamming faster than autofire allows. If an illegal input is
-   * detected, queue it until the next allowed frame.
+   * situations where players are spamming faster than autofire allows and they have certain
+   * powerful collectibles. If an illegal input is detected, queue it until the next allowed frame.
    */
   inputActionPlayerShootActionPreventSpam(
     player: EntityPlayer,
-    inputHook: InputHook,
+    inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
-    const shootHistory = v.run.shootHistoryMap.getAndSetDefault(buttonAction);
-    const onLockout = this.shouldShootBeOnLockoutToPreventSpamming(
-      player,
-      buttonAction,
-      shootHistory,
-    );
-
-    // We only need to record and manipulate inputs in the `InputHook.IS_ACTION_PRESSED` callback,
-    // which simplifies things.
-    if (inputHook !== InputHook.IS_ACTION_PRESSED) {
-      if (!onLockout && v.run.queuedShot !== null) {
-        const [_, value] = v.run.queuedShot;
-        v.run.queuedShot = null;
-
-        return value;
-      }
-
-      return undefined;
-    }
-
-    // Even if the player is not on lockout, we must record the input so that we can track illegal
-    // presses in the future.
-    const lockoutInput = this.getLockoutInput(player, buttonAction, onLockout);
-    shootHistory.push(lockoutInput);
-
-    // We only want to track inputs for as long as the lockout could exist. We need to multiply by 2
-    // because the array tracks inputs on render frames, not game frames.
-    if (shootHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY * 2) {
-      shootHistory.shift();
-    }
-
-    if (onLockout) {
-      if (v.run.queuedShot === null) {
-        const value = Input.GetActionValue(
-          buttonAction,
-          player.ControllerIndex,
-        );
-        v.run.queuedShot = [buttonAction, value];
-      }
-
-      return lockoutInput;
-    }
-
-    if (v.run.queuedShot !== null) {
-      return true;
-    }
-
-    return undefined;
-  }
-
-  shouldShootBeOnLockoutToPreventSpamming(
-    player: EntityPlayer,
-    buttonAction: ButtonAction,
-    shootHistory: boolean[],
-  ): boolean {
     const hasPowerfulCollectible = hasCollectible(
       player,
       ...POWERFUL_COLLECTIBLE_TYPES,
     );
     if (!hasPowerfulCollectible) {
+      return undefined;
+    }
+
+    switch (inputHook) {
+      case InputHook.IS_ACTION_PRESSED: {
+        return this.inputActionPlayerIsActionPressedPreventSpam(
+          player,
+          buttonAction,
+        );
+      }
+
+      case InputHook.GET_ACTION_VALUE: {
+        return this.inputActionPlayerGetActionValuePreventSpam(buttonAction);
+      }
+    }
+  }
+
+  inputActionPlayerIsActionPressedPreventSpam(
+    player: EntityPlayer,
+    buttonAction: ButtonAction,
+  ): boolean | undefined {
+    const shootHistory = v.run.shootHistoryMap.getAndSetDefault(buttonAction);
+
+    // First, if we are on a shoot lockout, find out if it should expire.
+    if (
+      v.run.shootLockoutButtons.has(buttonAction) &&
+      this.shouldShootLockoutExpire(shootHistory)
+    ) {
+      /*
+      Isaac.DebugString(
+        `GETTING HERE - OFF onShootLockout on frame: ${Isaac.GetFrameCount()} - buttonAction: ${buttonAction}`,
+      );
+      */
+      v.run.shootLockoutButtons.delete(buttonAction);
+    }
+
+    const shouldModifyInputToFalse = this.shouldModifyInputToFalse(
+      player,
+      buttonAction,
+      shootHistory,
+    );
+    if (shouldModifyInputToFalse) {
+      v.run.shootLockoutButtons.add(buttonAction);
+    }
+
+    // Even if the player is not on lockout, we must record the input so that we can track illegal
+    // presses in the future.
+    const lockoutInput = this.getLockoutInput(
+      player,
+      buttonAction,
+      shouldModifyInputToFalse,
+    );
+    shootHistory.push(lockoutInput);
+    if (shootHistory.length > SHOOT_HISTORY_SIZE) {
+      shootHistory.shift();
+    }
+
+    if (shouldModifyInputToFalse) {
+      if (v.run.queuedShot === null) {
+        const value = Input.GetActionValue(
+          buttonAction,
+          player.ControllerIndex,
+        );
+        v.run.queuedShot = {
+          buttonAction,
+          value,
+          press: true,
+          count: 2,
+        };
+
+        /*
+        Isaac.DebugString(
+          `GETTING HERE - added queued shot on frame ${Isaac.GetFrameCount()} - buttonAction: ${buttonAction}`,
+        );
+        */
+      }
+
       return false;
+    }
+
+    if (
+      !v.run.shootLockoutButtons.has(buttonAction) &&
+      v.run.queuedShot !== null &&
+      v.run.queuedShot.buttonAction === buttonAction
+    ) {
+      return v.run.queuedShot.press;
+    }
+
+    return undefined;
+  }
+
+  shouldShootLockoutExpire(shootHistory: boolean[]): boolean {
+    return !shootHistory.includes(true);
+  }
+
+  shouldModifyInputToFalse(
+    player: EntityPlayer,
+    buttonAction: ButtonAction,
+    shootHistory: boolean[],
+  ): boolean {
+    if (v.run.shootLockoutButtons.has(buttonAction)) {
+      return true;
     }
 
     const vanillaInput = Input.IsActionPressed(
@@ -347,6 +421,83 @@ export class Autofire extends MandatoryModFeature {
     }
 
     return Input.IsActionPressed(buttonAction, player.ControllerIndex);
+  }
+
+  inputActionPlayerGetActionValuePreventSpam(
+    buttonAction: ButtonAction,
+  ): float | undefined {
+    // Handle lockout.
+    if (v.run.shootLockoutButtons.has(buttonAction)) {
+      return 0;
+    }
+
+    // Handle queued shots.
+    if (v.run.queuedShot === null) {
+      return undefined;
+    }
+
+    if (v.run.queuedShot.buttonAction !== buttonAction) {
+      return undefined;
+    }
+
+    // We decrement queued shots in the `InputHook.GET_ACTION_VALUE` (2) callback because it fires
+    // after the `InputHook.IS_ACTION_PRESSED` (0) callback. The progression is as follows:
+    // - Press queued shot with count 2 --> Press queued shot with count 1
+    // - Press queued shot with count 1 --> Release queued shot with count 2
+    // - Release queued shot with count 2 --> Release queued shot with count 1
+    // - Release queued shot with count 1 --> null
+    const { value, press, count } = v.run.queuedShot;
+    if (press && count === 2) {
+      v.run.queuedShot = {
+        buttonAction,
+        value,
+        press: true,
+        count: 1,
+      };
+    } else if (press && count === 1) {
+      v.run.queuedShot = {
+        buttonAction,
+        value: 0,
+        press: false,
+        count: 2,
+      };
+    } else if (!press && count === 2) {
+      v.run.queuedShot = {
+        buttonAction,
+        value: 0,
+        press: false,
+        count: 1,
+      };
+    } else if (!press && count === 1) {
+      v.run.queuedShot = null;
+
+      const shootHistory = newArray(false, SHOOT_HISTORY_SIZE);
+      shootHistory[shootHistory.length - 3] = true;
+      shootHistory[shootHistory.length - 4] = true;
+      v.run.shootHistoryMap.set(buttonAction, shootHistory);
+    }
+
+    return value;
+  }
+
+  @Callback(ModCallback.POST_PLAYER_INIT)
+  postPlayerInitDebug(player: EntityPlayer): void {
+    player.AddCollectible(CollectibleType.SPIRIT_SWORD);
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.POST_KNIFE_INIT_FILTER,
+    KnifeVariant.SPIRIT_SWORD,
+    0,
+  )
+  debug(): void {
+    const { frameLastSpawned } = this;
+    this.frameLastSpawned = game.GetFrameCount();
+
+    const diff = game.GetFrameCount() - frameLastSpawned;
+    Isaac.DebugString(
+      `GETTING HERE - spawned sword on frame: ${game.GetFrameCount()}, diff: ${diff}`,
+    );
   }
 }
 
