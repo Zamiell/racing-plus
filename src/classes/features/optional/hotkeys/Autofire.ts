@@ -1,5 +1,7 @@
 // TODO:
+// - fix queued input causing autofire on vanilla
 // - fix autofire right + down fast
+// - limit IsMouseBtnPressed (pause game as penalty)
 
 import type { ButtonAction } from "isaac-typescript-definitions";
 import {
@@ -13,12 +15,13 @@ import {
   CallbackCustom,
   DefaultMap,
   ModCallbackCustom,
+  SHOOTING_ACTIONS,
   game,
   getLastElement,
   getShootActions,
   hasCollectible,
   isShootAction,
-  newArray,
+  logError,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
@@ -30,9 +33,7 @@ interface QueuedShot {
   buttonAction: ButtonAction;
   value: float;
   press: boolean;
-
-  /** We press and release an input for 2 render frames. */
-  count: 1 | 2;
+  untilRenderFrame: int | null;
 }
 
 /** Release the key on every other frame for e.g. Anti-Gravity. */
@@ -45,7 +46,7 @@ const NORMAL_GAME_FRAME_DELAY = 2;
  *
  * TODO: Change from 3 to 5 in R+7 Season 5.
  */
-const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 15;
+const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 20;
 
 const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
@@ -62,18 +63,9 @@ const SHOOT_HISTORY_SIZE = POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY * 2 - 2;
 const v = {
   run: {
     enabled: false,
-
-    /**
-     * A tuple of game frame and the corresponding button action. We must track the specific shoot
-     * action pressed so that we can be more lenient on the with lockout code.
-     */
-    autofireSequenceStarted: null as [int, ButtonAction] | null,
-
-    /**
-     * A tuple of game frame and the corresponding button action. We must track the specific shoot
-     * action pressed so that we can be more lenient on the with lockout code.
-     */
-    autofireSequenceEnded: null as [int, ButtonAction] | null,
+    gameFrameAutofireSequenceStarted: null as int | null,
+    gameFrameAutofireSequenceEnded: null as int | null,
+    autofireReleasedShootFrameCount: 0,
 
     /**
      * Needs to tick upwards to 2 to prevent a race condition when a shoot input is pressed on the
@@ -83,6 +75,24 @@ const v = {
      */
     startCounter: 0,
 
+    // -----
+
+    /**
+     * A map to track the past N game frames of whether a shoot button was being pressed.
+     *
+     * Used to prevent the players who are not using the autofire feature from doing better than
+     * what autofire can do.
+     */
+    vanillaShootHistoryMap: new DefaultMap<ButtonAction, boolean[]>(() => []),
+
+    /*
+     * Used to prevent the players who are not using the autofire feature from doing better than
+     * what autofire can do.
+     */
+    vanillaShootGameFrame: null as int | null,
+
+    // ----
+
     /*
      * Used to prevent the players who are not using the autofire feature from doing better than
      * what autofire can do.
@@ -90,7 +100,7 @@ const v = {
     shootLockoutButtons: new Set<ButtonAction>(),
 
     /**
-     * A map to track the past N frames of whether a shoot button was being pressed.
+     * A map to track the past N render frames of whether a shoot button was being pressed.
      *
      * Used to prevent the players who are not using the autofire feature from doing better than
      * what autofire can do.
@@ -98,10 +108,8 @@ const v = {
     shootHistoryMap: new DefaultMap<ButtonAction, boolean[]>(() => []),
 
     /**
-     * A tuple of button action and button value.
-     *
      * Used to prevent the players who are not using the autofire feature from doing better than
-     * what autofire can do. (A shot is queued if they happen to be on lockout.)
+     * what autofire can do. (Shots are queued when they are inside of a lockout.)
      */
     queuedShot: null as QueuedShot | null,
   },
@@ -126,6 +134,8 @@ export class Autofire extends MandatoryModFeature {
   @Callback(ModCallback.POST_UPDATE)
   postUpdate(): void {
     this.checkAutofireEnd();
+    this.recordVanillaInputs();
+    this.recordLastVanillaShootPress();
   }
 
   /** We do this in the `POST_UPDATE` callback since it simplifies the code. */
@@ -135,18 +145,65 @@ export class Autofire extends MandatoryModFeature {
     const shootActions = getShootActions(player.ControllerIndex);
     const firstShootAction = shootActions[0];
 
+    // Handle the case of a shoot input being held down for a single render frame (which is not long
+    // enough to start an autofire sequence).
     if (firstShootAction === undefined && v.run.startCounter !== 0) {
       v.run.startCounter = 0;
     }
 
+    // End an autofire sequence when all shoot inputs are released.
     if (
       firstShootAction === undefined &&
-      v.run.autofireSequenceStarted !== null
+      v.run.gameFrameAutofireSequenceStarted !== null &&
+      // Don't immediately end an autofire sequence when all shoot keys are released. Instead, wait
+      // until the frame before the next planned fire. This is necessary to prevent autofire players
+      // from spamming two different shooting buttons to shoot faster than what autofire allows and
+      // to provide a consistent experience for changing shooting directions mid-autofire-sequence.
+      this.autofireIsFrameBeforePress(player, gameFrameCount)
     ) {
-      const [_, oldButtonAction] = v.run.autofireSequenceStarted;
-      v.run.autofireSequenceStarted = null;
-      v.run.autofireSequenceEnded = [gameFrameCount, oldButtonAction];
+      v.run.gameFrameAutofireSequenceStarted = null;
+      v.run.gameFrameAutofireSequenceEnded = gameFrameCount;
     }
+  }
+
+  recordVanillaInputs(): void {
+    const player = Isaac.GetPlayer();
+
+    for (const buttonAction of SHOOTING_ACTIONS) {
+      const pressed = Input.IsActionPressed(
+        buttonAction,
+        player.ControllerIndex,
+      );
+      const shootHistory =
+        v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
+      shootHistory.push(pressed);
+      if (shootHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY) {
+        shootHistory.shift();
+      }
+    }
+  }
+
+  recordLastVanillaShootPress(): void {
+    const gameFrameCount = game.GetFrameCount();
+
+    for (const buttonAction of SHOOTING_ACTIONS) {
+      if (this.isNewShootPress(buttonAction)) {
+        v.run.vanillaShootGameFrame = gameFrameCount;
+        Isaac.DebugString(
+          `GETTING HERE - v.run.vanillaShootGameFrame: ${v.run.vanillaShootGameFrame}`,
+        );
+      }
+    }
+  }
+
+  isNewShootPress(buttonAction: ButtonAction): boolean {
+    const shootHistory =
+      v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
+
+    const secondLastElement = shootHistory[shootHistory.length - 2];
+    const lastElement = shootHistory[shootHistory.length - 1];
+
+    return secondLastElement !== true && lastElement === true;
   }
 
   // 3, 0
@@ -183,11 +240,19 @@ export class Autofire extends MandatoryModFeature {
 
     // When autofire is enabled, it has a separate check to prevent spamming, so this block can
     // safely be after the autofire section.
+    /*
     return this.inputActionPlayerShootActionPreventSpam(
       player,
       inputHook,
       buttonAction,
     );
+    */
+
+    if (v.run.vanillaShootGameFrame !== null) {
+      return inputHook === InputHook.IS_ACTION_PRESSED ? false : 0;
+    }
+
+    return undefined;
   }
 
   inputActionPlayerShootActionAutofire(
@@ -195,69 +260,62 @@ export class Autofire extends MandatoryModFeature {
     inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
+    const gameFrameCount = game.GetFrameCount();
+
     // If the player is not pressing down the shoot button, then don't change any inputs.
-    const actionValue = Input.GetActionValue(
-      buttonAction,
-      player.ControllerIndex,
-    );
-    if (actionValue === 0) {
+    const pressed = Input.IsActionPressed(buttonAction, player.ControllerIndex);
+    if (!pressed) {
       return undefined;
     }
 
-    // The player is pressing down the shoot button. If the player has recently ended an autofire
-    // sequence, force an empty input (to prevent them from spamming the button to do better than
-    // autofire.)
-    const gameFrameCount = game.GetFrameCount();
-    const recentlyEndedAutofire =
-      v.run.autofireSequenceEnded !== null &&
-      v.run.autofireSequenceEnded[0] + POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY >
-        gameFrameCount &&
-      v.run.autofireSequenceEnded[1] === buttonAction;
-    if (recentlyEndedAutofire) {
-      return inputHook === InputHook.IS_ACTION_PRESSED ? false : 0;
+    // If we are not currently in an autofire sequence, then the player is holding down a shoot
+    // input and wants to enter one. However, we need to wait for two input callbacks to fire,
+    // because you have to press down a button for two render frames in order for it to register as
+    // an input.
+    if (v.run.gameFrameAutofireSequenceStarted === null) {
+      switch (inputHook) {
+        case InputHook.IS_ACTION_PRESSED: {
+          v.run.startCounter++;
+
+          if (v.run.startCounter === 2) {
+            v.run.startCounter = 0;
+            v.run.gameFrameAutofireSequenceStarted = gameFrameCount;
+          }
+
+          return undefined; // Continue the first press. (Otherwise, it will not come out.)
+        }
+
+        case InputHook.GET_ACTION_VALUE: {
+          return undefined;
+        }
+      }
     }
 
-    const shouldPressKey = this.autofireShouldPressKey(
+    // We are currently in an autofire sequence and the player is pressing down the shoot button to
+    // continue it.
+    const shouldPressKey = this.autofireShouldPressKeyOnFrame(
       player,
-      inputHook,
-      buttonAction,
+      gameFrameCount,
     );
-
     if (shouldPressKey) {
       return inputHook === InputHook.IS_ACTION_PRESSED
-        ? actionValue !== 0
-        : actionValue;
+        ? true
+        : Input.GetActionValue(buttonAction, player.ControllerIndex);
     }
 
     return inputHook === InputHook.IS_ACTION_PRESSED ? false : 0;
   }
 
-  autofireShouldPressKey(
+  autofireShouldPressKeyOnFrame(
     player: EntityPlayer,
-    inputHook: InputHook.IS_ACTION_PRESSED | InputHook.GET_ACTION_VALUE,
-    buttonAction: ButtonAction,
+    gameFrameCount: int,
   ): boolean {
-    const gameFrameCount = game.GetFrameCount();
-
-    // If we are not currently in an autofire sequence, then this is the first poll that the player
-    // has held down a shoot input. However, we need to wait for two input callbacks to fire,
-    // because you have to press down a button for two render frames in order for it to register as
-    // an input.
-    if (v.run.autofireSequenceStarted === null) {
-      if (inputHook === InputHook.IS_ACTION_PRESSED) {
-        v.run.startCounter++;
-      }
-      if (v.run.startCounter === 2) {
-        v.run.startCounter = 0;
-        v.run.autofireSequenceStarted = [gameFrameCount, buttonAction];
-      }
-
-      return true;
+    if (v.run.gameFrameAutofireSequenceStarted === null) {
+      return false;
     }
 
-    // Otherwise, only press the input on the Nth frame.
     const framesPassedSinceAutofireSequenceStarted =
-      gameFrameCount - v.run.autofireSequenceStarted[0];
+      gameFrameCount - v.run.gameFrameAutofireSequenceStarted;
     const hasPowerfulCollectible = hasCollectible(
       player,
       ...POWERFUL_COLLECTIBLE_TYPES,
@@ -267,6 +325,13 @@ export class Autofire extends MandatoryModFeature {
       : NORMAL_GAME_FRAME_DELAY;
 
     return framesPassedSinceAutofireSequenceStarted % frameDelay === 0;
+  }
+
+  autofireIsFrameBeforePress(
+    player: EntityPlayer,
+    gameFrameCount: int,
+  ): boolean {
+    return this.autofireShouldPressKeyOnFrame(player, gameFrameCount + 1);
   }
 
   /**
@@ -305,44 +370,31 @@ export class Autofire extends MandatoryModFeature {
     player: EntityPlayer,
     buttonAction: ButtonAction,
   ): boolean | undefined {
+    const pressed = Input.IsActionPressed(buttonAction, player.ControllerIndex);
     const shootHistory = v.run.shootHistoryMap.getAndSetDefault(buttonAction);
 
-    // First, if we are on a shoot lockout, find out if it should expire.
+    // First, handle shoot lockout ending.
     if (
       v.run.shootLockoutButtons.has(buttonAction) &&
-      this.shouldShootLockoutExpire(shootHistory)
+      !shootHistory.includes(true) // If there have been no presses.
     ) {
-      /*
-      Isaac.DebugString(
-        `GETTING HERE - OFF onShootLockout on frame: ${Isaac.GetFrameCount()} - buttonAction: ${buttonAction}`,
-      );
-      */
       v.run.shootLockoutButtons.delete(buttonAction);
     }
 
-    const shouldModifyInputToFalse = this.shouldModifyInputToFalse(
+    // Second, handle shoot lockout starting. (This has to be after handling shoot lockout ending.)
+    const shouldStartOrContinueLockout = this.shouldStartOrContinueLockout(
       player,
       buttonAction,
       shootHistory,
     );
-    if (shouldModifyInputToFalse) {
+    if (shouldStartOrContinueLockout) {
       v.run.shootLockoutButtons.add(buttonAction);
     }
 
-    // Even if the player is not on lockout, we must record the input so that we can track illegal
-    // presses in the future.
-    const lockoutInput = this.getLockoutInput(
-      player,
-      buttonAction,
-      shouldModifyInputToFalse,
-    );
-    shootHistory.push(lockoutInput);
-    if (shootHistory.length > SHOOT_HISTORY_SIZE) {
-      shootHistory.shift();
-    }
-
-    if (shouldModifyInputToFalse) {
-      if (v.run.queuedShot === null) {
+    // Handle lockout.
+    if (shouldStartOrContinueLockout) {
+      // If they are pressing the input and there is not already a queued shot, add one.
+      if (pressed && v.run.queuedShot === null) {
         const value = Input.GetActionValue(
           buttonAction,
           player.ControllerIndex,
@@ -351,35 +403,43 @@ export class Autofire extends MandatoryModFeature {
           buttonAction,
           value,
           press: true,
-          count: 2,
+          untilRenderFrame: null,
         };
 
-        /*
         Isaac.DebugString(
-          `GETTING HERE - added queued shot on frame ${Isaac.GetFrameCount()} - buttonAction: ${buttonAction}`,
+          `GETTING HERE - added queued shot on render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
         );
-        */
       }
 
+      this.recordInput(shootHistory, false);
       return false;
     }
 
+    // Handle queued shots.
     if (
-      !v.run.shootLockoutButtons.has(buttonAction) &&
       v.run.queuedShot !== null &&
       v.run.queuedShot.buttonAction === buttonAction
     ) {
+      if (v.run.queuedShot.untilRenderFrame === null) {
+        const renderFrameCount = Isaac.GetFrameCount();
+        v.run.queuedShot.untilRenderFrame = renderFrameCount + 2;
+        Isaac.DebugString(
+          `GETTING HERE - lockout ended, pressing until frame ${
+            v.run.queuedShot.untilRenderFrame
+          }, render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
+        );
+      }
+
+      this.recordInput(shootHistory, v.run.queuedShot.press);
       return v.run.queuedShot.press;
     }
 
+    // Let the vanilla input through.
+    this.recordInput(shootHistory, pressed);
     return undefined;
   }
 
-  shouldShootLockoutExpire(shootHistory: boolean[]): boolean {
-    return !shootHistory.includes(true);
-  }
-
-  shouldModifyInputToFalse(
+  shouldStartOrContinueLockout(
     player: EntityPlayer,
     buttonAction: ButtonAction,
     shootHistory: boolean[],
@@ -388,16 +448,13 @@ export class Autofire extends MandatoryModFeature {
       return true;
     }
 
-    const vanillaInput = Input.IsActionPressed(
-      buttonAction,
-      player.ControllerIndex,
-    );
-    if (!vanillaInput) {
+    const pressed = Input.IsActionPressed(buttonAction, player.ControllerIndex);
+    if (!pressed) {
       return false;
     }
 
-    const lastInput = getLastElement(shootHistory);
-    if (lastInput !== false) {
+    const lastPressed = getLastElement(shootHistory);
+    if (lastPressed !== false) {
       return false;
     }
 
@@ -423,6 +480,13 @@ export class Autofire extends MandatoryModFeature {
     return Input.IsActionPressed(buttonAction, player.ControllerIndex);
   }
 
+  recordInput(shootHistory: boolean[], pressed: boolean): void {
+    shootHistory.push(pressed);
+    if (shootHistory.length > SHOOT_HISTORY_SIZE) {
+      shootHistory.shift();
+    }
+  }
+
   inputActionPlayerGetActionValuePreventSpam(
     buttonAction: ButtonAction,
   ): float | undefined {
@@ -432,56 +496,50 @@ export class Autofire extends MandatoryModFeature {
     }
 
     // Handle queued shots.
-    if (v.run.queuedShot === null) {
+    if (
+      v.run.queuedShot === null ||
+      v.run.queuedShot.buttonAction !== buttonAction
+    ) {
       return undefined;
     }
 
-    if (v.run.queuedShot.buttonAction !== buttonAction) {
-      return undefined;
+    const { value, press, untilRenderFrame } = v.run.queuedShot;
+    if (untilRenderFrame === null) {
+      logError('Failed to get the "untilRenderFrame" value for a queued shot.');
+      return;
     }
 
     // We decrement queued shots in the `InputHook.GET_ACTION_VALUE` (2) callback because it fires
     // after the `InputHook.IS_ACTION_PRESSED` (0) callback. The progression is as follows:
-    // - Press queued shot with count 2 --> Press queued shot with count 1
-    // - Press queued shot with count 1 --> Release queued shot with count 2
-    // - Release queued shot with count 2 --> Release queued shot with count 1
-    // - Release queued shot with count 1 --> null
-    const { value, press, count } = v.run.queuedShot;
-    if (press && count === 2) {
-      v.run.queuedShot = {
-        buttonAction,
-        value,
-        press: true,
-        count: 1,
-      };
-    } else if (press && count === 1) {
-      v.run.queuedShot = {
-        buttonAction,
-        value: 0,
-        press: false,
-        count: 2,
-      };
-    } else if (!press && count === 2) {
-      v.run.queuedShot = {
-        buttonAction,
-        value: 0,
-        press: false,
-        count: 1,
-      };
-    } else if (!press && count === 1) {
-      v.run.queuedShot = null;
+    // - Press queued shot --> Release queued shot
+    // - Release queued shot --> null
+    const renderFrameCount = Isaac.GetFrameCount();
+    if (renderFrameCount >= untilRenderFrame) {
+      if (press) {
+        v.run.queuedShot = {
+          buttonAction,
+          value: 0,
+          press: false,
+          untilRenderFrame: renderFrameCount + 2,
+        };
 
-      const shootHistory = newArray(false, SHOOT_HISTORY_SIZE);
-      shootHistory[shootHistory.length - 3] = true;
-      shootHistory[shootHistory.length - 4] = true;
-      v.run.shootHistoryMap.set(buttonAction, shootHistory);
+        Isaac.DebugString(
+          `GETTING HERE - releasing key queued shot on render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
+        );
+      } else {
+        v.run.queuedShot = null;
+
+        Isaac.DebugString(
+          `GETTING HERE - remove queued shot on render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
+        );
+      }
     }
 
     return value;
   }
 
   @Callback(ModCallback.POST_PLAYER_INIT)
-  postPlayerInitDebug(player: EntityPlayer): void {
+  debug1(player: EntityPlayer): void {
     player.AddCollectible(CollectibleType.SPIRIT_SWORD);
   }
 
@@ -490,13 +548,13 @@ export class Autofire extends MandatoryModFeature {
     KnifeVariant.SPIRIT_SWORD,
     0,
   )
-  debug(): void {
+  debug2(): void {
     const { frameLastSpawned } = this;
     this.frameLastSpawned = game.GetFrameCount();
 
     const diff = game.GetFrameCount() - frameLastSpawned;
     Isaac.DebugString(
-      `GETTING HERE - spawned sword on frame: ${game.GetFrameCount()}, diff: ${diff}`,
+      `GETTING HERE - spawned sword, diff: ${diff}, render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
     );
   }
 }
