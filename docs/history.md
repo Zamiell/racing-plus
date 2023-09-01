@@ -2094,7 +2094,7 @@
 - The Pointy Rib + Eve's Mascara build has been replaced with 2 Pointy Ribs. (Thanks toooschi)
 - The mod will now remove some unnecessary effects in order to prevent lag. (This will be most noticeable after the Mom fight and the It Lives! fight.)
 - The mod now has the option to set an auto-fire keybinding for Anti-Gravity or No. 2 builds. Using this can help prevent RSI/CTS.
-- The "shadow" command will now permanently remember whether or not you have it enabled or not. (This requires the "Racing+ Data" mod in order to work properly.)
+- The "shadow" command will now permanently remember whether you have it enabled. (This requires the "Racing+ Data" mod in order to work properly.)
 - Added the "ghost", "ghosts", and "shadows" commands as alternates for the "shadow" command.
 - Added the "shadowstatus" command.
 - Fixed the (vanilla) bug where Fire Mind spawned from Angelic Prism tears would damage the player.
@@ -2310,7 +2310,7 @@
 
 ### _v0.47.14_ - January 11th, 2020
 
-- A new custom mechanic is added where freshly made trapdoors and crawl spaces are always open, regardless of whether the room is clear or not. This effectively makes the shovel as powerful as it was before. (Thanks mgln)
+- A new custom mechanic is added where freshly made trapdoors and crawl spaces are always open, regardless of whether the room is clear. This effectively makes the shovel as powerful as it was before. (Thanks mgln)
 
 ### _v0.47.13_ - January 9th, 2020
 
@@ -4428,7 +4428,7 @@ Changes:
 
 ### _v0.4.19_ - April 5th, 2017
 
-- There will now be an x or a checkmark next to the "pre-race" graphic to indicate whether you are ready or not.
+- There will now be an x or a checkmark next to the "pre-race" graphic to indicate whether you are ready.
 - Replaced the "Unranked" and "Mega Satan" in-game icons with better ones. (Thanks to SnugBoat for drawing the cake.)
 - Added the deIlluminati emote.
 
@@ -4583,7 +4583,7 @@ Changes:
 - The Pageant Boy ruleset now has item bans for the starting items.
 - The Pageant Boy ruleset now starts with +7 luck.
 - Before a race, you will now see the race type and the race format next to the Gaping Maws.
-- Before a race, you will see an indication of whether you are ready or not.
+- Before a race, you will see an indication of whether you are ready.
 - Seeded races now show the starting item / starting build in a manner similar to diversity races.
 - Items shown on the starting room in seeded and diversity races now have a glow so that it is easier to see them. (The glow images were taken from the item tracker.)
 - Fixed the bug where you could see the diversity items early under certain conditions. (Thanks Lobsterosity, Ou_J, and Cyber_1)

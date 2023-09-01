@@ -36,7 +36,7 @@ export class RaceData {
 
   /**
    * The starting items for this race, if any. (The format of the race and the position in the array
-   * determines whether or not it is a `CollectibleType`, `TrinketType`, or `ServerCollectibleID`.
+   * determines whether it is a `CollectibleType`, `TrinketType`, or `ServerCollectibleID`.
    */
   startingItems: Array<CollectibleType | TrinketType | ServerCollectibleID> =
     [];

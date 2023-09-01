@@ -53,7 +53,7 @@ export function drawCustomChargeBar(
   // For vanilla charge bars, as the player grows bigger, the charge bar offset increases.
   const sizeOffset = VANILLA_CHARGE_BAR_OFFSET.mul(player.SpriteScale);
 
-  // Additionally, the charge bar offset changes depending on if the player is flying or not.
+  // Additionally, the charge bar offset changes depending on if the player is flying.
   const flyingOffset = player.GetFlyingOffset();
 
   // Adjust this charge bar to the left if there are other custom charge bars showing of a higher

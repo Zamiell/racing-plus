@@ -1,12 +1,9 @@
 // TODO:
-// - race condition where:
-//  - [INFO] - Lua Debug: GETTING HERE - start lockout from vanilla keypress, 30539 --> 30554
-//  - [INFO] - Lua Debug: GETTING HERE - start lockout from vanilla keypress, 30554 --> 30569
 // - fix queued input causing autofire on vanilla
 // - limit IsMouseBtnPressed (pause game as penalty)
 
-import type { ButtonAction } from "isaac-typescript-definitions";
 import {
+  ButtonAction,
   CollectibleType,
   InputHook,
   KnifeVariant,
@@ -373,18 +370,25 @@ export class Autofire extends MandatoryModFeature {
     const gameFrameCount = game.GetFrameCount();
 
     // Handle queued shots.
-    /*
     if (
       v.run.queuedShot !== null &&
       v.run.queuedShot.buttonAction === buttonAction
     ) {
       if (gameFrameCount === v.run.queuedShot.gameFrame) {
-        v.run.lockoutStartGameFrame = gameFrameCount;
-        v.run.lockoutEndGameFrame =
-          gameFrameCount + POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY;
+        v.run.lockout = {
+          startGameFrame: gameFrameCount,
+          endGameFrame: gameFrameCount + POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY,
+          value: Input.GetActionValue(buttonAction, player.ControllerIndex),
+        };
 
+        const value =
+          inputHook === InputHook.IS_ACTION_PRESSED
+            ? true
+            : v.run.queuedShot.value;
         Isaac.DebugString(
-          `DOING QUEUED SHOT INPUT on render frame: ${Isaac.GetFrameCount()}, game frame: ${gameFrameCount}`,
+          `DOING QUEUED SHOT button ${
+            ButtonAction[buttonAction]
+          } INPUT ${value} on render frame: ${Isaac.GetFrameCount()}, game frame: ${gameFrameCount}`,
         );
         return inputHook === InputHook.IS_ACTION_PRESSED
           ? true
@@ -395,7 +399,6 @@ export class Autofire extends MandatoryModFeature {
         v.run.queuedShot = null;
       }
     }
-    */
 
     // Handle lockout (which is when we force the shoot button to be pressed).
     if (v.run.lockout !== null && gameFrameCount < v.run.lockout.endGameFrame) {

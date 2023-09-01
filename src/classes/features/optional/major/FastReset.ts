@@ -71,7 +71,7 @@ export class FastReset extends ConfigurableModFeature {
     const numRoomsEntered = mod.getNumRoomsEntered();
 
     if (numRoomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
-      // Speedrun functionality relies on knowing whether or not a fast-reset occurred.
+      // Speedrun functionality relies on knowing whether a fast-reset occurred.
       speedrunSetFastReset();
       restart();
     } else {

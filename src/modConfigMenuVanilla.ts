@@ -181,9 +181,7 @@ export function init(): void {
 
       Options.RumbleEnabled = newValue;
     },
-    Info: [
-      "Whether or not the rumble feature is enabled for controller players.",
-    ],
+    Info: ["Whether the rumble feature is enabled for controller players."],
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
@@ -198,7 +196,7 @@ export function init(): void {
       Options.SaveCommandHistory = newValue;
     },
     Info: [
-      "Whether or not the game will save the history of executed debug console commands.",
+      "Whether the game will save the history of executed debug console commands.",
     ],
   });
 

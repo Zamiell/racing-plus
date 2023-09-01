@@ -45,7 +45,7 @@ export function initFastTravelEntity(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
   // This must be passed a function instead of a boolean because we need to initialize the
-  // description before checking whether or not it should open.
+  // description before checking whether it should open.
   shouldSpawnOpen: (entity: GridEntity | EntityEffect) => boolean,
 ): void {
   const gameFrameCount = game.GetFrameCount();
