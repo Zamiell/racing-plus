@@ -190,6 +190,27 @@ export class StreakText extends MandatoryModFeature {
     font.DrawString(text, x - length / 2, y, color);
   }
 
+  // 3, 712
+  @Callback(ModCallback.POST_USE_ITEM, CollectibleType.LEMEGETON)
+  postUseItemLemegeton(): boolean | undefined {
+    Isaac.DebugString("GETTING HERE 1");
+    const wisp = this.getItemWispThatJustSpawned();
+    if (wisp !== undefined) {
+      const collectibleName = getCollectibleName(
+        asCollectibleType(wisp.SubType),
+      );
+      setStreakText(collectibleName);
+    }
+    Isaac.DebugString("GETTING HERE 2");
+
+    return undefined;
+  }
+
+  getItemWispThatJustSpawned(): EntityFamiliar | undefined {
+    const wisps = getFamiliars(FamiliarVariant.ITEM_WISP);
+    return wisps.find((wisp) => wisp.FrameCount === 0);
+  }
+
   // 5
   @Callback(ModCallback.POST_USE_CARD)
   postUseCard(
@@ -255,25 +276,6 @@ export class StreakText extends MandatoryModFeature {
     }
 
     return true;
-  }
-
-  // 23, 712
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.LEMEGETON)
-  preUseItemLemegeton(): boolean | undefined {
-    const wisp = this.getItemWispThatJustSpawned();
-    if (wisp !== undefined) {
-      const collectibleName = getCollectibleName(
-        asCollectibleType(wisp.SubType),
-      );
-      setStreakText(collectibleName);
-    }
-
-    return undefined;
-  }
-
-  getItemWispThatJustSpawned(): EntityFamiliar | undefined {
-    const wisps = getFamiliars(FamiliarVariant.ITEM_WISP);
-    return wisps.find((wisp) => wisp.FrameCount === 0);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
