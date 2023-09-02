@@ -259,13 +259,15 @@ Some builds are banned on certain characters:
 
 <br>
 
-<!--
-
 ## R+7 Season 5 (Babies)
 
-- You must defeat Blue Baby 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+- You must complete the game 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+- The 1st, 3rd, 5th, and 7th runs will go to The Chest.
+- The 2nd, 4th, and 6th runs will go to the Dark Room.
 
 <br>
+
+<!--
 
 ## R+7 Season 6 (Rolling)
 

@@ -76,6 +76,9 @@ function getReplacementAction() {
   if (onSeason(4)) {
     return speedrunAlternate();
   }
+  if (onSeason(5)) {
+    return speedrunAlternate();
+  }
 
   if (g.raceVars.finished) {
     return BigChestReplacementAction.VICTORY_LAP;

@@ -30,7 +30,7 @@ You may also be interested in [the client repository](https://github.com/Zamiell
 ## Installation for Development (Windows)
 
 - Before working with this repository, you should first become a familiar with IsaacScript. Follow the steps on [the IsaacScript getting started documentation](https://isaacscript.github.io/docs/getting-started). Once you have created a test mod and verified in-game that everything works the way it should, read on.
-- Download and install [Git](https://git-scm.com/), if you don't have it already.
+- Download and install [Git](https://git-scm.com/), if you do not have it already.
 - Open a new [command prompt window](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/). (Or, feel free to use Windows Terminal, PowerShell, Git Bash, etc.)
 - Configure Git, if you have not done so already:
   - `git config --global user.name "Your_Username"`

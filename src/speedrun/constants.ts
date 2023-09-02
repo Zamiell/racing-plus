@@ -7,6 +7,7 @@ export enum ChallengeCustomAbbreviation {
   SEASON_2 = "R7S2",
   SEASON_3 = "R7S3",
   SEASON_4 = "R7S4",
+  SEASON_5 = "R7S5",
 }
 
 export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
@@ -41,6 +42,13 @@ export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
       numElements: 7,
     },
   ],
+  [
+    ChallengeCustom.SEASON_5,
+    {
+      challengeCustomAbbreviation: ChallengeCustomAbbreviation.SEASON_5,
+      numElements: 0, // There are no choices for Season 5.
+    },
+  ],
 ]);
 
 export const CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM = {
@@ -48,6 +56,7 @@ export const CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM = {
   [ChallengeCustomAbbreviation.SEASON_2]: ChallengeCustom.SEASON_2,
   [ChallengeCustomAbbreviation.SEASON_3]: ChallengeCustom.SEASON_3,
   [ChallengeCustomAbbreviation.SEASON_4]: ChallengeCustom.SEASON_4,
+  [ChallengeCustomAbbreviation.SEASON_5]: ChallengeCustom.SEASON_5,
 } as const satisfies Record<ChallengeCustomAbbreviation, Challenge>;
 
 export const CUSTOM_CHALLENGES_SET = new ReadonlySet<Challenge>(
@@ -58,6 +67,7 @@ export const CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM =
   new ReadonlySet<Challenge>([
     ChallengeCustom.SEASON_2,
     ChallengeCustom.SEASON_4,
+    ChallengeCustom.SEASON_5,
   ]);
 
 export const SEASON_NUM_TO_CHALLENGE = {
@@ -65,4 +75,5 @@ export const SEASON_NUM_TO_CHALLENGE = {
   2: ChallengeCustom.SEASON_2,
   3: ChallengeCustom.SEASON_3,
   4: ChallengeCustom.SEASON_4,
+  5: ChallengeCustom.SEASON_5,
 } as const;

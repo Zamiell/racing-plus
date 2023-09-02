@@ -156,5 +156,6 @@ export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";
 export { Season4 } from "./classes/features/speedrun/Season4";
+export { Season5 } from "./classes/features/speedrun/Season5";
 export { SpawnRepentanceDoor } from "./classes/features/speedrun/SpawnRepentanceDoor";
 export { SpeedrunTimer } from "./classes/features/speedrun/SpeedrunTimer";

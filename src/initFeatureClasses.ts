@@ -77,6 +77,7 @@ const FEATURE_CLASSES = [
   fc.Season2,
   fc.Season3,
   fc.Season4,
+  fc.Season5,
 
   // Major (not alphabetized)
   // - fc.ClientCommunication,
