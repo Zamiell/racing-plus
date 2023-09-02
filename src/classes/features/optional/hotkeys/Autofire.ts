@@ -1,13 +1,10 @@
-// TODO:
-// - fix queued input causing autofire on vanilla
-// - limit IsMouseBtnPressed (pause game as penalty)
-
 import {
   ButtonAction,
   CollectibleType,
   InputHook,
-  KnifeVariant,
   ModCallback,
+  Mouse,
+  SoundEffect,
 } from "isaac-typescript-definitions";
 import {
   Callback,
@@ -19,6 +16,7 @@ import {
   getShootActions,
   hasCollectible,
   isShootAction,
+  sfxManager,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
@@ -27,9 +25,11 @@ import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
 
 interface Lockout {
+  buttonAction: ButtonAction;
+  value: float;
   startGameFrame: int;
   endGameFrame: int;
-  value: float;
+  playerReleasedKey: boolean;
 }
 
 interface QueuedShot {
@@ -82,11 +82,19 @@ const v = {
     /** A map to track the past N game frames of whether a shoot button was being pressed. */
     vanillaShootHistoryMap: new DefaultMap<ButtonAction, boolean[]>(() => []),
 
+    /**
+     * An array to track the past N game frames of whether the left mouse button was being pressed.
+     */
+    leftMouseHistory: [] as boolean[],
+
     /** This is deliberately not reset to null so that we can reference the end frame later on. */
     lockout: null as Lockout | null,
 
     /** Shots are queued when they are inside of a lockout. */
     queuedShot: null as QueuedShot | null,
+
+    /** Whether to pause the game in the next `INPUT_ACTION` callback. */
+    queuePause: false,
   },
 };
 
@@ -96,7 +104,7 @@ const v = {
  */
 export class Autofire extends MandatoryModFeature {
   v = v;
-  private frameLastSpawned = 0;
+  private readonly frameLastSpawned = 0;
 
   constructor() {
     super();
@@ -114,6 +122,7 @@ export class Autofire extends MandatoryModFeature {
     this.recordVanillaInputs(player);
     this.checkLockoutStart(player);
     this.checkQueueShot(player);
+    this.checkMouseSpam();
   }
 
   /** We do this in the `POST_UPDATE` callback since it simplifies the code. */
@@ -143,6 +152,7 @@ export class Autofire extends MandatoryModFeature {
     }
   }
 
+  /** Records shoot buttons and the left mouse button. */
   recordVanillaInputs(player: EntityPlayer): void {
     for (const buttonAction of SHOOTING_ACTIONS) {
       const pressed = Input.IsActionPressed(
@@ -155,6 +165,12 @@ export class Autofire extends MandatoryModFeature {
       if (shootHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY) {
         shootHistory.shift();
       }
+    }
+
+    const leftMousePressed = Input.IsMouseBtnPressed(Mouse.BUTTON_LEFT);
+    v.run.leftMouseHistory.push(leftMousePressed);
+    if (v.run.leftMouseHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY) {
+      v.run.leftMouseHistory.shift();
     }
   }
 
@@ -169,13 +185,13 @@ export class Autofire extends MandatoryModFeature {
     for (const buttonAction of SHOOTING_ACTIONS) {
       if (this.isNewShootPress(buttonAction)) {
         v.run.lockout = {
+          buttonAction,
+          value: Input.GetActionValue(buttonAction, player.ControllerIndex),
           startGameFrame: gameFrameCount,
           endGameFrame: gameFrameCount + POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY,
-          value: Input.GetActionValue(buttonAction, player.ControllerIndex),
+          playerReleasedKey: false,
         };
-        Isaac.DebugString(
-          `GETTING HERE - start lockout from vanilla keypress, ${v.run.lockout.startGameFrame} --> ${v.run.lockout.endGameFrame}`,
-        );
+
         return;
       }
     }
@@ -209,9 +225,6 @@ export class Autofire extends MandatoryModFeature {
           value: Input.GetActionValue(buttonAction, player.ControllerIndex),
           gameFrame: v.run.lockout.endGameFrame,
         };
-        Isaac.DebugString(
-          `GETTING HERE - added queued shot, render frame: ${Isaac.GetFrameCount()}, game frame: ${gameFrameCount}`,
-        );
       }
     }
   }
@@ -226,7 +239,60 @@ export class Autofire extends MandatoryModFeature {
     return secondLastElement !== true && lastElement === true;
   }
 
-  // 3, 0
+  /**
+   * It is possible to use the mouse button to spam very fast. Unfortunately, it is not possible to
+   * modify mouse inputs using the normal input callbacks provided by the game. Thus, we cannot
+   * prevent mouse spam in the same way that we can prevent normal shoot button spam. As a
+   * workaround, pause the game to punish the player if mouse spam is detected.
+   */
+  checkMouseSpam(): void {
+    if (v.run.queuePause) {
+      return;
+    }
+
+    const numPresses = this.countTrueAfterFalse(v.run.leftMouseHistory);
+    if (numPresses > 1) {
+      v.run.queuePause = true;
+    }
+  }
+
+  countTrueAfterFalse(array: boolean[]): int {
+    let num = 0;
+
+    for (let i = 0; i < array.length; i++) {
+      const previousElement = array[i - 1];
+      const element = array[i];
+
+      if (previousElement === false && element === true) {
+        num++;
+      }
+    }
+
+    return num;
+  }
+
+  @CallbackCustom(
+    ModCallbackCustom.INPUT_ACTION_FILTER,
+    InputHook.IS_ACTION_TRIGGERED,
+    ButtonAction.PAUSE,
+  )
+  inputActionPause(): boolean | undefined {
+    if (v.run.queuePause) {
+      v.run.queuePause = false;
+
+      // We need to reset the history array. (Otherwise the game will be paused again the moment the
+      // player unpauses.)
+      v.run.leftMouseHistory = [];
+
+      // Play a sound effect to let the player know that pausing is intentional.
+      sfxManager.Play(SoundEffect.BOSS_2_INTRO_ERROR_BUZZ);
+
+      return true;
+    }
+
+    return undefined;
+  }
+
   @CallbackCustom(ModCallbackCustom.INPUT_ACTION_PLAYER)
   inputActionPlayer(
     player: EntityPlayer,
@@ -376,20 +442,13 @@ export class Autofire extends MandatoryModFeature {
     ) {
       if (gameFrameCount === v.run.queuedShot.gameFrame) {
         v.run.lockout = {
+          buttonAction,
           startGameFrame: gameFrameCount,
           endGameFrame: gameFrameCount + POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY,
-          value: Input.GetActionValue(buttonAction, player.ControllerIndex),
+          value: v.run.queuedShot.value,
+          playerReleasedKey: false,
         };
 
-        const value =
-          inputHook === InputHook.IS_ACTION_PRESSED
-            ? true
-            : v.run.queuedShot.value;
-        Isaac.DebugString(
-          `DOING QUEUED SHOT button ${
-            ButtonAction[buttonAction]
-          } INPUT ${value} on render frame: ${Isaac.GetFrameCount()}, game frame: ${gameFrameCount}`,
-        );
         return inputHook === InputHook.IS_ACTION_PRESSED
           ? true
           : v.run.queuedShot.value;
@@ -400,8 +459,9 @@ export class Autofire extends MandatoryModFeature {
       }
     }
 
-    // Handle lockout (which is when we force the shoot button to be pressed).
+    // Handle lockout.
     if (v.run.lockout !== null && gameFrameCount < v.run.lockout.endGameFrame) {
+      /*
       // There is one special case, which is when 1) we are on the frame before lockout ends and 2)
       // the player does not have the button held. In this case, we want to release the button so
       // that the player can activate a new shot on the specific frame that lockout ends. (We can't
@@ -416,31 +476,31 @@ export class Autofire extends MandatoryModFeature {
           return inputHook === InputHook.IS_ACTION_PRESSED ? false : 0;
         }
       }
+      */
 
-      return inputHook === InputHook.IS_ACTION_PRESSED ? true : 1;
+      // First, handle the case where the player has released the key that is supposed to be held
+      // down by lockout. (Once they release the key, all shoot buttons will be forced to false/0.)
+      if (buttonAction === v.run.lockout.buttonAction) {
+        const pressed = Input.IsActionPressed(
+          buttonAction,
+          player.ControllerIndex,
+        );
+        if (!pressed) {
+          v.run.lockout.playerReleasedKey = true;
+        }
+      }
+
+      // We force the shoot button that started the lockout to be pressed (unless the player
+      // released the key already) and all other shoot buttons to be released.
+      const press =
+        buttonAction === v.run.lockout.buttonAction &&
+        !v.run.lockout.playerReleasedKey;
+      const value = press ? v.run.lockout.value : 0;
+
+      return inputHook === InputHook.IS_ACTION_PRESSED ? press : value;
     }
 
     return undefined;
-  }
-
-  @Callback(ModCallback.POST_PLAYER_INIT)
-  debug1(player: EntityPlayer): void {
-    player.AddCollectible(CollectibleType.SPIRIT_SWORD);
-  }
-
-  @CallbackCustom(
-    ModCallbackCustom.POST_KNIFE_INIT_FILTER,
-    KnifeVariant.SPIRIT_SWORD,
-    0,
-  )
-  debug2(): void {
-    const { frameLastSpawned } = this;
-    this.frameLastSpawned = game.GetFrameCount();
-
-    const diff = game.GetFrameCount() - frameLastSpawned;
-    Isaac.DebugString(
-      `GETTING HERE - spawned sword, DIFF: ${diff}, render frame: ${Isaac.GetFrameCount()}, game frame: ${game.GetFrameCount()}`,
-    );
   }
 }
 
