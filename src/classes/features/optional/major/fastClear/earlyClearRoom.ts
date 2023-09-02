@@ -15,6 +15,7 @@ import {
   getRoomName,
   inBeastRoom,
   inBossRoomOf,
+  inMegaSatanRoom,
   isAllPressurePlatesPushed,
   log,
   openAllDoors,
@@ -62,6 +63,13 @@ function checkEarlyClearRoom() {
   // The Great Gideon is exempt from the fast-clear feature (since it can cause the boss item to
   // spawn on a pit from a Rock Explosion).
   if (inBossRoomOf(BossID.GREAT_GIDEON)) {
+    return;
+  }
+
+  // The Mega Satan fight is exempt from the fast-clear feature, since we want to prevent the
+  // cutscene. The "PreventEndMegaSatan" feature handles room clear manually. In rare cases (with
+  // e.g. Astral Projection), it is possible for fast clear to trigger before Mega Satan 2 dies.
+  if (inMegaSatanRoom()) {
     return;
   }
 
