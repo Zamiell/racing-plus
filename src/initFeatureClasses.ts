@@ -136,6 +136,7 @@ const FEATURE_CLASSES = [
   fc.VulnerableGhosts, // 219, 260, 285
   fc.FastGhosts, // 219, 285
   fc.ReplaceCodWorms, // 221
+  fc.PitfallImmobility, // 291
   fc.RemoveStrayPitfalls, // 291
   fc.FastPolties, // 816
   fc.FastNeedles, // 881

@@ -52,8 +52,8 @@ export class Config {
   VulnerableGhosts = true; // 219, 260, 285
   FastGhosts = true; // 219, 285
   ReplaceCodWorms = true; // 221
+  PitfallImmobility = true; // 291
   RemoveStrayPitfalls = true; // 291
-  PitfallStatusImmunity = true; // 291
   FastPolties = true; // 816
   FastNeedles = true; // 881
   FastDusts = true; // 882

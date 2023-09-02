@@ -86,6 +86,7 @@ export { FastHands } from "./classes/features/optional/enemies/FastHands";
 export { FastNeedles } from "./classes/features/optional/enemies/FastNeedles";
 export { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 export { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
+export { PitfallImmobility } from "./classes/features/optional/enemies/PitfallImmobility";
 export { RemoveStrayPitfalls } from "./classes/features/optional/enemies/RemoveStrayPitfalls";
 export { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/RemoveTreasureRoomEnemies";
 export { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";

@@ -3,9 +3,11 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.102.15_ - August ?th, 2023
+### _v0.102.15_ - September 2nd, 2023
 
-- If you have Spirit Sword or Chocolate Milk, the mod will now prevent you from spamming the shoot button faster than once per 3 frames (which is what the autofire feature does). If a spam input is detected, it will be queued for the next legal frame. This means that by pressing the button at a rate faster than autofire, you should exactly match the performance of autofire. Currently, since 3 frames is extremely fast, a queued input would be unlikely to ever occur. However, when autofire is adjusted in season 5, this mechanic will be more noticeable.
+- If you have Spirit Sword or Chocolate Milk, the delay between autofire shots has been increased from 3 to 5 game frames.
+- If you have Spirit Sword or Chocolate Milk and are not using autofire, the mod will now prevent you from spamming the shoot button faster than once per 5 frames. (Otherwise, using autofire would not be optimal.)
+  - If an illegal input is detected, a shoot input will be queued on the next legal frame. In other words, if you can spam a shoot button six or more times per second, then you will perform shoot inputs on exactly the same frames that someone with autofire would.
 - Fixed the bug where the photos after Mom would not spawn under certain conditions. (Thanks 3kch1)
 
 ### _v0.102.14_ - June 19th, 2023

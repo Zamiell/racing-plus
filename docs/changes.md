@@ -248,8 +248,11 @@ Post-flip actions:
 
 - `0408` <!-- FastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
 - `0409` <!-- ReplaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
-- `0410` <!-- RemoveStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
-- `0411` <!-- PitfallStatusImmunity 291 --> Pitfalls are now immune from status effects.
+- `0410` <!-- PitfallImmobility 291 --> Pitfalls are no longer able to move.
+
+> Why? It is probably a bug in the game that Pitfalls are able to be affected by e.g. Strange Attractor.
+
+- `0411` <!-- RemoveStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
 - `0412` <!-- FastPolties 816 --> Polties & Kinetis will now immediately show themselves.
 - `0413` <!-- FastNeedles 881 --> Needles & Pasties will now spend less time underground.
 - `0414` <!-- FastDusts 882 --> Dusts will now never disappear.

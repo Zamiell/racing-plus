@@ -4,5 +4,5 @@
  * converted to the applicable collectible type.
  */
 export type ServerCollectibleID = int & {
-  readonly __serverCollectibleIDBrand: symbol;
+  readonly __serverCollectibleIDBrand: unique symbol;
 };

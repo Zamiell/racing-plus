@@ -541,12 +541,12 @@ export const ENEMY_CHANGES_1 = [
     ],
   ],
   [
-    "RemoveStrayPitfalls", // 291
+    "PitfallImmobility", // 291
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0410",
-      "Remove stray Pitfalls",
-      "Kill all Pitfalls on room clear.",
+      "Pitfall immunity",
+      "Make Pitfalls immune to effects that move them.",
     ],
   ],
 ] as const satisfies ConfigDescriptions;
@@ -554,12 +554,12 @@ export const ENEMY_CHANGES_1 = [
 // 0411-0420
 export const ENEMY_CHANGES_2 = [
   [
-    "PitfallStatusImmunity", // 291
+    "RemoveStrayPitfalls", // 291
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0411",
-      "Pitfall immunity",
-      "Make Pitfalls immune to all status effects.",
+      "Remove stray Pitfalls",
+      "Kill all Pitfalls on room clear.",
     ],
   ],
   [

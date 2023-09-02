@@ -2,6 +2,16 @@
 
 import type { PlayerType } from "isaac-typescript-definitions";
 
+export interface SeasonDescription {
+  readonly X: int;
+  readonly Y: int;
+  readonly numChars: int;
+  readonly charPositions: readonly CharPosition[];
+  readonly buildPositions?: readonly BuildPosition[];
+  readonly numBuildVetos?: int;
+  readonly hidden?: boolean;
+}
+
 export class CharPosition {
   readonly character: PlayerType;
   readonly x: int;
@@ -24,14 +34,4 @@ export class BuildPosition {
     this.x = x;
     this.y = y;
   }
-}
-
-export interface SeasonDescription {
-  readonly X: int;
-  readonly Y: int;
-  readonly numChars: int;
-  readonly charPositions: readonly CharPosition[];
-  readonly buildPositions?: readonly BuildPosition[];
-  readonly numBuildVetos?: int;
-  readonly hidden?: boolean;
 }
