@@ -45,10 +45,8 @@ const NORMAL_GAME_FRAME_DELAY = 2;
  * It is possible to manually spam at a rate of once per 3 frames, but this results in Spirit Sword
  * and Chocolate Milk becoming too powerful. Thus, we manually enforce a 5 frame delay for those
  * collectibles.
- *
- * TODO: Change from 3 to 5 in R+7 Season 5.
  */
-const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 15;
+const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 5;
 
 const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
