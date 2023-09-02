@@ -10,6 +10,7 @@
   - If an illegal input is detected, a shoot input will be queued on the next legal frame. In other words, if you can spam a shoot button six or more times per second, then you will perform shoot inputs on exactly the same frames that someone with autofire would.
 - Fixed the bug where the photos after Mom would not spawn under certain conditions. (Thanks 3kch1)
 - Fixed the bug where the Lemegeton streak text would not show up properly. (Thanks KiraKeepKool)
+- Fixed the bug where The Chest room #20059 was unavoidable damage. (Thanks sisuka)
 
 ### _v0.102.14_ - June 19th, 2023
 
