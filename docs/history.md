@@ -3,7 +3,7 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.102.15_ - September 2nd, 2023
+### _v0.103.0_ - September 2nd, 2023
 
 - If you have Spirit Sword or Chocolate Milk, the delay between autofire shots has been increased from 3 to 5 game frames.
 - If you have Spirit Sword or Chocolate Milk and are not using autofire, the mod will now prevent you from spamming the shoot button faster than once per 5 frames. (Otherwise, using autofire would not be optimal.)
@@ -11,6 +11,7 @@
 - Fixed the bug where the photos after Mom would not spawn under certain conditions. (Thanks 3kch1)
 - Fixed the bug where the Lemegeton streak text would not show up properly. (Thanks KiraKeepKool)
 - Fixed the bug where The Chest room #20059 was unavoidable damage. (Thanks sisuka)
+- Fixed the bug where Pitfalls would be affected by Strange Attractor. (Thanks Gamonymous)
 
 ### _v0.102.14_ - June 19th, 2023
 

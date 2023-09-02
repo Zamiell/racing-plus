@@ -1,5 +1,3 @@
-import { validateCustomEnum } from "isaacscript-common";
-
 export const ChallengeCustom = {
   SEASON_1: Isaac.GetChallengeIdByName("R+7 Season 1"),
   SEASON_2: Isaac.GetChallengeIdByName("R+7 Season 2"),
@@ -10,4 +8,4 @@ export const ChallengeCustom = {
 } as const;
 
 /** Comment out this check if a season is in alpha. */
-validateCustomEnum("ChallengeCustom", ChallengeCustom);
+// validateCustomEnum("ChallengeCustom", ChallengeCustom);
