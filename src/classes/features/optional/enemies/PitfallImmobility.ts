@@ -8,9 +8,6 @@ export class PitfallImmobility extends ConfigurableModFeature {
 
   @Callback(ModCallback.POST_NPC_UPDATE, EntityType.PITFALL)
   postNPCUpdatePitfall(pitfall: Entity): void {
-    // TODO: get Gamonymous to reproduce bug:
-    // https://www.youtube.com/watch?t=998&v=9LhnzzWaadM&feature=youtu.be
-    // (I can't reproduce using console to spawn a Pitfall)
     pitfall.Velocity = VectorZero;
   }
 }
