@@ -193,7 +193,6 @@ export class StreakText extends MandatoryModFeature {
   // 3, 712
   @Callback(ModCallback.POST_USE_ITEM, CollectibleType.LEMEGETON)
   postUseItemLemegeton(): boolean | undefined {
-    Isaac.DebugString("GETTING HERE 1");
     const wisp = this.getItemWispThatJustSpawned();
     if (wisp !== undefined) {
       const collectibleName = getCollectibleName(
@@ -201,7 +200,6 @@ export class StreakText extends MandatoryModFeature {
       );
       setStreakText(collectibleName);
     }
-    Isaac.DebugString("GETTING HERE 2");
 
     return undefined;
   }
