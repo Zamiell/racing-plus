@@ -52,6 +52,12 @@ export class RacingPlusIcon extends MandatoryModFeature {
       return;
     }
 
+    // The `HUD.IsVisible` method does not take into account `SeedEffect.NO_HUD`.
+    const seeds = game.GetSeeds();
+    if (seeds.HasSeedEffect(SeedEffect.NO_HUD)) {
+      return;
+    }
+
     const spriteLayer = socketClientIsActive()
       ? RacingPlusSpriteLayer.GREEN
       : RacingPlusSpriteLayer.BLUE;

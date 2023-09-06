@@ -7,6 +7,7 @@ import {
   PickupVariant,
   PlayerType,
   RoomType,
+  SeedEffect,
 } from "isaac-typescript-definitions";
 import {
   Callback,
@@ -40,8 +41,7 @@ const TAINTED_CHARACTER_UI_OFFSET = Vector(4, 24);
 export const ANOTHER_UI_ICON_OFFSET = Vector(16, 0);
 
 const COLLECTIBLE_OFFSET = Vector(0, 30);
-
-const iconSprite = newMysteryGiftSprite(true);
+const ICON_SPRITE = newMysteryGiftSprite(true);
 
 const v = {
   run: {
@@ -87,8 +87,14 @@ export class FreeDevilItem extends ConfigurableModFeature {
       return;
     }
 
+    // The `HUD.IsVisible` method does not take into account `SeedEffect.NO_HUD`.
+    const seeds = game.GetSeeds();
+    if (seeds.HasSeedEffect(SeedEffect.NO_HUD)) {
+      return;
+    }
+
     const position = getTopLeftUIPositionFreeDevilItem();
-    iconSprite.RenderLayer(CollectibleSpriteLayer.HEAD, position);
+    ICON_SPRITE.RenderLayer(CollectibleSpriteLayer.HEAD, position);
   }
 
   // 35, 100
