@@ -142,10 +142,10 @@ export function convertSecondsToTimerValues(totalSeconds: int): {
   tenths: int;
 } {
   // Calculate the hours digit.
-  const hours = math.floor(totalSeconds / 3600);
+  const hours = Math.floor(totalSeconds / 3600);
 
   // Calculate the minutes digits.
-  let minutes = math.floor(totalSeconds / 60);
+  let minutes = Math.floor(totalSeconds / 60);
   if (hours > 0) {
     minutes -= hours * 60;
   }
@@ -167,7 +167,7 @@ export function convertSecondsToTimerValues(totalSeconds: int): {
   }
 
   // Calculate the seconds digits.
-  const seconds = math.floor(totalSeconds % 60);
+  const seconds = Math.floor(totalSeconds % 60);
   const secondsStringUnpadded = seconds.toString();
   const secondsString = secondsStringUnpadded.padStart(2, "0");
 
@@ -187,8 +187,8 @@ export function convertSecondsToTimerValues(totalSeconds: int): {
 
   // Calculate the tenths digit.
   const rawSeconds = totalSeconds % 60; // 0.000 to 59.999
-  const decimals = rawSeconds - math.floor(rawSeconds);
-  const tenths = math.floor(decimals * 10);
+  const decimals = rawSeconds - Math.floor(rawSeconds);
+  const tenths = Math.floor(decimals * 10);
 
   return { hours, minute1, minute2, second1, second2, tenths };
 }

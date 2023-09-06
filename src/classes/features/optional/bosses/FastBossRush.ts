@@ -228,7 +228,7 @@ export class FastBossRush extends ConfigurableModFeature {
     sfxManager.Play(SoundEffect.SUMMON_SOUND);
 
     // Display the wave number as streak text.
-    const totalWaves = math.floor(NUM_TOTAL_BOSSES / NUM_BOSSES_PER_WAVE);
+    const totalWaves = Math.floor(NUM_TOTAL_BOSSES / NUM_BOSSES_PER_WAVE);
     setStreakText(`Wave ${v.room.currentWave} / ${totalWaves}`);
   }
 

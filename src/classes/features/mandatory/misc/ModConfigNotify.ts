@@ -44,7 +44,7 @@ export class ModConfigNotify extends MandatoryModFeature {
 
     const bottomRightPos = getScreenBottomRightPos();
     const closeToBottom = bottomRightPos.Y - 28;
-    const alpha = (math.min(timer, 60) / 60) * 0.5;
+    const alpha = (Math.min(timer, 60) / 60) * 0.5;
     const color = KColor(1, 1, 0, alpha);
     fonts.pfTempestaSevenCondensed.DrawString(
       NOTIFICATION_TEXT,
