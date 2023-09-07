@@ -3716,12 +3716,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^33.0.2":
-  version: 33.0.2
-  resolution: "isaacscript-common@npm:33.0.2"
+"isaacscript-common@npm:^33.4.1":
+  version: 33.4.1
+  resolution: "isaacscript-common@npm:33.4.1"
   dependencies:
     isaac-typescript-definitions: ^16.0.0
-  checksum: a450bdfaed66077e1b8f60000750d6bc6e038980bba1a911c19b6f9f4c3c0bb6ab896cd2479d1370841e3207600cf9378ee81699322d0625e561ce0af47e208a
+  checksum: 2639abe0c02fcc7edf54105814243435f381bfe3b11a2e7a7bda739f078dc19d1c64d8a179f2d58204b7fc5ed21b308788bc3bdc033d4b409a55b0b143af4628
   languageName: node
   linkType: hard
 
@@ -5030,7 +5030,7 @@ __metadata:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^16.0.0
     isaacscript: ^3.10.1
-    isaacscript-common: ^33.0.2
+    isaacscript-common: ^33.4.1
     isaacscript-lint: ^5.8.5
     isaacscript-spell: ^1.2.41
     isaacscript-tsconfig: ^4.0.0
