@@ -245,9 +245,9 @@ function checkOtherModsEnabled() {
       NUM_BABIES_MOD_ITEMS,
   );
   const correctLastCollectibleType =
-    BabiesModGlobals === undefined
-      ? correctLastCollectibleTypeRacingPlus
-      : correctLastCollectibleTypeRacingPlusBabiesMod;
+    BabiesModEnabled === true
+      ? correctLastCollectibleTypeRacingPlusBabiesMod
+      : correctLastCollectibleTypeRacingPlus;
 
   const lastCollectibleType = mod.getLastCollectibleType();
   if (lastCollectibleType !== correctLastCollectibleType) {
@@ -269,7 +269,7 @@ function checkOtherModsEnabled() {
 }
 
 function checkBabiesModEnabled() {
-  if (BabiesModGlobals === undefined) {
+  if (BabiesModEnabled !== true) {
     return;
   }
 

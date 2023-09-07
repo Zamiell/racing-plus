@@ -145,7 +145,7 @@ export class ShowPills extends ConfigurableModFeature {
   postRender(): void {
     // This feature is disabled if the Babies Mod mod is enabled. (The pills text will overlap with
     // the baby descriptions.)
-    if (BabiesModGlobals !== undefined) {
+    if (BabiesModEnabled === true) {
       return;
     }
 

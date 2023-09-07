@@ -95,7 +95,7 @@ export function setRestartCharacter(character: PlayerType): void {
     if (
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       character === LAST_VANILLA_CHARACTER + 1 &&
-      BabiesModGlobals !== undefined
+      BabiesModEnabled === true
     ) {
       // Random Baby takes the first modded character slot.
     } else {
