@@ -1,6 +1,8 @@
 <!--
 Changes from vanilla:
 - Removed Mom's Knife from the Treasure Room pool.
+- Removed 10 items from the Devil Room pool.
+- Removed 2 items from the Angel Room pool.
 -->
 <?xml-model href="https://wofsauge.github.io/isaac-xml-validator/xsd/itempools.xsd" ?>
 <ItemPools>
@@ -151,6 +153,8 @@ Changes from vanilla:
     <Item Id="111" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Demon Baby-->
     <Item Id="113" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--Mom's Knife-->
+    <!--<Item Id="114" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02"/>-->
     <!--Ouija Board-->
     <Item Id="115" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Dead Bird-->
@@ -1172,7 +1176,7 @@ Changes from vanilla:
     <!--Monster Manual-->
     <Item Id="123" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Forget Me Now-->
-    <Item Id="127" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
+    <!--<Item Id="127" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />-->
     <!--Guppy's Paw-->
     <Item Id="133" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Guppy's Tail-->
@@ -1188,7 +1192,7 @@ Changes from vanilla:
     <!--Sacrificial Dagger-->
     <Item Id="172" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Blood Rights-->
-    <Item Id="186" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="186" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Guppy's Hairball-->
     <Item Id="187" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Guppy's Collar-->
@@ -1204,7 +1208,7 @@ Changes from vanilla:
     <!--Death's Touch-->
     <Item Id="237" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Contract from Below-->
-    <Item Id="241" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="241" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Dark Matter-->
     <Item Id="259" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Missing Page 2-->
@@ -1224,7 +1228,7 @@ Changes from vanilla:
     <!--Incubus-->
     <Item Id="360" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Betrayal-->
-    <Item Id="391" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="391" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Maw Of The Void-->
     <Item Id="399" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Athame-->
@@ -1234,7 +1238,7 @@ Changes from vanilla:
     <!--Lusty Blood-->
     <Item Id="411" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Cambion Conception-->
-    <Item Id="412" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="412" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Succubus-->
     <Item Id="417" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Black Powder-->
@@ -1242,7 +1246,7 @@ Changes from vanilla:
     <!--Multidimensional Baby-->
     <Item Id="431" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--My Shadow-->
-    <Item Id="433" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="433" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Mega Blast-->
     <Item Id="441" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
     <!--Dark Prince's Crown-->
@@ -1250,7 +1254,7 @@ Changes from vanilla:
     <!--Eye of Belial-->
     <Item Id="462" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Shade-->
-    <Item Id="468" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="468" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Plan C-->
     <Item Id="475" Weight="0.2" DecreaseBy="0.2" RemoveOn="0.02" />
     <!--Void-->
@@ -1272,7 +1276,7 @@ Changes from vanilla:
     <!--Book of the Dead-->
     <Item Id="545" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--2Spooky-->
-    <Item Id="554" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="554" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Sulfur-->
     <Item Id="556" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Blood Oath-->
@@ -1292,13 +1296,13 @@ Changes from vanilla:
     <!--Guppy's Eye-->
     <Item Id="665" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--A Pound of Flesh-->
-    <Item Id="672" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="672" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Lil Abaddon-->
     <Item Id="679" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Hungry Soul-->
     <Item Id="684" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Sanguine Bond-->
-    <Item Id="692" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="692" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Heartbreak-->
     <Item Id="694" Weight="0.5" DecreaseBy="0.5" RemoveOn="0.05" />
     <!--Bloody Gust-->
@@ -1390,7 +1394,7 @@ Changes from vanilla:
     <!--Purity-->
     <Item Id="407" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Immaculate Conception-->
-    <Item Id="413" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="413" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Crown Of Light-->
     <Item Id="415" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Circle of Protection-->
@@ -1446,7 +1450,7 @@ Changes from vanilla:
     <!--Vade Retro-->
     <Item Id="653" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Jar of Wisps-->
-    <Item Id="685" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
+    <!--<Item Id="685" Weight="1" DecreaseBy="1" RemoveOn="0.1" />-->
     <!--Soul Locket-->
     <Item Id="686" Weight="1" DecreaseBy="1" RemoveOn="0.1" />
     <!--Sacred Orb-->

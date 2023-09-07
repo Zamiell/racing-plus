@@ -3,6 +3,24 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.103.2_ - September 7th, 2023
+
+- The following items are now removed from the Devil Room pool:
+  - 127 - Forget Me Now
+  - 186 - Blood Rights
+  - 241 - Contract from Below
+  - 391 - Betrayal
+  - 412 - Cambion Conception
+  - 433 - My Shadow
+  - 468 - Shade
+  - 554 - 2Spooky
+  - 672 - A Pound of Flesh
+  - 692 - Sanguine Bond
+- The following items are now removed from the Angel Room pool:
+  - 413 - Immaculate Conception
+  - 685 - Jar of Wisps
+- R+7 Season 5 is now available for beta-testing. You can read more about it here: https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-5-babies
+
 ### _v0.103.2_ - September 2nd, 2023
 
 - Fixed the bug where the cutscene would play after Mega Satan was defeated during certain circumstances. (Thanks Monkeypot)

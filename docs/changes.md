@@ -63,9 +63,23 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 ### 4) Devil Room & Angel Room Rebalancing
 
-- `0004` <!-- BetterDevilAngelRooms --> Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
-  - Average items per devil room are increased from 1.78 to 2.31.
-  - Average items per angel room are decreased from 1.29 to 1.00.
+- `0004` <!-- BetterDevilAngelRooms & itempools.xml--> Devil Rooms and Angel Rooms have been [customized](changes-room.md#devil--angel-room-rebalancing) for the purposes of slightly increasing the average number of items per room. Specifically:
+  - The average items per devil room are increased from 1.78 to 2.31.
+  - The following items are removed from the Devil Room pool:
+    - 127 - Forget Me Now
+    - 186 - Blood Rights
+    - 241 - Contract from Below
+    - 391 - Betrayal
+    - 412 - Cambion Conception
+    - 433 - My Shadow
+    - 468 - Shade
+    - 554 - 2Spooky
+    - 672 - A Pound of Flesh
+    - 692 - Sanguine Bond
+  - The average items per angel room are decreased from 1.29 to 1.00.
+  - The following items are removed from the Angel Room pool:
+    - 413 - Immaculate Conception
+    - 685 - Jar of Wisps
 
 > Why? The best players separate themselves from the mid-tier players by not taking any damage and getting every Devil Room / Angel Room. If the rewards from these rooms are not consistent enough, then the best players are not able to consistently win races.
 
