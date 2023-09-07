@@ -1,5 +1,10 @@
 import { Keyboard } from "isaac-typescript-definitions";
-import { log, logAndPrint, setLogFunctionsGlobal } from "isaacscript-common";
+import {
+  log,
+  logAndPrint,
+  setLogFunctionsGlobal,
+  setTracebackFunctionsGlobal,
+} from "isaacscript-common";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { hotkeys } from "./modConfigMenu";
@@ -32,8 +37,10 @@ export function hotkey2Function(): void {
 /** Executed either from using the "debug" console command or using the "Debug" active item. */
 export function debugFunction(params?: string): void {
   g.debug = true;
-  mod.saveDataManagerSetGlobal();
+
   setLogFunctionsGlobal();
+  setTracebackFunctionsGlobal();
+  mod.saveDataManagerSetGlobal();
 
   log("Entering debug function.");
   debugCode(params);
