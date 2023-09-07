@@ -3772,9 +3772,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.10.1":
-  version: 3.10.1
-  resolution: "isaacscript@npm:3.10.1"
+"isaacscript@npm:^3.10.2":
+  version: 3.10.2
+  resolution: "isaacscript@npm:3.10.2"
   dependencies:
     ajv: ^8.12.0
     chalk: 4.1.2
@@ -3784,7 +3784,7 @@ __metadata:
     jsonc-parser: ^3.2.0
     klaw-sync: ^6.0.0
     moment: ^2.29.4
-    npm-check-updates: ^16.13.2
+    npm-check-updates: ^16.13.3
     prompt: ^1.3.0
     source-map-support: ^0.5.21
     sync-directory: ^6.0.4
@@ -3797,7 +3797,7 @@ __metadata:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: src/main.js
-  checksum: 5a888ea7c5a41714623469fa9b51c29651fcb994e166f3ac06bd8642e25f6ef80695c7ccc7913c9b1f1518535dc4d9aff8ecde1bb1e6f5fc9a3330b91f091487
+  checksum: 750a2e299e39f87d58bdb0623e5886e71ec7d04a737750500bbdc1b168767fa03aa7d4aa135681514217c5f7f9b90c68262f650115722351ac82de63e53c1587
   languageName: node
   linkType: hard
 
@@ -4499,9 +4499,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^16.13.2":
-  version: 16.13.2
-  resolution: "npm-check-updates@npm:16.13.2"
+"npm-check-updates@npm:^16.13.3":
+  version: 16.13.3
+  resolution: "npm-check-updates@npm:16.13.3"
   dependencies:
     chalk: ^5.3.0
     cli-table3: ^0.6.3
@@ -4537,7 +4537,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: 1d57cf83c7905ac22b72a0c0c1e618226e404c7d535d2787a6127c6249af22ac61a94bed410ea8a27f81f3a179f02a6338d57eb37c825940c7ac3d390f9e3593
+  checksum: ca065150fe6e01d03cd36410dd2ba3e8fae076d6e2f65a7a947af5f8287a83d9ec97a61a5ff82cc18cb4b5e6659b023fd2f838fa25bb379d6a725933b25df7a8
   languageName: node
   linkType: hard
 
@@ -5029,7 +5029,7 @@ __metadata:
   dependencies:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^16.0.0
-    isaacscript: ^3.10.1
+    isaacscript: ^3.10.2
     isaacscript-common: ^33.5.0
     isaacscript-lint: ^5.8.5
     isaacscript-spell: ^1.2.41
