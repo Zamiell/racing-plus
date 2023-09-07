@@ -61,6 +61,6 @@ export function speedrunResetAllVarsOnNextReset(): void {
 }
 
 // Make some specific functions global for other mods to use.
-declare let RacingPlusIsOnFirstCharacter: () => boolean | undefined;
+declare let RacingPlusIsOnFirstCharacter: (() => boolean) | undefined;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-autofix/prefer-const
 RacingPlusIsOnFirstCharacter = isOnFirstCharacter;
