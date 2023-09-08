@@ -294,7 +294,8 @@ function checkBabiesModEnabled() {
     onFirstFloor() &&
     inStartingRoom() &&
     roomVisitedCount === 1 &&
-    !isRandomBaby
+    !isRandomBaby &&
+    !onSeason(5) // We might get here before the mod switches from Isaac to Random Baby.
   ) {
     v.run.playingAsNonBaby = true;
     log("Error: Babies Mod detected and playing a non-baby.");
