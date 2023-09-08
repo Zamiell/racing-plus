@@ -74,7 +74,7 @@ export class CheckErrors extends MandatoryModFeature {
       this.drawErrorText(
         "You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
       );
-    } else if (v.run.babiesModEnabled) {
+    } else if (v.run.playingAsNonBaby) {
       this.drawErrorText(
         "You must turn off The Babies Mod when playing characters other than Random Baby.",
       );
@@ -82,10 +82,6 @@ export class CheckErrors extends MandatoryModFeature {
       const thingToSet = onSeason(2) ? "item bans" : "a character order";
       this.drawErrorText(
         `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
-      );
-    } else if (v.run.season4StorageHotkeyNotSet) {
-      this.drawErrorText(
-        "You must set a hotkey to store items using Mod Config Menu. (Restart the run after this is done.)",
       );
     } else if (v.run.seasonGameRecentlyOpened) {
       const text = this.getSeasonErrorMessage(
@@ -105,6 +101,14 @@ export class CheckErrors extends MandatoryModFeature {
         getBuildBansTime() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
+    } else if (v.run.season4StorageHotkeyNotSet) {
+      this.drawErrorText(
+        "You must set a hotkey to store items using Mod Config Menu. (Restart the run after this is done.)",
+      );
+    } else if (v.run.season5ModNotEnabled) {
+      this.drawErrorText(
+        "You must download and enable The Babies Mod when playing Season 5.",
+      );
     }
   }
 
@@ -171,10 +175,11 @@ export class CheckErrors extends MandatoryModFeature {
     checkOtherModsEnabled();
     checkBabiesModEnabled();
     checkInvalidCharOrder();
-    checkStorageHotkey();
     checkGameRecentlyOpened();
     checkConsoleRecentlyUsed();
     checkBansRecentlySet();
+    checkStorageHotkey();
+    checkSeason5Mod();
 
     if (hasErrors()) {
       removeAllDoors();
@@ -279,6 +284,8 @@ function checkBabiesModEnabled() {
    * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
    */
   const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+  v.run.babiesModEnabled = randomBaby !== -1;
 
   const isRandomBaby = isCharacter(player, randomBaby);
   const roomVisitedCount = getRoomVisitedCount();
@@ -289,8 +296,8 @@ function checkBabiesModEnabled() {
     roomVisitedCount === 1 &&
     !isRandomBaby
   ) {
-    v.run.babiesModEnabled = true;
-    log("Error: Babies Mod detected.");
+    v.run.playingAsNonBaby = true;
+    log("Error: Babies Mod detected and playing a non-baby.");
   }
 }
 
@@ -298,13 +305,6 @@ function checkInvalidCharOrder() {
   if (inSpeedrun() && !hasValidCharacterOrder()) {
     v.run.invalidCharOrder = true;
     log("Error: Invalid character order detected.");
-  }
-}
-
-function checkStorageHotkey() {
-  if (onSeason(4) && hotkeys.storage === -1) {
-    v.run.season4StorageHotkeyNotSet = true;
-    log("Error: Storage hotkey not set.");
   }
 }
 
@@ -355,5 +355,19 @@ function checkBansRecentlySet() {
   if (time <= bansUnlockTime) {
     v.run.season2BansRecentlySet = true;
     log("Error: Build bans recently set.");
+  }
+}
+
+function checkStorageHotkey() {
+  if (onSeason(4) && hotkeys.storage === -1) {
+    v.run.season4StorageHotkeyNotSet = true;
+    log("Error: Storage hotkey not set.");
+  }
+}
+
+function checkSeason5Mod() {
+  if (onSeason(5) && !v.run.babiesModEnabled) {
+    v.run.season5ModNotEnabled = true;
+    log("Error: Season 5 mod not found.");
   }
 }

@@ -6,20 +6,28 @@
 // eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
+    babiesModEnabled: false,
+
     afterbirthPlus: false,
     corrupted: false,
     incompleteSave: false,
     otherModsEnabled: false,
-    babiesModEnabled: false,
+    playingAsNonBaby: false,
     invalidCharOrder: false,
-    season4StorageHotkeyNotSet: false,
     seasonGameRecentlyOpened: false,
     seasonConsoleRecentlyUsed: false,
     season2BansRecentlySet: false,
+    season4StorageHotkeyNotSet: false,
+    season5ModNotEnabled: false,
   },
 };
 
 export function hasErrors(): boolean {
-  const errors = Object.values(v.run);
-  return errors.includes(true);
+  for (const [key, value] of Object.entries(v.run)) {
+    if (key !== "babiesModEnabled" && value) {
+      return true;
+    }
+  }
+
+  return false;
 }
