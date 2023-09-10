@@ -1,4 +1,4 @@
-import { EntityCollisionClass } from "isaac-typescript-definitions";
+import { ActiveSlot, EntityCollisionClass } from "isaac-typescript-definitions";
 import {
   anyPlayerHoldingItem,
   getAllPlayers,
@@ -47,7 +47,13 @@ export function preSpawnCheckpoint(): void {
     for (const collectibleType of COLLECTIBLES_THAT_INTERFERE_WITH_CHECKPOINT) {
       const numCollectible = player.GetCollectibleNum(collectibleType);
       repeat(numCollectible, () => {
-        player.RemoveCollectible(collectibleType);
+        // We don't want to affect transformations.
+        player.RemoveCollectible(
+          collectibleType,
+          false,
+          ActiveSlot.PRIMARY,
+          false,
+        );
       });
     }
   }
