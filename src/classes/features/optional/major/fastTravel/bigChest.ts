@@ -31,6 +31,7 @@ import {
   onSeason,
   onSpeedrunWithDarkRoomGoal,
   postSpawnCheckpoint,
+  preSpawnCheckpoint,
 } from "../../../../../speedrun/utilsSpeedrun";
 import { spawnTrophy } from "../../../mandatory/misc/Trophy";
 import { spawnVictoryLapButton } from "../../../race/EndOfRaceButtons";
@@ -275,6 +276,7 @@ function replaceBigChest(
     }
 
     case BigChestReplacementAction.CHECKPOINT: {
+      preSpawnCheckpoint();
       const seed = seeds.GetStartSeed();
       const checkpoint = mod.spawnCollectible(
         CollectibleTypeCustom.CHECKPOINT,

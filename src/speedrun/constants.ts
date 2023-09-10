@@ -1,4 +1,5 @@
 import type { Challenge } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import { ReadonlyMap, ReadonlySet } from "isaacscript-common";
 import { ChallengeCustom } from "../enums/ChallengeCustom";
 
@@ -77,3 +78,8 @@ export const SEASON_NUM_TO_CHALLENGE = {
   4: ChallengeCustom.SEASON_4,
   5: ChallengeCustom.SEASON_5,
 } as const;
+
+export const COLLECTIBLES_THAT_INTERFERE_WITH_CHECKPOINT = [
+  CollectibleType.DAMOCLES_PASSIVE, // 658
+  CollectibleType.IBS, // 725
+] as const;

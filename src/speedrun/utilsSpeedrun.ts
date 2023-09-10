@@ -1,13 +1,16 @@
 import { EntityCollisionClass } from "isaac-typescript-definitions";
 import {
   anyPlayerHoldingItem,
+  getAllPlayers,
   isEven,
   removeCollectiblePickupDelay,
+  repeat,
 } from "isaacscript-common";
 import { isSeededDeathActive } from "../classes/features/mandatory/misc/seededDeath/v";
 import { speedrunGetCharacterNum } from "../classes/features/speedrun/characterProgress/v";
 import { mod } from "../mod";
 import {
+  COLLECTIBLES_THAT_INTERFERE_WITH_CHECKPOINT,
   CUSTOM_CHALLENGES_SET,
   CUSTOM_CHALLENGES_THAT_ALTERNATE_BETWEEN_CHEST_AND_DARK_ROOM,
   SEASON_NUM_TO_CHALLENGE,
@@ -36,6 +39,18 @@ export function onSpeedrunWithDarkRoomGoal(): boolean {
   }
 
   return false;
+}
+
+export function preSpawnCheckpoint(): void {
+  // Before spawning a Checkpoint, remove any collectibles that could conflict with picking it up.
+  for (const player of getAllPlayers()) {
+    for (const collectibleType of COLLECTIBLES_THAT_INTERFERE_WITH_CHECKPOINT) {
+      const numCollectible = player.GetCollectibleNum(collectibleType);
+      repeat(numCollectible, () => {
+        player.RemoveCollectible(collectibleType);
+      });
+    }
+  }
 }
 
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
