@@ -13,6 +13,7 @@ import {
   ModCallbackCustom,
   SHOOTING_ACTIONS,
   game,
+  getLastElement,
   getShootActions,
   hasCollectible,
   isShootAction,
@@ -227,14 +228,26 @@ export class Autofire extends MandatoryModFeature {
     }
   }
 
+  /**
+   * It is only a new shoot press when:
+   * - We were not pressing any shoot keys on the previous frame.
+   * - We are pressing a shoot key on this frame.
+   */
   isNewShootPress(buttonAction: ButtonAction): boolean {
     const shootHistory =
       v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
+    const lastElement = getLastElement(shootHistory);
 
-    const secondLastElement = shootHistory[shootHistory.length - 2];
-    const lastElement = shootHistory[shootHistory.length - 1];
+    return !this.wasPressingAnyShootKeysLastFrame() && lastElement === true;
+  }
 
-    return secondLastElement !== true && lastElement === true;
+  wasPressingAnyShootKeysLastFrame(): boolean {
+    return SHOOTING_ACTIONS.some((buttonAction) => {
+      const shootHistory =
+        v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
+      const secondLastElement = shootHistory[shootHistory.length - 2];
+      return secondLastElement === true;
+    });
   }
 
   /**
