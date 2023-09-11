@@ -1,4 +1,5 @@
 import {
+  EntityFlag,
   EntityType,
   ModCallback,
   SoundEffect,
@@ -60,11 +61,19 @@ export class AppearHands extends ConfigurableModFeature {
   /**
    * Play a custom animation when hands first spawn. (They jump up to the ceiling from the floor.)
    *
+   * However, we don't need a custom animation for charmed enemies, since the player presumably
+   * already knows that they have a friendly Mom's Hand around and does not require a visual
+   * confirmation of this.
+   *
    * This cannot be in the `POST_NPC_INIT` callback because if it is done there, a shadow will
    * appear below the hand, which does not look very good, and I don't know of how to remove the
    * shadow.
    */
   playCustomAppearAnimation(npc: EntityNPC): void {
+    if (npc.HasEntityFlags(EntityFlag.FRIENDLY)) {
+      return;
+    }
+
     const sprite = npc.GetSprite();
     sprite.Play("Appear", true);
   }
