@@ -1041,7 +1041,7 @@ export const CUTSCENE_CHANGES = [
 // 0901-0910
 export const BUG_FIXES_1 = [
   [
-    "Battery9VoltSynergy",
+    "Battery9VoltSynergy", // 63+116
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0901",
@@ -1050,16 +1050,16 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "BatteryBumFix",
+    "GoatHeadInBossRoom", // 215
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0902",
-      "Fix Battery Bums",
-      "Make Battery Bums properly charge pocket active items.",
+      "Fix Goat Head in Boss Rooms",
+      "Make Goat Head / Eucharist properly open the Devil Room / Angel Room door when taking it in a Boss Room.",
     ],
   ],
   [
-    "GoatHeadInBossRoom",
+    "DamoclesSpikesFix", // 577
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0903",
@@ -1068,10 +1068,19 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "PreventUltraSecretRoomSoftlock",
+    "BatteryBumFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0904",
+      "Fix Battery Bums",
+      "Make Battery Bums properly charge pocket active items.",
+    ],
+  ],
+  [
+    "PreventUltraSecretRoomSoftlock",
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0905",
       "Fix Ultra Secret Rooms softlocks",
       "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
@@ -1080,7 +1089,7 @@ export const BUG_FIXES_1 = [
     "RemoveInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0906",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
@@ -1089,7 +1098,7 @@ export const BUG_FIXES_1 = [
     "TaintedIsaacCollectibleDelay",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
+      "0907",
       "Fix Tainted Isaac chest bugs",
       "Make Tainted Isaac not automatically pick up pedestal items from chests.",
     ],
@@ -1098,7 +1107,7 @@ export const BUG_FIXES_1 = [
     "TeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0907",
+      "0908",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],

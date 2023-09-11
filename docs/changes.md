@@ -413,13 +413,14 @@ Post-flip actions:
 
 ### 9) Bug Fixes
 
-- `0901` <!-- Battery9VoltSynergy --> The Battery & 9 Volt will now synergize together properly.
-- `0902` <!-- BatteryBumFix --> Battery Bums will now properly charge pocket active items.
-- `0903` <!-- GoatHeadInBossRoom --> Goat Head / Eucharist will now properly open the Devil Room / Angel Room door if it is taken inside of a Boss Room.
-- `0904` <!-- PreventUltraSecretRoomSoftlock --> You can no longer be softlocked in Ultra Secret Rooms.
-- `0905` <!-- RemoveInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
-- `0906` <!-- TaintedIsaacCollectibleDelay --> Tainted Isaac will no longer automatically pick up pedestal items from chests if they happen to rotate at the same time the chest is opened.
-- `0907` <!-- TeleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
+- `0901` <!-- Battery9VoltSynergy 63+116 --> The Battery & 9 Volt will now synergize together properly.
+- `0902` <!-- GoatHeadInBossRoom 215 --> Goat Head / Eucharist will now properly open the Devil Room / Angel Room door if it is taken inside of a Boss Room.
+- `0903` <!-- DamoclesSpikesFix 577 --> Damocles will no longer spawn items on top of spikes.
+- `0904` <!-- BatteryBumFix --> Battery Bums will now properly charge pocket active items.
+- `0905` <!-- PreventUltraSecretRoomSoftlock --> You can no longer be softlocked in Ultra Secret Rooms.
+- `0906` <!-- RemoveInvalidPitfalls --> Pitfalls that incorrectly respawn after not having time to finish their disappearing animation are removed.
+- `0907` <!-- TaintedIsaacCollectibleDelay --> Tainted Isaac will no longer automatically pick up pedestal items from chests if they happen to rotate at the same time the chest is opened.
+- `0908` <!-- TeleportInvalidEntrance --> All forms of teleport will no longer send you to an invalid entrance.
 - <!-- FastTravel --> Returning from a crawl space in a Boss Rush or Devil Deal will no longer send you to the wrong room. (This is part of Fast-Travel.)
 - <!-- FastTravel --> The trapdoor / beam of light in I AM ERROR rooms will no longer be accessible if the room is not cleared. (This is part of Fast-Travel.)
 - <!-- SeededTeleports --> Teleport!, Cursed Eye, Broken Remote, and Telepills teleports are now seeded properly.

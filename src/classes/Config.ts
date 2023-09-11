@@ -100,9 +100,10 @@ export class Config {
   FastTeleport = true;
 
   // Bug fixes
-  Battery9VoltSynergy = true;
+  Battery9VoltSynergy = true; // 63+116
+  GoatHeadInBossRoom = true; // 215
+  DamoclesSpikesFix = true; // 577
   BatteryBumFix = true;
-  GoatHeadInBossRoom = true;
   PreventUltraSecretRoomSoftlock = true;
   RemoveInvalidPitfalls = true;
   TaintedIsaacCollectibleDelay = true;
