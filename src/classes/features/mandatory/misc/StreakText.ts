@@ -293,10 +293,8 @@ export class StreakText extends MandatoryModFeature {
   shouldShowLevelText(): boolean {
     const challenge = Isaac.GetChallenge();
 
-    /**
-     * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
-     * -1.)
-     */
+    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
+    // -1.)
     const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
 
     return (

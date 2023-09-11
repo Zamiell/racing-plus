@@ -8,7 +8,7 @@ import {
   log,
   restart,
 } from "isaacscript-common";
-import { consoleCommand } from "../../../../utils";
+import { consoleCommand, isBabiesModEnabled } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const v = {
@@ -95,7 +95,7 @@ export function setRestartCharacter(character: PlayerType): void {
     if (
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       character === LAST_VANILLA_CHARACTER + 1 &&
-      BabiesModEnabled === true
+      isBabiesModEnabled()
     ) {
       // Random Baby takes the first modded character slot.
     } else {

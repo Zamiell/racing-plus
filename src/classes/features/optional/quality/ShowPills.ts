@@ -26,6 +26,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
+import { isBabiesModEnabled } from "../../../../utils";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -145,7 +146,7 @@ export class ShowPills extends ConfigurableModFeature {
   postRender(): void {
     // This feature is disabled if the Babies Mod mod is enabled. (The pills text will overlap with
     // the baby descriptions.)
-    if (BabiesModEnabled === true) {
+    if (isBabiesModEnabled()) {
       return;
     }
 

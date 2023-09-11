@@ -6,8 +6,6 @@
 // eslint-disable-next-line isaacscript/require-v-registration
 export const v = {
   run: {
-    babiesModEnabled: false,
-
     afterbirthPlus: false,
     corrupted: false,
     incompleteSave: false,
@@ -23,11 +21,6 @@ export const v = {
 };
 
 export function hasErrors(): boolean {
-  for (const [key, value] of Object.entries(v.run)) {
-    if (key !== "babiesModEnabled" && value) {
-      return true;
-    }
-  }
-
-  return false;
+  const errors = Object.values(v.run);
+  return errors.includes(true);
 }

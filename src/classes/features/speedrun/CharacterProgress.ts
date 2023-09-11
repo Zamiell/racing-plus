@@ -259,10 +259,8 @@ function getCurrentCharacter(): PlayerType {
   // Certain seasons have a set character.
   const challenge = Isaac.GetChallenge();
   if (challenge === ChallengeCustom.SEASON_5) {
-    /**
-     * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
-     * -1.)
-     */
+    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
+    // -1.)
     const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
     // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     if (randomBaby !== -1) {

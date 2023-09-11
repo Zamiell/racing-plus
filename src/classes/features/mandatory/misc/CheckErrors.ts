@@ -26,6 +26,7 @@ import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
+import { isBabiesModEnabled } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
@@ -249,10 +250,9 @@ function checkOtherModsEnabled() {
       NUM_RACING_PLUS_ITEMS +
       NUM_BABIES_MOD_ITEMS,
   );
-  const correctLastCollectibleType =
-    BabiesModEnabled === true
-      ? correctLastCollectibleTypeRacingPlusBabiesMod
-      : correctLastCollectibleTypeRacingPlus;
+  const correctLastCollectibleType = isBabiesModEnabled()
+    ? correctLastCollectibleTypeRacingPlusBabiesMod
+    : correctLastCollectibleTypeRacingPlus;
 
   const lastCollectibleType = mod.getLastCollectibleType();
   if (lastCollectibleType !== correctLastCollectibleType) {
@@ -274,22 +274,14 @@ function checkOtherModsEnabled() {
 }
 
 function checkBabiesModEnabled() {
-  if (BabiesModEnabled !== true) {
-    return;
-  }
-
   const player = Isaac.GetPlayer();
-
-  /**
-   * We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
-   */
-  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-  v.run.babiesModEnabled = randomBaby !== -1;
-
-  const isRandomBaby = isCharacter(player, randomBaby);
   const roomVisitedCount = getRoomVisitedCount();
 
+  // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
+  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+  const isRandomBaby = isCharacter(player, randomBaby);
+
+  // We prevent
   if (
     onFirstFloor() &&
     inStartingRoom() &&
@@ -367,7 +359,7 @@ function checkStorageHotkey() {
 }
 
 function checkSeason5Mod() {
-  if (onSeason(5) && !v.run.babiesModEnabled) {
+  if (onSeason(5) && !isBabiesModEnabled()) {
     v.run.season5ModNotEnabled = true;
     log("Error: Season 5 mod not found.");
   }
