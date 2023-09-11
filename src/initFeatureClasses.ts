@@ -194,9 +194,10 @@ const FEATURE_CLASSES = [
   fc.FastTeleport,
 
   // Bug Fixes
-  fc.Battery9VoltSynergy,
+  fc.Battery9VoltSynergy, // 63+116
+  fc.GoatHeadInBossRoom, // 215
+  fc.DamoclesSpikesFix, // 577
   fc.BatteryBumFix,
-  fc.GoatHeadInBossRoom,
   fc.PreventUltraSecretRoomSoftlock,
   fc.RemoveInvalidPitfalls,
   fc.TaintedIsaacCollectibleDelay,
