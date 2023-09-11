@@ -2,6 +2,7 @@ import type { DamageFlag } from "isaac-typescript-definitions";
 import {
   CollectibleSpriteLayer,
   CollectibleType,
+  ItemPoolType,
   ModCallback,
   PickupPrice,
   PickupVariant,
@@ -15,7 +16,6 @@ import {
   DefaultMap,
   ModCallbackCustom,
   VectorZero,
-  anyPlayerHasCollectible,
   anyPlayerIs,
   asNumber,
   game,
@@ -31,6 +31,7 @@ import {
 } from "isaacscript-common";
 import { PickupPriceCustom } from "../../../../enums/PickupPriceCustom";
 import { inSeededRaceWithAllAngelRooms } from "../../../../features/race/consistentDevilAngelRooms";
+import { mod } from "../../../../mod";
 import { config } from "../../../../modConfigMenu";
 import { getEffectiveDevilDeals } from "../../../../utils";
 import type { Config } from "../../../Config";
@@ -105,7 +106,7 @@ export class FreeDevilItem extends ConfigurableModFeature {
     if (
       shouldGetFreeDevilItemOnThisRun() &&
       this.shouldGetFreeDevilItemInThisRoom() &&
-      this.isDevilDealStyleCollectible(collectible)
+      this.isPricedDevilRoomPoolCollectible(collectible)
     ) {
       // Update the price of the item on every frame. We deliberately do not change
       // `AutoUpdatePrice` so that as soon as the player is no longer eligible for the free item,
@@ -129,40 +130,22 @@ export class FreeDevilItem extends ConfigurableModFeature {
   }
 
   /**
-   * Detecting a Devil-Deal-style collectible is normally trivial because you can check for if the
-   * price is less than 0 and is not `PickupPrice.FREE`. However, this does not work on Keeper,
-   * because all Devil-Deal-style collectibles cost money. Furthermore, it does not work on Tainted
-   * Keeper, because all collectibles cost money. It also fails with shop items.
-   *
-   * For simplicity, this function assumes that every collectible in a Devil Room or Black Market
-   * Keeper is a Devil-Deal-style collectible for Keeper and Tainted Keeper. This is not necessarily
-   * true, as Keeper could use Satanic Bible and get a Devil-Deal-style item in a Boss Room, for
-   * example.
+   * Detecting a priced Devil-Deal-style collectible is normally trivial because you can check for
+   * if the price is less than 0 and is not `PickupPrice.YOUR_SOUL` or `PickupPrice.FREE`. However,
+   * this does not work on Keeper, because all Devil-Deal-style collectibles cost money.
+   * Furthermore, this does not work on Tainted Keeper, because all collectibles cost money. It also
+   * fails with the Keeper's Bargain trinket for the same reason.
    */
-  isDevilDealStyleCollectible(collectible: EntityPickupCollectible): boolean {
-    if (anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)) {
-      return (
-        collectible.Price > 0 &&
-        inRoomType(RoomType.DEVIL, RoomType.BLACK_MARKET)
-      );
-    }
-
-    // Handle the special case of collectibles with A Pound of Flesh.
-    if (anyPlayerHasCollectible(CollectibleType.POUND_OF_FLESH)) {
-      // For the context of this function, shop items with A Pound of Flesh do not count as devil
-      // deal style collectibles because they do not increase the return value from the
-      // `Game.GetDevilRoomDeals` method. (Black Market items are not affected by A Pound of Flesh.)
-      if (inRoomType(RoomType.SHOP)) {
-        return false;
-      }
-
-      if (inRoomType(RoomType.DEVIL)) {
-        return collectible.Price > 0;
-      }
-    }
+  isPricedDevilRoomPoolCollectible(
+    collectible: EntityPickupCollectible,
+  ): boolean {
+    const itemPoolType = mod.getCollectibleItemPoolType(collectible);
 
     return (
-      collectible.Price < 0 && collectible.Price !== asNumber(PickupPrice.FREE)
+      itemPoolType === ItemPoolType.DEVIL &&
+      collectible.Price !== PickupPrice.NULL &&
+      collectible.Price !== PickupPrice.YOUR_SOUL &&
+      collectible.Price !== PickupPrice.FREE
     );
   }
 
