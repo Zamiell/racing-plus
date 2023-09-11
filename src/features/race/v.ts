@@ -38,7 +38,7 @@ export const v = {
   },
 };
 
-export function init(): void {
+export function raceVarsInit(): void {
   mod.saveDataManager("race", v, featureEnabled);
 }
 

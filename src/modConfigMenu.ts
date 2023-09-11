@@ -43,7 +43,7 @@ const v = {
 
 export const { config, hotkeys } = v.persistent;
 
-export function init(): void {
+export function modConfigMenuInit(): void {
   if (ModConfigMenu === undefined) {
     return;
   }

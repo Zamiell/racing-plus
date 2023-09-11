@@ -14,7 +14,7 @@ const ANNOUNCER_VOICE_MODE_TO_TEXT = {
   2: "Always On",
 } as const satisfies Record<typeof Options.AnnouncerVoiceMode, string>;
 
-export function init(): void {
+export function modConfigMenuVanillaInit(): void {
   if (ModConfigMenu === undefined) {
     return;
   }

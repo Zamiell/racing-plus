@@ -47,7 +47,7 @@ const v = {
   },
 };
 
-export function init(): void {
+export function customConsoleInit(): void {
   mod.saveDataManager(FEATURE_NAME, v);
 }
 

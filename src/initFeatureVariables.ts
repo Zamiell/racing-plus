@@ -1,19 +1,19 @@
-import * as customConsole from "./features/race/customConsole";
+import { customConsoleInit } from "./features/race/customConsole";
 import { socketClientInit } from "./features/race/socketClient";
-import * as raceVars from "./features/race/v";
+import { raceVarsInit } from "./features/race/v";
 import { mod } from "./mod";
-import * as modConfigMenu from "./modConfigMenu";
-import * as modConfigMenuVanilla from "./modConfigMenuVanilla";
+import { modConfigMenuInit } from "./modConfigMenu";
+import { modConfigMenuVanillaInit } from "./modConfigMenuVanilla";
 
 export function initFeatureVariables(): void {
   // Core
-  modConfigMenu.init();
-  modConfigMenuVanilla.init();
-  raceVars.init();
+  modConfigMenuInit();
+  modConfigMenuVanillaInit();
+  raceVarsInit();
   socketClientInit();
 
   // Other
-  customConsole.init();
+  customConsoleInit();
 
   // Now that all of the features have been initialized, we can get the save data manager to load
   // data from disk before the first run begins. (This prevents bugs with `isaacscript-watcher` when
