@@ -102,7 +102,6 @@ export class Config {
   // Bug fixes
   Battery9VoltSynergy = true; // 63+116
   GoatHeadInBossRoom = true; // 215
-  DamoclesSpikesFix = true; // 577
   BatteryBumFix = true;
   PreventUltraSecretRoomSoftlock = true;
   RemoveInvalidPitfalls = true;

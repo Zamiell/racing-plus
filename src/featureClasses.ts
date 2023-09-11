@@ -65,7 +65,6 @@ export { RemoveArmor } from "./classes/features/optional/bosses/RemoveArmor";
 export { RemoveLambBody } from "./classes/features/optional/bosses/RemoveLambBody";
 export { Battery9VoltSynergy } from "./classes/features/optional/bugfix/Battery9VoltSynergy";
 export { BatteryBumFix } from "./classes/features/optional/bugfix/BatteryBumFix";
-export { DamoclesSpikesFix } from "./classes/features/optional/bugfix/DamoclesSpikesFix";
 export { GoatHeadInBossRoom } from "./classes/features/optional/bugfix/GoatHeadInBossRoom";
 export { PreventUltraSecretRoomSoftlock } from "./classes/features/optional/bugfix/PreventUltraSecretRoomSoftlock";
 export { RemoveInvalidPitfalls } from "./classes/features/optional/bugfix/RemoveInvalidPitfalls";

@@ -1,20 +1,67 @@
 import type { EntityType } from "isaac-typescript-definitions";
 import {
+  CollectibleType,
   GridEntityXMLType,
   ModCallback,
+  PickupVariant,
   RoomType,
 } from "isaac-typescript-definitions";
 import {
   Callback,
+  CallbackCustom,
+  ModCallbackCustom,
+  ReadonlyMap,
   ReadonlySet,
+  anyPlayerHasCollectible,
   game,
+  getCollectibleName,
   getRoomVariant,
   inRoomType,
+  log,
   onFirstFloor,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
+import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
+
+const TREASURE_ROOM_VARIANT_TO_SPIKE_GRID_INDEXES = new ReadonlyMap([
+  // Item surrounded by 3 rocks and 1 spike.
+  [11, new ReadonlySet([66, 68, 82])],
+
+  // Left item surrounded by rocks.
+  [39, new ReadonlySet([49, 63, 65, 79])],
+
+  // Left item surrounded by pots/mushrooms/skulls.
+  [42, new ReadonlySet([49, 63, 65, 79])],
+]);
+
+const TREASURE_ROOM_VARIANT_TO_NOTHING_GRID_INDEXES = new ReadonlyMap([
+  // Left item surrounded by rocks.
+  [39, new ReadonlySet([20, 47, 48, 62, 77, 78, 82, 95, 109])],
+
+  // Left item surrounded by spikes.
+  [41, new ReadonlySet([48, 50, 78, 80])],
+]);
+
+/**
+ * This map is only populated with the Treasure Room variants that have collectibles that can be
+ * surrounded by spikes.
+ */
+const TREASURE_ROOM_VARIANT_TO_COLLECTIBLE_SURROUNDED_BY_SPIKES_GRID_INDEX =
+  new ReadonlyMap([
+    // Item surrounded by 3 rocks and 1 spike.
+    [11, 67],
+
+    // Left item surrounded by rocks.
+    [39, 64],
+
+    // Left item surrounded by spikes.
+    [41, 64],
+
+    // Left item surrounded by pots/mushrooms/skulls.
+    [42, 64],
+  ]);
 
 /**
  * We want the player to always be able to take an item on the first floor Treasure Room without
@@ -32,77 +79,93 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
     gridIndex: int,
     _seed: Seed,
   ): [EntityType | GridEntityXMLType, int, int] | undefined {
-    const room = game.GetRoom();
-    const roomFrameCount = room.GetFrameCount();
-    const roomVariant = getRoomVariant();
-
-    if (
-      !onFirstFloor() ||
-      !inRoomType(RoomType.TREASURE) ||
-      roomFrameCount !== -1
-    ) {
+    if (!this.shouldEasyFirstFloorItemsApply()) {
       return undefined;
     }
 
-    switch (roomVariant) {
-      // Item surrounded by 3 rocks and 1 spike.
-      case 11: {
-        const rockReplaceIndexes = new ReadonlySet([66, 68, 82]);
-        if (rockReplaceIndexes.has(gridIndex)) {
-          return [GridEntityXMLType.SPIKES, 0, 0];
-        }
+    const roomVariant = getRoomVariant();
 
-        return undefined;
-      }
-
-      // Left item surrounded by rocks.
-      case 39: {
-        const rockReplaceIndexes = new ReadonlySet([49, 63, 65, 79]);
-        if (rockReplaceIndexes.has(gridIndex)) {
-          return [GridEntityXMLType.SPIKES, 0, 0];
-        }
-
-        const rockDeleteIndexes = new ReadonlySet([
-          20, 47, 48, 62, 77, 78, 82, 95, 109,
-        ]);
-        if (rockDeleteIndexes.has(gridIndex)) {
-          return [
-            GridEntityXMLType.EFFECT,
-            EffectVariantCustom.INVISIBLE_EFFECT,
-            0,
-          ];
-        }
-
-        return undefined;
-      }
-
-      // Left item surrounded by spikes.
-      case 41: {
-        const spikeIndexes = new ReadonlySet([48, 50, 78, 80]);
-        if (spikeIndexes.has(gridIndex)) {
-          return [
-            GridEntityXMLType.EFFECT,
-            EffectVariantCustom.INVISIBLE_EFFECT,
-            0,
-          ];
-        }
-
-        return undefined;
-      }
-
-      // Left item surrounded by pots/mushrooms/skulls.
-      case 42: {
-        const potIndexes = new ReadonlySet([49, 63, 65, 79]);
-        if (potIndexes.has(gridIndex)) {
-          return [GridEntityXMLType.SPIKES, 0, 0];
-        }
-
-        return undefined;
-      }
-
-      default: {
-        return undefined;
-      }
+    const spikeGridIndexes =
+      TREASURE_ROOM_VARIANT_TO_SPIKE_GRID_INDEXES.get(roomVariant);
+    if (spikeGridIndexes !== undefined && spikeGridIndexes.has(gridIndex)) {
+      return [GridEntityXMLType.SPIKES, 0, 0];
     }
+
+    const nothingGridIndexes =
+      TREASURE_ROOM_VARIANT_TO_NOTHING_GRID_INDEXES.get(roomVariant);
+    if (nothingGridIndexes !== undefined && nothingGridIndexes.has(gridIndex)) {
+      return [
+        GridEntityXMLType.EFFECT,
+        EffectVariantCustom.INVISIBLE_EFFECT,
+        0,
+      ];
+    }
+
+    return undefined;
+  }
+
+  /** Fix the bug where Damocles can cause collectibles to spawn on top of spikes. */
+  @CallbackCustom(
+    ModCallbackCustom.POST_PICKUP_INIT_FILTER,
+    PickupVariant.COLLECTIBLE,
+  )
+  postPickupInitCollectible(pickup: EntityPickup): void {
+    const collectible = pickup as EntityPickupCollectible;
+
+    if (!this.shouldEasyFirstFloorItemsApply()) {
+      return;
+    }
+
+    if (!anyPlayerHasCollectible(CollectibleType.DAMOCLES_PASSIVE)) {
+      return;
+    }
+
+    // When the player has Damocles, the collectible will first spawn on the normal tile (in between
+    // the spikes) on room frame -1. After being spawned, the collectible will have
+    // `EntityFlag.ITEM_SHOULD_DUPLICATE`. Next, on room frame 0, the collectible will be moved one
+    // tile to the left and another collectible will be spawned one tile to the right. For this
+    // reason, checking for spikes underneath the collectible will not work. Instead, we remove the
+    // collectible before it can be duplicated and respawn it one tile lower. (We cannot simply
+    // change the position of the collectible because it will snap back to where it originally
+    // spawned on the next update.)
+    const roomVariant = getRoomVariant();
+    const collectibleSurroundedBySpikesGridIndex =
+      TREASURE_ROOM_VARIANT_TO_COLLECTIBLE_SURROUNDED_BY_SPIKES_GRID_INDEX.get(
+        roomVariant,
+      );
+    if (collectibleSurroundedBySpikesGridIndex === undefined) {
+      return;
+    }
+
+    const room = game.GetRoom();
+    const gridIndex = room.GetGridIndex(collectible.Position);
+    if (gridIndex !== collectibleSurroundedBySpikesGridIndex) {
+      return;
+    }
+
+    const gridWidth = room.GetGridWidth();
+    const newGridIndex = gridIndex + gridWidth;
+    const newCollectible = mod.spawnCollectible(
+      collectible.SubType,
+      newGridIndex,
+      collectible.InitSeed,
+    );
+    newCollectible.OptionsPickupIndex = collectible.OptionsPickupIndex;
+
+    collectible.Remove();
+
+    const collectibleName = getCollectibleName(collectible);
+    log(
+      `Moved collectible ${collectibleName} (${collectible.SubType}) from grid index ${collectibleSurroundedBySpikesGridIndex} to grid index ${newGridIndex} in a Treasure Room.`,
+    );
+  }
+
+  shouldEasyFirstFloorItemsApply(): boolean {
+    const room = game.GetRoom();
+    const roomFrameCount = room.GetFrameCount();
+
+    return (
+      onFirstFloor() && inRoomType(RoomType.TREASURE) && roomFrameCount === -1
+    );
   }
 }
