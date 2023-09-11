@@ -8,6 +8,8 @@ import {
   ColorDefault,
   ModCallbackCustom,
   getNPCs,
+  log,
+  logError,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -17,9 +19,20 @@ const FIRST_LIL_HAUNT_UPDATE_FRAME = 19;
 /** After patch 1.7.8, all Haunt champions have a color index of -1 except for the black one. */
 const BLACK_CHAMPION_COLOR_IDX = 0;
 
+const v = {
+  room: {
+    /**
+     * We track the haunts that we have sped up because in rare cases (like the Boss Rush), Haunts
+     * will skip frames 2 through 20.
+     */
+    spedUpHaunts: new Set<PtrHash>(),
+  },
+};
+
 /** Speed up the first Lil' Haunt attached to a Haunt. */
 export class FastHaunt extends ConfigurableModFeature {
   configKey: keyof Config = "FastHaunt";
+  v = v;
 
   // 0, 260
   @CallbackCustom(
@@ -35,9 +48,15 @@ export class FastHaunt extends ConfigurableModFeature {
   checkDetachLilHaunts(npc: EntityNPC): void {
     // In vanilla, the first Lil' Haunt detaches on frame 91. We speed this up so that it happens on
     // the first frame that its `POST_NPC_UPDATE` callback fires.
-    if (npc.FrameCount !== FIRST_LIL_HAUNT_UPDATE_FRAME) {
+    const ptrHash = GetPtrHash(npc);
+    if (
+      npc.FrameCount < FIRST_LIL_HAUNT_UPDATE_FRAME ||
+      v.room.spedUpHaunts.has(ptrHash)
+    ) {
       return;
     }
+
+    v.room.spedUpHaunts.add(ptrHash);
 
     const colorIdx = npc.GetBossColorIdx();
     const attachedLilHaunts = this.getAttachedLilHaunts(npc);
@@ -50,7 +69,11 @@ export class FastHaunt extends ConfigurableModFeature {
       // Only detach the one with the lowest index.
       const lowestIndexLilHaunt =
         this.getLowestIndexLilHaunt(attachedLilHaunts);
-      if (lowestIndexLilHaunt !== undefined) {
+      if (lowestIndexLilHaunt === undefined) {
+        logError(
+          "Failed to get the Lil Haunt to detach when speeding up a Haunt.",
+        );
+      } else {
         this.detachLilHaunt(lowestIndexLilHaunt);
       }
     }
@@ -93,6 +116,10 @@ export class FastHaunt extends ConfigurableModFeature {
     // After detaching, the Lil' Haunt will remain faded, so manually set the color to be fully
     // opaque.
     npc.SetColor(ColorDefault, 0, 0);
+
+    log(
+      `Detached a Lil Haunt (at index ${npc.Index} when speeding up a Haunt.`,
+    );
   }
 
   checkAngrySkinAnimation(npc: EntityNPC): void {

@@ -6,6 +6,7 @@
 ### _v0.104.1_ - September 10th, 2023
 
 - Fixed the bug where Damocles could interfere with picking up a Checkpoint. (Thanks Gamonymous)
+- Fixed the bug where the fast Haunt feature was not working properly in the Boss Rush. (Thanks Gamonymous)
 
 ### _v0.104.0_ - September 8th, 2023
 
