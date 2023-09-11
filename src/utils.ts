@@ -26,6 +26,7 @@ import {
 } from "isaacscript-common";
 import { COLLECTIBLE_PLACEHOLDER_REVERSE_MAP } from "./classes/features/optional/gameplay/extraStartingItems/constants";
 import { automaticItemInsertionCheckIfCollectibleDropsPickups } from "./classes/features/optional/quality/AutomaticItemInsertion";
+import { RANDOM_BABY_NAME } from "./constants";
 import { CollectibleTypeCustom } from "./enums/CollectibleTypeCustom";
 import { shouldConsistentDevilAngelRoomsApply } from "./features/race/consistentDevilAngelRooms";
 import type { ServerCollectibleID } from "./types/ServerCollectibleID";
@@ -133,7 +134,7 @@ export function inMomBossRoom(): boolean {
 export function isBabiesModEnabled(): boolean {
   // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-  return Isaac.GetPlayerTypeByName("Random Baby") !== -1;
+  return Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME) !== -1;
 }
 
 export function moveEsauNextToJacob(): void {

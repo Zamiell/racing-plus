@@ -22,6 +22,7 @@ import {
   onFirstFloor,
   removeAllDoors,
 } from "isaacscript-common";
+import { RANDOM_BABY_NAME } from "../../../../constants";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
@@ -77,7 +78,7 @@ export class CheckErrors extends MandatoryModFeature {
       );
     } else if (v.run.playingAsNonBaby) {
       this.drawErrorText(
-        "You must turn off The Babies Mod when playing characters other than Random Baby.",
+        `You must turn off The Babies Mod when playing characters other than ${RANDOM_BABY_NAME}.`,
       );
     } else if (v.run.invalidCharOrder) {
       const thingToSet = onSeason(2) ? "item bans" : "a character order";
@@ -278,10 +279,9 @@ function checkBabiesModEnabled() {
   const roomVisitedCount = getRoomVisitedCount();
 
   // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
-  const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+  const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
   const isRandomBaby = isCharacter(player, randomBaby);
 
-  // We prevent
   if (
     onFirstFloor() &&
     inStartingRoom() &&

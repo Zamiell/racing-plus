@@ -15,6 +15,7 @@ import {
   removeCollectibleFromItemTracker,
   spawnPickup,
 } from "isaacscript-common";
+import { RANDOM_BABY_NAME } from "../../../constants";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
@@ -261,7 +262,7 @@ function getCurrentCharacter(): PlayerType {
   if (challenge === ChallengeCustom.SEASON_5) {
     // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
     // -1.)
-    const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     if (randomBaby !== -1) {
       return randomBaby;

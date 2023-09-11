@@ -36,6 +36,7 @@ import {
   onFirstFloor,
   setSeed,
 } from "isaacscript-common";
+import { RANDOM_BABY_NAME } from "../../../../constants";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
@@ -295,7 +296,7 @@ export class StreakText extends MandatoryModFeature {
 
     // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
     // -1.)
-    const randomBaby = Isaac.GetPlayerTypeByName("Random Baby");
+    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
 
     return (
       // There is no need to show the level text in the Change Char Order custom challenge.
