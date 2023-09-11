@@ -22,7 +22,7 @@ const BLACK_CHAMPION_COLOR_IDX = 0;
 const v = {
   room: {
     /**
-     * We track the haunts that we have sped up because in rare cases (like the Boss Rush), Haunts
+     * We track the Haunts that we have sped up because in rare cases (like the Boss Rush), Haunts
      * will skip frames 2 through 20.
      */
     spedUpHaunts: new Set<PtrHash>(),
