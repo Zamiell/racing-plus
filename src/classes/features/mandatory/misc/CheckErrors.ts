@@ -275,6 +275,10 @@ function checkOtherModsEnabled() {
 }
 
 function checkBabiesModEnabled() {
+  if (!isBabiesModEnabled()) {
+    return;
+  }
+
   const player = Isaac.GetPlayer();
   const roomVisitedCount = getRoomVisitedCount();
 
