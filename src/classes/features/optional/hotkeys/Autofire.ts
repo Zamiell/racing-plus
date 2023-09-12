@@ -43,11 +43,11 @@ interface QueuedShot {
 const NORMAL_GAME_FRAME_DELAY = 2;
 
 /**
- * It is possible to manually spam at a rate of once per 3 frames, but this results in Spirit Sword
- * and Chocolate Milk becoming too powerful. Thus, we manually enforce a 5 frame delay for those
- * collectibles.
+ * It is possible to manually spam at a rate of around once per 3 frames, but this results in Spirit
+ * Sword and Chocolate Milk becoming too powerful. Thus, we manually enforce a 4 frame delay for
+ * those collectibles.
  */
-const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 5;
+const POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY = 4;
 
 const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
