@@ -44,11 +44,11 @@ const v = {
 export const { config, hotkeys } = v.persistent;
 
 export function modConfigMenuInit(): void {
+  mod.saveDataManager("modConfigMenu", v);
+
   if (ModConfigMenu === undefined) {
     return;
   }
-
-  mod.saveDataManager("modConfigMenu", v);
 
   deleteOldConfig(CATEGORY_NAME);
   validateConfigDescriptions();
@@ -195,13 +195,13 @@ export function setAllModConfigMenuSettings(newValue: boolean): void {
 
 function registerSubMenuConfig(
   subMenuName: string,
-  descriptions: ConfigDescriptions,
+  configDescriptions: ConfigDescriptions,
 ) {
   if (ModConfigMenu === undefined) {
     return;
   }
 
-  for (const [configName, array] of descriptions) {
+  for (const [configName, array] of configDescriptions) {
     const [optionType, code, shortDescription, longDescription] = array;
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {
@@ -228,13 +228,13 @@ function registerSubMenuConfig(
 
 function registerSubMenuHotkeys(
   subMenuName: string,
-  descriptions: ConfigDescriptions,
+  configDescriptions: ConfigDescriptions,
 ) {
   if (ModConfigMenu === undefined) {
     return;
   }
 
-  for (const [configName, array] of descriptions) {
+  for (const [configName, array] of configDescriptions) {
     const [optionType, , shortDescription, longDescription] = array;
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {

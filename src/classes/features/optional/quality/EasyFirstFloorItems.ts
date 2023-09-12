@@ -150,7 +150,10 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
       newGridIndex,
       collectible.InitSeed,
     );
-    newCollectible.OptionsPickupIndex = collectible.OptionsPickupIndex;
+
+    // At this point, `collectible.OptionsPickupIndex` is equal to 0 for some reason, so we must
+    // manually re-activate More Options.
+    newCollectible.OptionsPickupIndex = 1;
 
     collectible.Remove();
 
