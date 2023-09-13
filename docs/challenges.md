@@ -270,9 +270,9 @@ Some builds are banned on certain characters:
 - The 1st, 3rd, 5th, and 7th runs will go to The Chest.
 - The 2nd, 4th, and 6th runs will go to the Dark Room.
 
-### Instant Start
+### Instant Starting Item
 
-The "instant start" mechanic from season 2 also applies to this season.
+The "instant starting item" mechanic from season 2 also applies to this season. (Many speedrunners think that resetting for items is boring.)
 
 <br>
 

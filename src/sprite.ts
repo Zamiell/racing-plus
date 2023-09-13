@@ -8,7 +8,6 @@ import {
   asCollectibleType,
   asNumber,
   getCollectibleGfxFilename,
-  getLastElement,
   isGoldenTrinketType,
   isModdedCollectibleType,
   newSprite,
@@ -60,7 +59,7 @@ function newGlowingItemSprite(itemID: int): Sprite {
   return newSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
 }
 
-function getDirectory(itemID: int) {
+function getDirectory(itemID: int): string {
   const challenge = Isaac.GetChallenge();
 
   if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER) {
@@ -72,29 +71,27 @@ function getDirectory(itemID: int) {
     : "items-glowing";
 }
 
-function getFilename(itemID: int) {
+function getFilename(itemID: int): string {
   if (isRacingPlusModdedCollectibleType(itemID)) {
     const gfxFilename = getCollectibleGfxFilename(asCollectibleType(itemID));
     const pathSegments = gfxFilename.split("/");
-    if (pathSegments.length === 0) {
-      return "questionmark.png";
-    }
+    const lastPathSegment = pathSegments.at(-1);
 
-    return getLastElement(pathSegments);
+    return lastPathSegment ?? "questionmark.png";
   }
 
   const fileNum = getFileNum(itemID);
   return `collectibles_${fileNum}.png`;
 }
 
-function isRacingPlusModdedCollectibleType(itemID: int) {
+function isRacingPlusModdedCollectibleType(itemID: int): boolean {
   return (
     isModdedCollectibleType(asCollectibleType(itemID)) &&
     itemID < GLOWING_IMAGE_TRINKET_OFFSET
   );
 }
 
-function getFileNum(itemID: int) {
+function getFileNum(itemID: int): string {
   // "NEW" is a "Curse of the Blind" item sprite.
   const defaultReturn = "NEW";
 
