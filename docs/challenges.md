@@ -261,9 +261,18 @@ Some builds are banned on certain characters:
 
 ## R+7 Season 5 (Babies)
 
-- You must complete the game 7 times using the [Babies Mod](https://bindingofisaacrebirth.gamepedia.com/index.php?title=User:Zamie/Co-op&profile=no), which provides a different random baby with a unique ability on each floor.
+### Basic Description
+
+- You must complete the game 7 times using the [Babies Mod](https://github.com/Zamiell/babies-mod/blob/main/README.md), which provides a different random baby with a unique ability on each floor.
+
+### Goal
+
 - The 1st, 3rd, 5th, and 7th runs will go to The Chest.
 - The 2nd, 4th, and 6th runs will go to the Dark Room.
+
+### Instant Start
+
+The "instant start" mechanic from season 2 also applies to this season.
 
 <br>
 

@@ -13,7 +13,6 @@ import {
   ModCallbackCustom,
   SHOOTING_ACTIONS,
   game,
-  getLastElement,
   getShootActions,
   hasCollectible,
   isShootAction,
@@ -236,7 +235,7 @@ export class Autofire extends MandatoryModFeature {
   isNewShootPress(buttonAction: ButtonAction): boolean {
     const shootHistory =
       v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
-    const lastElement = getLastElement(shootHistory);
+    const lastElement = shootHistory.at(-1);
 
     return !this.wasPressingAnyShootKeysLastFrame() && lastElement === true;
   }
@@ -245,7 +244,7 @@ export class Autofire extends MandatoryModFeature {
     return SHOOTING_ACTIONS.some((buttonAction) => {
       const shootHistory =
         v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
-      const secondLastElement = shootHistory[shootHistory.length - 2];
+      const secondLastElement = shootHistory.at(-2);
       return secondLastElement === true;
     });
   }

@@ -23,13 +23,13 @@
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
     "isaac-typescript-definitions": "^16.1.0",
-    "isaacscript": "^3.10.2",
-    "isaacscript-common": "^33.14.0",
-    "isaacscript-lint": "^5.8.5",
-    "isaacscript-spell": "^1.2.41",
+    "isaacscript": "^3.11.0",
+    "isaacscript-common": "^33.15.0",
+    "isaacscript-lint": "^5.9.0",
+    "isaacscript-spell": "^1.2.42",
     "isaacscript-tsconfig": "^4.0.0",
     "typescript": "^5.2.2",
-    "typescript-to-lua": "^1.19.1"
+    "typescript-to-lua": "^1.19.2"
   },
   "packageManager": "yarn@3.6.3"
 }
