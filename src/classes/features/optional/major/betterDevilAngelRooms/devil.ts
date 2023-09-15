@@ -11,7 +11,6 @@ import {
   game,
   getJSONRoomOfVariant,
   getJSONRoomsOfSubType,
-  getNPCs,
   getRandom,
   getRandomJSONRoom,
   inRoomType,
@@ -103,9 +102,7 @@ function checkSpawnKrampus() {
  */
 export function emptyRoomRacingPlus(): void {
   emptyRoom();
-  Isaac.DebugString(`GETTING HERE 1 - ${getNPCs().length}`);
   removeAllNPCs(EntityType.FALLEN, FallenVariant.KRAMPUS);
-  Isaac.DebugString(`GETTING HERE 2 - ${getNPCs().length}`);
   mod.preventGridEntityRespawn();
 }
 
