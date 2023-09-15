@@ -16,7 +16,6 @@ import {
   CallbackCustom,
   ModCallbackCustom,
   emptyArray,
-  emptyRoom,
   game,
   getAllPlayers,
   getCollectibleQuality,
@@ -34,12 +33,12 @@ import {
   temporarilyRemoveTrinket,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { setupSeededAngelRoom } from "./betterDevilAngelRooms/angel";
 import {
   checkRespawnKrampus,
+  emptyRoomRacingPlus,
   setupSeededDevilRoom,
 } from "./betterDevilAngelRooms/devil";
 import { v } from "./betterDevilAngelRooms/v";
@@ -256,8 +255,7 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
 
     if (v.run.intentionallyLeaveEmpty) {
       v.run.intentionallyLeaveEmpty = false;
-      emptyRoom();
-      mod.preventGridEntityRespawn();
+      emptyRoomRacingPlus();
       return;
     }
 

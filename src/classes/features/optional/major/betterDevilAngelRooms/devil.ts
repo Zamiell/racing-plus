@@ -11,9 +11,11 @@ import {
   game,
   getJSONRoomOfVariant,
   getJSONRoomsOfSubType,
+  getNPCs,
   getRandom,
   getRandomJSONRoom,
   inRoomType,
+  removeAllNPCs,
   setRoomUncleared,
   spawnWithSeed,
 } from "isaacscript-common";
@@ -54,6 +56,11 @@ export function setupSeededDevilRoom(): void {
     jsonRoom = debugJSONRoom;
   }
 
+  // The `deployJSONRoom` function will use the `emptyRoom` function from `isaacscript-common` to
+  // empty the room. However, this function will not remove charmed enemies, so in case Krampus is
+  // charmed (by e.g. `SeedEffect.ALWAYS_CHARMED`), we also want to remove him.
+  removeAllNPCs(EntityType.FALLEN, FallenVariant.KRAMPUS);
+
   mod.deployJSONRoom(jsonRoom, v.run.rng.devilEntities);
 }
 
@@ -79,8 +86,7 @@ function checkSpawnKrampus() {
   v.run.metKrampus = true;
   v.level.spawnedKrampusOnThisFloor = true;
 
-  emptyRoom();
-  mod.preventGridEntityRespawn();
+  emptyRoomRacingPlus();
 
   const seed = v.run.rng.krampus.Next();
   spawnWithSeed(EntityType.FALLEN, FallenVariant.KRAMPUS, 0, centerPos, seed);
@@ -88,6 +94,19 @@ function checkSpawnKrampus() {
   setRoomUncleared();
 
   return true;
+}
+
+/**
+ * We use the `emptyRoom` function from `isaacscript-common` to empty the room. However, this
+ * function will not remove charmed enemies, so in case Krampus is charmed (by e.g.
+ * `SeedEffect.ALWAYS_CHARMED`), we also want to remove him.
+ */
+export function emptyRoomRacingPlus(): void {
+  emptyRoom();
+  Isaac.DebugString(`GETTING HERE 1 - ${getNPCs().length}`);
+  removeAllNPCs(EntityType.FALLEN, FallenVariant.KRAMPUS);
+  Isaac.DebugString(`GETTING HERE 2 - ${getNPCs().length}`);
+  mod.preventGridEntityRespawn();
 }
 
 export function checkRespawnKrampus(): void {
