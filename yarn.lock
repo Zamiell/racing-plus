@@ -2580,12 +2580,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-isaacscript@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "eslint-config-isaacscript@npm:4.1.0"
+"eslint-config-isaacscript@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "eslint-config-isaacscript@npm:4.2.0"
   dependencies:
     confusing-browser-globals: ^1.0.11
-  checksum: b5595f61ce83e1f7f3662545a4bab4ca2f375bd95562ef528491098ee29bd0d2f9a64fcbaa41ba05acc91ac57e3e3e5b30a1de9355bc9489ca709f2aff64bb9c
+  checksum: ee548ff2a60334b8f149238533b39fdd5d2f10dd48d062a38d2363ecb98d3672bcfb8fbc05977f4c48ce4b5223cfc5326c53d4bba057f847a549b63ce03fabc4
   languageName: node
   linkType: hard
 
@@ -3921,18 +3921,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^34.0.0":
-  version: 34.0.0
-  resolution: "isaacscript-common@npm:34.0.0"
+"isaacscript-common@npm:^34.1.1":
+  version: 34.1.1
+  resolution: "isaacscript-common@npm:34.1.1"
   dependencies:
     isaac-typescript-definitions: ^16.1.0
-  checksum: cf284e396716e1460810e56d60300b79e539405a2ff786f0d45233f22fe519c681efd58b766fdc03eb5aca4578a2c32538a194dd6bbb3d91b13f5cf955f156d5
+  checksum: b6c0304e8da522753a182f2711e640d62a0f6d6334cca9368e710ae1eeaeb2c6df3e3144cc754bcbab65052ac327371cd11259a1fc3add9417fa12cf3ca16b52
   languageName: node
   linkType: hard
 
-"isaacscript-lint@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "isaacscript-lint@npm:5.9.0"
+"isaacscript-lint@npm:^5.10.0":
+  version: 5.10.0
+  resolution: "isaacscript-lint@npm:5.10.0"
   dependencies:
     "@prettier/plugin-xml": ^3.2.1
     "@typescript-eslint/eslint-plugin": ^6.7.0
@@ -3940,7 +3940,7 @@ __metadata:
     cspell: ^7.3.6
     cspell-check-unused-words: ^1.0.6
     eslint: ^8.49.0
-    eslint-config-isaacscript: ^4.1.0
+    eslint-config-isaacscript: ^4.2.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-deprecation: ^2.0.0
     eslint-plugin-eslint-comments: ^3.2.0
@@ -3958,7 +3958,7 @@ __metadata:
     ts-prune-2: ^0.10.7
   peerDependencies:
     typescript: ">= 5.0.0"
-  checksum: cdc1ea6ef2200dd3655c76e933260f080cfad32203553c2d3f1177591f0c612520e4c0698c16c4f8a388d02415c29866605650357044524b82fef8c4706462b3
+  checksum: 7332fd71d439ae7ffc277ddbe61df70fcb2a8c5e58a4b44787aae47c58340c35e87af3916a3f275784d0813c0df97263e11ccf1a0390deb978ffa80c8fafcf83
   languageName: node
   linkType: hard
 
@@ -5335,8 +5335,8 @@ __metadata:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^16.1.0
     isaacscript: ^3.11.0
-    isaacscript-common: ^34.0.0
-    isaacscript-lint: ^5.9.0
+    isaacscript-common: ^34.1.1
+    isaacscript-lint: ^5.10.0
     isaacscript-spell: ^1.2.42
     isaacscript-tsconfig: ^4.0.0
     typescript: ^5.2.2
