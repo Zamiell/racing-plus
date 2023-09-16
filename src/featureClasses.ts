@@ -152,6 +152,7 @@ export { DrawCharacterProgress } from "./classes/features/speedrun/DrawCharacter
 export { EmulateVanillaWomb2IAmError } from "./classes/features/speedrun/EmulateVanillaWomb2IAmError";
 export { PreventDevilRoomResets } from "./classes/features/speedrun/PreventDevilRoomResets";
 export { RandomCharacterOrder } from "./classes/features/speedrun/RandomCharacterOrder";
+export { RandomStartingBuild } from "./classes/features/speedrun/RandomStartingBuild";
 export { Season1 } from "./classes/features/speedrun/Season1";
 export { Season2 } from "./classes/features/speedrun/Season2";
 export { Season3 } from "./classes/features/speedrun/Season3";

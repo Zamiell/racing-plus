@@ -3,7 +3,6 @@ import {
   ItemType,
   ModCallback,
   PickupVariant,
-  PlayerType,
 } from "isaac-typescript-definitions";
 import {
   Callback,
@@ -15,8 +14,6 @@ import {
   removeCollectibleFromItemTracker,
   spawnPickup,
 } from "isaacscript-common";
-import { RANDOM_BABY_NAME } from "../../../constants";
-import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { CUSTOM_CHALLENGES_SET } from "../../../speedrun/constants";
 import { speedrunResetPersistentVars } from "../../../speedrun/resetVars";
@@ -33,11 +30,15 @@ import {
   speedrunTimerCheckpointTouched,
 } from "./SpeedrunTimer";
 import {
-  getCharacterOrder,
   hasValidCharacterOrder,
   speedrunGetFirstChosenCharacter,
 } from "./changeCharOrder/v";
-import { isOnFirstCharacter, v } from "./characterProgress/v";
+import {
+  isOnFirstCharacter,
+  setTimeOtherRunStarted,
+  speedrunGetCurrentCharacter,
+  v,
+} from "./characterProgress/v";
 
 const DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT = 30;
 const FADEOUT_SPEED = 0.0275;
@@ -49,9 +50,6 @@ const FADEOUT_SPEED = 0.0275;
  * able to reset to skip having to watch the fade out animation.
  */
 const DELAY_FRAMES_AFTER_FADEOUT = 69;
-
-/** Tainted Cain will never be in a legitimate speedrun. */
-const DEFAULT_CHARACTER_ON_ERROR = PlayerType.CAIN_B;
 
 export class CharacterProgress extends ChallengeModFeature {
   challenge = CUSTOM_CHALLENGES_SET;
@@ -97,7 +95,7 @@ export class CharacterProgress extends ChallengeModFeature {
 
     // Speedruns with a random character order will set the next character using its own code.
     if (!isSpeedrunWithRandomCharacterOrder()) {
-      const character = getCurrentCharacter();
+      const character = speedrunGetCurrentCharacter();
       setRestartCharacter(character);
 
       const characterName = getCharacterName(character);
@@ -130,12 +128,6 @@ export class CharacterProgress extends ChallengeModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
-    // Force them back to the first character if there are any errors.
-    if (hasErrors()) {
-      speedrunResetPersistentVars();
-      return;
-    }
-
     if (v.persistent.resetAllVarsOnNextReset) {
       v.persistent.resetAllVarsOnNextReset = false;
       speedrunResetPersistentVars();
@@ -145,6 +137,13 @@ export class CharacterProgress extends ChallengeModFeature {
     if (challenge !== v.persistent.currentlyPlayingChallenge) {
       v.persistent.currentlyPlayingChallenge = challenge;
       speedrunResetPersistentVars();
+      setTimeOtherRunStarted();
+    }
+
+    // Force them back to the first character if there are any errors.
+    if (hasErrors()) {
+      speedrunResetPersistentVars();
+      return;
     }
 
     this.liveSplitReset();
@@ -188,7 +187,7 @@ export class CharacterProgress extends ChallengeModFeature {
       return false;
     }
 
-    const currentCharacter = getCurrentCharacter();
+    const currentCharacter = speedrunGetCurrentCharacter();
     if (character !== currentCharacter) {
       v.persistent.performedFastReset = true;
       restartOnNextFrame();
@@ -254,31 +253,4 @@ export class CharacterProgress extends ChallengeModFeature {
 
     speedrunTimerCheckpointTouched();
   }
-}
-
-function getCurrentCharacter(): PlayerType {
-  // Certain seasons have a set character.
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_5) {
-    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
-    // -1.)
-    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-    if (randomBaby !== -1) {
-      return randomBaby;
-    }
-  }
-
-  const characterOrder = getCharacterOrder();
-  if (characterOrder === undefined) {
-    return DEFAULT_CHARACTER_ON_ERROR;
-  }
-
-  const arrayIndex = v.persistent.characterNum - 1;
-  const character = characterOrder[arrayIndex];
-  if (character === undefined) {
-    return DEFAULT_CHARACTER_ON_ERROR;
-  }
-
-  return character;
 }

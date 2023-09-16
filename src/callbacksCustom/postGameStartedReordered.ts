@@ -5,6 +5,7 @@ import {
   ModCallbackCustom,
 } from "isaacscript-common";
 import { hasErrors } from "../classes/features/mandatory/misc/checkErrors/v";
+import { setTimeOtherRunStarted } from "../classes/features/speedrun/characterProgress/v";
 import { racePostGameStarted } from "../features/race/callbacks/postGameStarted";
 import { mod } from "../mod";
 import { speedrunResetPersistentVars } from "../speedrun/resetVars";
@@ -37,6 +38,7 @@ function main(isContinued: boolean) {
 
   if (!inSpeedrun()) {
     speedrunResetPersistentVars();
+    setTimeOtherRunStarted();
   }
 
   if (isContinued) {

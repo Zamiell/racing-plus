@@ -30,12 +30,11 @@ import {
   speedrunGetCharacterNum,
   speedrunSetFastReset,
 } from "./characterProgress/v";
-import { season2ResetBuilds } from "./season2/v";
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 
-/** How long the randomly-selected character and/or build combination is "locked-in". */
-const RANDOM_CHARACTER_SELECTION_LOCK_MINUTES = g.debug ? 0.01 : 1.25;
-export const RANDOM_CHARACTER_LOCK_SECONDS =
+/** How long the randomly-selected character is "locked-in". */
+const RANDOM_CHARACTER_SELECTION_LOCK_MINUTES = g.debug ? 0.2 : 1.25;
+const RANDOM_CHARACTER_LOCK_SECONDS =
   RANDOM_CHARACTER_SELECTION_LOCK_MINUTES * 60;
 export const RANDOM_CHARACTER_LOCK_MILLISECONDS =
   RANDOM_CHARACTER_LOCK_SECONDS * 1000;
@@ -90,40 +89,12 @@ const v = {
     lastSelectedCharacter: null as PlayerType | null,
 
     /**
-     * The time (in milliseconds) that the random character was assigned. This is is set to 0 when
-     * the Basement 2 boss is defeated.
+     * The time (in milliseconds) that the first random character was assigned. This is is set to 0
+     * when the Basement 2 boss is defeated.
      */
-    timeCharacterAssigned: null as int | null,
-
-    /**
-     * The time (in milliseconds) that the build bans were set in the "Change Char Order" custom
-     * challenge.
-     */
-    timeBuildBansSet: null as int | null,
+    timeFirstCharacterAssigned: null as int | null,
   },
 };
-
-export function isSpeedrunWithRandomCharacterOrder(): boolean {
-  const challenge = Isaac.GetChallenge();
-  return CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET.has(challenge);
-}
-
-export function randomCharacterOrderResetPersistentVars(): void {
-  emptyArray(v.persistent.selectedCharacters);
-  emptyArray(v.persistent.remainingCharacters);
-  v.persistent.lastSelectedCharacter = null;
-  v.persistent.timeCharacterAssigned = null;
-  // `timeBansSet` is not reset since it has to do with the Change Char Order challenge.
-}
-
-/** In milliseconds. */
-export function getBuildBansTime(): number | undefined {
-  return v.persistent.timeBuildBansSet ?? undefined;
-}
-
-export function setBuildBansTime(): void {
-  v.persistent.timeBuildBansSet = Isaac.GetTime();
-}
 
 export class RandomCharacterOrder extends ChallengeModFeature {
   challenge = CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET;
@@ -132,10 +103,6 @@ export class RandomCharacterOrder extends ChallengeModFeature {
   // 70
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
-    if (!isSpeedrunWithRandomCharacterOrder()) {
-      return;
-    }
-
     this.checkResetTimeAssigned();
     return undefined;
   }
@@ -147,7 +114,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
       inRoomType(RoomType.BOSS) &&
       isRoomInsideGrid()
     ) {
-      v.persistent.timeCharacterAssigned = 0;
+      v.persistent.timeFirstCharacterAssigned = 0; // Setting to null does not work.
     }
   }
 
@@ -157,7 +124,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
       return;
     }
 
-    this.checkFirstCharacterRefresh();
+    this.checkFirstSpeedrunCharacterRefresh();
 
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
@@ -169,7 +136,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
     }
   }
 
-  checkFirstCharacterRefresh(): void {
+  checkFirstSpeedrunCharacterRefresh(): void {
     const characterNum = speedrunGetCharacterNum();
     if (characterNum !== 1) {
       return;
@@ -177,25 +144,26 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
     const time = Isaac.GetTime();
     if (
-      v.persistent.timeCharacterAssigned === null ||
-      v.persistent.timeCharacterAssigned > time
+      v.persistent.timeFirstCharacterAssigned === null ||
+      v.persistent.timeFirstCharacterAssigned > time
     ) {
       // It is possible for the time assignment to be in the future, since it is based on the time
       // since the operating system started.
-      v.persistent.timeCharacterAssigned = time;
+      v.persistent.timeFirstCharacterAssigned = time;
     }
 
-    const buildLockedUntilTime =
-      v.persistent.timeCharacterAssigned + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+    const characterLockedUntilTime =
+      v.persistent.timeFirstCharacterAssigned +
+      RANDOM_CHARACTER_LOCK_MILLISECONDS;
     if (
-      time > buildLockedUntilTime ||
+      time > characterLockedUntilTime ||
       v.persistent.selectedCharacters.length === 0
     ) {
-      this.refreshStartingCharactersAndOtherThings();
+      this.refreshStartingCharacters();
     }
   }
 
-  refreshStartingCharactersAndOtherThings(): void {
+  refreshStartingCharacters(): void {
     const challenge = Isaac.GetChallenge();
     const time = Isaac.GetTime();
     const characters = SEASON_CHARACTERS[challenge];
@@ -207,17 +175,13 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
     v.persistent.selectedCharacters = [];
     v.persistent.remainingCharacters = copyArray(characters);
-    v.persistent.timeCharacterAssigned = time; // We will assign the character in the next function.
-
-    if (onSeason(2)) {
-      season2ResetBuilds();
-    }
+    v.persistent.timeFirstCharacterAssigned = time; // We will assign the character later on.
   }
 }
 
 export function getRandomlySelectedStartingCharacter(): PlayerType {
   // First, handle the case where we have already selected a starting character.
-  const oldStartingCharacter = speedrunGetCurrentSelectedCharacter();
+  const oldStartingCharacter = getCurrentRandomCharacter();
   if (oldStartingCharacter !== undefined) {
     return oldStartingCharacter;
   }
@@ -227,13 +191,12 @@ export function getRandomlySelectedStartingCharacter(): PlayerType {
     v.persistent.lastSelectedCharacter === null
       ? []
       : [v.persistent.lastSelectedCharacter];
-  if (onSeason(4)) {
-    const characterNum = speedrunGetCharacterNum();
-    if (characterNum <= 2) {
-      for (const character of SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND) {
-        if (!characterExceptions.includes(character)) {
-          characterExceptions.push(character);
-        }
+
+  const characterNum = speedrunGetCharacterNum();
+  if (onSeason(4) && characterNum <= 2) {
+    for (const character of SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND) {
+      if (!characterExceptions.includes(character)) {
+        characterExceptions.push(character);
       }
     }
   }
@@ -257,8 +220,19 @@ export function getRandomlySelectedStartingCharacter(): PlayerType {
   return startingCharacter;
 }
 
-/** Used for the random character order feature. */
-function speedrunGetCurrentSelectedCharacter(): PlayerType | undefined {
+export function isSpeedrunWithRandomCharacterOrder(): boolean {
+  const challenge = Isaac.GetChallenge();
+  return CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET.has(challenge);
+}
+
+function getCurrentRandomCharacter(): int | undefined {
   const characterNum = speedrunGetCharacterNum();
   return v.persistent.selectedCharacters[characterNum - 1];
+}
+
+export function randomCharacterOrderResetPersistentVars(): void {
+  emptyArray(v.persistent.selectedCharacters);
+  emptyArray(v.persistent.remainingCharacters);
+  v.persistent.lastSelectedCharacter = null;
+  v.persistent.timeFirstCharacterAssigned = null;
 }

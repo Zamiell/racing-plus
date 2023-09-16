@@ -31,12 +31,16 @@ import { isBabiesModEnabled } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
-  RANDOM_CHARACTER_LOCK_SECONDS,
-  getBuildBansTime,
   isSpeedrunWithRandomCharacterOrder,
 } from "../../speedrun/RandomCharacterOrder";
+import {
+  RANDOM_BUILD_LOCK_MILLISECONDS,
+  getBuildBansTime,
+  isSpeedrunWithRandomStartingBuild,
+} from "../../speedrun/RandomStartingBuild";
 import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
-import { SEASON_2_NUM_BANS } from "../../speedrun/season2/constants";
+import { getTimeOtherRunStarted } from "../../speedrun/characterProgress/v";
+import { NUM_RANDOM_BUILD_BANS } from "../../speedrun/randomStartingBuild/constants";
 import { getTimeConsoleUsed } from "./TimeConsoleUsed";
 import { hasErrors, v } from "./checkErrors/v";
 
@@ -97,9 +101,15 @@ export class CheckErrors extends MandatoryModFeature {
         getTimeConsoleUsed() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
+    } else if (v.run.seasonOtherRunRecentlyStarted) {
+      const text = this.getSeasonErrorMessage(
+        "starting a non-challenge run",
+        getTimeOtherRunStarted() ?? 0,
+      );
+      this.drawErrorText(text);
     } else if (v.run.season2BansRecentlySet) {
       const text = this.getSeasonErrorMessage(
-        `assigning your ${SEASON_2_NUM_BANS} build bans`,
+        `assigning your ${NUM_RANDOM_BUILD_BANS} build bans`,
         getBuildBansTime() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
@@ -148,14 +158,14 @@ export class CheckErrors extends MandatoryModFeature {
     const time = Isaac.GetTime();
     const endTime = millisecondsStarted + RANDOM_CHARACTER_LOCK_MILLISECONDS;
     const millisecondsRemaining = endTime - time;
-    const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
 
-    if (secondsRemaining > RANDOM_CHARACTER_LOCK_SECONDS) {
+    if (millisecondsRemaining > RANDOM_CHARACTER_LOCK_MILLISECONDS) {
       return onSeason(2)
         ? 'Please set your item vetos for Season 2 again in the "Change Char Order" custom challenge.'
         : "Please restart the run. If this message persists, try setting the character order for one of the seasons or restart your computer.";
     }
 
+    const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
     const suffix = secondsRemaining > 1 ? "s" : "";
     const secondsRemainingText = `${secondsRemaining} second${suffix}`;
     const secondSentence =
@@ -179,6 +189,8 @@ export class CheckErrors extends MandatoryModFeature {
     checkInvalidCharOrder();
     checkGameRecentlyOpened();
     checkConsoleRecentlyUsed();
+    checkOtherRunRecentlyStartedForRandomCharacter();
+    checkOtherRunRecentlyStartedForRandomBuild();
     checkBansRecentlySet();
     checkStorageHotkey();
     checkSeason5Mod();
@@ -311,8 +323,8 @@ function checkGameRecentlyOpened() {
   }
 
   const time = Isaac.GetTime();
-  const gameUnlockTime = TIME_GAME_OPENED + RANDOM_CHARACTER_LOCK_MILLISECONDS;
-  if (time <= gameUnlockTime) {
+  const unlockTime = TIME_GAME_OPENED + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
     v.run.seasonGameRecentlyOpened = true;
     log("Error: Game recently opened.");
   }
@@ -329,11 +341,46 @@ function checkConsoleRecentlyUsed() {
   }
 
   const time = Isaac.GetTime();
-  const consoleUnlockTime =
-    timeConsoleUsed + RANDOM_CHARACTER_LOCK_MILLISECONDS;
-  if (time <= consoleUnlockTime) {
+  const unlockTime = timeConsoleUsed + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
     v.run.seasonConsoleRecentlyUsed = true;
     log("Error: Console recently opened.");
+  }
+}
+
+function checkOtherRunRecentlyStartedForRandomCharacter() {
+  if (!isSpeedrunWithRandomCharacterOrder()) {
+    return;
+  }
+
+  const timeOtherRunStarted = getTimeOtherRunStarted();
+  if (timeOtherRunStarted === undefined) {
+    return;
+  }
+
+  const time = Isaac.GetTime();
+  const unlockTime = timeOtherRunStarted + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
+    v.run.seasonOtherRunRecentlyStarted = true;
+    log("Error: Other run recently started.");
+  }
+}
+
+function checkOtherRunRecentlyStartedForRandomBuild() {
+  if (!isSpeedrunWithRandomStartingBuild()) {
+    return;
+  }
+
+  const timeOtherRunStarted = getTimeOtherRunStarted();
+  if (timeOtherRunStarted === undefined) {
+    return;
+  }
+
+  const time = Isaac.GetTime();
+  const unlockTime = timeOtherRunStarted + RANDOM_BUILD_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
+    v.run.seasonOtherRunRecentlyStarted = true;
+    log("Error: Other run recently started.");
   }
 }
 
@@ -348,8 +395,8 @@ function checkBansRecentlySet() {
   }
 
   const time = Isaac.GetTime();
-  const bansUnlockTime = buildBansTime + RANDOM_CHARACTER_LOCK_MILLISECONDS;
-  if (time <= bansUnlockTime) {
+  const unlockTime = buildBansTime + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
     v.run.season2BansRecentlySet = true;
     log("Error: Build bans recently set.");
   }

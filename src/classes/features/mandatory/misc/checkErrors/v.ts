@@ -14,6 +14,7 @@ export const v = {
     invalidCharOrder: false,
     seasonGameRecentlyOpened: false,
     seasonConsoleRecentlyUsed: false,
+    seasonOtherRunRecentlyStarted: false,
     season2BansRecentlySet: false,
     season4StorageHotkeyNotSet: false,
     season5ModNotEnabled: false,

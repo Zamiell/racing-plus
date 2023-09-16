@@ -69,6 +69,7 @@ const FEATURE_CLASSES = [
   fc.EmulateVanillaWomb2IAmError,
   fc.PreventDevilRoomResets,
   fc.RandomCharacterOrder, // This must be before the seasons.
+  fc.RandomStartingBuild, // This must be before the seasons and after the character order.
   fc.SpawnRepentanceDoor,
   fc.SpeedrunTimer,
 

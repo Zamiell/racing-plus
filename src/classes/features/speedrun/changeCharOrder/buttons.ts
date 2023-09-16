@@ -23,8 +23,8 @@ import {
   ChallengeCustomAbbreviation,
 } from "../../../../speedrun/constants";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
-import { setBuildBansTime } from "../RandomCharacterOrder";
-import { SEASON_2_STARTING_BUILDS } from "../season2/constants";
+import { setBuildBansTime } from "../RandomStartingBuild";
+import { RANDOM_STARTING_BUILDS } from "../randomStartingBuild/constants";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 import { getSeasonDescription, v } from "./v";
 
@@ -132,7 +132,7 @@ function createBuildVetoButtons() {
     );
 
     // Spawn the build graphic next to the button.
-    const build = SEASON_2_STARTING_BUILDS[buildIndex];
+    const build = RANDOM_STARTING_BUILDS[buildIndex];
     if (build === undefined) {
       error(`Failed to get the build at index: ${buildIndex}`);
     }

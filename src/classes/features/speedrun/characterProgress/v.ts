@@ -1,4 +1,11 @@
 import type { Challenge } from "isaac-typescript-definitions";
+import { PlayerType } from "isaac-typescript-definitions";
+import { RANDOM_BABY_NAME } from "../../../../constants";
+import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { getCharacterOrder } from "../changeCharOrder/v";
+
+/** Tainted Cain will never be in a legitimate speedrun. */
+const DEFAULT_CHARACTER_ON_ERROR = PlayerType.CAIN_B;
 
 // This is registered in "CharacterProgress.ts".
 // eslint-disable-next-line isaacscript/require-v-registration
@@ -14,6 +21,7 @@ export const v = {
     resetAllVarsOnNextReset: false,
 
     currentlyPlayingChallenge: null as Challenge | null,
+    timeOtherRunEnded: null as int | null,
   },
 
   run: {
@@ -58,6 +66,41 @@ export function speedrunSetCharacterNum(num: number): void {
 
 export function speedrunResetAllVarsOnNextReset(): void {
   v.persistent.resetAllVarsOnNextReset = true;
+}
+
+export function speedrunGetCurrentCharacter(): PlayerType {
+  // Certain seasons have a set character.
+  const challenge = Isaac.GetChallenge();
+  if (challenge === ChallengeCustom.SEASON_5) {
+    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
+    // -1.)
+    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+    if (randomBaby !== -1) {
+      return randomBaby;
+    }
+  }
+
+  const characterOrder = getCharacterOrder();
+  if (characterOrder === undefined) {
+    return DEFAULT_CHARACTER_ON_ERROR;
+  }
+
+  const arrayIndex = v.persistent.characterNum - 1;
+  const character = characterOrder[arrayIndex];
+  if (character === undefined) {
+    return DEFAULT_CHARACTER_ON_ERROR;
+  }
+
+  return character;
+}
+
+export function getTimeOtherRunStarted(): int | undefined {
+  return v.persistent.timeOtherRunEnded ?? undefined;
+}
+
+export function setTimeOtherRunStarted(): void {
+  v.persistent.timeOtherRunEnded = Isaac.GetTime();
 }
 
 // Make some specific functions global for other mods to use.

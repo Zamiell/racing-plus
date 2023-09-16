@@ -1,14 +1,17 @@
 import { CollectibleType } from "isaac-typescript-definitions";
-import { getArrayIndexes, ReadonlySet } from "isaacscript-common";
+import {
+  ReadonlySet,
+  assertDefined,
+  getArrayIndexes,
+  itemConfig,
+} from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
-
-export const SEASON_2_NUM_BANS = 3;
 
 /**
  * Roughly corresponds to the ordering from `builds.json` from the `isaac-racing-common` repository,
  * with some explicit exceptions outlined below.
  */
-export const SEASON_2_STARTING_BUILDS = [
+export const RANDOM_STARTING_BUILDS = [
   // -------------------
   // Treasure Room items
   // -------------------
@@ -110,7 +113,7 @@ export const SEASON_2_STARTING_BUILDS = [
   // 19
   [
     CollectibleType.FIRE_MIND, // 257
-    CollectibleTypeCustom.THIRTEEN_LUCK, // Custom
+    CollectibleTypeCustom.THIRTEEN_LUCK,
   ],
 
   // 20
@@ -159,6 +162,10 @@ export const SEASON_2_STARTING_BUILDS = [
   // (The builds with more than two items are too wonky to be included.)
 ] as const;
 
+export const RANDOM_STARTING_BUILD_INDEXES: readonly int[] = getArrayIndexes(
+  RANDOM_STARTING_BUILDS,
+);
+
 /**
  * A whitelist of builds that are good on Forgotten. In season 2, Forgotten is one of the weakest
  * characters, so to compensate for this, he is guaranteed a good starting item.
@@ -175,13 +182,10 @@ const SEASON_2_FORGOTTEN_BUILDS = new ReadonlySet<CollectibleType>([
   CollectibleType.C_SECTION, // 678
 ]);
 
-export const SEASON_2_STARTING_BUILD_INDEXES: readonly int[] = getArrayIndexes(
-  SEASON_2_STARTING_BUILDS,
-);
-
-export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
-  SEASON_2_STARTING_BUILD_INDEXES.filter((buildIndex) => {
-    const build = SEASON_2_STARTING_BUILDS[buildIndex];
+/** The blacklist of build indexes computed from Forgotten whitelist. */
+export const RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS: readonly int[] =
+  RANDOM_STARTING_BUILD_INDEXES.filter((buildIndex) => {
+    const build = RANDOM_STARTING_BUILDS[buildIndex];
     if (build === undefined) {
       return false;
     }
@@ -190,4 +194,14 @@ export const SEASON_2_FORGOTTEN_EXCEPTIONS: readonly int[] =
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });
 
-export const NUM_REVELATION_SOUL_HEARTS = 4;
+export const NUM_RANDOM_BUILD_BANS = 3;
+
+export const NUM_REVELATION_SOUL_HEARTS = (() => {
+  const itemConfigItem = itemConfig.GetCollectible(CollectibleType.REVELATION);
+  assertDefined(
+    itemConfigItem,
+    `Failed to get the item config for: CollectibleType.REVELATION (${CollectibleType.REVELATION})`,
+  );
+
+  return itemConfigItem.AddSoulHearts;
+})();
