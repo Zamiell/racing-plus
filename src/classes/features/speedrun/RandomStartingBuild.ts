@@ -30,12 +30,13 @@ import {
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../mod";
+import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
-  getRandomlySelectedStartingCharacter,
+  getAndSetRandomStartingCharacter,
   isSpeedrunWithRandomCharacterOrder,
 } from "./RandomCharacterOrder";
 import { getCharacterOrder } from "./changeCharOrder/v";
@@ -49,7 +50,8 @@ import {
   RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS,
   RANDOM_STARTING_BUILD_INDEXES,
 } from "./randomStartingBuild/constants";
-import { season2InitStartingRoomSprites } from "./season2/startingRoomSprites";
+
+declare function CCPMainResetPlayerCostumes(player: EntityPlayer): void;
 
 /** How long the randomly-selected build is "locked-in". */
 export const RANDOM_BUILD_LOCK_MILLISECONDS =
@@ -159,9 +161,10 @@ export class RandomStartingBuild extends ChallengeModFeature {
 
     const player = Isaac.GetPlayer();
     const startingCharacter = isSpeedrunWithRandomCharacterOrder()
-      ? getRandomlySelectedStartingCharacter()
+      ? getAndSetRandomStartingCharacter()
       : speedrunGetCurrentCharacter();
-    const startingBuildIndex = this.getStartingBuildIndex(startingCharacter);
+    const startingBuildIndex =
+      getAndSetRandomStartingBuildIndex(startingCharacter);
 
     const startingBuild = RANDOM_STARTING_BUILDS[startingBuildIndex];
     assertDefined(
@@ -169,8 +172,12 @@ export class RandomStartingBuild extends ChallengeModFeature {
       `Failed to get the starting build for index: ${startingBuildIndex}`,
     );
 
-    season2InitStartingRoomSprites(startingBuild);
     this.addBuild(player, startingBuild);
+
+    // In Season 5, the baby will appear to be glitched if we grant items during this callback.
+    if (onSeason(5)) {
+      CCPMainResetPlayerCostumes(player);
+    }
   }
 
   checkFirstSpeedrunCharacterRefresh(): void {
@@ -207,106 +214,6 @@ export class RandomStartingBuild extends ChallengeModFeature {
       RANDOM_STARTING_BUILD_INDEXES,
     );
     v.persistent.timeFirstBuildIndexAssigned = time; // We assign the build later on.
-  }
-
-  getStartingBuildIndex(character: PlayerType): int {
-    // First, handle the case where we have already selected a build for this character.
-    const oldStartingBuildIndex = getCurrentRandomStartingBuildIndex();
-    if (oldStartingBuildIndex !== undefined) {
-      return oldStartingBuildIndex;
-    }
-
-    const buildExceptions: int[] = [];
-
-    // Don't get the same starting build as the one we just played.
-    if (v.persistent.lastSelectedBuildIndex !== null) {
-      buildExceptions.push(v.persistent.lastSelectedBuildIndex);
-    }
-
-    // Don't get starting builds that we have vetoed.
-    const vetoedBuilds = getCharacterOrder() ?? [];
-    buildExceptions.push(...vetoedBuilds);
-
-    // Don't get starting builds that don't synergize with the current character.
-    const antiSynergyBuilds = this.getAntiSynergyBuilds(character);
-    buildExceptions.push(...antiSynergyBuilds);
-
-    if (v.persistent.remainingBuildIndexes.length === 0) {
-      error(
-        "Failed to get a random starting build index since there were no remaining build indexes.",
-      );
-    }
-
-    const startingBuildIndex = getRandomArrayElementAndRemove(
-      v.persistent.remainingBuildIndexes,
-      undefined,
-      buildExceptions,
-    );
-
-    v.persistent.selectedBuildIndexes.push(startingBuildIndex);
-    v.persistent.lastSelectedBuildIndex = startingBuildIndex;
-
-    return startingBuildIndex;
-  }
-
-  getAntiSynergyBuilds(character: PlayerType): readonly int[] {
-    switch (character) {
-      // 5
-      case PlayerType.EVE: {
-        return this.getBuildIndexesFor(CollectibleType.CROWN_OF_LIGHT);
-      }
-
-      // 16
-      case PlayerType.FORGOTTEN: {
-        return RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS;
-      }
-
-      // 27
-      case PlayerType.SAMSON_B: {
-        return this.getBuildIndexesFor(
-          CollectibleType.DR_FETUS, // 52
-          CollectibleType.BRIMSTONE, // 118
-          CollectibleType.IPECAC, // 148
-          CollectibleType.FIRE_MIND, // 257
-        );
-      }
-
-      // 28
-      case PlayerType.AZAZEL_B: {
-        return this.getBuildIndexesFor(
-          CollectibleType.DR_FETUS, // 52
-          CollectibleType.CRICKETS_BODY, // 224
-          CollectibleType.DEATHS_TOUCH, // 237
-          CollectibleType.FIRE_MIND, // 257
-          CollectibleType.DEAD_EYE, // 373
-          CollectibleType.TECH_X, // 395
-          CollectibleType.HAEMOLACRIA, // 531
-          CollectibleType.POINTY_RIB, // 544
-          CollectibleType.REVELATION, // 643
-        );
-      }
-
-      default: {
-        return [];
-      }
-    }
-  }
-
-  getBuildIndexesFor(...collectibleTypes: CollectibleType[]): int[] {
-    return collectibleTypes.map((collectibleType) =>
-      this.getBuildIndexFor(collectibleType),
-    );
-  }
-
-  getBuildIndexFor(collectibleType: CollectibleType): int {
-    for (const [i, build] of RANDOM_STARTING_BUILDS.entries()) {
-      const firstCollectible = build[0];
-      if (firstCollectible === collectibleType) {
-        return i;
-      }
-    }
-
-    error(`Failed to find the random build index for: ${collectibleType}`);
   }
 
   addBuild(
@@ -378,4 +285,104 @@ export function setBuildBansTime(): void {
 export function isSpeedrunWithRandomStartingBuild(): boolean {
   const challenge = Isaac.GetChallenge();
   return CHALLENGES_WITH_RANDOM_STARTING_BUILD_SET.has(challenge);
+}
+
+export function getAndSetRandomStartingBuildIndex(character: PlayerType): int {
+  // First, handle the case where we have already selected a build for this character.
+  const oldStartingBuildIndex = getCurrentRandomStartingBuildIndex();
+  if (oldStartingBuildIndex !== undefined) {
+    return oldStartingBuildIndex;
+  }
+
+  const buildExceptions: int[] = [];
+
+  // Don't get the same starting build as the one we just played.
+  if (v.persistent.lastSelectedBuildIndex !== null) {
+    buildExceptions.push(v.persistent.lastSelectedBuildIndex);
+  }
+
+  // Don't get starting builds that we have vetoed.
+  const vetoedBuilds = getCharacterOrder() ?? [];
+  buildExceptions.push(...vetoedBuilds);
+
+  // Don't get starting builds that don't synergize with the current character.
+  const antiSynergyBuilds = getAntiSynergyBuilds(character);
+  buildExceptions.push(...antiSynergyBuilds);
+
+  if (v.persistent.remainingBuildIndexes.length === 0) {
+    error(
+      "Failed to get a random starting build index since there were no remaining build indexes.",
+    );
+  }
+
+  const startingBuildIndex = getRandomArrayElementAndRemove(
+    v.persistent.remainingBuildIndexes,
+    undefined,
+    buildExceptions,
+  );
+
+  v.persistent.selectedBuildIndexes.push(startingBuildIndex);
+  v.persistent.lastSelectedBuildIndex = startingBuildIndex;
+
+  return startingBuildIndex;
+}
+
+function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
+  switch (character) {
+    // 5
+    case PlayerType.EVE: {
+      return getBuildIndexesFor(CollectibleType.CROWN_OF_LIGHT);
+    }
+
+    // 16
+    case PlayerType.FORGOTTEN: {
+      return RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS;
+    }
+
+    // 27
+    case PlayerType.SAMSON_B: {
+      return getBuildIndexesFor(
+        CollectibleType.DR_FETUS, // 52
+        CollectibleType.BRIMSTONE, // 118
+        CollectibleType.IPECAC, // 148
+        CollectibleType.FIRE_MIND, // 257
+      );
+    }
+
+    // 28
+    case PlayerType.AZAZEL_B: {
+      return getBuildIndexesFor(
+        CollectibleType.DR_FETUS, // 52
+        CollectibleType.CRICKETS_BODY, // 224
+        CollectibleType.DEATHS_TOUCH, // 237
+        CollectibleType.FIRE_MIND, // 257
+        CollectibleType.DEAD_EYE, // 373
+        CollectibleType.TECH_X, // 395
+        CollectibleType.HAEMOLACRIA, // 531
+        CollectibleType.POINTY_RIB, // 544
+        CollectibleType.REVELATION, // 643
+      );
+    }
+
+    default: {
+      return [];
+    }
+  }
+}
+
+function getBuildIndexesFor(...collectibleTypes: CollectibleType[]): int[] {
+  return collectibleTypes.map((collectibleType) =>
+    getBuildIndexFor(collectibleType),
+  );
+}
+
+function getBuildIndexFor(collectibleType: CollectibleType): int {
+  for (const [i, build] of RANDOM_STARTING_BUILDS.entries()) {
+    const firstCollectible = build[0];
+    if (firstCollectible === collectibleType) {
+      return i;
+    }
+  }
+
+  error(`Failed to find the random build index for: ${collectibleType}`);
 }

@@ -5,8 +5,7 @@
 
 ### _v0.106.0_ - September 15th, 2023
 
-- !TODO: starting room sprites in s5 + refactor that out of Season2.ts
-- !TODO: change season2 function in startingRoomSprites.ts
+- Season 5 now has random builds assigned, similar to how Season 2 works.
 
 ### _v0.105.1_ - September 15th, 2023
 

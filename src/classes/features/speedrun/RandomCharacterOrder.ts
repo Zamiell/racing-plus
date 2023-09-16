@@ -128,7 +128,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
-    const startingCharacter = getRandomlySelectedStartingCharacter();
+    const startingCharacter = getAndSetRandomStartingCharacter();
     if (character !== startingCharacter) {
       speedrunSetFastReset();
       restartOnNextFrame();
@@ -179,7 +179,7 @@ export class RandomCharacterOrder extends ChallengeModFeature {
   }
 }
 
-export function getRandomlySelectedStartingCharacter(): PlayerType {
+export function getAndSetRandomStartingCharacter(): PlayerType {
   // First, handle the case where we have already selected a starting character.
   const oldStartingCharacter = getCurrentRandomCharacter();
   if (oldStartingCharacter !== undefined) {

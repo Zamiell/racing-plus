@@ -187,8 +187,10 @@ export class CheckErrors extends MandatoryModFeature {
     checkOtherModsEnabled();
     checkBabiesModEnabled();
     checkInvalidCharOrder();
-    checkGameRecentlyOpened();
-    checkConsoleRecentlyUsed();
+    checkGameRecentlyOpenedForRandomCharacter();
+    checkGameRecentlyOpenedForRandomBuild();
+    checkConsoleRecentlyUsedForRandomCharacter();
+    checkConsoleRecentlyUsedForRandomBuild();
     checkOtherRunRecentlyStartedForRandomCharacter();
     checkOtherRunRecentlyStartedForRandomBuild();
     checkBansRecentlySet();
@@ -317,7 +319,7 @@ function checkInvalidCharOrder() {
   }
 }
 
-function checkGameRecentlyOpened() {
+function checkGameRecentlyOpenedForRandomCharacter() {
   if (!isSpeedrunWithRandomCharacterOrder()) {
     return;
   }
@@ -330,7 +332,20 @@ function checkGameRecentlyOpened() {
   }
 }
 
-function checkConsoleRecentlyUsed() {
+function checkGameRecentlyOpenedForRandomBuild() {
+  if (!isSpeedrunWithRandomStartingBuild()) {
+    return;
+  }
+
+  const time = Isaac.GetTime();
+  const unlockTime = TIME_GAME_OPENED + RANDOM_BUILD_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
+    v.run.seasonGameRecentlyOpened = true;
+    log("Error: Game recently opened.");
+  }
+}
+
+function checkConsoleRecentlyUsedForRandomCharacter() {
   if (!isSpeedrunWithRandomCharacterOrder()) {
     return;
   }
@@ -342,6 +357,24 @@ function checkConsoleRecentlyUsed() {
 
   const time = Isaac.GetTime();
   const unlockTime = timeConsoleUsed + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  if (time <= unlockTime) {
+    v.run.seasonConsoleRecentlyUsed = true;
+    log("Error: Console recently opened.");
+  }
+}
+
+function checkConsoleRecentlyUsedForRandomBuild() {
+  if (!isSpeedrunWithRandomStartingBuild()) {
+    return;
+  }
+
+  const timeConsoleUsed = getTimeConsoleUsed();
+  if (timeConsoleUsed === undefined) {
+    return;
+  }
+
+  const time = Isaac.GetTime();
+  const unlockTime = timeConsoleUsed + RANDOM_BUILD_LOCK_MILLISECONDS;
   if (time <= unlockTime) {
     v.run.seasonConsoleRecentlyUsed = true;
     log("Error: Console recently opened.");
@@ -385,7 +418,7 @@ function checkOtherRunRecentlyStartedForRandomBuild() {
 }
 
 function checkBansRecentlySet() {
-  if (!isSpeedrunWithRandomCharacterOrder()) {
+  if (!isSpeedrunWithRandomStartingBuild()) {
     return;
   }
 
@@ -395,7 +428,7 @@ function checkBansRecentlySet() {
   }
 
   const time = Isaac.GetTime();
-  const unlockTime = buildBansTime + RANDOM_CHARACTER_LOCK_MILLISECONDS;
+  const unlockTime = buildBansTime + RANDOM_BUILD_LOCK_MILLISECONDS;
   if (time <= unlockTime) {
     v.run.season2BansRecentlySet = true;
     log("Error: Build bans recently set.");

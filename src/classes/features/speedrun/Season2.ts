@@ -9,6 +9,7 @@ import {
   CallbackCustom,
   ModCallbackCustom,
   anyPlayerIs,
+  assertDefined,
   game,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
@@ -16,9 +17,13 @@ import { mod } from "../../../mod";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
 import { ChallengeModFeature } from "../../ChallengeModFeature";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
+import { getAndSetRandomStartingCharacter } from "./RandomCharacterOrder";
+import { getAndSetRandomStartingBuildIndex } from "./RandomStartingBuild";
+import { RANDOM_STARTING_BUILDS } from "./randomStartingBuild/constants";
 import {
   season2DrawStartingRoomSprites,
   season2DrawStartingRoomText,
+  season2InitStartingRoomSprites,
   season2ResetStartingRoomSprites,
 } from "./season2/startingRoomSprites";
 
@@ -54,6 +59,18 @@ export class Season2 extends ChallengeModFeature {
     const player = Isaac.GetPlayer();
     this.giveStartingItems(player);
     this.removeItemsFromPools();
+
+    const startingCharacter = getAndSetRandomStartingCharacter();
+    const startingBuildIndex =
+      getAndSetRandomStartingBuildIndex(startingCharacter);
+
+    const startingBuild = RANDOM_STARTING_BUILDS[startingBuildIndex];
+    assertDefined(
+      startingBuild,
+      `Failed to get the starting build for index: ${startingBuildIndex}`,
+    );
+
+    season2InitStartingRoomSprites(startingBuild);
   }
 
   giveStartingItems(player: EntityPlayer): void {
