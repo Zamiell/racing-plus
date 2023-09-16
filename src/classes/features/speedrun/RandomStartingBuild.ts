@@ -79,12 +79,6 @@ const v = {
      * the Basement 2 boss is defeated.
      */
     timeFirstBuildIndexAssigned: null as int | null,
-
-    /**
-     * The time (in milliseconds) that the build bans were set in the "Change Char Order" custom
-     * challenge.
-     */
-    timeBuildBansSet: null as int | null,
   },
 };
 
@@ -271,15 +265,6 @@ export function randomStartingBuildResetPersistentVars(): void {
   v.persistent.lastSelectedBuildIndex = null;
   v.persistent.timeFirstBuildIndexAssigned = null;
   // `timeBuildBansSet` is not reset since it has to do with the "Change Char Order" challenge.
-}
-
-/** In milliseconds. */
-export function getBuildBansTime(): number | undefined {
-  return v.persistent.timeBuildBansSet ?? undefined;
-}
-
-export function setBuildBansTime(): void {
-  v.persistent.timeBuildBansSet = Isaac.GetTime();
 }
 
 export function isSpeedrunWithRandomStartingBuild(): boolean {

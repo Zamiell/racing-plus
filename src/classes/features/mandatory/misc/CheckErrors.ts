@@ -35,12 +35,10 @@ import {
 } from "../../speedrun/RandomCharacterOrder";
 import {
   RANDOM_BUILD_LOCK_MILLISECONDS,
-  getBuildBansTime,
   isSpeedrunWithRandomStartingBuild,
 } from "../../speedrun/RandomStartingBuild";
 import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
 import { getTimeOtherRunStarted } from "../../speedrun/characterProgress/v";
-import { NUM_RANDOM_BUILD_BANS } from "../../speedrun/randomStartingBuild/constants";
 import { getTimeConsoleUsed } from "./TimeConsoleUsed";
 import { hasErrors, v } from "./checkErrors/v";
 
@@ -105,12 +103,6 @@ export class CheckErrors extends MandatoryModFeature {
       const text = this.getSeasonErrorMessage(
         "starting a non-challenge run",
         getTimeOtherRunStarted() ?? 0,
-      );
-      this.drawErrorText(text);
-    } else if (v.run.season2BansRecentlySet) {
-      const text = this.getSeasonErrorMessage(
-        `assigning your ${NUM_RANDOM_BUILD_BANS} build bans`,
-        getBuildBansTime() ?? TIME_GAME_OPENED,
       );
       this.drawErrorText(text);
     } else if (v.run.season4StorageHotkeyNotSet) {
@@ -193,7 +185,6 @@ export class CheckErrors extends MandatoryModFeature {
     checkConsoleRecentlyUsedForRandomBuild();
     checkOtherRunRecentlyStartedForRandomCharacter();
     checkOtherRunRecentlyStartedForRandomBuild();
-    checkBansRecentlySet();
     checkStorageHotkey();
     checkSeason5Mod();
 
@@ -414,24 +405,6 @@ function checkOtherRunRecentlyStartedForRandomBuild() {
   if (time <= unlockTime) {
     v.run.seasonOtherRunRecentlyStarted = true;
     log("Error: Other run recently started.");
-  }
-}
-
-function checkBansRecentlySet() {
-  if (!isSpeedrunWithRandomStartingBuild()) {
-    return;
-  }
-
-  const buildBansTime = getBuildBansTime();
-  if (buildBansTime === undefined) {
-    return;
-  }
-
-  const time = Isaac.GetTime();
-  const unlockTime = buildBansTime + RANDOM_BUILD_LOCK_MILLISECONDS;
-  if (time <= unlockTime) {
-    v.run.season2BansRecentlySet = true;
-    log("Error: Build bans recently set.");
   }
 }
 

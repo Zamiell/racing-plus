@@ -23,7 +23,6 @@ import {
   ChallengeCustomAbbreviation,
 } from "../../../../speedrun/constants";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
-import { setBuildBansTime } from "../RandomStartingBuild";
 import { RANDOM_STARTING_BUILDS } from "../randomStartingBuild/constants";
 import { CHANGE_CHAR_ORDER_POSITIONS_MAP } from "./constants";
 import { getSeasonDescription, v } from "./v";
@@ -362,7 +361,6 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
       v.room.challengeCustomAbbreviation,
       v.room.buildsChosen as PlayerType[],
     );
-    setBuildBansTime();
     fadeOutToChallenge();
   }
 }
