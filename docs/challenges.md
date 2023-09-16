@@ -15,6 +15,8 @@
 - In all seasons, the first character will get More Options. After the Treasure Room is entered, More Options will be removed. (This is to speed up the process of finding an item and getting a run going.)
 - In all seasons, both The Polaroid and The Negative will spawn after defeating Mom. Neither are required to travel to The Chest / the Dark Room. (This is to increase strategy and decision making.)
 - In all seasons, on the first character, Devil Rooms and Angel Rooms will have nothing in them if you teleport to one from a Curse Room on the first floor. (This prevents resetting for a Devil Room item.)
+- In all seasons that go to the Dark Room, We Need to Go Deeper will not work on Womb 2.
+- In all seasons that go to the Dark Room, the spikes in a Sacrifice Room will never take you to the Dark Room.
 
 <br>
 
@@ -136,12 +138,10 @@ Some builds are banned on certain characters:
 
 ### Other
 
+- Sol is removed from the Planetarium pool. (It is useless since the player starts with The Compass.)
+- Cain's Eye is removed from the trinket pool. (It is useless since the player starts with The Compass.)
+- Not entering a Treasure Room no longer increases the chance of a Planetarium appearing. (This is to make the season consistent with seeded races.)
 - The Treasure Room on the first floor is removed.
-- Sol is removed from the Planetarium pool.
-- Cain's Eye is removed from the trinket pool.
-- We Need to Go Deeper! will not work on Womb 2.
-- The spikes in a Sacrifice Room are removed after Gabriel spawns.
-- Not entering a Treasure Room no longer increases the chance of a Planetarium appearing.
 - On the first character, the following room types are removed on the first floor:
   - Miniboss Rooms
   - Curse Rooms
@@ -272,7 +272,7 @@ Some builds are banned on certain characters:
 
 ### Instant Starting Item
 
-The "instant starting item" mechanic from season 2 also applies to this season. (Many speedrunners think that resetting for items is boring.)
+The "instant starting item" mechanic from season 2 also applies to this season. (There are no build bans.)
 
 <br>
 

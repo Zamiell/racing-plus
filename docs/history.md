@@ -1004,8 +1004,8 @@
 - Fixed the bug where Sawblade would not work properly with Spin to Win. (Thanks Monkeypot)
 - Fixed the bug where Sawblade would not work properly with Box of Friends.
 - Fixed the bug where the Lead Pencil charge bar would not work with The Forgotten or Lilith. (Thanks Gamonymous)
-- Fixed the bug where in multi-character speedruns, you could use We Need to Go Deeper! in a crawl space. (Thanks Gamonymous)
-- Fixed the bug where in multi-character speedruns, We Need to Go Deeper! would trigger twice under certain circumstances. (Thanks caesar)
+- Fixed the bug where in multi-character speedruns, you could use We Need to Go Deeper in a crawl space. (Thanks Gamonymous)
+- Fixed the bug where in multi-character speedruns, We Need to Go Deeper would trigger twice under certain circumstances. (Thanks caesar)
 - Fixed the bug where Lost Soul was incorrectly revived after a seeded death revival. (Thanks Hispa)
 - Fixed the bug where seeded death would not work properly if you died with a Dead Cat queued. (Thanks Moucheron Quipet)
 - Fixed the bug where seeded death would allow you to steal Devil Room items under certain conditions.
@@ -3604,7 +3604,7 @@ Client:
 ### _v0.15.4_ - March 11th, 2018
 
 - Eden will now be given the Sad Onion if they happen to start with the vanilla Schoolbag as the random passive item.
-- 5 Monstros will no longer spawn if you use We Need to Go Deeper! or Ehwaz on Womb 2 during races with a goal of "Everything". (Thanks Gamonymous)
+- 5 Monstros will no longer spawn if you use We Need to Go Deeper or Ehwaz on Womb 2 during races with a goal of "Everything". (Thanks Gamonymous)
 - Fixed the bug where if Eden starts with the Schoolbag, a pedestal will be created on the ground. (Thanks NorBro)
 
 ### _v0.15.3_ - February 15th, 2018
@@ -3739,7 +3739,7 @@ Mod changes:
 - Samael's starting speed has been increased from 0.85 to 1.15.
 - Samael's starting health has been changed to 1 red heart, 1 soul heart, and 1 black heart.
 - The Haunt's "Peel" and "AngrySkin" animations are now sped up.
-- Fixed the bug where We Need to Go Deeper! would not work on Womb 2 in the season 3 custom challenge. (Thanks sillypears)
+- Fixed the bug where We Need to Go Deeper would not work on Womb 2 in the season 3 custom challenge. (Thanks sillypears)
 - Fixed the bug where on the season 3 custom challenge, certain entities would occasionally despawn (trapdoors, devil statues, angel statues, and Epic Fetus targets). DeadInfinity deserves credit for finding and fixing this bug in the base Mahalath mod. (Thanks to Moucheron Quipet, Gamonymous, Dea1h, and Krakenos for reporting.)
 - Fixed the bug where you could take the wrong path on the season 3 custom challenge and still progress to the next character.
 - Fixed the bug where dying with Guppy's Collar in custom challenges would send you back to the first character. (Thanks Gamonymous)
@@ -4835,7 +4835,7 @@ Changes:
 
 - Diversity Races now start with More Options. More Options is automatically removed after going into one Treasure Room.
 - Summoning a co-op baby will now only delete non-purchased Devil Deal items (instead of all items). This is to prevent using the co-op baby beneficially in certain situations.
-- We Need to Go Deeper! is no longer banned in races to The Lamb.
+- We Need to Go Deeper is no longer banned in races to The Lamb.
 
 ### _v0.2.59_ - March 4th, 2017
 

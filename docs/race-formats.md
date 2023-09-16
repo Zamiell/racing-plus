@@ -137,7 +137,7 @@ On Racing+, players have the option for races to end at different places.
 
 - Mother is the boss at the end of Corpse 2.
 - Normal trapdoors will not spawn. The doors to the Repentance alternate floors will be automatically opened.
-- We Need to Go Deeper! will only work on odd numbered floors (because you are supposed to go to the secret passage on even numbered floors).
+- We Need to Go Deeper will only work on odd numbered floors (because you are supposed to go to the secret passage on even numbered floors).
 
 <br>
 
