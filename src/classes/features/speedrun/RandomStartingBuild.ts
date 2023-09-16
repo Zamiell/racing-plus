@@ -37,7 +37,7 @@ import { hasErrors } from "../mandatory/misc/checkErrors/v";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
   getAndSetRandomStartingCharacter,
-  isSpeedrunWithRandomCharacterOrder,
+  onSpeedrunWithRandomCharacterOrder,
 } from "./RandomCharacterOrder";
 import { getCharacterOrder } from "./changeCharOrder/v";
 import {
@@ -154,7 +154,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
     this.checkFirstSpeedrunCharacterRefresh();
 
     const player = Isaac.GetPlayer();
-    const startingCharacter = isSpeedrunWithRandomCharacterOrder()
+    const startingCharacter = onSpeedrunWithRandomCharacterOrder()
       ? getAndSetRandomStartingCharacter()
       : speedrunGetCurrentCharacter();
     const startingBuildIndex =
@@ -263,7 +263,7 @@ export function randomStartingBuildResetPersistentVars(): void {
   // `timeBuildBansSet` is not reset since it has to do with the "Change Char Order" challenge.
 }
 
-export function isSpeedrunWithRandomStartingBuild(): boolean {
+export function onSpeedrunWithRandomStartingBuild(): boolean {
   const challenge = Isaac.GetChallenge();
   return CHALLENGES_WITH_RANDOM_STARTING_BUILD_SET.has(challenge);
 }

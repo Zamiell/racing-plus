@@ -24,7 +24,7 @@ import {
   setRestartCharacter,
 } from "../mandatory/misc/RestartOnNextFrame";
 import { hasErrors } from "../mandatory/misc/checkErrors/v";
-import { isSpeedrunWithRandomCharacterOrder } from "./RandomCharacterOrder";
+import { onSpeedrunWithRandomCharacterOrder } from "./RandomCharacterOrder";
 import {
   speedrunResetFirstCharacterVars,
   speedrunTimerCheckpointTouched,
@@ -94,7 +94,7 @@ export class CharacterProgress extends ChallengeModFeature {
     log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
 
     // Speedruns with a random character order will set the next character using its own code.
-    if (!isSpeedrunWithRandomCharacterOrder()) {
+    if (!onSpeedrunWithRandomCharacterOrder()) {
       const character = speedrunGetCurrentCharacter();
       setRestartCharacter(character);
 
@@ -183,7 +183,7 @@ export class CharacterProgress extends ChallengeModFeature {
     const character = player.GetPlayerType();
 
     // Character order is explicitly handled in some seasons.
-    if (isSpeedrunWithRandomCharacterOrder()) {
+    if (onSpeedrunWithRandomCharacterOrder()) {
       return false;
     }
 
@@ -217,7 +217,7 @@ export class CharacterProgress extends ChallengeModFeature {
     v.persistent.characterNum = 1;
     restartOnNextFrame();
 
-    if (!isSpeedrunWithRandomCharacterOrder()) {
+    if (!onSpeedrunWithRandomCharacterOrder()) {
       const firstCharacter = speedrunGetFirstChosenCharacter();
       if (firstCharacter !== undefined) {
         setRestartCharacter(firstCharacter);

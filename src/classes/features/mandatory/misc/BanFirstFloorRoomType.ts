@@ -12,9 +12,9 @@ import {
   removeDoors,
 } from "isaacscript-common";
 import { inSeededRace } from "../../../../features/race/v";
-import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { isOnFirstCharacter } from "../../speedrun/characterProgress/v";
+import { onSpeedrunWithRandomStartingBuild } from "../../speedrun/RandomStartingBuild";
 import { isPlanetariumFixWarping } from "./PlanetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES = [
@@ -39,7 +39,11 @@ export class BanFirstFloorRoomType extends MandatoryModFeature {
   }
 
   shouldBanSpecialRoomsSeason2(): boolean {
-    return onSeason(2) && onFirstFloor() && isOnFirstCharacter();
+    return (
+      onFirstFloor() &&
+      isOnFirstCharacter() &&
+      onSpeedrunWithRandomStartingBuild()
+    );
   }
 
   checkForRoomType(bannedRoomType: RoomType): void {
@@ -81,5 +85,7 @@ export class BanFirstFloorRoomType extends MandatoryModFeature {
 }
 
 export function shouldBanFirstFloorTreasureRoom(): boolean {
-  return onFirstFloor() && (inSeededRace() || onSeason(2));
+  return (
+    onFirstFloor() && (inSeededRace() || onSpeedrunWithRandomStartingBuild())
+  );
 }

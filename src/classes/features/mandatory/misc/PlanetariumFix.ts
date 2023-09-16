@@ -32,6 +32,7 @@ const v = {
   },
 };
 
+/** Visit every Planetarium to ensure that level generation remains constant for all players. */
 export class PlanetariumFix extends MandatoryModFeature {
   v = v;
 

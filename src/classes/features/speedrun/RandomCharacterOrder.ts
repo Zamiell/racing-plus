@@ -220,7 +220,7 @@ export function getAndSetRandomStartingCharacter(): PlayerType {
   return startingCharacter;
 }
 
-export function isSpeedrunWithRandomCharacterOrder(): boolean {
+export function onSpeedrunWithRandomCharacterOrder(): boolean {
   const challenge = Isaac.GetChallenge();
   return CHALLENGES_WITH_RANDOM_CHARACTER_ORDER_SET.has(challenge);
 }

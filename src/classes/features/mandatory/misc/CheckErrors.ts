@@ -31,11 +31,11 @@ import { isBabiesModEnabled } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
-  isSpeedrunWithRandomCharacterOrder,
+  onSpeedrunWithRandomCharacterOrder,
 } from "../../speedrun/RandomCharacterOrder";
 import {
   RANDOM_BUILD_LOCK_MILLISECONDS,
-  isSpeedrunWithRandomStartingBuild,
+  onSpeedrunWithRandomStartingBuild,
 } from "../../speedrun/RandomStartingBuild";
 import { hasValidCharacterOrder } from "../../speedrun/changeCharOrder/v";
 import { getTimeOtherRunStarted } from "../../speedrun/characterProgress/v";
@@ -152,9 +152,7 @@ export class CheckErrors extends MandatoryModFeature {
     const millisecondsRemaining = endTime - time;
 
     if (millisecondsRemaining > RANDOM_CHARACTER_LOCK_MILLISECONDS) {
-      return onSeason(2)
-        ? 'Please set your item vetos for Season 2 again in the "Change Char Order" custom challenge.'
-        : "Please restart the run. If this message persists, try setting the character order for one of the seasons or restart your computer.";
+      return "Please restart the run. If this message persists, try setting the character order for one of the seasons or restart your computer.";
     }
 
     const secondsRemaining = Math.ceil(millisecondsRemaining / 1000);
@@ -311,7 +309,7 @@ function checkInvalidCharOrder() {
 }
 
 function checkGameRecentlyOpenedForRandomCharacter() {
-  if (!isSpeedrunWithRandomCharacterOrder()) {
+  if (!onSpeedrunWithRandomCharacterOrder()) {
     return;
   }
 
@@ -324,7 +322,7 @@ function checkGameRecentlyOpenedForRandomCharacter() {
 }
 
 function checkGameRecentlyOpenedForRandomBuild() {
-  if (!isSpeedrunWithRandomStartingBuild()) {
+  if (!onSpeedrunWithRandomStartingBuild()) {
     return;
   }
 
@@ -337,7 +335,7 @@ function checkGameRecentlyOpenedForRandomBuild() {
 }
 
 function checkConsoleRecentlyUsedForRandomCharacter() {
-  if (!isSpeedrunWithRandomCharacterOrder()) {
+  if (!onSpeedrunWithRandomCharacterOrder()) {
     return;
   }
 
@@ -355,7 +353,7 @@ function checkConsoleRecentlyUsedForRandomCharacter() {
 }
 
 function checkConsoleRecentlyUsedForRandomBuild() {
-  if (!isSpeedrunWithRandomStartingBuild()) {
+  if (!onSpeedrunWithRandomStartingBuild()) {
     return;
   }
 
@@ -373,7 +371,7 @@ function checkConsoleRecentlyUsedForRandomBuild() {
 }
 
 function checkOtherRunRecentlyStartedForRandomCharacter() {
-  if (!isSpeedrunWithRandomCharacterOrder()) {
+  if (!onSpeedrunWithRandomCharacterOrder()) {
     return;
   }
 
@@ -391,7 +389,7 @@ function checkOtherRunRecentlyStartedForRandomCharacter() {
 }
 
 function checkOtherRunRecentlyStartedForRandomBuild() {
-  if (!isSpeedrunWithRandomStartingBuild()) {
+  if (!onSpeedrunWithRandomStartingBuild()) {
     return;
   }
 
