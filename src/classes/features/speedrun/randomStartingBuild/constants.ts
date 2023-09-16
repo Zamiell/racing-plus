@@ -194,8 +194,6 @@ export const RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS: readonly int[] =
     return !SEASON_2_FORGOTTEN_BUILDS.has(firstCollectible);
   });
 
-export const NUM_RANDOM_BUILD_BANS = 3;
-
 export const NUM_REVELATION_SOUL_HEARTS = (() => {
   const itemConfigItem = itemConfig.GetCollectible(CollectibleType.REVELATION);
   assertDefined(
