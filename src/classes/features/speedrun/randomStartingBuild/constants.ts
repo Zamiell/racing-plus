@@ -154,6 +154,7 @@ export const RANDOM_STARTING_BUILDS = [
   ],
 
   // 26
+  // Fate is nerfed (no eternal heart).
   [
     CollectibleTypeCustom.SAWBLADE,
     CollectibleType.FATE, // 179

@@ -221,20 +221,9 @@ export class RandomStartingBuild extends ChallengeModFeature {
 
     const firstCollectibleType = startingBuild[0];
 
-    // Handle builds with smelted trinkets.
+    // Handle builds with custom behavior.
     switch (firstCollectibleType) {
-      case CollectibleType.INCUBUS: {
-        smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
-        break;
-      }
-
-      default: {
-        break;
-      }
-    }
-
-    // Handle builds with custom nerfs.
-    switch (firstCollectibleType) {
+      // 12 - Revelation (no soul hearts, no flight).
       case CollectibleType.REVELATION: {
         player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
         removeCollectibleCostume(player, CollectibleType.REVELATION);
@@ -242,6 +231,13 @@ export class RandomStartingBuild extends ChallengeModFeature {
         break;
       }
 
+      // 21 - Incubus + Twisted Pair + Forgotten Lullaby.
+      case CollectibleType.INCUBUS: {
+        smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
+        break;
+      }
+
+      // 26 - Sawblade + Fate (no eternal heart).
       case CollectibleTypeCustom.SAWBLADE: {
         player.AddEternalHearts(-1);
         break;
