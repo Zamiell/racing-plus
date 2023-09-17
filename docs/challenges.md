@@ -99,7 +99,6 @@ The randomly assigned starting builds are as follows:
 - 23 - Dead Eye + Jesus Juice
 - 24 - Haemolacria + Sad Onion
 - 25 - Pointy Rib + Eve's Mascara
-- 26 - Sawblade + Fate (w/ no eternal heart)
 
 ### Forgotten Builds
 
@@ -272,7 +271,9 @@ Some builds are banned on certain characters:
 
 ### Instant Starting Item
 
-The "instant starting item" mechanic from season 2 also applies to this season. (There are no build bans.)
+- The "instant starting item" mechanic from season 2 also applies to this season.
+- The builds are the same builds as in season 2.
+- Unlike season 2, there are no build bans.
 
 <br>
 

@@ -28,7 +28,6 @@ import {
   smeltTrinket,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
-import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../mod";
 import { onSeason } from "../../../speedrun/utilsSpeedrun";
 import { addCollectibleAndRemoveFromPools } from "../../../utils";
@@ -236,12 +235,6 @@ export class RandomStartingBuild extends ChallengeModFeature {
       // 21 - Incubus + Twisted Pair + Forgotten Lullaby.
       case CollectibleType.INCUBUS: {
         smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
-        break;
-      }
-
-      // 26 - Sawblade + Fate (no eternal heart).
-      case CollectibleTypeCustom.SAWBLADE: {
-        player.AddEternalHearts(-1);
         break;
       }
 

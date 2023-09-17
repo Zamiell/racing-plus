@@ -153,12 +153,7 @@ export const RANDOM_STARTING_BUILDS = [
     CollectibleType.EVES_MASCARA, // 310
   ],
 
-  // 26
-  // Fate is nerfed (no eternal heart).
-  [
-    CollectibleTypeCustom.SAWBLADE,
-    CollectibleType.FATE, // 179
-  ],
+  // (Sawblade is not included since it was deemed to be too weak.)
 
   // (The builds with more than two items are too wonky to be included.)
 ] as const;
