@@ -51,7 +51,9 @@ import {
   RANDOM_STARTING_BUILD_INDEXES,
 } from "./randomStartingBuild/constants";
 
-declare function CCPMainResetPlayerCostumes(player: EntityPlayer): void;
+declare const CCPMainResetPlayerCostumes:
+  | ((player: EntityPlayer) => void)
+  | undefined;
 
 /** How long the randomly-selected build is "locked-in". */
 export const RANDOM_BUILD_LOCK_MILLISECONDS =
@@ -169,7 +171,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
     this.addBuild(player, startingBuild);
 
     // In Season 5, the baby will appear to be glitched if we grant items during this callback.
-    if (onSeason(5)) {
+    if (onSeason(5) && CCPMainResetPlayerCostumes !== undefined) {
       CCPMainResetPlayerCostumes(player);
     }
   }
