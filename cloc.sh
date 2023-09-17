@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e # Exit on any errors
+set -euo pipefail # Exit on errors and undefined variables.
 
 # Get the directory of this script:
 # https://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
@@ -11,6 +11,3 @@ cloc \
   --exclude-dir="node_modules" \
   --include-lang="TypeScript" \
   "$DIR/src" \
-  #"$DIR/node_modules/isaacscript" \
-  #"$DIR/node_modules/isaac-typescript-definitions" \
-  #"$DIR/node_modules/isaacscript-common"
