@@ -3,6 +3,11 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.107.2_ - September 18th, 2023
+
+- Fixed the bug where the Perfection trinket would spawn too early under certain circumstances. (Thanks Gamonymous)
+- Fixed the bug where some UI elements would be drawn on the "no HUD" seed.
+
 ### _v0.107.0_ - September 16th, 2023
 
 - The Sawblade build is no longer is season 2 or season 5.
