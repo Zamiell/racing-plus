@@ -1,10 +1,6 @@
+import { RoomType, TrinketType } from "isaac-typescript-definitions";
 import {
-  EntityType,
-  RoomType,
-  TrinketType,
-} from "isaac-typescript-definitions";
-import {
-  ReadonlySet,
+  findFreePosition,
   game,
   getAliveBosses,
   inRoomType,
@@ -12,23 +8,11 @@ import {
 } from "isaacscript-common";
 import { v } from "./v";
 
-const PERFECTION_VELOCITY_MULTIPLIER = 7; // Experimentally determined from vanilla
+/** This is experimentally determined from vanilla. */
+const PERFECTION_VELOCITY_MULTIPLIER = 7;
 
-/**
- * This has to be different from the `SPLITTING_BOSS_ENTITY_TYPE_SET` used in the Boss Rush since we
- * want to exclude the lowest form. (In other words, Perfection should not spawn from Fistula
- * medium, but it should spawn from Fistula small.)
- */
-const SPLITTING_BOSSES = new ReadonlySet<EntityType>([
-  EntityType.FISTULA_BIG, // 71
-  EntityType.FISTULA_MEDIUM, // 72
-  EntityType.BLASTOCYST_BIG, // 74
-  EntityType.BLASTOCYST_MEDIUM, // 75
-  EntityType.BROWNIE, // 402
-]);
-
-// ModCallback.POST_ENTITY_KILL (68)
-export function spawnPerfectionPostEntityKill(entity: Entity): void {
+// ModCallback.PRE_SPAWN_CLEAR_AWARD (70)
+export function spawnPerfectionPreSpawnClearAward(): void {
   if (v.run.perfection.spawned) {
     return;
   }
@@ -37,19 +21,6 @@ export function spawnPerfectionPostEntityKill(entity: Entity): void {
   const startSeed = seeds.GetStartSeed();
 
   if (!inRoomType(RoomType.BOSS)) {
-    return;
-  }
-
-  const npc = entity.ToNPC();
-  if (npc === undefined) {
-    return;
-  }
-
-  if (!npc.IsBoss()) {
-    return;
-  }
-
-  if (SPLITTING_BOSSES.has(npc.Type)) {
     return;
   }
 
@@ -66,10 +37,13 @@ export function spawnPerfectionPostEntityKill(entity: Entity): void {
     return;
   }
 
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
+  const position = findFreePosition(centerPos);
   const velocity = RandomVector().mul(PERFECTION_VELOCITY_MULTIPLIER);
   spawnTrinket(
     TrinketType.PERFECTION,
-    npc.Position,
+    position,
     velocity,
     undefined,
     startSeed,

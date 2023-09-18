@@ -42,7 +42,7 @@ import {
   finishGoingToNewFloor,
   setNewFastTravelState,
 } from "./fastTravel/setNewState";
-import { spawnPerfectionPostEntityKill } from "./fastTravel/spawnPerfection";
+import { spawnPerfectionPreSpawnClearAward } from "./fastTravel/spawnPerfection";
 import {
   trapdoorPostGridEntityInitTrapdoor,
   trapdoorPostGridEntityRemoveTrapdoor,
@@ -122,17 +122,12 @@ export class FastTravel extends ConfigurableModFeature {
     bigChestPostPickupInitBigChest(pickup);
   }
 
-  // 68
-  @Callback(ModCallback.POST_ENTITY_KILL)
-  postEntityKill(entity: Entity): void {
-    spawnPerfectionPostEntityKill(entity);
-  }
-
   // 70
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
     v.room.clearFrame = game.GetFrameCount();
     heavenDoorPreSpawnClearAward();
+    spawnPerfectionPreSpawnClearAward();
 
     return undefined;
   }
