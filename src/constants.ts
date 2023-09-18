@@ -1,7 +1,7 @@
 export const MOD_NAME = "Racing+";
 
 /** The version is updated automatically by the IsaacScript publish command. */
-export const VERSION = "0.107.0";
+export const VERSION = "0.107.1";
 
 export const SPRITE_CHALLENGE_OFFSET = Vector(-3, 0);
 export const SPRITE_DIFFICULTY_OFFSET = Vector(13, 0);
