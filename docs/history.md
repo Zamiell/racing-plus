@@ -10,7 +10,7 @@
 
 ### _v0.107.0_ - September 16th, 2023
 
-- The Sawblade build is no longer is season 2 or season 5.
+- The Sawblade build is no longer in season 2 or season 5.
 
 ### _v0.106.0_ - September 15th, 2023
 
