@@ -1,14 +1,14 @@
 /* eslint-disable max-classes-per-file */
 
-import { ModCallback } from "isaac-typescript-definitions";
+import { ModCallback, SeedEffect } from "isaac-typescript-definitions";
 import {
   Callback,
   CallbackCustom,
+  ModCallbackCustom,
   game,
   getHUDOffsetVector,
   isBethany,
   isJacobOrEsau,
-  ModCallbackCustom,
 } from "isaacscript-common";
 import {
   SPRITE_BETHANY_OFFSET,
@@ -65,6 +65,12 @@ export class DrawCharacterProgress extends ChallengeModFeature {
   drawCharacterProgressAndSeasonIcon(): void {
     const hud = game.GetHUD();
     if (!hud.IsVisible()) {
+      return;
+    }
+
+    // The `HUD.IsVisible` method does not take into account `SeedEffect.NO_HUD`.
+    const seeds = game.GetSeeds();
+    if (seeds.HasSeedEffect(SeedEffect.NO_HUD)) {
       return;
     }
 
