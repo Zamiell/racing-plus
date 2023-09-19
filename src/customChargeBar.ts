@@ -9,6 +9,7 @@ import {
   game,
   hasCollectible,
   isCharacter,
+  isChildPlayer,
   isReflectionRender,
 } from "isaacscript-common";
 import { isMaxBloodyLustCharges } from "./classes/features/optional/quality/bloodyLustChargeBar/v";
@@ -118,7 +119,7 @@ export function shouldDrawCustomChargeBar(
   player: EntityPlayer,
   chargeBarType: CustomChargeBarType,
 ): boolean {
-  if (!shouldDrawAnyCustomChargeBar()) {
+  if (!shouldDrawAnyCustomChargeBar(player)) {
     return false;
   }
 
@@ -145,10 +146,10 @@ export function shouldDrawCustomChargeBar(
  * Since this is a UI element, we only want to draw it when the HUD is enabled and if this is not a
  * water reflection.
  */
-function shouldDrawAnyCustomChargeBar(): boolean {
+function shouldDrawAnyCustomChargeBar(player: EntityPlayer): boolean {
   const hud = game.GetHUD();
 
-  return hud.IsVisible() && !isReflectionRender();
+  return hud.IsVisible() && !isReflectionRender() && !isChildPlayer(player);
 }
 
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
