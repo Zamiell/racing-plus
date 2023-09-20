@@ -6,6 +6,8 @@
 ### _v0.107.3_ - September 19th, 2023
 
 - Fixed the bug where charge bars would be rendered on non-main players. (Thanks Gamonymous)
+- Fixed the bug where the Rebirth Item Tracker would not work properly in Genesis rooms. (Thanks Gamonymous)
+- Fixed the bug where the "Choose Char Order" custom challenge would not work properly for Season 2. (Thanks Monkeypot)
 
 ### _v0.107.2_ - September 18th, 2023
 
