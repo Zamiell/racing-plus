@@ -5,6 +5,7 @@ import {
   getPlayers,
   getRoomGridIndexesForType,
   hideRoomOnMinimap,
+  inRedKeyRoom,
   inRoomType,
   ModCallbackCustom,
   onFirstFloor,
@@ -70,6 +71,13 @@ export class BanFirstFloorRoomType extends MandatoryModFeature {
   }
 
   outsideBannedRoom(bannedRoomType: RoomType): void {
+    // We must preserve the door if they are in a red room to handle the case of using a reverse
+    // Moon card. (In this case, they player will need to backtrack to the floor from the Ultra
+    // Secret room and going through the Treasure Room may be necessary.)
+    if (inRedKeyRoom()) {
+      return;
+    }
+
     // Delete the doors to the banned room, if any. This includes the doors in a Secret Room. (We
     // must delete the door before changing the minimap, or else the icon will remain.)
     const bannedRoomGridIndexes = getRoomGridIndexesForType(bannedRoomType);
