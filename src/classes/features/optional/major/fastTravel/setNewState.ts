@@ -5,6 +5,7 @@ import {
   EntityType,
   FamiliarVariant,
   GameStateFlag,
+  GridRoom,
   LevelStage,
   PlayerType,
   PlayerVariant,
@@ -267,7 +268,15 @@ function playTravelingAnimation(
 }
 
 function setGoingToNewFloor() {
-  const roomGridIndex = getRoomGridIndex();
+  let roomGridIndex = getRoomGridIndex();
+
+  // Below, we reload the current room, but this will cause the Rebirth Item Tracker to reset the
+  // items if we happen to be in a Genesis room. Thus, we have a special case for Genesis rooms such
+  // that instead of reloading the room, we go back to the starting room of the floor.
+  if (roomGridIndex === GridRoom.GENESIS) {
+    const level = game.GetLevel();
+    roomGridIndex = level.GetStartingRoomIndex();
+  }
 
   blackSprite.setBlackSpriteFullyOpaque();
 

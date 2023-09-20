@@ -1,7 +1,7 @@
 /* eslint-disable max-classes-per-file */
 
 import type { PlayerType } from "isaac-typescript-definitions";
-import type { Decrement, Range } from "isaacscript-common";
+import type { TupleKeys } from "isaacscript-common";
 import type { RANDOM_STARTING_BUILDS } from "../classes/features/speedrun/randomStartingBuild/constants";
 
 export interface SeasonDescription {
@@ -32,7 +32,7 @@ export class BuildPosition {
   readonly y: int;
 
   constructor(
-    buildIndex: Range<0, Decrement<typeof RANDOM_STARTING_BUILDS.length>>,
+    buildIndex: TupleKeys<typeof RANDOM_STARTING_BUILDS>,
     x: int,
     y: int,
   ) {
