@@ -1,6 +1,8 @@
 /* eslint-disable max-classes-per-file */
 
 import type { PlayerType } from "isaac-typescript-definitions";
+import type { Decrement, Range } from "isaacscript-common";
+import type { RANDOM_STARTING_BUILDS } from "../classes/features/speedrun/randomStartingBuild/constants";
 
 export interface SeasonDescription {
   readonly X: int;
@@ -29,7 +31,11 @@ export class BuildPosition {
   readonly x: int;
   readonly y: int;
 
-  constructor(buildIndex: int, x: int, y: int) {
+  constructor(
+    buildIndex: Range<0, Decrement<typeof RANDOM_STARTING_BUILDS.length>>,
+    x: int,
+    y: int,
+  ) {
     this.buildIndex = buildIndex;
     this.x = x;
     this.y = y;

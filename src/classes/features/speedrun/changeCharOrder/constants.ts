@@ -86,7 +86,6 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
         new BuildPosition(24, 5, 4),
         // Skip center column.
         new BuildPosition(25, 7, 4),
-        new BuildPosition(26, 8, 4),
       ],
       numBuildVetos: 3,
     },
