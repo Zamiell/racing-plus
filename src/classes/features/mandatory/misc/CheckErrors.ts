@@ -22,7 +22,7 @@ import {
   onFirstFloor,
   removeAllDoors,
 } from "isaacscript-common";
-import { RANDOM_BABY_NAME } from "../../../../constants";
+import { MOD_NAME, RANDOM_BABY_NAME } from "../../../../constants";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
@@ -64,7 +64,7 @@ export class CheckErrors extends MandatoryModFeature {
 
     if (v.run.afterbirthPlus) {
       this.drawErrorText(
-        "You must have the Repentance DLC installed in order to use Racing+.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.",
+        `You must have the Repentance DLC installed in order to use ${MOD_NAME}.\n\nIf you want to use the Afterbirth+ version of the mod, then you must download it manually from GitHub.`,
       );
     } else if (v.run.corrupted) {
       this.drawErrorText(
@@ -72,11 +72,11 @@ export class CheckErrors extends MandatoryModFeature {
       );
     } else if (v.run.incompleteSave) {
       this.drawErrorText(
-        "You must use a fully unlocked save file to play the Racing+ mod. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources",
+        `You must use a fully unlocked save file to play ${MOD_NAME}. This is so that all players will have consistent items in races and speedruns.\n\nYou can download a fully unlocked save file from:\nhttps://www.speedrun.com/repentance/resources`,
       );
     } else if (v.run.otherModsEnabled) {
       this.drawErrorText(
-        "You have illegal mods enabled.\n\nMake sure that Racing+ is the only mod enabled in your mod list and then completely close and re-open the game.",
+        `You have illegal mods enabled.\n\nMake sure that ${MOD_NAME} is the only mod enabled in your mod list and then completely close and re-open the game.`,
       );
     } else if (v.run.playingAsNonBaby) {
       this.drawErrorText(
@@ -232,9 +232,11 @@ function checkIncompleteSave() {
 
   if (v.run.incompleteSave) {
     log(
-      `Error: Incomplete save file detected. (Failed to get collectible ${getCollectibleName(
+      `Error: Incomplete save file detected. Failed to get collectible ${getCollectibleName(
         INCOMPLETE_SAVE_COLLECTIBLE_TO_CHECK,
-      )} from pool ${ItemPoolType[INCOMPLETE_SAVE_ITEM_POOL_TO_CHECK]}.)`,
+      )} (${INCOMPLETE_SAVE_COLLECTIBLE_TO_CHECK}) from pool ${
+        ItemPoolType[INCOMPLETE_SAVE_ITEM_POOL_TO_CHECK]
+      } (${INCOMPLETE_SAVE_ITEM_POOL_TO_CHECK}).`,
     );
   }
 }

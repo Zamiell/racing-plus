@@ -3905,12 +3905,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^16.1.2":
-  version: 16.1.2
-  resolution: "isaac-typescript-definitions@npm:16.1.2"
+"isaac-typescript-definitions@npm:^17.0.1":
+  version: 17.0.1
+  resolution: "isaac-typescript-definitions@npm:17.0.1"
   dependencies:
     lua-types: ^2.13.1
-  checksum: 3a44472321746adfc52a7d25a205760ab0e9a566369999c3c9a9d14619d4013265bfdccfeec21061902d17e3995df13f2179d1f52ea2ad3996b1a46e8a9ebbd0
+  checksum: 12b63e9f6ee94868b9375c543c6eab41b3951eeb946a5856eecb1a567f86f88fe92e60a221d39d274e444659fa6746e46e71580128fa1119c3bf3cf2aa990d47
   languageName: node
   linkType: hard
 
@@ -3921,12 +3921,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^37.1.0":
-  version: 37.1.0
-  resolution: "isaacscript-common@npm:37.1.0"
+"isaacscript-common@npm:^39.0.2":
+  version: 39.0.2
+  resolution: "isaacscript-common@npm:39.0.2"
   dependencies:
-    isaac-typescript-definitions: ^16.1.2
-  checksum: 8f03a882b86243941eaac44b3cd4ae40deb5fdf705a36ef48c8419e06bfe907c0d154223e09e5cf9806bce9a7794ba4d050c454c8d9df983acb517701513d257
+    isaac-typescript-definitions: ^17.0.1
+  checksum: 7d1659536ec295563429a73032f7f795f7ad39ef53d48a45060176559a6b98b1f988ea95f6c1832b97c67b1896d1cf96928cad95b175b4f8b532bd7363235c20
   languageName: node
   linkType: hard
 
@@ -3962,10 +3962,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-spell@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "isaacscript-spell@npm:1.3.0"
-  checksum: 1ed403525348853fa2673bca251d1c0ab81ca50c3ae3adb19a95ce8be90c49b0934d3ebec3e9f72edcfbcb70d442b6c21e3bb92ccf2208a5ee2dcde8d72b1d7b
+"isaacscript-spell@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "isaacscript-spell@npm:1.4.0"
+  checksum: 5dec201d96868378e7df1cb5c8955e10611e501d38bf53554185b67c0d20d1fc695a9bc1e75b4de4ca415e5896a17b582443760c4ee1771c9c555f5a2cf017c5
   languageName: node
   linkType: hard
 
@@ -5333,11 +5333,11 @@ __metadata:
   resolution: "racing-plus@workspace:."
   dependencies:
     convert-xml-to-json: ^1.0.3
-    isaac-typescript-definitions: ^16.1.2
+    isaac-typescript-definitions: ^17.0.1
     isaacscript: ^3.11.0
-    isaacscript-common: ^37.1.0
+    isaacscript-common: ^39.0.2
     isaacscript-lint: ^5.10.0
-    isaacscript-spell: ^1.3.0
+    isaacscript-spell: ^1.4.0
     isaacscript-tsconfig: ^4.0.0
     typescript: ^5.2.2
     typescript-to-lua: ^1.19.2
