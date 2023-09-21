@@ -15,6 +15,7 @@ import {
   newGlowingTrinketSprite,
 } from "../../../../sprite";
 
+const FONT = fonts.droid;
 const GFX_PATH = "gfx/race/starting-room";
 
 const sprites = {
@@ -151,10 +152,9 @@ export function season3DrawStartingRoomText(): void {
   // Matches the offset from the `getPosition` function.
   const position = Vector(screenCenterPos.X + 90, screenCenterPos.Y + 50);
 
-  const font = fonts.droid;
-  const length = font.GetStringWidthUTF8(characterName);
+  const length = FONT.GetStringWidthUTF8(characterName);
 
-  font.DrawString(
+  FONT.DrawString(
     characterName,
     position.X - length / 2,
     position.Y,

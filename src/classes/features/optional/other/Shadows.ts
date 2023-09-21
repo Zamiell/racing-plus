@@ -32,6 +32,8 @@ import {
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 
+const FONT = fonts.pfTempestaSevenCondensed;
+
 let lastBeaconFrame: int | undefined;
 
 /** Indexed by user ID. */
@@ -289,7 +291,6 @@ export class Shadows extends MandatoryModFeature {
   }
 
   drawSprite(sprite: Sprite, shadowData: ShadowData): void {
-    const font = fonts.pfTempestaSevenCondensed;
     const positionGame = Vector(shadowData.x, shadowData.y);
     const position = Isaac.WorldToScreen(positionGame);
     sprite.Render(position);
@@ -301,8 +302,8 @@ export class Shadows extends MandatoryModFeature {
       const fadeAmount = 0.5;
       const color = KColor(1, 1, 1, fadeAmount);
       const scale = 1;
-      const length = font.GetStringWidthUTF8(shadowData.username) * scale;
-      font.DrawStringScaled(
+      const length = FONT.GetStringWidthUTF8(shadowData.username) * scale;
+      FONT.DrawStringScaled(
         shadowData.username,
         positionText.X - length / 2,
         positionText.Y,

@@ -42,6 +42,7 @@ import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
+const FONT = fonts.droid;
 const FRAMES_BEFORE_FADE = 50;
 
 /**
@@ -185,10 +186,9 @@ export class StreakText extends MandatoryModFeature {
     const x = bottomRightPos.X * 0.5;
     const y = bottomRightPos.Y * 0.25;
 
-    const font = fonts.droid;
-    const length = font.GetStringWidthUTF8(text);
+    const length = FONT.GetStringWidthUTF8(text);
     const color = KColor(1, 1, 1, fade);
-    font.DrawString(text, x - length / 2, y, color);
+    FONT.DrawString(text, x - length / 2, y, color);
   }
 
   // 3, 712

@@ -22,6 +22,7 @@ import { consoleCommand } from "../../utils";
 import * as socket from "./socket";
 
 const FEATURE_NAME = "customConsole";
+const FONT = fonts.pfTempestaSevenCondensed;
 export const CONSOLE_POSITION = getScreenPosition(0, 0, 0.167, 0.6);
 const MAX_HISTORY_LENGTH = 100;
 const REPEAT_KEY_DELAY_IN_RENDER_FRAMES = RENDER_FRAMES_PER_SECOND * 0.5;
@@ -255,16 +256,15 @@ export function drawText(
   position: Vector,
   alpha = DEFAULT_CONSOLE_OPACITY,
 ): void {
-  const font = fonts.pfTempestaSevenCondensed;
   let x = position.X;
   const y = position.Y;
 
   for (const textSegment of textSegments) {
     const hexColor = textSegment.color ?? HexColors.WHITE;
     const kColor = hexToKColor(hexColor, alpha);
-    font.DrawString(textSegment.text, x, y, kColor, 0, true);
+    FONT.DrawString(textSegment.text, x, y, kColor, 0, true);
 
-    x += font.GetStringWidth(textSegment.text);
+    x += FONT.GetStringWidth(textSegment.text);
   }
 }
 

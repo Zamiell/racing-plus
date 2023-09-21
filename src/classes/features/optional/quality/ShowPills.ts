@@ -51,6 +51,7 @@ const FALSE_PHD_PILL_CONVERSIONS_RACING_PLUS = new ReadonlyMap<
   [PillEffect.LEMON_PARTY, PillEffect.HORF], // 26
 ]);
 
+const FONT = fonts.droid;
 const LINE_HEIGHT = 20;
 
 /** These are not meant to ever be reset. */
@@ -179,8 +180,6 @@ export class ShowPills extends ConfigurableModFeature {
    * start by calculating the total height of the pill display.
    */
   drawTextAndSprite(): void {
-    const font = fonts.droid;
-
     // We add one because of the header.
     const totalHeight = LINE_HEIGHT * (1 + v.run.pillsUsed.length);
     const bottomY = getScreenBottomY();
@@ -189,7 +188,7 @@ export class ShowPills extends ConfigurableModFeature {
     const baseY = bottomY - totalHeight;
 
     const pillsIdentifiedText = `Pills identified: ${v.run.pillsUsed.length} / ${NUM_PILLS_IN_POOL}`;
-    font.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
+    FONT.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
 
     for (const [i, pillEntry] of v.run.pillsUsed.entries()) {
       // Show the pill sprite.
@@ -209,7 +208,7 @@ export class ShowPills extends ConfigurableModFeature {
       if (pillEffectName === "Feels like I'm walking on sunshine!") {
         pillEffectName = "Walking on sunshine!";
       }
-      font.DrawString(pillEffectName, x + 15, y - 9, KColorDefault);
+      FONT.DrawString(pillEffectName, x + 15, y - 9, KColorDefault);
     }
   }
 

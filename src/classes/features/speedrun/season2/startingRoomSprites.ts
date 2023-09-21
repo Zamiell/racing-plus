@@ -9,6 +9,7 @@ import {
 import { mod } from "../../../../mod";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
 
+const FONT = fonts.droid;
 const GFX_PATH = "gfx/race/starting-room";
 
 const TOP_LEFT_GRID_INDEX = 32;
@@ -165,10 +166,9 @@ export function season2DrawStartingRoomText(): void {
   const positionWithoutOffset = Isaac.WorldToScreen(positionGame);
   const position = positionWithoutOffset.add(SEASON_2_CHARACTER_NAME_OFFSET);
 
-  const font = fonts.droid;
-  const length = font.GetStringWidthUTF8(characterName);
+  const length = FONT.GetStringWidthUTF8(characterName);
 
-  font.DrawString(
+  FONT.DrawString(
     characterName,
     position.X - length / 2,
     position.Y,

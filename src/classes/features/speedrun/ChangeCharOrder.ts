@@ -36,6 +36,8 @@ import {
 } from "./changeCharOrder/constants";
 import { getSeasonDescription, v } from "./changeCharOrder/v";
 
+const FONT = fonts.droid;
+
 const CHANGE_CHAR_ORDER_PHASE_TEXT = {
   [ChangeCharOrderPhase.SEASON_SELECT]: "Choose your season.",
   [ChangeCharOrderPhase.CHARACTER_SELECT]: "Choose your character order.",
@@ -106,9 +108,8 @@ export class ChangeCharOrder extends ChallengeModFeature {
     const position = Isaac.WorldToScreen(bottomCenterOfRoom);
     position.Y -= 15;
     const text = CHANGE_CHAR_ORDER_PHASE_TEXT[v.room.phase];
-    const font = fonts.droid;
-    const length = font.GetStringWidthUTF8(text);
-    font.DrawString(text, position.X - length / 2, position.Y, KColorDefault);
+    const length = FONT.GetStringWidthUTF8(text);
+    FONT.DrawString(text, position.X - length / 2, position.Y, KColorDefault);
   }
 
   drawSeasonSprites(): void {
