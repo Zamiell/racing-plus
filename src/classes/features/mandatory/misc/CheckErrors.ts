@@ -57,7 +57,6 @@ export class CheckErrors extends MandatoryModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
-    // Don't draw on top of Mod Config Menu.
     if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
       return;
     }

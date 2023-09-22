@@ -1,6 +1,7 @@
 import { CollectibleType } from "isaac-typescript-definitions";
 import {
   DefaultMap,
+  assertDefined,
   game,
   getHUDOffsetVector,
   isBethany,
@@ -35,7 +36,11 @@ const spriteCollectionMap = new DefaultMap<int, TimerSprites>(
   () => new TimerSprites(),
 );
 
-/** By default, it will use the draw position of the race/speedrun timer. */
+/**
+ * Should be called from the `POST_RENDER` callback.
+ *
+ * By default, it will use the draw position of the race/speedrun timer.
+ */
 export function timerDraw(
   timerType: TimerType,
   seconds: int,
@@ -47,8 +52,8 @@ export function timerDraw(
     return;
   }
 
-  // We want the timers to be drawn when the game is paused so that players can continue to see the
-  // seeded death countdown if they tab out of the game.
+  // We want the timer to be drawn when the game is paused so that players can continue to see the
+  // countdown if they tab out of the game.
 
   if (seconds < 0) {
     return;
@@ -56,6 +61,7 @@ export function timerDraw(
 
   const player = Isaac.GetPlayer();
 
+  // Calculate the starting draw position.
   const HUDOffsetVector = getHUDOffsetVector();
   startingX += HUDOffsetVector.X;
   startingY += HUDOffsetVector.Y;
@@ -155,16 +161,12 @@ export function convertSecondsToTimerValues(totalSeconds: int): {
   // The first character.
   const minute1String = minutesString[0] ?? "0";
   const minute1 = tonumber(minute1String);
-  if (minute1 === undefined) {
-    error("Failed to parse the first minute of the timer.");
-  }
+  assertDefined(minute1, "Failed to parse the first minute of the timer.");
 
   // The second character.
   const minute2String = minutesString[1] ?? "0";
   const minute2 = tonumber(minute2String);
-  if (minute2 === undefined) {
-    error("Failed to parse the second minute of the timer.");
-  }
+  assertDefined(minute2, "Failed to parse the second minute of the timer.");
 
   // Calculate the seconds digits.
   const seconds = Math.floor(totalSeconds % 60);
@@ -174,16 +176,12 @@ export function convertSecondsToTimerValues(totalSeconds: int): {
   // The first character.
   const second1String = secondsString[0] ?? "0";
   const second1 = tonumber(second1String);
-  if (second1 === undefined) {
-    error("Failed to parse the first second of the timer.");
-  }
+  assertDefined(second1, "Failed to parse the first second of the timer.");
 
   // The second character.
   const second2String = secondsString[1] ?? "0";
   const second2 = tonumber(second2String);
-  if (second2 === undefined) {
-    error("Failed to parse the second second of the timer.");
-  }
+  assertDefined(second2, "Failed to parse the second second of the timer.");
 
   // Calculate the tenths digit.
   const rawSeconds = totalSeconds % 60; // 0.000 to 59.999
