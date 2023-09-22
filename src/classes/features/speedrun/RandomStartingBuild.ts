@@ -110,8 +110,9 @@ export class RandomStartingBuild extends ChallengeModFeature {
     }
 
     // Only remove the flight if the player does not have another flight item or effect.
+    const character = player.GetPlayerType();
     if (
-      !isFlyingCharacter(player) &&
+      !isFlyingCharacter(character) &&
       !hasFlyingTransformation(player) &&
       !mod.hasFlyingTemporaryEffect(player) &&
       !this.hasFlyingCollectibleExceptForRevelation(player)

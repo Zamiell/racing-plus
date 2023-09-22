@@ -44,8 +44,8 @@ const spriteCollectionMap = new DefaultMap<int, TimerSprites>(
 export function timerDraw(
   timerType: TimerType,
   seconds: int,
-  startingX = RACE_TIMER_POSITION_X,
-  startingY = RACE_TIMER_POSITION_Y,
+  x = RACE_TIMER_POSITION_X,
+  y = RACE_TIMER_POSITION_Y,
 ): void {
   const hud = game.GetHUD();
   if (!hud.IsVisible()) {
@@ -63,17 +63,17 @@ export function timerDraw(
 
   // Calculate the starting draw position.
   const HUDOffsetVector = getHUDOffsetVector();
-  startingX += HUDOffsetVector.X;
-  startingY += HUDOffsetVector.Y;
+  x += HUDOffsetVector.X;
+  y += HUDOffsetVector.Y;
 
   if (isBethany(player)) {
-    startingY += 8;
+    y += 8;
   } else if (isJacobOrEsau(player)) {
-    startingY += 25;
+    y += 25;
   }
 
   if (player.HasCollectible(CollectibleType.DUALITY)) {
-    startingY -= 10;
+    y -= 10;
   }
 
   const hourAdjustment = 2;
@@ -84,56 +84,47 @@ export function timerDraw(
   const { hours, minute1, minute2, second1, second2, tenths } =
     convertSecondsToTimerValues(seconds);
 
-  const positionClock = Vector(startingX + 34, startingY + 45);
+  const positionClock = Vector(x + 34, y + 45);
   sprites.clock.Render(positionClock);
 
   if (hours > 0) {
     // The format is "#.##.##" (instead of "##.##", which is the default).
     hourAdjustment2 = 2;
-    startingX += DIGIT_LENGTH + hourAdjustment;
+    x += DIGIT_LENGTH + hourAdjustment;
 
-    const positionHours = Vector(
-      startingX - DIGIT_LENGTH - hourAdjustment,
-      startingY,
-    );
+    const positionHours = Vector(x - DIGIT_LENGTH - hourAdjustment, y);
     sprites.digits.hour.SetFrame("Default", hours);
     sprites.digits.hour.Render(positionHours);
 
-    const positionColon = Vector(startingX - DIGIT_LENGTH + 7, startingY + 19);
+    const positionColon = Vector(x - DIGIT_LENGTH + 7, y + 19);
     sprites.colons.afterHours.Render(positionColon);
   }
 
-  const positionMinute1 = Vector(startingX, startingY);
+  const positionMinute1 = Vector(x, y);
   sprites.digits.minute1.SetFrame("Default", minute1);
   sprites.digits.minute1.Render(positionMinute1);
 
-  const positionMinute2 = Vector(startingX + DIGIT_LENGTH, startingY);
+  const positionMinute2 = Vector(x + DIGIT_LENGTH, y);
   sprites.digits.minute2.SetFrame("Default", minute2);
   sprites.digits.minute2.Render(positionMinute2);
 
-  const positionColon1 = Vector(startingX + DIGIT_LENGTH + 10, startingY + 19);
+  const positionColon1 = Vector(x + DIGIT_LENGTH + 10, y + 19);
   sprites.colons.afterMinutes.Render(positionColon1);
 
-  const positionSecond1 = Vector(startingX + DIGIT_LENGTH + 11, startingY);
+  const positionSecond1 = Vector(x + DIGIT_LENGTH + 11, y);
   sprites.digits.second1.SetFrame("Default", second1);
   sprites.digits.second1.Render(positionSecond1);
 
   const positionSecond2 = Vector(
-    startingX + DIGIT_LENGTH + 11 + DIGIT_LENGTH + 1 - hourAdjustment2,
-    startingY,
+    x + DIGIT_LENGTH + 11 + DIGIT_LENGTH + 1 - hourAdjustment2,
+    y,
   );
   sprites.digits.second2.SetFrame("Default", second2);
   sprites.digits.second2.Render(positionSecond2);
 
   const positionTenths = Vector(
-    startingX +
-      DIGIT_LENGTH +
-      11 +
-      DIGIT_LENGTH +
-      1 -
-      hourAdjustment2 +
-      DIGIT_LENGTH,
-    startingY + 1,
+    x + DIGIT_LENGTH + 11 + DIGIT_LENGTH + 1 - hourAdjustment2 + DIGIT_LENGTH,
+    y + 1,
   );
   sprites.digitMini.SetFrame("Default", tenths);
   sprites.digitMini.Render(positionTenths);

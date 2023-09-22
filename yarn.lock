@@ -3304,9 +3304,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.3.4":
-  version: 10.3.4
-  resolution: "glob@npm:10.3.4"
+"glob@npm:^10.3.5":
+  version: 10.3.5
+  resolution: "glob@npm:10.3.5"
   dependencies:
     foreground-child: ^3.1.0
     jackspeak: ^2.0.3
@@ -3315,7 +3315,7 @@ __metadata:
     path-scurry: ^1.10.1
   bin:
     glob: dist/cjs/src/bin.js
-  checksum: 176b97c124414401cb51329a93d2ba112cef8814adbed10348481916b9521b677773eee2691cb6b24d66632d8c8bb8913533f5ac4bfb2d0ef5454a1856082361
+  checksum: 564f4799cae48c0bcc841c88a20b539b5701c27ed5596f8623f588b3c523262d3fc20eb1ea89cab9c75b0912faf40ca5501fc835f982225d0d0599282b09e97a
   languageName: node
   linkType: hard
 
@@ -3921,12 +3921,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^39.4.4":
-  version: 39.4.4
-  resolution: "isaacscript-common@npm:39.4.4"
+"isaacscript-common@npm:^40.0.0":
+  version: 40.0.0
+  resolution: "isaacscript-common@npm:40.0.0"
   dependencies:
     isaac-typescript-definitions: ^17.0.4
-  checksum: 08367c9e6e75a9dfe1afd495f9a8091513e699edae0bdfc49adf75c4cffd257759f47a28ae4f8210bc27f79586b9aeb88c7e7b36404dce09481395a3903b65dc
+  checksum: 26bc8eb00b60a0dcc0e7435c9e7d9961e9befeb8239c3a51c6eb7f4e69a1588e21d22f266f95ede73cb6636a8f22b9fd114bcb1731ff7cf6e0c4a5de84ff34d3
   languageName: node
   linkType: hard
 
@@ -3978,19 +3978,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.11.0":
-  version: 3.11.0
-  resolution: "isaacscript@npm:3.11.0"
+"isaacscript@npm:^3.11.1":
+  version: 3.11.1
+  resolution: "isaacscript@npm:3.11.1"
   dependencies:
     ajv: ^8.12.0
     chalk: 4.1.2
     command-exists: ^1.2.9
     figlet: ^1.6.0
-    glob: ^10.3.4
+    glob: ^10.3.5
     jsonc-parser: ^3.2.0
     klaw-sync: ^6.0.0
     moment: ^2.29.4
-    npm-check-updates: ^16.14.2
+    npm-check-updates: ^16.14.4
     prompt: ^1.3.0
     source-map-support: ^0.5.21
     sync-directory: ^6.0.4
@@ -4003,7 +4003,7 @@ __metadata:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: src/main.js
-  checksum: e0fcffb1c505fe2912da7ec309b0a473432d005422c0375ac65b82e1ca388b60c2974e74f23683831620a55612e17c7334ab7b8b2c36c3e30cacfe53ab4773a6
+  checksum: cb2f3b19d17f37d6cc5e2cb8467119117b8ea65f2c739cb6e4ae1960b1646bbc18464d3de0f2811c2e41c4e6d1e65da1476205fbb52ffc6734078a68bbe32fa9
   languageName: node
   linkType: hard
 
@@ -4726,9 +4726,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^16.14.2":
-  version: 16.14.2
-  resolution: "npm-check-updates@npm:16.14.2"
+"npm-check-updates@npm:^16.14.4":
+  version: 16.14.4
+  resolution: "npm-check-updates@npm:16.14.4"
   dependencies:
     chalk: ^5.3.0
     cli-table3: ^0.6.3
@@ -4765,7 +4765,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: d0bc2c7774598235686ddf9654739a0331f6788815e84b6e2eb0670913d52a286fd66889d8900f13e9e39a13413ef5992255248d30c3362b1c15e5fc1bbaa75e
+  checksum: ab6e17c98c07c642359e149ff6c8bfec87b91a3eb3c21932175de93db89e0c3525cb6462c5ce56a9267e86696a0dc824814ab6dc7958b40261a2800fc7443431
   languageName: node
   linkType: hard
 
@@ -5334,8 +5334,8 @@ __metadata:
   dependencies:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^17.0.4
-    isaacscript: ^3.11.0
-    isaacscript-common: ^39.4.4
+    isaacscript: ^3.11.1
+    isaacscript-common: ^40.0.0
     isaacscript-lint: ^5.10.0
     isaacscript-spell: ^1.4.0
     isaacscript-tsconfig: ^4.0.0
