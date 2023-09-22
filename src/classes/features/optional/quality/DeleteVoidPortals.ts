@@ -1,8 +1,8 @@
-import { GridEntityType } from "isaac-typescript-definitions";
+import { GridEntityType, TrapdoorVariant } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  isPostBossVoidPortal,
   ModCallbackCustom,
+  isPostBossVoidPortal,
   removeGridEntity,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
@@ -14,8 +14,9 @@ export class DeleteVoidPortals extends ConfigurableModFeature {
   @CallbackCustom(
     ModCallbackCustom.POST_GRID_ENTITY_UPDATE,
     GridEntityType.TRAPDOOR,
+    TrapdoorVariant.VOID_PORTAL,
   )
-  postGridEntityUpdateTrapdoor(gridEntity: GridEntity): void {
+  postGridEntityUpdateVoidPortal(gridEntity: GridEntity): void {
     if (isPostBossVoidPortal(gridEntity)) {
       removeGridEntity(gridEntity, false);
     }

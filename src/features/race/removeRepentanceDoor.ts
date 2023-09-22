@@ -1,5 +1,6 @@
 import { EffectVariant, RoomType } from "isaac-typescript-definitions";
 import {
+  DISTANCE_OF_GRID_TILE,
   game,
   getEffects,
   getRepentanceDoor,
@@ -72,6 +73,10 @@ function removeRepentanceDoor() {
 
   // When the door is spawned, the game creates dust clouds.
   for (const effect of getEffects(EffectVariant.DUST_CLOUD)) {
-    effect.Visible = false;
+    if (
+      effect.Position.Distance(repentanceDoor.Position) < DISTANCE_OF_GRID_TILE
+    ) {
+      effect.Visible = false;
+    }
   }
 }

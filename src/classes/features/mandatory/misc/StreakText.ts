@@ -140,7 +140,7 @@ export class StreakText extends MandatoryModFeature {
       return;
     }
 
-    // Don't draw streak text on top of Mod Config Menu.
+    // Don't draw on top of Mod Config Menu.
     if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
       return;
     }
