@@ -273,9 +273,8 @@ function getDefaultValue(optionType: ModConfigMenuOptionType): true | -1 {
       return -1;
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -306,9 +305,8 @@ function getDisplayTextKeyboardController(
       return `${shortDescription}: ${text} (keyboard)`;
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -341,9 +339,8 @@ function popupGetDeviceString(
       return "controller";
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }
@@ -370,9 +367,8 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int): string {
       return controllerToString(key as Controller) ?? "Unknown";
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(`Option types of ${optionType} are unsupported.`);
+      return error(`Option types of ${optionType} are unsupported.`);
     }
   }
 }

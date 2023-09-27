@@ -134,9 +134,8 @@ function getPosition(spriteName: keyof typeof sprites): Vector {
       return screenCenterPos.add(Vector(25, 95));
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(`Race room sprites named "${spriteName}" are unsupported.`);
+      return error(`Race room sprites named "${spriteName}" are unsupported.`);
     }
   }
 }

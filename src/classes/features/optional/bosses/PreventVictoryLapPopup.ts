@@ -48,8 +48,8 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
       return;
     }
 
-    // There is an edge-case with The Lamb where if you deal fatal damage to it in phase 1, it will
-    // trigger the `POST_ENTITY_KILL` callback. However, in this situation, The Lamb will not
+    // There is an special case with The Lamb where if you deal fatal damage to it in phase 1, it
+    // will trigger the `POST_ENTITY_KILL` callback. However, in this situation, The Lamb will not
     // actually die, and will instead proceed to transition to phase 2 anyway. To work around this,
     // wait a frame before checking to see if all of the Lamb entities in the room are dead. (It is
     // difficult to distinguish between this special case and throwing a Chaos Card.)
@@ -82,22 +82,13 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
 
   isAllLambEntitiesDead(): boolean {
     const lambs = getNPCs(EntityType.THE_LAMB);
+    const filteredLambs = lambs.filter(
+      (lamb) =>
+        !lamb.HasEntityFlags(EntityFlag.FRIENDLY) &&
+        !(lamb.Variant === asNumber(LambVariant.BODY) && lamb.IsInvincible()),
+    );
 
-    for (const lamb of lambs) {
-      if (lamb.HasEntityFlags(EntityFlag.FRIENDLY)) {
-        continue;
-      }
-
-      if (lamb.Variant === asNumber(LambVariant.BODY) && lamb.IsInvincible()) {
-        continue;
-      }
-
-      if (!lamb.IsDead()) {
-        return false;
-      }
-    }
-
-    return true;
+    return filteredLambs.every((lamb) => lamb.IsDead());
   }
 
   spawnRoomClearDelayEffect(): void {

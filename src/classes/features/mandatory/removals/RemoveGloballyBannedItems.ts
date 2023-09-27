@@ -212,7 +212,7 @@ export class RemoveGloballyBannedItems extends MandatoryModFeature {
 
     let replacementCollectible: CollectibleType;
     do {
-      replacementCollectible = mod.getRandomEdenPassiveCollectible(
+      replacementCollectible = mod.getRandomEdenPassiveCollectibleType(
         rng,
         PLACEHOLDER_COLLECTIBLE_TYPES,
       );

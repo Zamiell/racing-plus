@@ -98,7 +98,7 @@ export class ShowEdenStartingItems extends ConfigurableModFeature {
   getEdenPassiveItemStarted(player: EntityPlayer): CollectibleType | undefined {
     const activeItem = player.GetActiveItem(ActiveSlot.PRIMARY);
 
-    for (const collectibleType of mod.getCollectibleArray()) {
+    for (const collectibleType of mod.getCollectibleTypes()) {
       if (
         player.HasCollectible(collectibleType) &&
         collectibleType !== activeItem &&

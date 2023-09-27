@@ -350,9 +350,8 @@ function updateDelta(
       return;
     }
 
-    // eslint-disable-next-line isaacscript/require-break
     default: {
-      error(
+      return error(
         `Unknown pickup variant of "${pickupType}" in the updateDelta function.`,
       );
     }

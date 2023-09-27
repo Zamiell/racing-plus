@@ -10,7 +10,7 @@ import {
   CallbackCustom,
   KColorDefault,
   ModCallbackCustom,
-  NUM_PILLS_IN_POOL,
+  NUM_PILL_COLORS_IN_POOL,
   ReadonlyMap,
   anyPlayerHasCollectible,
   fonts,
@@ -187,7 +187,7 @@ export class ShowPills extends ConfigurableModFeature {
     const x = 80;
     const baseY = bottomY - totalHeight;
 
-    const pillsIdentifiedText = `Pills identified: ${v.run.pillsUsed.length} / ${NUM_PILLS_IN_POOL}`;
+    const pillsIdentifiedText = `Pills identified: ${v.run.pillsUsed.length} / ${NUM_PILL_COLORS_IN_POOL}`;
     FONT.DrawString(pillsIdentifiedText, x - 10, baseY - 9, KColorDefault);
 
     for (const [i, pillEntry] of v.run.pillsUsed.entries()) {

@@ -1,3 +1,4 @@
+import type { PlayerType } from "isaac-typescript-definitions";
 import {
   ButtonAction,
   CollectibleType,
@@ -11,13 +12,16 @@ import {
   CallbackCustom,
   DefaultMap,
   ModCallbackCustom,
+  ReadonlySet,
   SHOOTING_ACTIONS,
   game,
   getShootActions,
   hasCollectible,
+  isCharacter,
   isShootAction,
   sfxManager,
 } from "isaacscript-common";
+import { RANDOM_BABY_NAME } from "../../../../constants";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../../utils";
@@ -52,6 +56,11 @@ const POWERFUL_COLLECTIBLE_TYPES = [
   CollectibleType.SPIRIT_SWORD,
   CollectibleType.CHOCOLATE_MILK,
 ] as const;
+
+const ANTI_SYNERGY_BABIES = new ReadonlySet([
+  531, // Solomon's Baby A
+  532, // Solomon's Baby B
+]);
 
 const v = {
   run: {
@@ -309,6 +318,19 @@ export class Autofire extends MandatoryModFeature {
     inputHook: InputHook,
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
+    // Early return if we are on some specific babies from The Babies Mod.
+    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME) as
+      | PlayerType
+      | -1;
+    if (
+      randomBaby !== -1 &&
+      isCharacter(player, randomBaby) &&
+      BabiesModBabyType !== undefined &&
+      ANTI_SYNERGY_BABIES.has(BabiesModBabyType)
+    ) {
+      return undefined;
+    }
+
     if (
       (inputHook === InputHook.IS_ACTION_PRESSED ||
         inputHook === InputHook.GET_ACTION_VALUE) &&

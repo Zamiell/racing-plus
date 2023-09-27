@@ -200,7 +200,7 @@ export function speedrunTimerCheckpointTouched(): void {
 export function speedrunTimerFinish(player: EntityPlayer): void {
   const renderFrameCount = Isaac.GetFrameCount();
 
-  sfxManager.Play(SoundEffectCustom.SOUND_SPEEDRUN_FINISH);
+  sfxManager.Play(SoundEffectCustom.SPEEDRUN_FINISH);
 
   // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know when
   // to split.)

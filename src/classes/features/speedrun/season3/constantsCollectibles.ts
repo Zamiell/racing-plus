@@ -6,10 +6,10 @@ import {
 import {
   ReadonlyMap,
   ReadonlySet,
+  VANILLA_COLLECTIBLE_TYPES,
   isActiveCollectible,
   isPassiveCollectible,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removals/RemoveGloballyBannedItems";
 import { BANNED_DIVERSITY_COLLECTIBLES } from "../../race/RaceFormatSetup";
 
@@ -144,7 +144,6 @@ export const [
   activeCollectibleTypes: readonly CollectibleType[],
   passiveCollectibleTypes: readonly CollectibleType[],
 ] => {
-  const vanillaCollectibleArray = mod.getVanillaCollectibleArray();
   const removedStartingCollectibleTypesSet = new Set<CollectibleType>([
     ...BANNED_COLLECTIBLES,
     ...BANNED_DIVERSITY_COLLECTIBLES,
@@ -156,7 +155,7 @@ export const [
   const activeCollectibleTypes: CollectibleType[] = [];
   const passiveCollectibleTypes: CollectibleType[] = [];
 
-  for (const collectibleType of vanillaCollectibleArray) {
+  for (const collectibleType of VANILLA_COLLECTIBLE_TYPES) {
     if (removedStartingCollectibleTypesSet.has(collectibleType)) {
       continue;
     }

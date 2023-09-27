@@ -122,7 +122,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
   }
 
   hasFlyingCollectibleExceptForRevelation(player: EntityPlayer): boolean {
-    const flyingCollectiblesReadOnly = mod.getFlyingCollectibles(false);
+    const flyingCollectiblesReadOnly = mod.getFlyingCollectibleTypes(false);
     const flyingCollectibles = copySet(flyingCollectiblesReadOnly);
     flyingCollectibles.delete(CollectibleType.REVELATION);
 
