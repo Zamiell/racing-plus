@@ -17,7 +17,7 @@ import {
   dequeueItem,
   emptyArray,
   game,
-  getCharacterStartingCollectibles,
+  getCharacterStartingCollectibleTypes,
   getPlayerIndex,
   getRoomName,
   hasCollectibleInActiveSlot,
@@ -260,7 +260,7 @@ export class Season4 extends ChallengeModFeature {
     character: PlayerType,
   ): void {
     const startingCollectibleTypes =
-      getCharacterStartingCollectibles(startingCharacter);
+      getCharacterStartingCollectibleTypes(startingCharacter);
     for (const collectibleType of startingCollectibleTypes) {
       // Don't remove the D6 if it is in the pocket item slot.
       if (

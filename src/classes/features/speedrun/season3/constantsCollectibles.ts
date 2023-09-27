@@ -8,7 +8,7 @@ import {
   ReadonlySet,
   VANILLA_COLLECTIBLE_TYPES,
   isActiveCollectible,
-  isPassiveCollectible,
+  isPassiveOrFamiliarCollectible,
 } from "isaacscript-common";
 import { BANNED_COLLECTIBLES } from "../../mandatory/removals/RemoveGloballyBannedItems";
 import { BANNED_DIVERSITY_COLLECTIBLES } from "../../race/RaceFormatSetup";
@@ -164,7 +164,7 @@ export const [
       activeCollectibleTypes.push(collectibleType);
     }
 
-    if (isPassiveCollectible(collectibleType)) {
+    if (isPassiveOrFamiliarCollectible(collectibleType)) {
       passiveCollectibleTypes.push(collectibleType);
     }
   }

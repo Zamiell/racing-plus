@@ -23,8 +23,8 @@ import {
   game,
   getCardName,
   getCollectibleName,
-  getEnglishLevelName,
   getFamiliars,
+  getLevelName,
   getPillEffectName,
   getRandomArrayElement,
   getScreenBottomRightPos,
@@ -118,7 +118,7 @@ export class StreakText extends MandatoryModFeature {
 
     // Only show the floor name if the user is pressing tab.
     const streakTextValue = isActionPressedOnAnyInput(ButtonAction.MAP)
-      ? getEnglishLevelName()
+      ? getLevelName()
       : null;
     v.run.tabText = streakTextValue;
   }
@@ -321,7 +321,7 @@ export class StreakText extends MandatoryModFeature {
     // Show what the new floor is. (The game will not show this naturally after doing a "stage"
     // console command.)
     if (VanillaStreakText === undefined) {
-      const text = getEnglishLevelName();
+      const text = getLevelName();
       setStreakText(text);
     } else if (!onFirstFloor()) {
       level.ShowName(false);
