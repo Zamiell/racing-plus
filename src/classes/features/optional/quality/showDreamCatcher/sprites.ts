@@ -1,14 +1,15 @@
 import type { EntityType } from "isaac-typescript-definitions";
-import { CollectibleType } from "isaac-typescript-definitions";
+import { BossID, CollectibleType } from "isaac-typescript-definitions";
 import {
   emptyArray,
   game,
+  getBossIDFromEntityTypeVariant,
+  getBossPortraitPNGFilePath,
   inStartingRoom,
   logError,
   newSprite,
 } from "isaacscript-common";
 import { newGlowingCollectibleSprite } from "../../../../../sprite";
-import { BOSS_PNG_MAP } from "./bossPNGMap";
 import { v } from "./v";
 
 const TOP_LEFT_GRID_INDEX = 32;
@@ -55,23 +56,15 @@ function newBossSprite(
   entityType: EntityType,
   variant: int,
 ): Sprite | undefined {
-  const pngArray = BOSS_PNG_MAP.get(entityType);
-  if (pngArray === undefined) {
+  let bossID = getBossIDFromEntityTypeVariant(entityType, variant);
+  if (bossID === undefined) {
     logError(
-      `Failed to find the boss of entity type ${entityType} in the boss PNG map.`,
+      `Failed to get the boss ID corresponding to: ${entityType}.${variant}`,
     );
-    return undefined;
+    bossID = BossID.RAGLICH;
   }
 
-  const pngFileName = pngArray[variant];
-  if (pngFileName === undefined) {
-    logError(
-      `Failed to find the entity type & variant of ${entityType}.${variant} in the boss PNG map.`,
-    );
-    return undefined;
-  }
-
-  const pngPath = `gfx/ui/boss/${pngFileName}`;
+  const pngPath = getBossPortraitPNGFilePath(bossID);
   return newSprite("gfx/boss.anm2", pngPath);
 }
 

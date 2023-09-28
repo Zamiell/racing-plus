@@ -22,9 +22,9 @@
   "type": "module",
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaac-typescript-definitions": "^18.0.0",
+    "isaac-typescript-definitions": "^21.0.0",
     "isaacscript": "^3.11.1",
-    "isaacscript-common": "^48.1.0",
+    "isaacscript-common": "^51.2.0",
     "isaacscript-lint": "^5.11.0",
     "isaacscript-spell": "^1.4.0",
     "isaacscript-tsconfig": "^4.0.0",

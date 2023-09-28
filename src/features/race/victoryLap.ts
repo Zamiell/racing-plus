@@ -72,10 +72,10 @@ const VICTORY_LAP_BOSSES = [
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.NORMAL], // 19.0.0
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.GREEN], // 19.0.1
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.BLUE], // 19.0.2
-  [EntityType.LARRY_JR, LarryJrVariant.THE_HOLLOW, HollowSubType.NORMAL], // 19.1.0
-  [EntityType.LARRY_JR, LarryJrVariant.THE_HOLLOW, HollowSubType.GREEN], // 19.1.1
-  [EntityType.LARRY_JR, LarryJrVariant.THE_HOLLOW, HollowSubType.BLACK], // 19.1.2
-  [EntityType.LARRY_JR, LarryJrVariant.THE_HOLLOW, HollowSubType.YELLOW], // 19.1.3
+  [EntityType.LARRY_JR, LarryJrVariant.HOLLOW, HollowSubType.NORMAL], // 19.1.0
+  [EntityType.LARRY_JR, LarryJrVariant.HOLLOW, HollowSubType.GREEN], // 19.1.1
+  [EntityType.LARRY_JR, LarryJrVariant.HOLLOW, HollowSubType.BLACK], // 19.1.2
+  [EntityType.LARRY_JR, LarryJrVariant.HOLLOW, HollowSubType.YELLOW], // 19.1.3
   // - Don't include Tuff Twins (19.2) since it requires throwable bombs.
   // - Don't include The Shell (19.3) since it requires throwable bombs.
   [EntityType.MONSTRO, 0, MonstroSubType.NORMAL], // 20.0.0
@@ -123,9 +123,9 @@ const VICTORY_LAP_BOSSES = [
     DukeOfFliesVariant.DUKE_OF_FLIES,
     DukeOfFliesSubType.ORANGE,
   ], // 67.0.2
-  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.THE_HUSK, HuskSubType.NORMAL], // 67.1.0
-  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.THE_HUSK, HuskSubType.BLACK], // 67.1.1
-  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.THE_HUSK, HuskSubType.RED], // 67.1.2
+  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.HUSK, HuskSubType.NORMAL], // 67.1.0
+  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.HUSK, HuskSubType.BLACK], // 67.1.1
+  [EntityType.DUKE_OF_FLIES, DukeOfFliesVariant.HUSK, HuskSubType.RED], // 67.1.2
   [EntityType.PEEP, PeepVariant.PEEP, PeepSubType.NORMAL], // 68.0.0
   [EntityType.PEEP, PeepVariant.PEEP, PeepSubType.YELLOW], // 68.0.1
   [EntityType.PEEP, PeepVariant.PEEP, PeepSubType.CYAN], // 68.0.2
@@ -154,7 +154,7 @@ const VICTORY_LAP_BOSSES = [
   [EntityType.WIDOW, WidowVariant.WIDOW, WidowSubType.NORMAL], // 100.0.0
   [EntityType.WIDOW, WidowVariant.WIDOW, WidowSubType.BLACK], // 100.0.1
   [EntityType.WIDOW, WidowVariant.WIDOW, WidowSubType.PINK], // 100.0.2
-  [EntityType.WIDOW, WidowVariant.THE_WRETCHED, 0], // 100.1.0
+  [EntityType.WIDOW, WidowVariant.WRETCHED, 0], // 100.1.0
   [EntityType.DADDY_LONG_LEGS, DaddyLongLegsVariant.DADDY_LONG_LEGS, 0], // 101.0.0
   [EntityType.DADDY_LONG_LEGS, DaddyLongLegsVariant.TRIACHNID, 0], // 101.1.0
   // - Don't include Isaac (102.0) or Blue Baby (102.1) since they are story bosses.
@@ -162,9 +162,9 @@ const VICTORY_LAP_BOSSES = [
   [EntityType.GURGLING, GurglingVariant.GURGLING_BOSS, GurglingSubType.YELLOW], // 237.1.1
   [EntityType.GURGLING, GurglingVariant.GURGLING_BOSS, GurglingSubType.BLACK], // 237.1.2
   [EntityType.GURGLING, GurglingVariant.TURDLING, 0], // 237.2.0
-  [EntityType.THE_HAUNT, HauntVariant.HAUNT, HauntSubType.NORMAL], // 260.0.0
-  [EntityType.THE_HAUNT, HauntVariant.HAUNT, HauntSubType.BLACK], // 260.0.1
-  [EntityType.THE_HAUNT, HauntVariant.HAUNT, HauntSubType.PINK], // 260.0.2
+  [EntityType.HAUNT, HauntVariant.HAUNT, HauntSubType.NORMAL], // 260.0.0
+  [EntityType.HAUNT, HauntVariant.HAUNT, HauntSubType.BLACK], // 260.0.1
+  [EntityType.HAUNT, HauntVariant.HAUNT, HauntSubType.PINK], // 260.0.2
   [EntityType.DINGLE, DingleVariant.DINGLE, DingleSubType.NORMAL], // 261.0.0
   [EntityType.DINGLE, DingleVariant.DINGLE, DingleSubType.RED], // 261.0.1 (red)
   [EntityType.DINGLE, DingleVariant.DINGLE, DingleSubType.BLACK], // 261.0.2 (black)
@@ -199,7 +199,7 @@ const VICTORY_LAP_BOSSES = [
     PolycephalusVariant.POLYCEPHALUS,
     PolycephalusSubType.PINK,
   ], // 269.0.2
-  [EntityType.POLYCEPHALUS, PolycephalusVariant.THE_PILE, 0], // 269.1.0
+  [EntityType.POLYCEPHALUS, PolycephalusVariant.PILE, 0], // 269.1.0
   [EntityType.MR_FRED, 0, 0], // 270.0.0
   [EntityType.URIEL, AngelVariant.NORMAL, 0], // 271.0.0
   [EntityType.URIEL, AngelVariant.FALLEN, 0], // 271.1.0
@@ -266,14 +266,14 @@ function checkVictoryLapBossReplace() {
   if (
     !g.raceVars.finished ||
     roomClear ||
-    (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.THE_LAMB))
+    (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.LAMB))
   ) {
     return;
   }
 
   // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps).
   removeAllMatchingEntities(EntityType.ISAAC);
-  removeAllMatchingEntities(EntityType.THE_LAMB);
+  removeAllMatchingEntities(EntityType.LAMB);
 
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {

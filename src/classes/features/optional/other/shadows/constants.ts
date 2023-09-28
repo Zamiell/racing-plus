@@ -83,6 +83,4 @@ export const SHADOW_FIELDS = [
 export const SHADOW_DATA_FORMAT = "IIffIIIIc20Ic20Ic20";
 
 export const CHARACTER_LAYER_ID = 0;
-export const DEFAULT_CHARACTER_PNG =
-  "characters/costumes/character_001_isaac.png";
 export const SHADOW_FADE_AMOUNT = 0.075;

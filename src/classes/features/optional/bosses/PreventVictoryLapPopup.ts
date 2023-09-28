@@ -38,7 +38,7 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
   v = v;
 
   // 68, 273
-  @Callback(ModCallback.POST_ENTITY_KILL, EntityType.THE_LAMB)
+  @Callback(ModCallback.POST_ENTITY_KILL, EntityType.LAMB)
   postEntityKillLamb(entity: Entity): void {
     if (entity.HasEntityFlags(EntityFlag.FRIENDLY)) {
       return;
@@ -81,7 +81,7 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
   }
 
   isAllLambEntitiesDead(): boolean {
-    const lambs = getNPCs(EntityType.THE_LAMB);
+    const lambs = getNPCs(EntityType.LAMB);
     const filteredLambs = lambs.filter(
       (lamb) =>
         !lamb.HasEntityFlags(EntityFlag.FRIENDLY) &&

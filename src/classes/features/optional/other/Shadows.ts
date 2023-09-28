@@ -6,6 +6,7 @@ import {
   RENDER_FRAMES_PER_SECOND,
   fonts,
   game,
+  getCharacterSpritePNGFilePath,
   getRoomListIndex,
   isActionPressedOnAnyInput,
   setSpriteOpacity,
@@ -16,7 +17,6 @@ import { g } from "../../../../globals";
 import { config } from "../../../../modConfigMenu";
 import type { Config } from "../../../Config";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
-import { CHARACTER_PNG_MAP } from "./shadows/characterPNGMap";
 import type { ShadowData, ShadowMessage } from "./shadows/constants";
 import {
   BEACON_DATA_FORMAT,
@@ -24,7 +24,6 @@ import {
   BEACON_INTERVAL,
   BEACON_MESSAGE,
   CHARACTER_LAYER_ID,
-  DEFAULT_CHARACTER_PNG,
   SHADOW_DATA_FORMAT,
   SHADOW_FADE_AMOUNT,
   SHADOW_FIELDS,
@@ -268,10 +267,7 @@ export class Shadows extends MandatoryModFeature {
     if (spriteCharacter !== shadowData.character) {
       spriteCharacterMap.set(shadowData.userID, shadowData.character);
 
-      let characterPNG = CHARACTER_PNG_MAP.get(shadowData.character);
-      if (characterPNG === undefined) {
-        characterPNG = DEFAULT_CHARACTER_PNG;
-      }
+      const characterPNG = getCharacterSpritePNGFilePath(shadowData.character);
       sprite.ReplaceSpritesheet(CHARACTER_LAYER_ID, characterPNG);
     }
   }

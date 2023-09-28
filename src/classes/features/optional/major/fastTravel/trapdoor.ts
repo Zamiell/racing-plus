@@ -182,7 +182,7 @@ function shouldRemove() {
   if (
     inRaceToHush() &&
     onStage(LevelStage.BLUE_WOMB) &&
-    roomGridIndex !== asNumber(GridRoom.THE_VOID)
+    roomGridIndex !== asNumber(GridRoom.VOID)
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a race Hush goal) on game frame: ${gameFrameCount}`,

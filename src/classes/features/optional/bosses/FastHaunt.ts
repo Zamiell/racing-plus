@@ -37,7 +37,7 @@ export class FastHaunt extends ConfigurableModFeature {
   // 0, 260
   @CallbackCustom(
     ModCallbackCustom.POST_NPC_UPDATE_FILTER,
-    EntityType.THE_HAUNT,
+    EntityType.HAUNT,
     HauntVariant.HAUNT,
   )
   postNPCUpdateHaunt(npc: EntityNPC): void {
@@ -81,7 +81,7 @@ export class FastHaunt extends ConfigurableModFeature {
 
   getAttachedLilHaunts(haunt: EntityNPC): EntityNPC[] {
     const hauntPtrHash = GetPtrHash(haunt);
-    const lilHaunts = getNPCs(EntityType.THE_HAUNT, HauntVariant.LIL_HAUNT);
+    const lilHaunts = getNPCs(EntityType.HAUNT, HauntVariant.LIL_HAUNT);
     const childrenLilHaunts: EntityNPC[] = [];
     for (const lilHaunt of lilHaunts) {
       // Only target Lil' Haunts attached to this Haunt.

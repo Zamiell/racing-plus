@@ -55,7 +55,7 @@ export class FadeBosses extends ConfigurableModFeature {
     // actually die, and will instead proceed to transition to phase 2 anyway. To work around this,
     // wait a frame before checking to see if all of the Lamb entities are dead.
     if (
-      npc.Type === EntityType.THE_LAMB &&
+      npc.Type === EntityType.LAMB &&
       npc.Variant === asNumber(LambVariant.LAMB)
     ) {
       if (deferred) {

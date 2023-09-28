@@ -25,7 +25,7 @@ export class VulnerableGhosts extends ConfigurableModFeature {
 
   @CallbackCustom(
     ModCallbackCustom.POST_NPC_INIT_LATE,
-    EntityType.THE_HAUNT,
+    EntityType.HAUNT,
     HauntVariant.LIL_HAUNT,
   )
   postNPCInitLateLilHaunt(npc: EntityNPC): void {

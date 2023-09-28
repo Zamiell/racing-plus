@@ -1,14 +1,12 @@
 import {
+  BossID,
   CollectibleType,
   EntityFlag,
   EntityType,
   GameStateFlag,
-  LarryJrVariant,
-  MamaGurdyVariant,
   ModCallback,
   Music,
   PickupVariant,
-  PinVariant,
   RoomType,
   SoundEffect,
 } from "isaac-typescript-definitions";
@@ -25,6 +23,7 @@ import {
   findFreePosition,
   game,
   getAllBossesSet,
+  getEntityTypeVariantFromBossID,
   getNPCs,
   getRandomArrayElement,
   gridCoordinatesToWorldPosition,
@@ -33,7 +32,6 @@ import {
   musicManager,
   newRNG,
   openAllDoors,
-  parseEntityTypeVariantString,
   repeat,
   sfxManager,
   spawnNPC,
@@ -74,43 +72,44 @@ const BOSS_POSITIONS = [
  * not have to exclude them. (We want to exclude them since they will drop items.)
  */
 const BOSS_RUSH_EXCLUSIONS = [
-  // Tuff Twins and The Shell require bombs to kill.
-  `${EntityType.LARRY_JR}.${LarryJrVariant.TUFF_TWIN}`, // 19.2
-  `${EntityType.LARRY_JR}.${LarryJrVariant.THE_SHELL}`, // 19.3
-
   // Scolex is not a balanced boss for speedruns.
-  `${EntityType.PIN}.${PinVariant.SCOLEX}`, // 62.1
-
-  // Wormwood requires water to function correctly.
-  `${EntityType.PIN}.${PinVariant.WORMWOOD}`, // 62.3
+  BossID.SCOLEX, // 7
 
   // Mama Gurdy does not play well in a 2x2 room due to needing to be on the top wall.
-  `${EntityType.MAMA_GURDY}.${MamaGurdyVariant.MAMA_GURDY}`, // 266.0
+  BossID.MAMA_GURDY, // 49
 
   // Reap Creep does not play well in a 2x2 room due to needing to be on the top wall.
-  `${EntityType.REAP_CREEP}.0`, // 900.0
+  BossID.REAP_CREEP, // 74
+
+  // Wormwood requires water to function correctly.
+  BossID.WORMWOOD, // 76
+
+  // Tuff Twins and The Shell require bombs to kill.
+  BossID.TUFF_TWINS, // 80
+  BossID.SHELL, // 96
 
   // Hornfel requires tracks to function correctly.
-  `${EntityType.HORNFEL}.0`, // 906.0
+  BossID.HORNFEL, // 82
 
   // Great Gideon would not work properly in a Boss Rush room.
-  `${EntityType.GREAT_GIDEON}.0`, // 907.0
+  BossID.GREAT_GIDEON, // 83
 
   // Clog's spin attack is unfair with other bosses on the screen.
-  `${EntityType.CLOG}.0`, // 914.0
+  BossID.CLOG, // 92
 
   // Colostomia spin attack is not fair with other bosses on the screen at the same time.
-  `${EntityType.COLOSTOMIA}.0`, // 917.0
+  BossID.COLOSTOMIA, // 95
 ] as const;
 
-const BOSS_RUSH_BOSSES: readonly string[] = (() => {
-  const bossSet = copySet(getAllBossesSet(false));
+const BOSS_RUSH_BOSSES: readonly BossID[] = (() => {
+  const nonStoryBosses = getAllBossesSet(false);
+  const bossRushBosses = copySet(nonStoryBosses);
 
-  for (const entityTypeVariantString of BOSS_RUSH_EXCLUSIONS) {
-    bossSet.delete(entityTypeVariantString);
+  for (const bossID of BOSS_RUSH_EXCLUSIONS) {
+    bossRushBosses.delete(bossID);
   }
 
-  return [...bossSet.values()];
+  return [...bossRushBosses.values()];
 })();
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */
@@ -133,7 +132,7 @@ const v = {
      * An array of entity type + variant strings, matching the format of the boss set from the
      * standard library.
      */
-    selectedBosses: [] as string[],
+    selectedBosses: [] as BossID[],
   },
 
   /**
@@ -200,19 +199,14 @@ export class FastBossRush extends ConfigurableModFeature {
       // Get the boss to spawn.
       const bossIndex =
         v.room.currentWave * NUM_BOSSES_PER_WAVE - NUM_BOSSES_PER_WAVE + i;
-      const bossString = v.run.selectedBosses[bossIndex];
-      if (bossString === undefined) {
+      const bossID = v.run.selectedBosses[bossIndex];
+      if (bossID === undefined) {
         logError(
           `Failed to find the selected Boss Rush boss at index: ${bossIndex}`,
         );
         continue;
       }
-      const tuple = parseEntityTypeVariantString(bossString);
-      if (tuple === undefined) {
-        logError(`Failed to parse the selected Boss Rush boss: ${bossString}`);
-        continue;
-      }
-      const [entityType, variant] = tuple;
+      const [entityType, variant] = getEntityTypeVariantFromBossID(bossID);
 
       const numSegments = this.getNumBossSegments(entityType);
       const position = this.getBossSpawnPosition(i);
@@ -396,12 +390,12 @@ export class FastBossRush extends ConfigurableModFeature {
     roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
   }
 
-  getRandomBossRushBosses(): string[] {
+  getRandomBossRushBosses(): BossID[] {
     const seeds = game.GetSeeds();
     const startSeed = seeds.GetStartSeed();
     const rng = newRNG(startSeed);
 
-    const randomBosses: string[] = [];
+    const randomBosses: BossID[] = [];
 
     repeat(NUM_TOTAL_BOSSES, () => {
       const randomBoss = getRandomArrayElement(

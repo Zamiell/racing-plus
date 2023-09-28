@@ -12,7 +12,7 @@ export class RemoveLambBody extends ConfigurableModFeature {
   // 0, 273
   @CallbackCustom(
     ModCallbackCustom.POST_NPC_UPDATE_FILTER,
-    EntityType.THE_LAMB,
+    EntityType.LAMB,
     LambVariant.BODY,
   )
   postNPCUpdateLambBody(npc: EntityNPC): void {

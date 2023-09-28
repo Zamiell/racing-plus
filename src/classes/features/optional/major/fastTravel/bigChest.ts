@@ -202,7 +202,7 @@ function hush() {
 }
 
 function delirium() {
-  return onStage(LevelStage.THE_VOID)
+  return onStage(LevelStage.VOID)
     ? BigChestReplacementAction.TROPHY
     : DEFAULT_REPLACEMENT_ACTION;
 }
