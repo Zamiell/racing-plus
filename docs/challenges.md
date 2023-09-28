@@ -73,32 +73,32 @@
 
 The randomly assigned starting builds are as follows:
 
-- 0 - Cricket's Head
-- 1 - Dr. Fetus
-- 2 - Ipecac
-- 3 - Magic Mushroom
-- 4 - Polyphemus
-- 5 - Proptosis
-- 6 - Tech X
-- 7 - C Section
-- 8 - Brimstone
-- 9 - Maw of the Void
-- 10 - Crown of Light
-- 11 - Godhead
-- 12 - Sacred Heart
-- 13 - Revelation (w/ no soul hearts & no flight)
-- 14 - Technology + A Lump of Coal
-- 15 - Chocolate Milk + Steven
-- 16 - Cricket's Body + Steven
-- 17 - Monstro's Lung + Sad Onion
-- 18 - Death's Touch + Sad Onion
-- 19 - Tech.5 + Jesus Juice
-- 20 - 20/20 + The Inner Eye
-- 21 - Fire Mind + 13 Luck
-- 22 - Incubus + Twisted Pair + Forgotten Lullaby
-- 23 - Dead Eye + Jesus Juice
-- 24 - Haemolacria + Sad Onion
-- 25 - Pointy Rib + Eve's Mascara
+- 0 - Cricket's Head (#4)
+- 1 - Dr. Fetus (#52)
+- 2 - Ipecac (#149)
+- 3 - Magic Mushroom (#12)
+- 4 - Polyphemus (#169)
+- 5 - Proptosis (#261)
+- 6 - Tech X (#395)
+- 7 - Brimstone (#118)
+- 8 - Maw of the Void (#399)
+- 9 - Crown of Light (#415)
+- 10 - Godhead (#331)
+- 11 - Sacred Heart (#182)
+- 12 - Revelation (w/ no soul hearts & no flight) (#643)
+- 13 - 20/20 (#245) + The Inner Eye (#2)
+- 14 - C Section (#678) + Steven (#50)
+- 15 - Chocolate Milk (#69) + Steven (#50)
+- 16 - Cricket's Body (#224) + Steven (#50)
+- 17 - Dead Eye (#373) + Jesus Juice (#197)
+- 18 - Death's Touch (#237) + Sad Onion (#1)
+- 19 - Fire Mind (#257) + 13 Luck
+- 20 - Haemolacria (#531) + Sad Onion (#1)
+- 21 - Incubus (#360) + Twisted Pair (#698) + Forgotten Lullaby
+- 22 - Monstro's Lung (#229) + Sad Onion (#1)
+- 23 - Technology (#68) + A Lump of Coal (#132)
+- 24 - Tech.5 (#244) + Jesus Juice (#197)
+- 25 - Pointy Rib (#544) + Eve's Mascara (#310)
 
 ### Forgotten Builds
 

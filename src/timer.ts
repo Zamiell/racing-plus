@@ -79,10 +79,10 @@ export function timerDraw(
   const hourAdjustment = 2;
   let hourAdjustment2 = 0;
 
-  const sprites = spriteCollectionMap.getAndSetDefault(timerType);
-
   const { hours, minute1, minute2, second1, second2, tenths } =
     convertSecondsToTimerValues(seconds);
+
+  const sprites = spriteCollectionMap.getAndSetDefault(timerType);
 
   const positionClock = Vector(x + 34, y + 45);
   sprites.clock.Render(positionClock);

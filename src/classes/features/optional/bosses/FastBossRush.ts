@@ -103,13 +103,13 @@ const BOSS_RUSH_EXCLUSIONS = [
 
 const BOSS_RUSH_BOSSES: readonly BossID[] = (() => {
   const nonStoryBosses = getAllBossesSet(false);
-  const bossRushBosses = copySet(nonStoryBosses);
+  const bossRushBossesSet = copySet(nonStoryBosses);
 
   for (const bossID of BOSS_RUSH_EXCLUSIONS) {
-    bossRushBosses.delete(bossID);
+    bossRushBossesSet.delete(bossID);
   }
 
-  return [...bossRushBosses.values()];
+  return [...bossRushBossesSet.values()];
 })();
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */
