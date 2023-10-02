@@ -447,7 +447,7 @@ Post-flip actions:
 
 > Why? So that gameplay is not blocked when you use Rules card.
 
-- <!-- "ui_hearts.png" --> The heart UI sprites have been modified so that it is easier to see an empty heart container on a black background.
+- <!-- "ui_hearts.png" --> The heart UI sprites have been slightly modified so that it is easier to see an empty heart container on a black background.
 - <!-- 5.70 --> Pills now have a consistent orientation regardless of whether they are on the ground or in your inventory.
 - <!-- 5.70 --> The color of some pills are changed to make them easier to identify at a glance:
   - <!-- PILL_ORANGE_ORANGE (3) --> Orange / Orange --> Full purple

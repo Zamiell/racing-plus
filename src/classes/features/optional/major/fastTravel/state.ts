@@ -3,7 +3,6 @@ import { anyPlayerCloserThan, game, inRoomType, log } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import type { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
-import { mod } from "../../../../../mod";
 import {
   FAST_TRAVEL_DEBUG,
   TRAPDOOR_AND_CRAWL_SPACE_OPEN_DISTANCE,
@@ -184,10 +183,7 @@ export function shouldOpenFastTravelEntity(
       TRAPDOOR_AND_CRAWL_SPACE_OPEN_DISTANCE,
     ) &&
     !playerCloseAfterBoss(entity.Position) &&
-    !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial) &&
-    // TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
-    // sprites.
-    !mod.anyPlayerUsingPony()
+    !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial)
   );
 }
 

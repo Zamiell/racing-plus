@@ -23,7 +23,7 @@ import * as fc from "./featureClasses";
  * - Check refactor `ActiveCollectibleDescription` after seeded death.
  */
 const FEATURE_CLASSES = [
-  // Mandatory (TODO - sort)
+  // Mandatory (TODO - sort in directories?)
   fc.BanFirstFloorRoomType,
   fc.CheckErrors,
   fc.DisableMultiplayer,

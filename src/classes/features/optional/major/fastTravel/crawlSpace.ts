@@ -29,7 +29,6 @@ import {
   spawnTeleporter,
   teleport,
 } from "isaacscript-common";
-import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import { mod } from "../../../../../mod";
 import { movePlayersAndFamiliars } from "../../../../../utils";
@@ -42,7 +41,6 @@ import {
 import {
   deleteFastTravelEntityDescription,
   fastTravelEntityClose,
-  getFastTravelEntityState,
   shouldOpenFastTravelEntity,
 } from "./state";
 import { v } from "./v";
@@ -150,25 +148,12 @@ export function crawlSpacePostGridEntityUpdateCrawlSpace(
     sprite.Play("Opened Custom", true);
   }
 
-  checkShouldClose(gridEntity);
   checkFastTravelEntityShouldOpen(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
   checkPlayerTouchedFastTravelEntity(
     gridEntity,
     FAST_TRAVEL_ENTITY_TYPE,
     touched,
   );
-}
-
-// TODO: Remove this after the next vanilla patch in 2022 when crawl spaces are decoupled from
-// sprites.
-function checkShouldClose(gridEntity: GridEntity) {
-  const entityState = getFastTravelEntityState(
-    gridEntity,
-    FAST_TRAVEL_ENTITY_TYPE,
-  );
-  if (entityState === FastTravelEntityState.OPEN && mod.anyPlayerUsingPony()) {
-    fastTravelEntityClose(gridEntity, FAST_TRAVEL_ENTITY_TYPE);
-  }
 }
 
 // ModCallbackCustom.POST_GRID_ENTITY_STATE_CHANGED

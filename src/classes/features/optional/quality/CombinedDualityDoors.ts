@@ -66,9 +66,9 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
 
     // We don't want to do anything if the player is far away from the door, since initializing the
     // room data over and over might be expensive.
-    const closeToDoor =
+    const doorNextToPlayer =
       door.Position.Distance(player.Position) <= DOOR_HITBOX_RADIUS * 1.5;
-    if (!closeToDoor) {
+    if (!doorNextToPlayer) {
       return;
     }
 

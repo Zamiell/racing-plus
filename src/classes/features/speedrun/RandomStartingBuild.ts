@@ -319,7 +319,6 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
     // 27
     case PlayerType.SAMSON_B: {
       return getBuildIndexesFor(
-        CollectibleType.DR_FETUS, // 52
         CollectibleType.BRIMSTONE, // 118
         CollectibleType.IPECAC, // 148
         CollectibleType.FIRE_MIND, // 257
@@ -329,7 +328,6 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
     // 28
     case PlayerType.AZAZEL_B: {
       return getBuildIndexesFor(
-        CollectibleType.DR_FETUS, // 52
         CollectibleType.CRICKETS_BODY, // 224
         CollectibleType.DEATHS_TOUCH, // 237
         CollectibleType.FIRE_MIND, // 257

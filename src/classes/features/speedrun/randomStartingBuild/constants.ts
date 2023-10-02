@@ -19,54 +19,53 @@ export const RANDOM_STARTING_BUILDS = [
   // 0
   [CollectibleType.CRICKETS_HEAD], // 4
 
-  // 1
-  [CollectibleType.DR_FETUS], // 52
+  // (Dr. Fetus is too weak to be included.)
 
   // (Epic Fetus is too powerful to be included.)
 
-  // 2
+  // 1
   [CollectibleType.IPECAC], // 149
 
-  // 3
+  // 2
   [CollectibleType.MAGIC_MUSHROOM], // 12
 
   // (Mom's Knife is too powerful to be included.)
 
-  // 4
+  // 3
   [CollectibleType.POLYPHEMUS], // 169
 
-  // 5
+  // 4
   [CollectibleType.PROPTOSIS], // 261
 
-  // 6
+  // 5
   [CollectibleType.TECH_X], // 395
 
   // ----------------
   // Devil Room items
   // ----------------
 
-  // 7
+  // 6
   [CollectibleType.BRIMSTONE], // 118
 
-  // 8
+  // 7
   [CollectibleType.MAW_OF_THE_VOID], // 399
 
   // ----------------
   // Angel Room items
   // ----------------
 
-  // 9
+  // 8
   [CollectibleType.CROWN_OF_LIGHT], // 415
 
-  // 10
+  // 9
   [CollectibleType.GODHEAD], // 331
 
-  // 11
+  // 10
   [CollectibleType.SACRED_HEART], // 182
 
   // (Spirit Sword is too powerful to be included.)
 
-  // 12
+  // 11
   // Revelation is nerfed (no soul hearts & no flight).
   [CollectibleType.REVELATION], // 643
 
@@ -74,80 +73,80 @@ export const RANDOM_STARTING_BUILDS = [
   // Custom builds
   // -------------
 
-  // 13
+  // 12
   [
     CollectibleType.TWENTY_TWENTY, // 245
     CollectibleType.INNER_EYE, // 2
   ],
 
-  // 14
+  // 13
   [
     CollectibleType.C_SECTION, // 678
     CollectibleType.STEVEN, // 50
   ],
 
-  // 15
+  // 14
   [
     CollectibleType.CHOCOLATE_MILK, // 69
     CollectibleType.STEVEN, // 50
   ],
 
-  // 16
+  // 15
   [
     CollectibleType.CRICKETS_BODY, // 224
     CollectibleType.STEVEN, // 50
   ],
 
-  // 17
+  // 16
   [
     CollectibleType.DEAD_EYE, // 373
     CollectibleType.JESUS_JUICE, // 197
   ],
 
-  // 18
+  // 17
   [
     CollectibleType.DEATHS_TOUCH, // 237
     CollectibleType.SAD_ONION, // 1
   ],
 
-  // 19
+  // 18
   [
     CollectibleType.FIRE_MIND, // 257
     CollectibleTypeCustom.THIRTEEN_LUCK,
   ],
 
-  // 20
+  // 19
   [
     CollectibleType.HAEMOLACRIA, // 531
     CollectibleType.SAD_ONION, // 1
   ],
 
-  // 21
+  // 20
   [
     CollectibleType.INCUBUS, // 360
     CollectibleType.TWISTED_PAIR, // 698
     // The smelted Forgotten Lullaby is handled manually.
   ],
 
-  // 22
+  // 21
   [
     CollectibleType.MONSTROS_LUNG, // 229
     CollectibleType.SAD_ONION, // 1
   ],
 
-  // 23
+  // 22
   [
     CollectibleType.TECHNOLOGY, // 68
     CollectibleType.LUMP_OF_COAL, // 132
   ],
 
-  // 24
+  // 23
   [
     CollectibleType.TECH_5, // 244
     CollectibleType.JESUS_JUICE, // 197
   ],
 
-  // 25
+  // 24
   [
     CollectibleType.POINTY_RIB, // 544
     CollectibleType.EVES_MASCARA, // 310
