@@ -21,8 +21,9 @@ const GLOWING_IMAGE_TRINKET_OFFSET = 2000;
 
 export function newGlowingCollectibleSprite(
   collectibleType: CollectibleType,
+  useSeason2BuildsDir = false,
 ): Sprite {
-  return newGlowingItemSprite(collectibleType);
+  return newGlowingItemSprite(collectibleType, useSeason2BuildsDir);
 }
 
 /**
@@ -44,25 +45,31 @@ export function newGlowingCollectibleSpriteFromServerCollectibleID(
   return newGlowingCollectibleSprite(collectibleType);
 }
 
-export function newGlowingTrinketSprite(trinketType: TrinketType): Sprite {
+export function newGlowingTrinketSprite(
+  trinketType: TrinketType,
+  useSeason2BuildsDir = false,
+): Sprite {
   // Golden trinkets should not have their ID modified.
   const itemID = isGoldenTrinketType(trinketType)
     ? asNumber(trinketType)
     : asNumber(trinketType) + GLOWING_IMAGE_TRINKET_OFFSET;
 
-  return newGlowingItemSprite(itemID);
+  return newGlowingItemSprite(itemID, useSeason2BuildsDir);
 }
 
-function newGlowingItemSprite(itemID: int): Sprite {
-  const directory = getDirectory(itemID);
+function newGlowingItemSprite(
+  itemID: int,
+  useSeason2BuildsDir: boolean,
+): Sprite {
+  const directory = getDirectory(itemID, useSeason2BuildsDir);
   const filename = getFilename(itemID);
   return newSprite("gfx/glowing_item.anm2", `gfx/${directory}/${filename}`);
 }
 
-function getDirectory(itemID: int): string {
+function getDirectory(itemID: int, useSeason2BuildsDir: boolean): string {
   const challenge = Isaac.GetChallenge();
 
-  if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER) {
+  if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER || useSeason2BuildsDir) {
     return "season-2-builds";
   }
 

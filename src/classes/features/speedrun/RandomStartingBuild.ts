@@ -6,17 +6,18 @@ import {
   ModCallback,
   PlayerType,
   RoomType,
-  TrinketType,
 } from "isaac-typescript-definitions";
 import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
   ReadonlySet,
+  asTrinketType,
   assertDefined,
   copyArray,
   copySet,
   emptyArray,
+  game,
   getRandomArrayElementAndRemove,
   hasCollectible,
   hasFlyingTransformation,
@@ -48,11 +49,14 @@ import {
   RANDOM_STARTING_BUILDS,
   RANDOM_STARTING_BUILD_FORGOTTEN_EXCEPTIONS,
   RANDOM_STARTING_BUILD_INDEXES,
+  RANDOM_STARTING_BUILD_TRINKET_OFFSET,
 } from "./randomStartingBuild/constants";
 
 declare const CCPMainResetPlayerCostumes:
   | ((player: EntityPlayer) => void)
   | undefined;
+
+const DEBUG_BUILD = undefined as int | undefined;
 
 /** How long the randomly-selected build is "locked-in". */
 export const RANDOM_BUILD_LOCK_MILLISECONDS =
@@ -216,12 +220,26 @@ export class RandomStartingBuild extends ChallengeModFeature {
     player: EntityPlayer,
     startingBuild: readonly CollectibleType[],
   ): void {
-    // Give the collectibles from the starting build.
+    const itemPool = game.GetItemPool();
+
     for (const collectibleType of startingBuild) {
-      addCollectibleAndRemoveFromPools(player, collectibleType);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+      if (collectibleType < RANDOM_STARTING_BUILD_TRINKET_OFFSET) {
+        addCollectibleAndRemoveFromPools(player, collectibleType);
+      } else {
+        const trinketType = asTrinketType(
+          collectibleType - RANDOM_STARTING_BUILD_TRINKET_OFFSET,
+        );
+        smeltTrinket(player, trinketType);
+        itemPool.RemoveTrinket(trinketType);
+      }
     }
 
     const firstCollectibleType = startingBuild[0];
+    assertDefined(
+      firstCollectibleType,
+      "Failed to get the first collectible type of a starting build.",
+    );
 
     // Handle builds with custom behavior.
     switch (firstCollectibleType) {
@@ -230,18 +248,6 @@ export class RandomStartingBuild extends ChallengeModFeature {
         player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
         removeCollectibleCostume(player, CollectibleType.REVELATION);
 
-        break;
-      }
-
-      // 19 - Incubus + Twisted Pair + Forgotten Lullaby.
-      case CollectibleType.INCUBUS: {
-        smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
-        break;
-      }
-
-      // 21 - Tech X + Lazy Worm.
-      case CollectibleType.TECH_X: {
-        smeltTrinket(player, TrinketType.LAZY_WORM);
         break;
       }
 
@@ -271,6 +277,10 @@ export function onSpeedrunWithRandomStartingBuild(): boolean {
 }
 
 export function getAndSetRandomStartingBuildIndex(character: PlayerType): int {
+  if (DEBUG_BUILD !== undefined) {
+    return DEBUG_BUILD;
+  }
+
   // First, handle the case where we have already selected a build for this character.
   const oldStartingBuildIndex = getCurrentRandomStartingBuildIndex();
   if (oldStartingBuildIndex !== undefined) {

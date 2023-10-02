@@ -1,5 +1,7 @@
-import type { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType } from "isaac-typescript-definitions";
 import {
+  assertDefined,
+  asTrinketType,
   fonts,
   game,
   getPlayerName,
@@ -7,7 +9,11 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
-import { newGlowingCollectibleSprite } from "../../../../sprite";
+import {
+  newGlowingCollectibleSprite,
+  newGlowingTrinketSprite,
+} from "../../../../sprite";
+import { RANDOM_STARTING_BUILD_TRINKET_OFFSET } from "../randomStartingBuild/constants";
 
 const FONT = fonts.droid;
 const GFX_PATH = "gfx/race/starting-room";
@@ -54,55 +60,61 @@ export function season2InitStartingRoomSprites(
 
   switch (startingBuild.length) {
     case 1: {
-      sprites.seededItemCenter = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
 
       break;
     }
 
     case 2: {
-      sprites.seededItemLeft = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemRight = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemRight = getStartingBuildSprite(startingBuild, 1);
 
       break;
     }
 
     case 3: {
-      sprites.seededItemCenter = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarRight = newGlowingCollectibleSprite(
-        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-
+      sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 1);
+      sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 2);
       break;
     }
 
     case 4: {
-      sprites.seededItemLeft = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemRight = newGlowingCollectibleSprite(
-        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarRight = newGlowingCollectibleSprite(
-        startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 1);
+      sprites.seededItemRight = getStartingBuildSprite(startingBuild, 2);
+      sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 3);
 
       break;
     }
+
+    default: {
+      return error(`Unknown build length: ${startingBuild.length}`);
+    }
   }
+}
+
+export function getStartingBuildSprite(
+  startingBuild: readonly CollectibleType[],
+  i: number,
+): Sprite {
+  const collectibleType = startingBuild[i];
+  assertDefined(
+    collectibleType,
+    `Failed to get the collectible type of a starting build at index: ${i}`,
+  );
+
+  const useSeason2BuildsDir = collectibleType === CollectibleType.REVELATION;
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+  if (collectibleType < RANDOM_STARTING_BUILD_TRINKET_OFFSET) {
+    return newGlowingCollectibleSprite(collectibleType, useSeason2BuildsDir);
+  }
+
+  const trinketType = asTrinketType(
+    collectibleType - RANDOM_STARTING_BUILD_TRINKET_OFFSET,
+  );
+  return newGlowingTrinketSprite(trinketType, useSeason2BuildsDir);
 }
 
 export function season2DrawStartingRoomSprites(): void {

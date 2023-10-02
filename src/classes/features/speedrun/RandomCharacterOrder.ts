@@ -33,7 +33,7 @@ import {
 import { SEASON_4_STARTING_CHARACTERS_FOR_THIRD_AND_BEYOND } from "./season4/constants";
 
 /** How long the randomly-selected character is "locked-in". */
-const RANDOM_CHARACTER_SELECTION_LOCK_MINUTES = g.debug ? 0.2 : 1.25;
+const RANDOM_CHARACTER_SELECTION_LOCK_MINUTES = g.debug ? 0.1 : 1.25;
 const RANDOM_CHARACTER_LOCK_SECONDS =
   RANDOM_CHARACTER_SELECTION_LOCK_MINUTES * 60;
 export const RANDOM_CHARACTER_LOCK_MILLISECONDS =

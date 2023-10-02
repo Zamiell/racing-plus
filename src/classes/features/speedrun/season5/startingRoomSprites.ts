@@ -1,6 +1,6 @@
 import type { CollectibleType } from "isaac-typescript-definitions";
 import { game, newSprite } from "isaacscript-common";
-import { newGlowingCollectibleSprite } from "../../../../sprite";
+import { getStartingBuildSprite } from "../season2/startingRoomSprites";
 
 const GFX_PATH = "gfx/race/starting-room";
 
@@ -38,53 +38,36 @@ export function season5InitStartingRoomSprites(
 
   switch (startingBuild.length) {
     case 1: {
-      sprites.seededItemCenter = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
 
       break;
     }
 
     case 2: {
-      sprites.seededItemLeft = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemRight = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemRight = getStartingBuildSprite(startingBuild, 1);
 
       break;
     }
 
     case 3: {
-      sprites.seededItemCenter = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarRight = newGlowingCollectibleSprite(
-        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-
+      sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 1);
+      sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 2);
       break;
     }
 
     case 4: {
-      sprites.seededItemLeft = newGlowingCollectibleSprite(
-        startingBuild[1]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemRight = newGlowingCollectibleSprite(
-        startingBuild[2]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarLeft = newGlowingCollectibleSprite(
-        startingBuild[0]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
-      sprites.seededItemFarRight = newGlowingCollectibleSprite(
-        startingBuild[3]!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
-      );
+      sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 0);
+      sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 1);
+      sprites.seededItemRight = getStartingBuildSprite(startingBuild, 2);
+      sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 3);
 
       break;
+    }
+
+    default: {
+      return error(`Unknown build length: ${startingBuild.length}`);
     }
   }
 }

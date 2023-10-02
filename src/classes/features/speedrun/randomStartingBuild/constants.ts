@@ -1,4 +1,4 @@
-import { CollectibleType } from "isaac-typescript-definitions";
+import { CollectibleType, TrinketType } from "isaac-typescript-definitions";
 import {
   ReadonlySet,
   assertDefined,
@@ -6,6 +6,12 @@ import {
   itemConfig,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
+
+/**
+ * We re-use the trinket offset from `GLOWING_IMAGE_TRINKET_OFFSET` (i.e. from the Rebirth Item
+ * Tracker).
+ */
+export const RANDOM_STARTING_BUILD_TRINKET_OFFSET = 2000;
 
 /**
  * Roughly corresponds to the ordering from `builds.json` from the `isaac-racing-common` repository,
@@ -122,7 +128,7 @@ export const RANDOM_STARTING_BUILDS = [
   [
     CollectibleType.INCUBUS, // 360
     CollectibleType.TWISTED_PAIR, // 698
-    // The smelted Forgotten Lullaby is handled manually.
+    TrinketType.FORGOTTEN_LULLABY + RANDOM_STARTING_BUILD_TRINKET_OFFSET,
   ],
 
   // 20
@@ -132,8 +138,10 @@ export const RANDOM_STARTING_BUILDS = [
   ],
 
   // 21
-  [CollectibleType.TECH_X], // 395
-  // The smelted Lazy Worm is handled manually.
+  [
+    CollectibleType.TECH_X, // 395
+    TrinketType.LAZY_WORM + RANDOM_STARTING_BUILD_TRINKET_OFFSET,
+  ],
 
   // 22
   [
