@@ -9,6 +9,7 @@
 - In season 2 and season 5, Tech X now also grants Lazy Worm.
 - In season 2, the number of bans in has been changed from 3 to 2.
 - In season 2, Polyphemus and Godhead are now banned as a starting build on Tainted Azazel.
+- In season 2, Revelation is now banned as a starting build on Tainted Samson.
 
 ### _v0.107.5_ - September 20th, 2023
 

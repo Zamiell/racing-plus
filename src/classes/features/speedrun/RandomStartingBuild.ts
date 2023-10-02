@@ -328,6 +328,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
         CollectibleType.BRIMSTONE, // 118
         CollectibleType.IPECAC, // 148
         CollectibleType.FIRE_MIND, // 257
+        CollectibleType.REVELATION, // 643
       );
     }
 
