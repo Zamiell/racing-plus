@@ -37,35 +37,32 @@ export const RANDOM_STARTING_BUILDS = [
   // 4
   [CollectibleType.PROPTOSIS], // 261
 
-  // 5
-  [CollectibleType.TECH_X], // 395
-
   // ----------------
   // Devil Room items
   // ----------------
 
-  // 6
+  // 5
   [CollectibleType.BRIMSTONE], // 118
 
-  // 7
+  // 6
   [CollectibleType.MAW_OF_THE_VOID], // 399
 
   // ----------------
   // Angel Room items
   // ----------------
 
-  // 8
+  // 7
   [CollectibleType.CROWN_OF_LIGHT], // 415
 
-  // 9
+  // 8
   [CollectibleType.GODHEAD], // 331
 
-  // 10
+  // 9
   [CollectibleType.SACRED_HEART], // 182
 
   // (Spirit Sword is too powerful to be included.)
 
-  // 11
+  // 10
   // Revelation is nerfed (no soul hearts & no flight).
   [CollectibleType.REVELATION], // 643
 
@@ -73,77 +70,81 @@ export const RANDOM_STARTING_BUILDS = [
   // Custom builds
   // -------------
 
-  // 12
+  // 11
   [
     CollectibleType.TWENTY_TWENTY, // 245
     CollectibleType.INNER_EYE, // 2
   ],
 
-  // 13
+  // 12
   [
     CollectibleType.C_SECTION, // 678
     CollectibleType.STEVEN, // 50
   ],
 
-  // 14
+  // 13
   [
     CollectibleType.CHOCOLATE_MILK, // 69
     CollectibleType.STEVEN, // 50
   ],
 
-  // 15
+  // 14
   [
     CollectibleType.CRICKETS_BODY, // 224
     CollectibleType.STEVEN, // 50
   ],
 
-  // 16
+  // 15
   [
     CollectibleType.DEAD_EYE, // 373
     CollectibleType.JESUS_JUICE, // 197
   ],
 
-  // 17
+  // 16
   [
     CollectibleType.DEATHS_TOUCH, // 237
     CollectibleType.SAD_ONION, // 1
   ],
 
-  // 18
+  // 17
   [
     CollectibleType.FIRE_MIND, // 257
     CollectibleTypeCustom.THIRTEEN_LUCK,
   ],
 
-  // 19
+  // 18
   [
     CollectibleType.HAEMOLACRIA, // 531
     CollectibleType.SAD_ONION, // 1
   ],
 
-  // 20
+  // 19
   [
     CollectibleType.INCUBUS, // 360
     CollectibleType.TWISTED_PAIR, // 698
     // The smelted Forgotten Lullaby is handled manually.
   ],
 
-  // 21
+  // 20
   [
     CollectibleType.MONSTROS_LUNG, // 229
     CollectibleType.SAD_ONION, // 1
   ],
 
+  // 21
+  [CollectibleType.TECH_X], // 395
+  // The smelted Lazy Worm is handled manually.
+
   // 22
   [
-    CollectibleType.TECHNOLOGY, // 68
-    CollectibleType.LUMP_OF_COAL, // 132
+    CollectibleType.TECH_5, // 244
+    CollectibleType.JESUS_JUICE, // 197
   ],
 
   // 23
   [
-    CollectibleType.TECH_5, // 244
-    CollectibleType.JESUS_JUICE, // 197
+    CollectibleType.TECHNOLOGY, // 68
+    CollectibleType.LUMP_OF_COAL, // 132
   ],
 
   // 24

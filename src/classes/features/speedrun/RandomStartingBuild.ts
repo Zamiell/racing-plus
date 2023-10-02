@@ -225,7 +225,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
 
     // Handle builds with custom behavior.
     switch (firstCollectibleType) {
-      // 12 - Revelation (no soul hearts, no flight).
+      // 10 - Revelation (no soul hearts, no flight).
       case CollectibleType.REVELATION: {
         player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
         removeCollectibleCostume(player, CollectibleType.REVELATION);
@@ -233,9 +233,15 @@ export class RandomStartingBuild extends ChallengeModFeature {
         break;
       }
 
-      // 21 - Incubus + Twisted Pair + Forgotten Lullaby.
+      // 19 - Incubus + Twisted Pair + Forgotten Lullaby.
       case CollectibleType.INCUBUS: {
         smeltTrinket(player, TrinketType.FORGOTTEN_LULLABY);
+        break;
+      }
+
+      // 21 - Tech X + Lazy Worm.
+      case CollectibleType.TECH_X: {
+        smeltTrinket(player, TrinketType.LAZY_WORM);
         break;
       }
 
