@@ -334,9 +334,11 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
     // 28
     case PlayerType.AZAZEL_B: {
       return getBuildIndexesFor(
+        CollectibleType.POLYPHEMUS, // 169
         CollectibleType.CRICKETS_BODY, // 224
         CollectibleType.DEATHS_TOUCH, // 237
         CollectibleType.FIRE_MIND, // 257
+        CollectibleType.GODHEAD, // 331
         CollectibleType.DEAD_EYE, // 373
         CollectibleType.TECH_X, // 395
         CollectibleType.HAEMOLACRIA, // 531

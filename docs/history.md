@@ -5,8 +5,10 @@
 
 ### _v0.108.0_ - September 28th, 2023 (Unreleased)
 
-- Dr. Fetus is removed from season 2 and season 5.
-- The number of bans in season 2 has been changed from 3 to 2.
+- In season 2 and season 5, Dr. Fetus is removed as a starting build.
+- In season 2 and season 5, Tech X now also grants Lazy Worm.
+- In season 2, the number of bans in has been changed from 3 to 2.
+- In season 2, Polyphemus and Godhead are now banned as a starting build on Tainted Azazel.
 
 ### _v0.107.5_ - September 20th, 2023
 
