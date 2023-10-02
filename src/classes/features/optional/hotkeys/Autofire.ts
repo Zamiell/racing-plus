@@ -58,8 +58,10 @@ const POWERFUL_COLLECTIBLE_TYPES = [
 ] as const;
 
 const ANTI_SYNERGY_BABIES = new ReadonlySet([
-  531, // Solomon's Baby A
-  532, // Solomon's Baby B
+  115, // Masked Baby - Can't shoot while moving
+  386, // Imp Baby - Blender + flight + explosion immunity + blindfolded
+  531, // Solomon's Baby A - Can't shoot right
+  532, // Solomon's Baby B - Can't shoot left
 ]);
 
 const v = {
