@@ -11,6 +11,8 @@ export enum ChallengeCustomAbbreviation {
   SEASON_5 = "R7S5",
 }
 
+export const SEASON_2_NUM_BUILD_VETOS = 2;
+
 export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
   Challenge,
   { challengeCustomAbbreviation: ChallengeCustomAbbreviation; numElements: int }
@@ -26,7 +28,7 @@ export const CHALLENGE_DEFINITIONS = new ReadonlyMap<
     ChallengeCustom.SEASON_2,
     {
       challengeCustomAbbreviation: ChallengeCustomAbbreviation.SEASON_2,
-      numElements: 3,
+      numElements: SEASON_2_NUM_BUILD_VETOS,
     },
   ],
   [

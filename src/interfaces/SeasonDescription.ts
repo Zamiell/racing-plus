@@ -10,7 +10,6 @@ export interface SeasonDescription {
   readonly numChars: int;
   readonly charPositions: readonly CharPosition[];
   readonly buildPositions?: readonly BuildPosition[];
-  readonly numBuildVetos?: int;
   readonly hidden?: boolean;
 }
 

@@ -21,6 +21,7 @@ import { ChangeCharOrderPhase } from "../../../../enums/ChangeCharOrderPhase";
 import {
   CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM,
   ChallengeCustomAbbreviation,
+  SEASON_2_NUM_BUILD_VETOS,
 } from "../../../../speedrun/constants";
 import { newGlowingCollectibleSprite } from "../../../../sprite";
 import { RANDOM_STARTING_BUILDS } from "../randomStartingBuild/constants";
@@ -322,14 +323,11 @@ function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
 
 function buildButtonPressed(gridEntity: GridEntity, i: int) {
   const seasonDescription = getSeasonDescription();
-  if (seasonDescription.numBuildVetos === undefined) {
-    error("numBuildVetos is undefined.");
-  }
   if (seasonDescription.buildPositions === undefined) {
     error("buildPositions is undefined.");
   }
 
-  if (v.room.buildsChosen.length === seasonDescription.numBuildVetos) {
+  if (v.room.buildsChosen.length === SEASON_2_NUM_BUILD_VETOS) {
     return;
   }
 
@@ -352,7 +350,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
   sprite.SetFrame("Default", v.room.buildsChosen.length);
 
   // Check to see if this is our last build.
-  if (v.room.buildsChosen.length === seasonDescription.numBuildVetos) {
+  if (v.room.buildsChosen.length === SEASON_2_NUM_BUILD_VETOS) {
     // We are done, so write the changes to persistent storage.
     if (v.room.challengeCustomAbbreviation === null) {
       error("challengeCustomAbbreviation was null.");

@@ -85,7 +85,6 @@ export const CHANGE_CHAR_ORDER_POSITIONS_MAP = new ReadonlyMap<
         new BuildPosition(23, 4, 4),
         new BuildPosition(24, 5, 4),
       ],
-      numBuildVetos: 2,
     },
   ],
 
