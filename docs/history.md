@@ -3,8 +3,13 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.108.0_ - October 2nd, 2023
+### _v0.108.1_ - October 2nd, 2023
 
+- R+7 Season 4 is finished!
+  - Congratulations to Greg for the best time of 37:23, Adrayon for the second best time of 39:12, and mgln for the third best time of 39:59.
+  - The top 10 times will be stored in the [Hall of Fame page](https://isaacracing.net/halloffame).
+  - If you want to beat these times, the category will continue to be tracked on speedrun.com, but the official competition will move on to the current season.
+- [Season 5](https://github.com/Zamiell/racing-plus/blob/main/docs/challenges.md#r7-season-5-babies) has officially begun!
 - In season 2 and season 5, Dr. Fetus is removed as a starting build.
 - In season 2 and season 5, Tech X now also grants Lazy Worm.
 - In season 2, the number of bans in has been changed from 3 to 2.
