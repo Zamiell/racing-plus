@@ -6,15 +6,18 @@ import {
   game,
   getRoomGridIndex,
   getRoomGridIndexesForType,
+  levelHasRoomType,
   log,
   ModCallbackCustom,
   onAscent,
+  onFirstFloor,
 } from "isaacscript-common";
 import { inSeededRace } from "../../../../features/race/v";
 import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { setFastTravelResumeGameFrame } from "../../optional/major/fastTravel/v";
+import { onSpeedrunWithRandomStartingBuild } from "../../speedrun/RandomStartingBuild";
 
 enum PlanetariumFixWarpState {
   INITIAL,
@@ -51,15 +54,13 @@ export class PlanetariumFix extends MandatoryModFeature {
 }
 
 export function shouldApplyPlanetariumFix(): boolean {
-  if (!inSeededRace() && !onSeason(2) && !onAscent()) {
-    return false;
-  }
-
-  const roomIndexes = getRoomGridIndexesForType(
-    RoomType.TREASURE,
-    RoomType.PLANETARIUM,
+  return (
+    (inSeededRace() ||
+      onSeason(2) ||
+      (shouldBanFirstFloorTreasureRoom() && onFirstFloor())) &&
+    levelHasRoomType(RoomType.TREASURE, RoomType.PLANETARIUM) &&
+    !onAscent()
   );
-  return roomIndexes.length > 0;
 }
 
 /**
@@ -110,4 +111,10 @@ function warpToNextRoom() {
 
 export function isPlanetariumFixWarping(): boolean {
   return v.level.warpState === PlanetariumFixWarpState.WARPING;
+}
+
+export function shouldBanFirstFloorTreasureRoom(): boolean {
+  return (
+    onFirstFloor() && (inSeededRace() || onSpeedrunWithRandomStartingBuild())
+  );
 }

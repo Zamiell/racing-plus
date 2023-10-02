@@ -18,7 +18,7 @@ import {
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
-import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/misc/BanFirstFloorRoomType";
+import { shouldBanFirstFloorTreasureRoom } from "../../mandatory/misc/PlanetariumFix";
 import {
   COLLECTIBLE_REPLACEMENT_MAP,
   PLACEHOLDER_COLLECTIBLE_TYPES,

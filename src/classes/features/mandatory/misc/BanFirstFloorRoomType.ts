@@ -12,11 +12,13 @@ import {
   removeAllPickups,
   removeDoors,
 } from "isaacscript-common";
-import { inSeededRace } from "../../../../features/race/v";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { isOnFirstCharacter } from "../../speedrun/characterProgress/v";
 import { onSpeedrunWithRandomStartingBuild } from "../../speedrun/RandomStartingBuild";
-import { isPlanetariumFixWarping } from "./PlanetariumFix";
+import {
+  isPlanetariumFixWarping,
+  shouldBanFirstFloorTreasureRoom,
+} from "./PlanetariumFix";
 
 const SEASON_2_BANNED_ROOM_TYPES = [
   RoomType.MINI_BOSS, // 6
@@ -90,10 +92,4 @@ export class BanFirstFloorRoomType extends MandatoryModFeature {
       hideRoomOnMinimap(roomGridIndex);
     }
   }
-}
-
-export function shouldBanFirstFloorTreasureRoom(): boolean {
-  return (
-    onFirstFloor() && (inSeededRace() || onSpeedrunWithRandomStartingBuild())
-  );
 }

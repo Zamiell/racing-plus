@@ -13,7 +13,7 @@ import { inDiversityRace, inUnseededRace } from "../../../../features/race/v";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { isOnFirstCharacter } from "../../speedrun/characterProgress/v";
-import { shouldBanFirstFloorTreasureRoom } from "./BanFirstFloorRoomType";
+import { shouldBanFirstFloorTreasureRoom } from "./PlanetariumFix";
 
 const v = {
   run: {
