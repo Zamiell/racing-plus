@@ -9,4 +9,5 @@ export const ChallengeCustom = {
   CHANGE_CHAR_ORDER: Isaac.GetChallengeIdByName("Change Char Order"),
 } as const;
 
+/** Comment out this check if a season is in alpha. */
 validateCustomEnum("ChallengeCustom", ChallengeCustom);
