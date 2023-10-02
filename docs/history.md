@@ -7,7 +7,7 @@
 
 - Chest room #197 is deleted.
 - Fixed the bug where Blue Baby could appear in the Boss Rush. (Thanks Gamonymous)
-- Fixed the bug in season 2 and season 5 where trinkets would not show on the starting room. (Thanks Gamonymous)
+- Fixed the bug in season 2 and season 5 where trinket sprites from the starting build would not show on the starting room. (Thanks Gamonymous)
 
 ### _v0.108.1_ - October 2nd, 2023
 
