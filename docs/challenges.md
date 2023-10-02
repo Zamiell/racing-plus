@@ -272,7 +272,7 @@ Some builds are banned on certain characters:
 
 - The "instant starting item" mechanic from season 2 also applies to this season.
 - The builds are the same builds as in season 2.
-- Unlike season 2, there are no build bans.
+- Unlike season 2, there are no build vetos.
 
 <br>
 

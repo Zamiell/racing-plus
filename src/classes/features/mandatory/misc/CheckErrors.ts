@@ -82,7 +82,7 @@ export class CheckErrors extends MandatoryModFeature {
         `You must turn off The Babies Mod when playing characters other than ${RANDOM_BABY_NAME}.`,
       );
     } else if (v.run.invalidCharOrder) {
-      const thingToSet = onSeason(2) ? "build bans" : "a character order";
+      const thingToSet = onSeason(2) ? "build vetos" : "a character order";
       this.drawErrorText(
         `You must set ${thingToSet} first by using the "Change Char Order" custom challenge.`,
       );
