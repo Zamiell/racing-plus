@@ -6,7 +6,7 @@ import {
   getScreenCenterPos,
   isKeyboardPressed,
 } from "isaacscript-common";
-import { VERSION } from "../../../../constants";
+import { MOD_NAME, VERSION } from "../../../../constants";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const SHOW_VERSION_HOTKEY = Keyboard.F1;
@@ -24,21 +24,34 @@ export class DrawVersion extends MandatoryModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
-    const renderFrameCount = Isaac.GetFrameCount();
     const hud = game.GetHUD();
 
     if (!hud.IsVisible()) {
       return;
     }
 
+    if (ModConfigMenu !== undefined && ModConfigMenu.IsVisible) {
+      return;
+    }
+
     // We do not have to check to see if the game is paused because the text will not be drawn on
     // top of the pause menu.
 
-    // Make the version persist for a while after the player presses the hotkey.
+    this.checkInput();
+    this.checkDraw();
+  }
+
+  /** Make the version persist for a while after the player presses the hotkey. */
+  checkInput(): void {
     if (isKeyboardPressed(SHOW_VERSION_HOTKEY)) {
+      const renderFrameCount = Isaac.GetFrameCount();
       v.run.showVersionUntilRenderFrame =
         renderFrameCount + SECONDS_SHOWN * RENDER_FRAMES_PER_SECOND;
     }
+  }
+
+  checkDraw(): void {
+    const renderFrameCount = Isaac.GetFrameCount();
 
     if (
       v.run.showVersionUntilRenderFrame === null ||
@@ -52,7 +65,7 @@ export class DrawVersion extends MandatoryModFeature {
     let x: int;
     let y: int;
 
-    text = "Racing+";
+    text = MOD_NAME;
     x = centerPos.X - 3 * text.length;
     y = centerPos.Y + 40;
     Isaac.RenderText(text, x, y, 2, 2, 2, 2);

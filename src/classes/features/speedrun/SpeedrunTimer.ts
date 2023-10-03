@@ -145,9 +145,12 @@ export function speedrunGetAverageTimePerCharacter(): string {
   const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
   const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
 
-  const { hours, minute1, minute2, second1, second2 } =
-    convertSecondsToTimerValues(averageSeconds);
+  const timerValues = convertSecondsToTimerValues(averageSeconds);
+  if (timerValues === undefined) {
+    return "unknown";
+  }
 
+  const { hours, minute1, minute2, second1, second2 } = timerValues;
   if (hours > 0) {
     return "too long";
   }

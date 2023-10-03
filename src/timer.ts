@@ -55,10 +55,6 @@ export function timerDraw(
   // We want the timer to be drawn when the game is paused so that players can continue to see the
   // countdown if they tab out of the game.
 
-  if (seconds < 0) {
-    return;
-  }
-
   const player = Isaac.GetPlayer();
 
   // Calculate the starting draw position.
@@ -79,8 +75,12 @@ export function timerDraw(
   const hourAdjustment = 2;
   let hourAdjustment2 = 0;
 
-  const { hours, minute1, minute2, second1, second2, tenths } =
-    convertSecondsToTimerValues(seconds);
+  const timerValues = convertSecondsToTimerValues(seconds);
+  if (timerValues === undefined) {
+    return;
+  }
+
+  const { hours, minute1, minute2, second1, second2, tenths } = timerValues;
 
   const sprites = spriteCollectionMap.getAndSetDefault(timerType);
 
@@ -130,14 +130,20 @@ export function timerDraw(
   sprites.digitMini.Render(positionTenths);
 }
 
-export function convertSecondsToTimerValues(totalSeconds: int): {
-  hours: int;
-  minute1: int;
-  minute2: int;
-  second1: int;
-  second2: int;
-  tenths: int;
-} {
+export function convertSecondsToTimerValues(totalSeconds: int):
+  | {
+      hours: int;
+      minute1: int;
+      minute2: int;
+      second1: int;
+      second2: int;
+      tenths: int;
+    }
+  | undefined {
+  if (totalSeconds < 0) {
+    return undefined;
+  }
+
   // Calculate the hours digit.
   const hours = Math.floor(totalSeconds / 3600);
 
