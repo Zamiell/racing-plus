@@ -18,8 +18,10 @@ export class ReplaceCodWorms extends ConfigurableModFeature {
     _position: Vector,
     _velocity: Vector,
     _spawner: Entity | undefined,
-    initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     return [EntityType.PARA_BITE, 0, 0, initSeed];
   }
 }

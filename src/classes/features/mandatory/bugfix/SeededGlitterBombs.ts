@@ -92,8 +92,10 @@ export class SeededGlitterBombs extends MandatoryModFeature {
     _position: Vector,
     _velocity: Vector,
     spawner: Entity | undefined,
-    _initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     if (
       v.run.spawningPrize ||
       spawner === undefined ||
@@ -111,6 +113,11 @@ export class SeededGlitterBombs extends MandatoryModFeature {
       return undefined;
     }
 
-    return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
+    return [
+      EntityType.PICKUP,
+      PickupVariantCustom.INVISIBLE_PICKUP,
+      0,
+      initSeed,
+    ];
   }
 }

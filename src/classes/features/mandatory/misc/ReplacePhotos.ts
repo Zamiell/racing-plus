@@ -57,11 +57,18 @@ export class ReplacePhotos extends MandatoryModFeature {
     _position: Vector,
     _velocity: Vector,
     spawner: Entity | undefined,
-    _initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     if (this.isVanillaPhotoAfterKillingMom(subType, spawner)) {
       log(`Removing a vanilla ${CollectibleType[subType]} after killing Mom.`);
-      return [EntityType.PICKUP, PickupVariantCustom.INVISIBLE_PICKUP, 0, 0];
+      return [
+        EntityType.PICKUP,
+        PickupVariantCustom.INVISIBLE_PICKUP,
+        0,
+        initSeed,
+      ];
     }
 
     return undefined;

@@ -22,14 +22,14 @@
   "type": "module",
   "dependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaac-typescript-definitions": "^21.1.0",
+    "isaac-typescript-definitions": "^25.0.0",
     "isaacscript": "^3.11.1",
-    "isaacscript-common": "^51.11.1",
+    "isaacscript-common": "^55.0.0",
     "isaacscript-lint": "^6.0.0",
     "isaacscript-spell": "^1.4.0",
     "isaacscript-tsconfig": "^4.0.0",
     "typescript": "^5.2.2",
-    "typescript-to-lua": "^1.20.0"
+    "typescript-to-lua": "^1.20.1"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "yarn@3.6.4"
 }

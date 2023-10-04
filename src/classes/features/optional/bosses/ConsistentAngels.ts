@@ -50,8 +50,10 @@ export class ConsistentAngels extends ConfigurableModFeature {
     _position: Vector,
     _velocity: Vector,
     _spawner: Entity | undefined,
-    initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     return this.checkCorrectAngelType(entityType, variant, subType, initSeed);
   }
 
@@ -63,8 +65,10 @@ export class ConsistentAngels extends ConfigurableModFeature {
     _position: Vector,
     _velocity: Vector,
     _spawner: Entity | undefined,
-    initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     return this.checkCorrectAngelType(entityType, variant, subType, initSeed);
   }
 
@@ -72,8 +76,10 @@ export class ConsistentAngels extends ConfigurableModFeature {
     entityType: EntityType,
     variant: AngelVariant,
     subType: int,
-    initSeed: int,
-  ): [EntityType, int, int, int] | undefined {
+    initSeed: Seed,
+  ):
+    | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
+    | undefined {
     const gameFrameCount = game.GetFrameCount();
 
     // This feature should not apply to angels that were duplicated with a Meat Cleaver.
