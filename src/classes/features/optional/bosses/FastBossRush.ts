@@ -94,6 +94,10 @@ const BOSS_RUSH_EXCLUSIONS = [
   // Great Gideon would not work properly in a Boss Rush room.
   BossID.GREAT_GIDEON, // 83
 
+  // We do not want to make the player have to enter Rotgut for phase 2, as that would involve
+  // leaving the Boss Rush room.
+  BossID.ROTGUT, // 87
+
   // Clog's spin attack is unfair with other bosses on the screen.
   BossID.CLOG, // 92
 
