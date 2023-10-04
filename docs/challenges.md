@@ -120,19 +120,19 @@ Some builds are banned on certain characters:
 - 5 - Eve
   - Crown of Light
 - 27 - Tainted Samson
-  - Dr. Fetus
   - Ipecac
   - Brimstone
 - 28 - Tainted Azazel
-  - Dr. Fetus
+  - Polyphemus
+  - Godhead
   - Revelation
   - Cricket's Body + Steven
+  - Dead Eye + Jesus Juice
   - Death's Touch + Sad Onion
   - Fire Mind + 13 Luck
-  - Dead Eye + Jesus Juice
-  - Tech X
   - Haemolacria + Sad Onion
   - Pointy Rib + Eve's Mascara
+  - Tech X + Lazy Worm
 
 ### Other
 
