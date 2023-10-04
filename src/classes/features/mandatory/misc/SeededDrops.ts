@@ -39,7 +39,7 @@ const BANNED_TRINKETS_FOR_SEEDED_DROPS = [
   TrinketType.MATCH_STICK, // 41
   TrinketType.LUCKY_TOE, // 42
   TrinketType.SAFETY_CAP, // 44
-  TrinketType.ACE_SPADES, // 45
+  TrinketType.ACE_OF_SPADES, // 45
   TrinketType.WATCH_BATTERY, // 72
   TrinketType.NUH_UH, // 165
 ] as const;
