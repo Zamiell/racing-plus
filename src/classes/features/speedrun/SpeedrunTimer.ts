@@ -3,7 +3,7 @@ import {
   Callback,
   emptyArray,
   getScreenBottomY,
-  removeCollectibleFromItemTracker,
+  rebirthItemTrackerRemoveCollectible,
   RENDER_FRAMES_PER_SECOND,
   RESOLUTION_FULL_SCREEN,
   sfxManager,
@@ -208,7 +208,7 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
   // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know when
   // to split.)
   player.AddCollectible(CollectibleTypeCustom.CHECKPOINT);
-  removeCollectibleFromItemTracker(CollectibleTypeCustom.CHECKPOINT);
+  rebirthItemTrackerRemoveCollectible(CollectibleTypeCustom.CHECKPOINT);
 
   // Record how long this run took.
   if (v.persistent.startedCharacterFrame !== null) {

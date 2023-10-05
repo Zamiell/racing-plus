@@ -15,8 +15,8 @@ MAIN_MENU_DIRECTORY_PATH = os.path.join(
 TITLE_MENU_TEMPLATE_PATH = os.path.join(
     MAIN_MENU_DIRECTORY_PATH, "titlemenu-template.png"
 )
-TITLE_MENU_FILE_1 = "titlemenu.png"  # For the normal title screen
-TITLE_MENU_FILE_2 = "titlemenu_2.png"  # For the "Stop Playing!" title screen
+TITLE_MENU_FILE_1 = "titlemenu.png"  # For the normal title screen.
+TITLE_MENU_FILE_2 = "titlemenu_2.png"  # For the "Stop Playing!" title screen.
 LANGUAGE_SUFFIXES = ["de", "es", "jp", "kr", "ru", "zh"]
 
 LARGE_FONT = ImageFont.truetype(TITLE_FONT_PATH, 9)
@@ -36,15 +36,15 @@ def write_version(version):
     title_image = Image.open(TITLE_MENU_TEMPLATE_PATH)
     title_draw = ImageDraw.Draw(title_image)
 
-    # Get the dimensions of how big the text will be
+    # Get the dimensions of how big the text will be.
     combined_text = "V" + version
     width, height = title_draw.textsize(combined_text, font=LARGE_FONT)
 
-    # Draw the version
+    # Draw the version.
     title_draw.text((420 - width / 2, 236), "V", COLOR, font=SMALL_FONT)  # The "V"
     title_draw.text((430 - width / 2, 230), version, COLOR, font=LARGE_FONT)
 
-    # Draw the URL
+    # Draw the URL.
     width, height = title_draw.textsize(URL, font=URL_FONT)
     title_draw.text((420 - width / 2, 250), URL, COLOR, font=URL_FONT)
 

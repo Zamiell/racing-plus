@@ -14,8 +14,8 @@ import {
   getNPCs,
   gridCoordinatesToWorldPosition,
   itemConfig,
+  rebirthItemTrackerRemoveCollectible,
   removeAllDoors,
-  removeCollectibleFromItemTracker,
   removeEntities,
   repeat,
   spawnGridEntityWithVariant,
@@ -224,7 +224,7 @@ export class ChangeCharOrder extends ChallengeModFeature {
     const speedCollectible = CollectibleType.BELT;
     repeat(2, () => {
       player.AddCollectible(speedCollectible, 0, false);
-      removeCollectibleFromItemTracker(speedCollectible);
+      rebirthItemTrackerRemoveCollectible(speedCollectible);
     });
     const itemConfigItem = itemConfig.GetCollectible(speedCollectible);
     if (itemConfigItem !== undefined) {

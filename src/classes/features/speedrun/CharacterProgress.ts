@@ -11,7 +11,7 @@ import {
   game,
   getCharacterName,
   log,
-  removeCollectibleFromItemTracker,
+  rebirthItemTrackerRemoveCollectible,
   spawnPickup,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
@@ -173,7 +173,7 @@ export class CharacterProgress extends ChallengeModFeature {
     if (v.persistent.liveSplitReset) {
       v.persistent.liveSplitReset = false;
       player.AddCollectible(CollectibleTypeCustom.RESET);
-      removeCollectibleFromItemTracker(CollectibleTypeCustom.RESET);
+      rebirthItemTrackerRemoveCollectible(CollectibleTypeCustom.RESET);
     }
   }
 

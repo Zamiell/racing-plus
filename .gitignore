@@ -12,6 +12,9 @@ mod/main.lua
 .DS_Store
 thumbs.db
 
+# Python cache
+__pycache__
+
 # --------------------------------------------------------------
 # GitHub Node.gitignore template
 # https://github.com/github/gitignore/blob/master/Node.gitignore

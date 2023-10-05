@@ -6,8 +6,8 @@ import {
   PriorityCallbackCustom,
   inRoomType,
   onFirstFloor,
+  rebirthItemTrackerRemoveCollectible,
   removeCollectibleCostume,
-  removeCollectibleFromItemTracker,
 } from "isaacscript-common";
 import { inDiversityRace, inUnseededRace } from "../../../../features/race/v";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
@@ -67,7 +67,7 @@ export class TempMoreOptions extends MandatoryModFeature {
     }
 
     player.AddCollectible(CollectibleType.MORE_OPTIONS);
-    removeCollectibleFromItemTracker(CollectibleType.MORE_OPTIONS);
+    rebirthItemTrackerRemoveCollectible(CollectibleType.MORE_OPTIONS);
     removeCollectibleCostume(player, CollectibleType.MORE_OPTIONS);
 
     // Mark to remove the collectible later.
