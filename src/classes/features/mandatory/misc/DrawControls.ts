@@ -70,13 +70,15 @@ export class DrawControls extends ConfigurableModFeature {
 
     controlsEffect.CollisionDamage = 0;
     controlsEffect.Timeout = 1_000_000;
-    const controlsSprite = controlsEffect.GetSprite();
-    controlsSprite.Load("gfx/backdrop/controls_custom.anm2", true);
-    controlsSprite.Play("Idle", true);
 
     // Always set the scale to 1 in case the player has an item like Lost Cork. (Otherwise, it will
     // have a scale of 1.75.)
     controlsEffect.Scale = 1;
+
+    const controlsSprite = controlsEffect.GetSprite();
+    controlsSprite.Load("gfx/backdrop/controls_custom.anm2", true);
+    const defaultAnimation = controlsSprite.GetDefaultAnimation();
+    controlsSprite.Play(defaultAnimation, true);
 
     // On vanilla, the sprite is a slightly different color on the Burning Basement.
     controlsSprite.Color = onStageType(StageType.AFTERBIRTH)

@@ -98,7 +98,7 @@ export class FastDogma extends ConfigurableModFeature {
     }
 
     removeAllNPCs(EntityType.GENERIC_PROP);
-    removeAllEffects(EffectVariant.ISAACS_CARPET);
+    removeAllEffects(EffectVariant.CARPET);
     removeAllDoors();
     spawnNPC(EntityType.DOGMA, DogmaVariant.DOGMA_PHASE_1, 0, centerPos);
   }

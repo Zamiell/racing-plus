@@ -7,7 +7,7 @@ export class DisableCurses extends ConfigurableModFeature {
   configKey: keyof Config = "DisableCurses";
 
   @Callback(ModCallback.POST_CURSE_EVAL)
-  postCurseEval(): BitFlags<LevelCurse> | undefined {
+  postCurseEval(): BitFlags<LevelCurse> | LevelCurse | undefined {
     return bitFlags(LevelCurse.NONE);
   }
 }
