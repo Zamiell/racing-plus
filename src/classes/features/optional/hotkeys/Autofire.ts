@@ -1,4 +1,3 @@
-import type { PlayerType } from "isaac-typescript-definitions";
 import {
   ButtonAction,
   CollectibleType,
@@ -17,14 +16,13 @@ import {
   game,
   getShootActions,
   hasCollectible,
-  isCharacter,
   isShootAction,
   sfxManager,
 } from "isaacscript-common";
-import { RANDOM_BABY_NAME } from "../../../../constants";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { shouldCheckForGameplayInputs } from "../../../../utils";
+import { isRandomBaby } from "../../../../utilsBabiesMod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
 
@@ -321,12 +319,8 @@ export class Autofire extends MandatoryModFeature {
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
     // Early return if we are on some specific babies from The Babies Mod.
-    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME) as
-      | PlayerType
-      | -1;
     if (
-      randomBaby !== -1 &&
-      isCharacter(player, randomBaby) &&
+      isRandomBaby(player) &&
       BabiesModBabyType !== undefined &&
       ANTI_SYNERGY_BABIES.has(BabiesModBabyType)
     ) {

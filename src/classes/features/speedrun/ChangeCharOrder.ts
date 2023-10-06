@@ -18,6 +18,7 @@ import {
   removeAllDoors,
   removeEntities,
   repeat,
+  setChallenge,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
@@ -85,7 +86,10 @@ export class ChangeCharOrder extends ChallengeModFeature {
       renderFrameCount >= v.room.resetRenderFrame
     ) {
       v.room.resetRenderFrame = null;
-      consoleCommand(`challenge ${v.room.challengeTarget}`);
+
+      if (v.room.challengeTarget !== null) {
+        setChallenge(v.room.challengeTarget);
+      }
     }
   }
 

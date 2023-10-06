@@ -3,6 +3,7 @@ import {
   anyPlayerHoldingItem,
   getAllPlayers,
   isEven,
+  onChallenge,
   removeCollectiblePickupDelay,
   repeat,
 } from "isaacscript-common";
@@ -22,10 +23,8 @@ export function inSpeedrun(): boolean {
 }
 
 export function onSeason(num: keyof typeof SEASON_NUM_TO_CHALLENGE): boolean {
-  const challenge = Isaac.GetChallenge();
-  const challengeCustom = SEASON_NUM_TO_CHALLENGE[num];
-
-  return challenge === challengeCustom;
+  const challenge = SEASON_NUM_TO_CHALLENGE[num];
+  return onChallenge(challenge);
 }
 
 export function onSpeedrunWithDarkRoomGoal(): boolean {

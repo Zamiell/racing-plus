@@ -17,7 +17,6 @@ import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  anyPlayerIs,
   asCollectibleType,
   fonts,
   game,
@@ -33,13 +32,14 @@ import {
   hasFlag,
   isActionPressedOnAnyInput,
   newRNG,
+  onChallenge,
   onFirstFloor,
   setSeed,
 } from "isaacscript-common";
-import { RANDOM_BABY_NAME } from "../../../../constants";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
 import { RaceStatus } from "../../../../enums/RaceStatus";
 import { g } from "../../../../globals";
+import { isRandomBaby } from "../../../../utilsBabiesMod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const FONT = fonts.droid;
@@ -291,21 +291,17 @@ export class StreakText extends MandatoryModFeature {
   }
 
   shouldShowLevelText(): boolean {
-    const challenge = Isaac.GetChallenge();
-
-    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
-    // -1.)
-    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
+    const player = Isaac.GetPlayer();
 
     return (
       // There is no need to show the level text in the Change Char Order custom challenge.
-      challenge !== ChallengeCustom.CHANGE_CHAR_ORDER &&
+      !onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER) &&
       // If the race is finished, the "Victory Lap" text will overlap with the stage text, so don't
       // bother showing it.
       !g.raceVars.finished &&
-      // If one or more players are playing as "Random Baby", the baby descriptions will overlap
+      // If we are playing as "Random Baby" from The Babies Mod, the baby descriptions will overlap
       // with the stage text, so don't bother showing it.
-      !anyPlayerIs(randomBaby)
+      !isRandomBaby(player)
     );
   }
 

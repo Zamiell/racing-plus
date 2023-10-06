@@ -10,5 +10,3 @@ export const SPRITE_JACOB_ESAU_OFFSET = Vector(0, 15);
 
 export const RACE_TIMER_POSITION_X = 19; // Directly below the stat HUD.
 export const RACE_TIMER_POSITION_Y = 198; // Directly below the stat HUD.
-
-export const RANDOM_BABY_NAME = "Random Baby";

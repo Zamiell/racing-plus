@@ -9,11 +9,10 @@ export abstract class ChallengeModFeature extends ModFeature {
     super(mod, false);
     this.shouldCallbackMethodsFire = () => {
       const challenge = Isaac.GetChallenge();
-      if (isNumber(this.challenge)) {
-        return challenge === this.challenge;
-      }
 
-      return this.challenge.has(challenge);
+      return isNumber(this.challenge)
+        ? challenge === this.challenge
+        : this.challenge.has(challenge);
     };
   }
 }

@@ -1,7 +1,8 @@
 import type { Challenge } from "isaac-typescript-definitions";
 import { PlayerType } from "isaac-typescript-definitions";
-import { RANDOM_BABY_NAME } from "../../../../constants";
+import { onChallenge } from "isaacscript-common";
 import { ChallengeCustom } from "../../../../enums/ChallengeCustom";
+import { getRandomBabyPlayerType } from "../../../../utilsBabiesMod";
 import { getCharacterOrder } from "../changeCharOrder/v";
 
 /** Tainted Cain will never be in a legitimate speedrun. */
@@ -70,13 +71,9 @@ export function speedrunResetAllVarsOnNextReset(): void {
 
 export function speedrunGetCurrentCharacter(): PlayerType {
   // Certain seasons have a set character.
-  const challenge = Isaac.GetChallenge();
-  if (challenge === ChallengeCustom.SEASON_5) {
-    // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to
-    // -1.)
-    const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-    if (randomBaby !== -1) {
+  if (onChallenge(ChallengeCustom.SEASON_5)) {
+    const randomBaby = getRandomBabyPlayerType();
+    if (randomBaby !== undefined) {
       return randomBaby;
     }
   }

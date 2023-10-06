@@ -11,6 +11,7 @@ import {
   isGoldenTrinketType,
   isModdedCollectibleType,
   newSprite,
+  onChallenge,
 } from "isaacscript-common";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import type { ServerCollectibleID } from "./types/ServerCollectibleID";
@@ -67,9 +68,7 @@ function newGlowingItemSprite(
 }
 
 function getDirectory(itemID: int, useSeason2BuildsDir: boolean): string {
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge === ChallengeCustom.CHANGE_CHAR_ORDER || useSeason2BuildsDir) {
+  if (onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER) || useSeason2BuildsDir) {
     return "season-2-builds";
   }
 

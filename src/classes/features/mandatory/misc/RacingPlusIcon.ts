@@ -1,5 +1,4 @@
 import {
-  Challenge,
   Difficulty,
   ModCallback,
   SeedEffect,
@@ -14,6 +13,7 @@ import {
   isBethany,
   isJacobOrEsau,
   newSprite,
+  onAnyChallenge,
   setUnseeded,
 } from "isaacscript-common";
 import {
@@ -72,14 +72,13 @@ export class RacingPlusIcon extends MandatoryModFeature {
 }
 
 export function getRacingPlusIconPosition(): Vector {
-  const challenge = Isaac.GetChallenge();
   const HUDOffsetVector = getHUDOffsetVector();
   const player = Isaac.GetPlayer();
 
   let position = SPRITE_POSITION.add(HUDOffsetVector);
 
   // On vanilla, being in a challenge shifts the "No Achievements" icon to the left.
-  if (challenge !== Challenge.NULL) {
+  if (onAnyChallenge()) {
     position = position.add(SPRITE_CHALLENGE_OFFSET);
   }
 

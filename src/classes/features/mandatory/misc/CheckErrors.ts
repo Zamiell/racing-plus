@@ -16,18 +16,21 @@ import {
   getEnumLength,
   getRoomVisitedCount,
   inStartingRoom,
-  isCharacter,
   isRepentance,
   log,
   onFirstFloor,
   removeAllDoors,
 } from "isaacscript-common";
-import { MOD_NAME, RANDOM_BABY_NAME } from "../../../../constants";
+import { MOD_NAME } from "../../../../constants";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
 import { hotkeys } from "../../../../modConfigMenu";
 import { inSpeedrun, onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { isBabiesModEnabled } from "../../../../utils";
+import {
+  RANDOM_BABY_NAME,
+  isBabiesModEnabled,
+  isRandomBaby,
+} from "../../../../utilsBabiesMod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import {
   RANDOM_CHARACTER_LOCK_MILLISECONDS,
@@ -286,15 +289,11 @@ function checkBabiesModEnabled() {
   const player = Isaac.GetPlayer();
   const roomVisitedCount = getRoomVisitedCount();
 
-  // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
-  const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME);
-  const isRandomBaby = isCharacter(player, randomBaby);
-
   if (
     onFirstFloor() &&
     inStartingRoom() &&
     roomVisitedCount === 1 &&
-    !isRandomBaby &&
+    !isRandomBaby(player) &&
     !onSeason(5) // We might get here before the mod switches from Isaac to Random Baby.
   ) {
     v.run.playingAsNonBaby = true;

@@ -18,6 +18,7 @@ import {
   logAndPrint,
   onSetSeed,
   restart,
+  setChallenge,
 } from "isaacscript-common";
 import { RaceData, logRaceData } from "./classes/RaceData";
 import { setUnseededWithRacingPlusLogic } from "./classes/features/mandatory/misc/RacingPlusIcon";
@@ -34,7 +35,6 @@ import { socketClientIsActive } from "./features/race/socketClient";
 import { g } from "./globals";
 import { mod } from "./mod";
 import { setAllModConfigMenuSettings } from "./modConfigMenu";
-import { consoleCommand } from "./utils";
 
 const DEFAULT_SEEDED_RACE_STARTING_ITEMS = [
   CollectibleType.CRICKETS_HEAD,
@@ -72,6 +72,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("s2", s2);
   mod.addConsoleCommand("s3", s3);
   mod.addConsoleCommand("s4", s4);
+  mod.addConsoleCommand("s5", s5);
   mod.addConsoleCommand("seededRace", seededRace);
   mod.addConsoleCommand("seededRaceCharacter", seededRaceCharacter);
   mod.addConsoleCommand("seededRaceBuild", seededRaceBuild);
@@ -95,7 +96,7 @@ function cco() {
 }
 
 function changeCharOrder() {
-  consoleCommand(`challenge ${ChallengeCustom.CHANGE_CHAR_ORDER}`);
+  setChallenge(ChallengeCustom.CHANGE_CHAR_ORDER);
   print("Going to: Change Char Order");
 }
 
@@ -210,35 +211,36 @@ function rankedSoloReset() {
 }
 
 function s0() {
-  goToChallenge(Challenge.NULL);
-  print("Going to: [no challenge]");
+  goToChallenge(Challenge.NULL, "[no challenge]");
 }
 
 function s1() {
-  goToChallenge(ChallengeCustom.SEASON_1);
-  print("Going to: R+7 Season 1");
+  goToChallenge(ChallengeCustom.SEASON_1, "R+7 Season 1");
 }
 
 function s2() {
-  goToChallenge(ChallengeCustom.SEASON_2);
-  print("Going to: R+7 Season 2");
+  goToChallenge(ChallengeCustom.SEASON_2, "R+7 Season 2");
 }
 
 function s3() {
-  goToChallenge(ChallengeCustom.SEASON_3);
-  print("Going to: R+7 Season 3");
+  goToChallenge(ChallengeCustom.SEASON_3, "R+7 Season 3");
+  print("Going to: ");
 }
 
 function s4() {
-  goToChallenge(ChallengeCustom.SEASON_4);
-  print("Going to: R+7 Season 4");
+  goToChallenge(ChallengeCustom.SEASON_4, "R+7 Season 4");
 }
 
-function goToChallenge(challenge: Challenge) {
+function s5() {
+  goToChallenge(ChallengeCustom.SEASON_5, "R+7 Season 5");
+}
+
+function goToChallenge(challenge: Challenge, name: string) {
   if (asNumber(challenge) === -1) {
     print("That challenge was not found.");
   } else {
-    consoleCommand(`challenge ${challenge}`);
+    setChallenge(challenge);
+    print(`Going to: ${name}`);
   }
 }
 

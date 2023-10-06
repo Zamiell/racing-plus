@@ -11,6 +11,7 @@ import {
   game,
   getCharacterName,
   log,
+  onChallenge,
   rebirthItemTrackerRemoveCollectible,
   spawnPickup,
 } from "isaacscript-common";
@@ -133,9 +134,12 @@ export class CharacterProgress extends ChallengeModFeature {
       speedrunResetPersistentVars();
     }
 
-    const challenge = Isaac.GetChallenge();
-    if (challenge !== v.persistent.currentlyPlayingChallenge) {
-      v.persistent.currentlyPlayingChallenge = challenge;
+    if (
+      v.persistent.currentlyPlayingChallenge === null ||
+      !onChallenge(v.persistent.currentlyPlayingChallenge)
+    ) {
+      v.persistent.currentlyPlayingChallenge = Isaac.GetChallenge();
+
       speedrunResetPersistentVars();
       setTimeOtherRunStarted();
     }

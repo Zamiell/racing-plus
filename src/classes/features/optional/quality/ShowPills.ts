@@ -26,7 +26,7 @@ import {
   newSprite,
 } from "isaacscript-common";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
-import { isBabiesModEnabled } from "../../../../utils";
+import { isBabiesModEnabled } from "../../../../utilsBabiesMod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 

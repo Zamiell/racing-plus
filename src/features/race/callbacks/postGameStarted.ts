@@ -1,5 +1,5 @@
 import { Challenge, Difficulty } from "isaac-typescript-definitions";
-import { game, log, onSetSeed } from "isaacscript-common";
+import { game, log, onAnyChallenge, onSetSeed } from "isaacscript-common";
 import { setUnseededWithRacingPlusLogic } from "../../../classes/features/mandatory/misc/RacingPlusIcon";
 import {
   isRestartingOnNextFrame,
@@ -77,9 +77,7 @@ function validateChallenge() {
     return true;
   }
 
-  const challenge = Isaac.GetChallenge();
-
-  if (challenge !== Challenge.NULL && g.race.format !== RaceFormat.CUSTOM) {
+  if (onAnyChallenge() && g.race.format !== RaceFormat.CUSTOM) {
     restartOnNextFrame();
     setRestartChallenge(Challenge.NULL);
     log(

@@ -6,9 +6,12 @@ import {
   LAST_VANILLA_CHARACTER,
   game,
   log,
+  onChallenge,
   restart,
+  setChallenge,
+  setRunSeed,
 } from "isaacscript-common";
-import { consoleCommand, isBabiesModEnabled } from "../../../../utils";
+import { isBabiesModEnabled } from "../../../../utilsBabiesMod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const v = {
@@ -41,7 +44,6 @@ export class RestartOnNextFrame extends MandatoryModFeature {
   performRestart(): void {
     const seeds = game.GetSeeds();
     const startSeedString = seeds.GetStartSeedString();
-    const challenge = Isaac.GetChallenge();
     const player = Isaac.GetPlayer();
     const character = player.GetPlayerType();
 
@@ -55,29 +57,19 @@ export class RestartOnNextFrame extends MandatoryModFeature {
 
     if (
       v.run.restartChallenge !== null &&
-      challenge !== v.run.restartChallenge
+      !onChallenge(v.run.restartChallenge)
     ) {
-      this.restartChallenge(v.run.restartChallenge);
+      setChallenge(v.run.restartChallenge);
       return;
     }
 
     if (v.run.restartSeed !== null && startSeedString !== v.run.restartSeed) {
-      this.restartSeed(v.run.restartSeed);
+      setRunSeed(v.run.restartSeed);
       return;
     }
 
     // Since no special conditions apply, just do a normal restart.
     restart();
-  }
-
-  /** Change the challenge of the run and restart the run. */
-  restartChallenge(challenge: Challenge): void {
-    consoleCommand(`challenge ${challenge}`);
-  }
-
-  /** Change the seed of the run and restart the run. */
-  restartSeed(seed: string): void {
-    consoleCommand(`seed ${seed}`);
   }
 }
 
