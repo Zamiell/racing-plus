@@ -13,6 +13,7 @@ import {
   getRoomGridIndex,
   inRoomType,
   inSecretExit,
+  isAfterRoomFrame,
   isPostBossVoidPortal,
   log,
   onRepentanceStage,
@@ -246,7 +247,6 @@ function shouldRemove() {
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
   const roomClear = room.IsClear();
 
   // After defeating Satan, the trapdoor should always spawn open (because there is no reason to
@@ -260,7 +260,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   //   into them.
   // - Trapdoors created by We Need to Go Deeper should spawn closed because the player will be
   //   standing on top of them.
-  if (roomFrameCount > 0) {
+  if (isAfterRoomFrame(0)) {
     return false;
   }
 

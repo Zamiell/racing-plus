@@ -17,5 +17,5 @@ export class Globals {
    * Used only for temporary messages like what is used to display the message when the second place
    * racer gets to the first place racer's floor.
    */
-  frameLastClientMessageReceived = 0;
+  renderFrameLastClientMessageReceived = 0;
 }

@@ -27,6 +27,7 @@ import {
   inGenesisRoom,
   inRoomType,
   itemConfig,
+  onGameFrame,
   onStage,
   repeat,
   setAllRNGToStartSeed,
@@ -56,7 +57,7 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
   // 23, 284
   @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.D4)
   preUseItemD4(): boolean | undefined {
-    v.room.usedD4Frame = game.GetFrameCount();
+    v.room.usedD4GameFrame = game.GetFrameCount();
     return undefined;
   }
 
@@ -113,9 +114,7 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
       return undefined;
     }
 
-    const gameFrameCount = game.GetFrameCount();
-
-    if (gameFrameCount === v.room.usedD4Frame) {
+    if (onGameFrame(v.room.usedD4GameFrame)) {
       return undefined;
     }
 

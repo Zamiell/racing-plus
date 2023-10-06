@@ -1,8 +1,8 @@
 import { RoomType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
-  game,
   inRoomType,
+  isAfterRoomFrame,
   ModCallbackCustom,
 } from "isaacscript-common";
 import { config } from "../../../../modConfigMenu";
@@ -30,10 +30,7 @@ export function shouldShowNumSacrifices(): boolean {
     return false;
   }
 
-  const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
-
-  return inRoomType(RoomType.SACRIFICE) && roomFrameCount > 0;
+  return inRoomType(RoomType.SACRIFICE) && isAfterRoomFrame(0);
 }
 
 export function getNumSacrifices(): int {

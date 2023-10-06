@@ -1,5 +1,12 @@
 import { RoomType } from "isaac-typescript-definitions";
-import { anyPlayerCloserThan, game, inRoomType, log } from "isaacscript-common";
+import {
+  anyPlayerCloserThan,
+  game,
+  inRoomType,
+  log,
+  onOrAfterGameFrame,
+  onOrBeforeRoomFrame,
+} from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
 import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType";
 import type { FastTravelEntityDescription } from "../../../../../interfaces/FastTravelEntityDescription";
@@ -111,12 +118,10 @@ export function initFastTravelEntityDescription(
   entity: GridEntity | EntityEffect,
   fastTravelEntityType: FastTravelEntityType,
 ): void {
-  const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
   const fastTravelMap = getFastTravelMap(fastTravelEntityType);
   const index = getIndex(entity, fastTravelEntityType);
   const description = {
-    initial: roomFrameCount === 0,
+    initial: onOrBeforeRoomFrame(0),
     state: FastTravelEntityState.OPEN,
   };
   fastTravelMap.set(index, description);
@@ -193,14 +198,12 @@ function shouldBeClosedFromStartingInRoomWithEnemies(initial: boolean) {
 }
 
 function playerCloseAfterBoss(position: Vector) {
-  const gameFrameCount = game.GetFrameCount();
-
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
   // killing the boss of the floor, we use a wider open distance for X frames.
   if (
     !inRoomType(RoomType.BOSS) ||
     v.room.clearFrame === null ||
-    gameFrameCount >= v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES
+    onOrAfterGameFrame(v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES)
   ) {
     return false;
   }

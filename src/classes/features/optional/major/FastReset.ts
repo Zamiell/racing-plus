@@ -5,8 +5,10 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
+  RENDER_FRAMES_PER_SECOND,
   game,
   isActionTriggeredOnAnyInput,
+  isBeforeRenderFrame,
   isKeyboardPressed,
   restart,
 } from "isaacscript-common";
@@ -18,7 +20,7 @@ import { speedrunSetFastReset } from "../../speedrun/characterProgress/v";
 const v = {
   run: {
     /** Needed for speedruns to return to the same character. */
-    lastResetFrame: 0,
+    lastResetRenderFrame: 0,
   },
 };
 
@@ -70,13 +72,16 @@ export class FastReset extends ConfigurableModFeature {
     const renderFrameCount = Isaac.GetFrameCount();
     const numRoomsEntered = mod.getNumRoomsEntered();
 
-    if (numRoomsEntered <= 3 || renderFrameCount <= v.run.lastResetFrame + 60) {
+    if (
+      numRoomsEntered <= 3 ||
+      isBeforeRenderFrame(v.run.lastResetRenderFrame + RENDER_FRAMES_PER_SECOND)
+    ) {
       // Speedrun functionality relies on knowing whether a fast-reset occurred.
       speedrunSetFastReset();
       restart();
     } else {
       // In speedruns, we want to double tap R to return reset to the same character.
-      v.run.lastResetFrame = renderFrameCount;
+      v.run.lastResetRenderFrame = renderFrameCount;
     }
   }
 }

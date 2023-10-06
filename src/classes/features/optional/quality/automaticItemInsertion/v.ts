@@ -16,17 +16,17 @@ export const v = {
      */
     delta: {
       coins: null as int | null,
-      coinsFrame: null as int | null,
+      coinsGameFrame: null as int | null,
       bombs: null as int | null,
-      bombsFrame: null as int | null,
+      bombsGameFrame: null as int | null,
       keys: null as int | null,
-      keysFrame: null as int | null,
+      keysGameFrame: null as int | null,
       bloodOrSoulCharge: null as int | null,
-      bloodOrSoulChargeFrame: null as int | null,
+      bloodOrSoulChargeGameFrame: null as int | null,
       pocketItem: null as int | null,
-      pocketItemFrame: null as int | null,
+      pocketItemGameFrame: null as int | null,
       trinket: null as int | null,
-      trinketFrame: null as int | null,
+      trinketGameFrame: null as int | null,
     },
   },
 

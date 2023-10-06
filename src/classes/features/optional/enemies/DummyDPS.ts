@@ -17,8 +17,8 @@ const DPS_INTERVAL_SECONDS = 5;
 const v = {
   room: {
     totalDamage: 0,
-    firstFrameOfDamage: null as int | null,
-    lastFrameOfDamage: null as int | null,
+    firstGameFrameOfDamage: null as int | null,
+    lastGameFrameOfDamage: null as int | null,
   },
 };
 
@@ -37,12 +37,12 @@ export class DummyDPS extends ConfigurableModFeature {
     const gameFrameCount = game.GetFrameCount();
 
     v.room.totalDamage += amount;
-    if (v.room.firstFrameOfDamage === null) {
+    if (v.room.firstGameFrameOfDamage === null) {
       const player = Isaac.GetPlayer();
       const framePenaltyForCharging = player.MaxFireDelay;
-      v.room.firstFrameOfDamage = gameFrameCount - framePenaltyForCharging;
+      v.room.firstGameFrameOfDamage = gameFrameCount - framePenaltyForCharging;
     }
-    v.room.lastFrameOfDamage = gameFrameCount;
+    v.room.lastGameFrameOfDamage = gameFrameCount;
 
     return undefined;
   }
@@ -58,18 +58,18 @@ export class DummyDPS extends ConfigurableModFeature {
     const gameFrameCount = game.GetFrameCount();
 
     if (
-      v.room.firstFrameOfDamage !== null &&
-      v.room.lastFrameOfDamage !== null
+      v.room.firstGameFrameOfDamage !== null &&
+      v.room.lastGameFrameOfDamage !== null
     ) {
       const elapsedSeconds = this.getElapsedSeconds(
-        v.room.lastFrameOfDamage,
+        v.room.lastGameFrameOfDamage,
         gameFrameCount,
       );
       if (elapsedSeconds >= DPS_INTERVAL_SECONDS) {
         // Reset the counter if it has been more than N seconds since the last damage.
         v.room.totalDamage = 0;
-        v.room.firstFrameOfDamage = null;
-        v.room.lastFrameOfDamage = null;
+        v.room.firstGameFrameOfDamage = null;
+        v.room.lastGameFrameOfDamage = null;
       }
     }
   }
@@ -97,15 +97,15 @@ export class DummyDPS extends ConfigurableModFeature {
 
   getDPS(): float {
     if (
-      v.room.firstFrameOfDamage === null ||
-      v.room.lastFrameOfDamage === null
+      v.room.firstGameFrameOfDamage === null ||
+      v.room.lastGameFrameOfDamage === null
     ) {
       return 0;
     }
 
     const elapsedSeconds = this.getElapsedSeconds(
-      v.room.firstFrameOfDamage,
-      v.room.lastFrameOfDamage,
+      v.room.firstGameFrameOfDamage,
+      v.room.lastGameFrameOfDamage,
     );
 
     if (elapsedSeconds <= 0) {
@@ -115,8 +115,8 @@ export class DummyDPS extends ConfigurableModFeature {
     return v.room.totalDamage / elapsedSeconds;
   }
 
-  getElapsedSeconds(startFrame: int, endFrame: int): float {
-    const framesElapsed = endFrame - startFrame;
+  getElapsedSeconds(startGameFrame: int, endGameFrame: int): float {
+    const framesElapsed = endGameFrame - startGameFrame;
     return framesElapsed / GAME_FRAMES_PER_SECOND;
   }
 }

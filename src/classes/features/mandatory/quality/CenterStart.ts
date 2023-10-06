@@ -7,10 +7,10 @@ import {
   Callback,
   CallbackCustom,
   ModCallbackCustom,
-  game,
   getPlayers,
   isCharacter,
   movePlayersToCenter,
+  onGameFrame,
 } from "isaacscript-common";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
@@ -24,11 +24,9 @@ export class CenterStart extends MandatoryModFeature {
   // 54, 15
   @Callback(ModCallback.POST_EFFECT_INIT, EffectVariant.POOF_1)
   postEffectInitPoof1(effect: EntityEffect): void {
-    const gameFrameCount = game.GetFrameCount();
-
     // If players start the run with familiars, they will leave behind stray poofs when they get
     // moved.
-    if (gameFrameCount === 0) {
+    if (onGameFrame(0)) {
       effect.Remove();
 
       // Even though we have removed it, it will still appear for a frame unless we make it

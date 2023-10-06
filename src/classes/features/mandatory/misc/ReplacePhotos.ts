@@ -9,6 +9,7 @@ import {
   anyPlayerHasCollectible,
   asCollectibleType,
   game,
+  isAfterRoomFrame,
   log,
   newRNG,
   spawnCollectibleUnsafe,
@@ -61,7 +62,9 @@ export class ReplacePhotos extends MandatoryModFeature {
   ):
     | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
     | undefined {
-    if (this.isVanillaPhotoAfterKillingMom(subType, spawner)) {
+    const collectibleType = asCollectibleType(subType);
+
+    if (this.isVanillaPhotoAfterKillingMom(collectibleType, spawner)) {
       log(`Removing a vanilla ${CollectibleType[subType]} after killing Mom.`);
       return [
         EntityType.PICKUP,
@@ -75,18 +78,14 @@ export class ReplacePhotos extends MandatoryModFeature {
   }
 
   isVanillaPhotoAfterKillingMom(
-    subType: int,
+    collectibleType: CollectibleType,
     spawner: Entity | undefined,
   ): boolean {
-    const room = game.GetRoom();
-    const roomFrameCount = room.GetFrameCount();
-    const collectibleType = asCollectibleType(subType);
-
     return (
       (collectibleType === CollectibleType.POLAROID ||
         collectibleType === CollectibleType.NEGATIVE) &&
       spawner === undefined &&
-      roomFrameCount > 0 && // We could be re-entering the room.
+      isAfterRoomFrame(0) && // We could be re-entering the room.
       inMomBossRoom()
     );
   }

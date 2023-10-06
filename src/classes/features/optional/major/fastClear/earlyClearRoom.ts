@@ -17,7 +17,9 @@ import {
   inBossRoomOf,
   inMegaSatanRoom,
   isAllPressurePlatesPushed,
+  isBeforeRoomFrame,
   log,
+  onOrAfterGameFrame,
   openAllDoors,
   removeAllEffects,
   spawnNPC,
@@ -38,9 +40,7 @@ export function earlyClearRoomPostUpdate(): void {
 }
 
 function checkEarlyClearRoom() {
-  const gameFrameCount = game.GetFrameCount();
   const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
   const roomType = room.GetType();
   const roomClear = room.IsClear();
 
@@ -51,7 +51,7 @@ function checkEarlyClearRoom() {
 
   // Under certain conditions, the room can be clear of enemies on the first frame. Thus, the
   // earliest possible frame that fast-clear should apply is on frame 1.
-  if (roomFrameCount < 1) {
+  if (isBeforeRoomFrame(1)) {
     return;
   }
 
@@ -80,10 +80,7 @@ function checkEarlyClearRoom() {
   }
 
   // If a frame has passed since an enemy died, reset the delay counter.
-  if (
-    v.room.delayClearUntilGameFrame !== null &&
-    gameFrameCount >= v.room.delayClearUntilGameFrame
-  ) {
+  if (onOrAfterGameFrame(v.room.delayClearUntilGameFrame)) {
     v.room.delayClearUntilGameFrame = null;
   }
 

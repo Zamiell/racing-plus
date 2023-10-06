@@ -2,6 +2,7 @@ import { ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
   game,
+  getElapsedRenderFramesSince,
   getHeartsUIWidth,
   getHUDOffsetVector,
   inStartingRoom,
@@ -61,9 +62,9 @@ export class TopLeftText extends MandatoryModFeature {
     let y = HUDOffsetVector.Y + STARTING_Y;
     const lineLength = 15;
 
-    const renderFrameCount = Isaac.GetFrameCount();
-    const clientMessageDifference =
-      renderFrameCount - g.frameLastClientMessageReceived;
+    const clientMessageDifference = getElapsedRenderFramesSince(
+      g.renderFrameLastClientMessageReceived,
+    );
     const shouldShowClientMessage =
       clientMessageDifference <=
       SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR * RENDER_FRAMES_PER_SECOND;

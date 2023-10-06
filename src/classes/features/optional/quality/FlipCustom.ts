@@ -18,6 +18,7 @@ import {
   getCollectibles,
   getRoomListIndex,
   inDeathCertificateArea,
+  isAfterRoomFrame,
   isBlindCollectible,
   isTaintedLazarus,
   newCollectibleSprite,
@@ -192,10 +193,9 @@ export class FlipCustom extends ConfigurableModFeature {
 
     const room = game.GetRoom();
     const isFirstVisit = room.IsFirstVisit();
-    const roomFrameCount = room.GetFrameCount();
 
     // The Flip effect is only supposed to happen to items that are part of the room layout.
-    if (!isFirstVisit || roomFrameCount > 0) {
+    if (!isFirstVisit || isAfterRoomFrame(0)) {
       return;
     }
 

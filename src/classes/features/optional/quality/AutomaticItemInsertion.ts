@@ -287,7 +287,7 @@ function updateDelta(
         v.run.delta.bloodOrSoulCharge = 0;
       }
       v.run.delta.bloodOrSoulCharge += value;
-      v.run.delta.bloodOrSoulChargeFrame = gameFrameCount;
+      v.run.delta.bloodOrSoulChargeGameFrame = gameFrameCount;
 
       return;
     }
@@ -304,7 +304,7 @@ function updateDelta(
         v.run.delta.coins = 0;
       }
       v.run.delta.coins += value;
-      v.run.delta.coinsFrame = gameFrameCount;
+      v.run.delta.coinsGameFrame = gameFrameCount;
 
       return;
     }
@@ -314,7 +314,7 @@ function updateDelta(
         v.run.delta.bombs = 0;
       }
       v.run.delta.bombs += value;
-      v.run.delta.bombsFrame = gameFrameCount;
+      v.run.delta.bombsGameFrame = gameFrameCount;
 
       return;
     }
@@ -324,7 +324,7 @@ function updateDelta(
         v.run.delta.keys = 0;
       }
       v.run.delta.keys += value;
-      v.run.delta.keysFrame = gameFrameCount;
+      v.run.delta.keysGameFrame = gameFrameCount;
 
       return;
     }
@@ -335,7 +335,7 @@ function updateDelta(
         v.run.delta.pocketItem = 0;
       }
       v.run.delta.pocketItem += value;
-      v.run.delta.pocketItemFrame = gameFrameCount;
+      v.run.delta.pocketItemGameFrame = gameFrameCount;
 
       return;
     }
@@ -345,7 +345,7 @@ function updateDelta(
         v.run.delta.trinket = 0;
       }
       v.run.delta.trinket += value;
-      v.run.delta.trinketFrame = gameFrameCount;
+      v.run.delta.trinketGameFrame = gameFrameCount;
 
       return;
     }

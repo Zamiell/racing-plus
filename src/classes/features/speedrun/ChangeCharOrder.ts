@@ -14,6 +14,8 @@ import {
   getNPCs,
   gridCoordinatesToWorldPosition,
   itemConfig,
+  onOrAfterGameFrame,
+  onOrAfterRenderFrame,
   rebirthItemTrackerRemoveCollectible,
   removeAllDoors,
   removeEntities,
@@ -72,19 +74,12 @@ export class ChangeCharOrder extends ChallengeModFeature {
    * Disable the controls to prevent the player from moving around while the screen is still black.
    */
   disableControls(): void {
-    const gameFrameCount = game.GetFrameCount();
     const player = Isaac.GetPlayer();
-
-    player.ControlsEnabled = gameFrameCount >= 1;
+    player.ControlsEnabled = onOrAfterGameFrame(1);
   }
 
   checkReset(): void {
-    const renderFrameCount = Isaac.GetFrameCount();
-
-    if (
-      v.room.resetRenderFrame !== null &&
-      renderFrameCount >= v.room.resetRenderFrame
-    ) {
+    if (onOrAfterRenderFrame(v.room.resetRenderFrame)) {
       v.room.resetRenderFrame = null;
 
       if (v.room.challengeTarget !== null) {

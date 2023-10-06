@@ -7,6 +7,7 @@ import {
   fonts,
   game,
   getCharacterSpritePNGFilePath,
+  getElapsedRenderFramesSince,
   getRoomListIndex,
   isActionPressedOnAnyInput,
   setSpriteOpacity,
@@ -227,7 +228,6 @@ export class Shadows extends MandatoryModFeature {
     const level = game.GetLevel();
     const stage = level.GetStage();
     const stageType = level.GetStageType();
-    const renderFrameCount = Isaac.GetFrameCount();
     const roomListIndex = getRoomListIndex();
 
     if (!hud.IsVisible()) {
@@ -240,7 +240,9 @@ export class Shadows extends MandatoryModFeature {
     }
 
     for (const shadowData of v.run.shadows.values()) {
-      const framesSinceLastUpdate = renderFrameCount - shadowData.frameUpdated;
+      const framesSinceLastUpdate = getElapsedRenderFramesSince(
+        shadowData.frameUpdated,
+      );
       if (framesSinceLastUpdate > RENDER_FRAMES_PER_SECOND) {
         continue;
       }

@@ -5,7 +5,7 @@ const UDP_PORT = 9113;
 const MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS = 2 * 60; // 2 seconds
 
 let sandbox: Sandbox | undefined;
-let connectionAttemptFrame: int | undefined;
+let connectionAttemptRenderFrame: int | undefined;
 let clientTCP: SocketClient | undefined;
 let clientUDP: SocketClient | undefined;
 
@@ -52,16 +52,16 @@ export function socketClientConnect(): boolean {
   // failed.
   const renderFrameCount = Isaac.GetFrameCount();
   if (
-    connectionAttemptFrame !== undefined &&
+    connectionAttemptRenderFrame !== undefined &&
     renderFrameCount <
-      connectionAttemptFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
+      connectionAttemptRenderFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
   ) {
     // Reset the connection attempt frame to this one so that resetting over and over never triggers
     // a connection attempt.
-    connectionAttemptFrame = renderFrameCount;
+    connectionAttemptRenderFrame = renderFrameCount;
     return false;
   }
-  connectionAttemptFrame = renderFrameCount;
+  connectionAttemptRenderFrame = renderFrameCount;
 
   clientTCP = sandbox.connectLocalhost(TCP_PORT, true);
   if (clientTCP === undefined) {

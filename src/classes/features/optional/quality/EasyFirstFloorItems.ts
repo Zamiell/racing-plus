@@ -19,6 +19,7 @@ import {
   inRoomType,
   log,
   onFirstFloor,
+  onRoomFrame,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
 import { mod } from "../../../../mod";
@@ -166,11 +167,6 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
   }
 
   shouldEasyFirstFloorItemsApply(): boolean {
-    const room = game.GetRoom();
-    const roomFrameCount = room.GetFrameCount();
-
-    return (
-      onFirstFloor() && inRoomType(RoomType.TREASURE) && roomFrameCount === -1
-    );
+    return onFirstFloor() && inRoomType(RoomType.TREASURE) && onRoomFrame(-1);
   }
 }

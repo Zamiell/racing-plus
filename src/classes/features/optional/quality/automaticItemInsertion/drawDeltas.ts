@@ -2,6 +2,7 @@ import { CollectibleType } from "isaac-typescript-definitions";
 import {
   fonts,
   game,
+  getElapsedGameFramesSince,
   getHUDOffsetVector,
   getScreenBottomLeftPos,
   getScreenBottomRightPos,
@@ -38,14 +39,14 @@ export function drawDeltas(): void {
 }
 
 function drawCoinsDelta() {
-  if (v.run.delta.coins === null || v.run.delta.coinsFrame === null) {
+  if (v.run.delta.coins === null || v.run.delta.coinsGameFrame === null) {
     return;
   }
 
-  const fade = getFade(v.run.delta.coinsFrame);
+  const fade = getFade(v.run.delta.coinsGameFrame);
   if (fade <= 0) {
     v.run.delta.coins = null;
-    v.run.delta.coinsFrame = null;
+    v.run.delta.coinsGameFrame = null;
     return;
   }
 
@@ -64,14 +65,14 @@ function drawCoinsDelta() {
 }
 
 function drawKeysDelta() {
-  if (v.run.delta.keys === null || v.run.delta.keysFrame === null) {
+  if (v.run.delta.keys === null || v.run.delta.keysGameFrame === null) {
     return;
   }
 
-  const fade = getFade(v.run.delta.keysFrame);
+  const fade = getFade(v.run.delta.keysGameFrame);
   if (fade <= 0) {
     v.run.delta.keys = null;
-    v.run.delta.keysFrame = null;
+    v.run.delta.keysGameFrame = null;
     return;
   }
 
@@ -91,14 +92,14 @@ function drawKeysDelta() {
 }
 
 function drawBombsDelta() {
-  if (v.run.delta.bombs === null || v.run.delta.bombsFrame === null) {
+  if (v.run.delta.bombs === null || v.run.delta.bombsGameFrame === null) {
     return;
   }
 
-  const fade = getFade(v.run.delta.bombsFrame);
+  const fade = getFade(v.run.delta.bombsGameFrame);
   if (fade <= 0) {
     v.run.delta.bombs = null;
-    v.run.delta.bombsFrame = null;
+    v.run.delta.bombsGameFrame = null;
     return;
   }
 
@@ -120,15 +121,15 @@ function drawBombsDelta() {
 function drawBloodOrSoulChargeDelta() {
   if (
     v.run.delta.bloodOrSoulCharge === null ||
-    v.run.delta.bloodOrSoulChargeFrame === null
+    v.run.delta.bloodOrSoulChargeGameFrame === null
   ) {
     return;
   }
 
-  const fade = getFade(v.run.delta.bloodOrSoulChargeFrame);
+  const fade = getFade(v.run.delta.bloodOrSoulChargeGameFrame);
   if (fade <= 0) {
     v.run.delta.bloodOrSoulCharge = null;
-    v.run.delta.bloodOrSoulChargeFrame = null;
+    v.run.delta.bloodOrSoulChargeGameFrame = null;
     return;
   }
 
@@ -141,7 +142,10 @@ function drawBloodOrSoulChargeDelta() {
 }
 
 function drawPocketItemsDelta() {
-  if (v.run.delta.pocketItem === null || v.run.delta.pocketItemFrame === null) {
+  if (
+    v.run.delta.pocketItem === null ||
+    v.run.delta.pocketItemGameFrame === null
+  ) {
     return;
   }
 
@@ -151,10 +155,10 @@ function drawPocketItemsDelta() {
     return;
   }
 
-  const fade = getFade(v.run.delta.pocketItemFrame);
+  const fade = getFade(v.run.delta.pocketItemGameFrame);
   if (fade <= 0) {
     v.run.delta.pocketItem = null;
-    v.run.delta.pocketItemFrame = null;
+    v.run.delta.pocketItemGameFrame = null;
     return;
   }
 
@@ -169,14 +173,14 @@ function drawPocketItemsDelta() {
 }
 
 function drawTrinketsDelta() {
-  if (v.run.delta.trinket === null || v.run.delta.trinketFrame === null) {
+  if (v.run.delta.trinket === null || v.run.delta.trinketGameFrame === null) {
     return;
   }
 
-  const fade = getFade(v.run.delta.trinketFrame);
+  const fade = getFade(v.run.delta.trinketGameFrame);
   if (fade <= 0) {
     v.run.delta.trinket = null;
-    v.run.delta.trinketFrame = null;
+    v.run.delta.trinketGameFrame = null;
     return;
   }
 
@@ -190,15 +194,14 @@ function drawTrinketsDelta() {
   drawFont(x, y, fade, text);
 }
 
-function getFade(frame: int): float {
-  const gameFrameCount = game.GetFrameCount();
-  const elapsedFrames = gameFrameCount - frame;
+function getFade(gameFrame: int): float {
+  const elapsedGameFrames = getElapsedGameFramesSince(gameFrame);
 
-  if (elapsedFrames <= FRAMES_BEFORE_FADE) {
+  if (elapsedGameFrames <= FRAMES_BEFORE_FADE) {
     return 1;
   }
 
-  const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
+  const fadeFrames = elapsedGameFrames - FRAMES_BEFORE_FADE;
   return 1 - 0.02 * fadeFrames;
 }
 

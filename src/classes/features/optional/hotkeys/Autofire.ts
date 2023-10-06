@@ -12,9 +12,9 @@ import {
   DefaultMap,
   ModCallbackCustom,
   ReadonlySet,
-  SHOOTING_ACTIONS,
+  SHOOTING_BUTTON_ACTIONS,
   game,
-  getShootActions,
+  getShootButtonActions,
   hasCollectible,
   isShootAction,
   sfxManager,
@@ -135,18 +135,18 @@ export class Autofire extends MandatoryModFeature {
   /** We do this in the `POST_UPDATE` callback since it simplifies the code. */
   checkAutofireEnd(player: EntityPlayer): void {
     const gameFrameCount = game.GetFrameCount();
-    const shootActions = getShootActions(player.ControllerIndex);
-    const firstShootAction = shootActions[0];
+    const shootButtonActions = getShootButtonActions(player.ControllerIndex);
+    const firstShootButtonAction = shootButtonActions[0];
 
     // Handle the case of a shoot input being held down for a single render frame (which is not long
     // enough to start an autofire sequence).
-    if (firstShootAction === undefined && v.run.startCounter !== 0) {
+    if (firstShootButtonAction === undefined && v.run.startCounter !== 0) {
       v.run.startCounter = 0;
     }
 
     // End an autofire sequence when all shoot inputs are released.
     if (
-      firstShootAction === undefined &&
+      firstShootButtonAction === undefined &&
       v.run.gameFrameAutofireSequenceStarted !== null &&
       // Don't immediately end an autofire sequence when all shoot keys are released. Instead, wait
       // until the frame before the next planned fire. This is necessary to prevent autofire players
@@ -161,7 +161,7 @@ export class Autofire extends MandatoryModFeature {
 
   /** Records shoot buttons and the left mouse button. */
   recordVanillaInputs(player: EntityPlayer): void {
-    for (const buttonAction of SHOOTING_ACTIONS) {
+    for (const buttonAction of SHOOTING_BUTTON_ACTIONS) {
       const pressed = Input.IsActionPressed(
         buttonAction,
         player.ControllerIndex,
@@ -189,7 +189,7 @@ export class Autofire extends MandatoryModFeature {
       return;
     }
 
-    for (const buttonAction of SHOOTING_ACTIONS) {
+    for (const buttonAction of SHOOTING_BUTTON_ACTIONS) {
       if (this.isNewShootPress(buttonAction)) {
         v.run.lockout = {
           buttonAction,
@@ -225,7 +225,7 @@ export class Autofire extends MandatoryModFeature {
       return;
     }
 
-    for (const buttonAction of SHOOTING_ACTIONS) {
+    for (const buttonAction of SHOOTING_BUTTON_ACTIONS) {
       if (this.isNewShootPress(buttonAction)) {
         v.run.queuedShot = {
           buttonAction,
@@ -250,7 +250,7 @@ export class Autofire extends MandatoryModFeature {
   }
 
   wasPressingAnyShootKeysLastFrame(): boolean {
-    return SHOOTING_ACTIONS.some((buttonAction) => {
+    return SHOOTING_BUTTON_ACTIONS.some((buttonAction) => {
       const shootHistory =
         v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
       const secondLastElement = shootHistory.at(-2);
@@ -489,23 +489,6 @@ export class Autofire extends MandatoryModFeature {
 
     // Handle lockout.
     if (v.run.lockout !== null && gameFrameCount < v.run.lockout.endGameFrame) {
-      /*
-      // There is one special case, which is when 1) we are on the frame before lockout ends and 2)
-      // the player does not have the button held. In this case, we want to release the button so
-      // that the player can activate a new shot on the specific frame that lockout ends. (We can't
-      // unconditionally release the key because that would remove the vanilla ability to charge
-      // up.)
-      if (gameFrameCount === v.run.lockout.endGameFrame - 1) {
-        const pressed = Input.IsActionPressed(
-          buttonAction,
-          player.ControllerIndex,
-        );
-        if (!pressed) {
-          return inputHook === InputHook.IS_ACTION_PRESSED ? false : 0;
-        }
-      }
-      */
-
       // First, handle the case where the player has released the key that is supposed to be held
       // down by lockout. (Once they release the key, all shoot buttons will be forced to false/0.)
       if (buttonAction === v.run.lockout.buttonAction) {

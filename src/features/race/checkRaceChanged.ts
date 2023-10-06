@@ -195,6 +195,6 @@ functionMap.set(
     }
 
     const renderFrameCount = Isaac.GetFrameCount();
-    g.frameLastClientMessageReceived = renderFrameCount;
+    g.renderFrameLastClientMessageReceived = renderFrameCount;
   },
 );

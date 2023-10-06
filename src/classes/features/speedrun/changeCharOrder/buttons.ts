@@ -11,6 +11,7 @@ import {
   game,
   getPlayers,
   gridCoordinatesToWorldPosition,
+  isBeforeGameFrame,
   isEven,
   removeAllMatchingGridEntities,
   removeGridEntity,
@@ -39,11 +40,9 @@ export function changeCharOrderButtonsPostUpdate(): void {
 }
 
 function checkCreateButtons() {
-  const gameFrameCount = game.GetFrameCount();
-
   if (
     v.room.createButtonsFrame === null ||
-    gameFrameCount < v.room.createButtonsFrame
+    isBeforeGameFrame(v.room.createButtonsFrame)
   ) {
     return;
   }
@@ -364,6 +363,8 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
 }
 
 function fadeOutToChallenge() {
+  const renderFrameCount = Isaac.GetFrameCount();
+
   game.Fadeout(0.05, FadeoutTarget.MAIN_MENU);
 
   v.room.challengeTarget =
@@ -372,5 +373,5 @@ function fadeOutToChallenge() {
       : CHALLENGE_CUSTOM_ABBREVIATION_TO_CHALLENGE_CUSTOM[
           v.room.challengeCustomAbbreviation
         ];
-  v.room.resetRenderFrame = Isaac.GetFrameCount() + FADE_RENDER_FRAMES;
+  v.room.resetRenderFrame = renderFrameCount + FADE_RENDER_FRAMES;
 }

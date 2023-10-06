@@ -26,7 +26,10 @@ import {
   getTotalCharge,
   inRoomType,
   isActiveSlotEmpty,
+  isAfterGameFrame,
   logError,
+  onOrBeforeRoomFrame,
+  onRoomFrame,
   playChargeSoundEffect,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
@@ -121,13 +124,11 @@ export class ChargePocketItemFirst extends ConfigurableModFeature {
     }
 
     // Prevent using the active item before the charges have been swapped.
-    const room = game.GetRoom(); // We cannot use the cached room class inside of an input callback.
-    const roomFrameCount = room.GetFrameCount();
     const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
     const batteryBumCharging =
       v.run.checkForBatteryBumChargesUntilGameFrame !== null;
-    const hairpinActivating = hasHairpin && roomFrameCount <= 1;
+    const hairpinActivating = hasHairpin && onOrBeforeRoomFrame(1);
     const shouldStopActiveItemUses = batteryBumCharging || hairpinActivating;
 
     return shouldStopActiveItemUses ? false : undefined;
@@ -181,8 +182,7 @@ export class ChargePocketItemFirst extends ConfigurableModFeature {
       return;
     }
 
-    const gameFrameCount = game.GetFrameCount();
-    if (gameFrameCount > v.run.checkForBatteryBumChargesUntilGameFrame) {
+    if (isAfterGameFrame(v.run.checkForBatteryBumChargesUntilGameFrame)) {
       v.run.checkForBatteryBumChargesUntilGameFrame = null;
       return;
     }
@@ -196,13 +196,12 @@ export class ChargePocketItemFirst extends ConfigurableModFeature {
 
   checkHairpinCharge(player: EntityPlayer): void {
     const room = game.GetRoom();
-    const roomFrameCount = room.GetFrameCount();
     const firstVisit = room.IsFirstVisit();
     const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
     if (
       !inRoomType(RoomType.BOSS) ||
-      roomFrameCount !== 1 ||
+      !onRoomFrame(-1) ||
       !firstVisit ||
       !hasHairpin
     ) {

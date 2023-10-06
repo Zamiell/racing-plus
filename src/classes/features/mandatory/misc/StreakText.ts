@@ -22,6 +22,7 @@ import {
   game,
   getCardName,
   getCollectibleName,
+  getElapsedRenderFramesSince,
   getFamiliars,
   getLevelName,
   getPillEffectName,
@@ -169,14 +170,13 @@ export class StreakText extends MandatoryModFeature {
   }
 
   getFade(renderFrame: int): float {
-    const renderFrameCount = Isaac.GetFrameCount();
-    const elapsedFrames = renderFrameCount - renderFrame;
+    const elapsedRenderFrames = getElapsedRenderFramesSince(renderFrame);
 
-    if (elapsedFrames <= FRAMES_BEFORE_FADE) {
+    if (elapsedRenderFrames <= FRAMES_BEFORE_FADE) {
       return 1;
     }
 
-    const fadeFrames = elapsedFrames - FRAMES_BEFORE_FADE;
+    const fadeFrames = elapsedRenderFrames - FRAMES_BEFORE_FADE;
     return 1 - 0.02 * fadeFrames;
   }
 

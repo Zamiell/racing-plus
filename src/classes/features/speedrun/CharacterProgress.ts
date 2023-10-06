@@ -12,6 +12,7 @@ import {
   getCharacterName,
   log,
   onChallenge,
+  onOrAfterRenderFrame,
   rebirthItemTrackerRemoveCollectible,
   spawnPickup,
 } from "isaacscript-common";
@@ -77,15 +78,12 @@ export class CharacterProgress extends ChallengeModFeature {
   }
 
   checkManualResetAtEndOfFadeout(): void {
-    const renderFrameCount = Isaac.GetFrameCount();
+    if (onOrAfterRenderFrame(v.run.resetFrame)) {
+      v.run.resetFrame = null;
 
-    if (v.run.resetFrame === null || renderFrameCount < v.run.resetFrame) {
-      return;
+      // The screen is now black, so move us to the next character for the speedrun.
+      this.setNextCharacterAndRestart();
     }
-    v.run.resetFrame = null;
-
-    // The screen is now black, so move us to the next character for the speedrun.
-    this.setNextCharacterAndRestart();
   }
 
   setNextCharacterAndRestart(): void {

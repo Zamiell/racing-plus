@@ -11,6 +11,7 @@ import {
   game,
   getPickups,
   newRNG,
+  onGameFrame,
   setSeed,
   spawnPickup,
 } from "isaacscript-common";
@@ -68,20 +69,15 @@ export class SeededGBBug extends MandatoryModFeature {
       return undefined;
     }
 
-    const gameFrameCount = game.GetFrameCount();
-
     for (const pickup of getPickups()) {
       const ptrHash = GetPtrHash(pickup);
 
-      if (ptrHash !== v.run.lastSpawnedPickupPtrHash) {
-        continue;
+      if (
+        ptrHash === v.run.lastSpawnedPickupPtrHash &&
+        onGameFrame(v.run.lastSpawnedPickupFrame)
+      ) {
+        return pickup;
       }
-
-      if (gameFrameCount !== v.run.lastSpawnedPickupFrame) {
-        continue;
-      }
-
-      return pickup;
     }
 
     return undefined;

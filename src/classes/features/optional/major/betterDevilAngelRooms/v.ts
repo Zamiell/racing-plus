@@ -36,6 +36,6 @@ export const v = {
   },
 
   room: {
-    usedD4Frame: null as int | null,
+    usedD4GameFrame: null as int | null,
   },
 };

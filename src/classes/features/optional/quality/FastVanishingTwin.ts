@@ -18,6 +18,7 @@ import {
   getCollectibles,
   getFamiliars,
   inRoomType,
+  isBeforeGameFrame,
   isStoryBoss,
   spawnEffect,
   spawnNPC,
@@ -48,12 +49,10 @@ export class FastVanishingTwin extends ConfigurableModFeature {
   }
 
   checkRoomCleared(): void {
-    if (v.room.spawnClearAwardFrame === null) {
-      return;
-    }
-
-    const gameFrameCount = game.GetFrameCount();
-    if (gameFrameCount < v.room.spawnClearAwardFrame) {
+    if (
+      v.room.spawnClearAwardFrame === null ||
+      isBeforeGameFrame(v.room.spawnClearAwardFrame)
+    ) {
       return;
     }
     v.room.spawnClearAwardFrame = null;

@@ -1,5 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import { Callback, game } from "isaacscript-common";
+import { Callback, game, onGameFrame } from "isaacscript-common";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -26,8 +26,7 @@ export class SpeedUpFadeIn extends ConfigurableModFeature {
   }
 
   shouldSpeedUpFadeIn(): boolean {
-    const gameFrameCount = game.GetFrameCount();
-    return !v.run.spedUpFadeIn && gameFrameCount === 0;
+    return !v.run.spedUpFadeIn && onGameFrame(0);
   }
 
   speedUpFadeIn(): void {

@@ -5,6 +5,7 @@ import {
   game,
   getScreenCenterPos,
   isKeyboardPressed,
+  onOrAfterRenderFrame,
 } from "isaacscript-common";
 import { MOD_NAME, VERSION } from "../../../../constants";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
@@ -51,12 +52,7 @@ export class DrawVersion extends MandatoryModFeature {
   }
 
   checkDraw(): void {
-    const renderFrameCount = Isaac.GetFrameCount();
-
-    if (
-      v.run.showVersionUntilRenderFrame === null ||
-      renderFrameCount >= v.run.showVersionUntilRenderFrame
-    ) {
+    if (onOrAfterRenderFrame(v.run.showVersionUntilRenderFrame)) {
       return;
     }
 

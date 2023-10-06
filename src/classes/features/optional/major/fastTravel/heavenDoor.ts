@@ -11,6 +11,7 @@ import {
   getEffects,
   inBossRoomOf,
   inRoomType,
+  isAfterRoomFrame,
   onStage,
 } from "isaacscript-common";
 import { FastTravelEntityState } from "../../../../../enums/FastTravelEntityState";
@@ -61,13 +62,10 @@ export function heavenDoorPostEffectInitHeavenDoor(effect: EntityEffect): void {
 }
 
 function shouldRemove(effect: EntityEffect) {
-  const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
-
   // Delete all vanilla heaven doors that are spawned midway through the room. (We explicitly spawn
   // all custom heaven doors using the player as the spawner. The game will naturally respawn heaven
   // doors when the player re-enters the room, and these will not have an explicit spawner.)
-  if (effect.SpawnerEntity === undefined && roomFrameCount > 0) {
+  if (effect.SpawnerEntity === undefined && isAfterRoomFrame(0)) {
     return true;
   }
 

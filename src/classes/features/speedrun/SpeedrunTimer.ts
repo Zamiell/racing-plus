@@ -2,6 +2,7 @@ import { ModCallback } from "isaac-typescript-definitions";
 import {
   Callback,
   emptyArray,
+  getElapsedRenderFramesSince,
   getScreenBottomY,
   rebirthItemTrackerRemoveCollectible,
   RENDER_FRAMES_PER_SECOND,
@@ -85,8 +86,6 @@ export class SpeedrunTimer extends ChallengeModFeature {
   }
 
   drawSpeedrunTimer(): void {
-    const renderFrameCount = Isaac.GetFrameCount();
-
     // Find out how much time has passed since the speedrun started.
     let elapsedFrames: int;
     if (v.run.finished && v.run.finishedSpeedrunFrames !== null) {
@@ -94,7 +93,9 @@ export class SpeedrunTimer extends ChallengeModFeature {
     } else if (v.persistent.startedSpeedrunFrame === null) {
       elapsedFrames = 0;
     } else {
-      elapsedFrames = renderFrameCount - v.persistent.startedSpeedrunFrame;
+      elapsedFrames = getElapsedRenderFramesSince(
+        v.persistent.startedSpeedrunFrame,
+      );
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
@@ -117,8 +118,6 @@ export class SpeedrunTimer extends ChallengeModFeature {
       return;
     }
 
-    const renderFrameCount = Isaac.GetFrameCount();
-
     // Find out how much time has passed since the last "split" (e.g. when the last checkpoint was
     // touched).
     let elapsedFrames: int;
@@ -127,7 +126,9 @@ export class SpeedrunTimer extends ChallengeModFeature {
     } else if (v.persistent.startedCharacterFrame === null) {
       elapsedFrames = 0;
     } else {
-      elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
+      elapsedFrames = getElapsedRenderFramesSince(
+        v.persistent.startedCharacterFrame,
+      );
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
 
@@ -188,8 +189,10 @@ export function speedrunTimerCheckpointTouched(): void {
 
   // Record how long this run took.
   if (v.persistent.startedCharacterFrame !== null) {
-    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
-    v.persistent.characterRunFrames.push(elapsedFrames);
+    const elapsedRenderFrames = getElapsedRenderFramesSince(
+      v.persistent.startedCharacterFrame,
+    );
+    v.persistent.characterRunFrames.push(elapsedRenderFrames);
   }
 
   // Mark our current frame as the starting time for the next character.
@@ -201,8 +204,6 @@ export function speedrunTimerCheckpointTouched(): void {
 
 /** When the player takes the trophy at the end of a multi-character speedrun. */
 export function speedrunTimerFinish(player: EntityPlayer): void {
-  const renderFrameCount = Isaac.GetFrameCount();
-
   sfxManager.Play(SoundEffectCustom.SPEEDRUN_FINISH);
 
   // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know when
@@ -212,8 +213,10 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
 
   // Record how long this run took.
   if (v.persistent.startedCharacterFrame !== null) {
-    const elapsedFrames = renderFrameCount - v.persistent.startedCharacterFrame;
-    v.persistent.characterRunFrames.push(elapsedFrames);
+    const elapsedRenderFrames = getElapsedRenderFramesSince(
+      v.persistent.startedCharacterFrame,
+    );
+    v.persistent.characterRunFrames.push(elapsedRenderFrames);
   }
 
   // Show the run summary (including the average time per character).
@@ -223,13 +226,15 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
   v.run.finished = true;
 
   if (v.persistent.startedSpeedrunFrame !== null) {
-    v.run.finishedSpeedrunFrames =
-      renderFrameCount - v.persistent.startedSpeedrunFrame;
+    v.run.finishedSpeedrunFrames = getElapsedRenderFramesSince(
+      v.persistent.startedSpeedrunFrame,
+    );
   }
 
   if (v.persistent.startedCharacterFrame !== null) {
-    v.run.finishedCharacterFrames =
-      renderFrameCount - v.persistent.startedCharacterFrame;
+    v.run.finishedCharacterFrames = getElapsedRenderFramesSince(
+      v.persistent.startedCharacterFrame,
+    );
   }
 
   speedrunResetAllVarsOnNextReset();

@@ -16,6 +16,7 @@ import {
   getAllPlayers,
   inStartingRoom,
   isSelfDamage,
+  onOrAfterGameFrame,
 } from "isaacscript-common";
 import { FastTravelState } from "../../../../enums/FastTravelState";
 import { mod } from "../../../../mod";
@@ -61,8 +62,7 @@ export class FastTravel extends ConfigurableModFeature {
       return;
     }
 
-    const gameFrameCount = game.GetFrameCount();
-    if (gameFrameCount >= v.level.resumeGameFrame) {
+    if (onOrAfterGameFrame(v.level.resumeGameFrame)) {
       v.level.resumeGameFrame = null;
       finishGoingToNewFloor();
     }

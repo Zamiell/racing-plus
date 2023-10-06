@@ -9,6 +9,7 @@ import {
   CallbackCustom,
   ModCallbackCustom,
   game,
+  onGameFrame,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -80,13 +81,12 @@ export class ConsistentAngels extends ConfigurableModFeature {
   ):
     | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
     | undefined {
-    const gameFrameCount = game.GetFrameCount();
-
     // This feature should not apply to angels that were duplicated with a Meat Cleaver.
     if (
       v.room.usedMeatCleaverFrame !== null &&
-      v.room.usedMeatCleaverFrame + FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER ===
-        gameFrameCount
+      onGameFrame(
+        v.room.usedMeatCleaverFrame + FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER,
+      )
     ) {
       return undefined;
     }

@@ -26,9 +26,11 @@ import {
   getPlayerIndex,
   inBeastRoom,
   inRoomType,
+  isBeforeRenderFrame,
   isCharacter,
   isJacobOrEsau,
   isKeeper,
+  onOrBeforeGameFrame,
   removeGridEntity,
   useActiveItemTemp,
 } from "isaacscript-common";
@@ -75,7 +77,6 @@ export class SeededDeath extends MandatoryModFeature {
       return;
     }
 
-    const renderFrameCount = Isaac.GetFrameCount();
     const player = Isaac.GetPlayer();
 
     // We have to re-apply the fade on every frame in case the player takes a pill or steps on
@@ -85,7 +86,7 @@ export class SeededDeath extends MandatoryModFeature {
     // Check to see if the debuff is over.
     if (
       v.run.debuffEndFrame === null ||
-      renderFrameCount < v.run.debuffEndFrame
+      isBeforeRenderFrame(v.run.debuffEndFrame)
     ) {
       return;
     }
@@ -279,8 +280,8 @@ export class SeededDeath extends MandatoryModFeature {
     playAppearAnimationAndFade(player);
 
     seededDeathDebuffOn(player);
-    v.run.debuffEndFrame =
-      Isaac.GetFrameCount() + SEEDED_DEATH_DEBUFF_RENDER_FRAMES;
+    const renderFrameCount = Isaac.GetFrameCount();
+    v.run.debuffEndFrame = renderFrameCount + SEEDED_DEATH_DEBUFF_RENDER_FRAMES;
   }
 
   ghostForm(): void {
@@ -326,16 +327,15 @@ export class SeededDeath extends MandatoryModFeature {
   }
 
   shouldSeededDeathRevive(player: EntityPlayer): boolean {
-    const gameFrameCount = game.GetFrameCount();
-
     // Do not revive the player if they took a devil deal within the past few seconds. (We cannot
     // use the `DamageFlag.DAMAGE_DEVIL` to determine this because the player could have taken a
     // devil deal and died to a fire / spikes / etc.). In order to reduce false positives, we can
     // safely ignore characters that cannot die on taking a devil deal.
     if (
       v.run.frameOfLastDevilDeal !== null &&
-      gameFrameCount <=
-        v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_GAME_FRAMES &&
+      onOrBeforeGameFrame(
+        v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_GAME_FRAMES,
+      ) &&
       this.canCharacterDieFromTakingADevilDeal(player)
     ) {
       return false;

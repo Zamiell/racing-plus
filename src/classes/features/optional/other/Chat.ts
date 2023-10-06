@@ -1,5 +1,9 @@
 import { ModCallback } from "isaac-typescript-definitions";
-import { Callback, game } from "isaacscript-common";
+import {
+  Callback,
+  game,
+  getElapsedRenderFramesSince,
+} from "isaacscript-common";
 import { HexColors } from "../../../../enums/HexColors";
 import {
   CONSOLE_POSITION,
@@ -45,7 +49,6 @@ export class Chat extends ConfigurableModFeature {
 
     // If the console is open, display the last N messages with default opacity. Otherwise, only
     // display recent messages, and fade them so that they do not interfere with gameplay as much.
-    const renderFrameCount = Isaac.GetFrameCount();
     const consoleOpen = isConsoleOpen();
     const alpha = consoleOpen ? DEFAULT_CONSOLE_OPACITY : FADED_CHAT_OPACITY;
 
@@ -56,9 +59,12 @@ export class Chat extends ConfigurableModFeature {
     for (const chatMessage of g.chatMessages) {
       // Make chat messages slowly fade away (if the console is closed).
       let modifiedAlpha = alpha;
-      const framesElapsed = renderFrameCount - chatMessage.renderFrameReceived;
-      if (!consoleOpen && framesElapsed > FRAMES_FOR_CHAT_TO_SHOW) {
-        const framesOverThreshold = framesElapsed - FRAMES_FOR_CHAT_TO_SHOW;
+      const elapsedRenderFrames = getElapsedRenderFramesSince(
+        chatMessage.renderFrameReceived,
+      );
+      if (!consoleOpen && elapsedRenderFrames > FRAMES_FOR_CHAT_TO_SHOW) {
+        const framesOverThreshold =
+          elapsedRenderFrames - FRAMES_FOR_CHAT_TO_SHOW;
         modifiedAlpha -= framesOverThreshold / (FRAMES_FOR_CHAT_TO_SHOW * 2);
       }
       if (modifiedAlpha <= 0) {

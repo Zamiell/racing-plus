@@ -22,6 +22,7 @@ import {
   getRoomGridIndex,
   inCrawlSpace,
   inSecretShop,
+  isAfterRoomFrame,
   isRoomInsideGrid,
   log,
   removeGridEntity,
@@ -182,13 +183,12 @@ export function crawlSpacePostGridEntityRemoveCrawlSpace(gridIndex: int): void {
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   const room = game.GetRoom();
-  const roomFrameCount = room.GetFrameCount();
   const roomClear = room.IsClear();
 
   // Crawl spaces created after a room has already initialized should spawn closed by default. For
   // example, crawl spaces created by We Need to Go Deeper should spawn closed because the player
   // will be standing on top of them.
-  if (roomFrameCount > 0) {
+  if (isAfterRoomFrame(0)) {
     return false;
   }
 

@@ -6,6 +6,7 @@ import {
   getTotalCharge,
   isActiveSlotDoubleCharged,
   isActiveSlotEmpty,
+  isBeforeGameFrame,
 } from "isaacscript-common";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -33,10 +34,9 @@ export class BatteryBumFix extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
-    const gameFrameCount = game.GetFrameCount();
     if (
       v.run.checkForHappyAnimationFrame === null ||
-      gameFrameCount < v.run.checkForHappyAnimationFrame
+      isBeforeGameFrame(v.run.checkForHappyAnimationFrame)
     ) {
       return;
     }
