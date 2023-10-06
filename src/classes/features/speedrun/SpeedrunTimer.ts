@@ -87,17 +87,17 @@ export class SpeedrunTimer extends ChallengeModFeature {
 
   drawSpeedrunTimer(): void {
     // Find out how much time has passed since the speedrun started.
-    let elapsedFrames: int;
+    let elapsedRenderFrames: int;
     if (v.run.finished && v.run.finishedSpeedrunRenderFrames !== null) {
-      elapsedFrames = v.run.finishedSpeedrunRenderFrames;
+      elapsedRenderFrames = v.run.finishedSpeedrunRenderFrames;
     } else if (v.persistent.startedSpeedrunRenderFrame === null) {
-      elapsedFrames = 0;
+      elapsedRenderFrames = 0;
     } else {
-      elapsedFrames = getElapsedRenderFramesSince(
+      elapsedRenderFrames = getElapsedRenderFramesSince(
         v.persistent.startedSpeedrunRenderFrame,
       );
     }
-    const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
+    const seconds = elapsedRenderFrames / RENDER_FRAMES_PER_SECOND;
 
     timerDraw(TimerType.RACE_OR_SPEEDRUN, seconds);
   }
@@ -120,17 +120,17 @@ export class SpeedrunTimer extends ChallengeModFeature {
 
     // Find out how much time has passed since the last "split" (e.g. when the last checkpoint was
     // touched).
-    let elapsedFrames: int;
+    let elapsedRenderFrames: int;
     if (v.run.finished && v.run.finishedCharacterRenderFrames !== null) {
-      elapsedFrames = v.run.finishedCharacterRenderFrames;
+      elapsedRenderFrames = v.run.finishedCharacterRenderFrames;
     } else if (v.persistent.startedCharacterRenderFrame === null) {
-      elapsedFrames = 0;
+      elapsedRenderFrames = 0;
     } else {
-      elapsedFrames = getElapsedRenderFramesSince(
+      elapsedRenderFrames = getElapsedRenderFramesSince(
         v.persistent.startedCharacterRenderFrame,
       );
     }
-    const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
+    const seconds = elapsedRenderFrames / RENDER_FRAMES_PER_SECOND;
 
     timerDraw(
       TimerType.SPEEDRUN_CHARACTER,
@@ -142,10 +142,10 @@ export class SpeedrunTimer extends ChallengeModFeature {
 }
 
 export function speedrunGetAverageTimePerCharacter(): string {
-  const totalFrames = sumArray(v.persistent.characterRunRenderFrames);
-  const averageFrames =
-    totalFrames / v.persistent.characterRunRenderFrames.length;
-  const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
+  const totalRenderFrames = sumArray(v.persistent.characterRunRenderFrames);
+  const averageRenderFrames =
+    totalRenderFrames / v.persistent.characterRunRenderFrames.length;
+  const averageSeconds = averageRenderFrames / RENDER_FRAMES_PER_SECOND;
 
   const timerValues = convertSecondsToTimerValues(averageSeconds);
   if (timerValues === undefined) {
