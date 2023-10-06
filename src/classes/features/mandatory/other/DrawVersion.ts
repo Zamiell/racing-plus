@@ -52,7 +52,10 @@ export class DrawVersion extends MandatoryModFeature {
   }
 
   checkDraw(): void {
-    if (onOrAfterRenderFrame(v.run.showVersionUntilRenderFrame)) {
+    if (
+      v.run.showVersionUntilRenderFrame === null ||
+      onOrAfterRenderFrame(v.run.showVersionUntilRenderFrame)
+    ) {
       return;
     }
 

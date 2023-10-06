@@ -213,7 +213,7 @@ export class Shadows extends MandatoryModFeature {
       overlayAnimation: shadowMessage.overlayAnimation,
       overlayAnimationFrame: shadowMessage.overlayAnimationFrame,
       username: shadowMessage.username,
-      frameUpdated: renderFrameCount,
+      renderFrameUpdated: renderFrameCount,
     };
     v.run.shadows.set(shadowMessage.userID, shadowData);
   }
@@ -240,10 +240,10 @@ export class Shadows extends MandatoryModFeature {
     }
 
     for (const shadowData of v.run.shadows.values()) {
-      const framesSinceLastUpdate = getElapsedRenderFramesSince(
-        shadowData.frameUpdated,
+      const renderFramesSinceLastUpdate = getElapsedRenderFramesSince(
+        shadowData.renderFrameUpdated,
       );
-      if (framesSinceLastUpdate > RENDER_FRAMES_PER_SECOND) {
+      if (renderFramesSinceLastUpdate > RENDER_FRAMES_PER_SECOND) {
         continue;
       }
 

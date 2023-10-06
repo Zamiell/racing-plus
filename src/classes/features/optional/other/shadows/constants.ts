@@ -35,7 +35,7 @@ export interface ShadowData {
   overlayAnimation: string;
   overlayAnimationFrame: int;
   username: string;
-  frameUpdated: int;
+  renderFrameUpdated: int;
 }
 
 export interface ShadowMessage {

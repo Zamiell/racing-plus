@@ -8,7 +8,6 @@ import {
   RENDER_FRAMES_PER_SECOND,
   game,
   isActionTriggeredOnAnyInput,
-  isBeforeRenderFrame,
   isKeyboardPressed,
   restart,
 } from "isaacscript-common";
@@ -64,17 +63,17 @@ export class FastReset extends ConfigurableModFeature {
     // Check to see if the player has pressed the restart input. (We check all inputs instead of
     // "player.ControllerIndex" because a controller player might be using the keyboard to reset.)
     if (isActionTriggeredOnAnyInput(ButtonAction.RESTART)) {
-      this.reset();
+      this.checkReset();
     }
   }
 
-  reset(): void {
+  checkReset(): void {
     const renderFrameCount = Isaac.GetFrameCount();
     const numRoomsEntered = mod.getNumRoomsEntered();
 
     if (
       numRoomsEntered <= 3 ||
-      isBeforeRenderFrame(v.run.lastResetRenderFrame + RENDER_FRAMES_PER_SECOND)
+      renderFrameCount <= v.run.lastResetRenderFrame + RENDER_FRAMES_PER_SECOND
     ) {
       // Speedrun functionality relies on knowing whether a fast-reset occurred.
       speedrunSetFastReset();

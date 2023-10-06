@@ -21,7 +21,7 @@ const CHAT_POSITION = CONSOLE_POSITION.add(Vector(0, -15));
 const LINE_LENGTH = 13;
 const MAX_CHAT_MESSAGES = 10;
 const FADED_CHAT_OPACITY = 0.15;
-const FRAMES_FOR_CHAT_TO_SHOW = 120;
+const RENDER_FRAMES_FOR_CHAT_TO_SHOW = 120;
 
 /**
  * TODO:
@@ -62,10 +62,14 @@ export class Chat extends ConfigurableModFeature {
       const elapsedRenderFrames = getElapsedRenderFramesSince(
         chatMessage.renderFrameReceived,
       );
-      if (!consoleOpen && elapsedRenderFrames > FRAMES_FOR_CHAT_TO_SHOW) {
-        const framesOverThreshold =
-          elapsedRenderFrames - FRAMES_FOR_CHAT_TO_SHOW;
-        modifiedAlpha -= framesOverThreshold / (FRAMES_FOR_CHAT_TO_SHOW * 2);
+      if (
+        !consoleOpen &&
+        elapsedRenderFrames > RENDER_FRAMES_FOR_CHAT_TO_SHOW
+      ) {
+        const renderFramesOverThreshold =
+          elapsedRenderFrames - RENDER_FRAMES_FOR_CHAT_TO_SHOW;
+        modifiedAlpha -=
+          renderFramesOverThreshold / (RENDER_FRAMES_FOR_CHAT_TO_SHOW * 2);
       }
       if (modifiedAlpha <= 0) {
         return;

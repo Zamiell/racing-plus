@@ -30,15 +30,15 @@ import {
 
 const v = {
   persistent: {
-    startedSpeedrunFrame: null as int | null,
-    startedCharacterFrame: null as int | null,
-    characterRunFrames: [] as int[],
+    startedSpeedrunRenderFrame: null as int | null,
+    startedCharacterRenderFrame: null as int | null,
+    characterRunRenderFrames: [] as int[],
   },
 
   run: {
     finished: false,
-    finishedSpeedrunFrames: null as int | null,
-    finishedCharacterFrames: null as int | null,
+    finishedSpeedrunRenderFrames: null as int | null,
+    finishedCharacterRenderFrames: null as int | null,
   },
 
   room: {
@@ -62,14 +62,14 @@ export class SpeedrunTimer extends ChallengeModFeature {
    * historical timing of speedruns.
    */
   checkStartTimer(): void {
-    if (v.persistent.startedSpeedrunFrame !== null) {
+    if (v.persistent.startedSpeedrunRenderFrame !== null) {
       return;
     }
 
     const renderFrameCount = Isaac.GetFrameCount();
 
-    v.persistent.startedSpeedrunFrame = renderFrameCount;
-    v.persistent.startedCharacterFrame = renderFrameCount;
+    v.persistent.startedSpeedrunRenderFrame = renderFrameCount;
+    v.persistent.startedCharacterRenderFrame = renderFrameCount;
   }
 
   // 2
@@ -88,13 +88,13 @@ export class SpeedrunTimer extends ChallengeModFeature {
   drawSpeedrunTimer(): void {
     // Find out how much time has passed since the speedrun started.
     let elapsedFrames: int;
-    if (v.run.finished && v.run.finishedSpeedrunFrames !== null) {
-      elapsedFrames = v.run.finishedSpeedrunFrames;
-    } else if (v.persistent.startedSpeedrunFrame === null) {
+    if (v.run.finished && v.run.finishedSpeedrunRenderFrames !== null) {
+      elapsedFrames = v.run.finishedSpeedrunRenderFrames;
+    } else if (v.persistent.startedSpeedrunRenderFrame === null) {
       elapsedFrames = 0;
     } else {
       elapsedFrames = getElapsedRenderFramesSince(
-        v.persistent.startedSpeedrunFrame,
+        v.persistent.startedSpeedrunRenderFrame,
       );
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
@@ -121,13 +121,13 @@ export class SpeedrunTimer extends ChallengeModFeature {
     // Find out how much time has passed since the last "split" (e.g. when the last checkpoint was
     // touched).
     let elapsedFrames: int;
-    if (v.run.finished && v.run.finishedCharacterFrames !== null) {
-      elapsedFrames = v.run.finishedCharacterFrames;
-    } else if (v.persistent.startedCharacterFrame === null) {
+    if (v.run.finished && v.run.finishedCharacterRenderFrames !== null) {
+      elapsedFrames = v.run.finishedCharacterRenderFrames;
+    } else if (v.persistent.startedCharacterRenderFrame === null) {
       elapsedFrames = 0;
     } else {
       elapsedFrames = getElapsedRenderFramesSince(
-        v.persistent.startedCharacterFrame,
+        v.persistent.startedCharacterRenderFrame,
       );
     }
     const seconds = elapsedFrames / RENDER_FRAMES_PER_SECOND;
@@ -142,8 +142,9 @@ export class SpeedrunTimer extends ChallengeModFeature {
 }
 
 export function speedrunGetAverageTimePerCharacter(): string {
-  const totalFrames = sumArray(v.persistent.characterRunFrames);
-  const averageFrames = totalFrames / v.persistent.characterRunFrames.length;
+  const totalFrames = sumArray(v.persistent.characterRunRenderFrames);
+  const averageFrames =
+    totalFrames / v.persistent.characterRunRenderFrames.length;
   const averageSeconds = averageFrames / RENDER_FRAMES_PER_SECOND;
 
   const timerValues = convertSecondsToTimerValues(averageSeconds);
@@ -160,7 +161,7 @@ export function speedrunGetAverageTimePerCharacter(): string {
 }
 
 export function speedrunGetFinishedFrames(): number {
-  return v.run.finishedSpeedrunFrames ?? 0;
+  return v.run.finishedSpeedrunRenderFrames ?? 0;
 }
 
 export function speedrunIsFinished(): boolean {
@@ -170,9 +171,9 @@ export function speedrunIsFinished(): boolean {
 export function speedrunResetFirstCharacterVars(): void {
   const characterNum = speedrunGetCharacterNum();
   if (characterNum === 1) {
-    v.persistent.startedSpeedrunFrame = null;
-    v.persistent.startedCharacterFrame = null;
-    emptyArray(v.persistent.characterRunFrames);
+    v.persistent.startedSpeedrunRenderFrame = null;
+    v.persistent.startedCharacterRenderFrame = null;
+    emptyArray(v.persistent.characterRunRenderFrames);
   }
 }
 
@@ -188,15 +189,15 @@ export function speedrunTimerCheckpointTouched(): void {
   const renderFrameCount = Isaac.GetFrameCount();
 
   // Record how long this run took.
-  if (v.persistent.startedCharacterFrame !== null) {
+  if (v.persistent.startedCharacterRenderFrame !== null) {
     const elapsedRenderFrames = getElapsedRenderFramesSince(
-      v.persistent.startedCharacterFrame,
+      v.persistent.startedCharacterRenderFrame,
     );
-    v.persistent.characterRunFrames.push(elapsedRenderFrames);
+    v.persistent.characterRunRenderFrames.push(elapsedRenderFrames);
   }
 
   // Mark our current frame as the starting time for the next character.
-  v.persistent.startedCharacterFrame = renderFrameCount;
+  v.persistent.startedCharacterRenderFrame = renderFrameCount;
 
   // Show the run summary (including the average time per character for the run so far).
   v.room.showEndOfRunText = true;
@@ -212,11 +213,11 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
   rebirthItemTrackerRemoveCollectible(CollectibleTypeCustom.CHECKPOINT);
 
   // Record how long this run took.
-  if (v.persistent.startedCharacterFrame !== null) {
+  if (v.persistent.startedCharacterRenderFrame !== null) {
     const elapsedRenderFrames = getElapsedRenderFramesSince(
-      v.persistent.startedCharacterFrame,
+      v.persistent.startedCharacterRenderFrame,
     );
-    v.persistent.characterRunFrames.push(elapsedRenderFrames);
+    v.persistent.characterRunRenderFrames.push(elapsedRenderFrames);
   }
 
   // Show the run summary (including the average time per character).
@@ -225,15 +226,15 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
   // Finish the speedrun.
   v.run.finished = true;
 
-  if (v.persistent.startedSpeedrunFrame !== null) {
-    v.run.finishedSpeedrunFrames = getElapsedRenderFramesSince(
-      v.persistent.startedSpeedrunFrame,
+  if (v.persistent.startedSpeedrunRenderFrame !== null) {
+    v.run.finishedSpeedrunRenderFrames = getElapsedRenderFramesSince(
+      v.persistent.startedSpeedrunRenderFrame,
     );
   }
 
-  if (v.persistent.startedCharacterFrame !== null) {
-    v.run.finishedCharacterFrames = getElapsedRenderFramesSince(
-      v.persistent.startedCharacterFrame,
+  if (v.persistent.startedCharacterRenderFrame !== null) {
+    v.run.finishedCharacterRenderFrames = getElapsedRenderFramesSince(
+      v.persistent.startedCharacterRenderFrame,
     );
   }
 
@@ -243,7 +244,7 @@ export function speedrunTimerFinish(player: EntityPlayer): void {
 }
 
 export function speedrunTimerResetPersistentVars(): void {
-  v.persistent.startedSpeedrunFrame = null;
-  v.persistent.startedCharacterFrame = null;
-  emptyArray(v.persistent.characterRunFrames);
+  v.persistent.startedSpeedrunRenderFrame = null;
+  v.persistent.startedCharacterRenderFrame = null;
+  emptyArray(v.persistent.characterRunRenderFrames);
 }

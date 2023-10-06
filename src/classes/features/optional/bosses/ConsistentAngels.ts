@@ -22,7 +22,7 @@ const v = {
   },
 
   room: {
-    usedMeatCleaverFrame: null as int | null,
+    usedMeatCleaverGameFrame: null as int | null,
   },
 };
 
@@ -39,7 +39,7 @@ export class ConsistentAngels extends ConfigurableModFeature {
   // 3, 631
   @Callback(ModCallback.POST_USE_ITEM, CollectibleType.MEAT_CLEAVER)
   postUseItemMeatCleaver(): boolean | undefined {
-    v.room.usedMeatCleaverFrame = game.GetFrameCount();
+    v.room.usedMeatCleaverGameFrame = game.GetFrameCount();
     return undefined;
   }
 
@@ -82,13 +82,13 @@ export class ConsistentAngels extends ConfigurableModFeature {
     | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
     | undefined {
     // This feature should not apply to angels that were duplicated with a Meat Cleaver.
-    if (
-      v.room.usedMeatCleaverFrame !== null &&
-      onGameFrame(
-        v.room.usedMeatCleaverFrame + FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER,
-      )
-    ) {
-      return undefined;
+    if (v.room.usedMeatCleaverGameFrame !== null) {
+      const meatCleaverSpawnGameFrame =
+        v.room.usedMeatCleaverGameFrame +
+        FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER;
+      if (onGameFrame(meatCleaverSpawnGameFrame)) {
+        return undefined;
+      }
     }
 
     // This feature does not apply to Fallen Angels.
