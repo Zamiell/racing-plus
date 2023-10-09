@@ -10,7 +10,7 @@ import {
   RENDER_FRAMES_PER_SECOND,
   SECOND_IN_MILLISECONDS,
 } from "isaacscript-common";
-import { VERSION } from "../../../../constants";
+import { version } from "../../../../../package.json";
 import { shouldShowRaceID } from "../../../../features/race/raceStart";
 import {
   inSeededRace,
@@ -86,7 +86,7 @@ export class TopLeftText extends MandatoryModFeature {
       raceShouldShowEndOfRunText()
     ) {
       // Show some run summary information. (It will be removed if they exit the room.)
-      lines.push(`R+ ${VERSION} - ${seedString}`);
+      lines.push(`R+ ${version} - ${seedString}`);
 
       if (speedrunShouldShowEndOfRunText()) {
         lines.push(

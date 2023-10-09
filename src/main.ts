@@ -4,6 +4,7 @@ import {
   setLogFunctionsGlobal,
   setTracebackFunctionsGlobal,
 } from "isaacscript-common";
+import { version } from "../package.json";
 import { postNPCUpdateInit } from "./callbacks/postNPCUpdate";
 import { postNPCRenderInit } from "./callbacks/postRender";
 import { postUpdateInit } from "./callbacks/postUpdate";
@@ -15,7 +16,7 @@ import { postItemPickupInit } from "./callbacksCustom/postItemPickup";
 import { postNewLevelReorderedInit } from "./callbacksCustom/postNewLevelReordered";
 import { postNewRoomReorderedInit } from "./callbacksCustom/postNewRoomReordered";
 import { postPEffectUpdateReorderedInit } from "./callbacksCustom/postPEffectUpdateReordered";
-import { MOD_NAME, VERSION } from "./constants";
+import { MOD_NAME } from "./constants";
 import { hotkey1Function, hotkey2Function } from "./debugCode";
 import { enableExtraConsoleCommandsRacingPlus } from "./extraConsoleCommands";
 import { g } from "./globals";
@@ -48,7 +49,7 @@ export function main(): void {
 }
 
 function welcomeBanner() {
-  const welcomeText = `${MOD_NAME} ${VERSION} initialized.`;
+  const welcomeText = `${MOD_NAME} ${version} initialized.`;
   const hyphens = "-".repeat(welcomeText.length);
   const welcomeTextBorder = `+-${hyphens}-+`;
   log(welcomeTextBorder);

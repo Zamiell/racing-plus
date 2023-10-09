@@ -7,7 +7,8 @@ import {
   isKeyboardPressed,
   onOrAfterRenderFrame,
 } from "isaacscript-common";
-import { MOD_NAME, VERSION } from "../../../../constants";
+import { version } from "../../../../../package.json";
+import { MOD_NAME } from "../../../../constants";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const SHOW_VERSION_HOTKEY = Keyboard.F1;
@@ -69,7 +70,7 @@ export class DrawVersion extends MandatoryModFeature {
     y = centerPos.Y + 40;
     Isaac.RenderText(text, x, y, 2, 2, 2, 2);
 
-    text = `v${VERSION}`;
+    text = `v${version}`;
     x = centerPos.X - 3 * text.length;
     y += 15;
     Isaac.RenderText(text, x, y, 2, 2, 2, 2);

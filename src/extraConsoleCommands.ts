@@ -20,11 +20,11 @@ import {
   restart,
   setChallenge,
 } from "isaacscript-common";
+import { version } from "../package.json";
 import { RaceData, logRaceData } from "./classes/RaceData";
 import { setUnseededWithRacingPlusLogic } from "./classes/features/mandatory/misc/RacingPlusIcon";
 import { setDevilAngelDebugRoom } from "./classes/features/optional/major/BetterDevilAngelRooms";
 import { speedrunSetCharacterNum } from "./classes/features/speedrun/characterProgress/v";
-import { VERSION } from "./constants";
 import { debugFunction } from "./debugCode";
 import { ChallengeCustom } from "./enums/ChallengeCustom";
 import { RaceFormat } from "./enums/RaceFormat";
@@ -83,7 +83,7 @@ export function enableExtraConsoleCommandsRacingPlus(): void {
   mod.addConsoleCommand("speedrunChar", speedrunChar);
   mod.removeConsoleCommand("unseed");
   mod.addConsoleCommand("unseed", unseedCommand);
-  mod.addConsoleCommand("version", version);
+  mod.addConsoleCommand("version", versionCommand);
 }
 
 function angelSet(params: string) {
@@ -375,8 +375,8 @@ function unseedCommand() {
   restart();
 }
 
-function version() {
-  const msg = `Racing+ version: ${VERSION}`;
+function versionCommand() {
+  const msg = `Racing+ version: ${version}`;
   logAndPrint(msg);
 }
 
