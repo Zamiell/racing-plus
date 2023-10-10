@@ -13,8 +13,8 @@ export class UniqueCardBacks extends ConfigurableModFeature {
   configKey: keyof Config = "UniqueCardBacks";
 
   // 34, 300
-  @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.TAROT_CARD)
-  postPickupInitTarotCard(pickup: EntityPickup): void {
+  @Callback(ModCallback.POST_PICKUP_INIT, PickupVariant.CARD)
+  postPickupInitCard(pickup: EntityPickup): void {
     const card = pickup as EntityPickupCard;
 
     if (

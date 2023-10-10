@@ -189,7 +189,7 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
 
     if (
       lookingForPickupVariant === PICKUP_VARIANT_CARD_OR_PILL &&
-      (pickup.Variant === PickupVariant.TAROT_CARD ||
+      (pickup.Variant === PickupVariant.CARD ||
         pickup.Variant === PickupVariant.PILL)
     ) {
       // Handle the case where we need to automatically insert either a card or a pill.
@@ -203,7 +203,7 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
 
     if (hasStarterDeck && lookingForPickupVariant === PickupVariant.PILL) {
       // Starter Deck will convert all pills to cards.
-      return PickupVariant.TAROT_CARD;
+      return PickupVariant.CARD;
     }
 
     if (hasLittleBaggy && lookingForPickupVariant === PickupVariant.PILL) {
@@ -329,7 +329,7 @@ function updateDelta(
       return;
     }
 
-    case PickupVariant.TAROT_CARD:
+    case PickupVariant.CARD:
     case PickupVariant.PILL: {
       if (v.run.delta.pocketItem === null) {
         v.run.delta.pocketItem = 0;

@@ -36,7 +36,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
   ],
 
   // 194
-  [CollectibleType.MAGIC_8_BALL, [PickupVariant.TAROT_CARD]],
+  [CollectibleType.MAGIC_8_BALL, [PickupVariant.CARD]],
 
   // 195
   [CollectibleType.MOMS_COIN_PURSE, [PickupVariant.PILL, PickupVariant.PILL]],
@@ -48,7 +48,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
       PickupVariant.COIN,
       PickupVariant.KEY,
       PickupVariant.BOMB,
-      PickupVariant.TAROT_CARD,
+      PickupVariant.CARD,
       // The Box also drops a pill, but since the pill spawns before the card does, the pill will
       // always be inserted into the players inventory over the card. To work around this and
       // prioritize the card, we deliberately skip specifying the pill here.
@@ -57,13 +57,13 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
   ],
 
   // 251
-  [CollectibleType.STARTER_DECK, [PickupVariant.TAROT_CARD]],
+  [CollectibleType.STARTER_DECK, [PickupVariant.CARD]],
 
   // 252
   [CollectibleType.LITTLE_BAGGY, [PickupVariant.PILL]],
 
   // 263
-  [CollectibleType.CLEAR_RUNE, [PickupVariant.TAROT_CARD]],
+  [CollectibleType.CLEAR_RUNE, [PickupVariant.CARD]],
 
   // 340
   [CollectibleType.CAFFEINE_PILL, [PickupVariant.PILL]],
@@ -86,7 +86,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
   // randomly chosen pickups were. (It spawns between 1-6 random pickups.)
 
   // 451
-  [CollectibleType.TAROT_CLOTH, [PickupVariant.TAROT_CARD]],
+  [CollectibleType.TAROT_CLOTH, [PickupVariant.CARD]],
 
   // 454
   [CollectibleType.POLYDACTYLY, [PICKUP_VARIANT_CARD_OR_PILL]],
@@ -110,10 +110,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
 
   // 624
   // Booster pack drops 5 cards; we can insert 1 or 2.
-  [
-    CollectibleType.BOOSTER_PACK,
-    [PickupVariant.TAROT_CARD, PickupVariant.TAROT_CARD],
-  ],
+  [CollectibleType.BOOSTER_PACK, [PickupVariant.CARD, PickupVariant.CARD]],
 
   // 644
   // Consolation Prize drops either 3 coins, 1 key, or 1 bomb, depending on what the player has the
@@ -145,7 +142,7 @@ export const COLLECTIBLE_TO_PICKUP_DROPS_MAP = new ReadonlyMap<
   ],
 
   // 732
-  [CollectibleType.MOMS_RING, [PickupVariant.TAROT_CARD]],
+  [CollectibleType.MOMS_RING, [PickupVariant.CARD]],
 ]);
 
 export const DETRIMENTAL_TRINKETS = new ReadonlySet<TrinketType>([

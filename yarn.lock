@@ -3366,21 +3366,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.3.10":
-  version: 10.3.10
-  resolution: "glob@npm:10.3.10"
-  dependencies:
-    foreground-child: ^3.1.0
-    jackspeak: ^2.3.5
-    minimatch: ^9.0.1
-    minipass: ^5.0.0 || ^6.0.2 || ^7.0.0
-    path-scurry: ^1.10.1
-  bin:
-    glob: dist/esm/bin.mjs
-  checksum: 4f2fe2511e157b5a3f525a54092169a5f92405f24d2aed3142f4411df328baca13059f4182f1db1bf933e2c69c0bd89e57ae87edd8950cba8c7ccbe84f721cf3
-  languageName: node
-  linkType: hard
-
 "glob@npm:^7.1.3, glob@npm:^7.1.4":
   version: 7.2.3
   resolution: "glob@npm:7.2.3"
@@ -3967,12 +3952,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^30.0.0":
-  version: 30.0.0
-  resolution: "isaac-typescript-definitions@npm:30.0.0"
+"isaac-typescript-definitions@npm:^33.0.0":
+  version: 33.0.0
+  resolution: "isaac-typescript-definitions@npm:33.0.0"
   dependencies:
     lua-types: ^2.13.1
-  checksum: 1d94bfca7a1458ebc9f8159b48191489816f5f0312644f359e5f69ecb919094bcf685115ea95834f40c6e51e2a4337634cf86a65484f0971c783591f5c6d9932
+  checksum: 6d0946c14bfa5a8ebb54046ae844331526f9ca607b98feaf0105aefcf958f88ff0957f5aaa6250d0af5b17a92beacc3823358fb65ab65b0c730e4aec0e482c03
   languageName: node
   linkType: hard
 
@@ -3983,12 +3968,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^64.0.0":
-  version: 64.0.0
-  resolution: "isaacscript-common@npm:64.0.0"
+"isaacscript-common@npm:^67.0.0":
+  version: 67.0.0
+  resolution: "isaacscript-common@npm:67.0.0"
   dependencies:
-    isaac-typescript-definitions: ^30.0.0
-  checksum: dfc9dce7172d29165e2d0c5c081f6cc976b8695371258ee913c86cd1aa88a14f3a85ec1ac4cf92de51bf2ca57fa175a59f06954d7d878db5be91a83076725adb
+    isaac-typescript-definitions: ^33.0.0
+  checksum: c8bab3566915d17346df295e87e2480d39153de4335ff34e3a9c1df95d7d85359a067a3dde24934b8d7d9c7756c3f69b95687717e5914f9b0be8a07ebb5e2467
   languageName: node
   linkType: hard
 
@@ -4040,15 +4025,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.14.1":
-  version: 3.14.1
-  resolution: "isaacscript@npm:3.14.1"
+"isaacscript@npm:^3.14.2":
+  version: 3.14.2
+  resolution: "isaacscript@npm:3.14.2"
   dependencies:
     ajv: ^8.12.0
     chalk: 4.1.2
     command-exists: ^1.2.9
     figlet: ^1.6.0
-    glob: ^10.3.10
     jsonc-parser: ^3.2.0
     klaw-sync: ^6.0.0
     moment: ^2.29.4
@@ -4065,7 +4049,7 @@ __metadata:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: src/main.js
-  checksum: 49146791080d7cce078db86d1aa1c80e758f946f798f7e9e65b9efe1c970695e842f14ec323b109375e14f7b46d1fcdd5f69e33ead8da95b3cf52c47b4e9fec7
+  checksum: c8da7898fc0f0d6b88e26bf097c48a1bd65ad9f036a5a628d951305a7f782a45a8f1ceb22d92970e87084578f8901e6fc1134d7338a897f578de8c287d5d1c73
   languageName: node
   linkType: hard
 
@@ -4100,19 +4084,6 @@ __metadata:
     "@pkgjs/parseargs":
       optional: true
   checksum: 71bf716f4b5793226d4aeb9761ebf2605ee093b59f91a61451d57d998dd64bbf2b54323fb749b8b2ae8b6d8a463de4f6e3fedab50108671f247bbc80195a6306
-  languageName: node
-  linkType: hard
-
-"jackspeak@npm:^2.3.5":
-  version: 2.3.6
-  resolution: "jackspeak@npm:2.3.6"
-  dependencies:
-    "@isaacs/cliui": ^8.0.2
-    "@pkgjs/parseargs": ^0.11.0
-  dependenciesMeta:
-    "@pkgjs/parseargs":
-      optional: true
-  checksum: 57d43ad11eadc98cdfe7496612f6bbb5255ea69fe51ea431162db302c2a11011642f50cfad57288bd0aea78384a0612b16e131944ad8ecd09d619041c8531b54
   languageName: node
   linkType: hard
 
@@ -5408,9 +5379,9 @@ __metadata:
   resolution: "racing-plus@workspace:."
   dependencies:
     convert-xml-to-json: ^1.0.3
-    isaac-typescript-definitions: ^30.0.0
-    isaacscript: ^3.14.1
-    isaacscript-common: ^64.0.0
+    isaac-typescript-definitions: ^33.0.0
+    isaacscript: ^3.14.2
+    isaacscript-common: ^67.0.0
     isaacscript-lint: ^6.0.0
     isaacscript-spell: ^1.6.0
     isaacscript-tsconfig: ^4.0.0

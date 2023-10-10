@@ -58,7 +58,7 @@ export function insertPickup(
     }
 
     // 300
-    case PickupVariant.TAROT_CARD: {
+    case PickupVariant.CARD: {
       const card = pickup as EntityPickupCard;
       return insertCard(card, player);
     }
@@ -370,7 +370,7 @@ function insertPill(
   return [PickupVariant.PILL, 1];
 }
 
-// PickupVariant.TAROT_CARD (300)
+// PickupVariant.CARD (300)
 function insertCard(
   card: EntityPickupCard,
   player: EntityPlayer,
@@ -380,7 +380,7 @@ function insertCard(
   }
 
   player.AddCard(card.SubType);
-  return [PickupVariant.TAROT_CARD, 1];
+  return [PickupVariant.CARD, 1];
 }
 
 // PickupVariant.TRINKET (350)

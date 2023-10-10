@@ -213,7 +213,7 @@ export class SeededDrops extends MandatoryModFeature {
         // 7% chance for a card / trinket / pill.
         if (rng.RandomInt(3) === 0) {
           // 7% * 33% = 2.3% chance.
-          pickupVariant = PickupVariant.TAROT_CARD; // 300
+          pickupVariant = PickupVariant.CARD; // 300
         } else if (rng.RandomInt(2) === 0) {
           // 7% * 66% * 50% = 2.3% chance.
           pickupVariant = PickupVariant.TRINKET; // 350
