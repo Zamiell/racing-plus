@@ -25,19 +25,19 @@ import {
 import { socketClientIsActive } from "../../../../features/race/socketClient";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
-enum RacingPlusSpriteLayer {
-  BLUE,
-  GREEN,
+enum IconSpriteLayer {
+  BLUE = 0,
+  GREEN = 1,
 }
 
 /** This is on top of where the "No Achievements" icon would be. */
 const SPRITE_POSITION = Vector(4, 72);
 
-const racingPlusSprite = newSprite("gfx/ui/racing_plus/racing_plus.anm2");
+const ICON_SPRITE = newSprite("gfx/ui/racing_plus/racing_plus.anm2");
 
 /**
- * In the "hudpickups.png" file, we blank out the "No Achievements" icon. For every run, we draw a
- * "R+" icon on top of where the "No Achievements" icon would normally be.
+ * In the "gfx/ui/hudpickups.png" file, we blank out the "No Achievements" icon. For every run, we
+ * draw a "R+" icon on top of where the "No Achievements" icon would normally be.
  */
 export class RacingPlusIcon extends MandatoryModFeature {
   /**
@@ -59,10 +59,10 @@ export class RacingPlusIcon extends MandatoryModFeature {
     }
 
     const spriteLayer = socketClientIsActive()
-      ? RacingPlusSpriteLayer.GREEN
-      : RacingPlusSpriteLayer.BLUE;
+      ? IconSpriteLayer.GREEN
+      : IconSpriteLayer.BLUE;
     const position = getRacingPlusIconPosition();
-    racingPlusSprite.RenderLayer(spriteLayer, position);
+    ICON_SPRITE.RenderLayer(spriteLayer, position);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)

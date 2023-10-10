@@ -3967,12 +3967,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^27.0.0":
-  version: 27.0.0
-  resolution: "isaac-typescript-definitions@npm:27.0.0"
+"isaac-typescript-definitions@npm:^30.0.0":
+  version: 30.0.0
+  resolution: "isaac-typescript-definitions@npm:30.0.0"
   dependencies:
     lua-types: ^2.13.1
-  checksum: 2e61c3c6b562bf84dec2c951ebeb1212c6a3a87c7fb9d5112af822f351bbad02475880087e78febc58673d23275e7e68d15dae562ec3b68f6a146b16f6967bb5
+  checksum: 1d94bfca7a1458ebc9f8159b48191489816f5f0312644f359e5f69ecb919094bcf685115ea95834f40c6e51e2a4337634cf86a65484f0971c783591f5c6d9932
   languageName: node
   linkType: hard
 
@@ -3983,12 +3983,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^61.0.1":
-  version: 61.0.1
-  resolution: "isaacscript-common@npm:61.0.1"
+"isaacscript-common@npm:^64.0.0":
+  version: 64.0.0
+  resolution: "isaacscript-common@npm:64.0.0"
   dependencies:
-    isaac-typescript-definitions: ^27.0.0
-  checksum: 0dfe4d06f557930ca3b25d790d5ebad492ca1c672638ed64e26df4071ae57723ef5b0c0b90747323d501ba79665997baea46cc84221268367d3ad0137fd44a81
+    isaac-typescript-definitions: ^30.0.0
+  checksum: dfc9dce7172d29165e2d0c5c081f6cc976b8695371258ee913c86cd1aa88a14f3a85ec1ac4cf92de51bf2ca57fa175a59f06954d7d878db5be91a83076725adb
   languageName: node
   linkType: hard
 
@@ -5408,9 +5408,9 @@ __metadata:
   resolution: "racing-plus@workspace:."
   dependencies:
     convert-xml-to-json: ^1.0.3
-    isaac-typescript-definitions: ^27.0.0
+    isaac-typescript-definitions: ^30.0.0
     isaacscript: ^3.14.1
-    isaacscript-common: ^61.0.1
+    isaacscript-common: ^64.0.0
     isaacscript-lint: ^6.0.0
     isaacscript-spell: ^1.6.0
     isaacscript-tsconfig: ^4.0.0
