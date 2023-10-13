@@ -27,7 +27,9 @@ You may also be interested in [the client repository](https://github.com/Zamiell
 
 <br>
 
-## Installation for Development (Windows)
+## Installation for Development
+
+Racing+ is open source and anyone can help contribute to make the mod better. If you are interested in helping, this section will help you get started. If you get stuck, post a message in the `#development` channel on the [Isaac Racing Discord server](https://discord.gg/JzbhWQb).
 
 - Before working with this repository, you should first become a familiar with IsaacScript. Follow the steps on [the IsaacScript getting started documentation](https://isaacscript.github.io/docs/getting-started). Once you have created a test mod and verified in-game that everything works the way it should, read on.
 - Download and install [Git](https://git-scm.com/), if you do not have it already.
