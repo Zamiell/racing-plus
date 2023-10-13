@@ -37,8 +37,8 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 
 <br>
 
-## Bugs with Babies Mod
+## Bugs with The Babies Mod
 
-- Touching an enemy with -0- baby makes you lose the free devil deal. (Reported by TNTerminator)
+- Touching an enemy with -0- Baby (invulnerability) makes you lose the free devil deal. (Reported by TNTerminator)
 
 <br>
