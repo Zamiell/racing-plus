@@ -78,7 +78,7 @@ export class CharacterProgress extends ChallengeModFeature {
   }
 
   checkManualResetAtEndOfFadeout(): void {
-    if (onOrAfterRenderFrame(v.run.resetFrame)) {
+    if (v.run.resetFrame !== null && onOrAfterRenderFrame(v.run.resetFrame)) {
       v.run.resetFrame = null;
 
       // The screen is now black, so move us to the next character for the speedrun.

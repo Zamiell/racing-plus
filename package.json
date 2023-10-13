@@ -22,7 +22,7 @@
   "type": "module",
   "dependencies": {
     "isaac-typescript-definitions": "^33.0.1",
-    "isaacscript-common": "^67.3.0"
+    "isaacscript-common": "^68.0.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",

@@ -80,7 +80,10 @@ function checkEarlyClearRoom() {
   }
 
   // If a frame has passed since an enemy died, reset the delay counter.
-  if (onOrAfterGameFrame(v.room.delayClearUntilGameFrame)) {
+  if (
+    v.room.delayClearUntilGameFrame !== null &&
+    onOrAfterGameFrame(v.room.delayClearUntilGameFrame)
+  ) {
     v.room.delayClearUntilGameFrame = null;
   }
 
