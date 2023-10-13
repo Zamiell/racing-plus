@@ -49,7 +49,7 @@ Racing+ is open source and anyone can help contribute to make the mod better. If
 - Enter the cloned repository:
   - `cd racing-plus`
 - Install Yarn, if you have not done so already:
-  - `npm install --global yarn`
+  - `corepack enable`
 - Install dependencies:
   - `yarn install`
 - Run IsaacScript, which will compile the mod and copy it to your "mods" folder:
