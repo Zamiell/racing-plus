@@ -21,13 +21,13 @@
   "author": "Zamiell",
   "type": "module",
   "dependencies": {
-    "isaac-typescript-definitions": "^33.0.0",
-    "isaacscript-common": "^67.0.0"
+    "isaac-typescript-definitions": "^33.0.1",
+    "isaacscript-common": "^67.3.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
     "isaacscript": "^3.15.0",
-    "isaacscript-lint": "^6.0.0",
+    "isaacscript-lint": "^6.1.0",
     "isaacscript-spell": "^1.6.0",
     "isaacscript-tsconfig": "^4.0.0",
     "typescript": "^5.2.2",
