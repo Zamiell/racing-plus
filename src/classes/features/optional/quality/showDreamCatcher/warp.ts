@@ -4,12 +4,14 @@ import {
   GameStateFlag,
   RoomType,
   TallLadderSubType,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import {
   anyPlayerHasCollectible,
   changeRoom,
   copyArray,
   game,
+  getAllPlayers,
   getEffects,
   getFloorDisplayFlags,
   getPlayers,
@@ -18,7 +20,6 @@ import {
   inStartingRoom,
   log,
   onFirstFloor,
-  onSetSeed,
   spawnEffect,
 } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
@@ -71,6 +72,13 @@ function startWarp() {
 
   if (v.level.warpRoomGridIndexes.length === 0) {
     return;
+  }
+
+  // After using Glowing Hourglass, eternal hearts from Maggy's Faith will result in full heart
+  // containers, so we take them away.
+  const players = getAllPlayers();
+  for (const player of players) {
+    player.AddEternalHearts(-1);
   }
 
   // After using Glowing Hourglass, the minimap will be bugged. We can work around this by manually
@@ -154,34 +162,16 @@ export function showDreamCatcherWarpToNextRoom(): void {
   // the seeded floors feature. To work around this, re-run the "after" function.
   seededFloorsAfter();
 
-  // Using the Glowing Hourglass will revert any heart containers that were granted by an eternal
-  // heart upon reaching this floor. Manually apply any eternal hearts.
   for (const player of players) {
-    const eternalHearts = player.GetEternalHearts();
-    if (eternalHearts > 0) {
-      player.AddEternalHearts(eternalHearts * -1);
-      player.AddMaxHearts(2, true);
-      player.AddHearts(2);
-    }
-  }
-
-  // Using the Glowing Hourglass will remove the half soul heart that the Dream Catcher granted.
-  // (This is not just an artifact of the warping; it does this on vanilla too if you use Glowing
-  // Hour Glass after walking into a new room.) Thus, add it back manually. For some reason, this is
-  // not needed if the `seededFloors.after` function performed modifications.
-  if (!onSetSeed()) {
-    for (const player of players) {
-      if (player.HasCollectible(CollectibleType.DREAM_CATCHER)) {
-        player.AddSoulHearts(1);
-      }
-    }
-  }
-
-  // Using the Glowing Hourglass will grant a golden bomb/key if the player had one on the previous
-  // floor.
-  for (const player of players) {
+    // Using the Glowing Hourglass will grant a golden bomb/key if the player had one on the
+    // previous floor.
     player.RemoveGoldenBomb();
     player.RemoveGoldenKey();
+
+    // Using the Glowing Hourglass will remove the eternal heart from Maggy's Faith.
+    if (player.HasTrinket(TrinketType.MAGGYS_FAITH)) {
+      player.AddEternalHearts(1);
+    }
   }
 
   // We cannot reposition the player in the `POST_NEW_ROOM` callback for some reason, so mark to do

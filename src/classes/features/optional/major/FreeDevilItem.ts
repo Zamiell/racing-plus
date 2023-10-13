@@ -113,7 +113,6 @@ export class FreeDevilItem extends ConfigurableModFeature {
       // `AutoUpdatePrice` so that as soon as the player is no longer eligible for the free item,
       // the price will immediately change back to what it is supposed to be.
       collectible.Price = PickupPriceCustom.PRICE_FREE_DEVIL_DEAL;
-      Isaac.DebugString("GETTING HERE");
     }
   }
 
