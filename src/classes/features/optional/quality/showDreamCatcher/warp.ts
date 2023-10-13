@@ -168,7 +168,7 @@ export function showDreamCatcherWarpToNextRoom(): void {
     player.RemoveGoldenBomb();
     player.RemoveGoldenKey();
 
-    // Using the Glowing Hourglass will remove the eternal heart from Maggy's Faith.
+    // We need to restore the eternal hearts that we took away earlier.
     if (player.HasTrinket(TrinketType.MAGGYS_FAITH)) {
       player.AddEternalHearts(1);
     }
