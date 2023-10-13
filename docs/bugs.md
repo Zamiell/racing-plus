@@ -36,3 +36,9 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
   - You have one red heart container left and remove Mother's Kiss. (Reported by Gamonymous)
 
 <br>
+
+## Bugs with The Babies Mod
+
+- Touching an enemy with -0- Baby (invulnerability) makes you lose the free devil deal. (Reported by TNTerminator)
+
+<br>
