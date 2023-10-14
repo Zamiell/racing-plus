@@ -382,7 +382,7 @@ Post-flip actions:
 
 > Why? This item has several problems. First, it can completely trivialize a run by taking you to the end. Second, it can cause softlocks or crashes. Third, it greatly increases the RNG in any particular run.
 
-- <!-- RemoveGlitchedItems --> Glitched items are replaced by normal items.
+- <!-- RemoveGlitchedCollectibles --> Glitched items are replaced by normal items.
 
 > Why? The same reasoning as for removing TMTRAINER.
 

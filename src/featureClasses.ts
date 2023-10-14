@@ -38,7 +38,7 @@ export { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
 export { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";
 export { CenterStart } from "./classes/features/mandatory/quality/CenterStart";
 export { RemoveBannedPillEffects } from "./classes/features/mandatory/removals/RemoveBannedPillEffects";
-export { RemoveGlitchedItems } from "./classes/features/mandatory/removals/RemoveGlitchedItems";
+export { RemoveGlitchedCollectibles } from "./classes/features/mandatory/removals/RemoveGlitchedCollectibles";
 export { RemoveGloballyBannedItems } from "./classes/features/mandatory/removals/RemoveGloballyBannedItems";
 export { ConsistentAngels } from "./classes/features/optional/bosses/ConsistentAngels";
 export { FadeBosses } from "./classes/features/optional/bosses/FadeBosses";

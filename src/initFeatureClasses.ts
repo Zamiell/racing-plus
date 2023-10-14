@@ -188,7 +188,7 @@ const FEATURE_CLASSES = [
 
   // Removals (mandatory) (not alphabetized)
   fc.RemoveGloballyBannedItems,
-  fc.RemoveGlitchedItems,
+  fc.RemoveGlitchedCollectibles,
   fc.RemoveBannedPillEffects,
 
   // Cutscenes

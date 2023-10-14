@@ -28,7 +28,7 @@ const v = {
   },
 };
 
-export class RemoveGlitchedItems extends MandatoryModFeature {
+export class RemoveGlitchedCollectibles extends MandatoryModFeature {
   v = v;
 
   // 35, 100
