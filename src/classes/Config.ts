@@ -63,7 +63,7 @@ export class Config {
   AutomaticItemInsertion = true;
   ChangeCreepColor = true;
   ChargePocketItemFirst = true;
-  DeleteVoidPortals = true;
+  RemoveVoidPortals = true;
   EasyFirstFloorItems = true;
   FadeDevilStatue = true;
   RunTimer = true;

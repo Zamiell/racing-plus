@@ -118,7 +118,6 @@ export { BloodyLustChargeBar } from "./classes/features/optional/quality/BloodyL
 export { ChangeCreepColor } from "./classes/features/optional/quality/ChangeCreepColor";
 export { ChargePocketItemFirst } from "./classes/features/optional/quality/ChargePocketItemFirst";
 export { CombinedDualityDoors } from "./classes/features/optional/quality/CombinedDualityDoors";
-export { DeleteVoidPortals } from "./classes/features/optional/quality/DeleteVoidPortals";
 export { DisplayExpansionPack } from "./classes/features/optional/quality/DisplayExpansionPack";
 export { EasyFirstFloorItems } from "./classes/features/optional/quality/EasyFirstFloorItems";
 export { FadeDevilStatue } from "./classes/features/optional/quality/FadeDevilStatue";
@@ -132,6 +131,7 @@ export { LeadPencilChargeBar } from "./classes/features/optional/quality/LeadPen
 export { RemoveFortuneCookieBanners } from "./classes/features/optional/quality/RemoveFortuneCookieBanners";
 export { RemovePerfectionOnEndFloors } from "./classes/features/optional/quality/RemovePerfectionOnEndFloors";
 export { RemovePerfectionVelocity } from "./classes/features/optional/quality/RemovePerfectionVelocity";
+export { RemoveVoidPortals } from "./classes/features/optional/quality/RemoveVoidPortals";
 export { RunTimer } from "./classes/features/optional/quality/RunTimer";
 export { ShowDreamCatcher } from "./classes/features/optional/quality/ShowDreamCatcher";
 export { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";

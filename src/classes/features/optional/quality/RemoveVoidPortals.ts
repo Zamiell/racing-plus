@@ -8,8 +8,8 @@ import {
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
-export class DeleteVoidPortals extends ConfigurableModFeature {
-  configKey: keyof Config = "DeleteVoidPortals";
+export class RemoveVoidPortals extends ConfigurableModFeature {
+  configKey: keyof Config = "RemoveVoidPortals";
 
   @CallbackCustom(
     ModCallbackCustom.POST_GRID_ENTITY_UPDATE,

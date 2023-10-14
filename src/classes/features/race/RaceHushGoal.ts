@@ -50,12 +50,12 @@ export class RaceHushGoal extends ConfigurableModFeature {
 }
 
 function checkDeleteDoor() {
-  if (shouldDeleteVoidDoor()) {
-    deleteVoidDoor();
+  if (shouldRemoveVoidDoor()) {
+    removeVoidDoor();
   }
 }
 
-function shouldDeleteVoidDoor() {
+function shouldRemoveVoidDoor() {
   return (
     inRaceToHush() &&
     onStage(LevelStage.BLUE_WOMB) &&
@@ -64,7 +64,7 @@ function shouldDeleteVoidDoor() {
   );
 }
 
-function deleteVoidDoor() {
+function removeVoidDoor() {
   const room = game.GetRoom();
 
   const voidDoor = room.GetDoor(DoorSlot.UP_1);

@@ -630,7 +630,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "DeleteVoidPortals",
+    "RemoveVoidPortals",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0504",

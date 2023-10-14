@@ -284,7 +284,7 @@ Post-flip actions:
 
 > Why? Since players will have the D6 in their pocket item slot, it makes more sense for the default behavior to be to charge the D6.
 
-- `0504` <!-- DeleteVoidPortals --> Void portals that spawn after bosses are automatically deleted.
+- `0504` <!-- RemoveVoidPortals --> Void portals that spawn after bosses are automatically deleted.
 
 > Why? With very few exceptions, racers and speedrunners will never go to The Void. The random Void portals that spawn can be accidentally jumped into, ruining the current run.
 

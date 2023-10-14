@@ -149,7 +149,7 @@ const FEATURE_CLASSES = [
   fc.AutomaticItemInsertion,
   fc.ChangeCreepColor,
   fc.ChargePocketItemFirst,
-  fc.DeleteVoidPortals,
+  fc.RemoveVoidPortals,
   fc.EasyFirstFloorItems,
   fc.FadeDevilStatue,
   fc.RunTimer,
