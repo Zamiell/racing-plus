@@ -1,4 +1,5 @@
 import {
+  Challenge,
   CollectibleType,
   ModCallback,
   PickupVariant,
@@ -9,13 +10,14 @@ import {
   ReadonlySet,
   game,
   isGlitchedCollectible,
+  onChallenge,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
 
-const ROOM_TYPES_TO_CHECK = new ReadonlySet<RoomType>([
+const ROOM_TYPES_WITH_GLITCH_REPLACEMENT = new ReadonlySet<RoomType>([
   RoomType.SECRET,
   RoomType.ERROR,
 ]);
@@ -29,6 +31,9 @@ const v = {
 
 export class RemoveGlitchedItems extends MandatoryModFeature {
   v = v;
+
+  protected override shouldCallbackMethodsFire = (): boolean =>
+    !onChallenge(Challenge.DELETE_THIS);
 
   // 35, 100
   @Callback(ModCallback.POST_PICKUP_UPDATE, PickupVariant.COLLECTIBLE)
@@ -46,7 +51,7 @@ export class RemoveGlitchedItems extends MandatoryModFeature {
     const room = game.GetRoom();
 
     const roomType = room.GetType();
-    if (!ROOM_TYPES_TO_CHECK.has(roomType)) {
+    if (!ROOM_TYPES_WITH_GLITCH_REPLACEMENT.has(roomType)) {
       return;
     }
 
