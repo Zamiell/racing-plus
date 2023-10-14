@@ -7,8 +7,7 @@ import {
 } from "isaac-typescript-definitions";
 import {
   Callback,
-  ReadonlySet,
-  game,
+  inRoomType,
   isGlitchedCollectible,
   onChallenge,
 } from "isaacscript-common";
@@ -17,10 +16,10 @@ import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
 
-const ROOM_TYPES_WITH_GLITCH_REPLACEMENT = new ReadonlySet<RoomType>([
+const ROOM_TYPES_WITH_GLITCH_REPLACEMENT = [
   RoomType.SECRET,
   RoomType.ERROR,
-]);
+] as const;
 
 const v = {
   room: {
@@ -31,9 +30,6 @@ const v = {
 
 export class RemoveGlitchedItems extends MandatoryModFeature {
   v = v;
-
-  protected override shouldCallbackMethodsFire = (): boolean =>
-    !onChallenge(Challenge.DELETE_THIS);
 
   // 35, 100
   @Callback(ModCallback.POST_PICKUP_UPDATE, PickupVariant.COLLECTIBLE)
@@ -48,10 +44,11 @@ export class RemoveGlitchedItems extends MandatoryModFeature {
    * initially spawn as normal items, and then swap to a glitched item after exactly 4 frames.
    */
   checkGlitchedItem(collectible: EntityPickupCollectible): void {
-    const room = game.GetRoom();
+    if (onChallenge(Challenge.DELETE_THIS)) {
+      return;
+    }
 
-    const roomType = room.GetType();
-    if (!ROOM_TYPES_WITH_GLITCH_REPLACEMENT.has(roomType)) {
+    if (!inRoomType(...ROOM_TYPES_WITH_GLITCH_REPLACEMENT)) {
       return;
     }
 
