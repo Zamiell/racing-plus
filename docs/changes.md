@@ -118,15 +118,23 @@ Furthermore, the mod attempts to remove all situations where the player is force
 
 - While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
 - Mines, Ashpit, and the Ascent are exempt from this behavior due to bugs with Bomb Grimaces.
+- Mausoleum and Gehenna are exempt from this behavior due to unavoidable damage with Ball and Chains.
 
 <!--
 
 Don't flip:
 
-- Mines (because of issues with Bomb Grimaces; they only spit bombs underneath)
-- Ashpit (because of issues with Bomb Grimaces; they only spit bombs underneath)
-- Mausoleum (because we don't flip Gehenna and we want the Mausoleum & Gehenna to be consistent)
+- Any special rooms (e.g. Challenge Rooms in Basement, etc.)
+- Downpour/Dross
+  - White Fire Room
+  - Mirror Room
+  - Knife Piece Room
+- Mines/Ashpit
+  - Button Room
+  - Secret Entrance
+  - Misc. Mineshaft Rooms
 - Gehenna (because of flipping issues with Ball and Chains leading to unavoidable damage)
+  - TODO
 
 Post-flip actions:
 
@@ -145,7 +153,24 @@ Post-flip actions:
    - The Chest - #20039, #30039, #20059, #30059
    - Dark Room - #20011, #30011
 
-6) Ensure no overlapping variants in:
+6) Bomb Grimace shift:
+    - Mines - #20007, #20066, #20068, #20078, #20391, #20438, #20548, #30007, #30066, #30068, #30078, #30391, #30438, #30548 (move up one tile)
+    - Mines - #20023, #20439, #30023, #30439 (make trapped inside middle)
+    - Mines - #20196, #30196 (move up one tile + delete rocks)
+    - Mines - #20440, #30440 (make diagonal spike walk)
+    - Mines - #20529, #30529 (move up one tile + delete pits)
+    - Mines - #20530, #30530 (move up two tiles)
+    - Ashpit - #20007, #20055, #20288, #20289, #20657, #30007, #30055, #30288, #30289, #30657 (move up one tile)
+    - Ashpit - #20023, #30023 (make trapped inside middle)
+    - Ashpit - #20057, #20542, #30057, #30542 (move up one tile + delete pits)
+    - Ashpit - #20066, #20653, #30066, #30653 (move up two tiles)
+    - Ashpit - #20098, #30098 (move up one tile + delete rocks)
+    - Ashpit - #20532, #30532 (move up one tile + enemy up one tile)
+
+7) Ball & Chain shift:
+    - Gehenna - [skipping for now]
+
+8) Ensure no overlapping variants in:
    - Fool Card Room (Depths/Necropolis/Dank) (10000 to 40000)
    - Mirror Room (Downpour/Dross) (10000 to 40000)
    - Knife Piece Room (Downpour/Dross) (10000 to 50000)

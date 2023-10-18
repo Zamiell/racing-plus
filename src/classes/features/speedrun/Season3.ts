@@ -371,7 +371,7 @@ export class Season3 extends ChallengeModFeature {
     if (topDoor !== undefined) {
       const player = Isaac.GetPlayer();
       topDoor.TryUnlock(player, true);
-      sfxManager.Stop(SoundEffect.UNLOCK);
+      sfxManager.Stop(SoundEffect.UNLOCK_DOOR);
     }
   }
 

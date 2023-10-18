@@ -28,6 +28,6 @@ export function postNewLevel(): void {
   const topDoor = room.GetDoor(DoorSlot.UP_0);
   if (topDoor !== undefined) {
     topDoor.TryUnlock(player, true);
-    sfxManager.Stop(SoundEffect.UNLOCK);
+    sfxManager.Stop(SoundEffect.UNLOCK_DOOR);
   }
 }
