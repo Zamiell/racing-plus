@@ -12,6 +12,7 @@ import {
   ReadonlyMap,
   anyPlayerHasCollectible,
   game,
+  getBossID,
   getCollectibleInitCharge,
   getCollectibleMaxCharges,
   getEntities,
@@ -118,8 +119,7 @@ export function inClearedMomBossRoom(): boolean {
 }
 
 export function inMomBossRoom(): boolean {
-  const room = game.GetRoom();
-  const bossID = room.GetBossID();
+  const bossID = getBossID();
   const roomInsideGrid = isRoomInsideGrid();
 
   return (
