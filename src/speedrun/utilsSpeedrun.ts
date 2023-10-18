@@ -1,5 +1,9 @@
-import { EntityCollisionClass } from "isaac-typescript-definitions";
 import {
+  CollectibleType,
+  EntityCollisionClass,
+} from "isaac-typescript-definitions";
+import {
+  anyPlayerHasCollectible,
   anyPlayerHoldingItem,
   getAllPlayers,
   isEven,
@@ -7,6 +11,7 @@ import {
   removeCollectiblePickupDelay,
   repeat,
 } from "isaacscript-common";
+import { forceReleaseInputsDueToHavingIBS } from "../classes/features/mandatory/misc/IBSCheckpoint";
 import { isSeededDeathActive } from "../classes/features/mandatory/misc/seededDeath/v";
 import { speedrunGetCharacterNum } from "../classes/features/speedrun/characterProgress/v";
 import { mod } from "../mod";
@@ -54,7 +59,13 @@ export function preSpawnCheckpoint(): void {
 }
 
 export function postSpawnCheckpoint(checkpoint: EntityPickup): void {
-  removeCollectiblePickupDelay(checkpoint);
+  // Having an IBS poop queued causes the collectible to get deleted, so force the shoot input to be
+  // released. (We also do not remove the collectible pickup delay in this case.)
+  if (anyPlayerHasCollectible(CollectibleType.IBS)) {
+    forceReleaseInputsDueToHavingIBS();
+  } else {
+    removeCollectiblePickupDelay(checkpoint);
+  }
   setSeededDeathCollectibleIntangible(checkpoint);
 
   // If the player is holding a poop from IBS, they should not be able to take the checkpoint (since

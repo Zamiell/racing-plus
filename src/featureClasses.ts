@@ -16,6 +16,7 @@ export { DisableMultiplayer } from "./classes/features/mandatory/misc/DisableMul
 export { DoubleAngelNerf } from "./classes/features/mandatory/misc/DoubleAngelNerf";
 export { DrawControls } from "./classes/features/mandatory/misc/DrawControls";
 export { Fireworks } from "./classes/features/mandatory/misc/Fireworks";
+export { IBSCheckpoint } from "./classes/features/mandatory/misc/IBSCheckpoint";
 export { InvisibleEntities } from "./classes/features/mandatory/misc/InvisibleEntities";
 export { LogConsoleCommands } from "./classes/features/mandatory/misc/LogConsoleCommands";
 export { ModConfigNotify } from "./classes/features/mandatory/misc/ModConfigNotify";

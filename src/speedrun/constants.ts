@@ -83,5 +83,4 @@ export const SEASON_NUM_TO_CHALLENGE = {
 
 export const COLLECTIBLES_THAT_INTERFERE_WITH_CHECKPOINT = [
   CollectibleType.DAMOCLES_PASSIVE, // 658
-  CollectibleType.IBS, // 725
 ] as const;

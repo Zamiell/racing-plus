@@ -3,6 +3,10 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.110.1_ - October 18th, 2023
+
+- All shoot inputs will now be released for two frames when the Checkpoint spawns if you have IBS.
+
 ### _v0.110.0_ - October 18th, 2023
 
 - Mines and Ashpit now have flipped rooms. (The rooms with the bugged Bomb Grimaces have been manually modified.)

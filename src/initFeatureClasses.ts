@@ -29,6 +29,7 @@ const FEATURE_CLASSES = [
   fc.DisableMultiplayer,
   fc.DoubleAngelNerf,
   fc.Fireworks,
+  fc.IBSCheckpoint,
   fc.InvisibleEntities,
   fc.LogConsoleCommands,
   fc.ModConfigNotify,
