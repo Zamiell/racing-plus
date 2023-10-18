@@ -46,7 +46,7 @@ import { getTimeConsoleUsed } from "./TimeConsoleUsed";
 import { hasErrors, v } from "./checkErrors/v";
 
 const NUM_RACING_PLUS_ITEMS = getEnumLength(CollectibleTypeCustom);
-const NUM_BABIES_MOD_ITEMS = 17;
+const NUM_BABIES_MOD_ITEMS = 18;
 const INCOMPLETE_SAVE_COLLECTIBLE_TO_CHECK = CollectibleType.DEATH_CERTIFICATE;
 const INCOMPLETE_SAVE_ITEM_POOL_TO_CHECK = ItemPoolType.SECRET;
 

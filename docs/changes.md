@@ -117,8 +117,7 @@ Furthermore, the mod attempts to remove all situations where the player is force
 ### 9) Room Flipping
 
 - While there are thousands of rooms in the game, many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
-- Mines, Ashpit, and the Ascent are exempt from this behavior due to bugs with Bomb Grimaces.
-- Mausoleum and Gehenna are exempt from this behavior due to unavoidable damage with Ball and Chains.
+- Gehenna is exempt from this behavior due to unavoidable damage with Ball and Chains.
 
 <!--
 
