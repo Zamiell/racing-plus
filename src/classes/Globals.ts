@@ -3,7 +3,7 @@ import { RaceData } from "./RaceData";
 import { RaceVars } from "./RaceVars";
 
 export class Globals {
-  debug = true;
+  debug = false;
 
   readonly chatMessages: ChatMessage[] = [];
 
