@@ -185,7 +185,11 @@ export class Season4 extends ChallengeModFeature {
         error("Failed to find a position for a stored collectible.");
       }
 
-      const collectible = mod.spawnCollectible(collectibleType, position);
+      const collectible = mod.spawnCollectible(
+        collectibleType,
+        position,
+        undefined,
+      );
       if (
         v.persistent.storedCollectibles.length >
         SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH

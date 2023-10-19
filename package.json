@@ -21,8 +21,8 @@
   "author": "Zamiell",
   "type": "module",
   "dependencies": {
-    "isaac-typescript-definitions": "^35.0.0",
-    "isaacscript-common": "^70.0.0"
+    "isaac-typescript-definitions": "^36.0.0",
+    "isaacscript-common": "^72.0.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
