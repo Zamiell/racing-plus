@@ -16,6 +16,7 @@ import {
   getNPCs,
   inRoomType,
   isRoomInsideGrid,
+  log,
   onDarkRoom,
   openAllDoors,
   sfxManager,
@@ -109,9 +110,10 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
     addRoomClearCharges();
     openAllDoors();
     sfxManager.Play(SoundEffect.DOOR_HEAVY_OPEN);
+    log("Manually set the room to be clear after The Lamb died.");
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
-    const position = room.GetCenterPos();
-    spawnPickup(PickupVariant.BIG_CHEST, 0, position);
+    const centerPos = room.GetCenterPos();
+    spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
   }
 }

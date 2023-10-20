@@ -1,4 +1,5 @@
 import {
+  EntityFlag,
   EntityType,
   ModCallback,
   PickupVariant,
@@ -23,18 +24,23 @@ export class PreventEndMegaSatan extends ConfigurableModFeature {
 
   // 68, 275
   @Callback(ModCallback.POST_ENTITY_KILL, EntityType.MEGA_SATAN_2)
-  postEntityKillMegaSatan2(): void {
+  postEntityKillMegaSatan2(entity: Entity): void {
+    if (entity.HasEntityFlags(EntityFlag.FRIENDLY)) {
+      return;
+    }
+
     this.emulateRoomClear();
   }
 
   emulateRoomClear(): void {
     const room = game.GetRoom();
+
     room.SetClear(true);
     addRoomClearCharges();
     log("Manually set the room to be clear after Mega Satan 2 died.");
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
-    const position = room.GetCenterPos();
-    spawnPickup(PickupVariant.BIG_CHEST, 0, position);
+    const centerPos = room.GetCenterPos();
+    spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);
   }
 }

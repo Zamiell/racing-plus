@@ -174,12 +174,11 @@ Post-flip actions:
     - Gehenna - [skipping for now]
 
 8) Ensure no overlapping variants in:
-   - Fool Card Room (Depths/Necropolis/Dank) (10000 to 40000)
-   - Mirror Room (Downpour/Dross) (10000 to 40000)
-   - Knife Piece Room (Downpour/Dross) (10000 to 50000)
-   - Button Room (Mines/Ashpit) (5000 to 40000)
-   - Secret Entrance (Mines/Ashpit) (10000 to 50000)
-   - Mineshaft Room (Mines/Ashpit) (10000 to 60000)
+   - Mirror Room (Downpour/Dross) (10000 to 40000) (no script needed because there are only two rooms)
+   - Button Room (Mines/Ashpit) (5000 to 40000) (use "set_mines_room_variants.py")
+   - Secret Entrance (Mines/Ashpit) (10000 to 50000) (use "set_mines_room_variants.py")
+   - Mineshaft Room (Mines/Ashpit) (10000 to 60000) (use "set_mines_room_variants.py")
+   - Fool Card Room (Depths/Necropolis/Dank) (10000 to 40000) (use "set_depths_room_variants.py")
 
 -->
 
