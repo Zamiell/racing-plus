@@ -4205,13 +4205,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-tsconfig@npm:^4.1.0":
-  version: 4.1.0
-  resolution: "isaacscript-tsconfig@npm:4.1.0"
+"isaacscript-tsconfig@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "isaacscript-tsconfig@npm:4.1.1"
   dependencies:
     "@tsconfig/node-lts": ^18.12.5
     "@tsconfig/strictest": ^2.0.2
-  checksum: 895c5e5f330e6bd3b986b460d40941a1646de055b8db736ed4abbb83b06ea8094c57d2f2efe5fc73bdc3281c17df44ec97db6138aee5e56e6de1eeed22976714
+  checksum: ce830f4ba6aecdb50d8da4c8ff8fcb81647bdd408631d0a269deb2d428f72ff3cc2a4e5b4fec9a6b52aceb09c78472fbf993320867a6c9b76bb4a63791df2b25
   languageName: node
   linkType: hard
 
@@ -5725,7 +5725,7 @@ __metadata:
     isaacscript-common: ^72.5.0
     isaacscript-lint: ^6.2.0
     isaacscript-spell: ^1.6.0
-    isaacscript-tsconfig: ^4.1.0
+    isaacscript-tsconfig: ^4.1.1
     typescript: ^5.2.2
     typescript-to-lua: ^1.20.1
   languageName: unknown
