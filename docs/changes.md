@@ -141,22 +141,27 @@ Don't flip:
 
 Post-flip actions:
 
-1) Fix flipped Utero room 975. (The flipped Wall Huggers should always rotate around the center.)
+- Swap entire room with Guts (double flipping still works):
+  - Depths - #21039, #31039
+  - Necropolis - #21111, #31111
+  - Dank Depths - #21356, #31356
 
-2) Remove the duplicated start rooms for The Chest / Dark Room.
+- Fix flipped Utero room 975. (The flipped Wall Huggers should always rotate around the center.)
 
-3) Un-flip Y-flipped Gurdy rooms:
+- Remove the duplicated start rooms for The Chest / Dark Room.
+
+- Un-flip Y-flipped Gurdy rooms:
    - The Chest - #20015, #30015
 
-4) Un-flip double Gate rooms (and enable all of the doors)
+- Un-flip double Gate rooms (and enable all of the doors)
    - The Chest - #20040, #30040
    - Dark Room - #20012, #30012
 
-5) Un-flip some Mega Maw rooms:
+- Un-flip some Mega Maw rooms:
    - The Chest - #20039, #30039, #20059, #30059
    - Dark Room - #20011, #30011
 
-6) Bomb Grimace shift:
+- Bomb Grimace shift:
     - Mines - #20007, #20066, #20068, #20078, #20391, #20438, #20548, #30007, #30066, #30068, #30078, #30391, #30438, #30548 (move up one tile)
     - Mines - #20023, #20439, #30023, #30439 (make trapped inside middle)
     - Mines - #20196, #30196 (move up one tile + delete rocks)
@@ -170,7 +175,7 @@ Post-flip actions:
     - Ashpit - #20098, #30098 (move up one tile + delete rocks)
     - Ashpit - #20532, #30532 (move up one tile + enemy up one tile)
 
-7) Ball & Chain shift:
+- Ball & Chain shift:
     - Gehenna - [skipping for now]
 
 8) Ensure no overlapping variants in:

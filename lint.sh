@@ -56,8 +56,6 @@ WINDOWS_FILES=$(
   --exclude-dir='.git' \
   --exclude-dir='.yarn' \
   --exclude-dir='node_modules' \
-  --exclude-dir='rooms' \
-  --exclude-dir='pre-flipped' \
   --exclude='*.fnt' \
   --exclude='*.jpg' \
   --exclude='*.png' \
@@ -66,6 +64,8 @@ WINDOWS_FILES=$(
   --exclude='*.ttf' \
   --exclude='*.wav' \
   --exclude='yarn.lock' \
+  --exclude-dir='rooms' \
+  --exclude-dir='pre-flipped' \
   '\r$' .
 ) || true
 if [[ $WINDOWS_FILES ]]; then
