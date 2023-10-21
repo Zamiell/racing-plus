@@ -146,7 +146,7 @@ Post-flip actions:
   - Necropolis - #21111, #31111
   - Dank Depths - #21356, #31356
 
-- Fix flipped Utero room 975. (The flipped Wall Huggers should always rotate around the center.)
+- Fix flipped Utero room #975. (The flipped Wall Huggers should always rotate around the center.)
 
 - Remove the duplicated start rooms for The Chest / Dark Room.
 
