@@ -1189,10 +1189,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/strictest@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@tsconfig/strictest@npm:1.0.2"
-  checksum: 2ebf63d6507d3642f360798ef5c3247bf61d338a4d89cee703e6d75ce6007fa4ac0ccad5066a4e8840bec1503bef01454d4b75c0cc6678f31fa554d7175122ac
+"@tsconfig/node-lts@npm:^18.12.5":
+  version: 18.12.5
+  resolution: "@tsconfig/node-lts@npm:18.12.5"
+  checksum: c51c35dbd1e68f824dd32436b6134b124c1c2277f15a786037ad52552697cbc0ad965535a95fada8307a24990c1e692b2df39e1b2ab9f4f3ff8c0d3887de5a3a
+  languageName: node
+  linkType: hard
+
+"@tsconfig/strictest@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@tsconfig/strictest@npm:2.0.2"
+  checksum: 5409233288d872a2d79aca5eb65d3da681c6e0baa9ee58744adceda834fececdaa8265869793cfd5a80f4c887e3296b4d13309ef5bffbf7c8272071f00b60ba7
   languageName: node
   linkType: hard
 
@@ -4150,12 +4157,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^72.0.0":
-  version: 72.0.0
-  resolution: "isaacscript-common@npm:72.0.0"
+"isaacscript-common@npm:^72.5.0":
+  version: 72.5.0
+  resolution: "isaacscript-common@npm:72.5.0"
   dependencies:
     isaac-typescript-definitions: ^36.0.0
-  checksum: 3c496a63e830eea28b49ec7af82bbd10e60d62c773a16cea80a0b52b6466f1a27fe1080c7a72e6da69eb739f6385ae3f8b0bc16ce76bb5c7d84b831598afa269
+  checksum: 102bc5785db9331161d7800c3bab05d9c521f382c762d1e45d8645d1137dee18dcf6be7cae39a02b0c0d8c9a3e14543367715c8f1b6777c05ddac4688795f0e4
   languageName: node
   linkType: hard
 
@@ -4198,12 +4205,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-tsconfig@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "isaacscript-tsconfig@npm:4.0.0"
+"isaacscript-tsconfig@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "isaacscript-tsconfig@npm:4.1.0"
   dependencies:
-    "@tsconfig/strictest": ^1.0.2
-  checksum: 705d0d07d92cb3574471a2a65d684e48327fe5734583d49e3a1024d2f24f1b93f76cb38aeabea690cc3f7a83b05f80b30a358cae3c39d163b6e46c365860d138
+    "@tsconfig/node-lts": ^18.12.5
+    "@tsconfig/strictest": ^2.0.2
+  checksum: 895c5e5f330e6bd3b986b460d40941a1646de055b8db736ed4abbb83b06ea8094c57d2f2efe5fc73bdc3281c17df44ec97db6138aee5e56e6de1eeed22976714
   languageName: node
   linkType: hard
 
@@ -5714,10 +5722,10 @@ __metadata:
     convert-xml-to-json: ^1.0.3
     isaac-typescript-definitions: ^36.0.0
     isaacscript: ^3.15.1
-    isaacscript-common: ^72.0.0
+    isaacscript-common: ^72.5.0
     isaacscript-lint: ^6.2.0
     isaacscript-spell: ^1.6.0
-    isaacscript-tsconfig: ^4.0.0
+    isaacscript-tsconfig: ^4.1.0
     typescript: ^5.2.2
     typescript-to-lua: ^1.20.1
   languageName: unknown
