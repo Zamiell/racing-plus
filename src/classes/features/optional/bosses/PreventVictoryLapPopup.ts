@@ -82,10 +82,9 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
   }
 
   isAllLambEntitiesDead(): boolean {
-    const lambs = getNPCs(EntityType.LAMB);
+    const lambs = getNPCs(EntityType.LAMB, -1, -1, true);
     const filteredLambs = lambs.filter(
       (lamb) =>
-        !lamb.HasEntityFlags(EntityFlag.FRIENDLY) &&
         !(lamb.Variant === asNumber(LambVariant.BODY) && lamb.IsInvincible()),
     );
 

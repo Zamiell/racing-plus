@@ -22,7 +22,7 @@ export class PreventDeathSlow extends ConfigurableModFeature {
   )
   postNPCUpdateDeath(npc: EntityNPC): void {
     if (npc.State === asNPCState(DeathState.SLOW_ATTACK)) {
-      npc.State = asNPCState(DeathState.MAIN_IDLE);
+      npc.State = asNPCState(DeathState.MOVE);
     }
   }
 }
