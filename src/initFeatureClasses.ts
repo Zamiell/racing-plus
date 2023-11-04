@@ -48,7 +48,6 @@ const FEATURE_CLASSES = [
   fc.TimeConsoleUsed,
   fc.TopLeftText,
   fc.Trophy,
-  fc.WhoreOfBabylonFix,
 
   // Items (mandatory)
   fc.DebugItem,
@@ -198,6 +197,7 @@ const FEATURE_CLASSES = [
 
   // Bug Fixes
   fc.Battery9VoltSynergy, // 63+116
+  fc.WhoreOfBabylonFix, // 122
   fc.GoatHeadInBossRoom, // 215
   fc.BatteryBumFix,
   fc.PreventUltraSecretRoomSoftlock,
