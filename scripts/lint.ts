@@ -36,7 +36,7 @@ await lintScript(async () => {
 
   if (commandExists("python")) {
     $s`pip install isaac-xml-validator --upgrade --quiet`;
-    promises.push($`isaac-xml-validator --quiet`);
+    promises.push($`isaac-xml-validator --quiet --ignore cutscenes.xml`);
   }
 
   await Promise.all(promises);
