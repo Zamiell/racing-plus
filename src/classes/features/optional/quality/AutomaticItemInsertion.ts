@@ -1,4 +1,5 @@
 import {
+  CallbackPriority,
   CardType,
   CollectibleType,
   ItemConfigTag,
@@ -8,7 +9,6 @@ import {
   PlayerForm,
   PlayerType,
 } from "isaac-typescript-definitions";
-import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import type { PickingUpItem } from "isaacscript-common";
 import {
   Callback,

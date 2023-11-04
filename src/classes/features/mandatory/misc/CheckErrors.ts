@@ -1,9 +1,9 @@
 import {
+  CallbackPriority,
   CollectibleType,
   ItemPoolType,
   ModCallback,
 } from "isaac-typescript-definitions";
-import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
 import {
   Callback,
   LAST_VANILLA_COLLECTIBLE_TYPE,

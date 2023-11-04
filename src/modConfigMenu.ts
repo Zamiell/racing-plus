@@ -1,5 +1,8 @@
 import type { Controller } from "isaac-typescript-definitions";
-import { Keyboard } from "isaac-typescript-definitions";
+import {
+  Keyboard,
+  ModConfigMenuOptionType,
+} from "isaac-typescript-definitions";
 import { asString, controllerToString } from "isaacscript-common";
 import { Config } from "./classes/Config";
 import { Hotkeys } from "./classes/Hotkeys";

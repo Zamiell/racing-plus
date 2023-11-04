@@ -1,3 +1,4 @@
+import { ModConfigMenuOptionType } from "isaac-typescript-definitions";
 import type { TupleWithMaxLength } from "isaacscript-common";
 import type { Config } from "./classes/Config";
 import type { Hotkeys } from "./classes/Hotkeys";

@@ -26,13 +26,13 @@
     "update": "isaacscript update"
   },
   "dependencies": {
-    "isaac-typescript-definitions": "^37.0.1",
-    "isaacscript-common": "^73.1.1"
+    "isaac-typescript-definitions": "^38.0.0",
+    "isaacscript-common": "^75.0.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaacscript": "^3.16.0",
-    "isaacscript-lint": "^6.2.0",
+    "isaacscript": "^3.17.9",
+    "isaacscript-lint": "^6.3.0",
     "isaacscript-spell": "^1.6.0",
     "isaacscript-tsconfig": "^5.0.0",
     "typescript": "^5.2.2",

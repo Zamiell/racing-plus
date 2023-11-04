@@ -1,5 +1,8 @@
-import { CollectibleType, RoomType } from "isaac-typescript-definitions";
-import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
+import {
+  CallbackPriority,
+  CollectibleType,
+  RoomType,
+} from "isaac-typescript-definitions";
 import {
   CallbackCustom,
   ModCallbackCustom,

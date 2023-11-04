@@ -1,3 +1,4 @@
+import { ModConfigMenuOptionType } from "isaac-typescript-definitions";
 import { deleteOldConfig, onOff } from "./modConfigMenu";
 
 const CATEGORY_NAME = "Vanilla Options";

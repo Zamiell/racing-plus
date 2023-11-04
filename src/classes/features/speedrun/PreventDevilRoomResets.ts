@@ -1,11 +1,10 @@
-import { RoomType } from "isaac-typescript-definitions";
-import { CallbackPriority } from "isaac-typescript-definitions/dist/src/enums/CallbackPriority";
+import { CallbackPriority, RoomType } from "isaac-typescript-definitions";
 import {
+  ModCallbackCustom,
+  PriorityCallbackCustom,
   getAllPlayers,
   inRoomType,
-  ModCallbackCustom,
   onFirstFloor,
-  PriorityCallbackCustom,
   removeAllPickups,
 } from "isaacscript-common";
 import { mod } from "../../../mod";
