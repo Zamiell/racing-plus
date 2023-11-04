@@ -11,7 +11,9 @@ import { inRoomWithSeason4StoredItems } from "../../speedrun/Season4";
 
 const DANGEROUS_COLLECTIBLE_TYPES = new ReadonlySet([
   CollectibleType.D6, // 105
+  CollectibleType.DIPLOPIA, // 347
   CollectibleType.VOID, // 477
+  CollectibleType.CROOKED_PENNY, // 485
   CollectibleType.MOVING_BOX, // 523
   CollectibleType.ETERNAL_D6, // 609
   CollectibleType.ABYSS, // 706

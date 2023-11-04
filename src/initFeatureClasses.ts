@@ -48,6 +48,7 @@ const FEATURE_CLASSES = [
   fc.TimeConsoleUsed,
   fc.TopLeftText,
   fc.Trophy,
+  fc.WhoreOfBabylonFix,
 
   // Items (mandatory)
   fc.DebugItem,

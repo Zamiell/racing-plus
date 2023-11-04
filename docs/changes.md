@@ -117,7 +117,6 @@ Furthermore, the mod attempts to remove all situations where the player is force
 ### 9) Room Flipping
 
 - There are thousands of rooms in the game, but many players have already seen them all. To increase run variety, all rooms have a chance to be flipped on the X axis, Y axis, or both axes.
-- Gehenna is exempt from this behavior due to unavoidable damage with Ball and Chains.
 
 <!--
 
@@ -141,14 +140,25 @@ Don't flip:
 
 Post-flip actions:
 
-- Swap entire room with Guts (double flipping still works):
-  - Depths - #21039, #31039
-  - Necropolis - #21111, #31111
-  - Dank Depths - #21356, #31356
+- Un-flip some Guts rooms (do a double flip instead of manually reorganizing):
+  - Depths - #11089, #21089 (flip X)
+  - Necropolis - #11111, #21111 (flip X)
+  - Dank Depths - #11356, #21356 (flip X)
 
-- Fix flipped Utero room #975. (The flipped Wall Huggers should always rotate around the center.)
+- Un-flip some Wall Hugger rooms (do a double flip instead of manually reorganizing):
+  - Caves: #11058, #21058 (flip X)
+  - Catacombs: #11067, #21067 (flip X)
+  - Flooded: #11233, #21233 (flip X)
 
-- Remove the duplicated start rooms for The Chest / Dark Room.
+- Un-flip some Wall Hugger rooms (manually):
+  - Catacombs: #11088, #21088 (must travel clockwise)
+  - Necropolis: #10023, #20023 (must travel clockwise)
+  - Necropolis: #10998, #20998 (must travel clockwise)
+  - Utero - #10975, #20975 (must travel clockwise)
+  - Mausoleum - #10248, #20248 (must travel clockwise)
+  - Gehenna - #10160, #20160 (must travel clockwise)
+
+- Un-flip the duplicated start rooms for The Chest / Dark Room.
 
 - Un-flip Y-flipped Gurdy rooms:
    - The Chest - #20015, #30015

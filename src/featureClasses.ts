@@ -35,6 +35,7 @@ export { TempMoreOptions } from "./classes/features/mandatory/misc/TempMoreOptio
 export { TimeConsoleUsed } from "./classes/features/mandatory/misc/TimeConsoleUsed";
 export { TopLeftText } from "./classes/features/mandatory/misc/TopLeftText";
 export { Trophy } from "./classes/features/mandatory/misc/Trophy";
+export { WhoreOfBabylonFix } from "./classes/features/mandatory/misc/WhoreOfBabylonFix";
 export { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
 export { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";
 export { CenterStart } from "./classes/features/mandatory/quality/CenterStart";

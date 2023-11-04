@@ -122,7 +122,7 @@ export class CheckErrors extends MandatoryModFeature {
     const x = STARTING_X;
     let y = STARTING_Y;
 
-    text = `Error: ${text}`;
+    text = `Racing+ disabled: ${text}`;
 
     for (const line of text.split("\n")) {
       const splitLines = this.getSplitLines(line);

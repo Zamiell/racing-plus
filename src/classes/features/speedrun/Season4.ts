@@ -110,35 +110,6 @@ export class Season4 extends ChallengeModFeature {
     return undefined;
   }
 
-  // 23, 347
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.DIPLOPIA)
-  preUseItemDiplopia(
-    _collectibleType: CollectibleType,
-    _rng: RNG,
-    player: EntityPlayer,
-  ): boolean | undefined {
-    return this.preUseItemDuplicateCollectibles(player);
-  }
-
-  // 23, 485
-  @Callback(ModCallback.PRE_USE_ITEM, CollectibleType.CROOKED_PENNY)
-  preUseItemCrookedPenny(
-    _collectibleType: CollectibleType,
-    _rng: RNG,
-    player: EntityPlayer,
-  ): boolean | undefined {
-    return this.preUseItemDuplicateCollectibles(player);
-  }
-
-  preUseItemDuplicateCollectibles(player: EntityPlayer): boolean | undefined {
-    if (inRoomWithSeason4StoredItems()) {
-      player.AnimateSad();
-      return true;
-    }
-
-    return undefined;
-  }
-
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, false)
   postGameStartedReorderedFalse(): void {
     if (hasErrors()) {

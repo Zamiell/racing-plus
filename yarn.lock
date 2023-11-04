@@ -4305,12 +4305,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^75.1.0":
-  version: 75.1.0
-  resolution: "isaacscript-common@npm:75.1.0"
+"isaacscript-common@npm:^75.2.1":
+  version: 75.2.1
+  resolution: "isaacscript-common@npm:75.2.1"
   dependencies:
     isaac-typescript-definitions: "npm:^38.0.0"
-  checksum: 60bb49c2149959effe7be53ff78d8b9c9a88bb7ad1f0be021eff49b28cb8d3630adb9dcd5375bd8e98e888908fd6c335400c0ea9aaf81c4b30704f45a2e3be26
+  checksum: 0960ee9e5bdfc4b95d13a51e4a8d5f6f3e57b12277064e6eb871cc5f0b2a271bb702f2f44730d1a028e165cff6f9f609253e91e9ec3a46c0c414ce7533ff9944
   languageName: node
   linkType: hard
 
@@ -5863,7 +5863,7 @@ __metadata:
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^38.0.0"
     isaacscript: "npm:^3.18.0"
-    isaacscript-common: "npm:^75.1.0"
+    isaacscript-common: "npm:^75.2.1"
     isaacscript-common-node: "npm:^1.1.1"
     isaacscript-lint: "npm:^6.3.0"
     isaacscript-spell: "npm:^1.6.0"

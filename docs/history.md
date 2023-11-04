@@ -3,6 +3,20 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
+### _v0.110.3_ - November 4th, 2023
+
+- Gehenna is now flipped. (However, rooms with Ball and Chains are not flipped to avoid bugs.)
+- Crooked Penny can no longer destroy the Checkpoint.
+- Diplopia can no longer duplicate the Checkpoint.
+- Fixed the bug where Chest room #119 had the top door enabled. (Thanks Gamonymous)
+- Fixed the bug where the following rooms were flipped incorrectly:
+  - Caves: #11058, #21058
+  - Catacombs: #11067, #11088, #21067, #21088
+  - Flooded: #11233, #21233
+  - Necropolis: #10023, #10998, #20023, #20998
+  - Mausoleum: #10248, #20248
+- Fixed the bug where Whore of Babylon would not activate correctly on the 0th or 1st room frame. (Thanks Gamonymous)
+
 ### _v0.110.2_ - October 21st, 2023
 
 - Fixed the bug with the following rooms where Guts would automatically kill themselves:
