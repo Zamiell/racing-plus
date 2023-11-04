@@ -15,7 +15,7 @@
   - Flooded: #11233, #21233
   - Necropolis: #10023, #10998, #20023, #20998
   - Mausoleum: #10248, #20248
-- Fixed the bug where Whore of Babylon would not activate correctly on the 0th or 1st room frame. (Thanks Gamonymous)
+- Fixed the (vanilla) bug where Whore of Babylon would not activate correctly on the 0th or 1st room frame. (Thanks Gamonymous)
 
 ### _v0.110.2_ - October 21st, 2023
 
@@ -791,8 +791,8 @@
 - Options? is now banned in seeded races. (Thanks Monkeypot)
 - Clutch can now appear in Victory Laps.
 - Having the External Item Descriptions mod turned on will now result in Racing+ showing an error. (Thanks Gamonymous)
-- Fixed the vanilla bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
-- Fixed the vanilla bug where Glitter Bombs were not properly seeded. (Thanks Fallenfor)
+- Fixed the (vanilla) bug where pedestals from chests would be automatically taken by Tainted Isaac if they rotated at the same time the chest was opened. (Thanks elgirs)
+- Fixed the (vanilla) bug where Glitter Bombs were not properly seeded. (Thanks Fallenfor)
 - Fixed the bug where respawned trophies would fall from the ceiling.
 - Fixed the bug where seeded death would not work properly when you used The Bible on Satan. (Thanks Adrayon)
 - Fixed the bug where shovels would always generate crawl spaces in Devil Rooms and Angel Rooms.
@@ -3314,7 +3314,7 @@ Mod changes:
 
 - The race ID will now be displayed in the first room of the race (but only during the first two seconds of the race).
 - Fixed the bug where the average time per character was not showing correctly. Thanks to PassionDrama for finding and fixing the bug.
-- Fixed the vanilla bug where players did not take any damage from Jr. Fetus troll bombs. (Thanks AshDown)
+- Fixed the (vanilla) bug where players did not take any damage from Jr. Fetus troll bombs. (Thanks AshDown)
 - Fixed the bug where fart-rerolled items were not removed from item pools on sight.
 
 ### _v0.20.3_ - August 21st, 2018
@@ -3340,7 +3340,7 @@ Mod changes:
 ### _v0.20.0_ - August 7th, 2018
 
 - Added the "R+15 (Vanilla)" custom challenge. This is not considered an official category.
-- Fixed the vanilla bug where Wiggle Worm granted a delayed tears up (instead of a normal tears up). (Thanks thisguyisbarry)
+- Fixed the (vanilla) bug where Wiggle Worm granted a delayed tears up (instead of a normal tears up). (Thanks thisguyisbarry)
 - Sped up the fade-in that occurs at the beginning of a run.
 - Changed the color of the Locust of Famine trinket to match the actual color of the flies. (Thanks Hispa)
 - Fixed the bug where Incubus would get an extra Incubus familiar after reviving in a seeded race. (Thanks thereisnofuture)
@@ -3965,7 +3965,7 @@ Item tracker:
 ### _v0.12.3_ - October 15th, 2017
 
 - Fixed the Schoolbag not working.
-- Fixed the vanilla bug where a Flooded Caves room with a Slot Machine (#976) was incorrectly given 1000 weight. (Thanks Lobsterosity)
+- Fixed the (vanilla) bug where a Flooded Caves room with a Slot Machine (#976) was incorrectly given 1000 weight. (Thanks Lobsterosity)
 
 ### _v0.12.2_ - October 14th, 2017
 

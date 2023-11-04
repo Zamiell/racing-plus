@@ -100,7 +100,8 @@ export class Config {
   FastTeleport = true;
 
   // Bug fixes
-  Battery9VoltSynergy = true; // 63+116
+  Battery9VoltSynergy = true; // 63 + 116
+  WhoreOfBabylonFix = true; // 122
   GoatHeadInBossRoom = true; // 215
   BatteryBumFix = true;
   PreventUltraSecretRoomSoftlock = true;

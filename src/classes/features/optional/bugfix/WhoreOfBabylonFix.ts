@@ -7,14 +7,17 @@ import {
   log,
   shouldWhoreOfBabylonBeActive,
 } from "isaacscript-common";
-import { MandatoryModFeature } from "../../../MandatoryModFeature";
+import type { Config } from "../../../Config";
+import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 /**
  * As a side-effect of removing giantbook animations, Whore of Babylon will not properly activate if
  * the player is damaged on room frame 1 or earlier. Thus, we manually add the effect in these
  * cases.
  */
-export class WhoreOfBabylonFix extends MandatoryModFeature {
+export class WhoreOfBabylonFix extends ConfigurableModFeature {
+  configKey: keyof Config = "WhoreOfBabylonFix";
+
   @CallbackCustom(ModCallbackCustom.POST_PLAYER_CHANGE_HEALTH)
   entityTakeDmgPlayer(
     player: EntityPlayer,

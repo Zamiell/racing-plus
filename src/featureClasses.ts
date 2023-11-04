@@ -35,7 +35,6 @@ export { TempMoreOptions } from "./classes/features/mandatory/misc/TempMoreOptio
 export { TimeConsoleUsed } from "./classes/features/mandatory/misc/TimeConsoleUsed";
 export { TopLeftText } from "./classes/features/mandatory/misc/TopLeftText";
 export { Trophy } from "./classes/features/mandatory/misc/Trophy";
-export { WhoreOfBabylonFix } from "./classes/features/mandatory/misc/WhoreOfBabylonFix";
 export { DrawVersion } from "./classes/features/mandatory/other/DrawVersion";
 export { ForceFadedConsoleDisplay } from "./classes/features/mandatory/other/ForceFadedConsoleDisplay";
 export { CenterStart } from "./classes/features/mandatory/quality/CenterStart";
@@ -72,6 +71,7 @@ export { PreventUltraSecretRoomSoftlock } from "./classes/features/optional/bugf
 export { RemoveInvalidPitfalls } from "./classes/features/optional/bugfix/RemoveInvalidPitfalls";
 export { TaintedIsaacCollectibleDelay } from "./classes/features/optional/bugfix/TaintedIsaacCollectibleDelay";
 export { TeleportInvalidEntrance } from "./classes/features/optional/bugfix/TeleportInvalidEntrance";
+export { WhoreOfBabylonFix } from "./classes/features/optional/bugfix/WhoreOfBabylonFix";
 export { JudasAddBomb } from "./classes/features/optional/characters/JudasAddBomb";
 export { LostUseHolyCard } from "./classes/features/optional/characters/LostUseHolyCard";
 export { SamsonDropHeart } from "./classes/features/optional/characters/SamsonDropHeart";

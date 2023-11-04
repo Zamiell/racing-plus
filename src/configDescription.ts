@@ -1051,10 +1051,19 @@ export const BUG_FIXES_1 = [
     ],
   ],
   [
-    "GoatHeadInBossRoom", // 215
+    "WhoreOfBabylonFix", // 122
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0902",
+      "Fix Whore of Babylon activation",
+      "Make Whore of Babylon work properly if it is activated on the 0th or 1st room frame.",
+    ],
+  ],
+  [
+    "GoatHeadInBossRoom", // 215
+    [
+      ModConfigMenuOptionType.BOOLEAN,
+      "0903",
       "Fix Goat Head in Boss Rooms",
       "Make Goat Head / Eucharist properly open the Devil Room / Angel Room door when taking it in a Boss Room.",
     ],
@@ -1063,7 +1072,7 @@ export const BUG_FIXES_1 = [
     "BatteryBumFix",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0903",
+      "0904",
       "Fix Battery Bums",
       "Make Battery Bums properly charge pocket active items.",
     ],
@@ -1072,7 +1081,7 @@ export const BUG_FIXES_1 = [
     "PreventUltraSecretRoomSoftlock",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0904",
+      "0905",
       "Fix Ultra Secret Rooms softlocks",
       "A fool card will be spawned in Ultra Secret Rooms with no doors.",
     ],
@@ -1081,7 +1090,7 @@ export const BUG_FIXES_1 = [
     "RemoveInvalidPitfalls",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0905",
+      "0906",
       "Remove invalid Pitfalls",
       "Remove buggy Pitfalls that incorrectly respawn after not having time to finish their disappearing animation.",
     ],
@@ -1090,7 +1099,7 @@ export const BUG_FIXES_1 = [
     "TaintedIsaacCollectibleDelay",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0906",
+      "0907",
       "Fix Tainted Isaac chest bugs",
       "Make Tainted Isaac not automatically pick up pedestal items from chests.",
     ],
@@ -1099,7 +1108,7 @@ export const BUG_FIXES_1 = [
     "TeleportInvalidEntrance",
     [
       ModConfigMenuOptionType.BOOLEAN,
-      "0907",
+      "0908",
       "Fix bad teleports",
       "Never teleport to a non-existent entrance.",
     ],
