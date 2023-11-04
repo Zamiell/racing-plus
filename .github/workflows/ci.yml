@@ -10,6 +10,13 @@ jobs:
       - uses: ./.github/workflows/setup
       - run: npm run build
 
+      - name: If publishing, upload mod output
+        if: "contains(github.event.head_commit.message, 'chore: release') && needs.pr-check.outputs.number != 'null'"
+        uses: actions/upload-artifact@v3
+        with:
+          name: mod-directory
+          path: ./mod
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -20,13 +27,20 @@ jobs:
   # @template-customization-start
   publish:
     runs-on: ubuntu-latest
+    needs: [build, lint]
+    if: "contains(github.event.head_commit.message, 'chore: release') && needs.pr-check.outputs.number != 'null'"
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/workflows/setup
 
+      - name: Download mod output
+        uses: actions/download-artifact@v3
+        with:
+          name: mod-directory
+          path: ./mod
+
       - name: Upload the mod to Steam Workshop (if this is a release commit)
         uses: IsaacScript/isaac-steam-workshop-upload@v2
-        if: "contains(github.event.head_commit.message, 'chore: release') && needs.pr-check.outputs.number != 'null'"
         with:
           mod_path: mod
           change_note: "Version: {VERSION}\n\nChanges for this mod are [url=https://github.com/Zamiell/racing-plus]tracked on GitHub[/url]."
@@ -35,7 +49,7 @@ jobs:
 
   discord:
     name: Discord Failure Notification
-    needs: [build_and_lint]
+    needs: [build, lint]
     if: always() # This is needed to always run this job, even if the other jobs fail.
     runs-on: ubuntu-latest
     steps:
