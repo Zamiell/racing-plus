@@ -21,20 +21,26 @@
   "author": "Zamiell",
   "type": "module",
   "scripts": {
+    "build": "tstl",
+    "cloc": "cloc src --exclude-dir=node_modules --include-lang=TypeScript",
+    "lint": "tsx ./scripts/lint.ts",
     "nuke": "isaacscript nuke",
+    "publish": "isaacscript publish",
     "start": "isaacscript monitor",
     "update": "isaacscript update"
   },
   "dependencies": {
     "isaac-typescript-definitions": "^38.0.0",
-    "isaacscript-common": "^75.0.0"
+    "isaacscript-common": "^75.1.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaacscript": "^3.17.9",
+    "isaacscript": "^3.18.0",
+    "isaacscript-common-node": "^1.1.1",
     "isaacscript-lint": "^6.3.0",
     "isaacscript-spell": "^1.6.0",
     "isaacscript-tsconfig": "^5.0.0",
+    "tsx": "^3.14.0",
     "typescript": "^5.2.2",
     "typescript-to-lua": "^1.21.0"
   },

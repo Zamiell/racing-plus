@@ -3,36 +3,27 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build_and_lint:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/setup
+      - run: npm run build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-          cache: yarn
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/setup
+      - run: npm run lint
 
-      - name: Retrieve the cached "node_modules" directory (if present)
-        uses: actions/cache@v3
-        id: node-cache
-        with:
-          path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+  # @template-customization-start
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/setup
 
-      - name: Install dependencies (if the cached directory was not found)
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        run: yarn install --immutable
-
-      - name: Test to see if the project compiles
-        run: bash build.sh
-
-      - name: Perform automated checks
-        run: bash lint.sh
-
-      # @template-customization-start
       - name: Upload the mod to Steam Workshop (if this is a release commit)
         uses: IsaacScript/isaac-steam-workshop-upload@v2
         if: "contains(github.event.head_commit.message, 'chore: release') && needs.pr-check.outputs.number != 'null'"
@@ -41,9 +32,7 @@ jobs:
           change_note: "Version: {VERSION}\n\nChanges for this mod are [url=https://github.com/Zamiell/racing-plus]tracked on GitHub[/url]."
         env:
           CONFIG_VDF_CONTENTS: ${{ secrets.CONFIG_VDF_CONTENTS }}
-      # @template-customization-end
 
-  # @template-customization-start
   discord:
     name: Discord Failure Notification
     needs: [build_and_lint]

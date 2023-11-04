@@ -22,7 +22,3 @@ def set_debug_variable(enabled: bool):
 
     with open(GLOBALS_TS_PATH, "wb") as file:
         file.write(file_data)
-
-# Allow calling this script directly to turn on the debug variable.
-if __name__ == "__main__":
-    set_debug_variable(True)

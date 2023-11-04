@@ -5,7 +5,7 @@
 const config = {
   extends: [
     // The linter base is the IsaacScript mod config:
-    // https://github.com/IsaacScript/isaacscript/blob/main/packages/eslint-config-isaacscript/configs/mod.js
+    // https://github.com/IsaacScript/isaacscript/blob/main/packages/eslint-config-isaacscript/mod.js
     "eslint-config-isaacscript/mod",
   ],
 
@@ -20,6 +20,8 @@ const config = {
     // Insert changed or disabled rules here, if necessary.
 
     // @template-customization-start
+
+    // All classes in this mod are internal only, so there is no need for method modifiers.
     "no-restricted-syntax": [
       "error",
       {
@@ -35,6 +37,7 @@ const config = {
         message: 'Using "protected" class method modifiers are not allowed.',
       },
     ],
+
     // @template-customization-end
   },
 };

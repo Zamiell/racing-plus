@@ -35,8 +35,8 @@ def main():
     printf('Writing the hashes to "{}"...'.format(SHA1_FILE_PATH))
     write_hashes_to_file(sha1_hashes, SHA1_FILE_PATH)
 
-    # We can't automatically set the "g.debug" variable to false, because it would get committed to
-    # GitHub and then make its way into the public release.
+    # Set the debug variable back to the way it was when we started.
+    set_debug_variable(True)
 
     printf("Complete!")
 
