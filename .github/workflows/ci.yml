@@ -35,7 +35,7 @@ jobs:
       # @template-customization-start
       - name: Upload the mod to Steam Workshop (if this is a release commit)
         uses: IsaacScript/isaac-steam-workshop-upload@v2
-        if: "contains(github.event.head_commit.message, 'chore: release') && github.event_name != 'pull_request'"
+        if: "contains(github.event.head_commit.message, 'chore: release') && needs.pr-check.outputs.number != 'null'"
         with:
           mod_path: mod
           change_note: "Version: {VERSION}\n\nChanges for this mod are [url=https://github.com/Zamiell/racing-plus]tracked on GitHub[/url]."
