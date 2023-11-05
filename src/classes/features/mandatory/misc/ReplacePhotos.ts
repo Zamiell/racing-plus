@@ -12,13 +12,12 @@ import {
   isAfterRoomFrame,
   log,
   newRNG,
-  spawnCollectibleUnsafe,
+  spawnCollectible,
 } from "isaacscript-common";
 import { PickupVariantCustom } from "../../../../enums/PickupVariantCustom";
 import { RaceGoal } from "../../../../enums/RaceGoal";
 import { inRace } from "../../../../features/race/v";
 import { g } from "../../../../globals";
-import { mod } from "../../../../mod";
 import { inSpeedrun } from "../../../../speedrun/utilsSpeedrun";
 import { getPlayerPhotoStatus, inMomBossRoom } from "../../../../utils";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
@@ -172,7 +171,7 @@ function doPhotoSituation(situation: PhotoSituation) {
 
   switch (situation) {
     case PhotoSituation.POLAROID: {
-      mod.spawnCollectible(
+      spawnCollectible(
         CollectibleType.POLAROID,
         PEDESTAL_POSITION_CENTER,
         rng,
@@ -185,7 +184,7 @@ function doPhotoSituation(situation: PhotoSituation) {
     }
 
     case PhotoSituation.NEGATIVE: {
-      mod.spawnCollectible(
+      spawnCollectible(
         CollectibleType.NEGATIVE,
         PEDESTAL_POSITION_CENTER,
         rng,
@@ -198,7 +197,7 @@ function doPhotoSituation(situation: PhotoSituation) {
     }
 
     case PhotoSituation.BOTH: {
-      mod.spawnCollectible(
+      spawnCollectible(
         CollectibleType.POLAROID,
         PEDESTAL_POSITION_LEFT,
         rng,
@@ -207,7 +206,7 @@ function doPhotoSituation(situation: PhotoSituation) {
         player,
       );
 
-      mod.spawnCollectible(
+      spawnCollectible(
         CollectibleType.NEGATIVE,
         PEDESTAL_POSITION_RIGHT,
         rng,
@@ -224,25 +223,21 @@ function doPhotoSituation(situation: PhotoSituation) {
       // the room seed instead.
       if (anyPlayerHasCollectible(CollectibleType.THERES_OPTIONS)) {
         // If the player has There's Options, they should get two boss items instead of 1.
-        spawnCollectibleUnsafe(
+        spawnCollectible(
           CollectibleType.NULL,
           PEDESTAL_POSITION_LEFT,
           rng,
           true,
         );
 
-        spawnCollectibleUnsafe(
+        spawnCollectible(
           CollectibleType.NULL,
           PEDESTAL_POSITION_RIGHT,
           rng,
           true,
         );
       } else {
-        spawnCollectibleUnsafe(
-          CollectibleType.NULL,
-          PEDESTAL_POSITION_CENTER,
-          rng,
-        );
+        spawnCollectible(CollectibleType.NULL, PEDESTAL_POSITION_CENTER, rng);
       }
 
       break;

@@ -17,6 +17,7 @@ import {
   onRepentanceStage,
   onSheol,
   onStage,
+  spawnCollectible,
   spawnEffect,
   spawnGridEntityWithVariant,
 } from "isaacscript-common";
@@ -26,7 +27,6 @@ import { FastTravelEntityType } from "../../../../../enums/FastTravelEntityType"
 import { RaceGoal } from "../../../../../enums/RaceGoal";
 import { inRace } from "../../../../../features/race/v";
 import { g } from "../../../../../globals";
-import { mod } from "../../../../../mod";
 import {
   onSeason,
   onSpeedrunWithDarkRoomGoal,
@@ -278,7 +278,7 @@ function replaceBigChest(
     case BigChestReplacementAction.CHECKPOINT: {
       preSpawnCheckpoint();
       const seed = seeds.GetStartSeed();
-      const checkpoint = mod.spawnCollectible(
+      const checkpoint = spawnCollectible(
         CollectibleTypeCustom.CHECKPOINT,
         pickup.Position,
         seed,

@@ -22,6 +22,7 @@ import {
   isJacobOrEsau,
   isTaintedLazarus,
   mapSetPlayer,
+  spawnCollectible,
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
@@ -271,11 +272,7 @@ function giveActiveItem(
     // Spawn it on the ground instead.
     const position = findFreePosition(player.Position);
     const startSeed = seeds.GetStartSeed();
-    const collectible = mod.spawnCollectible(
-      collectibleType,
-      position,
-      startSeed,
-    );
+    const collectible = spawnCollectible(collectibleType, position, startSeed);
     collectible.Charge = itemCharge;
   }
 }

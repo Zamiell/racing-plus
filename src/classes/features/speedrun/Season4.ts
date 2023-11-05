@@ -31,6 +31,7 @@ import {
   removeCollectible,
   removeCollectibleFromPools,
   sfxManager,
+  spawnCollectible,
 } from "isaacscript-common";
 import { ChallengeCustom } from "../../../enums/ChallengeCustom";
 import { CollectibleTypeCustom } from "../../../enums/CollectibleTypeCustom";
@@ -156,7 +157,7 @@ export class Season4 extends ChallengeModFeature {
         error("Failed to find a position for a stored collectible.");
       }
 
-      const collectible = mod.spawnCollectible(
+      const collectible = spawnCollectible(
         collectibleType,
         position,
         undefined,

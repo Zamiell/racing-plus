@@ -20,10 +20,10 @@ import {
   inRoomType,
   isBeforeGameFrame,
   isStoryBoss,
+  spawnCollectible,
   spawnEffect,
   spawnNPC,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -71,7 +71,7 @@ export class FastVanishingTwin extends ConfigurableModFeature {
     const position = room.GetGridPosition(newGridIndex);
     const roomSeed = room.GetSpawnSeed();
 
-    mod.spawnCollectible(CollectibleType.NULL, position, roomSeed);
+    spawnCollectible(CollectibleType.NULL, position, roomSeed);
   }
 
   getFreshlySpawnedCollectible(): EntityPickup | undefined {

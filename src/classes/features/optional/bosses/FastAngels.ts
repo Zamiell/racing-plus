@@ -22,8 +22,8 @@ import {
   inRoomType,
   newRNG,
   setSeed,
+  spawnCollectible,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -132,7 +132,7 @@ export class FastAngels extends ConfigurableModFeature {
     const position = findFreePosition(entity.Position);
 
     // In vanilla, on Tainted Keeper, for Filigree Feather items, the item is always free.
-    mod.spawnCollectible(
+    spawnCollectible(
       collectibleType,
       position,
       v.run.collectibleRNG,

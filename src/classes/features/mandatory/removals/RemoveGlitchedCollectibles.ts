@@ -10,8 +10,8 @@ import {
   inRoomType,
   isGlitchedCollectible,
   onChallenge,
+  spawnCollectible,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 const DEFAULT_REPLACEMENT_COLLECTIBLE = CollectibleType.SAD_ONION;
@@ -75,7 +75,7 @@ export class RemoveGlitchedCollectibles extends MandatoryModFeature {
       // spawn a new one. Even if we use the same `InitSeed`, it will still not change back to a
       // glitched item.
       collectible.Remove();
-      mod.spawnCollectible(
+      spawnCollectible(
         storedCollectibleType,
         collectible.Position,
         collectible.InitSeed,

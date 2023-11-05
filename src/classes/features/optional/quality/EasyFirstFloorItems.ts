@@ -20,9 +20,9 @@ import {
   log,
   onFirstFloor,
   onRoomFrame,
+  spawnCollectible,
 } from "isaacscript-common";
 import { EffectVariantCustom } from "../../../../enums/EffectVariantCustom";
-import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -148,7 +148,7 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
 
     const gridWidth = room.GetGridWidth();
     const newGridIndex = gridIndex + gridWidth;
-    const newCollectible = mod.spawnCollectible(
+    const newCollectible = spawnCollectible(
       collectible.SubType,
       newGridIndex,
       collectible.InitSeed,

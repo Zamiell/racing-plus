@@ -5,6 +5,7 @@
 
 ### _v0.110.3_ - November 4th, 2023
 
+- !!!The polaroid reappeared after taking negative (test with Tainted Isaac)
 - Gehenna is now flipped. (However, rooms with Ball and Chains are not flipped to avoid bugs.)
 - Crooked Penny can no longer destroy the Checkpoint.
 - Diplopia can no longer duplicate the Checkpoint.

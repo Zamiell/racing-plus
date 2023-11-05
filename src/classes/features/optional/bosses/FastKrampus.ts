@@ -20,8 +20,8 @@ import {
   newRNG,
   nextSeed,
   onEffectiveStage,
+  spawnCollectible,
 } from "isaacscript-common";
-import { mod } from "../../../../mod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -74,7 +74,7 @@ export class FastKrampus extends ConfigurableModFeature {
     const collectibleType = this.getKrampusCollectibleType();
     const position = findFreePosition(entity.Position);
 
-    mod.spawnCollectible(
+    spawnCollectible(
       collectibleType,
       position,
       v.run.collectibleRNG,

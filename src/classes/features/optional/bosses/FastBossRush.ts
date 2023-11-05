@@ -34,12 +34,12 @@ import {
   openAllDoors,
   repeat,
   sfxManager,
+  spawnCollectible,
   spawnNPC,
   spawnPickup,
 } from "isaacscript-common";
 import { EntityTypeCustom } from "../../../../enums/EntityTypeCustom";
 import { inRaceToBossRush } from "../../../../features/race/v";
-import { mod } from "../../../../mod";
 import { onSeason } from "../../../../speedrun/utilsSpeedrun";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
@@ -368,7 +368,7 @@ export class FastBossRush extends ConfigurableModFeature {
       spawnPickup(PickupVariant.BIG_CHEST, 0, position);
     }
 
-    mod.spawnCollectible(CollectibleType.NULL, position, roomSeed);
+    spawnCollectible(CollectibleType.NULL, position, roomSeed);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_AMBUSH_STARTED, AmbushType.BOSS_RUSH)

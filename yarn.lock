@@ -4298,6 +4298,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isaacscript-common-node@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "isaacscript-common-node@npm:1.2.0"
+  dependencies:
+    "@arktype/fs": "npm:^0.0.1"
+    chalk: "npm:^5.3.0"
+    command-exists: "npm:^1.2.9"
+    diff: "npm:^5.1.0"
+    execa: "npm:^8.0.1"
+    isaacscript-common-ts: "npm:^11.3.1"
+    jsonc-parser: "npm:^3.2.0"
+    npm-check-updates: "npm:^16.14.6"
+  checksum: 4e94a4cb6f886fe1afe5e984aed3bdb83d71619084515e805a5bf8e78720b70b08965854aad3de454ed05b0a99c2dc7b8fd763552dd0c3736609d25b6fc922ba
+  languageName: node
+  linkType: hard
+
 "isaacscript-common-ts@npm:^11.3.1":
   version: 11.3.1
   resolution: "isaacscript-common-ts@npm:11.3.1"
@@ -4305,12 +4321,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^75.2.1":
-  version: 75.2.1
-  resolution: "isaacscript-common@npm:75.2.1"
+"isaacscript-common@npm:^76.0.0":
+  version: 76.0.0
+  resolution: "isaacscript-common@npm:76.0.0"
   dependencies:
     isaac-typescript-definitions: "npm:^38.0.0"
-  checksum: 0960ee9e5bdfc4b95d13a51e4a8d5f6f3e57b12277064e6eb871cc5f0b2a271bb702f2f44730d1a028e165cff6f9f609253e91e9ec3a46c0c414ce7533ff9944
+  checksum: 7cd904c894ef4d6e0611b890bd5d6470e1ae37a2294d4e145cb974a072f43c3f0ae181f1207ffc5b3419b22bd921214dc3e24b929af6afe5fc5426f78378f694
   languageName: node
   linkType: hard
 
@@ -4363,16 +4379,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.18.0":
-  version: 3.18.0
-  resolution: "isaacscript@npm:3.18.0"
+"isaacscript@npm:^3.18.1":
+  version: 3.18.1
+  resolution: "isaacscript@npm:3.18.1"
   dependencies:
     "@zamiell/sync-directory": "npm:^6.0.5"
     ajv: "npm:^8.12.0"
     chalk: "npm:^5.3.0"
     command-exists: "npm:^1.2.9"
     figlet: "npm:^1.7.0"
-    isaacscript-common-node: "npm:^1.1.1"
+    isaacscript-common-node: "npm:^1.2.0"
     isaacscript-common-ts: "npm:^11.3.1"
     jsonc-parser: "npm:^3.2.0"
     klaw-sync: "npm:^6.0.0"
@@ -4387,7 +4403,7 @@ __metadata:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: dist/main.js
-  checksum: eda385d8f3c8dbae238d8f1ae7e3505be09347bdf37348adc05e02a379e51db1fe163105724c7f3e61e968b378cb03f5bef977e8be3234524a9c413537d2612f
+  checksum: f582513381b199730d5236f714370ac86ab5a7b6d811b7ee85b5b5c9208080c51eda85037ad481dccdf971c8ca3573f79b3a943f7e73828dc08628fa66d92bc7
   languageName: node
   linkType: hard
 
@@ -5862,9 +5878,9 @@ __metadata:
   dependencies:
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^38.0.0"
-    isaacscript: "npm:^3.18.0"
-    isaacscript-common: "npm:^75.2.1"
-    isaacscript-common-node: "npm:^1.1.1"
+    isaacscript: "npm:^3.18.1"
+    isaacscript-common: "npm:^76.0.0"
+    isaacscript-common-node: "npm:^1.2.0"
     isaacscript-lint: "npm:^6.3.0"
     isaacscript-spell: "npm:^1.6.0"
     isaacscript-tsconfig: "npm:^5.0.0"
