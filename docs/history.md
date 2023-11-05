@@ -3,9 +3,8 @@
 <!-- markdownlint-disable MD001 MD034 -->
 <!-- cspell:ignore Adrayon,aferalsheep,Anidalife,Arsene,Aruthe,Astraii,Bamiot,biriy,Blumpkin,bobita,Bowties,Catgasm,ceehe,Crafterlynx,cutifire,Czeresnia,Darkdragon,Darkwolf,Drunkenshoe,Echiqueur,elgirs,fallenfor,Fawkeyes,finalkids,Fyon,Gandi,Ghostbroster,glyndsuresight,goodposter,gorthol,Greninja,Gromfalloon,Hazu,Ibotep,iceeCat,Iedaim,Inschato,Ivana,Jerseyrebox,Kadda,Karolmo,kirakeepkool,klover,Krakenos,kwidz,Lbrt,Lobsterosity,makia,Maks,Masterof,meepmeep,mijus,Mirry,missingyes,mithrandi,Moep,molfried,Nanahachiyasu,Nariom,Negi,nicoluwu,Noot,Noowoo,Pachito,Pelo,Pingouin,Thalen,Tehe,Sakk,Satanas,Sheffy,Shigan,sillypears,Sinsthar,sisuka,Smoom,starg,stoogebag,tayu,thereisnofuture,Thoday,toooschi,vertopolka,Zazima,Zorua -->
 
-### _v0.110.3_ - November 4th, 2023
+### _v0.111.0_ - November 4th, 2023
 
-- !!!The polaroid reappeared after taking negative (test with Tainted Isaac)
 - Gehenna is now flipped. (However, rooms with Ball and Chains are not flipped to avoid bugs.)
 - Crooked Penny can no longer destroy the Checkpoint.
 - Diplopia can no longer duplicate the Checkpoint.
@@ -17,6 +16,7 @@
   - Necropolis: #10023, #10998, #20023, #20998
   - Mausoleum: #10248, #20248
 - Fixed the (vanilla) bug where Whore of Babylon would not activate correctly on the 0th or 1st room frame. (Thanks Gamonymous)
+- Fixed the bug where quest items could be duplicated under certain specific circumstances. (Thanks Gamonymous)
 
 ### _v0.110.2_ - October 21st, 2023
 
