@@ -10,8 +10,9 @@ import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const ENTITY_TYPES_EXEMPT_FROM_REMOVAL = new ReadonlySet<EntityType>([
-  EntityType.ETERNAL_FLY,
-  EntityType.DARK_ESAU,
+  EntityType.ETERNAL_FLY, // 96
+  EntityType.BOMB_GRIMACE, // 809
+  EntityType.DARK_ESAU, // 866
 ]);
 
 export class RemoveTreasureRoomEnemies extends ConfigurableModFeature {

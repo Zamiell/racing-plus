@@ -61,6 +61,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@commander-js/extra-typings@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "@commander-js/extra-typings@npm:11.1.0"
+  peerDependencies:
+    commander: 11.1.x
+  checksum: df00ebed009edcd2d79cf4b17d869cea614a509fd4605d4cc04c4b1bf7319eccfda79751ac43d6122d57ab1828074233e829a46367cd7b1b5da9ddc83261d72b
+  languageName: node
+  linkType: hard
+
 "@cspell/cspell-bundled-dicts@npm:7.3.8":
   version: 7.3.8
   resolution: "@cspell/cspell-bundled-dicts@npm:7.3.8"
@@ -4362,10 +4371,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-spell@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "isaacscript-spell@npm:1.6.0"
-  checksum: 73cf7de91ace78c9dec53fa9952e711b1a9822303b490c62abafdda96ba74e99089ee9e8e02be97e87648238d911d5ab1fbe5ccefdc3848a67dfc7debd4ad669
+"isaacscript-spell@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "isaacscript-spell@npm:1.7.0"
+  checksum: fc404f410225f9385ca9822d65c06b788f21a49d529b73413df7077c7a94752b33d0c7b3986845e718c7b020e93b75faea6edf905bf4b249eedb2c41292efed2
   languageName: node
   linkType: hard
 
@@ -4379,14 +4388,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.18.1":
-  version: 3.18.1
-  resolution: "isaacscript@npm:3.18.1"
+"isaacscript@npm:^3.19.2":
+  version: 3.19.2
+  resolution: "isaacscript@npm:3.19.2"
   dependencies:
+    "@commander-js/extra-typings": "npm:^11.1.0"
     "@zamiell/sync-directory": "npm:^6.0.5"
     ajv: "npm:^8.12.0"
     chalk: "npm:^5.3.0"
     command-exists: "npm:^1.2.9"
+    commander: "npm:^11.1.0"
     figlet: "npm:^1.7.0"
     isaacscript-common-node: "npm:^1.2.0"
     isaacscript-common-ts: "npm:^11.3.1"
@@ -4398,12 +4409,11 @@ __metadata:
     typescript-to-lua: "npm:^1.21.0"
     xml2js: "npm:^0.6.2"
     yaml: "npm:^2.3.4"
-    yargs: "npm:^17.7.2"
   peerDependencies:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: dist/main.js
-  checksum: f582513381b199730d5236f714370ac86ab5a7b6d811b7ee85b5b5c9208080c51eda85037ad481dccdf971c8ca3573f79b3a943f7e73828dc08628fa66d92bc7
+  checksum: 960cffa6b6c47f149134e604a7acf085370fa43c33ab4123f35094ab874d0c010cbff993becdde63ed7b333ce3331f7c23612f828fbcf541ee1a9a1bb095f3a1
   languageName: node
   linkType: hard
 
@@ -5878,11 +5888,11 @@ __metadata:
   dependencies:
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^38.0.0"
-    isaacscript: "npm:^3.18.1"
+    isaacscript: "npm:^3.19.2"
     isaacscript-common: "npm:^76.0.0"
     isaacscript-common-node: "npm:^1.2.0"
     isaacscript-lint: "npm:^6.3.0"
-    isaacscript-spell: "npm:^1.6.0"
+    isaacscript-spell: "npm:^1.7.0"
     isaacscript-tsconfig: "npm:^5.0.0"
     tsx: "npm:^3.14.0"
     typescript: "npm:^5.2.2"
@@ -7291,7 +7301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.6.2, yargs@npm:^17.7.2":
+"yargs@npm:^17.6.2":
   version: 17.7.2
   resolution: "yargs@npm:17.7.2"
   dependencies:

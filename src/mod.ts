@@ -1,7 +1,7 @@
 import { ISCFeature, upgradeMod } from "isaacscript-common";
 import { MOD_NAME } from "./constants";
 
-const ISC_FEATURES_FOR_THIS_MOD = [
+const FEATURES = [
   ISCFeature.COLLECTIBLE_ITEM_POOL_TYPE,
   ISCFeature.CUSTOM_HOTKEYS,
   ISCFeature.DEPLOY_JSON_ROOM,
@@ -25,4 +25,4 @@ const ISC_FEATURES_FOR_THIS_MOD = [
 ] as const;
 
 const modVanilla = RegisterMod(MOD_NAME, 1);
-export const mod = upgradeMod(modVanilla, ISC_FEATURES_FOR_THIS_MOD);
+export const mod = upgradeMod(modVanilla, FEATURES);

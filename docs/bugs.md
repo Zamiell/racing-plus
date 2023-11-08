@@ -9,6 +9,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 ## Miscellaneous Bugs
 
 - The "fast-clear" feature does not apply to Challenge Rooms or Boss Challenge Rooms.
+- The "fast-clear" feature causes bosses in the Boss Rush to not drop hearts. (Reported by Gamonymous)
 - The "fast Vanishing Twin" feature does not apply to double champion bosses or multi-segment bosses. (Reported by Gamonymous)
 - When returning to a big room from a crawl space, the camera will jerk from the door to the location of the crawl space.
 - The Great Gideon crawl space is not be handled by the fast-travel feature.

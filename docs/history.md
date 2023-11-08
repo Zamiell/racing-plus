@@ -17,6 +17,7 @@
   - Mausoleum: #10248, #20248
 - Fixed the (vanilla) bug where Whore of Babylon would not activate correctly on the 0th or 1st room frame. (Thanks Gamonymous)
 - Fixed the bug where quest items could be duplicated under certain specific circumstances. (Thanks Gamonymous)
+- Fixed the bug where Bomb Grimaces in Treasure Rooms were being incorrectly removed. (Thanks Gamonymous)
 
 ### _v0.110.2_ - October 21st, 2023
 
