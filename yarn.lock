@@ -4371,10 +4371,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-spell@npm:^1.7.0":
-  version: 1.7.0
-  resolution: "isaacscript-spell@npm:1.7.0"
-  checksum: fc404f410225f9385ca9822d65c06b788f21a49d529b73413df7077c7a94752b33d0c7b3986845e718c7b020e93b75faea6edf905bf4b249eedb2c41292efed2
+"isaacscript-spell@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "isaacscript-spell@npm:1.10.0"
+  checksum: 7159efea0b931f7eff763c96e4ffe2bbced59ea6915f67e0f226d0baa1148feb38d5c522bd91ab9181134a7bf14649e7ac7c13f089f8cec955646e921ae5081d
   languageName: node
   linkType: hard
 
@@ -5892,7 +5892,7 @@ __metadata:
     isaacscript-common: "npm:^76.0.0"
     isaacscript-common-node: "npm:^1.2.0"
     isaacscript-lint: "npm:^6.3.0"
-    isaacscript-spell: "npm:^1.7.0"
+    isaacscript-spell: "npm:^1.10.0"
     isaacscript-tsconfig: "npm:^5.0.0"
     tsx: "npm:^3.14.0"
     typescript: "npm:^5.2.2"
