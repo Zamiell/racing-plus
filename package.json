@@ -34,6 +34,7 @@
     "isaacscript-common": "^76.0.0"
   },
   "devDependencies": {
+    "cloc": "^1.98.0-cloc",
     "convert-xml-to-json": "^1.0.3",
     "isaacscript": "^3.19.2",
     "isaacscript-common-node": "^1.2.0",

@@ -36,7 +36,7 @@ def main():
     write_hashes_to_file(sha1_hashes, SHA1_FILE_PATH)
 
     # Set the debug variable back to the way it was when we started.
-    set_debug_variable(True)
+    # set_debug_variable(True)
 
     printf("Complete!")
 

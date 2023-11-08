@@ -2101,6 +2101,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cloc@npm:^1.98.0-cloc":
+  version: 1.98.0-cloc
+  resolution: "cloc@npm:1.98.0-cloc"
+  bin:
+    cloc: lib/cloc
+  checksum: f75c05db23b62dd538492e1edf352487d5301752cc7611d9fc1a3224eb4a0c8065b3c3c07e97ab1016d9dbb95baeb5b8526799bd10f940c566bea3faaa376cd5
+  languageName: node
+  linkType: hard
+
 "clone@npm:^1.0.2":
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
@@ -5886,6 +5895,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "racing-plus@workspace:."
   dependencies:
+    cloc: "npm:^1.98.0-cloc"
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^38.0.0"
     isaacscript: "npm:^3.19.2"
