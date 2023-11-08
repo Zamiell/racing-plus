@@ -22,7 +22,7 @@
   "type": "module",
   "scripts": {
     "build": "tstl",
-    "cloc": "cloc src --exclude-dir=node_modules --include-lang=TypeScript",
+    "cloc": "cloc ./src --include-lang=TypeScript",
     "lint": "tsx ./scripts/lint.ts",
     "nuke": "isaacscript nuke",
     "publish": "isaacscript publish",

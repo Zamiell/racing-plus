@@ -36,6 +36,8 @@ def main():
     write_hashes_to_file(sha1_hashes, SHA1_FILE_PATH)
 
     # Set the debug variable back to the way it was when we started.
+    # (This is commented out because it causes the "true" variable to get published to the Steam
+    # Workshop for some reason.)
     # set_debug_variable(True)
 
     printf("Complete!")

@@ -1,4 +1,4 @@
-import { EntityType, RoomType } from "isaac-typescript-definitions";
+import { EntityFlag, EntityType, RoomType } from "isaac-typescript-definitions";
 import {
   CallbackCustom,
   ModCallbackCustom,
@@ -25,7 +25,10 @@ export class RemoveTreasureRoomEnemies extends ConfigurableModFeature {
 
   removeTreasureRoomEnemies(): void {
     for (const npc of getNPCs()) {
-      if (!ENTITY_TYPES_EXEMPT_FROM_REMOVAL.has(npc.Type)) {
+      if (
+        !ENTITY_TYPES_EXEMPT_FROM_REMOVAL.has(npc.Type) &&
+        !npc.HasEntityFlags(EntityFlag.FRIENDLY)
+      ) {
         npc.Remove();
       }
     }
