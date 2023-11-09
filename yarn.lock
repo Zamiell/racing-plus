@@ -4339,12 +4339,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^76.0.0":
-  version: 76.0.0
-  resolution: "isaacscript-common@npm:76.0.0"
+"isaacscript-common@npm:^76.3.0":
+  version: 76.3.0
+  resolution: "isaacscript-common@npm:76.3.0"
   dependencies:
     isaac-typescript-definitions: "npm:^38.0.0"
-  checksum: 7cd904c894ef4d6e0611b890bd5d6470e1ae37a2294d4e145cb974a072f43c3f0ae181f1207ffc5b3419b22bd921214dc3e24b929af6afe5fc5426f78378f694
+  checksum: 78a83e28682897f0c0caf5afb23e2ac4bcc4ad7af911a0fb40d579345ea1f44fdc65089201ec6ea6cd2bea8eab55e7acadf3bed107a7be3cc51621a78f50d927
   languageName: node
   linkType: hard
 
@@ -5899,12 +5899,12 @@ __metadata:
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^38.0.0"
     isaacscript: "npm:^3.19.2"
-    isaacscript-common: "npm:^76.0.0"
+    isaacscript-common: "npm:^76.3.0"
     isaacscript-common-node: "npm:^1.2.0"
     isaacscript-lint: "npm:^6.3.0"
     isaacscript-spell: "npm:^1.10.0"
     isaacscript-tsconfig: "npm:^5.0.0"
-    tsx: "npm:^3.14.0"
+    tsx: "npm:^4.0.0"
     typescript: "npm:^5.2.2"
     typescript-to-lua: "npm:^1.21.0"
   languageName: unknown
@@ -6834,9 +6834,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^3.14.0":
-  version: 3.14.0
-  resolution: "tsx@npm:3.14.0"
+"tsx@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "tsx@npm:4.0.0"
   dependencies:
     esbuild: "npm:~0.18.20"
     fsevents: "npm:~2.3.3"
@@ -6847,7 +6847,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: b6c938bdae9c656aef2aa0130ee6aa8f3487b5d411d5f7934b705c28ff44ab268db3dde123cf5237b4e5e2ab4441a0bad4b1a39e3ff2170d138538e44082f05d
+  checksum: 00df6f13a3af68897fd9754f5bf71f7c1b390b6550beaf5caff9c8237989d42901860511e78103d9e157f70ca298822e42059c527ef857d00e7af534e6927235
   languageName: node
   linkType: hard
 

@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "isaac-typescript-definitions": "^38.0.0",
-    "isaacscript-common": "^76.0.0"
+    "isaacscript-common": "^76.3.0"
   },
   "devDependencies": {
     "cloc": "^1.98.0-cloc",
@@ -41,7 +41,7 @@
     "isaacscript-lint": "^6.3.0",
     "isaacscript-spell": "^1.10.0",
     "isaacscript-tsconfig": "^5.0.0",
-    "tsx": "^3.14.0",
+    "tsx": "^4.0.0",
     "typescript": "^5.2.2",
     "typescript-to-lua": "^1.21.0"
   },
