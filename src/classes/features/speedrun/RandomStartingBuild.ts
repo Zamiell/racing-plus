@@ -12,10 +12,10 @@ import {
   CallbackCustom,
   ModCallbackCustom,
   ReadonlySet,
+  arrayRemove,
   asTrinketType,
   assertDefined,
   copyArray,
-  copySet,
   emptyArray,
   game,
   getRandomArrayElementAndRemove,
@@ -126,11 +126,13 @@ export class RandomStartingBuild extends ChallengeModFeature {
   }
 
   hasFlyingCollectibleExceptForRevelation(player: EntityPlayer): boolean {
-    const flyingCollectiblesReadOnly = mod.getFlyingCollectibleTypes(false);
-    const flyingCollectibles = copySet(flyingCollectiblesReadOnly);
-    flyingCollectibles.delete(CollectibleType.REVELATION);
+    const flyingCollectibleTypes = mod.getFlyingCollectibleTypes(false);
+    const flyingCollectibleTypesExceptForRevelation = arrayRemove(
+      flyingCollectibleTypes,
+      CollectibleType.REVELATION,
+    );
 
-    return hasCollectible(player, ...flyingCollectibles);
+    return hasCollectible(player, ...flyingCollectibleTypesExceptForRevelation);
   }
 
   // 70

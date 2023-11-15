@@ -50,9 +50,13 @@ const v = {
  *
  * Some characters already have pocket active items. In these cases, we could award the D6 as an
  * active item. However, we want players to have consistent muscle memory for which key to use the
- * D6 on. Thus, we strip the vanilla pocket active item and move it to the active item slot. (The
- * exception for this is Tainted Cain, since the Bag of Crafting does not work properly in the
- * active slot.)
+ * D6 on. Thus, we strip the vanilla pocket active item and move it to the active item slot. There
+ * are two exceptions:
+ *
+ * - Jacob & Esau do not have pocket active slots, so each of them is given a D6 in their normal
+ *   active slots.
+ * - Tainted Cain keeps his Bag of Craft in the pocket active slot because it does not work properly
+ *   in the active slot.
  */
 export class StartWithD6 extends ConfigurableModFeature {
   configKey: keyof Config = "StartWithD6";
@@ -127,6 +131,7 @@ export class StartWithD6 extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_PLAYER_INIT_FIRST)
   playerPlayerInitFirst(player: EntityPlayer): void {
+    Isaac.DebugString("GETTING HERE - POST_PLAYER_INIT_FIRST");
     giveD6(player);
   }
 
