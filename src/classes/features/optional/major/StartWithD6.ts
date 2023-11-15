@@ -131,7 +131,6 @@ export class StartWithD6 extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_PLAYER_INIT_FIRST)
   playerPlayerInitFirst(player: EntityPlayer): void {
-    Isaac.DebugString("GETTING HERE - POST_PLAYER_INIT_FIRST");
     giveD6(player);
   }
 
