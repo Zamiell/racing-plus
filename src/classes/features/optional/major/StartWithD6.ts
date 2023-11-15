@@ -55,8 +55,8 @@ const v = {
  *
  * - Jacob & Esau do not have pocket active slots, so each of them is given a D6 in their normal
  *   active slots.
- * - Tainted Cain keeps his Bag of Craft in the pocket active slot because it does not work properly
- *   in the active slot.
+ * - Tainted Cain keeps his Bag of Crafting in the pocket active slot because it does not work
+ *   properly in the active slot.
  */
 export class StartWithD6 extends ConfigurableModFeature {
   configKey: keyof Config = "StartWithD6";
