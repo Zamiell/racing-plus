@@ -4346,9 +4346,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.20.0":
-  version: 3.20.0
-  resolution: "isaacscript@npm:3.20.0"
+"isaacscript@npm:^3.21.1":
+  version: 3.21.1
+  resolution: "isaacscript@npm:3.21.1"
   dependencies:
     "@commander-js/extra-typings": "npm:^11.1.0"
     "@zamiell/sync-directory": "npm:^6.0.5"
@@ -4364,14 +4364,14 @@ __metadata:
     moment: "npm:^2.29.4"
     prompt: "npm:^1.3.0"
     source-map-support: "npm:^0.5.21"
-    typescript-to-lua: "npm:^1.21.0"
+    typescript-to-lua: "npm:^1.22.0"
     xml2js: "npm:^0.6.2"
     yaml: "npm:^2.3.4"
   peerDependencies:
     typescript: ">= 5.0.0"
   bin:
     isaacscript: dist/main.js
-  checksum: 3462c67ffa01184da66abf4f088dba3abec8ff9da5433ddb52c9c8fbcba38c5f46b3d1d0992d2b7ad2a2ff409c3f232f30fb339d81050b7a8b3738abd4b32e76
+  checksum: 04d6903896b4e93bf92f3368e69153518337eecd1e2b89954240e90ef9db2422e2da46bbb00e223eb1ce7e94389c7d010bce4305244043aab6f0e89ee32fa64b
   languageName: node
   linkType: hard
 
@@ -5833,7 +5833,7 @@ __metadata:
     cloc: "npm:^1.98.0-cloc"
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^39.0.3"
-    isaacscript: "npm:^3.20.0"
+    isaacscript: "npm:^3.21.1"
     isaacscript-common: "npm:^80.2.2"
     isaacscript-common-node: "npm:^1.2.0"
     isaacscript-lint: "npm:^6.4.1"
@@ -6840,23 +6840,6 @@ __metadata:
   dependencies:
     is-typedarray: "npm:^1.0.0"
   checksum: 4ac5b7a93d604edabf3ac58d3a2f7e07487e9f6e98195a080e81dbffdc4127817f470f219d794a843b87052cedef102b53ac9b539855380b8c2172054b7d5027
-  languageName: node
-  linkType: hard
-
-"typescript-to-lua@npm:^1.21.0":
-  version: 1.21.0
-  resolution: "typescript-to-lua@npm:1.21.0"
-  dependencies:
-    "@typescript-to-lua/language-extensions": "npm:1.19.0"
-    enhanced-resolve: "npm:^5.8.2"
-    picomatch: "npm:^2.3.1"
-    resolve: "npm:^1.15.1"
-    source-map: "npm:^0.7.3"
-  peerDependencies:
-    typescript: 5.2.2
-  bin:
-    tstl: dist/tstl.js
-  checksum: 41f640d3e9cfb9198807f7b4832fe88e56ba253dfbe383be097fccc407acac7cafc8ea91587f1e8bec10b963bfde36d81ebb0b835dd5d0a56bab2cfcb28266bc
   languageName: node
   linkType: hard
 

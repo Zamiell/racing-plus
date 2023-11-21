@@ -12,9 +12,11 @@
     "sha1.json",
     // @template-customization-end
     "*.anm2",
+    "*.mp3",
     "*.ogg",
     "*.pyc",
     "*.stb",
+    "*.svg",
     "*.wav",
     ".git/**",
     ".yarn/**",
