@@ -1,8 +1,4 @@
-import {
-  CollectibleType,
-  ItemPoolType,
-  Keyboard,
-} from "isaac-typescript-definitions";
+import { Keyboard } from "isaac-typescript-definitions";
 import {
   log,
   logAndPrint,
@@ -20,7 +16,6 @@ import { hotkeys } from "./modConfigMenu";
  */
 function debugCode(_params?: string) {
   // Add code here.
-  print(mod.isCollectibleInItemPool(CollectibleType.D6, ItemPoolType.TREASURE));
 }
 
 /** Hotkey 1 is bound to F2. */
