@@ -4247,12 +4247,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^39.0.4":
-  version: 39.0.4
-  resolution: "isaac-typescript-definitions@npm:39.0.4"
+"isaac-typescript-definitions@npm:^39.0.5":
+  version: 39.0.5
+  resolution: "isaac-typescript-definitions@npm:39.0.5"
   dependencies:
     lua-types: "npm:^2.13.1"
-  checksum: 98161c08eb67a2f281188e6b597087730a29f28544f020069e1e83f43de54b76da59de06a3915f38b2cf3d6a25ba0ae2b33bad98256d5dfae712593cf620a6e5
+  checksum: 711db1bb0ad33b62f9fe7aba49f6d8e1b8f641e0f43e30479ecacb808496a8400d38a58c30d9378e57ebd5d38829085de95da913e6b41adb099e487d62e70583
   languageName: node
   linkType: hard
 
@@ -4304,12 +4304,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^80.2.3":
-  version: 80.2.3
-  resolution: "isaacscript-common@npm:80.2.3"
+"isaacscript-common@npm:^80.2.5":
+  version: 80.2.5
+  resolution: "isaacscript-common@npm:80.2.5"
   dependencies:
-    isaac-typescript-definitions: "npm:^39.0.4"
-  checksum: 5d888ef1d3525c0ca925c797833bcc9ee1caaefe515a30b8402443c92cfe37e541e3d795ea8d343c485cb2437369beb2b7a87f9e58c8980c13f92fbccee8be28
+    isaac-typescript-definitions: "npm:^39.0.5"
+  checksum: a48bd2a663e80df361d7e74113c3b575493a6231bbe7950c8a4e1e90661e0789290bef6f8916ad284f4f0164f298629148baa892a19730b0c23a80486b29ef44
   languageName: node
   linkType: hard
 
@@ -5893,9 +5893,9 @@ __metadata:
   dependencies:
     cloc: "npm:^1.98.0-cloc"
     convert-xml-to-json: "npm:^1.0.3"
-    isaac-typescript-definitions: "npm:^39.0.4"
+    isaac-typescript-definitions: "npm:^39.0.5"
     isaacscript: "npm:^3.25.0"
-    isaacscript-common: "npm:^80.2.3"
+    isaacscript-common: "npm:^80.2.5"
     isaacscript-common-node: "npm:^1.4.0"
     isaacscript-lint: "npm:^6.4.1"
     isaacscript-spell: "npm:^1.10.0"

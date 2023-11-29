@@ -26,6 +26,7 @@ import {
 } from "isaacscript-common";
 import { CollectibleTypeCustom } from "../../../../enums/CollectibleTypeCustom";
 import { mod } from "../../../../mod";
+import { addCollectibleAndRemoveFromPools } from "../../../../utils";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
@@ -224,7 +225,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   // give each of them a normal D6. Don't give a D6 to Jacob if we transformed to them with Clicker.
   if (isJacobOrEsau(player)) {
     if (hasOpenActiveItemSlot(player)) {
-      player.AddCollectible(CollectibleType.D6, D6_STARTING_CHARGE);
+      addCollectibleAndRemoveFromPools(player, CollectibleType.D6);
     }
 
     return;
