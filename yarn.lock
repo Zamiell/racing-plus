@@ -19,6 +19,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arktype/fs@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@arktype/fs@npm:0.0.4"
+  checksum: 02e794d2e72b82505201945ec22612d92c933910f923f171ea74e6128fa98ac7724e12d3b9b93f5347f888f98aaa7805d908b5ee853d115a0c5d6b611b2dd24f
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0":
   version: 7.22.10
   resolution: "@babel/code-frame@npm:7.22.10"
@@ -2595,6 +2602,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dotenv@npm:^16.3.1":
+  version: 16.3.1
+  resolution: "dotenv@npm:16.3.1"
+  checksum: b95ff1bbe624ead85a3cd70dbd827e8e06d5f05f716f2d0cbc476532d54c7c9469c3bc4dd93ea519f6ad711cb522c00ac9a62b6eb340d5affae8008facc3fbd7
+  languageName: node
+  linkType: hard
+
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
@@ -4233,12 +4247,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaac-typescript-definitions@npm:^39.0.3":
-  version: 39.0.3
-  resolution: "isaac-typescript-definitions@npm:39.0.3"
+"isaac-typescript-definitions@npm:^39.0.4":
+  version: 39.0.4
+  resolution: "isaac-typescript-definitions@npm:39.0.4"
   dependencies:
     lua-types: "npm:^2.13.1"
-  checksum: 431bdb4d4b357826cabeadb1cff1aadc0287b647ba7b67a76932470d3d75c2d28bd7d14d707061396ed129c12873db82d310888a5e97173f869efc867ef75183
+  checksum: 98161c08eb67a2f281188e6b597087730a29f28544f020069e1e83f43de54b76da59de06a3915f38b2cf3d6a25ba0ae2b33bad98256d5dfae712593cf620a6e5
   languageName: node
   linkType: hard
 
@@ -4258,19 +4272,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common-node@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "isaacscript-common-node@npm:1.2.0"
+"isaacscript-common-node@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "isaacscript-common-node@npm:1.4.0"
   dependencies:
-    "@arktype/fs": "npm:^0.0.1"
+    "@arktype/fs": "npm:^0.0.4"
     chalk: "npm:^5.3.0"
     command-exists: "npm:^1.2.9"
     diff: "npm:^5.1.0"
+    dotenv: "npm:^16.3.1"
     execa: "npm:^8.0.1"
-    isaacscript-common-ts: "npm:^11.3.1"
+    isaacscript-common-ts: "npm:^11.6.0"
     jsonc-parser: "npm:^3.2.0"
-    npm-check-updates: "npm:^16.14.6"
-  checksum: 4e94a4cb6f886fe1afe5e984aed3bdb83d71619084515e805a5bf8e78720b70b08965854aad3de454ed05b0a99c2dc7b8fd763552dd0c3736609d25b6fc922ba
+    npm-check-updates: "npm:^16.14.11"
+    zod: "npm:^3.22.4"
+  checksum: 23dae47d9fd97c9eb63ab946306b23151cc47610b2817b9b86d1d896da2ede97b22de4865bbd89884b5aa0cd57ee7abf5f2927c360fe0f4aeec58d6f53cfe82c
   languageName: node
   linkType: hard
 
@@ -4281,19 +4297,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common-ts@npm:^11.4.0":
-  version: 11.4.0
-  resolution: "isaacscript-common-ts@npm:11.4.0"
-  checksum: d5cac1a88bfe8b570fc45c076d9d898784bd5d20880637ea89532b04a3ea9535c0263cc5edcf15dae7363613d1ae8d66dc89476210777847822fc8e16739cdc0
+"isaacscript-common-ts@npm:^11.6.0":
+  version: 11.6.0
+  resolution: "isaacscript-common-ts@npm:11.6.0"
+  checksum: af63629d548bad441c79af88d1e64c0826294a78ad326a54257b61fa71f7431a7a70b1d4617a2a1d78afd145835bc46453c274a4d27766e7bf7ca6ff7449b4f9
   languageName: node
   linkType: hard
 
-"isaacscript-common@npm:^80.2.2":
-  version: 80.2.2
-  resolution: "isaacscript-common@npm:80.2.2"
+"isaacscript-common@npm:^80.2.3":
+  version: 80.2.3
+  resolution: "isaacscript-common@npm:80.2.3"
   dependencies:
-    isaac-typescript-definitions: "npm:^39.0.3"
-  checksum: 7e6c334bca818f1fcb2472997312376ad3fdc062a072ccb85dc691f37b629b75f89cb20570e76971a0927d4e2c4a36c61f4a3211d003e8e66854913defbd32ad
+    isaac-typescript-definitions: "npm:^39.0.4"
+  checksum: 5d888ef1d3525c0ca925c797833bcc9ee1caaefe515a30b8402443c92cfe37e541e3d795ea8d343c485cb2437369beb2b7a87f9e58c8980c13f92fbccee8be28
   languageName: node
   linkType: hard
 
@@ -4346,32 +4362,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^3.21.1":
-  version: 3.21.1
-  resolution: "isaacscript@npm:3.21.1"
+"isaacscript@npm:^3.25.0":
+  version: 3.25.0
+  resolution: "isaacscript@npm:3.25.0"
   dependencies:
     "@commander-js/extra-typings": "npm:^11.1.0"
     "@zamiell/sync-directory": "npm:^6.0.5"
     ajv: "npm:^8.12.0"
     chalk: "npm:^5.3.0"
-    command-exists: "npm:^1.2.9"
     commander: "npm:^11.1.0"
     figlet: "npm:^1.7.0"
-    isaacscript-common-node: "npm:^1.2.0"
-    isaacscript-common-ts: "npm:^11.4.0"
+    isaacscript-common-node: "npm:^1.4.0"
+    isaacscript-common-ts: "npm:^11.6.0"
     jsonc-parser: "npm:^3.2.0"
     klaw-sync: "npm:^6.0.0"
     moment: "npm:^2.29.4"
     prompt: "npm:^1.3.0"
     source-map-support: "npm:^0.5.21"
-    typescript-to-lua: "npm:^1.22.0"
     xml2js: "npm:^0.6.2"
     yaml: "npm:^2.3.4"
   peerDependencies:
     typescript: ">= 5.0.0"
+    typescript-to-lua: ">= 1.0.0"
+  peerDependenciesMeta:
+    typescript-to-lua:
+      optional: true
   bin:
     isaacscript: dist/main.js
-  checksum: 04d6903896b4e93bf92f3368e69153518337eecd1e2b89954240e90ef9db2422e2da46bbb00e223eb1ce7e94389c7d010bce4305244043aab6f0e89ee32fa64b
+  checksum: cd15160a7e48b7cf7db85b7bbfd41ffdd5426844477906a2a2c870d4ff7387babe62dd5abf53bcfb4cbc749956806615122f80c3f57efae7be17e2ca68a84b61
   languageName: node
   linkType: hard
 
@@ -5189,6 +5207,49 @@ __metadata:
   languageName: node
   linkType: hard
 
+"npm-check-updates@npm:^16.14.11":
+  version: 16.14.11
+  resolution: "npm-check-updates@npm:16.14.11"
+  dependencies:
+    chalk: "npm:^5.3.0"
+    cli-table3: "npm:^0.6.3"
+    commander: "npm:^10.0.1"
+    fast-memoize: "npm:^2.5.2"
+    find-up: "npm:5.0.0"
+    fp-and-or: "npm:^0.1.4"
+    get-stdin: "npm:^8.0.0"
+    globby: "npm:^11.0.4"
+    hosted-git-info: "npm:^5.1.0"
+    ini: "npm:^4.1.1"
+    js-yaml: "npm:^4.1.0"
+    json-parse-helpfulerror: "npm:^1.0.3"
+    jsonlines: "npm:^0.1.1"
+    lodash: "npm:^4.17.21"
+    make-fetch-happen: "npm:^11.1.1"
+    minimatch: "npm:^9.0.3"
+    p-map: "npm:^4.0.0"
+    pacote: "npm:15.2.0"
+    parse-github-url: "npm:^1.0.2"
+    progress: "npm:^2.0.3"
+    prompts-ncu: "npm:^3.0.0"
+    rc-config-loader: "npm:^4.1.3"
+    remote-git-tags: "npm:^3.0.0"
+    rimraf: "npm:^5.0.5"
+    semver: "npm:^7.5.4"
+    semver-utils: "npm:^1.1.4"
+    source-map-support: "npm:^0.5.21"
+    spawn-please: "npm:^2.0.2"
+    strip-ansi: "npm:^7.1.0"
+    strip-json-comments: "npm:^5.0.1"
+    untildify: "npm:^4.0.0"
+    update-notifier: "npm:^6.0.2"
+  bin:
+    ncu: build/src/bin/cli.js
+    npm-check-updates: build/src/bin/cli.js
+  checksum: bbd2a43e84280d228a357d27a7016dcc8b60aa1361f75b59ad67a61b73a7156ee62be9d44bcaa41c24f65cb9cc436ea85169a0702399842b4f8e16bca1834565
+  languageName: node
+  linkType: hard
+
 "npm-check-updates@npm:^16.14.6":
   version: 16.14.6
   resolution: "npm-check-updates@npm:16.14.6"
@@ -5832,14 +5893,14 @@ __metadata:
   dependencies:
     cloc: "npm:^1.98.0-cloc"
     convert-xml-to-json: "npm:^1.0.3"
-    isaac-typescript-definitions: "npm:^39.0.3"
-    isaacscript: "npm:^3.21.1"
-    isaacscript-common: "npm:^80.2.2"
-    isaacscript-common-node: "npm:^1.2.0"
+    isaac-typescript-definitions: "npm:^39.0.4"
+    isaacscript: "npm:^3.25.0"
+    isaacscript-common: "npm:^80.2.3"
+    isaacscript-common-node: "npm:^1.4.0"
     isaacscript-lint: "npm:^6.4.1"
     isaacscript-spell: "npm:^1.10.0"
     isaacscript-tsconfig: "npm:^5.0.0"
-    tsx: "npm:^4.2.0"
+    tsx: "npm:^4.6.0"
     typescript: "npm:^5.3.2"
     typescript-to-lua: "npm:^1.22.0"
   languageName: unknown
@@ -6762,20 +6823,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "tsx@npm:4.2.0"
+"tsx@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "tsx@npm:4.6.0"
   dependencies:
     esbuild: "npm:~0.18.20"
     fsevents: "npm:~2.3.3"
     get-tsconfig: "npm:^4.7.2"
-    source-map-support: "npm:^0.5.21"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 649321a374b50d5813f63d31fcea477416d3692b301fb7b454c97a85441b9067cda368250cd794cfc4ee5cede58096ad5f6a15d209ef0eadd14ac30bd710ea91
+  checksum: e7ce784b93fb98d052670b6cbe79f5c090fc80e6c5b1f2cb31ed65eef92a68dcf4499a68e8fb427074e775d1955ec61f7485b9e893b65c5f1e0ba2898c84b890
   languageName: node
   linkType: hard
 
@@ -7280,7 +7340,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.22.4":
+"zod@npm:3.22.4, zod@npm:^3.22.4":
   version: 3.22.4
   resolution: "zod@npm:3.22.4"
   checksum: 7578ab283dac0eee66a0ad0fc4a7f28c43e6745aadb3a529f59a4b851aa10872b3890398b3160f257f4b6817b4ce643debdda4fb21a2c040adda7862cab0a587

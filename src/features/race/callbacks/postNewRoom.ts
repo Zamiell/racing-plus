@@ -1,9 +1,5 @@
-import {
-  asLevelStage,
-  asNumber,
-  inMegaSatanRoom,
-  LAST_STAGE,
-} from "isaacscript-common";
+import { LevelStage } from "isaac-typescript-definitions";
+import { inMegaSatanRoom } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
@@ -18,7 +14,8 @@ import * as topSprite from "../topSprite";
 import * as victoryLap from "../victoryLap";
 
 // We take the next stage after the final vanilla stage.
-const MEGA_SATAN_FAKE_STAGE_NUM = asLevelStage(asNumber(LAST_STAGE) + 1);
+const LAST_VANILLA_STAGE = LevelStage.HOME;
+const MEGA_SATAN_FAKE_STAGE_NUM = LAST_VANILLA_STAGE + 1;
 
 export function racePostNewRoom(): void {
   if (!config.ClientCommunication) {
