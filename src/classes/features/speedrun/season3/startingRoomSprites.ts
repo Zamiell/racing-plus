@@ -55,7 +55,7 @@ export function season3ResetStartingRoomSprites(): void {
 }
 
 export function season3InitStartingRoomSprites(
-  collectibleTypes: CollectibleType[],
+  collectibleTypes: readonly CollectibleType[],
   trinketType: TrinketType,
 ): void {
   season3ResetStartingRoomSprites();

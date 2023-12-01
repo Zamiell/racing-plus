@@ -96,7 +96,9 @@ export class FastHaunt extends ConfigurableModFeature {
     return childrenLilHaunts;
   }
 
-  getLowestIndexLilHaunt(lilHaunts: EntityNPC[]): EntityNPC | undefined {
+  getLowestIndexLilHaunt(
+    lilHaunts: readonly EntityNPC[],
+  ): EntityNPC | undefined {
     if (lilHaunts.length === 0) {
       return undefined;
     }

@@ -12,7 +12,7 @@ import { RacerStatus } from "../enums/RacerStatus";
 import type { ServerCollectibleID } from "../types/ServerCollectibleID";
 
 /** The possible types for values of `RaceData`. */
-export type RaceDataType = boolean | number | string | int[];
+export type RaceDataType = boolean | number | string | readonly int[];
 
 /** This must match the "ModSocket" class on the client. */
 export class RaceData {

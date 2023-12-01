@@ -214,7 +214,7 @@ function formatSetupDiversity(player: EntityPlayer) {
 
 export function giveDiversityItemsAndDoItemBans(
   player: EntityPlayer,
-  collectibleTypes: CollectibleType[],
+  collectibleTypes: readonly CollectibleType[],
   trinketType: TrinketType,
 ): void {
   log("Granting Diversity items:");

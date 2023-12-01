@@ -275,7 +275,7 @@ export class Autofire extends MandatoryModFeature {
     }
   }
 
-  countTrueAfterFalse(array: boolean[]): int {
+  countTrueAfterFalse(array: readonly boolean[]): int {
     let num = 0;
 
     for (let i = 0; i < array.length; i++) {

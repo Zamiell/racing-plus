@@ -31,14 +31,14 @@
   },
   "dependencies": {
     "isaac-typescript-definitions": "^39.0.5",
-    "isaacscript-common": "^81.0.4"
+    "isaacscript-common": "^81.0.5"
   },
   "devDependencies": {
     "cloc": "^1.98.0-cloc",
     "convert-xml-to-json": "^1.0.3",
     "isaacscript": "^3.29.0",
     "isaacscript-common-node": "^1.4.0",
-    "isaacscript-lint": "^6.6.0",
+    "isaacscript-lint": "^6.8.0",
     "isaacscript-spell": "^1.11.0",
     "isaacscript-tsconfig": "^5.0.0",
     "tsx": "^4.6.1",

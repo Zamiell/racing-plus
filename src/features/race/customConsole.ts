@@ -252,7 +252,7 @@ function drawConsole() {
 }
 
 export function drawText(
-  textSegments: TextSegment[],
+  textSegments: readonly TextSegment[],
   position: Vector,
   alpha = DEFAULT_CONSOLE_OPACITY,
 ): void {

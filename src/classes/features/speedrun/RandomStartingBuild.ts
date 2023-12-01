@@ -367,7 +367,7 @@ function getAntiSynergyBuilds(character: PlayerType): readonly int[] {
 }
 
 function getBuildIndexesFor(
-  ...collectibleTypes: CollectibleType[]
+  ...collectibleTypes: readonly CollectibleType[]
 ): readonly int[] {
   return collectibleTypes.map((collectibleType) =>
     getBuildIndexFor(collectibleType),

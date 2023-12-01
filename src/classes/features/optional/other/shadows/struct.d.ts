@@ -1,4 +1,4 @@
-export function pack(format: string, structData: unknown[]): string;
+export function pack(format: string, structData: readonly unknown[]): string;
 export function unpack(
   format: string,
   stream: string,
