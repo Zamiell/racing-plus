@@ -277,6 +277,8 @@ function checkVictoryLapBossReplace() {
 
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {
+    // The "isaacscript/strict-enums" is bugged on the next line.
+    // eslint-disable-next-line isaacscript/strict-enums
     const randomBoss = getRandomArrayElement(VICTORY_LAP_BOSSES, rng);
     const [entityType, variant, subType] = randomBoss;
     spawnBoss(entityType, variant, subType, centerPos);

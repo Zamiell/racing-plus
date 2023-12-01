@@ -71,7 +71,7 @@ export class SeededTeleports extends MandatoryModFeature {
       }
     }
 
-    const roomGridIndexes = getAllRoomGridIndexesForNormalRooms();
+    const roomGridIndexes = [...getAllRoomGridIndexesForNormalRooms()];
     if (insertErrorRoom) {
       roomGridIndexes.push(GridRoom.ERROR);
     }
@@ -127,7 +127,7 @@ function seededTeleport() {
   // override the existing effect.
 }
 
-function getAllRoomGridIndexesForNormalRooms() {
+function getAllRoomGridIndexesForNormalRooms(): readonly int[] {
   // We could filter out our current room, but this would cause problems in seeded races, so seeded
   // races would have to be exempt. Thus, don't bother with this in order to keep the behavior
   // consistent through the different types of races.

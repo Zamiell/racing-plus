@@ -4,6 +4,7 @@ import type {
   EntityType,
 } from "isaac-typescript-definitions";
 import type { PlayerHealth } from "isaacscript-common";
+import { ReadonlyMap } from "isaacscript-common";
 import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpState";
 
 export interface CardReadingPortalDescription {
@@ -18,7 +19,7 @@ export const v = {
     __ignoreGlowingHourGlass: true, // Tell the Save Data Manager to not revert this variable.
     warpState: DreamCatcherWarpState.INITIAL,
     warpRoomGridIndexes: [] as int[],
-    floorDisplayFlags: new Map<int, BitFlags<DisplayFlag>>(),
+    floorDisplayFlags: new ReadonlyMap<int, BitFlags<DisplayFlag>>(),
     cardReadingPortalDescriptions: [] as CardReadingPortalDescription[],
     health: null as PlayerHealth | null,
 

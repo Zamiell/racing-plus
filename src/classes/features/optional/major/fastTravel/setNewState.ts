@@ -322,7 +322,7 @@ function setFadingIn() {
   setPlayersVisible(players, false);
 }
 
-function adjustJacobAndEsau(players: EntityPlayer[]) {
+function adjustJacobAndEsau(players: readonly EntityPlayer[]) {
   if (players.length !== 2) {
     return;
   }
@@ -343,7 +343,7 @@ function adjustJacobAndEsau(players: EntityPlayer[]) {
   moveEsauNextToJacob();
 }
 
-function adjustTaintedForgotten(players: EntityPlayer[]) {
+function adjustTaintedForgotten(players: readonly EntityPlayer[]) {
   if (players.length !== 2) {
     return;
   }
@@ -372,7 +372,7 @@ function adjustTaintedForgotten(players: EntityPlayer[]) {
   }
 }
 
-export function spawnHoles(players: EntityPlayer[]): void {
+export function spawnHoles(players: readonly EntityPlayer[]): void {
   // Spawn a hole for each player to jump out of.
   for (const player of players) {
     spawnEffect(EffectVariantCustom.PITFALL_CUSTOM, 0, player.Position);
@@ -380,7 +380,7 @@ export function spawnHoles(players: EntityPlayer[]): void {
 }
 
 export function setPlayersVisible(
-  players: EntityPlayer[],
+  players: readonly EntityPlayer[],
   visible: boolean,
 ): void {
   for (const player of players) {

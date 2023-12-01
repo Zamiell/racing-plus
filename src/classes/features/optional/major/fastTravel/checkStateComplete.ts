@@ -76,14 +76,14 @@ function incrementFramesPassed() {
   v.run.renderFramesPassed++;
 }
 
-function resetPlayerCollision(players: EntityPlayer[]) {
+function resetPlayerCollision(players: readonly EntityPlayer[]) {
   // Set the collision for all players back to normal.
   for (const player of players) {
     player.EntityCollisionClass = EntityCollisionClass.ALL;
   }
 }
 
-function makePlayersJump(players: EntityPlayer[]) {
+function makePlayersJump(players: readonly EntityPlayer[]) {
   for (const player of players) {
     // Play the jumping out of the hole animation.
     player.PlayExtraAnimation("Jump");
