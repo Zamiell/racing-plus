@@ -2820,14 +2820,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:^9.0.0":
-  version: 9.0.0
-  resolution: "eslint-config-prettier@npm:9.0.0"
+"eslint-config-prettier@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "eslint-config-prettier@npm:9.1.0"
   peerDependencies:
     eslint: ">=7.0.0"
   bin:
     eslint-config-prettier: bin/cli.js
-  checksum: bc1f661915845c631824178942e5d02f858fe6d0ea796f0050d63e0f681927b92696e81139dd04714c08c3e7de580fd079c66162e40070155ba79eaee78ab5d0
+  checksum: 6d332694b36bc9ac6fdb18d3ca2f6ac42afa2ad61f0493e89226950a7091e38981b66bac2b47ba39d15b73fff2cd32c78b850a9cf9eed9ca9a96bfb2f3a2f10d
   languageName: node
   linkType: hard
 
@@ -2911,9 +2911,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-isaacscript@npm:^3.9.0":
-  version: 3.9.0
-  resolution: "eslint-plugin-isaacscript@npm:3.9.0"
+"eslint-plugin-isaacscript@npm:^3.9.1":
+  version: 3.9.1
+  resolution: "eslint-plugin-isaacscript@npm:3.9.1"
   dependencies:
     "@typescript-eslint/type-utils": "npm:^6.13.1"
     "@typescript-eslint/types": "npm:^6.13.1"
@@ -2922,7 +2922,7 @@ __metadata:
     "@typescript-eslint/parser": ">= 6.0.0"
     eslint: ">= 8.0.0"
     typescript: ">= 5.0.0"
-  checksum: 3aac1432941c65964c5f40e050f1fc033b0b7c6b8aa7ba8f5853ec4f11a29b1ce0ef42f0844c481e1c7ecd54510c3bbc6bb261180df242084e3ed0c48a27d47e
+  checksum: ef7e6901a620061c096e6a5c3d12e4eb3a58f34c620eef8edd7adaa993bf9b641670d52d9683c6ef1016c97801ece7033e675c11508b35caadb5c134c0847574
   languageName: node
   linkType: hard
 
@@ -4331,9 +4331,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-lint@npm:^6.9.0":
-  version: 6.9.0
-  resolution: "isaacscript-lint@npm:6.9.0"
+"isaacscript-lint@npm:^6.9.1":
+  version: 6.9.1
+  resolution: "isaacscript-lint@npm:6.9.1"
   dependencies:
     "@prettier/plugin-xml": "npm:^3.2.2"
     "@typescript-eslint/eslint-plugin": "npm:^6.13.1"
@@ -4342,24 +4342,24 @@ __metadata:
     cspell-check-unused-words: "npm:^1.0.11"
     eslint: "npm:^8.55.0"
     eslint-config-isaacscript: "npm:^4.13.0"
-    eslint-config-prettier: "npm:^9.0.0"
+    eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-deprecation: "npm:^2.0.0"
     eslint-plugin-eslint-comments: "npm:^3.2.0"
     eslint-plugin-import: "npm:eslint-plugin-i@latest"
-    eslint-plugin-isaacscript: "npm:^3.9.0"
+    eslint-plugin-isaacscript: "npm:^3.9.1"
     eslint-plugin-jsdoc: "npm:^46.9.0"
     eslint-plugin-n: "npm:^16.3.1"
     eslint-plugin-no-autofix: "npm:^1.2.3"
     eslint-plugin-only-warn: "npm:^1.1.0"
     eslint-plugin-unicorn: "npm:^49.0.0"
-    knip: "npm:^3.3.5"
+    knip: "npm:^3.4.0"
     prettier: "npm:^3.1.0"
     prettier-plugin-organize-imports: "npm:^3.2.4"
     prettier-plugin-packagejson: "npm:^2.4.6"
     ts-prune-2: "npm:^0.10.7"
   peerDependencies:
     typescript: ">= 5.0.0"
-  checksum: 1ad20bebff982ec1c952089445cddacaca94aec3664e496922b269bbae7c29e35d9d99f5a7039072f30577c38f8cdc5050bf3c0516aa61258d15c1be997bc47e
+  checksum: 2c1325f778504e0fd677df512f3d418f995250179b33dbcb51559a3b3c8dd3da78d9a66becac5b576c36b840e73b732e910bd77515a2e9140bf846df21456101
   languageName: node
   linkType: hard
 
@@ -4655,9 +4655,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"knip@npm:^3.3.5":
-  version: 3.3.5
-  resolution: "knip@npm:3.3.5"
+"knip@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "knip@npm:3.4.0"
   dependencies:
     "@ericcornelissen/bash-parser": "npm:0.5.2"
     "@npmcli/map-workspaces": "npm:3.0.4"
@@ -4679,10 +4679,11 @@ __metadata:
     zod: "npm:3.22.4"
     zod-validation-error: "npm:2.1.0"
   peerDependencies:
+    "@types/node": ">=18"
     typescript: ">=5.0.4"
   bin:
     knip: bin/knip.js
-  checksum: 5eb0ce324bd0120aa883ecec1f8bbb4680bf5479c69aa680db4571fce13bc48513f6faf47771b9af276ca3854e5549de43f7fc79a0a7c371e8541f33ec869aea
+  checksum: b88d95001ab5c2f176f0ae3f956dabc4d5d2366808683948cbc436080f641244f0911f0f90d857befccc01ebab5e51ed635d0f97dbec9974934a0ecbe717e66f
   languageName: node
   linkType: hard
 
@@ -5889,10 +5890,10 @@ __metadata:
     isaacscript: "npm:^3.29.0"
     isaacscript-common: "npm:^81.0.5"
     isaacscript-common-node: "npm:^1.4.0"
-    isaacscript-lint: "npm:^6.9.0"
+    isaacscript-lint: "npm:^6.9.1"
     isaacscript-spell: "npm:^1.11.0"
     isaacscript-tsconfig: "npm:^5.0.0"
-    tsx: "npm:^4.6.1"
+    tsx: "npm:^4.6.2"
     typescript: "npm:^5.3.2"
     typescript-to-lua: "npm:^1.22.0"
   languageName: unknown
@@ -6822,9 +6823,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^4.6.1":
-  version: 4.6.1
-  resolution: "tsx@npm:4.6.1"
+"tsx@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "tsx@npm:4.6.2"
   dependencies:
     esbuild: "npm:~0.18.20"
     fsevents: "npm:~2.3.3"
@@ -6834,7 +6835,7 @@ __metadata:
       optional: true
   bin:
     tsx: dist/cli.mjs
-  checksum: 6c0291d7f3016d40fcd6b7014d77aef07c8051e19b480287381e5c5fb348aaf6dda2fa35b85ec2b9d1e83a45f9f6feb1992b5b630f8c06cc9dbdd8312ce39f41
+  checksum: df47757e1df80bdd425be220636d4ba1da1e512dc14837573576a4d68cf93e36626862f69085ac29b04c127a74e0084939be1f15189a12e26480131176693d61
   languageName: node
   linkType: hard
 
