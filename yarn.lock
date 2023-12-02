@@ -2911,9 +2911,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-isaacscript@npm:^3.8.0":
-  version: 3.8.0
-  resolution: "eslint-plugin-isaacscript@npm:3.8.0"
+"eslint-plugin-isaacscript@npm:^3.9.0":
+  version: 3.9.0
+  resolution: "eslint-plugin-isaacscript@npm:3.9.0"
   dependencies:
     "@typescript-eslint/type-utils": "npm:^6.13.1"
     "@typescript-eslint/types": "npm:^6.13.1"
@@ -2922,7 +2922,7 @@ __metadata:
     "@typescript-eslint/parser": ">= 6.0.0"
     eslint: ">= 8.0.0"
     typescript: ">= 5.0.0"
-  checksum: 514e80393963c3fba0c46889d85fffec8341d8d8fada26b32e27e8bc30c7a90d131e22cd6380a7bb719a07e0670d28baaf234c0451784503f77adcfc95be8df2
+  checksum: 3aac1432941c65964c5f40e050f1fc033b0b7c6b8aa7ba8f5853ec4f11a29b1ce0ef42f0844c481e1c7ecd54510c3bbc6bb261180df242084e3ed0c48a27d47e
   languageName: node
   linkType: hard
 
@@ -4331,9 +4331,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-lint@npm:^6.8.0":
-  version: 6.8.0
-  resolution: "isaacscript-lint@npm:6.8.0"
+"isaacscript-lint@npm:^6.9.0":
+  version: 6.9.0
+  resolution: "isaacscript-lint@npm:6.9.0"
   dependencies:
     "@prettier/plugin-xml": "npm:^3.2.2"
     "@typescript-eslint/eslint-plugin": "npm:^6.13.1"
@@ -4346,7 +4346,7 @@ __metadata:
     eslint-plugin-deprecation: "npm:^2.0.0"
     eslint-plugin-eslint-comments: "npm:^3.2.0"
     eslint-plugin-import: "npm:eslint-plugin-i@latest"
-    eslint-plugin-isaacscript: "npm:^3.8.0"
+    eslint-plugin-isaacscript: "npm:^3.9.0"
     eslint-plugin-jsdoc: "npm:^46.9.0"
     eslint-plugin-n: "npm:^16.3.1"
     eslint-plugin-no-autofix: "npm:^1.2.3"
@@ -4359,7 +4359,7 @@ __metadata:
     ts-prune-2: "npm:^0.10.7"
   peerDependencies:
     typescript: ">= 5.0.0"
-  checksum: a8167eb2a17467aa0d0d5d6592d7e73daec55565d0d5166a505377bc547b4ba6e00f5d603cf056d4062af2e1730bb93efa56bab218435a755087cc0ee5dcd06c
+  checksum: 1ad20bebff982ec1c952089445cddacaca94aec3664e496922b269bbae7c29e35d9d99f5a7039072f30577c38f8cdc5050bf3c0516aa61258d15c1be997bc47e
   languageName: node
   linkType: hard
 
@@ -5889,7 +5889,7 @@ __metadata:
     isaacscript: "npm:^3.29.0"
     isaacscript-common: "npm:^81.0.5"
     isaacscript-common-node: "npm:^1.4.0"
-    isaacscript-lint: "npm:^6.8.0"
+    isaacscript-lint: "npm:^6.9.0"
     isaacscript-spell: "npm:^1.11.0"
     isaacscript-tsconfig: "npm:^5.0.0"
     tsx: "npm:^4.6.1"

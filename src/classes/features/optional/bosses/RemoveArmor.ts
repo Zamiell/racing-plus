@@ -32,7 +32,7 @@ export class RemoveArmor extends ConfigurableModFeature {
     // `DamageFlag.IGNORE_ARMOR` to all damage has some weird side effects, like fires not being
     // able to deal any damage, and the sneeze effect from Tainted Azazel not applying the debuff.
     if (!hasArmor(entity)) {
-      return;
+      return undefined;
     }
 
     if (hasFlag(damageFlags, DamageFlag.IGNORE_ARMOR)) {

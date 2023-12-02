@@ -27,19 +27,19 @@ export class WhoreOfBabylonFix extends ConfigurableModFeature {
     _newValue: int,
   ): boolean | undefined {
     if (healthType !== HealthType.RED) {
-      return;
+      return undefined;
     }
 
     // The bug only occurs when e.g. Razor Blade is activated on room frame 0 or room frame 1.
     // However, the `POST_PLAYER_CHANGE_HEALTH` callback will not fire a frame later, so the latest
     // we need to check for is frame 2.
     if (isAfterRoomFrame(2)) {
-      return;
+      return undefined;
     }
 
     const effects = player.GetEffects();
     if (effects.HasCollectibleEffect(CollectibleType.WHORE_OF_BABYLON)) {
-      return;
+      return undefined;
     }
 
     if (shouldWhoreOfBabylonBeActive(player)) {

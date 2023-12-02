@@ -25,11 +25,11 @@ export class FastForgetMeNow extends ConfigurableModFeature {
   ): boolean | undefined {
     // This feature depends on fast-travel.
     if (!config.FastTravel) {
-      return;
+      return undefined;
     }
 
     if (!hasFlag(useFlags, UseFlag.OWNED)) {
-      return;
+      return undefined;
     }
 
     player.RemoveCollectible(

@@ -19,6 +19,7 @@ export class IBSCheckpoint extends MandatoryModFeature {
   v = v;
 
   @CallbackCustom(ModCallbackCustom.INPUT_ACTION_PLAYER)
+  // eslint-disable-next-line isaacscript/strict-undefined-functions
   inputActionPlayer(
     _player: EntityPlayer,
     inputHook: InputHook,
@@ -28,11 +29,11 @@ export class IBSCheckpoint extends MandatoryModFeature {
       v.run.preventShootUntilGameFrame === null ||
       onOrAfterGameFrame(v.run.preventShootUntilGameFrame)
     ) {
-      return;
+      return undefined;
     }
 
     if (!isShootAction(buttonAction)) {
-      return;
+      return undefined;
     }
 
     switch (inputHook) {

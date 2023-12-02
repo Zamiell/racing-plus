@@ -28,7 +28,7 @@ export function season5ResetStartingRoomSprites(): void {
 
 export function season5InitStartingRoomSprites(
   startingBuild: readonly CollectibleType[],
-): void {
+): undefined {
   season5ResetStartingRoomSprites();
 
   const title = startingBuild.length === 1 ? "item" : "build";
@@ -40,21 +40,22 @@ export function season5InitStartingRoomSprites(
     case 1: {
       sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
 
-      break;
+      return undefined;
     }
 
     case 2: {
       sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 0);
       sprites.seededItemRight = getStartingBuildSprite(startingBuild, 1);
 
-      break;
+      return undefined;
     }
 
     case 3: {
       sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
       sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 1);
       sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 2);
-      break;
+
+      return undefined;
     }
 
     case 4: {
@@ -63,7 +64,7 @@ export function season5InitStartingRoomSprites(
       sprites.seededItemRight = getStartingBuildSprite(startingBuild, 2);
       sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 3);
 
-      break;
+      return undefined;
     }
 
     default: {

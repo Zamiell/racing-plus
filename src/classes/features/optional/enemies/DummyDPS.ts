@@ -31,7 +31,7 @@ export class DummyDPS extends ConfigurableModFeature {
   entityTakeDmgDummy(_entity: Entity, amount: float): boolean | undefined {
     // This entity constantly takes damage for some reason.
     if (amount <= 0) {
-      return;
+      return undefined;
     }
 
     const gameFrameCount = game.GetFrameCount();

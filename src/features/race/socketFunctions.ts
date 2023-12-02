@@ -38,7 +38,7 @@ socketFunctions.set("set", (rawData: string) => {
     case "string": {
       // No type conversion is necessary.
       setRace(property, data);
-      break;
+      return undefined;
     }
 
     case "boolean": {
@@ -53,7 +53,7 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, bool);
-      break;
+      return undefined;
     }
 
     case "number": {
@@ -64,14 +64,14 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, num);
-      break;
+      return undefined;
     }
 
     case "table": {
       // "startingItems" is the only property that is a table.
       const newArray = jsonDecode(data) as unknown as CollectibleType[];
       g.race.startingItems = newArray;
-      break;
+      return undefined;
     }
 
     default: {

@@ -37,7 +37,7 @@ export class SeededGlitterBombs extends MandatoryModFeature {
   @CallbackCustom(ModCallbackCustom.POST_BOMB_EXPLODED)
   postBombExploded(bomb: EntityBomb): void {
     if (bomb.SpawnerEntity === undefined) {
-      return undefined;
+      return;
     }
 
     const player = bomb.SpawnerEntity.ToPlayer();
@@ -45,7 +45,7 @@ export class SeededGlitterBombs extends MandatoryModFeature {
       player === undefined ||
       !player.HasCollectible(CollectibleType.GLITTER_BOMBS)
     ) {
-      return undefined;
+      return;
     }
 
     if (this.shouldSpawnGlitterBombPrize()) {
