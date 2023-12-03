@@ -273,7 +273,7 @@ function getScreenPosition(
   y: float,
   anchorX: float,
   anchorY: float,
-): Vector {
+): Readonly<Vector> {
   const bottomRightPos = getScreenBottomRightPos();
   return Vector(
     anchorX * bottomRightPos.X + x * (1 - anchorX * 2),

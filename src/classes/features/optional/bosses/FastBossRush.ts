@@ -263,7 +263,7 @@ export class FastBossRush extends ConfigurableModFeature {
     }
   }
 
-  getBossSpawnPosition(bossNum: int): Vector {
+  getBossSpawnPosition(bossNum: int): Readonly<Vector> {
     const room = game.GetRoom();
 
     const basePosition = BOSS_POSITIONS[bossNum];

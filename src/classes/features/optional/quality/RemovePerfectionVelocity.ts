@@ -55,7 +55,7 @@ export class RemovePerfectionVelocity extends ConfigurableModFeature {
     v.run.spawnedPerfection = true;
   }
 
-  getPerfectionPosition(): Vector {
+  getPerfectionPosition(): Readonly<Vector> {
     const room = game.GetRoom();
     const centerPos = room.GetCenterPos();
     const gridEntity = room.GetGridEntityFromPos(centerPos);

@@ -57,7 +57,7 @@ export class ShowMaxFamiliars extends ConfigurableModFeature {
   }
 }
 
-export function getTopLeftUIPositionShowMaxFamiliars(): Vector {
+export function getTopLeftUIPositionShowMaxFamiliars(): Readonly<Vector> {
   const topLeftUIPosition = getTopLeftUIPositionFreeDevilItem();
   const freeDevilItemOffset = shouldGetFreeDevilItemOnThisRun()
     ? ANOTHER_UI_ICON_OFFSET

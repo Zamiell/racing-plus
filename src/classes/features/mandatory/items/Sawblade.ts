@@ -140,7 +140,10 @@ export class Sawblade extends MandatoryModFeature {
     familiar.Velocity = VectorZero;
   }
 
-  getPositionFromAngle(familiar: EntityFamiliar, angle: float): Vector {
+  getPositionFromAngle(
+    familiar: EntityFamiliar,
+    angle: float,
+  ): Readonly<Vector> {
     const baseVector = Vector(0, DISTANCE_AWAY_FROM_PLAYER);
     const rotatedVector = baseVector.Rotated(angle);
 

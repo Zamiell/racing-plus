@@ -28,7 +28,7 @@ export function season5ResetStartingRoomSprites(): void {
 
 export function season5InitStartingRoomSprites(
   startingBuild: readonly CollectibleType[],
-): undefined {
+): void {
   season5ResetStartingRoomSprites();
 
   const title = startingBuild.length === 1 ? "item" : "build";
@@ -39,23 +39,20 @@ export function season5InitStartingRoomSprites(
   switch (startingBuild.length) {
     case 1: {
       sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
-
-      return undefined;
+      break;
     }
 
     case 2: {
       sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 0);
       sprites.seededItemRight = getStartingBuildSprite(startingBuild, 1);
-
-      return undefined;
+      break;
     }
 
     case 3: {
       sprites.seededItemCenter = getStartingBuildSprite(startingBuild, 0);
       sprites.seededItemFarLeft = getStartingBuildSprite(startingBuild, 1);
       sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 2);
-
-      return undefined;
+      break;
     }
 
     case 4: {
@@ -63,11 +60,11 @@ export function season5InitStartingRoomSprites(
       sprites.seededItemLeft = getStartingBuildSprite(startingBuild, 1);
       sprites.seededItemRight = getStartingBuildSprite(startingBuild, 2);
       sprites.seededItemFarRight = getStartingBuildSprite(startingBuild, 3);
-
-      return undefined;
+      break;
     }
 
     default: {
+      // eslint-disable-next-line isaacscript/strict-void-functions
       return error(`Unknown build length: ${startingBuild.length}`);
     }
   }
@@ -82,7 +79,7 @@ export function season5DrawStartingRoomSprites(): void {
   }
 }
 
-function getPosition(spriteName: keyof typeof sprites): Vector {
+function getPosition(spriteName: keyof typeof sprites): Readonly<Vector> {
   const room = game.GetRoom();
 
   const topRightPositionGame = room.GetGridPosition(BOTTOM_RIGHT_GRID_INDEX);

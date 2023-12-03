@@ -86,7 +86,7 @@ function drawSprites() {
   }
 }
 
-function getPosition(spriteName: keyof typeof sprites): Vector {
+function getPosition(spriteName: keyof typeof sprites): Readonly<Vector> {
   const screenCenterPos = getScreenCenterPos();
 
   switch (spriteName) {

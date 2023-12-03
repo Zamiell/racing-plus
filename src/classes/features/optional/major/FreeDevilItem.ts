@@ -199,7 +199,7 @@ export class FreeDevilItem extends ConfigurableModFeature {
   }
 }
 
-export function getTopLeftUIPositionFreeDevilItem(): Vector {
+export function getTopLeftUIPositionFreeDevilItem(): Readonly<Vector> {
   const hudOffsetVector = getHUDOffsetVector();
 
   const hasTaintedCharacterUI = anyPlayerIs(

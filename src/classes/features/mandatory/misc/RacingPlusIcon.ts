@@ -71,7 +71,7 @@ export class RacingPlusIcon extends MandatoryModFeature {
   }
 }
 
-export function getRacingPlusIconPosition(): Vector {
+export function getRacingPlusIconPosition(): Readonly<Vector> {
   const HUDOffsetVector = getHUDOffsetVector();
   const player = Isaac.GetPlayer();
 

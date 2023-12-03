@@ -250,7 +250,7 @@ export class SeededDrops extends MandatoryModFeature {
     return pickupVariant;
   }
 
-  getRNGToUse(): RNG {
+  getRNGToUse(): Readonly<RNG> {
     return inRoomType(RoomType.DEVIL, RoomType.ANGEL)
       ? v.run.rng.devilAngel
       : v.run.rng.normalRooms;
