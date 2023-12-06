@@ -277,7 +277,7 @@ function updateDelta(
   // Determining where to draw the UI indicators for players other than the first player is too
   // difficult, so ignore this case.
   if (!isFirstPlayer(player)) {
-    return undefined;
+    return;
   }
 
   const [pickupType, value] = pickupInserted;
@@ -288,8 +288,7 @@ function updateDelta(
       }
       v.run.delta.bloodOrSoulCharge += value;
       v.run.delta.bloodOrSoulChargeGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
     case PickupVariant.COIN: {
@@ -297,7 +296,7 @@ function updateDelta(
       const heartDelta = hearts - oldHearts;
       if (isKeeper(player) && heartDelta > 0) {
         // The coin that we just inserted healed Keeper by one or more coin containers.
-        return undefined;
+        return;
       }
 
       if (v.run.delta.coins === null) {
@@ -305,8 +304,7 @@ function updateDelta(
       }
       v.run.delta.coins += value;
       v.run.delta.coinsGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
     case PickupVariant.BOMB: {
@@ -315,8 +313,7 @@ function updateDelta(
       }
       v.run.delta.bombs += value;
       v.run.delta.bombsGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
     case PickupVariant.KEY: {
@@ -325,8 +322,7 @@ function updateDelta(
       }
       v.run.delta.keys += value;
       v.run.delta.keysGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
     case PickupVariant.CARD:
@@ -336,8 +332,7 @@ function updateDelta(
       }
       v.run.delta.pocketItem += value;
       v.run.delta.pocketItemGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
     case PickupVariant.TRINKET: {
@@ -346,12 +341,12 @@ function updateDelta(
       }
       v.run.delta.trinket += value;
       v.run.delta.trinketGameFrame = gameFrameCount;
-
-      return undefined;
+      break;
     }
 
+    // eslint-disable-next-line isaacscript/require-break
     default: {
-      return error(
+      error(
         `Unknown pickup variant of "${pickupType}" in the updateDelta function.`,
       );
     }
