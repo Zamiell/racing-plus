@@ -82,25 +82,7 @@ export class CharacterProgress extends ChallengeModFeature {
       v.run.resetFrame = null;
 
       // The screen is now black, so move us to the next character for the speedrun.
-      this.setNextCharacterAndRestart();
-    }
-  }
-
-  setNextCharacterAndRestart(): void {
-    v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again.
-    v.persistent.characterNum++;
-    restartOnNextFrame();
-    log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
-
-    // Speedruns with a random character order will set the next character using its own code.
-    if (!onSpeedrunWithRandomCharacterOrder()) {
-      const character = speedrunGetCurrentCharacter();
-      setRestartCharacter(character);
-
-      const characterName = getCharacterName(character);
-      log(
-        `Speedrun: Set the next character to be ${characterName} (${character}) and set to restart on the next frame.`,
-      );
+      setNextCharacterAndRestart();
     }
   }
 
@@ -254,5 +236,24 @@ export class CharacterProgress extends ChallengeModFeature {
       renderFrameCount + DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT;
 
     speedrunTimerCheckpointTouched();
+  }
+}
+
+/** This is not a class method so that we can call it from debug commands. */
+export function setNextCharacterAndRestart(): void {
+  v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again.
+  v.persistent.characterNum++;
+  restartOnNextFrame();
+  log(`Speedrun: Now on character #${v.persistent.characterNum}.`);
+
+  // Speedruns with a random character order will set the next character using its own code.
+  if (!onSpeedrunWithRandomCharacterOrder()) {
+    const character = speedrunGetCurrentCharacter();
+    setRestartCharacter(character);
+
+    const characterName = getCharacterName(character);
+    log(
+      `Speedrun: Set the next character to be ${characterName} (${character}) and set to restart on the next frame.`,
+    );
   }
 }
