@@ -19,10 +19,10 @@ import {
   VectorZero,
   addRoomClearCharges,
   anyPlayerCloserThan,
-  copySet,
+  arrayRemove,
   findFreePosition,
   game,
-  getAllBossesSet,
+  getAllNonStoryBosses,
   getEntityTypeVariantFromBossID,
   getNPCs,
   getRandomArrayElement,
@@ -106,14 +106,8 @@ const BOSS_RUSH_EXCLUSIONS = [
 ] as const;
 
 const BOSS_RUSH_BOSSES: readonly BossID[] = (() => {
-  const nonStoryBosses = getAllBossesSet(false);
-  const bossRushBossesSet = copySet(nonStoryBosses);
-
-  for (const bossID of BOSS_RUSH_EXCLUSIONS) {
-    bossRushBossesSet.delete(bossID);
-  }
-
-  return [...bossRushBossesSet.values()];
+  const nonStoryBosses = getAllNonStoryBosses();
+  return arrayRemove(nonStoryBosses, ...BOSS_RUSH_EXCLUSIONS);
 })();
 
 /** In vanilla, it spawns 2 bosses at a time for 15 waves. */

@@ -8,3 +8,6 @@ import { main } from "./main";
 main();
 
 // Do not add any code to this file! Edit the "main.ts" file instead.
+// isaacscript-common dev forced recompilation
+// isaacscript-common dev forced recompilation
+// isaacscript-common dev forced recompilation
