@@ -239,8 +239,8 @@ export class CharacterProgress extends ChallengeModFeature {
   }
 }
 
-/** This is not a class method so that we can call it from debug commands. */
-export function setNextCharacterAndRestart(): void {
+/** This is not a class method so that we can more-easily call it from debug commands. */
+function setNextCharacterAndRestart() {
   v.persistent.performedFastReset = true; // Otherwise we will go back to the beginning again.
   v.persistent.characterNum++;
   restartOnNextFrame();
