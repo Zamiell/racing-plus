@@ -18,7 +18,7 @@ import {
   GRID_INDEX_CENTER_OF_1X1_ROOM,
   ModCallbackCustom,
   RENDER_FRAMES_PER_SECOND,
-  characterCanTakeFreeDevilDeals,
+  canCharacterTakeFreeDevilDeals,
   findFreePosition,
   game,
   getEnumValues,
@@ -358,7 +358,7 @@ export class SeededDeath extends MandatoryModFeature {
 
   canCharacterDieFromTakingADevilDeal(player: EntityPlayer): boolean {
     const character = player.GetPlayerType();
-    return !characterCanTakeFreeDevilDeals(character) && !isKeeper(player);
+    return !canCharacterTakeFreeDevilDeals(character) && !isKeeper(player);
   }
 
   preRevivalDeathAnimation(player: EntityPlayer): void {

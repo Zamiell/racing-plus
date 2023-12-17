@@ -8,8 +8,8 @@ import {
   CallbackCustom,
   ModCallbackCustom,
   ReadonlySet,
-  characterStartsWithActiveItem,
   copyArray,
+  doesCharacterStartWithActiveItem,
   game,
   getCollectibleName,
   getTrinketName,
@@ -57,7 +57,7 @@ const CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS = new ReadonlySet<PlayerType>([
   PlayerType.JACOB_2_B, // 39
 ]);
 
-function characterStartsWithActiveItemRacingPlus(character: PlayerType) {
+function doesCharacterStartWithActiveItemRacingPlus(character: PlayerType) {
   return CHARACTERS_WITH_AN_ACTIVE_ITEM_RACING_PLUS.has(character);
 }
 
@@ -254,8 +254,8 @@ export function giveDiversityItemsAndDoItemBans(
 function shouldGetSchoolbagInDiversity(player: EntityPlayer): boolean {
   const character = player.GetPlayerType();
   const startsWithActiveItem =
-    characterStartsWithActiveItem(character) ||
-    characterStartsWithActiveItemRacingPlus(character);
+    doesCharacterStartWithActiveItem(character) ||
+    doesCharacterStartWithActiveItemRacingPlus(character);
 
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they

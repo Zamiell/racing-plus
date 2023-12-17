@@ -10,8 +10,8 @@ import type { PlayerHealth } from "isaacscript-common";
 import {
   CallbackCustom,
   ModCallbackCustom,
-  characterCanHaveRedHearts,
-  characterGetsBlackHeartFromEternalHeart,
+  canCharacterHaveRedHearts,
+  doesCharacterGetBlackHeartFromEternalHeart,
   game,
   getPlayerHealth,
   getRandom,
@@ -96,11 +96,11 @@ export function seededFloorsBefore(): void {
 
   // Eternal Hearts will be lost since we are about to change floors, so convert it to other types
   // of health. `eternalHearts` will be equal to 1 if we have an Eternal Heart.
-  if (characterCanHaveRedHearts(character)) {
+  if (canCharacterHaveRedHearts(character)) {
     v.run.playerHealth.maxHearts += v.run.playerHealth.eternalHearts * 2;
     v.run.playerHealth.hearts += v.run.playerHealth.eternalHearts * 2;
   } else {
-    const heartSubType = characterGetsBlackHeartFromEternalHeart(character)
+    const heartSubType = doesCharacterGetBlackHeartFromEternalHeart(character)
       ? HeartSubType.BLACK
       : HeartSubType.SOUL;
     repeat(v.run.playerHealth.eternalHearts, () => {
@@ -147,7 +147,7 @@ export function seededFloorsBefore(): void {
 
   // Modification 5: Full health (which always applies to characters who cannot have red heart
   // containers)
-  if (characterCanHaveRedHearts(character)) {
+  if (canCharacterHaveRedHearts(character)) {
     player.AddMaxHearts(2, false);
     player.AddHearts(1);
     const fullHealthMod = getRandom(rng);
@@ -164,7 +164,7 @@ export function seededFloorsBefore(): void {
   const criticalHealthMod = getRandom(rng);
   if (criticalHealthMod < 0.75) {
     // 75% chance to not be at critical health.
-    if (characterCanHaveRedHearts(character)) {
+    if (canCharacterHaveRedHearts(character)) {
       player.AddMaxHearts(2, false);
       player.AddHearts(2);
     } else {
