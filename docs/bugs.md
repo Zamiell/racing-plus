@@ -18,7 +18,7 @@ Some gameplay-related bugs are not fixable due to the limitations of the game's 
 - The effects of an Empress? card will be cut short if you enter a trapdoor.
 - If you touch the edge of a crawl space, you can sometimes trigger the vanilla animation. If this happens, you might return to the starting room of the floor. This has to do with the vanilla game not reading the state of the crawl space correctly. (Reported by KiraKeepKool)
 - Custom fortunes and custom Rules Card text no longer works as of vanilla patch 1.7.5 (due to localization).
-- Metronome can grant the "placeholder" items that are used to add new items to the Treasure Room pool. (Reported by Hispa)
+- Metronome can grant the "placeholder" items that are used to add new items to the Treasure Room pool. It can also grant banned items like Metronome. (Reported by Hispa and Gamonymous)
 - In seeded races, it is possible to get The Fallen as a boss without having taken a Devil Deal. (Reported by Gamonymous)
 - In seeded races, the stats HUD will always show Devil Rooms, regardless of whether Devil Rooms or Angel Rooms are locked in to the seed.
 
