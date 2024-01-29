@@ -221,9 +221,6 @@ export class ShowPillsOnHUD extends ConfigurableModFeature {
 
   checkNewUsedPill(pillEffect: PillEffect, pillColor: PillColor): void {
     const normalPillColor = getNormalPillColorFromHorse(pillColor);
-    Isaac.DebugString(
-      `GETTING HERE - pillColor: ${pillColor}, normalPillColor: ${normalPillColor}, ${isNormalPillColor(normalPillColor)}`,
-    );
 
     if (
       // Ignore gold pills. (They show up in the `POST_USE_PILL_FILTER` callback as
