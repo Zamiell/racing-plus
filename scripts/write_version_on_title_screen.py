@@ -38,14 +38,14 @@ def write_version(version):
 
     # Get the dimensions of how big the text will be.
     combined_text = "V" + version
-    width, height = title_draw.textsize(combined_text, font=LARGE_FONT)
+    width = title_draw.textlength(combined_text, font=LARGE_FONT)
 
     # Draw the version.
     title_draw.text((420 - width / 2, 236), "V", COLOR, font=SMALL_FONT)  # The "V"
     title_draw.text((430 - width / 2, 230), version, COLOR, font=LARGE_FONT)
 
     # Draw the URL.
-    width, height = title_draw.textsize(URL, font=URL_FONT)
+    width = title_draw.textlength(URL, font=URL_FONT)
     title_draw.text((420 - width / 2, 250), URL, COLOR, font=URL_FONT)
 
     title_menu_file_1_path = os.path.join(MAIN_MENU_DIRECTORY_PATH, TITLE_MENU_FILE_1)
