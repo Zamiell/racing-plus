@@ -22,6 +22,7 @@ import {
   getPillEffectName,
   getScreenBottomY,
   isActionPressedOnAnyInput,
+  isNormalPillColor,
   logError,
   newSprite,
 } from "isaacscript-common";
@@ -219,21 +220,27 @@ export class ShowPillsOnHUD extends ConfigurableModFeature {
   }
 
   checkNewUsedPill(pillEffect: PillEffect, pillColor: PillColor): void {
-    const normalizedPillColor = getNormalPillColorFromHorse(pillColor);
+    const normalPillColor = getNormalPillColorFromHorse(pillColor);
+    Isaac.DebugString(
+      `GETTING HERE - pillColor: ${pillColor}, normalPillColor: ${normalPillColor}, ${isNormalPillColor(normalPillColor)}`,
+    );
 
-    if (this.isPillColorRecordedAlready(normalizedPillColor)) {
-      return;
+    if (
+      // Ignore gold pills. (They show up in the `POST_USE_PILL_FILTER` callback as
+      // `PillColor.NULL`.)
+      isNormalPillColor(normalPillColor) &&
+      !this.isPillColorRecorded(normalPillColor)
+    ) {
+      // This is the first time we have used this pill, so keep track of the pill color and effect.
+      const pillDescription: PillDescription = {
+        pillColor: normalPillColor,
+        pillEffect,
+      };
+      v.run.pillsUsed.push(pillDescription);
     }
-
-    // This is the first time we have used this pill, so keep track of the pill color and effect.
-    const pillDescription: PillDescription = {
-      pillColor: normalizedPillColor,
-      pillEffect,
-    };
-    v.run.pillsUsed.push(pillDescription);
   }
 
-  isPillColorRecordedAlready(pillColor: PillColor): boolean {
+  isPillColorRecorded(pillColor: PillColor): boolean {
     return v.run.pillsUsed.some((pill) => pill.pillColor === pillColor);
   }
 }

@@ -368,6 +368,7 @@ function getChargeSituationForBattery(
       };
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Handle modded battery types.
       return {

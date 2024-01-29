@@ -133,10 +133,6 @@ function getPosition(spriteName: keyof typeof sprites): Readonly<Vector> {
     case "goalIcon": {
       return screenCenterPos.add(Vector(25, 95));
     }
-
-    default: {
-      return error(`Race room sprites named "${spriteName}" are unsupported.`);
-    }
   }
 }
 

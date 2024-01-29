@@ -153,6 +153,7 @@ function insertBloodOrSoulCharge(
       return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Ignore modded heart sub-types.
       return undefined;
@@ -213,6 +214,7 @@ function insertCoin(
       return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Ignore modded coin sub-types.
       return undefined;
@@ -260,6 +262,7 @@ function insertKey(
       return [PickupVariant.KEY, value];
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Ignore modded key sub-types.
       return undefined;
@@ -323,6 +326,7 @@ function insertBomb(
       return undefined;
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Ignore modded bomb sub-types.
       return undefined;
@@ -350,6 +354,7 @@ function insertPoop(
       return [PickupVariant.BOMB, value];
     }
 
+    // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Ignore modded poop sub-types.
       return undefined;
