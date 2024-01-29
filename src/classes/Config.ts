@@ -69,7 +69,7 @@ export class Config {
   RunTimer = true;
   ShowMaxFamiliars = true;
   ShowNumSacrifices = true;
-  ShowPills = true;
+  ShowPillsOnHUD = true;
   SpeedUpFadeIn = true;
   SubvertTeleport = true;
   TaintedSamsonChargeBar = true; // 27 (charge bar)

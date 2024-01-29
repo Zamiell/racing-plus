@@ -70,8 +70,8 @@ const v = {
   },
 };
 
-export class ShowPills extends ConfigurableModFeature {
-  configKey: keyof Config = "ShowPills";
+export class ShowPillsOnHUD extends ConfigurableModFeature {
+  configKey: keyof Config = "ShowPillsOnHUD";
   v = v;
 
   constructor() {

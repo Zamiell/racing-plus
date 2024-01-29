@@ -156,7 +156,7 @@ const FEATURE_CLASSES = [
   fc.RunTimer,
   fc.ShowMaxFamiliars,
   fc.ShowNumSacrifices,
-  fc.ShowPills,
+  fc.ShowPillsOnHUD,
   fc.SpeedUpFadeIn,
   fc.SubvertTeleport,
   fc.TaintedSamsonChargeBar, // 27 (charge bar)

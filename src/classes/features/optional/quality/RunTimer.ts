@@ -16,7 +16,7 @@ import {
   getTopLeftUIPositionShowMaxFamiliars,
   showingMaxFamiliarsIcon,
 } from "./ShowMaxFamiliars";
-import { getNumIdentifiedPills } from "./ShowPills";
+import { getNumIdentifiedPills } from "./ShowPillsOnHUD";
 
 const OFFSET_FROM_WHERE_AN_ICON_WOULD_BE = Vector(14, -10);
 
@@ -44,7 +44,7 @@ export class RunTimer extends ConfigurableModFeature {
       hud.IsVisible() &&
       isActionPressedOnAnyInput(ButtonAction.MAP) &&
       // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI.
-      (!config.ShowPills || getNumIdentifiedPills() < 11)
+      (!config.ShowPillsOnHUD || getNumIdentifiedPills() < 11)
     );
   }
 

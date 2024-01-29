@@ -685,7 +685,7 @@ export const QUALITY_OF_LIFE_CHANGES_1 = [
     ],
   ],
   [
-    "ShowPills",
+    "ShowPillsOnHUD",
     [
       ModConfigMenuOptionType.BOOLEAN,
       "0510",

@@ -138,7 +138,7 @@ export { RunTimer } from "./classes/features/optional/quality/RunTimer";
 export { ShowDreamCatcher } from "./classes/features/optional/quality/ShowDreamCatcher";
 export { ShowMaxFamiliars } from "./classes/features/optional/quality/ShowMaxFamiliars";
 export { ShowNumSacrifices } from "./classes/features/optional/quality/ShowNumSacrifices";
-export { ShowPills } from "./classes/features/optional/quality/ShowPills";
+export { ShowPillsOnHUD } from "./classes/features/optional/quality/ShowPillsOnHUD";
 export { SpeedUpFadeIn } from "./classes/features/optional/quality/SpeedUpFadeIn";
 export { SubvertTeleport } from "./classes/features/optional/quality/SubvertTeleport";
 export { TaintedSamsonChargeBar } from "./classes/features/optional/quality/TaintedSamsonChargeBar";

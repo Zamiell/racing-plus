@@ -338,7 +338,7 @@ Post-flip actions:
 - `0507` <!-- ShowRunTimer --> The run timer (for in-game time) will only be shown when the player holds down the map key.
 - `0508` <!-- ShowMaxFamiliars --> An icon will be shown on the UI when the player has reached the maximum amount of familiars (i.e. 64).
 - `0509` <!-- ShowNumSacrifices --> The number of sacrifices will be shown in the top-left when in a Sacrifice Room.
-- `0510` <!-- ShowPills --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
+- `0510` <!-- ShowPillsOnHUD --> Identified pills will be shown when the player presses the map button (tab). (Only up to 7 will be shown.)
 
 > Why? Items that generate familiars (e.g. Compost) will be do nothing if the player is currently at the maximum amount.
 
