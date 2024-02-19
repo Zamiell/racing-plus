@@ -230,6 +230,10 @@ function initSeededSprites() {
 
       break;
     }
+
+    default: {
+      break;
+    }
   }
 }
 

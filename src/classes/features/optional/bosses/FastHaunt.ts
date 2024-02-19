@@ -144,6 +144,10 @@ export class FastHaunt extends ConfigurableModFeature {
         sprite.PlaybackSpeed = 1;
         break;
       }
+
+      default: {
+        break;
+      }
     }
   }
 }
