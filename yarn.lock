@@ -4381,24 +4381,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common-node@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "isaacscript-common-node@npm:3.0.0"
-  dependencies:
-    "@arktype/fs": "npm:^0.0.8"
-    chalk: "npm:^5.3.0"
-    command-exists: "npm:^1.2.9"
-    diff: "npm:^5.1.0"
-    dotenv: "npm:^16.3.1"
-    execa: "npm:^8.0.1"
-    isaacscript-common-ts: "npm:^13.1.8"
-    jsonc-parser: "npm:^3.2.0"
-    npm-check-updates: "npm:^16.14.12"
-    zod: "npm:^3.22.4"
-  checksum: 10c0/3ec64a45f39d578c21ccfdc80822523b7a7daa0012375498927d0ed41fe2f32c79371fc5f5cf4f373216afaaf03a5b87b59217ef0370f4b38d60304ebaa65d51
-  languageName: node
-  linkType: hard
-
 "isaacscript-common-node@npm:^3.0.1":
   version: 3.0.1
   resolution: "isaacscript-common-node@npm:3.0.1"
@@ -4417,7 +4399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript-common-ts@npm:^13.1.0, isaacscript-common-ts@npm:^13.1.8":
+"isaacscript-common-ts@npm:^13.1.0":
   version: 13.5.1
   resolution: "isaacscript-common-ts@npm:13.5.1"
   dependencies:
@@ -4493,9 +4475,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isaacscript@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "isaacscript@npm:4.0.1"
+"isaacscript@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "isaacscript@npm:4.2.2"
   dependencies:
     "@commander-js/extra-typings": "npm:^12.0.0"
     "@zamiell/sync-directory": "npm:^6.0.5"
@@ -4503,7 +4485,7 @@ __metadata:
     chalk: "npm:^5.3.0"
     commander: "npm:^12.0.0"
     figlet: "npm:^1.7.0"
-    isaacscript-common-node: "npm:^3.0.0"
+    isaacscript-common-node: "npm:^3.0.1"
     isaacscript-common-ts: "npm:^16.1.0"
     jsonc-parser: "npm:^3.2.1"
     klaw-sync: "npm:^6.0.0"
@@ -4520,7 +4502,7 @@ __metadata:
       optional: true
   bin:
     isaacscript: dist/main.js
-  checksum: 10c0/1bc4182b66cc48471d926f76801d40f75baf43415f351580b2b1029589715c8bb9c64013b8225f781c309b56c17a8a5346fb430a79c05776e0061c3196f11c8d
+  checksum: 10c0/9d4798afc2d5b9b5cfdd61a310b0ad8db914998521b94305a2395a55ce65fcc4ad2958570e00745701c053d4e8b9dc988808fac16cf268418a2e5a0c68bd99bb
   languageName: node
   linkType: hard
 
@@ -6039,7 +6021,7 @@ __metadata:
   dependencies:
     convert-xml-to-json: "npm:^1.0.3"
     isaac-typescript-definitions: "npm:^41.0.0"
-    isaacscript: "npm:^4.0.1"
+    isaacscript: "npm:^4.2.2"
     isaacscript-common: "npm:^87.2.2"
     isaacscript-common-node: "npm:^3.0.1"
     isaacscript-lint: "npm:^6.20.0"

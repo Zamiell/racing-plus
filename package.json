@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaacscript": "^4.0.1",
+    "isaacscript": "^4.2.2",
     "isaacscript-common-node": "^3.0.1",
     "isaacscript-lint": "^6.20.0",
     "isaacscript-spell": "^1.14.0",
