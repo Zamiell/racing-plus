@@ -96,7 +96,7 @@ function setFastTravelEntityState(
   entityDescription.state = state;
 }
 
-// eslint-disable-next-line isaacscript/no-mutable-return
+// eslint-disable-next-line complete/no-mutable-return
 function getFastTravelMap(
   fastTravelEntityType: FastTravelEntityType,
 ): Map<number, FastTravelEntityDescription> {

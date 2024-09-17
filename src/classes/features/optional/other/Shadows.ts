@@ -167,7 +167,7 @@ export class Shadows extends MandatoryModFeature {
   }
 
   getShadows(): void {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition,no-constant-condition
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     while (true) {
       const rawData = socket.readUDP();
       if (rawData === undefined) {

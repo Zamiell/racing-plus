@@ -67,8 +67,10 @@ import { g } from "../../globals";
 import { config } from "../../modConfigMenu";
 import { v } from "./v";
 
-/** Contains tuples of: `[entityType: EntityType, variant: int, subType: int]` */
-const VICTORY_LAP_BOSSES = [
+// eslint-disable-next-line complete/require-capital-const-assertions
+const VICTORY_LAP_BOSSES: ReadonlyArray<
+  readonly [entityType: EntityType, variant: int, subType: int]
+> = [
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.NORMAL], // 19.0.0
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.GREEN], // 19.0.1
   [EntityType.LARRY_JR, LarryJrVariant.LARRY_JR, LarryJrSubType.BLUE], // 19.0.2
@@ -249,7 +251,7 @@ const VICTORY_LAP_BOSSES = [
   [EntityType.CLUTCH, 0, 0], // 921.0.0
   // - Don't include Dogma (950.0) since it is a story boss.
   // - Don't include The Beast (951.0) since it is a story boss.
-] as const;
+];
 
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
@@ -277,8 +279,6 @@ function checkVictoryLapBossReplace() {
 
   const numBosses = v.run.numVictoryLaps + 1;
   repeat(numBosses, () => {
-    // The "isaacscript/strict-enums" is bugged on the next line.
-    // eslint-disable-next-line isaacscript/strict-enums
     const randomBoss = getRandomArrayElement(VICTORY_LAP_BOSSES, rng);
     const [entityType, variant, subType] = randomBoss;
     spawnBoss(entityType, variant, subType, centerPos);

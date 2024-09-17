@@ -468,9 +468,11 @@ export class Season3 extends ChallengeModFeature {
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)
-  preItemPickup(): void {
+  preItemPickup(): boolean | undefined {
     // We don't check for the Polaroid / Negative because the players could re-roll the photos.
     this.spawnTrapdoorOnTakeMomCollectible();
+
+    return undefined;
   }
 
   /**
@@ -510,7 +512,7 @@ export class Season3 extends ChallengeModFeature {
     ItemType.PASSIVE,
     CollectibleTypeCustom.CHECKPOINT,
   )
-  preItemPickupCheckpoint(): void {
+  preItemPickupCheckpoint(): boolean | undefined {
     // Show the remaining goals.
     v.run.goalCompleted = true;
 
@@ -520,6 +522,8 @@ export class Season3 extends ChallengeModFeature {
     if (goal !== undefined) {
       arrayRemoveInPlace(v.persistent.remainingGoals, goal);
     }
+
+    return undefined;
   }
 }
 

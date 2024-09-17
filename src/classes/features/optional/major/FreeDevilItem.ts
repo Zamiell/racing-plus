@@ -142,7 +142,9 @@ export class FreeDevilItem extends ConfigurableModFeature {
 
     return (
       itemPoolType === ItemPoolType.DEVIL &&
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       collectible.Price !== PickupPrice.NULL &&
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
       collectible.Price !== PickupPrice.FREE
     );
   }

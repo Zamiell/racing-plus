@@ -339,9 +339,12 @@ export class StreakText extends MandatoryModFeature {
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)
-  preItemPickup(_player: EntityPlayer, pickingUpItem: PickingUpItem): void {
+  preItemPickup(
+    _player: EntityPlayer,
+    pickingUpItem: PickingUpItem,
+  ): boolean | undefined {
     if (pickingUpItem.itemType === ItemType.NULL) {
-      return;
+      return undefined;
     }
 
     const trinket = pickingUpItem.itemType === ItemType.TRINKET;
@@ -350,6 +353,8 @@ export class StreakText extends MandatoryModFeature {
       : getCollectibleName(pickingUpItem.subType);
 
     setStreakText(name);
+
+    return undefined;
   }
 }
 

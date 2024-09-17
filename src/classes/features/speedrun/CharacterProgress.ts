@@ -221,7 +221,7 @@ export class CharacterProgress extends ChallengeModFeature {
     ItemType.PASSIVE,
     CollectibleTypeCustom.CHECKPOINT,
   )
-  preItemPickupCheckpoint(player: EntityPlayer): void {
+  preItemPickupCheckpoint(player: EntityPlayer): boolean | undefined {
     const renderFrameCount = Isaac.GetFrameCount();
 
     // Give them the Checkpoint custom item. (This is used by the LiveSplit auto-splitter to know
@@ -236,6 +236,8 @@ export class CharacterProgress extends ChallengeModFeature {
       renderFrameCount + DELAY_RENDER_FRAMES_BEFORE_STARTING_FADEOUT;
 
     speedrunTimerCheckpointTouched();
+
+    return undefined;
   }
 }
 

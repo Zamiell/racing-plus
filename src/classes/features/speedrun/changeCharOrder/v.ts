@@ -34,7 +34,7 @@ export const v = {
  * We must initialize the persistent data with default values or else the save data merge will not
  * copy over old persistent data.
  */
-// eslint-disable-next-line isaacscript/no-mutable-return
+// eslint-disable-next-line complete/no-mutable-return
 function getBlankCharOrders(): Map<ChallengeCustomAbbreviation, PlayerType[]> {
   const charOrders = new Map<ChallengeCustomAbbreviation, PlayerType[]>();
 

@@ -86,7 +86,7 @@ export function season2InitStartingRoomSprites(
     }
 
     default: {
-      // eslint-disable-next-line isaacscript/strict-void-functions
+      // eslint-disable-next-line complete/strict-void-functions
       return error(`Unknown build length: ${startingBuild.length}`);
     }
   }

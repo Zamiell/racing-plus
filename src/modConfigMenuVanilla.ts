@@ -1,4 +1,9 @@
-import { ModConfigMenuOptionType } from "isaac-typescript-definitions";
+import {
+  AnnouncerVoiceMode,
+  ConsoleFont,
+  ModConfigMenuOptionType,
+} from "isaac-typescript-definitions";
+import { isBoolean, isEnumValue, isNumber, logError } from "isaacscript-common";
 import { deleteOldConfig, onOff } from "./modConfigMenu";
 
 const CATEGORY_NAME = "Vanilla Options";
@@ -29,15 +34,11 @@ export function modConfigMenuVanillaInit(): void {
     Maximum: 2,
     Display: () => `Announcer Voice Mode: ${getAnnouncerVoiceModeText()}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (
-        newValue === undefined ||
-        typeof newValue === "boolean" ||
-        (newValue !== 0 && newValue !== 1 && newValue !== 2)
-      ) {
-        return;
+      if (isNumber(newValue) && isEnumValue(newValue, AnnouncerVoiceMode)) {
+        Options.AnnouncerVoiceMode = newValue;
+      } else {
+        logError("Failed to parse the new value for: Announcer Voice Mode");
       }
-
-      Options.AnnouncerVoiceMode = newValue;
     },
     Info: [
       "Whether the announcer voice should play when using items, pills, cards, and runes.",
@@ -51,15 +52,11 @@ export function modConfigMenuVanillaInit(): void {
     Maximum: 2,
     Display: () => `Debug Console Font: ${getConsoleFontText()}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (
-        newValue === undefined ||
-        typeof newValue === "boolean" ||
-        (newValue !== 0 && newValue !== 1 && newValue !== 2)
-      ) {
-        return;
+      if (isNumber(newValue) && isEnumValue(newValue, ConsoleFont)) {
+        Options.ConsoleFont = newValue;
+      } else {
+        logError("Failed to parse the new value for: Debug Console Font");
       }
-
-      Options.ConsoleFont = newValue;
     },
     Info: ["Customize the font of the in-game debug console."],
   });
@@ -69,11 +66,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.DebugConsoleEnabled,
     Display: () => `Debug Console: ${onOff(Options.DebugConsoleEnabled)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.DebugConsoleEnabled = newValue;
+      } else {
+        logError("Failed to parse the new value for: Debug Console");
       }
-
-      Options.DebugConsoleEnabled = newValue;
     },
     Info: ["Enable or disable the in-game debug console."],
   });
@@ -84,11 +81,11 @@ export function modConfigMenuVanillaInit(): void {
     Display: () =>
       `Faded Console Display: ${onOff(Options.FadedConsoleDisplay)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.FadedConsoleDisplay = newValue;
+      } else {
+        logError("Failed to parse the new value for: Faded Console Display");
       }
-
-      Options.FadedConsoleDisplay = newValue;
     },
     Info: [
       "Shows Lua errors and other console output in-game without having to manually bring up the console.",
@@ -102,16 +99,11 @@ export function modConfigMenuVanillaInit(): void {
     Maximum: 99,
     Display: () => `Max Render Scale: ${Options.MaxRenderScale}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (
-        newValue === undefined ||
-        typeof newValue === "boolean" ||
-        newValue < 1 ||
-        newValue > 99
-      ) {
-        return;
+      if (isNumber(newValue) && newValue >= 1 && newValue <= 99) {
+        Options.MaxRenderScale = newValue;
+      } else {
+        logError("Failed to parse the new value for: Max Render Scale");
       }
-
-      Options.MaxRenderScale = newValue;
     },
     Info: [
       "How big the window can be before the game changes the rendering to fill the screen.",
@@ -125,16 +117,11 @@ export function modConfigMenuVanillaInit(): void {
     Maximum: 99,
     Display: () => `Max Scale: ${Options.MaxScale}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (
-        newValue === undefined ||
-        typeof newValue === "boolean" ||
-        newValue < 1 ||
-        newValue > 99
-      ) {
-        return;
+      if (isNumber(newValue) && newValue >= 1 && newValue <= 99) {
+        Options.MaxScale = newValue;
+      } else {
+        logError("Failed to parse the new value for: Max Scale");
       }
-
-      Options.MaxScale = newValue;
     },
     Info: ["n/a"],
   });
@@ -144,11 +131,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.MouseControl,
     Display: () => `Mouse Control: ${onOff(Options.MouseControl)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.MouseControl = newValue;
+      } else {
+        logError("Failed to parse the new value for: Mouse Control");
       }
-
-      Options.MouseControl = newValue;
     },
     Info: [
       "Whether the mouse can be used to shoot tears and control items like Epic Fetus or Marked.",
@@ -160,11 +147,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.PauseOnFocusLost,
     Display: () => `Pause on Focus Lost: ${onOff(Options.PauseOnFocusLost)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.PauseOnFocusLost = newValue;
+      } else {
+        logError("Failed to parse the new value for: Pause on Focus Lost");
       }
-
-      Options.PauseOnFocusLost = newValue;
     },
     Info: [
       "Whether the game will automatically pause if you switch to a different program.",
@@ -176,11 +163,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.RumbleEnabled,
     Display: () => `Rumble: ${onOff(Options.RumbleEnabled)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.RumbleEnabled = newValue;
+      } else {
+        logError("Failed to parse the new value for: Rumble");
       }
-
-      Options.RumbleEnabled = newValue;
     },
     Info: ["Whether the rumble feature is enabled for controller players."],
   });
@@ -190,11 +177,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.SaveCommandHistory,
     Display: () => `Save Command History: ${onOff(Options.SaveCommandHistory)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.SaveCommandHistory = newValue;
+      } else {
+        logError("Failed to parse the new value for: Save Command History");
       }
-
-      Options.SaveCommandHistory = newValue;
     },
     Info: [
       "Whether the game will save the history of executed debug console commands.",
@@ -207,11 +194,11 @@ export function modConfigMenuVanillaInit(): void {
     Display: () =>
       `Borderless Fullscreen: ${onOff(Options.UseBorderlessFullscreen)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.UseBorderlessFullscreen = newValue;
+      } else {
+        logError("Failed to parse the new value for: Borderless Fullscreen");
       }
-
-      Options.UseBorderlessFullscreen = newValue;
     },
     Info: ["This only takes effect if the game is in full screen mode."],
   });
@@ -221,11 +208,11 @@ export function modConfigMenuVanillaInit(): void {
     CurrentSetting: () => Options.VSync,
     Display: () => `VSync: ${onOff(Options.VSync)}`,
     OnChange: (newValue: number | boolean | undefined) => {
-      if (newValue === undefined || typeof newValue === "number") {
-        return;
+      if (isBoolean(newValue)) {
+        Options.VSync = newValue;
+      } else {
+        logError("Failed to parse the new value for: VSync");
       }
-
-      Options.VSync = newValue;
     },
     Info: ["n/a"],
   });

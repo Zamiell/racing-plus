@@ -3,17 +3,19 @@
   // We specify the schema to get auto-complete and validation.
   "$schema": "https://raw.githubusercontent.com/IsaacScript/isaacscript/main/packages/isaacscript-cli/schemas/tsconfig-isaacscript-schema.json",
 
-  // We extend the standard IsaacScript config:
-  // https://github.com/IsaacScript/isaacscript/blob/main/packages/isaacscript-tsconfig/tsconfig.mod.json
-  "extends": "isaacscript-tsconfig/tsconfig.mod.json",
+  // We extend the standard IsaacScript configs.
+  "extends": [
+    // https://github.com/complete-ts/complete/blob/main/packages/complete-tsconfig/tsconfig.base.json
+    "complete-tsconfig/tsconfig.base.json",
 
-  // A list of the TypeScript files to compile.
-  "include": ["./src/**/*.ts"],
+    // https://github.com/IsaacScript/isaacscript/blob/main/packages/isaacscript-tsconfig/tsconfig.mod.json
+    "isaacscript-tsconfig/tsconfig.mod.json",
+  ],
 
   // TypeScriptToLua settings
   "tstl": {
     "luaTarget": "5.3",
-    "luaBundle": "./mod/main.lua", // Will bundle all output Lua files into a single file.
+    "luaBundle": "main.lua", // Will bundle all output Lua files into a single file of "./mod/main.lua".
     "luaBundleEntry": "./src/bundleEntry.ts",
     "luaPlugins": [
       // A plugin to add an explanatory comment at the top of the compiled "main.lua" file.
@@ -34,7 +36,8 @@
 
   // IsaacScript settings
   "isaacscript": {
-    // A list of objects that represent the custom stages that are in your mod, if any. See:
+    // A list of objects that represent the custom stages that are in your mod, if any. You can
+    // safely delete this section if you do not have any custom stages. See:
     // https://isaacscript.github.io/main/custom-stages
     "customStages": [],
   },

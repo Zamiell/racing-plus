@@ -13,12 +13,12 @@ type ConfigDescription = readonly [
   ],
 ];
 
+const MAX_CONFIG_PAGE_LENGTH = 10; // eslint-disable-line @typescript-eslint/no-unused-vars
+
 export type ConfigDescriptions = TupleWithMaxLength<
   ConfigDescription,
   typeof MAX_CONFIG_PAGE_LENGTH
 >;
-
-const MAX_CONFIG_PAGE_LENGTH = 10;
 
 // 0001-0010
 export const MAJOR_CHANGES = [

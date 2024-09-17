@@ -1,4 +1,4 @@
-/* eslint-disable isaacscript/complete-sentences-line-comments */
+/* eslint-disable complete/complete-sentences-line-comments */
 
 import type { ModFeature } from "isaacscript-common";
 import * as fc from "./featureClasses";

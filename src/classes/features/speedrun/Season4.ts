@@ -291,7 +291,10 @@ export class Season4 extends ChallengeModFeature {
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)
-  preItemPickup(_player: EntityPlayer, pickingUpItem: PickingUpItem): void {
+  preItemPickup(
+    _player: EntityPlayer,
+    pickingUpItem: PickingUpItem,
+  ): boolean | undefined {
     if (
       isPickingUpItemCollectible(pickingUpItem) &&
       inRoomWithSeason4StoredItems()
@@ -301,6 +304,8 @@ export class Season4 extends ChallengeModFeature {
         pickingUpItem.subType,
       );
     }
+
+    return undefined;
   }
 
   @CallbackCustom(
@@ -308,8 +313,9 @@ export class Season4 extends ChallengeModFeature {
     ItemType.PASSIVE,
     CollectibleTypeCustom.CHECKPOINT,
   )
-  preItemPickupCheckpoint(): void {
+  preItemPickupCheckpoint(): boolean | undefined {
     v.persistent.storedCollectibles.push(...v.run.storedCollectiblesOnThisRun);
+    return undefined;
   }
 }
 

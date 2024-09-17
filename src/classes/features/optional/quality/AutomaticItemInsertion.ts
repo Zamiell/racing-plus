@@ -215,18 +215,23 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
   }
 
   @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)
-  preItemPickup(player: EntityPlayer, pickingUpItem: PickingUpItem): void {
+  preItemPickup(
+    player: EntityPlayer,
+    pickingUpItem: PickingUpItem,
+  ): boolean | undefined {
     if (
       pickingUpItem.itemType === ItemType.NULL ||
       pickingUpItem.itemType === ItemType.TRINKET
     ) {
-      return;
+      return undefined;
     }
 
     automaticItemInsertionCheckIfCollectibleDropsPickups(
       player,
       pickingUpItem.subType,
     );
+
+    return undefined;
   }
 }
 
@@ -344,7 +349,7 @@ function updateDelta(
       break;
     }
 
-    // eslint-disable-next-line isaacscript/require-break
+    // eslint-disable-next-line complete/require-break
     default: {
       error(
         `Unknown pickup variant of "${pickupType}" in the updateDelta function.`,

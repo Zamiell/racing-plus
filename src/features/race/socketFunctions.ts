@@ -105,10 +105,7 @@ function unpackSetMsg(rawData: string): [string, string] {
   return [property, data];
 }
 
-function setRace<K extends keyof RaceData, V extends RaceData[K]>(
-  key: K,
-  value: V,
-) {
+function setRace<K extends keyof RaceData>(key: K, value: RaceData[K]) {
   g.race[key] = value;
 
   if (SOCKET_DEBUG) {
