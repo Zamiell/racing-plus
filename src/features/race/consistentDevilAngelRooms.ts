@@ -1,13 +1,13 @@
-// In seeded races, players will get either all Devil Rooms or all Angel Rooms, with a 50% chance of
-// each based on the starting seed of the run. This is accomplished by using the
+// In seeded races, players will get either all Devil Rooms or all Angel Rooms, with a certain
+// chance of each based on the starting seed of the run. This is accomplished by using the
 // `Level.InitializeDevilAngelRoom` method to pre-initialize the room at the beginning of the floor.
 
 // The one bug to worry about is when one player has 33.8% + 33.8% versus 67.8% + 0% chances, for
 // Devil Rooms and Angel Rooms respectively. In this situation, one player can get a deal while the
-// other can't. To work around this, always use the `Game.AddDevilRoomDeal` method at the beginning
-// of a run to ensure that the Angel Room chance for players remains at 0. This works even for the
-// situation where the run is locked into having Angel Rooms, although the UI will report the wrong
-// percentages.
+// other can't. To work around this, we always use the `Game.AddDevilRoomDeal` method at the
+// beginning of a run to ensure that the Angel Room chance for players remains at 0. This works even
+// for the situation where the run is locked into having Angel Rooms, although the UI will report
+// the wrong percentages.
 
 import { PlayerType } from "isaac-typescript-definitions";
 import { anyPlayerIs, game, getRandom } from "isaacscript-common";
