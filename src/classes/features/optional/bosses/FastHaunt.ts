@@ -79,7 +79,7 @@ export class FastHaunt extends ConfigurableModFeature {
     }
   }
 
-  getAttachedLilHaunts(haunt: EntityNPC): EntityNPC[] {
+  getAttachedLilHaunts(haunt: EntityNPC): readonly EntityNPC[] {
     const hauntPtrHash = GetPtrHash(haunt);
     const lilHaunts = getNPCs(EntityType.HAUNT, HauntVariant.LIL_HAUNT);
     const childrenLilHaunts: EntityNPC[] = [];

@@ -174,12 +174,12 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
     });
   }
 
-  getRoomCollectibleTypes(): CollectibleType[] {
+  getRoomCollectibleTypes(): readonly CollectibleType[] {
     const collectibles = getCollectibles();
     return collectibles.map((collectible) => collectible.SubType);
   }
 
-  getRoomBosses(): Array<[entityType: EntityType, variant: int]> {
+  getRoomBosses(): ReadonlyArray<[entityType: EntityType, variant: int]> {
     const bosses: Array<[int, int]> = [];
     for (const boss of getBosses()) {
       if (!this.isBossException(boss.Type, boss.Variant)) {

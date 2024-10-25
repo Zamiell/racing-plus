@@ -130,7 +130,7 @@ const v = {
      * An array of entity type + variant strings, matching the format of the boss set from the
      * standard library.
      */
-    selectedBosses: [] as BossID[],
+    selectedBosses: [] as readonly BossID[],
   },
 
   /**
@@ -388,7 +388,7 @@ export class FastBossRush extends ConfigurableModFeature {
     roomClearDelayNPC.ClearEntityFlags(EntityFlag.APPEAR);
   }
 
-  getRandomBossRushBosses(): BossID[] {
+  getRandomBossRushBosses(): readonly BossID[] {
     const seeds = game.GetSeeds();
     const startSeed = seeds.GetStartSeed();
     const rng = newRNG(startSeed);

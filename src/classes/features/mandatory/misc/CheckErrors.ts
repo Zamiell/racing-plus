@@ -133,7 +133,7 @@ export class CheckErrors extends MandatoryModFeature {
     }
   }
 
-  getSplitLines(line: string): string[] {
+  getSplitLines(line: string): readonly string[] {
     let spaceLeft = MAX_CHARACTERS_PER_LINE;
     const words = line.split(" ");
     for (const [i, word] of words.entries()) {

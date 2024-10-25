@@ -35,14 +35,14 @@
   },
   "devDependencies": {
     "convert-xml-to-json": "^1.0.3",
-    "isaacscript": "^5.0.6",
+    "isaacscript": "^5.2.0",
     "isaacscript-common-node": "^4.1.1",
-    "isaacscript-lint": "^7.0.6",
+    "isaacscript-lint": "^7.1.0",
     "isaacscript-spell": "^1.15.2",
     "isaacscript-tsconfig": "^7.0.1",
     "tsx": "^4.19.1",
-    "typescript": "5.5.2",
-    "typescript-to-lua": "^1.26.2"
+    "typescript": "5.6.2",
+    "typescript-to-lua": "^1.27.0"
   },
   "packageManager": "yarn@4.5.0"
 }

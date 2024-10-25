@@ -92,7 +92,7 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
     }
   }
 
-  getPickupsFromJusticeCard(player: EntityPlayer): EntityPickup[] {
+  getPickupsFromJusticeCard(player: EntityPlayer): readonly EntityPickup[] {
     const hasTarotCloth = player.HasCollectible(CollectibleType.TAROT_CLOTH);
     const numEachPickup = hasTarotCloth ? 2 : 1;
 
