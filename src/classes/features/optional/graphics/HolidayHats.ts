@@ -39,7 +39,7 @@ const HOLIDAY_TO_NULL_ITEM_ID = {
   [Holiday.CHRISTMAS]: NullItemID.CHRISTMAS,
 } as const satisfies Record<Holiday, NullItemID | undefined>;
 
-const CURRENT_HOLIDAY: Holiday = Holiday.HALLOWEEN;
+const CURRENT_HOLIDAY: Holiday = Holiday.NONE;
 
 /** Conditionally show a festive hat. (It is disabled if it is not currently a holiday.) */
 export class HolidayHats extends ConfigurableModFeature {
