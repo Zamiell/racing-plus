@@ -17,7 +17,10 @@ enum Holiday {
   /** March 17th */
   SAINT_PATRICKS_DAY,
 
-  /** October 31st */
+  /**
+   * - October 31st
+   * - Activate from October 25th to November 1st.
+   */
   HALLOWEEN,
 
   /** November 24th */
