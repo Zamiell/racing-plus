@@ -409,9 +409,10 @@ export class FastBossRush extends ConfigurableModFeature {
 
   /**
    * In vanilla, saving and quitting in the middle of the Boss Rush will reset the wave back to 0.
-   * However, teleporting out of the room before completing it will mark it as being completed.
-   * Thus, we need to emulate this. Note that the player will still be able to restart the Boss Rush
-   * if they go back in and touch another collectible. (This is also how vanilla works.)
+   * However, teleporting out of the room (or dying) before completing it will mark it as being
+   * completed. Thus, we need to emulate this. Note that the player will still be able to restart
+   * the Boss Rush if they go back in and touch another collectible. (This is also how vanilla
+   * works.)
    */
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {

@@ -347,8 +347,8 @@ export class StreakText extends MandatoryModFeature {
       return undefined;
     }
 
-    const trinket = pickingUpItem.itemType === ItemType.TRINKET;
-    const name = trinket
+    const isTrinket = pickingUpItem.itemType === ItemType.TRINKET;
+    const name = isTrinket
       ? getTrinketName(pickingUpItem.subType)
       : getCollectibleName(pickingUpItem.subType);
 

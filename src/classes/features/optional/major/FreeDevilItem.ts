@@ -2,6 +2,7 @@ import type { DamageFlag } from "isaac-typescript-definitions";
 import {
   CollectibleSpriteLayer,
   CollectibleType,
+  EntityType,
   ItemPoolType,
   ModCallback,
   PickupPrice,
@@ -10,6 +11,7 @@ import {
   RoomType,
   SeedEffect,
 } from "isaac-typescript-definitions";
+import type { PickingUpItem } from "isaacscript-common";
 import {
   Callback,
   CallbackCustom,
@@ -25,6 +27,7 @@ import {
   isAfterGameFrame,
   isCharacter,
   isChildPlayer,
+  isPickingUpItemCollectible,
   isSelfDamage,
   newCollectibleSprite,
   onDarkRoom,
@@ -48,9 +51,11 @@ const ICON_SPRITE = newMysteryGiftSprite(true);
 const v = {
   run: {
     tookDamage: false,
+    tookFreeItem: false,
   },
 
   room: {
+    freeItemRemovedOnGameFrame: undefined as int | undefined,
     spriteMap: new DefaultMap<PtrHash, Sprite>(() =>
       newMysteryGiftSprite(false),
     ),
@@ -71,19 +76,13 @@ export class FreeDevilItem extends ConfigurableModFeature {
   // 2
   @Callback(ModCallback.POST_RENDER)
   postRender(): void {
-    // In seeded races, we might be guaranteed to be getting Angel Rooms. If so, then showing the
-    // free item icon is superfluous.
-    if (inSeededRaceWithAllAngelRooms()) {
-      return;
-    }
-
     if (shouldGetFreeDevilItemOnThisRun()) {
-      this.drawIconSprite();
+      this.drawUIIconSprite();
     }
   }
 
-  /** Draw the Mystery Gift icon that indicates that the player currently has a free devil deal. */
-  drawIconSprite(): void {
+  /** Draw the special icon that indicates that the player currently has a free devil deal. */
+  drawUIIconSprite(): void {
     const hud = game.GetHUD();
     if (!hud.IsVisible()) {
       return;
@@ -199,6 +198,46 @@ export class FreeDevilItem extends ConfigurableModFeature {
     v.run.tookDamage = true;
     return undefined;
   }
+
+  /** Track when free items are removed. */
+  @CallbackCustom(
+    ModCallbackCustom.POST_ENTITY_REMOVE_FILTER,
+    EntityType.PICKUP,
+    PickupVariant.COLLECTIBLE,
+  )
+  postEntityRemoveCollectible(entity: Entity): void {
+    const pickup = entity.ToPickup();
+
+    if (
+      pickup !== undefined
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+      && pickup.Price === PickupPriceCustom.PRICE_FREE_DEVIL_DEAL
+    ) {
+      const gameFrameCount = game.GetFrameCount();
+      v.room.freeItemRemovedOnGameFrame = gameFrameCount;
+    }
+  }
+
+  @CallbackCustom(ModCallbackCustom.PRE_ITEM_PICKUP)
+  preItemPickup(
+    _player: EntityPlayer,
+    pickingUpItem: PickingUpItem,
+  ): boolean | undefined {
+    if (!isPickingUpItemCollectible(pickingUpItem)) {
+      return undefined;
+    }
+
+    const gameFrameCount = game.GetFrameCount();
+    if (
+      v.room.freeItemRemovedOnGameFrame !== undefined
+      && gameFrameCount === v.room.freeItemRemovedOnGameFrame + 1
+    ) {
+      // A free devil deal item disappeared on the last frame, so assume that we picked that one up.
+      v.run.tookFreeItem = true;
+    }
+
+    return undefined;
+  }
 }
 
 export function getTopLeftUIPositionFreeDevilItem(): Readonly<Vector> {
@@ -225,6 +264,11 @@ export function shouldGetFreeDevilItemOnThisRun(): boolean {
     config.FreeDevilItem
     && !v.run.tookDamage
     && effectiveDevilDeals === 0
+    // Checking for the amount of devil deals is not sufficient because The Fallen drops Devil Room
+    // items which become free for Tainted Keeper, but taking it does not increment the devil deal
+    // count.
+    && !v.run.tookFreeItem
     && !anyPlayerIsTheLost
+    && !inSeededRaceWithAllAngelRooms()
   );
 }

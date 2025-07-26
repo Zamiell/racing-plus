@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "isaac-typescript-definitions": "42.2.0",
-    "isaacscript-common": "87.5.1"
+    "isaacscript-common": "87.6.0"
   },
   "devDependencies": {
     "convert-xml-to-json": "1.0.3",
