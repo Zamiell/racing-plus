@@ -90,7 +90,6 @@ export { FastPolties } from "./classes/features/optional/enemies/FastPolties";
 export { GlobinSoftlock } from "./classes/features/optional/enemies/GlobinSoftlock";
 export { PitfallImmobility } from "./classes/features/optional/enemies/PitfallImmobility";
 export { RemoveStrayPitfalls } from "./classes/features/optional/enemies/RemoveStrayPitfalls";
-export { RemoveTreasureRoomEnemies } from "./classes/features/optional/enemies/RemoveTreasureRoomEnemies";
 export { ReplaceCodWorms } from "./classes/features/optional/enemies/ReplaceCodWorms";
 export { VulnerableGhosts } from "./classes/features/optional/enemies/VulnerableGhosts";
 export { ConsistentTrollBombs } from "./classes/features/optional/gameplay/ConsistentTrollBombs";

@@ -132,7 +132,6 @@ const FEATURE_CLASSES = [
   // Enemies
   fc.ClearerShadowAttacks,
   fc.FadeFriendlyEnemies,
-  fc.RemoveTreasureRoomEnemies,
   fc.GlobinSoftlock, // 24
   fc.AppearHands, // 213, 287
   fc.FastHands, // 213, 287

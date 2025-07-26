@@ -285,34 +285,30 @@ Post-flip actions:
 
 > Why? Friendly enemies obfuscate real enemies, making it difficult to see what is happening on the screen.
 
-- `0403` <!-- RemoveTreasureRoomEnemies --> All enemies are removed from Treasure Rooms.
-
-> Why? Bulb enemies are extremely common in Repentance and it is unclear if the high frequency is intended.
-
-- `0404` <!-- GlobinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
+- `0403` <!-- GlobinSoftlock 24 --> Globins will permanently die on the 4th regeneration to prevent softlocks.
 
 > Why? Having Epic Fetus and Polyphemus make it impossible to kill Globins fast enough before they regenerate.
 
-- `0405` <!-- AppearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
-- `0406` <!-- FastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
+- `0404` <!-- AppearHands 213, 287 --> Mom's Hands and Mom's Dead Hands will play an "Appear" animation.
+- `0405` <!-- FastHands 213, 287 --> Mom's Hands and Mom's Dead Hands have faster attack patterns.
 
 > Why? This gives deaf players a visual tell that they will need to dodge the hands. (Normally, this is signaled with a loud, obnoxious laugh from Mom.)
 
-- `0407` <!-- VulnerableGhosts 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
+- `0406` <!-- VulnerableGhosts 219, 260, 285 --> Wizoobs, Lil' Haunts, and Red Ghosts no longer have invulnerability frames after spawning.
 
 > Why? No other enemies in the game are invulnerable during this time, so this mechanic is not consistent.
 
-- `0408` <!-- FastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
-- `0409` <!-- ReplaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
-- `0410` <!-- PitfallImmobility 291 --> Pitfalls are no longer able to move.
+- `0407` <!-- FastGhosts 219, 285 --> Wizoobs and Red Ghosts have faster attack patterns.
+- `0408` <!-- ReplaceCodWorms 221 --> Cod Worms are replaced with Para-Bites.
+- `0409` <!-- PitfallImmobility 291 --> Pitfalls are no longer able to move.
 
 > Why? It is probably a bug in the game that Pitfalls are able to be affected by e.g. Strange Attractor.
 
-- `0411` <!-- RemoveStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
-- `0412` <!-- FastPolties 816 --> Polties & Kinetis will now immediately show themselves.
-- `0413` <!-- FastNeedles 881 --> Needles & Pasties will now spend less time underground.
-- `0414` <!-- FastDusts 882 --> Dusts will now never disappear.
-- `0415` <!-- DummyDPS 964 --> Dummies will show the damage per second (in addition to the normal damage numbers).
+- `0410` <!-- RemoveStrayPitfalls 291 --> Pitfalls are now killed upon room clear.
+- `0411` <!-- FastPolties 816 --> Polties & Kinetis will now immediately show themselves.
+- `0412` <!-- FastNeedles 881 --> Needles & Pasties will now spend less time underground.
+- `0413` <!-- FastDusts 882 --> Dusts will now never disappear.
+- `0414` <!-- DummyDPS 964 --> Dummies will show the damage per second (in addition to the normal damage numbers).
 
 ### 5) Quality of Life Changes
 

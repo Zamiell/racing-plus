@@ -3379,17 +3379,8 @@
 		<spawn x="0" y="1">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="8" y="1">
-			<entity type="13" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="4" y="3">
-			<entity type="13" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="8" y="4">
-			<entity type="13" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="12" y="5">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
@@ -3507,17 +3498,8 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="7" y="2">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="5" y="3">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="7" y="4">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="19" name="" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
@@ -3540,14 +3522,8 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="1" y="0">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="11" y="6">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="21" name="" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="1.0">
@@ -3555,14 +3531,8 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
-		<spawn x="4" y="3">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="8" y="3">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 	<room variant="22" name="bad" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.009999999776482582">
@@ -3579,9 +3549,6 @@
 		<spawn x="0" y="1">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="4" y="2">
-			<entity type="18" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="5" y="2">
 			<entity type="5" variant="10" subtype="0" weight="1.0"/>
 		</spawn>
@@ -3597,9 +3564,6 @@
 		<spawn x="6" y="3">
 			<entity type="1500" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="7" y="3">
-			<entity type="18" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="1" y="4">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -3611,9 +3575,6 @@
 		</spawn>
 		<spawn x="7" y="4">
 			<entity type="5" variant="30" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="4" y="5">
-			<entity type="18" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="11" y="5">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
@@ -4173,9 +4134,6 @@
 		<spawn x="6" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="6" y="6">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 	</room>
 	<room variant="33" name="reroll normal" type="4" subtype="0" shape="1" width="13" height="7" difficulty="1" weight="0.25">
 		<door exists="True" x="-1" y="3"/>
@@ -4601,9 +4559,6 @@
 		<spawn x="0" y="0">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="2" y="0">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="12" y="0">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -4615,9 +4570,6 @@
 		</spawn>
 		<spawn x="0" y="6">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="10" y="6">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="12" y="6">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
@@ -4640,17 +4592,11 @@
 		<spawn x="12" y="0">
 			<entity type="1500" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="6" y="2">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="5" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="7" y="3">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="6" y="4">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="0" y="6">
 			<entity type="1500" variant="0" subtype="0" weight="1.0"/>
@@ -4796,12 +4742,6 @@
 		<spawn x="6" y="2">
 			<entity type="6" variant="10" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="5" y="3">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="7" y="3">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="6" y="4">
 			<entity type="5" variant="100" subtype="0" weight="1.0"/>
 		</spawn>
@@ -4868,9 +4808,6 @@
 		<spawn x="12" y="0">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
-		<spawn x="11" y="1">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
-		</spawn>
 		<spawn x="12" y="1">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
 		</spawn>
@@ -4885,9 +4822,6 @@
 		</spawn>
 		<spawn x="0" y="5">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>
-		</spawn>
-		<spawn x="1" y="5">
-			<entity type="61" variant="5" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="0" y="6">
 			<entity type="1000" variant="0" subtype="0" weight="1.0"/>

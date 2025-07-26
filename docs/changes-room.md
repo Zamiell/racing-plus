@@ -54,6 +54,14 @@ On Sheol, there exists a room with a trapdoor that takes you directly to the Dar
 
 - Sheol: #290
 
+### Treasure Room Enemies
+
+All enemies are removed from Treasure Rooms. This slightly reduces the luck involved in getting a roll up for a boss.
+
+(We perform a room change instead of a code change because of items like Death's List.)
+
+- #13, #18, #20, #21, #22, #32, #45, #46, #51, #55
+
 <br>
 
 ## Softlock Fixes
