@@ -109,7 +109,6 @@ function setRace<K extends keyof RaceData>(key: K, value: RaceData[K]) {
   g.race[key] = value;
 
   if (SOCKET_DEBUG) {
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     log(`Set race value: ${key} --> ${value}`);
   }
 }

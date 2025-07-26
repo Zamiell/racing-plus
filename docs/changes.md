@@ -390,7 +390,6 @@ Post-flip actions:
 > Why? Having a random fuse time often results in players having to make a 50/50 movement gamble that is profoundly unfair.
 
 - `0602` <!-- ExtraStartingItems --> The following items are changed to have 1.0 weight for the Treasure Room on the first floor:
-
   - 12 - Magic Mushroom (from 0.5)
   - 168 - Epic Fetus (from 0.1)
   - 237 - Death's Touch (from 0.2)

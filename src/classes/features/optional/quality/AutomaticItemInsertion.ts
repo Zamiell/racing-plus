@@ -288,9 +288,7 @@ function updateDelta(
   const [pickupType, value] = pickupInserted;
   switch (pickupType) {
     case PickupVariant.HEART: {
-      if (v.run.delta.bloodOrSoulCharge === null) {
-        v.run.delta.bloodOrSoulCharge = 0;
-      }
+      v.run.delta.bloodOrSoulCharge ??= 0;
       v.run.delta.bloodOrSoulCharge += value;
       v.run.delta.bloodOrSoulChargeGameFrame = gameFrameCount;
       break;
@@ -304,27 +302,21 @@ function updateDelta(
         return;
       }
 
-      if (v.run.delta.coins === null) {
-        v.run.delta.coins = 0;
-      }
+      v.run.delta.coins ??= 0;
       v.run.delta.coins += value;
       v.run.delta.coinsGameFrame = gameFrameCount;
       break;
     }
 
     case PickupVariant.BOMB: {
-      if (v.run.delta.bombs === null) {
-        v.run.delta.bombs = 0;
-      }
+      v.run.delta.bombs ??= 0;
       v.run.delta.bombs += value;
       v.run.delta.bombsGameFrame = gameFrameCount;
       break;
     }
 
     case PickupVariant.KEY: {
-      if (v.run.delta.keys === null) {
-        v.run.delta.keys = 0;
-      }
+      v.run.delta.keys ??= 0;
       v.run.delta.keys += value;
       v.run.delta.keysGameFrame = gameFrameCount;
       break;
@@ -332,18 +324,14 @@ function updateDelta(
 
     case PickupVariant.CARD:
     case PickupVariant.PILL: {
-      if (v.run.delta.pocketItem === null) {
-        v.run.delta.pocketItem = 0;
-      }
+      v.run.delta.pocketItem ??= 0;
       v.run.delta.pocketItem += value;
       v.run.delta.pocketItemGameFrame = gameFrameCount;
       break;
     }
 
     case PickupVariant.TRINKET: {
-      if (v.run.delta.trinket === null) {
-        v.run.delta.trinket = 0;
-      }
+      v.run.delta.trinket ??= 0;
       v.run.delta.trinket += value;
       v.run.delta.trinketGameFrame = gameFrameCount;
       break;

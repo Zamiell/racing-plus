@@ -250,9 +250,7 @@ function registerSubMenuHotkeys(
           shortDescription,
         ),
       OnChange: (newValue: number | boolean | undefined) => {
-        if (newValue === undefined) {
-          newValue = getDefaultValue(optionType);
-        }
+        newValue ??= getDefaultValue(optionType);
 
         const hotkey = configName as keyof Hotkeys;
         hotkeys[hotkey] = newValue as Keyboard;

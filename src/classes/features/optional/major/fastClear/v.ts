@@ -29,6 +29,7 @@ export function logFastClear(
   const npc = entity.ToNPC();
   const state = npc === undefined ? "n/a" : npc.State.toString();
   log(
+    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     `${verb} fast-clear entity to track on game frame ${gameFrameCount}: ${entityID}, state: ${state}, parent: ${entity.Parent}, spawnerEntity: ${entity.SpawnerEntity}, ptrHash: ${ptrHash}, parentCallback: ${parentCallback}`,
   );
   log(

@@ -67,6 +67,7 @@ export class RaceData {
 }
 
 export function cloneRaceData(raceData: RaceData): RaceData {
+  // eslint-disable-next-line @typescript-eslint/no-misused-spread
   const copiedRaceData = { ...raceData }; // Shallow copy
   copiedRaceData.startingItems = [...raceData.startingItems]; // Copy nested arrays
   return copiedRaceData;

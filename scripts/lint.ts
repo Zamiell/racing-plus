@@ -1,4 +1,4 @@
-import { $, $s, commandExists, lintScript } from "isaacscript-common-node";
+import { $, commandExists, lintScript } from "complete-node"; // eslint-disable-line import-x/no-extraneous-dependencies
 
 await lintScript(async () => {
   const promises = [
@@ -32,8 +32,9 @@ await lintScript(async () => {
     // @template-customization-end
   ];
 
-  if (commandExists("python")) {
-    $s`pip install isaac-xml-validator --upgrade --quiet`;
+  const pythonExists = await commandExists("python");
+  if (pythonExists) {
+    await $`pip install isaac-xml-validator --upgrade --quiet`;
     // @template-ignore-next-line
     promises.push($`isaac-xml-validator --quiet --ignore cutscenes.xml`);
   }
