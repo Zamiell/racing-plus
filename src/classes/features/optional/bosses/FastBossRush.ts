@@ -421,8 +421,6 @@ export class FastBossRush extends ConfigurableModFeature {
       && !inRoomType(RoomType.BOSS_RUSH)
     ) {
       v.run.inProgress = false;
-      v.run.finished = true;
-      game.SetStateFlag(GameStateFlag.BOSS_RUSH_DONE, true);
     }
   }
 }
