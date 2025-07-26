@@ -14,9 +14,9 @@ import { g } from "../../globals";
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING ||
-    g.race.goal !== RaceGoal.THE_BEAST
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
+    || g.race.goal !== RaceGoal.THE_BEAST
   ) {
     return;
   }

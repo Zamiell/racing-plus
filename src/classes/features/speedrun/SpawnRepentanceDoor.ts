@@ -166,11 +166,11 @@ function shouldSpawnRepentanceDoor(): boolean {
   const dimension = getDimension();
 
   return (
-    isCorrectStageForRepentanceDoor() &&
-    inRoomType(RoomType.BOSS) &&
-    isRoomInsideGrid() && // Handle the case of Emperor? card rooms.
-    dimension === Dimension.MAIN &&
-    roomClear
+    isCorrectStageForRepentanceDoor()
+    && inRoomType(RoomType.BOSS)
+    && isRoomInsideGrid() // Handle the case of Emperor? card rooms.
+    && dimension === Dimension.MAIN
+    && roomClear
   );
 }
 
@@ -186,16 +186,16 @@ function isCorrectStageForRepentanceDoor(): boolean {
 
     return (
       // Basement 2 --> Downpour/Dross 2
-      (stage === LevelStage.BASEMENT_2 && !repentanceStage) ||
+      (stage === LevelStage.BASEMENT_2 && !repentanceStage)
       // Downpour/Dross 2 --> Mines/Ashpit 1
-      (stage === LevelStage.BASEMENT_2 && repentanceStage) ||
+      || (stage === LevelStage.BASEMENT_2 && repentanceStage)
       // Mines/Ashpit 2 --> Mausoleum/Gehenna 1
-      (stage === LevelStage.CAVES_2 && repentanceStage)
+      || (stage === LevelStage.CAVES_2 && repentanceStage)
     );
   }
 
   return (
-    (stage === LevelStage.BASEMENT_1 || stage === LevelStage.BASEMENT_2) &&
-    !repentanceStage
+    (stage === LevelStage.BASEMENT_1 || stage === LevelStage.BASEMENT_2)
+    && !repentanceStage
   );
 }

@@ -156,8 +156,8 @@ function speedrunAlternate() {
   }
 
   if (
-    (onChest() && direction === SpeedrunDirection.UP) ||
-    (onDarkRoom() && direction === SpeedrunDirection.DOWN)
+    (onChest() && direction === SpeedrunDirection.UP)
+    || (onDarkRoom() && direction === SpeedrunDirection.DOWN)
   ) {
     return speedrunKilledFinalBoss();
   }

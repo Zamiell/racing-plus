@@ -100,9 +100,9 @@ export class ShowEdenStartingItems extends ConfigurableModFeature {
 
     for (const collectibleType of mod.getCollectibleTypes()) {
       if (
-        player.HasCollectible(collectibleType) &&
-        collectibleType !== activeItem &&
-        collectibleType !== CollectibleType.D6
+        player.HasCollectible(collectibleType)
+        && collectibleType !== activeItem
+        && collectibleType !== CollectibleType.D6
       ) {
         return collectibleType;
       }

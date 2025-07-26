@@ -266,9 +266,9 @@ function checkVictoryLapBossReplace() {
   const rng = newRNG(roomSeed);
 
   if (
-    !g.raceVars.finished ||
-    roomClear ||
-    (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.LAMB))
+    !g.raceVars.finished
+    || roomClear
+    || (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.LAMB))
   ) {
     return;
   }

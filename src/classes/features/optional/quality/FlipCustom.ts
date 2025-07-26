@@ -146,8 +146,8 @@ export class FlipCustom extends ConfigurableModFeature {
       // Do not convert collectibles back to an empty pedestal. (This matches the behavior of the
       // vanilla Flip.)
       if (
-        flippedCollectibleType === undefined ||
-        flippedCollectibleType === CollectibleType.NULL
+        flippedCollectibleType === undefined
+        || flippedCollectibleType === CollectibleType.NULL
       ) {
         continue;
       }
@@ -251,8 +251,8 @@ export class FlipCustom extends ConfigurableModFeature {
       flippedCollectibleIndex,
     );
     if (
-      flippedCollectibleType === undefined ||
-      flippedCollectibleType === CollectibleType.NULL
+      flippedCollectibleType === undefined
+      || flippedCollectibleType === CollectibleType.NULL
     ) {
       return;
     }

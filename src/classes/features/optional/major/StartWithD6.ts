@@ -109,8 +109,8 @@ export class StartWithD6 extends ConfigurableModFeature {
     for (const activeSlot of [ActiveSlot.PRIMARY, ActiveSlot.SECONDARY]) {
       const activeItem = player.GetActiveItem(activeSlot);
       if (
-        activeItem === CollectibleType.FLIP ||
-        activeItem === CollectibleTypeCustom.FLIP_CUSTOM
+        activeItem === CollectibleType.FLIP
+        || activeItem === CollectibleTypeCustom.FLIP_CUSTOM
       ) {
         return activeSlot;
       }

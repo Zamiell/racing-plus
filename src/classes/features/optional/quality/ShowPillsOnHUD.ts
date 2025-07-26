@@ -101,8 +101,8 @@ export class ShowPillsOnHUD extends ConfigurableModFeature {
     }
 
     if (
-      !anyPlayerHasCollectible(CollectibleType.PHD) &&
-      !anyPlayerHasCollectible(CollectibleType.VIRGO)
+      !anyPlayerHasCollectible(CollectibleType.PHD)
+      && !anyPlayerHasCollectible(CollectibleType.VIRGO)
     ) {
       return;
     }
@@ -225,8 +225,8 @@ export class ShowPillsOnHUD extends ConfigurableModFeature {
     if (
       // Ignore gold pills. (They show up in the `POST_USE_PILL_FILTER` callback as
       // `PillColor.NULL`.)
-      isNormalPillColor(normalPillColor) &&
-      !this.isPillColorRecorded(normalPillColor)
+      isNormalPillColor(normalPillColor)
+      && !this.isPillColorRecorded(normalPillColor)
     ) {
       // This is the first time we have used this pill, so keep track of the pill color and effect.
       const pillDescription: PillDescription = {

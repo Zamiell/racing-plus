@@ -238,22 +238,22 @@ function isBannedCollectible(collectible: EntityPickupCollectible) {
   }
 
   if (
-    v.run.startedWithVoid &&
-    BANNED_COLLECTIBLES_WITH_VOID.has(collectible.SubType)
+    v.run.startedWithVoid
+    && BANNED_COLLECTIBLES_WITH_VOID.has(collectible.SubType)
   ) {
     return true;
   }
 
   if (
-    inSeededRace() &&
-    BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(collectible.SubType)
+    inSeededRace()
+    && BANNED_COLLECTIBLES_ON_SEEDED_RACES.has(collectible.SubType)
   ) {
     return true;
   }
 
   if (
-    anyPlayerIs(PlayerType.MAGDALENE_B) &&
-    collectible.SubType === CollectibleType.SHARP_PLUG
+    anyPlayerIs(PlayerType.MAGDALENE_B)
+    && collectible.SubType === CollectibleType.SHARP_PLUG
   ) {
     return true;
   }

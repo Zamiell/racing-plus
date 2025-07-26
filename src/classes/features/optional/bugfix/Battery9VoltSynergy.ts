@@ -62,8 +62,8 @@ export class Battery9VoltSynergy extends ConfigurableModFeature {
     }
 
     if (
-      !player.HasCollectible(CollectibleType.BATTERY) ||
-      !player.HasCollectible(CollectibleType.NINE_VOLT)
+      !player.HasCollectible(CollectibleType.BATTERY)
+      || !player.HasCollectible(CollectibleType.NINE_VOLT)
     ) {
       return undefined;
     }
@@ -76,9 +76,9 @@ export class Battery9VoltSynergy extends ConfigurableModFeature {
     const playerIndex = getPlayerIndex(player);
 
     if (
-      activeItemMaxCharges >= 2 &&
-      activeCharge === activeItemMaxCharges &&
-      batteryCharge === activeItemMaxCharges
+      activeItemMaxCharges >= 2
+      && activeCharge === activeItemMaxCharges
+      && batteryCharge === activeItemMaxCharges
     ) {
       v.run.giveExtraChargePlayerIndex = playerIndex;
       v.run.giveExtraChargeActiveSlot = activeSlot;

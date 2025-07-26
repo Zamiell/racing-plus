@@ -33,8 +33,8 @@ export class FadeFriendlyEnemies extends ConfigurableModFeature {
   @Callback(ModCallback.POST_TEAR_UPDATE)
   postTearUpdate(tear: EntityTear): void {
     if (
-      tear.SpawnerType === EntityType.FAMILIAR &&
-      tear.SpawnerVariant === (FamiliarVariant.BABY_PLUM as int)
+      tear.SpawnerType === EntityType.FAMILIAR
+      && tear.SpawnerVariant === (FamiliarVariant.BABY_PLUM as int)
     ) {
       setEntityOpacity(tear, FADE_AMOUNT);
     }
@@ -45,8 +45,8 @@ export class FadeFriendlyEnemies extends ConfigurableModFeature {
   @Callback(ModCallback.POST_PROJECTILE_UPDATE)
   postProjectileUpdate(projectile: EntityProjectile): void {
     if (
-      projectile.Parent !== undefined &&
-      projectile.Parent.HasEntityFlags(EntityFlag.FRIENDLY)
+      projectile.Parent !== undefined
+      && projectile.Parent.HasEntityFlags(EntityFlag.FRIENDLY)
     ) {
       setEntityOpacity(projectile, FADE_AMOUNT);
     }
@@ -64,8 +64,8 @@ export class FadeFriendlyEnemies extends ConfigurableModFeature {
   @Callback(ModCallback.POST_LASER_UPDATE)
   postLaserUpdate(laser: EntityLaser): void {
     if (
-      laser.Parent !== undefined &&
-      laser.Parent.HasEntityFlags(EntityFlag.FRIENDLY)
+      laser.Parent !== undefined
+      && laser.Parent.HasEntityFlags(EntityFlag.FRIENDLY)
     ) {
       setEntityOpacity(laser, FADE_AMOUNT);
     }

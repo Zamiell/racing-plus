@@ -21,8 +21,8 @@ export class PreventConsole extends ConfigurableModFeature {
 
     // Prevent opening the console during a race.
     if (
-      inRace() &&
-      g.race.format !== RaceFormat.CUSTOM // Allow usage of the console in custom races.
+      inRace()
+      && g.race.format !== RaceFormat.CUSTOM // Allow usage of the console in custom races.
     ) {
       return false;
     }

@@ -101,10 +101,10 @@ function getNextStageCustom(travelDirection: Direction): LevelStage {
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    ascentGoal &&
-    clearedMomBossRoom &&
-    !repentanceStage &&
-    backwardsPathInit
+    ascentGoal
+    && clearedMomBossRoom
+    && !repentanceStage
+    && backwardsPathInit
   ) {
     return stage;
   }
@@ -131,11 +131,11 @@ function getNextStageTypeCustom(
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
-    ascentGoal &&
-    clearedMomBossRoom &&
-    !repentanceStage &&
-    backwardsPathInit &&
-    nextStage === LevelStage.DEPTHS_2
+    ascentGoal
+    && clearedMomBossRoom
+    && !repentanceStage
+    && backwardsPathInit
+    && nextStage === LevelStage.DEPTHS_2
   ) {
     return calculateStageTypeRepentance(nextStage);
   }

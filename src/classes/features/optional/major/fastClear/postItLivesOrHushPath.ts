@@ -131,13 +131,13 @@ export function postItLivesOrHushPathPostFastClear(): void {
 
 function inItLivesOrHushBossRoom() {
   return (
-    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB) &&
+    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)
     // Corpse does not have It Lives! / Hush.
-    !onRepentanceStage() &&
-    inRoomType(RoomType.BOSS) &&
+    && !onRepentanceStage()
+    && inRoomType(RoomType.BOSS)
     // If the player is fighting It Lives from a Reverse Emperor Card room, then the room will be
     // outside the grid. Paths are not supposed to spawn in this situation.
-    isRoomInsideGrid()
+    && isRoomInsideGrid()
   );
 }
 
@@ -165,8 +165,8 @@ function getItLivesSituation(): ItLivesSituation {
   }
 
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
+    g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
   ) {
     // - On races that have a specific direction, force that direction.
     // - On races that give the player an option between going up or down, intuit the desired

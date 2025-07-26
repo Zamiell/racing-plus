@@ -110,9 +110,9 @@ export class RandomCharacterOrder extends ChallengeModFeature {
   /** Reset the starting character timer if we just killed the Basement 2 boss. */
   checkResetTimeAssigned(): void {
     if (
-      onEffectiveStage(LevelStage.BASEMENT_2) &&
-      inRoomType(RoomType.BOSS) &&
-      isRoomInsideGrid()
+      onEffectiveStage(LevelStage.BASEMENT_2)
+      && inRoomType(RoomType.BOSS)
+      && isRoomInsideGrid()
     ) {
       v.persistent.timeFirstCharacterAssigned = 0; // Setting to null does not work.
     }
@@ -144,8 +144,8 @@ export class RandomCharacterOrder extends ChallengeModFeature {
 
     const time = Isaac.GetTime();
     if (
-      v.persistent.timeFirstCharacterAssigned === null ||
-      v.persistent.timeFirstCharacterAssigned > time
+      v.persistent.timeFirstCharacterAssigned === null
+      || v.persistent.timeFirstCharacterAssigned > time
     ) {
       // It is possible for the time assignment to be in the future, since it is based on the time
       // since the operating system started.
@@ -153,11 +153,11 @@ export class RandomCharacterOrder extends ChallengeModFeature {
     }
 
     const characterLockedUntilTime =
-      v.persistent.timeFirstCharacterAssigned +
-      RANDOM_CHARACTER_LOCK_MILLISECONDS;
+      v.persistent.timeFirstCharacterAssigned
+      + RANDOM_CHARACTER_LOCK_MILLISECONDS;
     if (
-      time > characterLockedUntilTime ||
-      v.persistent.selectedCharacters.length === 0
+      time > characterLockedUntilTime
+      || v.persistent.selectedCharacters.length === 0
     ) {
       this.refreshStartingCharacters();
     }

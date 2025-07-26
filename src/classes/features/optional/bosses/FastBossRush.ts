@@ -416,9 +416,9 @@ export class FastBossRush extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
     if (
-      v.run.inProgress &&
-      !v.run.finished &&
-      !inRoomType(RoomType.BOSS_RUSH)
+      v.run.inProgress
+      && !v.run.finished
+      && !inRoomType(RoomType.BOSS_RUSH)
     ) {
       v.run.inProgress = false;
       v.run.finished = true;

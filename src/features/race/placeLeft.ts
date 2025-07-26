@@ -77,8 +77,8 @@ export function placeChanged(): void {
 
 export function placeMidChanged(): void {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
   ) {
     return;
   }

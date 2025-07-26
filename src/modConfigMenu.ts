@@ -399,15 +399,15 @@ function getPopupGfx(optionType: ModConfigMenuOptionType) {
     return undefined;
   }
 
-  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD ||
-    optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
+  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD
+    || optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
     ? ModConfigMenu.PopupGfx.WIDE_SMALL
     : undefined;
 }
 
 function getPopupWidth(optionType: ModConfigMenuOptionType) {
-  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD ||
-    optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
+  return optionType === ModConfigMenuOptionType.KEY_BIND_KEYBOARD
+    || optionType === ModConfigMenuOptionType.KEY_BIND_CONTROLLER
     ? 280
     : undefined;
 }

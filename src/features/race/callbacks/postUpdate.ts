@@ -21,11 +21,11 @@ function spawnBossRushTrophy() {
   const bossRushDone = game.GetStateFlag(GameStateFlag.BOSS_RUSH_DONE);
 
   if (
-    !doesTrophyExist() &&
-    inRaceToBossRush() &&
-    !g.raceVars.finished &&
-    inRoomType(RoomType.BOSS_RUSH) &&
-    bossRushDone
+    !doesTrophyExist()
+    && inRaceToBossRush()
+    && !g.raceVars.finished
+    && inRoomType(RoomType.BOSS_RUSH)
+    && bossRushDone
   ) {
     const centerPos = room.GetCenterPos();
     const position = findFreePosition(centerPos); // Some Boss Rush layouts have pits.

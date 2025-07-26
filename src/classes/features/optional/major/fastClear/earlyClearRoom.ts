@@ -81,18 +81,18 @@ function checkEarlyClearRoom() {
 
   // If a frame has passed since an enemy died, reset the delay counter.
   if (
-    v.room.delayClearUntilGameFrame !== null &&
-    onOrAfterGameFrame(v.room.delayClearUntilGameFrame)
+    v.room.delayClearUntilGameFrame !== null
+    && onOrAfterGameFrame(v.room.delayClearUntilGameFrame)
   ) {
     v.room.delayClearUntilGameFrame = null;
   }
 
   // Check on every frame to see if we need to open the doors.
   if (
-    v.room.aliveEnemies.size === 0 &&
-    v.room.delayClearUntilGameFrame === null &&
-    !roomClear &&
-    isAllPressurePlatesPushed()
+    v.room.aliveEnemies.size === 0
+    && v.room.delayClearUntilGameFrame === null
+    && !roomClear
+    && isAllPressurePlatesPushed()
   ) {
     earlyClearRoom();
   }

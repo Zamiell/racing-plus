@@ -53,12 +53,12 @@ function resetRaceVars() {
 
 function validateRace(player: EntityPlayer) {
   return (
-    !isRestartingOnNextFrame() &&
-    validateInRace() &&
-    validateChallenge() &&
-    validateDifficulty() &&
-    validateSeed() &&
-    validateCharacter(player)
+    !isRestartingOnNextFrame()
+    && validateInRace()
+    && validateChallenge()
+    && validateDifficulty()
+    && validateSeed()
+    && validateCharacter(player)
   );
 }
 
@@ -70,9 +70,9 @@ function validateInRace() {
 
 function validateChallenge() {
   if (
-    g.race.myStatus !== RacerStatus.NOT_READY &&
-    g.race.myStatus !== RacerStatus.READY &&
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.myStatus !== RacerStatus.NOT_READY
+    && g.race.myStatus !== RacerStatus.READY
+    && g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
@@ -91,17 +91,17 @@ function validateChallenge() {
 
 function validateDifficulty() {
   if (
-    g.race.myStatus !== RacerStatus.NOT_READY &&
-    g.race.myStatus !== RacerStatus.READY &&
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.myStatus !== RacerStatus.NOT_READY
+    && g.race.myStatus !== RacerStatus.READY
+    && g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
 
   if (
-    g.race.difficulty === RaceDifficulty.NORMAL &&
-    game.Difficulty !== Difficulty.NORMAL &&
-    g.race.format !== RaceFormat.CUSTOM
+    g.race.difficulty === RaceDifficulty.NORMAL
+    && game.Difficulty !== Difficulty.NORMAL
+    && g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
       `Error: Supposed to be on normal mode. (Currently, the difficulty is ${game.Difficulty}.)`,
@@ -111,9 +111,9 @@ function validateDifficulty() {
   }
 
   if (
-    g.race.difficulty === RaceDifficulty.HARD &&
-    game.Difficulty !== Difficulty.HARD &&
-    g.race.format !== RaceFormat.CUSTOM
+    g.race.difficulty === RaceDifficulty.HARD
+    && game.Difficulty !== Difficulty.HARD
+    && g.race.format !== RaceFormat.CUSTOM
   ) {
     log(
       `Error: Supposed to be on hard mode. (Currently, the difficulty is ${game.Difficulty}.)`,
@@ -127,9 +127,9 @@ function validateDifficulty() {
 
 function validateSeed() {
   if (
-    g.race.myStatus !== RacerStatus.NOT_READY &&
-    g.race.myStatus !== RacerStatus.READY &&
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.myStatus !== RacerStatus.NOT_READY
+    && g.race.myStatus !== RacerStatus.READY
+    && g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
@@ -138,10 +138,10 @@ function validateSeed() {
   const startSeedString = seeds.GetStartSeedString();
 
   if (
-    g.race.format === RaceFormat.SEEDED &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    startSeedString !== g.race.seed
+    g.race.format === RaceFormat.SEEDED
+    && g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
+    && startSeedString !== g.race.seed
   ) {
     restartOnNextFrame();
     setRestartSeed(g.race.seed);
@@ -149,9 +149,9 @@ function validateSeed() {
   }
 
   if (
-    (g.race.format === RaceFormat.UNSEEDED ||
-      g.race.format === RaceFormat.DIVERSITY) &&
-    onSetSeed()
+    (g.race.format === RaceFormat.UNSEEDED
+      || g.race.format === RaceFormat.DIVERSITY)
+    && onSetSeed()
   ) {
     // If the run started with a set seed, change the reset behavior to that of an unseeded run.
     restartOnNextFrame();
@@ -164,9 +164,9 @@ function validateSeed() {
 
 function validateCharacter(player: EntityPlayer) {
   if (
-    g.race.myStatus !== RacerStatus.NOT_READY &&
-    g.race.myStatus !== RacerStatus.READY &&
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.myStatus !== RacerStatus.NOT_READY
+    && g.race.myStatus !== RacerStatus.READY
+    && g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }

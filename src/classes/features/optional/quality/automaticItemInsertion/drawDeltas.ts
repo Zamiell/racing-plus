@@ -120,8 +120,8 @@ function drawBombsDelta() {
 
 function drawBloodOrSoulChargeDelta() {
   if (
-    v.run.delta.bloodOrSoulCharge === null ||
-    v.run.delta.bloodOrSoulChargeGameFrame === null
+    v.run.delta.bloodOrSoulCharge === null
+    || v.run.delta.bloodOrSoulChargeGameFrame === null
   ) {
     return;
   }
@@ -143,8 +143,8 @@ function drawBloodOrSoulChargeDelta() {
 
 function drawPocketItemsDelta() {
   if (
-    v.run.delta.pocketItem === null ||
-    v.run.delta.pocketItemGameFrame === null
+    v.run.delta.pocketItem === null
+    || v.run.delta.pocketItemGameFrame === null
   ) {
     return;
   }

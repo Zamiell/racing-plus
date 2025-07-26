@@ -102,8 +102,8 @@ function shouldSpawnOpen() {
   // up. However, the room will not be clear yet if this is a manually spawned heaven door after
   // killing It Lives or Hush, so account for that first.
   if (
-    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB) &&
-    inRoomType(RoomType.BOSS)
+    onStage(LevelStage.WOMB_2, LevelStage.BLUE_WOMB)
+    && inRoomType(RoomType.BOSS)
   ) {
     return true;
   }
@@ -128,9 +128,9 @@ function touched(entity: GridEntity | EntityEffect, player: EntityPlayer) {
 
   // We want the player to be forced to dodge the final wave of tears from It Lives!
   if (
-    inBossRoomOf(BossID.IT_LIVES) &&
-    !entityDescription.initial &&
-    effect.FrameCount < 40
+    inBossRoomOf(BossID.IT_LIVES)
+    && !entityDescription.initial
+    && effect.FrameCount < 40
   ) {
     return;
   }

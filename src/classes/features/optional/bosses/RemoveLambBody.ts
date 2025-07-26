@@ -17,8 +17,8 @@ export class RemoveLambBody extends ConfigurableModFeature {
   )
   postNPCUpdateLambBody(npc: EntityNPC): void {
     if (
-      npc.IsInvincible() && // It turns invincible once it is defeated.
-      !npc.IsDead() // The callback will be fired again during the removal.
+      npc.IsInvincible() // It turns invincible once it is defeated.
+      && !npc.IsDead() // The callback will be fired again during the removal.
     ) {
       npc.Remove();
     }

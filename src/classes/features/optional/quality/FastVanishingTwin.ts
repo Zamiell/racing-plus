@@ -50,8 +50,8 @@ export class FastVanishingTwin extends ConfigurableModFeature {
 
   checkRoomCleared(): void {
     if (
-      v.room.spawnClearAwardFrame === null ||
-      isBeforeGameFrame(v.room.spawnClearAwardFrame)
+      v.room.spawnClearAwardFrame === null
+      || isBeforeGameFrame(v.room.spawnClearAwardFrame)
     ) {
       return;
     }

@@ -52,8 +52,8 @@ export class FastHands extends ConfigurableModFeature {
     // to do a small adjustment because if multiple hands fall at the exact same time, they will
     // stack on top of each other and appear as a single hand.
     if (
-      npc.StateFrame === SHADOW_APPEAR_FRAME &&
-      this.isOtherHandOverlapping(npc)
+      npc.StateFrame === SHADOW_APPEAR_FRAME
+      && this.isOtherHandOverlapping(npc)
     ) {
       npc.StateFrame += DELAY_FRAMES;
     }
@@ -66,9 +66,9 @@ export class FastHands extends ConfigurableModFeature {
 
     return hands.some(
       (hand) =>
-        GetPtrHash(hand) !== GetPtrHash(initialHand) &&
-        hand.State === NPCState.MOVE &&
-        hand.StateFrame === initialHand.StateFrame,
+        GetPtrHash(hand) !== GetPtrHash(initialHand)
+        && hand.State === NPCState.MOVE
+        && hand.StateFrame === initialHand.StateFrame,
     );
   }
 }

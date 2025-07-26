@@ -17,10 +17,10 @@ export function postNewLevel(): void {
   const player = Isaac.GetPlayer();
 
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING ||
-    g.race.goal !== RaceGoal.MEGA_SATAN ||
-    !onStage(LevelStage.DARK_ROOM_CHEST)
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
+    || g.race.goal !== RaceGoal.MEGA_SATAN
+    || !onStage(LevelStage.DARK_ROOM_CHEST)
   ) {
     return;
   }

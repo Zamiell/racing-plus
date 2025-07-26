@@ -48,8 +48,8 @@ export class DoubleAngelNerf extends MandatoryModFeature {
     }
 
     if (
-      entity.Type === EntityType.URIEL ||
-      entity.Type === EntityType.GABRIEL
+      entity.Type === EntityType.URIEL
+      || entity.Type === EntityType.GABRIEL
     ) {
       return false;
     }

@@ -154,16 +154,16 @@ function shouldDrawAnyCustomChargeBar(player: EntityPlayer): boolean {
 
 function shouldDrawLeadPencilChargeBar(player: EntityPlayer) {
   return (
-    config.LeadPencilChargeBar &&
-    player.HasCollectible(CollectibleType.LEAD_PENCIL) &&
+    config.LeadPencilChargeBar
+    && player.HasCollectible(CollectibleType.LEAD_PENCIL)
     // In some situations, the Lead Pencil barrage will fire, but we have no way of tracking it
     // (because there is no `POST_LASER_FIRED` callback).
-    !isCharacter(player, PlayerType.AZAZEL) &&
+    && !isCharacter(player, PlayerType.AZAZEL)
     // When Incubus or a Blood Baby fires a Lead Pencil barrage, there is no way to tell that it
     // came from a familiar (because the `SpawnerEntity` shows up as the player for some reason).
-    !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.INCUBUS) &&
-    !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.BLOOD_BABY) &&
-    !hasCollectible(player, ...LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES)
+    && !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.INCUBUS)
+    && !doesEntityExist(EntityType.FAMILIAR, FamiliarVariant.BLOOD_BABY)
+    && !hasCollectible(player, ...LEAD_PENCIL_UNTRACKABLE_COLLECTIBLES)
   );
 }
 
@@ -190,8 +190,8 @@ function shouldDrawTaintedSamsonChargeBar(player: EntityPlayer) {
 
 function shouldDrawBloodyLustChargeBar(player: EntityPlayer) {
   return (
-    config.BloodyLustChargeBar &&
-    player.HasCollectible(CollectibleType.BLOODY_LUST) &&
-    !isMaxBloodyLustCharges(player)
+    config.BloodyLustChargeBar
+    && player.HasCollectible(CollectibleType.BLOODY_LUST)
+    && !isMaxBloodyLustCharges(player)
   );
 }

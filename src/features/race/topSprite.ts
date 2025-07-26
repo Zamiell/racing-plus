@@ -18,8 +18,8 @@ let sprite: Sprite | undefined;
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (
-    g.race.myStatus === RacerStatus.QUIT ||
-    g.race.myStatus === RacerStatus.DISQUALIFIED
+    g.race.myStatus === RacerStatus.QUIT
+    || g.race.myStatus === RacerStatus.DISQUALIFIED
   ) {
     return;
   }
@@ -48,9 +48,9 @@ function getPosition() {
 
 function hideGoSprite() {
   if (
-    sprite !== undefined &&
-    sprite.GetFilename() === GO_GFX_PATH &&
-    shouldHideGoSprite()
+    sprite !== undefined
+    && sprite.GetFilename() === GO_GFX_PATH
+    && shouldHideGoSprite()
   ) {
     sprite = undefined;
   }
@@ -58,8 +58,8 @@ function hideGoSprite() {
 
 function shouldHideGoSprite() {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
   ) {
     return true;
   }
@@ -82,8 +82,8 @@ export function statusChanged(): void {
   if (g.race.status === RaceStatus.STARTING) {
     countdownChanged();
   } else if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
+    g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
   ) {
     sprite = newSprite(GO_GFX_PATH);
   }

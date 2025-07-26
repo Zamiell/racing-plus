@@ -115,9 +115,9 @@ function checkKeyboardInput(
   const pressedOnThisFrame = framePressed === isaacFrameCount;
   const framesSinceKeyPressed = isaacFrameCount - framePressed;
   const shouldTriggerRepeatPress =
-    framesSinceKeyPressed > REPEAT_KEY_DELAY_IN_RENDER_FRAMES &&
-    isEven(framesSinceKeyPressed) && // Every other frame
-    keyboardValue !== consoleOpenInput;
+    framesSinceKeyPressed > REPEAT_KEY_DELAY_IN_RENDER_FRAMES
+    && isEven(framesSinceKeyPressed) // Every other frame
+    && keyboardValue !== consoleOpenInput;
   const shouldPress = pressedOnThisFrame || shouldTriggerRepeatPress;
 
   if (shouldPress) {
@@ -128,19 +128,19 @@ function checkKeyboardInput(
 function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
   // Do nothing if modifiers other than shift are pressed.
   if (
-    keysPressed.has(Keyboard.LEFT_CONTROL) ||
-    keysPressed.has(Keyboard.RIGHT_CONTROL) ||
-    keysPressed.has(Keyboard.LEFT_ALT) ||
-    keysPressed.has(Keyboard.RIGHT_ALT) ||
-    keysPressed.has(Keyboard.LEFT_SUPER) ||
-    keysPressed.has(Keyboard.RIGHT_SUPER)
+    keysPressed.has(Keyboard.LEFT_CONTROL)
+    || keysPressed.has(Keyboard.RIGHT_CONTROL)
+    || keysPressed.has(Keyboard.LEFT_ALT)
+    || keysPressed.has(Keyboard.RIGHT_ALT)
+    || keysPressed.has(Keyboard.LEFT_SUPER)
+    || keysPressed.has(Keyboard.RIGHT_SUPER)
   ) {
     return;
   }
 
   const shiftPressed =
-    keysPressed.has(Keyboard.LEFT_SHIFT) ||
-    keysPressed.has(Keyboard.RIGHT_SHIFT);
+    keysPressed.has(Keyboard.LEFT_SHIFT)
+    || keysPressed.has(Keyboard.RIGHT_SHIFT);
 
   if (keyboardValue === consoleOpenInput && !shiftPressed) {
     if (consoleOpen) {

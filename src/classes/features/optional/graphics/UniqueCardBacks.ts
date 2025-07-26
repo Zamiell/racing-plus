@@ -18,8 +18,8 @@ export class UniqueCardBacks extends ConfigurableModFeature {
     const card = pickup as EntityPickupCard;
 
     if (
-      card.SubType === CardType.RUNE_BLANK || // 40
-      card.SubType === CardType.RUNE_BLACK // 41
+      card.SubType === CardType.RUNE_BLANK // 40
+      || card.SubType === CardType.RUNE_BLACK // 41
     ) {
       // Give an alternate rune sprite (one that isn't tilted left or right).
       const sprite = card.GetSprite();

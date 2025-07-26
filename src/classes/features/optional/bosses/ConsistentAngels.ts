@@ -84,8 +84,8 @@ export class ConsistentAngels extends ConfigurableModFeature {
     // This feature should not apply to angels that were duplicated with a Meat Cleaver.
     if (v.room.usedMeatCleaverGameFrame !== null) {
       const meatCleaverSpawnGameFrame =
-        v.room.usedMeatCleaverGameFrame +
-        FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER;
+        v.room.usedMeatCleaverGameFrame
+        + FRAME_DELAY_TO_SPAWN_AFTER_MEAT_CLEAVER;
       if (onGameFrame(meatCleaverSpawnGameFrame)) {
         return undefined;
       }

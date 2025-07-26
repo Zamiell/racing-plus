@@ -81,11 +81,11 @@ export class ReplacePhotos extends MandatoryModFeature {
     spawner: Entity | undefined,
   ): boolean {
     return (
-      (collectibleType === CollectibleType.POLAROID ||
-        collectibleType === CollectibleType.NEGATIVE) &&
-      spawner === undefined &&
-      isAfterRoomFrame(0) && // We could be re-entering the room.
-      inMomBossRoom()
+      (collectibleType === CollectibleType.POLAROID
+        || collectibleType === CollectibleType.NEGATIVE)
+      && spawner === undefined
+      && isAfterRoomFrame(0) // We could be re-entering the room.
+      && inMomBossRoom()
     );
   }
 }

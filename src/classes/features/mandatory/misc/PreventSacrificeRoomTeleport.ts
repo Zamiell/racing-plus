@@ -48,8 +48,8 @@ function checkDeleteSpikes() {
 
   const gridEntity = room.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
   if (
-    gridEntity !== undefined &&
-    gridEntity.GetType() === GridEntityType.SPIKES
+    gridEntity !== undefined
+    && gridEntity.GetType() === GridEntityType.SPIKES
   ) {
     removeGridEntity(gridEntity, false);
   }

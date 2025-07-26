@@ -41,8 +41,8 @@ export function changeCharOrderButtonsPostUpdate(): void {
 
 function checkCreateButtons() {
   if (
-    v.room.createButtonsFrame === null ||
-    isBeforeGameFrame(v.room.createButtonsFrame)
+    v.room.createButtonsFrame === null
+    || isBeforeGameFrame(v.room.createButtonsFrame)
   ) {
     return;
   }
@@ -177,9 +177,9 @@ function checkPressedPhaseSeasonSelect(pressurePlate: GridEntityPressurePlate) {
       seasonDescription.Y,
     );
     if (
-      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      pressurePlate.Position.X === buttonPosition.X &&
-      pressurePlate.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED
+      && pressurePlate.Position.X === buttonPosition.X
+      && pressurePlate.Position.Y === buttonPosition.Y
     ) {
       seasonButtonPressed(challengeCustomAbbreviation);
       return;
@@ -217,10 +217,10 @@ function checkPressedPhaseCharacterSelect(
     const { x, y } = charPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
-      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      pressurePlate.VarData === 0 && // We set it to 1 to mark that we have pressed it.
-      pressurePlate.Position.X === buttonPosition.X &&
-      pressurePlate.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED
+      && pressurePlate.VarData === 0 // We set it to 1 to mark that we have pressed it.
+      && pressurePlate.Position.X === buttonPosition.X
+      && pressurePlate.Position.Y === buttonPosition.Y
     ) {
       characterButtonPressed(pressurePlate, i);
     }
@@ -310,10 +310,10 @@ function checkPressedPhaseBuildVeto(pressurePlate: GridEntityPressurePlate) {
     const { x, y } = buildPosition;
     const buttonPosition = gridCoordinatesToWorldPosition(x, y);
     if (
-      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED &&
-      pressurePlate.VarData === 0 && // We set it to 1 to mark that we have pressed it.
-      pressurePlate.Position.X === buttonPosition.X &&
-      pressurePlate.Position.Y === buttonPosition.Y
+      pressurePlate.State === PressurePlateState.PRESSURE_PLATE_PRESSED
+      && pressurePlate.VarData === 0 // We set it to 1 to mark that we have pressed it.
+      && pressurePlate.Position.X === buttonPosition.X
+      && pressurePlate.Position.Y === buttonPosition.Y
     ) {
       buildButtonPressed(pressurePlate, i);
     }

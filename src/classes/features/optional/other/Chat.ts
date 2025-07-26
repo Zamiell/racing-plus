@@ -63,8 +63,8 @@ export class Chat extends ConfigurableModFeature {
         chatMessage.renderFrameReceived,
       );
       if (
-        !consoleOpen &&
-        elapsedRenderFrames > RENDER_FRAMES_FOR_CHAT_TO_SHOW
+        !consoleOpen
+        && elapsedRenderFrames > RENDER_FRAMES_FOR_CHAT_TO_SHOW
       ) {
         const renderFramesOverThreshold =
           elapsedRenderFrames - RENDER_FRAMES_FOR_CHAT_TO_SHOW;

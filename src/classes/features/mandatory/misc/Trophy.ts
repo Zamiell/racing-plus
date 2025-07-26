@@ -61,9 +61,9 @@ export class Trophy extends MandatoryModFeature {
         // Players should not be able to finish the race if they died at the same time as defeating
         // the boss.
         if (
-          player !== undefined &&
-          !player.IsDead() &&
-          !isSeededDeathActive()
+          player !== undefined
+          && !player.IsDead()
+          && !isSeededDeathActive()
         ) {
           this.touch(trophy, player);
           return;

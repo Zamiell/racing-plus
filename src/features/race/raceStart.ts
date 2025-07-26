@@ -14,12 +14,12 @@ export function raceStart(): void {
 
 export function shouldShowRaceID(): boolean {
   return (
-    config.ClientCommunication &&
-    g.race.raceID !== -1 &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    !inRaceRoom() &&
+    config.ClientCommunication
+    && g.race.raceID !== -1
+    && g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
+    && !inRaceRoom()
     // Only show it in the first two seconds of the race.
-    Isaac.GetTime() - g.raceVars.startedTime <= 2000
+    && Isaac.GetTime() - g.raceVars.startedTime <= 2000
   );
 }

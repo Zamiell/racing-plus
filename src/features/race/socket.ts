@@ -87,9 +87,9 @@ export function postNewRoom(): void {
 // ModCallbackCustom.POST_ITEM_PICKUP
 export function postItemPickup(pickingUpItem: PickingUpItem): void {
   if (
-    pickingUpItem.itemType === ItemType.ACTIVE ||
-    pickingUpItem.itemType === ItemType.PASSIVE ||
-    pickingUpItem.itemType === ItemType.FAMILIAR
+    pickingUpItem.itemType === ItemType.ACTIVE
+    || pickingUpItem.itemType === ItemType.PASSIVE
+    || pickingUpItem.itemType === ItemType.FAMILIAR
   ) {
     send("item", pickingUpItem.subType.toString());
   }

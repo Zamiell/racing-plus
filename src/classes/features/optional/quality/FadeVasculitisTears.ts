@@ -32,10 +32,10 @@ export class FadeVasculitisTears extends ConfigurableModFeature {
    */
   isVasculitisTear(tear: EntityTear): boolean {
     return (
-      tear.Variant === TearVariant.BLOOD &&
-      tear.Parent === undefined &&
-      tear.SpawnerEntity === undefined &&
-      anyPlayerHasCollectible(CollectibleType.VASCULITIS)
+      tear.Variant === TearVariant.BLOOD
+      && tear.Parent === undefined
+      && tear.SpawnerEntity === undefined
+      && anyPlayerHasCollectible(CollectibleType.VASCULITIS)
     );
   }
 }

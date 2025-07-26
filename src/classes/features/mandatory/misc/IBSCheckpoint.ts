@@ -25,8 +25,8 @@ export class IBSCheckpoint extends MandatoryModFeature {
     buttonAction: ButtonAction,
   ): boolean | float | undefined {
     if (
-      v.run.preventShootUntilGameFrame === null ||
-      onOrAfterGameFrame(v.run.preventShootUntilGameFrame)
+      v.run.preventShootUntilGameFrame === null
+      || onOrAfterGameFrame(v.run.preventShootUntilGameFrame)
     ) {
       return undefined;
     }

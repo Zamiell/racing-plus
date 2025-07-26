@@ -23,8 +23,8 @@ function drawRaceTimer() {
 
 export function shouldDrawRaceTimer(): boolean {
   if (
-    g.race.myStatus !== RacerStatus.RACING &&
-    g.race.myStatus !== RacerStatus.FINISHED
+    g.race.myStatus !== RacerStatus.RACING
+    && g.race.myStatus !== RacerStatus.FINISHED
   ) {
     return false;
   }

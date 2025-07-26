@@ -78,11 +78,11 @@ function shouldShowSprites(): boolean {
   const isGreedMode = game.IsGreedMode();
 
   return (
-    (v.level.collectibles.length > 0 || v.level.bosses.length > 0) &&
+    (v.level.collectibles.length > 0 || v.level.bosses.length > 0)
     // Only show the sprites in the starting room.
-    inStartingRoom() &&
+    && inStartingRoom()
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
-    !isGreedMode
+    && !isGreedMode
   );
 }
 

@@ -146,13 +146,13 @@ export class Autofire extends MandatoryModFeature {
 
     // End an autofire sequence when all shoot inputs are released.
     if (
-      firstShootButtonAction === undefined &&
-      v.run.gameFrameAutofireSequenceStarted !== null &&
+      firstShootButtonAction === undefined
+      && v.run.gameFrameAutofireSequenceStarted !== null
       // Don't immediately end an autofire sequence when all shoot keys are released. Instead, wait
       // until the frame before the next planned fire. This is necessary to prevent autofire players
       // from spamming two different shooting buttons to shoot faster than what autofire allows and
       // to provide a consistent experience for changing shooting directions mid-autofire-sequence.
-      this.autofireIsFrameBeforePress(player, gameFrameCount)
+      && this.autofireIsFrameBeforePress(player, gameFrameCount)
     ) {
       v.run.gameFrameAutofireSequenceStarted = null;
       v.run.gameFrameAutofireSequenceEnded = gameFrameCount;
@@ -209,8 +209,8 @@ export class Autofire extends MandatoryModFeature {
 
     // Don't do anything if we are not in a lockout.
     if (
-      v.run.lockout === null ||
-      gameFrameCount >= v.run.lockout.endGameFrame
+      v.run.lockout === null
+      || gameFrameCount >= v.run.lockout.endGameFrame
     ) {
       return;
     }
@@ -320,17 +320,17 @@ export class Autofire extends MandatoryModFeature {
   ): boolean | float | undefined {
     // Early return if we are on some specific babies from The Babies Mod.
     if (
-      isRandomBaby(player) &&
-      BabiesModBabyType !== undefined &&
-      ANTI_SYNERGY_BABIES.has(BabiesModBabyType)
+      isRandomBaby(player)
+      && BabiesModBabyType !== undefined
+      && ANTI_SYNERGY_BABIES.has(BabiesModBabyType)
     ) {
       return undefined;
     }
 
     if (
-      (inputHook === InputHook.IS_ACTION_PRESSED ||
-        inputHook === InputHook.GET_ACTION_VALUE) &&
-      isShootAction(buttonAction)
+      (inputHook === InputHook.IS_ACTION_PRESSED
+        || inputHook === InputHook.GET_ACTION_VALUE)
+      && isShootAction(buttonAction)
     ) {
       return this.inputActionPlayerShootAction(player, inputHook, buttonAction);
     }
@@ -465,8 +465,8 @@ export class Autofire extends MandatoryModFeature {
 
     // Handle queued shots.
     if (
-      v.run.queuedShot !== null &&
-      v.run.queuedShot.buttonAction === buttonAction
+      v.run.queuedShot !== null
+      && v.run.queuedShot.buttonAction === buttonAction
     ) {
       if (gameFrameCount === v.run.queuedShot.gameFrame) {
         v.run.lockout = {
@@ -504,8 +504,8 @@ export class Autofire extends MandatoryModFeature {
       // We force the shoot button that started the lockout to be pressed (unless the player
       // released the key already) and all other shoot buttons to be released.
       const press =
-        buttonAction === v.run.lockout.buttonAction &&
-        !v.run.lockout.playerReleasedKey;
+        buttonAction === v.run.lockout.buttonAction
+        && !v.run.lockout.playerReleasedKey;
       const value = press ? v.run.lockout.value : 0;
 
       return inputHook === InputHook.IS_ACTION_PRESSED ? press : value;

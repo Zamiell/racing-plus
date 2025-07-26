@@ -132,10 +132,10 @@ function goingToMausoleum2ThroughCustomTrapdoor(position: Vector): boolean {
   const clearedMomBossRoom = inClearedMomBossRoom();
 
   return (
-    ((inRaceToBeast() && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX) ||
-      (onSeason(3) && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX)) &&
-    clearedMomBossRoom &&
-    !repentanceStage
+    ((inRaceToBeast() && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX)
+      || (onSeason(3) && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX))
+    && clearedMomBossRoom
+    && !repentanceStage
   );
 }
 
@@ -146,10 +146,10 @@ function goingToCorpse1ThroughCustomTrapdoor(position: Vector): boolean {
   const clearedMomBossRoom = inClearedMomBossRoom();
 
   return (
-    onSeason(3) &&
-    gridIndex === NORMAL_TRAPDOOR_GRID_INDEX &&
-    clearedMomBossRoom &&
-    repentanceStage
+    onSeason(3)
+    && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+    && clearedMomBossRoom
+    && repentanceStage
   );
 }
 
@@ -195,8 +195,8 @@ function shouldMoveTaintedSoul(player: EntityPlayer) {
   // If Tainted Soul jumps down a trapdoor or heaven door while holding Tainted Forgotten, the
   // player object that gets to this function will be The Forgotten.
   return (
-    player.Position.X === taintedSoul.Position.X &&
-    player.Position.Y === taintedSoul.Position.Y
+    player.Position.X === taintedSoul.Position.X
+    && player.Position.Y === taintedSoul.Position.Y
   );
 }
 
@@ -258,9 +258,9 @@ function playTravelingAnimation(
   if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
     const taintedSoul = player.GetOtherTwin();
     if (
-      taintedSoul !== undefined &&
-      taintedSoul.Position.X === player.Position.X &&
-      taintedSoul.Position.Y === player.Position.Y
+      taintedSoul !== undefined
+      && taintedSoul.Position.X === player.Position.X
+      && taintedSoul.Position.Y === player.Position.Y
     ) {
       taintedSoul.Visible = false;
     }

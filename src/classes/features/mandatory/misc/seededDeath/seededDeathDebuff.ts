@@ -167,9 +167,9 @@ function debuffOnRemoveActiveCollectibles(player: EntityPlayer) {
     removeCollectible(player, CollectibleType.BOOK_OF_VIRTUES);
   }
   if (
-    isCharacter(player, PlayerType.JUDAS) &&
-    player.HasCollectible(CollectibleType.BOOK_OF_BELIAL) &&
-    player.HasCollectible(CollectibleType.BIRTHRIGHT)
+    isCharacter(player, PlayerType.JUDAS)
+    && player.HasCollectible(CollectibleType.BOOK_OF_BELIAL)
+    && player.HasCollectible(CollectibleType.BIRTHRIGHT)
   ) {
     v.run.hasBookOfBelialBirthrightCombo = true;
     removeCollectible(player, CollectibleType.BOOK_OF_BELIAL);

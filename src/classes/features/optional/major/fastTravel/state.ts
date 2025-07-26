@@ -47,9 +47,9 @@ function setOpenClose(
   const sprite = entity.GetSprite();
   let animationPrefix = isOpen ? "Opened" : "Closed";
   if (
-    !initial &&
-    animationPrefix === "Opened" &&
-    fastTravelEntityType !== FastTravelEntityType.HEAVEN_DOOR
+    !initial
+    && animationPrefix === "Opened"
+    && fastTravelEntityType !== FastTravelEntityType.HEAVEN_DOOR
   ) {
     animationPrefix = "Open Animation";
   }
@@ -187,9 +187,9 @@ export function shouldOpenFastTravelEntity(
     !anyPlayerCloserThan(
       entity.Position,
       TRAPDOOR_AND_CRAWL_SPACE_OPEN_DISTANCE,
-    ) &&
-    !playerCloseAfterBoss(entity.Position) &&
-    !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial)
+    )
+    && !playerCloseAfterBoss(entity.Position)
+    && !shouldBeClosedFromStartingInRoomWithEnemies(entityDescription.initial)
   );
 }
 
@@ -202,9 +202,9 @@ function playerCloseAfterBoss(position: Vector) {
   // In order to prevent a player from accidentally entering a freshly-spawned trapdoor after
   // killing the boss of the floor, we use a wider open distance for X frames.
   if (
-    !inRoomType(RoomType.BOSS) ||
-    v.room.clearFrame === null ||
-    onOrAfterGameFrame(v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES)
+    !inRoomType(RoomType.BOSS)
+    || v.room.clearFrame === null
+    || onOrAfterGameFrame(v.room.clearFrame + TRAPDOOR_BOSS_REACTION_FRAMES)
   ) {
     return false;
   }

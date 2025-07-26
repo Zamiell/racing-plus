@@ -32,9 +32,9 @@ export class FadeHungryTears extends ConfigurableModFeature {
    */
   isHungryTear(tear: EntityTear): boolean {
     return (
-      tear.Parent === undefined &&
-      tear.SpawnerEntity !== undefined &&
-      anyPlayerHasCollectible(CollectibleType.LACHRYPHAGY)
+      tear.Parent === undefined
+      && tear.SpawnerEntity !== undefined
+      && anyPlayerHasCollectible(CollectibleType.LACHRYPHAGY)
     );
   }
 }

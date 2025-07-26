@@ -119,8 +119,8 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
     }
 
     if (
-      itemPoolType !== ItemPoolType.DEVIL && // 3
-      itemPoolType !== ItemPoolType.ANGEL // 4
+      itemPoolType !== ItemPoolType.DEVIL // 3
+      && itemPoolType !== ItemPoolType.ANGEL // 4
     ) {
       return undefined;
     }
@@ -136,9 +136,9 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
     // counteract this, replace all vanilla items with an arbitrary placeholder item, which should
     // not affect pools. The placeholder item will be deleted later on this frame.
     if (
-      !v.level.vanillaCollectiblesHaveSpawnedInCustomRoom &&
-      inRoomType(RoomType.DEVIL, RoomType.ANGEL) &&
-      !inAngelShop()
+      !v.level.vanillaCollectiblesHaveSpawnedInCustomRoom
+      && inRoomType(RoomType.DEVIL, RoomType.ANGEL)
+      && !inAngelShop()
     ) {
       return CollectibleTypeCustom.DEBUG;
     }
@@ -173,8 +173,8 @@ export class BetterDevilAngelRooms extends ConfigurableModFeature {
       // Otherwise, check to see if this is an active item.
       const itemConfigItem = itemConfig.GetCollectible(collectibleType);
       if (
-        itemConfigItem === undefined ||
-        itemConfigItem.Type === ItemType.ACTIVE
+        itemConfigItem === undefined
+        || itemConfigItem.Type === ItemType.ACTIVE
       ) {
         continue;
       }

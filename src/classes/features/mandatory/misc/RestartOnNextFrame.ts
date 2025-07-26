@@ -48,16 +48,16 @@ export class RestartOnNextFrame extends MandatoryModFeature {
     const character = player.GetPlayerType();
 
     if (
-      v.run.restartCharacter !== null &&
-      character !== v.run.restartCharacter
+      v.run.restartCharacter !== null
+      && character !== v.run.restartCharacter
     ) {
       restart(v.run.restartCharacter);
       return;
     }
 
     if (
-      v.run.restartChallenge !== null &&
-      !onChallenge(v.run.restartChallenge)
+      v.run.restartChallenge !== null
+      && !onChallenge(v.run.restartChallenge)
     ) {
       setChallenge(v.run.restartChallenge);
       return;
@@ -86,8 +86,8 @@ export function setRestartCharacter(character: PlayerType): void {
   if (character < FIRST_CHARACTER || character > LAST_VANILLA_CHARACTER) {
     if (
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      character === LAST_VANILLA_CHARACTER + 1 &&
-      isBabiesModEnabled()
+      character === LAST_VANILLA_CHARACTER + 1
+      && isBabiesModEnabled()
     ) {
       // Random Baby takes the first modded character slot.
     } else {

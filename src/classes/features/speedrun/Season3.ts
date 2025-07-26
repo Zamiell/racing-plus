@@ -275,8 +275,8 @@ export class Season3 extends ChallengeModFeature {
         rng,
       );
     } while (
-      player.HasCollectible(activeCollectibleType) ||
-      this.isCollectibleTypeBannedOnThisCharacter(
+      player.HasCollectible(activeCollectibleType)
+      || this.isCollectibleTypeBannedOnThisCharacter(
         activeCollectibleType,
         character,
       )
@@ -292,8 +292,8 @@ export class Season3 extends ChallengeModFeature {
           passiveCollectibleTypes,
         );
       } while (
-        player.HasCollectible(passiveCollectibleType) ||
-        this.isCollectibleTypeBannedOnThisCharacter(
+        player.HasCollectible(passiveCollectibleType)
+        || this.isCollectibleTypeBannedOnThisCharacter(
           activeCollectibleType,
           character,
         )
@@ -305,8 +305,8 @@ export class Season3 extends ChallengeModFeature {
     do {
       trinketType = getRandomArrayElement(DIVERSITY_TRINKET_TYPES, rng);
     } while (
-      player.HasTrinket(trinketType) ||
-      this.isTrinketTypeBannedOnThisCharacter(trinketType, character)
+      player.HasTrinket(trinketType)
+      || this.isTrinketTypeBannedOnThisCharacter(trinketType, character)
     );
 
     const collectibleTypes = [
@@ -383,13 +383,13 @@ export class Season3 extends ChallengeModFeature {
     const roomInsideGrid = isRoomInsideGrid();
 
     if (
-      season3HasDogmaGoal() &&
-      onStage(LevelStage.DEPTHS_2) &&
-      repentanceStage &&
-      inRoomType(RoomType.BOSS) &&
-      roomInsideGrid &&
-      backwardsPathInit &&
-      !isDreamCatcherWarping()
+      season3HasDogmaGoal()
+      && onStage(LevelStage.DEPTHS_2)
+      && repentanceStage
+      && inRoomType(RoomType.BOSS)
+      && roomInsideGrid
+      && backwardsPathInit
+      && !isDreamCatcherWarping()
     ) {
       // Take them directly to Home to avoid wasting time.
       setStage(LevelStage.HOME, StageType.WRATH_OF_THE_LAMB);
@@ -453,10 +453,10 @@ export class Season3 extends ChallengeModFeature {
     const room = game.GetRoom();
 
     if (
-      onStage(LevelStage.BLUE_WOMB) &&
-      inRoomType(RoomType.BOSS) &&
-      isRoomInsideGrid() &&
-      season3HasHushGoal()
+      onStage(LevelStage.BLUE_WOMB)
+      && inRoomType(RoomType.BOSS)
+      && isRoomInsideGrid()
+      && season3HasHushGoal()
     ) {
       removeAllTrapdoors();
       removeAllEffects(EffectVariant.HEAVEN_LIGHT_DOOR);

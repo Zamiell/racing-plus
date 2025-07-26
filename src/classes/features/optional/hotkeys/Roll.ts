@@ -131,11 +131,11 @@ function canPlayerRoll(player: EntityPlayer) {
   const effects = player.GetEffects();
 
   return (
-    !v.run.rolling &&
-    !player.IsHoldingItem() &&
-    !effects.HasCollectibleEffect(CollectibleType.MEGA_BLAST) && // 441
-    !effects.HasCollectibleEffect(CollectibleType.MEGA_MUSH) && // 625
-    !effects.HasCollectibleEffect(CollectibleType.DARK_ARTS) // 705
+    !v.run.rolling
+    && !player.IsHoldingItem()
+    && !effects.HasCollectibleEffect(CollectibleType.MEGA_BLAST) // 441
+    && !effects.HasCollectibleEffect(CollectibleType.MEGA_MUSH) // 625
+    && !effects.HasCollectibleEffect(CollectibleType.DARK_ARTS) // 705
   );
 }
 

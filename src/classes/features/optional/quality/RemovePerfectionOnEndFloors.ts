@@ -29,8 +29,8 @@ export class RemovePerfectionOnEndFloors extends ConfigurableModFeature {
     }
 
     if (
-      onStageOrHigher(LevelStage.DARK_ROOM_CHEST) ||
-      (onStage(LevelStage.WOMB_2) && onRepentanceStage())
+      onStageOrHigher(LevelStage.DARK_ROOM_CHEST)
+      || (onStage(LevelStage.WOMB_2) && onRepentanceStage())
     ) {
       pickup.Remove();
     }

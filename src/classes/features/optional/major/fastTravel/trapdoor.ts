@@ -144,9 +144,9 @@ function shouldRemove() {
 
   // If the goal of the speedrun is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (
-    onSeason(3) &&
-    season3HasOnlyBossRushLeft() &&
-    onStage(LevelStage.DEPTHS_2)
+    onSeason(3)
+    && season3HasOnlyBossRushLeft()
+    && onStage(LevelStage.DEPTHS_2)
   ) {
     log(
       `Removed a vanilla trapdoor on Depths 2 (for a Season 3 Boss Rush goal) on game frame: ${gameFrameCount}`,
@@ -156,9 +156,9 @@ function shouldRemove() {
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
   if (
-    inRaceToHush() &&
-    onStage(LevelStage.WOMB_2) &&
-    roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
+    inRaceToHush()
+    && onStage(LevelStage.WOMB_2)
+    && roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
       `Removed a vanilla trapdoor after Mom (for a race Hush goal) on game frame: ${gameFrameCount}`,
@@ -168,10 +168,10 @@ function shouldRemove() {
 
   // If the goal of the speedrun is Hush, delete the trapdoor that spawns after It Lives!
   if (
-    onSeason(3) &&
-    season3HasOnlyHushLeft() &&
-    onStage(LevelStage.WOMB_2) &&
-    roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
+    onSeason(3)
+    && season3HasOnlyHushLeft()
+    && onStage(LevelStage.WOMB_2)
+    && roomGridIndex !== asNumber(GridRoom.BLUE_WOMB)
   ) {
     log(
       `Removed a vanilla trapdoor after Mom (for a Season 3 Hush goal) on game frame: ${gameFrameCount}`,
@@ -181,9 +181,9 @@ function shouldRemove() {
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after Hush.
   if (
-    inRaceToHush() &&
-    onStage(LevelStage.BLUE_WOMB) &&
-    roomGridIndex !== asNumber(GridRoom.VOID)
+    inRaceToHush()
+    && onStage(LevelStage.BLUE_WOMB)
+    && roomGridIndex !== asNumber(GridRoom.VOID)
   ) {
     log(
       `Removed a vanilla trapdoor after Hush (for a race Hush goal) on game frame: ${gameFrameCount}`,
@@ -209,9 +209,9 @@ function shouldRemove() {
     }
 
     if (
-      onStage(LevelStage.DEPTHS_2) &&
-      repentanceStage &&
-      !mausoleumHeartKilled
+      onStage(LevelStage.DEPTHS_2)
+      && repentanceStage
+      && !mausoleumHeartKilled
     ) {
       log(
         `Removed a vanilla trapdoor on Mausoleum/Gehenna 2 (for a race Mother goal) on game frame: ${gameFrameCount}`,
@@ -222,10 +222,10 @@ function shouldRemove() {
 
   // In season 3, delete the trapdoors to the normal path when the only goal remaining is Mother.
   if (
-    onSeason(3) &&
-    season3HasOnlyMotherLeft() &&
-    onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2) &&
-    !inSecretExit()
+    onSeason(3)
+    && season3HasOnlyMotherLeft()
+    && onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2)
+    && !inSecretExit()
   ) {
     log(
       `Removed a vanilla trapdoor (for a Season 3 Mother goal) on game frame: ${gameFrameCount}`,

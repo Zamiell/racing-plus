@@ -48,19 +48,19 @@ function featureEnabled() {
 
 export function inRace(): boolean {
   return (
-    config.ClientCommunication &&
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING
+    config.ClientCommunication
+    && g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
   );
 }
 
 function inPreRace(): boolean {
   return (
-    config.ClientCommunication &&
-    (g.race.status === RaceStatus.OPEN ||
-      g.race.status === RaceStatus.STARTING) &&
-    (g.race.myStatus === RacerStatus.READY ||
-      g.race.myStatus === RacerStatus.NOT_READY)
+    config.ClientCommunication
+    && (g.race.status === RaceStatus.OPEN
+      || g.race.status === RaceStatus.STARTING)
+    && (g.race.myStatus === RacerStatus.READY
+      || g.race.myStatus === RacerStatus.NOT_READY)
   );
 }
 
@@ -82,8 +82,9 @@ export function inDiversityRace(): boolean {
 
 export function inRaceToDarkRoom(): boolean {
   return (
-    inRace() &&
-    (g.race.goal === RaceGoal.THE_LAMB || g.race.goal === RaceGoal.MEGA_SATAN)
+    inRace()
+    && (g.race.goal === RaceGoal.THE_LAMB
+      || g.race.goal === RaceGoal.MEGA_SATAN)
   );
 }
 

@@ -31,8 +31,8 @@ export function season3HasMegaSatanGoal(): boolean {
 
 export function season3HasOnlyBossRushLeft(): boolean {
   return (
-    v.persistent.remainingGoals.includes(Season3Goal.BOSS_RUSH) &&
-    v.persistent.remainingGoals.length === 1
+    v.persistent.remainingGoals.includes(Season3Goal.BOSS_RUSH)
+    && v.persistent.remainingGoals.length === 1
   );
 }
 
@@ -42,8 +42,8 @@ export function season3HasHushGoal(): boolean {
 
 export function season3HasOnlyHushLeft(): boolean {
   return (
-    v.persistent.remainingGoals.includes(Season3Goal.HUSH) &&
-    v.persistent.remainingGoals.length === 1
+    v.persistent.remainingGoals.includes(Season3Goal.HUSH)
+    && v.persistent.remainingGoals.length === 1
   );
 }
 
@@ -53,8 +53,8 @@ export function season3HasMotherGoal(): boolean {
 
 export function season3HasOnlyMotherLeft(): boolean {
   return (
-    v.persistent.remainingGoals.includes(Season3Goal.MOTHER) &&
-    v.persistent.remainingGoals.length === 1
+    v.persistent.remainingGoals.includes(Season3Goal.MOTHER)
+    && v.persistent.remainingGoals.length === 1
   );
 }
 
@@ -64,8 +64,8 @@ export function season3HasDogmaGoal(): boolean {
 
 export function season3HasOnlyDogmaLeft(): boolean {
   return (
-    v.persistent.remainingGoals.includes(Season3Goal.DOGMA) &&
-    v.persistent.remainingGoals.length === 1
+    v.persistent.remainingGoals.includes(Season3Goal.DOGMA)
+    && v.persistent.remainingGoals.length === 1
   );
 }
 

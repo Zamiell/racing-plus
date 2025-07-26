@@ -74,10 +74,10 @@ export class PreventVictoryLapPopup extends ConfigurableModFeature {
     const roomClear = room.IsClear();
 
     return (
-      onDarkRoom() &&
-      inRoomType(RoomType.BOSS) &&
-      isRoomInsideGrid() &&
-      !roomClear
+      onDarkRoom()
+      && inRoomType(RoomType.BOSS)
+      && isRoomInsideGrid()
+      && !roomClear
     );
   }
 

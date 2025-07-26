@@ -58,8 +58,8 @@ export class DummyDPS extends ConfigurableModFeature {
     const gameFrameCount = game.GetFrameCount();
 
     if (
-      v.room.firstGameFrameOfDamage !== null &&
-      v.room.lastGameFrameOfDamage !== null
+      v.room.firstGameFrameOfDamage !== null
+      && v.room.lastGameFrameOfDamage !== null
     ) {
       const elapsedSeconds = this.getElapsedSeconds(
         v.room.lastGameFrameOfDamage,
@@ -97,8 +97,8 @@ export class DummyDPS extends ConfigurableModFeature {
 
   getDPS(): float {
     if (
-      v.room.firstGameFrameOfDamage === null ||
-      v.room.lastGameFrameOfDamage === null
+      v.room.firstGameFrameOfDamage === null
+      || v.room.lastGameFrameOfDamage === null
     ) {
       return 0;
     }

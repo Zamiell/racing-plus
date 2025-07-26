@@ -203,18 +203,18 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
       // 79
       case EntityType.GEMINI: {
         return (
-          variant === asNumber(GeminiVariant.GEMINI_BABY) ||
-          variant === asNumber(GeminiVariant.STEVEN_BABY) ||
-          variant === asNumber(GeminiVariant.BLIGHTED_OVUM_BABY) ||
-          variant === asNumber(GeminiVariant.UMBILICAL_CORD)
+          variant === asNumber(GeminiVariant.GEMINI_BABY)
+          || variant === asNumber(GeminiVariant.STEVEN_BABY)
+          || variant === asNumber(GeminiVariant.BLIGHTED_OVUM_BABY)
+          || variant === asNumber(GeminiVariant.UMBILICAL_CORD)
         );
       }
 
       // 266
       case EntityType.MAMA_GURDY: {
         return (
-          variant === asNumber(MamaGurdyVariant.LEFT_HAND) ||
-          variant === asNumber(MamaGurdyVariant.RIGHT_HAND)
+          variant === asNumber(MamaGurdyVariant.LEFT_HAND)
+          || variant === asNumber(MamaGurdyVariant.RIGHT_HAND)
         );
       }
 

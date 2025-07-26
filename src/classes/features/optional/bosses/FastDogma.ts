@@ -64,9 +64,9 @@ export class FastDogma extends ConfigurableModFeature {
     const roomSubType = getRoomSubType();
 
     if (
-      onStage(LevelStage.HOME) &&
-      onStageType(StageType.WRATH_OF_THE_LAMB) &&
-      roomSubType === asNumber(HomeRoomSubType.LIVING_ROOM)
+      onStage(LevelStage.HOME)
+      && onStageType(StageType.WRATH_OF_THE_LAMB)
+      && roomSubType === asNumber(HomeRoomSubType.LIVING_ROOM)
     ) {
       this.enteredDogmaRoom();
     }

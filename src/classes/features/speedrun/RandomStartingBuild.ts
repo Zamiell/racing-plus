@@ -116,10 +116,10 @@ export class RandomStartingBuild extends ChallengeModFeature {
     // Only remove the flight if the player does not have another flight item or effect.
     const character = player.GetPlayerType();
     if (
-      !isFlyingCharacter(character) &&
-      !hasFlyingTransformation(player) &&
-      !mod.hasFlyingTemporaryEffect(player) &&
-      !this.hasFlyingCollectibleExceptForRevelation(player)
+      !isFlyingCharacter(character)
+      && !hasFlyingTransformation(player)
+      && !mod.hasFlyingTemporaryEffect(player)
+      && !this.hasFlyingCollectibleExceptForRevelation(player)
     ) {
       player.CanFly = false;
     }
@@ -145,9 +145,9 @@ export class RandomStartingBuild extends ChallengeModFeature {
   /** Reset the starting build timer if we just killed the Basement 2 boss. */
   checkResetTimeAssigned(): void {
     if (
-      onEffectiveStage(LevelStage.BASEMENT_2) &&
-      inRoomType(RoomType.BOSS) &&
-      isRoomInsideGrid()
+      onEffectiveStage(LevelStage.BASEMENT_2)
+      && inRoomType(RoomType.BOSS)
+      && isRoomInsideGrid()
     ) {
       v.persistent.timeFirstBuildIndexAssigned = 0; // Setting to null does not work.
     }
@@ -190,8 +190,8 @@ export class RandomStartingBuild extends ChallengeModFeature {
 
     const time = Isaac.GetTime();
     if (
-      v.persistent.timeFirstBuildIndexAssigned === null ||
-      v.persistent.timeFirstBuildIndexAssigned > time
+      v.persistent.timeFirstBuildIndexAssigned === null
+      || v.persistent.timeFirstBuildIndexAssigned > time
     ) {
       // It is possible for the time assignment to be in the future, since it is based on the time
       // since the operating system started.
@@ -201,8 +201,8 @@ export class RandomStartingBuild extends ChallengeModFeature {
     const buildLockedUntilTime =
       v.persistent.timeFirstBuildIndexAssigned + RANDOM_BUILD_LOCK_MILLISECONDS;
     if (
-      time > buildLockedUntilTime ||
-      v.persistent.selectedBuildIndexes.length === 0
+      time > buildLockedUntilTime
+      || v.persistent.selectedBuildIndexes.length === 0
     ) {
       this.refreshStartingBuilds();
     }

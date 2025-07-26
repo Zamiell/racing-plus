@@ -254,9 +254,9 @@ function checkOtherModsEnabled() {
     asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) + NUM_RACING_PLUS_ITEMS,
   );
   const correctLastCollectibleTypeRacingPlusBabiesMod = asCollectibleType(
-    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE) +
-      NUM_RACING_PLUS_ITEMS +
-      NUM_BABIES_MOD_ITEMS,
+    asNumber(LAST_VANILLA_COLLECTIBLE_TYPE)
+      + NUM_RACING_PLUS_ITEMS
+      + NUM_BABIES_MOD_ITEMS,
   );
   const correctLastCollectibleType = isBabiesModEnabled()
     ? correctLastCollectibleTypeRacingPlusBabiesMod
@@ -290,11 +290,11 @@ function checkBabiesModEnabled() {
   const roomVisitedCount = getRoomVisitedCount();
 
   if (
-    onFirstFloor() &&
-    inStartingRoom() &&
-    roomVisitedCount === 1 &&
-    !isRandomBaby(player) &&
-    !onSeason(5) // We might get here before the mod switches from Isaac to Random Baby.
+    onFirstFloor()
+    && inStartingRoom()
+    && roomVisitedCount === 1
+    && !isRandomBaby(player)
+    && !onSeason(5) // We might get here before the mod switches from Isaac to Random Baby.
   ) {
     v.run.playingAsNonBaby = true;
     log("Error: Babies Mod detected and playing a non-baby.");

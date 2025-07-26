@@ -13,8 +13,8 @@ export class FastTeleport extends ConfigurableModFeature {
     const sprite = player.GetSprite();
     const animation = sprite.GetAnimation();
     if (
-      (animation === "TeleportUp" || animation === "TeleportDown") &&
-      sprite.PlaybackSpeed === 1
+      (animation === "TeleportUp" || animation === "TeleportDown")
+      && sprite.PlaybackSpeed === 1
     ) {
       sprite.PlaybackSpeed = ANIMATION_SPEED_MULTIPLIER;
     }

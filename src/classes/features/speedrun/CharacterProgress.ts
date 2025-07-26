@@ -115,8 +115,8 @@ export class CharacterProgress extends ChallengeModFeature {
     }
 
     if (
-      v.persistent.currentlyPlayingChallenge === null ||
-      !onChallenge(v.persistent.currentlyPlayingChallenge)
+      v.persistent.currentlyPlayingChallenge === null
+      || !onChallenge(v.persistent.currentlyPlayingChallenge)
     ) {
       v.persistent.currentlyPlayingChallenge = Isaac.GetChallenge();
 

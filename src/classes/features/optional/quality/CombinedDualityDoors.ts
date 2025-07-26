@@ -114,10 +114,10 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
 
   shouldInvertDirection(slot: DoorSlot): boolean {
     return (
-      slot === DoorSlot.RIGHT_0 || // 2
-      slot === DoorSlot.DOWN_0 || // 3
-      slot === DoorSlot.RIGHT_1 || // 6
-      slot === DoorSlot.DOWN_1 // 7
+      slot === DoorSlot.RIGHT_0 // 2
+      || slot === DoorSlot.DOWN_0 // 3
+      || slot === DoorSlot.RIGHT_1 // 6
+      || slot === DoorSlot.DOWN_1 // 7
     );
   }
 }

@@ -19,9 +19,9 @@ export function preSpawnClearAward(): void {
 
 function openRepentanceDoor() {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING ||
-    g.race.goal !== RaceGoal.MOTHER
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
+    || g.race.goal !== RaceGoal.MOTHER
   ) {
     return;
   }

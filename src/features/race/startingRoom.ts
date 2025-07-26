@@ -64,9 +64,9 @@ function drawSprites() {
   // the starting room sprites are not shown once we re-enter the room.)
 
   if (
-    g.race.myStatus === RacerStatus.FINISHED ||
-    g.race.myStatus === RacerStatus.QUIT ||
-    g.race.myStatus === RacerStatus.DISQUALIFIED
+    g.race.myStatus === RacerStatus.FINISHED
+    || g.race.myStatus === RacerStatus.QUIT
+    || g.race.myStatus === RacerStatus.DISQUALIFIED
   ) {
     return;
   }
@@ -158,8 +158,8 @@ export function resetSprites(): void {
 
 export function initSprites(): void {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
   ) {
     return;
   }

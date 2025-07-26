@@ -43,9 +43,9 @@ export class BanFirstFloorRoomType extends MandatoryModFeature {
 
   shouldBanSpecialRoomsSeason2(): boolean {
     return (
-      onFirstFloor() &&
-      isOnFirstCharacter() &&
-      onSpeedrunWithRandomStartingBuild()
+      onFirstFloor()
+      && isOnFirstCharacter()
+      && onSpeedrunWithRandomStartingBuild()
     );
   }
 

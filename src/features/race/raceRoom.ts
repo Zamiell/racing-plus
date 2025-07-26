@@ -166,11 +166,11 @@ function gotoRaceRoom() {
 
 function shouldGotoRaceRoom() {
   return (
-    (g.race.status === RaceStatus.OPEN ||
-      g.race.status === RaceStatus.STARTING) &&
+    (g.race.status === RaceStatus.OPEN
+      || g.race.status === RaceStatus.STARTING)
     // Only bring them to the race room if they are not in the middle of a run.
     // (e.g. the only room that they have entered is the starting room on Basement 1)
-    mod.inFirstRoom()
+    && mod.inFirstRoom()
   );
 }
 
@@ -211,9 +211,8 @@ function setupRaceRoom() {
 
 function shouldSetupRaceRoom() {
   return (
-    (g.race.status === RaceStatus.OPEN ||
-      g.race.status === RaceStatus.STARTING) &&
-    inRaceRoom()
+    (g.race.status === RaceStatus.OPEN || g.race.status === RaceStatus.STARTING)
+    && inRaceRoom()
   );
 }
 
@@ -223,9 +222,9 @@ export function inRaceRoom(): boolean {
   const roomGridIndex = getRoomGridIndex();
 
   return (
-    roomStageID === RACE_ROOM_STAGE_ID &&
-    roomVariant === RACE_ROOM_VARIANT &&
-    roomGridIndex === asNumber(GridRoom.DEBUG)
+    roomStageID === RACE_ROOM_STAGE_ID
+    && roomVariant === RACE_ROOM_VARIANT
+    && roomGridIndex === asNumber(GridRoom.DEBUG)
   );
 }
 

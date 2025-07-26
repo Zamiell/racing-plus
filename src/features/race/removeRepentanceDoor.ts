@@ -31,8 +31,8 @@ function checkRemoveRepentanceDoor() {
   }
 
   if (
-    shouldRemoveRepentanceDoorOnSeededRace() ||
-    shouldRemoveRepentanceDoorOnBeastRace()
+    shouldRemoveRepentanceDoorOnSeededRace()
+    || shouldRemoveRepentanceDoorOnBeastRace()
   ) {
     removeRepentanceDoor();
   }
@@ -48,10 +48,10 @@ function checkRemoveRepentanceDoor() {
  */
 function shouldRemoveRepentanceDoorOnSeededRace() {
   return (
-    inSeededRace() &&
-    g.race.goal !== RaceGoal.MOTHER &&
-    g.race.goal !== RaceGoal.CUSTOM &&
-    !g.race.solo
+    inSeededRace()
+    && g.race.goal !== RaceGoal.MOTHER
+    && g.race.goal !== RaceGoal.CUSTOM
+    && !g.race.solo
   );
 }
 

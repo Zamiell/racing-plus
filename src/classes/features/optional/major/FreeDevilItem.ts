@@ -105,9 +105,9 @@ export class FreeDevilItem extends ConfigurableModFeature {
     const collectible = pickup as EntityPickupCollectible;
 
     if (
-      shouldGetFreeDevilItemOnThisRun() &&
-      this.shouldGetFreeDevilItemInThisRoom() &&
-      this.isPricedDevilRoomPoolCollectible(collectible)
+      shouldGetFreeDevilItemOnThisRun()
+      && this.shouldGetFreeDevilItemInThisRoom()
+      && this.isPricedDevilRoomPoolCollectible(collectible)
     ) {
       // Update the price of the item on every frame. We deliberately do not change
       // `AutoUpdatePrice` so that as soon as the player is no longer eligible for the free item,
@@ -120,11 +120,11 @@ export class FreeDevilItem extends ConfigurableModFeature {
     return (
       // Black Market deals do not count as "locking in" Devil Deals, so we exclude this mechanic
       // from applying to them.
-      !inRoomType(RoomType.BLACK_MARKET) &&
+      !inRoomType(RoomType.BLACK_MARKET)
       // Dark Room starting room deals also don't count as "locking in" Devil Deals.
-      !(onDarkRoom() && inStartingRoom()) &&
+      && !(onDarkRoom() && inStartingRoom())
       // We might be traveling to a Devil Room for run-initialization-related tasks.
-      isAfterGameFrame(0)
+      && isAfterGameFrame(0)
     );
   }
 
@@ -141,11 +141,11 @@ export class FreeDevilItem extends ConfigurableModFeature {
     const itemPoolType = mod.getCollectibleItemPoolType(collectible);
 
     return (
-      itemPoolType === ItemPoolType.DEVIL &&
+      itemPoolType === ItemPoolType.DEVIL
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      collectible.Price !== PickupPrice.NULL &&
+      && collectible.Price !== PickupPrice.NULL
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      collectible.Price !== PickupPrice.FREE
+      && collectible.Price !== PickupPrice.FREE
     );
   }
 
@@ -222,9 +222,9 @@ export function shouldGetFreeDevilItemOnThisRun(): boolean {
   const anyPlayerIsTheLost = anyPlayerIs(PlayerType.LOST, PlayerType.LOST_B);
 
   return (
-    config.FreeDevilItem &&
-    !v.run.tookDamage &&
-    effectiveDevilDeals === 0 &&
-    !anyPlayerIsTheLost
+    config.FreeDevilItem
+    && !v.run.tookDamage
+    && effectiveDevilDeals === 0
+    && !anyPlayerIsTheLost
   );
 }

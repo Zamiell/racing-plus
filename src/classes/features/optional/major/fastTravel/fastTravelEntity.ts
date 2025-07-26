@@ -96,29 +96,29 @@ function getCustomSpriteFilename(
 
       // Trapdoors that have to do with specific kinds of races.
       if (
-        inRaceToBeast() &&
-        clearedMomBossRoom &&
-        !repentanceStage &&
-        gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+        inRaceToBeast()
+        && clearedMomBossRoom
+        && !repentanceStage
+        && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
-        onSeason(3) &&
-        clearedMomBossRoom &&
-        !repentanceStage &&
-        gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX
+        onSeason(3)
+        && clearedMomBossRoom
+        && !repentanceStage
+        && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
       if (
-        onSeason(3) &&
-        clearedMomBossRoom &&
-        repentanceStage &&
-        gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+        onSeason(3)
+        && clearedMomBossRoom
+        && repentanceStage
+        && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }
@@ -131,41 +131,40 @@ function getCustomSpriteFilename(
       // -10
       if (roomGridIndex === asNumber(GridRoom.SECRET_EXIT)) {
         if (
-          onStage(LevelStage.BASEMENT_1, LevelStage.BASEMENT_2) &&
-          !repentanceStage
+          onStage(LevelStage.BASEMENT_1, LevelStage.BASEMENT_2)
+          && !repentanceStage
         ) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
 
         if (
-          (onStage(LevelStage.CAVES_1, LevelStage.CAVES_2) &&
-            !repentanceStage) ||
-          (onStage(LevelStage.BASEMENT_2) && repentanceStage)
+          (onStage(LevelStage.CAVES_1, LevelStage.CAVES_2) && !repentanceStage)
+          || (onStage(LevelStage.BASEMENT_2) && repentanceStage)
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          (onStage(LevelStage.DEPTHS_1, LevelStage.DEPTHS_2) &&
-            !repentanceStage) ||
-          (onStage(LevelStage.CAVES_2) && repentanceStage)
+          (onStage(LevelStage.DEPTHS_1, LevelStage.DEPTHS_2)
+            && !repentanceStage)
+          || (onStage(LevelStage.CAVES_2) && repentanceStage)
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
       }
 
       if (
-        (repentanceStage &&
-          onStage(LevelStage.DEPTHS_2) &&
-          mausoleumHeartKilled) ||
-        (repentanceStage && onStage(LevelStage.WOMB_1))
+        (repentanceStage
+          && onStage(LevelStage.DEPTHS_2)
+          && mausoleumHeartKilled)
+        || (repentanceStage && onStage(LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }
 
       if (
-        (isGreedMode && onStage(LevelStage.CAVES_1)) ||
-        (!isGreedMode && onStage(LevelStage.DEPTHS_2, LevelStage.WOMB_1))
+        (isGreedMode && onStage(LevelStage.CAVES_1))
+        || (!isGreedMode && onStage(LevelStage.DEPTHS_2, LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_wombhole_custom.anm2";
       }
@@ -196,8 +195,8 @@ export function checkFastTravelEntityShouldOpen(
 ): void {
   const entityState = getFastTravelEntityState(entity, fastTravelEntityType);
   if (
-    entityState === FastTravelEntityState.CLOSED &&
-    shouldOpenFastTravelEntity(entity, fastTravelEntityType)
+    entityState === FastTravelEntityState.CLOSED
+    && shouldOpenFastTravelEntity(entity, fastTravelEntityType)
   ) {
     fastTravelEntityOpen(entity, fastTravelEntityType);
   }
@@ -234,9 +233,9 @@ export function checkPlayerTouchedFastTravelEntity(
 
     if (
       // We don't want a Pony dash to transition to a new floor or a crawl space.
-      !mod.isPlayerUsingPony(player) &&
-      !isChildPlayer(player) &&
-      canInteractWith(player)
+      !mod.isPlayerUsingPony(player)
+      && !isChildPlayer(player)
+      && canInteractWith(player)
     ) {
       touchedFunction(entity, player);
       return; // Prevent two players from touching the same entity.
@@ -250,7 +249,7 @@ function canInteractWith(player: EntityPlayer) {
   const sprite = player.GetSprite();
   const animation = sprite.GetAnimation();
   return (
-    !player.IsHoldingItem() &&
-    !ANIMATIONS_THAT_PREVENT_FAST_TRAVEL.has(animation)
+    !player.IsHoldingItem()
+    && !ANIMATIONS_THAT_PREVENT_FAST_TRAVEL.has(animation)
   );
 }

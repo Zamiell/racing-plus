@@ -62,8 +62,8 @@ function checkAdd(entity: Entity, parentCallback: string) {
   // The only projectiles that we want to track are Meat Projectiles from a Cohort.
   const projectile = entity.ToProjectile();
   if (
-    projectile !== undefined &&
-    projectile.Variant !== ProjectileVariant.MEAT
+    projectile !== undefined
+    && projectile.Variant !== ProjectileVariant.MEAT
   ) {
     return;
   }
@@ -71,10 +71,10 @@ function checkAdd(entity: Entity, parentCallback: string) {
   // We don't care if this is a non-battle NPC.
   const npc = entity.ToNPC();
   if (
-    npc !== undefined &&
-    !npc.CanShutDoors &&
+    npc !== undefined
+    && !npc.CanShutDoors
     // For some reason, some NPCs incorrectly have their `CanShutDoors` property equal to false.
-    npc.Type !== EntityType.DEEP_GAPER
+    && npc.Type !== EntityType.DEEP_GAPER
   ) {
     return;
   }

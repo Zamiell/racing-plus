@@ -102,8 +102,8 @@ export class Season4 extends ChallengeModFeature {
     _onlyRunes: boolean,
   ): CardType | undefined {
     if (
-      isOnFirstCharacter() &&
-      SEASON_4_BANNED_CARDS_ON_FIRST_CHARACTER.has(cardType)
+      isOnFirstCharacter()
+      && SEASON_4_BANNED_CARDS_ON_FIRST_CHARACTER.has(cardType)
     ) {
       return CardType.FOOL;
     }
@@ -163,8 +163,8 @@ export class Season4 extends ChallengeModFeature {
         undefined,
       );
       if (
-        v.persistent.storedCollectibles.length >
-        SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH
+        v.persistent.storedCollectibles.length
+        > SEASON_4_COLLECTIBLE_OVERFLOW_LENGTH
       ) {
         collectible.Size /= 3;
 
@@ -240,8 +240,8 @@ export class Season4 extends ChallengeModFeature {
     for (const collectibleType of startingCollectibleTypes) {
       // Don't remove the D6 if it is in the pocket item slot.
       if (
-        !isActiveCollectible(collectibleType) ||
-        hasCollectibleInActiveSlot(
+        !isActiveCollectible(collectibleType)
+        || hasCollectibleInActiveSlot(
           player,
           collectibleType,
           ActiveSlot.PRIMARY,
@@ -296,8 +296,8 @@ export class Season4 extends ChallengeModFeature {
     pickingUpItem: PickingUpItem,
   ): boolean | undefined {
     if (
-      isPickingUpItemCollectible(pickingUpItem) &&
-      inRoomWithSeason4StoredItems()
+      isPickingUpItemCollectible(pickingUpItem)
+      && inRoomWithSeason4StoredItems()
     ) {
       arrayRemoveInPlace(
         v.persistent.storedCollectibles,
@@ -341,11 +341,11 @@ function checkStoreCollectible() {
 
   const player = Isaac.GetPlayer();
   if (
-    player.QueuedItem.Item === undefined ||
-    !player.QueuedItem.Item.IsCollectible() ||
+    player.QueuedItem.Item === undefined
+    || !player.QueuedItem.Item.IsCollectible()
     // Only allow active collectibles that have not already been touched in order to prevent abuse
     // (e.g. shovel on all 7 characters).
-    player.QueuedItem.Touched
+    || player.QueuedItem.Touched
   ) {
     return;
   }

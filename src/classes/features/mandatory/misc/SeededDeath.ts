@@ -85,8 +85,8 @@ export class SeededDeath extends MandatoryModFeature {
 
     // Check to see if the debuff is over.
     if (
-      v.run.debuffEndFrame === null ||
-      isBeforeRenderFrame(v.run.debuffEndFrame)
+      v.run.debuffEndFrame === null
+      || isBeforeRenderFrame(v.run.debuffEndFrame)
     ) {
       return;
     }
@@ -332,11 +332,11 @@ export class SeededDeath extends MandatoryModFeature {
     // devil deal and died to a fire / spikes / etc.). In order to reduce false positives, we can
     // safely ignore characters that cannot die on taking a devil deal.
     if (
-      v.run.frameOfLastDevilDeal !== null &&
-      onOrBeforeGameFrame(
+      v.run.frameOfLastDevilDeal !== null
+      && onOrBeforeGameFrame(
         v.run.frameOfLastDevilDeal + DEVIL_DEAL_BUFFER_GAME_FRAMES,
-      ) &&
-      this.canCharacterDieFromTakingADevilDeal(player)
+      )
+      && this.canCharacterDieFromTakingADevilDeal(player)
     ) {
       return false;
     }

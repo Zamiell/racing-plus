@@ -86,9 +86,9 @@ export class FastAngels extends ConfigurableModFeature {
     // Do not drop any key pieces if the player already has both of them. (This matches the behavior
     // of vanilla.)
     if (
-      anyPlayerHasCollectible(CollectibleType.KEY_PIECE_1) && // 238
-      anyPlayerHasCollectible(CollectibleType.KEY_PIECE_2) && // 239
-      !anyPlayerHasTrinket(TrinketType.FILIGREE_FEATHERS) // 123
+      anyPlayerHasCollectible(CollectibleType.KEY_PIECE_1) // 238
+      && anyPlayerHasCollectible(CollectibleType.KEY_PIECE_2) // 239
+      && !anyPlayerHasTrinket(TrinketType.FILIGREE_FEATHERS) // 123
     ) {
       return false;
     }
@@ -172,17 +172,17 @@ export class FastAngels extends ConfigurableModFeature {
 
     // Second, try to assign key pieces based on the type of angel that was killed.
     if (
-      entity.Type === EntityType.URIEL &&
-      !hasKeyPiece1 &&
-      !keyPiece1Spawned
+      entity.Type === EntityType.URIEL
+      && !hasKeyPiece1
+      && !keyPiece1Spawned
     ) {
       return CollectibleType.KEY_PIECE_1;
     }
 
     if (
-      entity.Type === EntityType.GABRIEL &&
-      !hasKeyPiece2 &&
-      !keyPiece2Spawned
+      entity.Type === EntityType.GABRIEL
+      && !hasKeyPiece2
+      && !keyPiece2Spawned
     ) {
       return CollectibleType.KEY_PIECE_2;
     }

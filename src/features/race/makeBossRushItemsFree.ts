@@ -13,9 +13,9 @@ export function postNewRoom(): void {
   }
 
   if (
-    !v.run.madeBossRushItemsFree &&
-    inRaceToBossRush() &&
-    inRoomType(RoomType.BOSS_RUSH)
+    !v.run.madeBossRushItemsFree
+    && inRaceToBossRush()
+    && inRoomType(RoomType.BOSS_RUSH)
   ) {
     v.run.madeBossRushItemsFree = true;
     makeBossRushItemsFree();

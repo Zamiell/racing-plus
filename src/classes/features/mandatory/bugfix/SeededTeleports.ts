@@ -134,10 +134,10 @@ function getAllRoomGridIndexesForNormalRooms(): readonly int[] {
   const roomGridIndexes: int[] = [];
   for (const roomDesc of getRooms()) {
     if (
-      roomDesc.SafeGridIndex >= 0 &&
+      roomDesc.SafeGridIndex >= 0
       // Additionally, filter out the Ultra Secret room.
-      roomDesc.Data !== undefined &&
-      roomDesc.Data.Type !== RoomType.ULTRA_SECRET
+      && roomDesc.Data !== undefined
+      && roomDesc.Data.Type !== RoomType.ULTRA_SECRET
     ) {
       // We must use the safe grid index or else teleporting to L rooms will fail.
       roomGridIndexes.push(roomDesc.SafeGridIndex);

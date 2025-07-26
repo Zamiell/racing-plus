@@ -35,8 +35,8 @@ export class BatteryBumFix extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
     if (
-      v.run.checkForHappyAnimationFrame === null ||
-      isBeforeGameFrame(v.run.checkForHappyAnimationFrame)
+      v.run.checkForHappyAnimationFrame === null
+      || isBeforeGameFrame(v.run.checkForHappyAnimationFrame)
     ) {
       return;
     }

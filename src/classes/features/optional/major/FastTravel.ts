@@ -83,8 +83,8 @@ export class FastTravel extends ConfigurableModFeature {
    */
   keepPlayerInPosition(): void {
     if (
-      v.run.state !== FastTravelState.FADING_TO_BLACK &&
-      v.run.state !== FastTravelState.FADING_IN
+      v.run.state !== FastTravelState.FADING_TO_BLACK
+      && v.run.state !== FastTravelState.FADING_IN
     ) {
       return;
     }

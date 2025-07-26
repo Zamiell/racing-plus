@@ -21,9 +21,9 @@ const NUM_FRAILS = 2;
 // ModCallback.POST_NEW_ROOM (19)
 export function postNewRoom(): void {
   if (
-    g.race.status !== RaceStatus.IN_PROGRESS ||
-    g.race.myStatus !== RacerStatus.RACING ||
-    g.race.format !== RaceFormat.SEEDED
+    g.race.status !== RaceStatus.IN_PROGRESS
+    || g.race.myStatus !== RacerStatus.RACING
+    || g.race.format !== RaceFormat.SEEDED
   ) {
     return;
   }

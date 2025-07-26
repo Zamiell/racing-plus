@@ -75,8 +75,8 @@ function fastDropHotkeyPressed(target: FastDropTarget) {
 
     // Pocket items (cards, pills, runes, etc.)
     if (
-      target === FastDropTarget.ALL ||
-      target === FastDropTarget.POCKET_ITEMS
+      target === FastDropTarget.ALL
+      || target === FastDropTarget.POCKET_ITEMS
     ) {
       for (const pocketItemSlot of getEnumValues(PocketItemSlot)) {
         const pos = findFreePosition(player.Position);

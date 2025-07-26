@@ -50,8 +50,8 @@ export class ChangeCreepColor extends ConfigurableModFeature {
   changeGreenCreepToBlue(effect: EntityEffect): void {
     // Ignore creep generated from Lil Spewer.
     if (
-      effect.SpawnerType === EntityType.FAMILIAR &&
-      effect.SpawnerVariant === asNumber(FamiliarVariant.LIL_SPEWER)
+      effect.SpawnerType === EntityType.FAMILIAR
+      && effect.SpawnerVariant === asNumber(FamiliarVariant.LIL_SPEWER)
     ) {
       return;
     }

@@ -42,8 +42,8 @@ export class SeededGlitterBombs extends MandatoryModFeature {
 
     const player = bomb.SpawnerEntity.ToPlayer();
     if (
-      player === undefined ||
-      !player.HasCollectible(CollectibleType.GLITTER_BOMBS)
+      player === undefined
+      || !player.HasCollectible(CollectibleType.GLITTER_BOMBS)
     ) {
       return;
     }
@@ -97,18 +97,18 @@ export class SeededGlitterBombs extends MandatoryModFeature {
     | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
     | undefined {
     if (
-      v.run.spawningPrize ||
-      spawner === undefined ||
-      spawner.Type !== EntityType.BOMB ||
-      spawner.SpawnerEntity === undefined
+      v.run.spawningPrize
+      || spawner === undefined
+      || spawner.Type !== EntityType.BOMB
+      || spawner.SpawnerEntity === undefined
     ) {
       return undefined;
     }
 
     const player = spawner.SpawnerEntity.ToPlayer();
     if (
-      player === undefined ||
-      !player.HasCollectible(CollectibleType.GLITTER_BOMBS)
+      player === undefined
+      || !player.HasCollectible(CollectibleType.GLITTER_BOMBS)
     ) {
       return undefined;
     }

@@ -46,9 +46,9 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
 
     // Don't bother fixing entrances in the Mom boss room.
     if (
-      onStage(LevelStage.DEPTHS_2) &&
-      inRoomType(RoomType.BOSS) &&
-      isRoomInsideGrid()
+      onStage(LevelStage.DEPTHS_2)
+      && inRoomType(RoomType.BOSS)
+      && isRoomInsideGrid()
     ) {
       return;
     }
@@ -93,15 +93,15 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
     const isFirstVisit = room.IsFirstVisit();
     const justReachedThisFloor = inStartingRoom() && isFirstVisit;
     const cameFromDungeon =
-      previousRoomGridIndex === asNumber(GridRoom.DUNGEON) ||
-      previousRoomGridIndex === asNumber(GridRoom.SECRET_SHOP);
+      previousRoomGridIndex === asNumber(GridRoom.DUNGEON)
+      || previousRoomGridIndex === asNumber(GridRoom.SECRET_SHOP);
 
     return (
-      level.LeaveDoor === DoorSlot.NO_DOOR_SLOT &&
-      !justReachedThisFloor &&
-      !inRoomType(RoomType.DUNGEON) &&
-      !cameFromDungeon &&
-      !isFastTravelHappening()
+      level.LeaveDoor === DoorSlot.NO_DOOR_SLOT
+      && !justReachedThisFloor
+      && !inRoomType(RoomType.DUNGEON)
+      && !cameFromDungeon
+      && !isFastTravelHappening()
     );
   }
 
@@ -109,8 +109,8 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
     const doors = getDoors();
     return doors.some(
       (door) =>
-        !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType) &&
-        anyPlayerCloserThan(door.Position, 60),
+        !DOOR_HOLE_ROOM_TYPES.has(door.TargetRoomType)
+        && anyPlayerCloserThan(door.Position, 60),
     );
   }
 

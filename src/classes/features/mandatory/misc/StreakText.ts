@@ -295,13 +295,13 @@ export class StreakText extends MandatoryModFeature {
 
     return (
       // There is no need to show the level text in the Change Char Order custom challenge.
-      !onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER) &&
+      !onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER)
       // If the race is finished, the "Victory Lap" text will overlap with the stage text, so don't
       // bother showing it.
-      !g.raceVars.finished &&
+      && !g.raceVars.finished
       // If we are playing as "Random Baby" from The Babies Mod, the baby descriptions will overlap
       // with the stage text, so don't bother showing it.
-      !isRandomBaby(player)
+      && !isRandomBaby(player)
     );
   }
 

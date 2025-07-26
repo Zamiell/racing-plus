@@ -50,8 +50,8 @@ export class FastPin extends ConfigurableModFeature {
     // 0. When Wormwood is underground, we force it to be invisible to prevent buggy artifacts. As
     // soon as it does another attack, make it visible again.
     if (
-      (npc.State === NPCState.JUMP || npc.State === NPCState.ATTACK) &&
-      !npc.Visible
+      (npc.State === NPCState.JUMP || npc.State === NPCState.ATTACK)
+      && !npc.Visible
     ) {
       v.room.pokePhase = false;
       this.makeAllSegmentsVisible(npc);
@@ -124,15 +124,15 @@ export class FastPin extends ConfigurableModFeature {
   speedUpTearAttack(npc: EntityNPC): void {
     // In vanilla, Pin will spend too long underground after performing the tear attack.
     if (
-      npc.State === NPCState.ATTACK &&
-      npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
+      npc.State === NPCState.ATTACK
+      && npc.StateFrame >= PIN_ATTACK_STATE_FRAME_IN_GROUND
     ) {
       npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
     }
 
     if (
-      npc.State === NPCState.ATTACK_2 &&
-      npc.StateFrame >= PIN_ATTACK2_STATE_FRAME_IN_GROUND
+      npc.State === NPCState.ATTACK_2
+      && npc.StateFrame >= PIN_ATTACK2_STATE_FRAME_IN_GROUND
     ) {
       npc.StateFrame = PIN_ATTACK_STATE_FRAME_FINAL;
     }

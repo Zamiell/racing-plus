@@ -57,10 +57,10 @@ function checkDeleteDoor() {
 
 function shouldRemoveVoidDoor() {
   return (
-    inRaceToHush() &&
-    onStage(LevelStage.BLUE_WOMB) &&
-    inRoomType(RoomType.BOSS) &&
-    isRoomInsideGrid()
+    inRaceToHush()
+    && onStage(LevelStage.BLUE_WOMB)
+    && inRoomType(RoomType.BOSS)
+    && isRoomInsideGrid()
   );
 }
 

@@ -66,8 +66,8 @@ export class TopLeftText extends MandatoryModFeature {
       g.renderFrameLastClientMessageReceived,
     );
     const shouldShowClientMessage =
-      clientMessageDifference <=
-      SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR * RENDER_FRAMES_PER_SECOND;
+      clientMessageDifference
+      <= SECONDS_TO_SHOW_CLIENT_MESSAGE_FOR * RENDER_FRAMES_PER_SECOND;
 
     const lines: string[] = [];
     if (shouldShowClientMessage) {
@@ -82,8 +82,8 @@ export class TopLeftText extends MandatoryModFeature {
       const victoryLaps = getNumVictoryLaps();
       lines.push(`Victory Lap #${victoryLaps}`);
     } else if (
-      speedrunShouldShowEndOfRunText() ||
-      raceShouldShowEndOfRunText()
+      speedrunShouldShowEndOfRunText()
+      || raceShouldShowEndOfRunText()
     ) {
       // Show some run summary information. (It will be removed if they exit the room.)
       lines.push(`R+ ${version} - ${seedString}`);
@@ -108,8 +108,8 @@ export class TopLeftText extends MandatoryModFeature {
     } else if (shouldShowRaceID()) {
       lines.push(`Race ID: ${g.race.raceID}`);
     } else if (
-      this.shouldShowSeededRaceTimeOffset() &&
-      g.race.millisecondsBehindLeader > 0
+      this.shouldShowSeededRaceTimeOffset()
+      && g.race.millisecondsBehindLeader > 0
     ) {
       const seconds = Math.round(
         g.race.millisecondsBehindLeader / SECOND_IN_MILLISECONDS,
@@ -132,11 +132,11 @@ export class TopLeftText extends MandatoryModFeature {
     const room = game.GetRoom();
 
     return (
-      inSeededRace() &&
-      !onFirstFloor() &&
-      inStartingRoom() &&
-      room.IsFirstVisit() &&
-      g.race.placeMid !== 1 // Only show it if we are not in first place.
+      inSeededRace()
+      && !onFirstFloor()
+      && inStartingRoom()
+      && room.IsFirstVisit()
+      && g.race.placeMid !== 1 // Only show it if we are not in first place.
     );
   }
 }

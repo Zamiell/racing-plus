@@ -123,11 +123,11 @@ export function inMomBossRoom(): boolean {
   const roomInsideGrid = isRoomInsideGrid();
 
   return (
-    onStage(LevelStage.DEPTHS_2) &&
-    inRoomType(RoomType.BOSS) &&
-    roomInsideGrid &&
+    onStage(LevelStage.DEPTHS_2)
+    && inRoomType(RoomType.BOSS)
+    && roomInsideGrid
     // Filter out the situations where the Dad's Note room is cleared.
-    bossID === BossID.MOM
+    && bossID === BossID.MOM
   );
 }
 
@@ -206,8 +206,8 @@ export function collectibleTypeToServerCollectibleID(
 export function shouldCheckForGameplayInputs(): boolean {
   const isPaused = game.IsPaused();
   return (
-    !isPaused &&
-    (ModConfigMenu === undefined || !ModConfigMenu.IsVisible) &&
-    (AwaitingTextInput === undefined || !AwaitingTextInput)
+    !isPaused
+    && (ModConfigMenu === undefined || !ModConfigMenu.IsVisible)
+    && (AwaitingTextInput === undefined || !AwaitingTextInput)
   );
 }

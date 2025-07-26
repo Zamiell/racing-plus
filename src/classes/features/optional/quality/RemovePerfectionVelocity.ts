@@ -70,8 +70,8 @@ export class RemovePerfectionVelocity extends ConfigurableModFeature {
 
     // Some boss rooms have pits in the center of the room.
     if (
-      gridEntity !== undefined &&
-      gridEntity.CollisionClass !== GridCollisionClass.NONE
+      gridEntity !== undefined
+      && gridEntity.CollisionClass !== GridCollisionClass.NONE
     ) {
       return findFreePosition(centerPos);
     }

@@ -41,10 +41,10 @@ export class RunTimer extends ConfigurableModFeature {
     const hud = game.GetHUD();
 
     return (
-      hud.IsVisible() &&
-      isActionPressedOnAnyInput(ButtonAction.MAP) &&
+      hud.IsVisible()
+      && isActionPressedOnAnyInput(ButtonAction.MAP)
       // Don't show it if we have identified a lot of pills, since it will overlap with the pill UI.
-      (!config.ShowPillsOnHUD || getNumIdentifiedPills() < 11)
+      && (!config.ShowPillsOnHUD || getNumIdentifiedPills() < 11)
     );
   }
 

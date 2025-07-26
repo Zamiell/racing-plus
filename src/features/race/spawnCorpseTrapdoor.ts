@@ -24,10 +24,10 @@ export function postNewRoom(): void {
   const room = game.GetRoom();
 
   if (
-    !v.run.spawnedCorpseTrapdoor &&
-    inRaceToMother() &&
-    mausoleumHeartKilled &&
-    inRoomType(RoomType.BOSS)
+    !v.run.spawnedCorpseTrapdoor
+    && inRaceToMother()
+    && mausoleumHeartKilled
+    && inRoomType(RoomType.BOSS)
   ) {
     v.run.spawnedCorpseTrapdoor = true;
     const gridIndex = room.GetGridIndex(NORMAL_TRAPDOOR_POSITION);

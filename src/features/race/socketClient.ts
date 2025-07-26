@@ -52,9 +52,9 @@ export function socketClientConnect(): boolean {
   // failed.
   const renderFrameCount = Isaac.GetFrameCount();
   if (
-    connectionAttemptRenderFrame !== undefined &&
-    renderFrameCount <
-      connectionAttemptRenderFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
+    connectionAttemptRenderFrame !== undefined
+    && renderFrameCount
+      < connectionAttemptRenderFrame + MIN_FRAMES_BETWEEN_CONNECTION_ATTEMPTS
   ) {
     // Reset the connection attempt frame to this one so that resetting over and over never triggers
     // a connection attempt.

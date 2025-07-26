@@ -50,8 +50,8 @@ export class FastHaunt extends ConfigurableModFeature {
     // the first frame that its `POST_NPC_UPDATE` callback fires.
     const ptrHash = GetPtrHash(npc);
     if (
-      npc.FrameCount < FIRST_LIL_HAUNT_UPDATE_FRAME ||
-      v.room.spedUpHaunts.has(ptrHash)
+      npc.FrameCount < FIRST_LIL_HAUNT_UPDATE_FRAME
+      || v.room.spedUpHaunts.has(ptrHash)
     ) {
       return;
     }
@@ -86,8 +86,8 @@ export class FastHaunt extends ConfigurableModFeature {
     for (const lilHaunt of lilHaunts) {
       // Only target Lil' Haunts attached to this Haunt.
       if (
-        lilHaunt.Parent !== undefined &&
-        GetPtrHash(lilHaunt.Parent) === hauntPtrHash
+        lilHaunt.Parent !== undefined
+        && GetPtrHash(lilHaunt.Parent) === hauntPtrHash
       ) {
         childrenLilHaunts.push(lilHaunt);
       }

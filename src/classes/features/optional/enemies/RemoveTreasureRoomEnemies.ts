@@ -26,8 +26,8 @@ export class RemoveTreasureRoomEnemies extends ConfigurableModFeature {
   removeTreasureRoomEnemies(): void {
     for (const npc of getNPCs()) {
       if (
-        !ENTITY_TYPES_EXEMPT_FROM_REMOVAL.has(npc.Type) &&
-        !npc.HasEntityFlags(EntityFlag.FRIENDLY)
+        !ENTITY_TYPES_EXEMPT_FROM_REMOVAL.has(npc.Type)
+        && !npc.HasEntityFlags(EntityFlag.FRIENDLY)
       ) {
         npc.Remove();
       }

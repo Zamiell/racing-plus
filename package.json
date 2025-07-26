@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "convert-xml-to-json": "1.0.3",
-    "isaacscript": "5.2.12",
+    "isaacscript": "5.2.14",
     "isaacscript-lint": "7.2.0",
     "isaacscript-spell": "1.15.2",
     "isaacscript-tsconfig": "7.0.1",

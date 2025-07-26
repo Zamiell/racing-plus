@@ -120,12 +120,12 @@ export class FastKrampus extends ConfigurableModFeature {
 
   getKrampusBans(): { coalBanned: boolean; headBanned: boolean } {
     const coalBanned =
-      v.run.startedWithLumpOfCoal ||
-      anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL);
+      v.run.startedWithLumpOfCoal
+      || anyPlayerHasCollectible(CollectibleType.LUMP_OF_COAL);
     const headBanned =
-      v.run.startedWithHeadOfKrampus ||
-      anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS) ||
-      anyPlayerHasTrinket(TrinketType.NO);
+      v.run.startedWithHeadOfKrampus
+      || anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS)
+      || anyPlayerHasTrinket(TrinketType.NO);
 
     return { coalBanned, headBanned };
   }

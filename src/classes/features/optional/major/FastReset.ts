@@ -50,12 +50,12 @@ export class FastReset extends ConfigurableModFeature {
     // Don't fast-reset if any modifiers are pressed (with the exception of shift, since the
     // speedrunner MasterOfPotato uses shift).
     if (
-      isKeyboardPressed(Keyboard.LEFT_CONTROL) || // 341
-      isKeyboardPressed(Keyboard.LEFT_ALT) || // 342
-      isKeyboardPressed(Keyboard.LEFT_SUPER) || // 343
-      isKeyboardPressed(Keyboard.RIGHT_CONTROL) || // 345
-      isKeyboardPressed(Keyboard.RIGHT_ALT) || // 346
-      isKeyboardPressed(Keyboard.RIGHT_SUPER) // 347
+      isKeyboardPressed(Keyboard.LEFT_CONTROL) // 341
+      || isKeyboardPressed(Keyboard.LEFT_ALT) // 342
+      || isKeyboardPressed(Keyboard.LEFT_SUPER) // 343
+      || isKeyboardPressed(Keyboard.RIGHT_CONTROL) // 345
+      || isKeyboardPressed(Keyboard.RIGHT_ALT) // 346
+      || isKeyboardPressed(Keyboard.RIGHT_SUPER) // 347
     ) {
       return;
     }
@@ -72,8 +72,9 @@ export class FastReset extends ConfigurableModFeature {
     const numRoomsEntered = mod.getNumRoomsEntered();
 
     if (
-      numRoomsEntered <= 3 ||
-      renderFrameCount <= v.run.lastResetRenderFrame + RENDER_FRAMES_PER_SECOND
+      numRoomsEntered <= 3
+      || renderFrameCount
+        <= v.run.lastResetRenderFrame + RENDER_FRAMES_PER_SECOND
     ) {
       // Speedrun functionality relies on knowing whether a fast-reset occurred.
       speedrunSetFastReset();

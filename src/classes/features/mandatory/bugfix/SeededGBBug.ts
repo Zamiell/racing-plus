@@ -63,8 +63,8 @@ export class SeededGBBug extends MandatoryModFeature {
 
   getLastSpawnedPickup(): EntityPickup | undefined {
     if (
-      v.run.lastSpawnedPickupPtrHash === null ||
-      v.run.lastSpawnedPickupFrame === null
+      v.run.lastSpawnedPickupPtrHash === null
+      || v.run.lastSpawnedPickupFrame === null
     ) {
       return undefined;
     }
@@ -73,8 +73,8 @@ export class SeededGBBug extends MandatoryModFeature {
       const ptrHash = GetPtrHash(pickup);
 
       if (
-        ptrHash === v.run.lastSpawnedPickupPtrHash &&
-        onGameFrame(v.run.lastSpawnedPickupFrame)
+        ptrHash === v.run.lastSpawnedPickupPtrHash
+        && onGameFrame(v.run.lastSpawnedPickupFrame)
       ) {
         return pickup;
       }

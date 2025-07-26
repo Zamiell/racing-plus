@@ -91,8 +91,8 @@ export class Shadows extends MandatoryModFeature {
     const renderFrameCount = Isaac.GetFrameCount();
 
     if (
-      lastBeaconFrame !== undefined &&
-      renderFrameCount < lastBeaconFrame + BEACON_INTERVAL
+      lastBeaconFrame !== undefined
+      && renderFrameCount < lastBeaconFrame + BEACON_INTERVAL
     ) {
       return;
     }
@@ -248,9 +248,9 @@ export class Shadows extends MandatoryModFeature {
       }
 
       if (
-        shadowData.stage !== stage ||
-        shadowData.stageType !== stageType ||
-        shadowData.roomIndex !== roomListIndex
+        shadowData.stage !== stage
+        || shadowData.stageType !== stageType
+        || shadowData.roomIndex !== roomListIndex
       ) {
         continue;
       }

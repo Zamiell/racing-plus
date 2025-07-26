@@ -75,8 +75,8 @@ export const BANNED_DIVERSITY_COLLECTIBLES = [
 export const BANNED_DIVERSITY_TRINKETS = [TrinketType.DICE_BAG] as const;
 
 const SAWBLADE_COLLECTIBLE_ID =
-  collectibleTypeToServerCollectibleID(CollectibleTypeCustom.SAWBLADE) ??
-  error("Failed to get the Sawblade server collectible ID.");
+  collectibleTypeToServerCollectibleID(CollectibleTypeCustom.SAWBLADE)
+  ?? error("Failed to get the Sawblade server collectible ID.");
 
 export class RaceFormatSetup extends ConfigurableModFeature {
   configKey: keyof Config = "ClientCommunication";
@@ -174,8 +174,8 @@ function formatSetupSeeded(player: EntityPlayer) {
   // If we are Tainted Isaac and there are multiple starting items for the race, give Birthright so
   // that we have more room for other items.
   if (
-    isCharacter(player, PlayerType.ISAAC_B) &&
-    g.race.startingItems.length >= 2
+    isCharacter(player, PlayerType.ISAAC_B)
+    && g.race.startingItems.length >= 2
   ) {
     addCollectibleAndRemoveFromPools(player, CollectibleType.BIRTHRIGHT);
   }
@@ -254,19 +254,19 @@ export function giveDiversityItemsAndDoItemBans(
 function shouldGetSchoolbagInDiversity(player: EntityPlayer): boolean {
   const character = player.GetPlayerType();
   const startsWithActiveItem =
-    doesCharacterStartWithActiveItem(character) ||
-    doesCharacterStartWithActiveItemRacingPlus(character);
+    doesCharacterStartWithActiveItem(character)
+    || doesCharacterStartWithActiveItemRacingPlus(character);
 
   return (
     // Characters that already start with an active item should be given the Schoolbag so that they
     // can hold both their both their normal active item and the new diversity active item.
-    startsWithActiveItem &&
+    startsWithActiveItem
     // However, this should not apply to Eden and Tainted Eden because they can start with an item
     // that rerolls the build (e.g. D4, D100, etc.). (We could manually replace these items, but it
     // is simpler to just have one item on Eden instead of two.)
-    !isEden(player) &&
+    && !isEden(player)
     // Esau is not granted any items in diversity races, so there is no need to give him the
     // Schoolbag.
-    !isCharacter(player, PlayerType.ESAU)
+    && !isCharacter(player, PlayerType.ESAU)
   );
 }

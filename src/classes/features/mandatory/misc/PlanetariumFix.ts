@@ -55,11 +55,11 @@ export class PlanetariumFix extends MandatoryModFeature {
 
 export function shouldApplyPlanetariumFix(): boolean {
   return (
-    (inSeededRace() ||
-      onSeason(2) ||
-      (shouldBanFirstFloorTreasureRoom() && onFirstFloor())) &&
-    levelHasRoomType(RoomType.TREASURE, RoomType.PLANETARIUM) &&
-    !onAscent()
+    (inSeededRace()
+      || onSeason(2)
+      || (shouldBanFirstFloorTreasureRoom() && onFirstFloor()))
+    && levelHasRoomType(RoomType.TREASURE, RoomType.PLANETARIUM)
+    && !onAscent()
   );
 }
 

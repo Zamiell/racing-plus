@@ -76,10 +76,10 @@ export class ExtraStartingItems extends ConfigurableModFeature {
       const lastRoomDesc = level.GetLastRoomDesc();
       const lastRoomData = lastRoomDesc.Data;
       if (
-        lastRoomData !== undefined &&
-        (lastRoomData.Type === RoomType.TREASURE ||
+        lastRoomData !== undefined
+        && (lastRoomData.Type === RoomType.TREASURE
           // Tainted Keeper can find Treasure Room items in a shop.
-          lastRoomData.Type === RoomType.SHOP)
+          || lastRoomData.Type === RoomType.SHOP)
       ) {
         removePlaceholdersFromPools();
       }

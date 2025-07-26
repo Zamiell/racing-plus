@@ -65,18 +65,18 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     const roomListIndex = getRoomListIndex();
 
     if (
-      v.level.dpsButton !== null &&
-      v.level.dpsButton.roomListIndex === roomListIndex &&
-      !v.level.dpsButton.pressed
+      v.level.dpsButton !== null
+      && v.level.dpsButton.roomListIndex === roomListIndex
+      && !v.level.dpsButton.pressed
     ) {
       const position = Isaac.WorldToScreen(v.level.dpsButton.spritePosition);
       DPSSprite.Render(position);
     }
 
     if (
-      v.level.victoryLapButton !== null &&
-      v.level.victoryLapButton.roomListIndex === roomListIndex &&
-      !v.level.victoryLapButton.pressed
+      v.level.victoryLapButton !== null
+      && v.level.victoryLapButton.roomListIndex === roomListIndex
+      && !v.level.victoryLapButton.pressed
     ) {
       const position = Isaac.WorldToScreen(
         v.level.victoryLapButton.spritePosition,
@@ -94,10 +94,10 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     const roomListIndex = getRoomListIndex();
 
     if (
-      (v.level.dpsButton !== null &&
-        v.level.dpsButton.roomListIndex === roomListIndex) ||
-      (v.level.victoryLapButton !== null &&
-        v.level.victoryLapButton.roomListIndex === roomListIndex)
+      (v.level.dpsButton !== null
+        && v.level.dpsButton.roomListIndex === roomListIndex)
+      || (v.level.victoryLapButton !== null
+        && v.level.victoryLapButton.roomListIndex === roomListIndex)
     ) {
       // The buttons will cause the door to close, so re-open the door. (The door will stay open
       // since the room is already cleared.)
@@ -120,9 +120,9 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     const gridIndex = gridEntity.GetGridIndex();
 
     if (
-      roomListIndex !== v.level.dpsButton.roomListIndex ||
-      gridIndex !== v.level.dpsButton.gridIndex ||
-      gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
+      roomListIndex !== v.level.dpsButton.roomListIndex
+      || gridIndex !== v.level.dpsButton.gridIndex
+      || gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
     ) {
       return;
     }
@@ -146,9 +146,9 @@ export class EndOfRaceButtons extends ConfigurableModFeature {
     const gridIndex = gridEntity.GetGridIndex();
 
     if (
-      roomListIndex !== v.level.victoryLapButton.roomListIndex ||
-      gridIndex !== v.level.victoryLapButton.gridIndex ||
-      gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
+      roomListIndex !== v.level.victoryLapButton.roomListIndex
+      || gridIndex !== v.level.victoryLapButton.gridIndex
+      || gridEntity.State !== PressurePlateState.PRESSURE_PLATE_PRESSED
     ) {
       return;
     }

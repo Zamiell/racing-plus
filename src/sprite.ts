@@ -92,8 +92,8 @@ function getFilename(itemID: int): string {
 
 function isRacingPlusModdedCollectibleType(itemID: int): boolean {
   return (
-    isModdedCollectibleType(asCollectibleType(itemID)) &&
-    itemID < GLOWING_IMAGE_TRINKET_OFFSET
+    isModdedCollectibleType(asCollectibleType(itemID))
+    && itemID < GLOWING_IMAGE_TRINKET_OFFSET
   );
 }
 
@@ -107,8 +107,8 @@ function getFileNum(itemID: int): string {
 
   // Between Sad Onion and the highest vanilla item (or a custom modded items).
   if (
-    itemID >= asNumber(FIRST_COLLECTIBLE_TYPE) &&
-    itemID <= asNumber(LAST_VANILLA_COLLECTIBLE_TYPE)
+    itemID >= asNumber(FIRST_COLLECTIBLE_TYPE)
+    && itemID <= asNumber(LAST_VANILLA_COLLECTIBLE_TYPE)
   ) {
     return itemID.toString().padStart(3, "0");
   }

@@ -38,11 +38,11 @@ export class Fireworks extends MandatoryModFeature {
     this.makeFireworksQuieter();
 
     if (
-      (g.raceVars.finished &&
-        g.race.status === RaceStatus.IN_PROGRESS &&
-        g.race.place === 1 &&
-        g.race.numEntrants >= 3) ||
-      speedrunIsFinished()
+      (g.raceVars.finished
+        && g.race.status === RaceStatus.IN_PROGRESS
+        && g.race.place === 1
+        && g.race.numEntrants >= 3)
+      || speedrunIsFinished()
     ) {
       this.spawnSparkleOnPlayer();
       this.spawnFireworks();

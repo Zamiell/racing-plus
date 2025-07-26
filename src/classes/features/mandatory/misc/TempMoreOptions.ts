@@ -50,12 +50,12 @@ export class TempMoreOptions extends MandatoryModFeature {
 
   shouldGetTempMoreOptions(): boolean {
     return (
-      inUnseededRace() ||
-      inDiversityRace() ||
-      (inSpeedrun() && isOnFirstCharacter()) ||
+      inUnseededRace()
+      || inDiversityRace()
+      || (inSpeedrun() && isOnFirstCharacter())
       // On season 3, every character gets this temporary buff in order to match how diversity races
       // work.
-      onSeason(3)
+      || onSeason(3)
     );
   }
 

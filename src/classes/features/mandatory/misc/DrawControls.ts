@@ -41,19 +41,19 @@ export class DrawControls extends ConfigurableModFeature {
     const isGreedMode = game.IsGreedMode();
 
     return (
-      !isGreedMode &&
-      onFirstFloor() &&
-      inStartingRoom() &&
-      !this.inSeededOrDiversityRace()
+      !isGreedMode
+      && onFirstFloor()
+      && inStartingRoom()
+      && !this.inSeededOrDiversityRace()
     );
   }
 
   inSeededOrDiversityRace(): boolean {
     return (
-      g.race.status === RaceStatus.IN_PROGRESS &&
-      g.race.myStatus === RacerStatus.RACING &&
-      (g.race.format === RaceFormat.SEEDED ||
-        g.race.format === RaceFormat.DIVERSITY)
+      g.race.status === RaceStatus.IN_PROGRESS
+      && g.race.myStatus === RacerStatus.RACING
+      && (g.race.format === RaceFormat.SEEDED
+        || g.race.format === RaceFormat.DIVERSITY)
     );
   }
 

@@ -15,8 +15,8 @@ export class FastBigHorn extends ConfigurableModFeature {
   @Callback(ModCallback.POST_NPC_UPDATE, EntityType.BIG_HORN)
   postNPCUpdateBigHorn(npc: EntityNPC): void {
     if (
-      npc.State !==
-      asNPCState(BigHornState.HEAD_GOING_UP_OR_GOING_DOWN_INTO_HOLE)
+      npc.State
+      !== asNPCState(BigHornState.HEAD_GOING_UP_OR_GOING_DOWN_INTO_HOLE)
     ) {
       return;
     }

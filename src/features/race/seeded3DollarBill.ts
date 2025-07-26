@@ -57,10 +57,10 @@ const THREE_DOLLAR_BILL_ITEMS = [
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
   if (
-    g.race.status === RaceStatus.IN_PROGRESS &&
-    g.race.myStatus === RacerStatus.RACING &&
-    g.race.format === RaceFormat.SEEDED &&
-    player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)
+    g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING
+    && g.race.format === RaceFormat.SEEDED
+    && player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)
   ) {
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
     player.AddCollectible(NEW_COLLECTIBLE_TYPE);
@@ -97,8 +97,8 @@ function checkApplySeeded3DollarBillItem(player: EntityPlayer) {
   do {
     const collectibleType = THREE_DOLLAR_BILL_ITEMS[arrayIndex];
     if (
-      collectibleType !== undefined &&
-      !player.HasCollectible(collectibleType)
+      collectibleType !== undefined
+      && !player.HasCollectible(collectibleType)
     ) {
       v.run.seeded3DollarBillItem = collectibleType;
       player.AddCollectible(collectibleType, 0, false);

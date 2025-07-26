@@ -188,9 +188,9 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
     );
 
     if (
-      lookingForPickupVariant === PICKUP_VARIANT_CARD_OR_PILL &&
-      (pickup.Variant === PickupVariant.CARD ||
-        pickup.Variant === PickupVariant.PILL)
+      lookingForPickupVariant === PICKUP_VARIANT_CARD_OR_PILL
+      && (pickup.Variant === PickupVariant.CARD
+        || pickup.Variant === PickupVariant.PILL)
     ) {
       // Handle the case where we need to automatically insert either a card or a pill.
       return pickup.Variant;
@@ -220,8 +220,8 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
     pickingUpItem: PickingUpItem,
   ): boolean | undefined {
     if (
-      pickingUpItem.itemType === ItemType.NULL ||
-      pickingUpItem.itemType === ItemType.TRINKET
+      pickingUpItem.itemType === ItemType.NULL
+      || pickingUpItem.itemType === ItemType.TRINKET
     ) {
       return undefined;
     }
@@ -242,10 +242,10 @@ function getClosestPickupToPlayer(
   const pickups = getPickups(pickupVariant);
   const filteredPickups = pickups.filter(
     (pickup) =>
-      pickup.Price === 0 &&
+      pickup.Price === 0
       // We set the vanilla "Touched" property to true if we have already inserted this pickup.
-      !pickup.Touched &&
-      !pickup.GetSprite().IsPlaying("Collect"),
+      && !pickup.Touched
+      && !pickup.GetSprite().IsPlaying("Collect"),
   );
 
   return getClosestEntityTo(player, filteredPickups);

@@ -79,8 +79,8 @@ export class SeededDrops extends MandatoryModFeature {
 
   shouldSpawnSeededDrop(): boolean {
     return (
-      onSetSeed() &&
-      !inRoomType(
+      onSetSeed()
+      && !inRoomType(
         // Boss rooms will drop a pedestal item instead of a random pickup.
         RoomType.BOSS, // 5
         // In vanilla, room drops will never occur in crawl spaces, even with 50 luck.
@@ -138,8 +138,8 @@ export class SeededDrops extends MandatoryModFeature {
     // 2) or make nothing drop
     let pickupCount = 1;
     if (
-      anyPlayerHasCollectible(CollectibleType.CONTRACT_FROM_BELOW) &&
-      pickupVariant !== PickupVariant.TRINKET
+      anyPlayerHasCollectible(CollectibleType.CONTRACT_FROM_BELOW)
+      && pickupVariant !== PickupVariant.TRINKET
     ) {
       pickupCount =
         getTotalPlayerCollectibles(CollectibleType.CONTRACT_FROM_BELOW) + 1;
@@ -157,9 +157,9 @@ export class SeededDrops extends MandatoryModFeature {
 
     // Hard mode has a chance to remove a heart drop.
     if (
-      game.Difficulty === Difficulty.HARD &&
-      pickupVariant === PickupVariant.HEART &&
-      rng.RandomInt(100) >= 35
+      game.Difficulty === Difficulty.HARD
+      && pickupVariant === PickupVariant.HEART
+      && rng.RandomInt(100) >= 35
     ) {
       pickupVariant = PickupVariant.NULL;
     }
@@ -171,12 +171,12 @@ export class SeededDrops extends MandatoryModFeature {
       );
       repeat(numBrokenModems, () => {
         if (
-          rng.RandomInt(4) === 0 &&
-          (pickupVariant === PickupVariant.HEART || // 10
-            pickupVariant === PickupVariant.COIN || // 20
-            pickupVariant === PickupVariant.KEY || // 30
-            pickupVariant === PickupVariant.BOMB || // 40
-            pickupVariant === PickupVariant.SACK) // 69
+          rng.RandomInt(4) === 0
+          && (pickupVariant === PickupVariant.HEART // 10
+            || pickupVariant === PickupVariant.COIN // 20
+            || pickupVariant === PickupVariant.KEY // 30
+            || pickupVariant === PickupVariant.BOMB // 40
+            || pickupVariant === PickupVariant.SACK) // 69
         ) {
           pickupCount++;
         }

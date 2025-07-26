@@ -32,8 +32,8 @@ export function postGameStarted(): void {
   const startSeed = seeds.GetStartSeed();
   const randomChance = getRandom(startSeed);
   const allAngelRooms =
-    randomChance < CHANCE_TO_GET_ANGEL_ROOMS ||
-    anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS);
+    randomChance < CHANCE_TO_GET_ANGEL_ROOMS
+    || anyPlayerIs(...CHARACTERS_THAT_ALWAYS_GET_ANGEL_ROOMS);
   v.run.allAngelRooms = allAngelRooms;
 
   // Set the player's vanilla Angel Room chances to 0%. (See the above explanation.)

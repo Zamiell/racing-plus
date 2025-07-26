@@ -49,9 +49,9 @@ export class StickyNickel extends ConfigurableModFeature {
     }
     const pickup = stickyNickel.ToPickup();
     if (
-      pickup === undefined ||
-      !isCoin(pickup) ||
-      pickup.SubType !== CoinSubType.STICKY_NICKEL
+      pickup === undefined
+      || !isCoin(pickup)
+      || pickup.SubType !== CoinSubType.STICKY_NICKEL
     ) {
       return false;
     }

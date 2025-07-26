@@ -96,8 +96,8 @@ export function crawlSpacePostGridEntityInitCrawlSpace(
 
   // Ignore other special crawl spaces.
   if (
-    variant !== CrawlSpaceVariant.NORMAL &&
-    variant !== CrawlSpaceVariant.SECRET_SHOP
+    variant !== CrawlSpaceVariant.NORMAL
+    && variant !== CrawlSpaceVariant.SECRET_SHOP
   ) {
     return;
   }
@@ -230,8 +230,8 @@ function touched(entity: GridEntity | EntityEffect) {
   // Additionally, save the previous room information so that we can avoid a softlock when returning
   // to a room outside the grid.
   if (
-    !isRoomInsideGrid() &&
-    v.level.crawlSpace.previousReturnRoomGridIndex === null
+    !isRoomInsideGrid()
+    && v.level.crawlSpace.previousReturnRoomGridIndex === null
   ) {
     v.level.crawlSpace.previousReturnRoomGridIndex = previousRoomGridIndex;
     log(
@@ -435,8 +435,8 @@ function checkExitSoftlock(player: EntityPlayer) {
   const roomType = room.GetType();
 
   if (
-    previousRoomGridIndex !== asNumber(GridRoom.DUNGEON) ||
-    v.level.crawlSpace.previousReturnRoomGridIndex === null
+    previousRoomGridIndex !== asNumber(GridRoom.DUNGEON)
+    || v.level.crawlSpace.previousReturnRoomGridIndex === null
   ) {
     return;
   }
