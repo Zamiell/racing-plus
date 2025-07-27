@@ -45,7 +45,6 @@ export class Config {
   // Enemies
   ClearerShadowAttacks = true;
   FadeFriendlyEnemies = true;
-  RemoveTreasureRoomEnemies = true;
   GlobinSoftlock = true; // 24
   AppearHands = true; // 213, 287
   FastHands = true; // 213, 287
