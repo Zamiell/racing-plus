@@ -10,6 +10,7 @@ import {
   getElapsedRenderFramesSince,
   getRoomListIndex,
   isActionPressedOnAnyInput,
+  log,
   setSpriteOpacity,
 } from "isaacscript-common";
 import * as socket from "../../../../features/race/socket";
@@ -32,6 +33,7 @@ import {
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 
+const DEBUG = false as boolean;
 const FONT = fonts.pfTempestaSevenCondensed;
 
 let lastBeaconFrame: int | undefined;
@@ -169,6 +171,11 @@ export class Shadows extends MandatoryModFeature {
   getShadows(): void {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     while (true) {
+      if (DEBUG) {
+        const renderFrameCount = Isaac.GetFrameCount();
+        log(`Reading UDP data on render frame: ${renderFrameCount}`);
+      }
+
       const rawData = socket.readUDP();
       if (rawData === undefined) {
         break;

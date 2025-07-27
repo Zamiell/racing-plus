@@ -21,6 +21,8 @@ import {
 } from "./socketClient";
 import { SOCKET_DEBUG, reset, socketFunctions } from "./socketFunctions";
 
+const DEBUG = false as boolean;
+
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
   if (!config.ClientCommunication) {
@@ -41,7 +43,18 @@ export function postRender(): void {
 
   // Read the socket until we run out of data to read.
   const oldRaceData = cloneRaceData(g.race);
-  while (read()) {} // eslint-disable-line no-empty
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  while (true) {
+    if (DEBUG) {
+      const renderFrameCount = Isaac.GetFrameCount();
+      log(`Reading TCP data on render frame: ${renderFrameCount}`);
+    }
+
+    const gotData = read();
+    if (!gotData) {
+      break;
+    }
+  }
   checkRaceChanged(oldRaceData, g.race);
 }
 
@@ -95,6 +108,7 @@ export function postItemPickup(pickingUpItem: PickingUpItem): void {
   }
 }
 
+/** @returns Whether we got any new data. */
 function read() {
   if (!socketClientIsActive()) {
     return false;
