@@ -1,4 +1,5 @@
 import {
+  CollectibleType,
   Direction,
   EntityType,
   GameStateFlag,
@@ -30,40 +31,15 @@ import { v } from "./v";
 export function gotoNextFloor(travelDirection: Direction): void {
   const hud = game.GetHUD();
 
-  // We use custom functions to handle Racing+ specific logic for floor travel.
-  const nextStage = getNextStageCustom(travelDirection);
-  const nextStageType = getNextStageTypeCustom(travelDirection, nextStage);
-
-  // The effect of Reverse Empress cards are supposed to end after one minute passive. However,
-  // taking away the health and re-adding it will cause the extra two red heart containers to not be
-  // removed properly once the minute ends. Thus, we cut the effect short now.
-  for (const player of getPlayers()) {
-    const effects = player.GetEffects();
-    effects.RemoveNullEffect(NullItemID.REVERSE_EMPRESS);
-  }
-
-  // The effect of Reverse Sun cards are supposed to end upon reaching a new floor, so we can remove
-  // the effect now so that it will not interfere with the recording of the player's current health.
-  for (const player of getPlayers()) {
-    const effects = player.GetEffects();
-    effects.RemoveNullEffect(NullItemID.REVERSE_SUN);
-  }
-
-  // If Tainted Jacob loses Anime Sola for any reason, it can cause multiple Dark Esau's to spawn
-  // upon reaching a new floor. Since Dark Esau is never supposed to persist between floors, we can
-  // safely remove all Dark Esau entities at this point.
-  removeAllMatchingEntities(EntityType.DARK_ESAU);
-
-  // The fast-travel feature prevents the Perfection trinket from spawning. Using the
-  // "WithoutDamage" methods of the Game class do not work properly, so we revert to keeping track
-  // of damage manually.
-  if (!v.level.tookDamage) {
-    v.run.perfection.floorsWithoutDamage++;
-  }
+  fixVariousFastTravelBugsBeforeLeavingFloor();
 
   // Check to see if we need to take extra steps to seed the floor consistently by performing health
   // and inventory modifications.
   seededFloorsBefore();
+
+  // We use custom functions to handle Racing+ specific logic for floor travel.
+  const nextStage = getNextStageCustom(travelDirection);
+  const nextStageType = getNextStageTypeCustom(travelDirection, nextStage);
 
   // If we do a "stage" command to go to the same floor that we are already on, it will use the same
   // floor layout as the previous floor. Thus, in these cases, we need to mark to perform a "reseed"
@@ -77,12 +53,44 @@ export function gotoNextFloor(travelDirection: Direction): void {
   // Revert the health and inventory modifications.
   seededFloorsAfter();
 
+  removeBuggedBlanketEffect();
+
   // Now that we have arrived on the new floor, we might need to perform a Dream Catcher warp.
   setDreamCatcherArrivedOnNewFloor();
 
   // Ensure that the HUD is visible. (The Planetarium fix code may have set it to false earlier
   // before warping around.)
   hud.SetVisible(true);
+}
+
+function fixVariousFastTravelBugsBeforeLeavingFloor() {
+  // If Tainted Jacob loses Anime Sola for any reason, it can cause multiple Dark Esau's to spawn
+  // upon reaching a new floor. Since Dark Esau is never supposed to persist between floors, we can
+  // safely remove all Dark Esau entities at this point.
+  removeAllMatchingEntities(EntityType.DARK_ESAU);
+
+  // The fast-travel feature prevents the Perfection trinket from spawning. Using the
+  // "WithoutDamage" methods of the Game class do not work properly, so we revert to keeping track
+  // of damage manually.
+  if (!v.level.tookDamage) {
+    v.run.perfection.floorsWithoutDamage++;
+  }
+
+  // The effect of Reverse Empress (59) cards are supposed to end after one minute passive. However,
+  // taking away the health and re-adding it will cause the extra two red heart containers to not be
+  // removed properly once the minute ends. Thus, we cut the effect short now.
+  for (const player of getPlayers()) {
+    const effects = player.GetEffects();
+    effects.RemoveNullEffect(NullItemID.REVERSE_EMPRESS);
+  }
+
+  // The effect of Reverse Sun (75) cards are supposed to end upon reaching a new floor, so we can
+  // remove the effect now so that it will not interfere with the recording of the player's current
+  // health.
+  for (const player of getPlayers()) {
+    const effects = player.GetEffects();
+    effects.RemoveNullEffect(NullItemID.REVERSE_SUN);
+  }
 }
 
 function getNextStageCustom(travelDirection: Direction): LevelStage {
@@ -155,4 +163,32 @@ function getNextStageTypeCustom(
  */
 function isAscentGoal(): boolean {
   return inRaceToBeast() || onSeason(3);
+}
+
+/**
+ * For some reason, when traveling from a Boss Room to the starting room of the next floor, the
+ * Blanket shield will persist. Thus, we must manually remove it.
+ */
+function removeBuggedBlanketEffect() {
+  for (const player of getPlayers()) {
+    if (hasBlanketEffect(player)) {
+      const effects = player.GetEffects();
+      effects.RemoveCollectibleEffect(CollectibleType.HOLY_MANTLE);
+    }
+  }
+}
+
+/**
+ * The "Holy Mantle" temporary effect is shared by the Holy Mantle collectible, the Blanket
+ * collectible, and the Holy Card. In the case of the Holy Card, the player will also have the
+ * `NullItemID.HOLY_CARD` effect. In the case of Holy Mantle, we check for the collectible.
+ */
+function hasBlanketEffect(player: EntityPlayer) {
+  const effects = player.GetEffects();
+
+  return (
+    player.HasCollectible(CollectibleType.BLANKET)
+    && !player.HasCollectible(CollectibleType.HOLY_MANTLE)
+    && !effects.HasNullEffect(NullItemID.HOLY_CARD)
+  );
 }

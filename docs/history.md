@@ -7,7 +7,8 @@
 
 - Fixed the bug where you could take The Fallen's item for free on Tainted Keeper without it counting as a free devil deal item. (Thanks superpaperchildy)
 - Fixed the bug where dying in the Boss Rush would trick the mod into thinking you completed it. (Thanks superpaperchildy)
-- Fixed the bug where Death's List would pay out in Treasure Rooms. (thanks trombonerChamp)
+- Fixed the bug where Death's List would pay out in Treasure Rooms. (Thanks trombonerChamp)
+- Fixed the bug where Blanket's effect would incorrectly persist to the next floor. (Thanks trombonerChamp)
 
 ### _v0.111.9_ - January 29th, 2024
 
