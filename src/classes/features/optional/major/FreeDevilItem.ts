@@ -10,6 +10,7 @@ import {
   PlayerType,
   RoomType,
   SeedEffect,
+  TrinketType,
 } from "isaac-typescript-definitions";
 import type { PickingUpItem } from "isaacscript-common";
 import {
@@ -18,6 +19,8 @@ import {
   DefaultMap,
   ModCallbackCustom,
   VectorZero,
+  anyPlayerHasCollectible,
+  anyPlayerHasTrinket,
   anyPlayerIs,
   asNumber,
   game,
@@ -128,24 +131,33 @@ export class FreeDevilItem extends ConfigurableModFeature {
   }
 
   /**
-   * Detecting a priced Devil-Deal-style collectible is normally trivial because you can check for
-   * if the price is less than 0 and is not `PickupPrice.YOUR_SOUL` or `PickupPrice.FREE`. However,
-   * this does not work on Keeper, because all Devil-Deal-style collectibles cost money.
-   * Furthermore, this does not work on Tainted Keeper, because all collectibles cost money. It also
-   * fails with the Keeper's Bargain trinket for the same reason.
+   * Detecting a priced devil deal collectible is normally trivial because you can check for if the
+   * price is less than 0. However, this does not work on Keeper, because all devil deal
+   * collectibles cost money. Furthermore, this does not work on Tainted Keeper, because all
+   * collectibles cost money. It also does not work with A Pound of Flesh and the Keeper's Bargain
+   * trinket for the same reason.
    */
   isPricedDevilRoomPoolCollectible(
     collectible: EntityPickupCollectible,
   ): boolean {
     const itemPoolType = mod.getCollectibleItemPoolType(collectible);
+    if (itemPoolType !== ItemPoolType.DEVIL) {
+      return false;
+    }
 
-    return (
-      itemPoolType === ItemPoolType.DEVIL
+    const devilDealsCanCostMoney =
+      anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)
+      || anyPlayerHasCollectible(CollectibleType.POUND_OF_FLESH)
+      || anyPlayerHasTrinket(TrinketType.KEEPERS_BARGAIN);
+    if (devilDealsCanCostMoney) {
+      // The item could cost money or it could cost hearts.
       // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      && collectible.Price !== PickupPrice.NULL
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      && collectible.Price !== PickupPrice.FREE
-    );
+      return collectible.Price !== PickupPrice.NULL;
+    }
+
+    // We intentionally do not check for `PickupPrice.YOUR_SOUL` and `PickupPrice.FREE` because we
+    // want the free mechanic to take precedence over Your Soul and Store Credit.
+    return collectible.Price < 0;
   }
 
   // 36, 100

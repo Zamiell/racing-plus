@@ -9,6 +9,7 @@
 - Fixed the bug where dying in the Boss Rush would trick the mod into thinking you completed it. (Thanks superpaperchildy)
 - Fixed the bug where Death's List would pay out in Treasure Rooms. (Thanks trombonerChamp)
 - Fixed the bug where Blanket's effect would incorrectly persist to the next floor. (Thanks trombonerChamp)
+- Fixed the bug where items from the Member Card shop that came from the Devil Room pool could incorrectly count as a free devil deal item. (Thanks Fallenfor)
 
 ### _v0.111.9_ - January 29th, 2024
 
@@ -1248,7 +1249,7 @@
 
 ### _v0.74.1_ - December 5th, 2021
 
-- Fixed the bug where shop items would count as Devil-Deal-style items. (Thanks Monkeypot)
+- Fixed the bug where shop items would count as devil deal items. (Thanks Monkeypot)
 
 ### _v0.74.0_ - December 4th, 2021
 
