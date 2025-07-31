@@ -33,7 +33,7 @@ import {
 } from "./shadows/constants";
 import * as struct from "./shadows/struct";
 
-const DEBUG = true as boolean;
+const DEBUG = false as boolean;
 const FONT = fonts.pfTempestaSevenCondensed;
 
 let lastBeaconFrame: int | undefined;

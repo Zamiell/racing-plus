@@ -21,7 +21,7 @@ import {
 } from "./socketClient";
 import { SOCKET_DEBUG, reset, socketFunctions } from "./socketFunctions";
 
-const DEBUG = true as boolean;
+const DEBUG = false as boolean;
 
 // ModCallback.POST_RENDER (2)
 export function postRender(): void {
