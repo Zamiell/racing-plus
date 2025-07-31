@@ -147,7 +147,8 @@ export class FreeDevilItem extends ConfigurableModFeature {
 
     const devilDealsCanCostMoney =
       anyPlayerIs(PlayerType.KEEPER, PlayerType.KEEPER_B)
-      || anyPlayerHasCollectible(CollectibleType.POUND_OF_FLESH)
+      || anyPlayerHasCollectible(CollectibleType.STRAWMAN) // 667
+      || anyPlayerHasCollectible(CollectibleType.POUND_OF_FLESH) // 672
       || anyPlayerHasTrinket(TrinketType.KEEPERS_BARGAIN);
     if (devilDealsCanCostMoney) {
       // The item could cost money or it could cost hearts.
