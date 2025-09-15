@@ -4,10 +4,10 @@
 // @ts-check
 
 import { completeConfigBase } from "eslint-config-complete";
-import { isaacScriptModConfigBase } from "eslint-config-isaacscript"; // eslint-disable-line import-x/no-extraneous-dependencies
-import tseslint from "typescript-eslint";
+import { isaacScriptModConfigBase } from "eslint-config-isaacscript";
+import { defineConfig } from "eslint/config";
 
-export default tseslint.config(
+export default defineConfig(
   // https://github.com/complete-ts/complete/blob/main/packages/eslint-config-complete/src/base.js
   ...completeConfigBase,
 

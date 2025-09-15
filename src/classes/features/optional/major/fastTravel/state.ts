@@ -96,9 +96,9 @@ function setFastTravelEntityState(
   entityDescription.state = state;
 }
 
-// eslint-disable-next-line complete/no-mutable-return
 function getFastTravelMap(
   fastTravelEntityType: FastTravelEntityType,
+  // eslint-disable-next-line complete/no-mutable-return
 ): Map<number, FastTravelEntityDescription> {
   switch (fastTravelEntityType) {
     case FastTravelEntityType.TRAPDOOR: {
