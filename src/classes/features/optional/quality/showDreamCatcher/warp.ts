@@ -2,6 +2,7 @@ import {
   CollectibleType,
   EffectVariant,
   GameStateFlag,
+  LevelStage,
   RoomType,
   TallLadderSubType,
   TrinketType,
@@ -36,29 +37,26 @@ const STAIRWAY_GRID_INDEX = 25;
 export function showDreamCatcherCheckStartWarp(): void {
   const isGreedMode = game.IsGreedMode();
   const onTheAscent = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
+  const level = game.GetLevel();
+  const stage = level.GetStage();
   const room = game.GetRoom();
   const isFirstVisit = room.IsFirstVisit();
 
-  if (v.level.warpState !== DreamCatcherWarpState.INITIAL) {
-    return;
-  }
-
-  if (!anyPlayerHasCollectible(CollectibleType.DREAM_CATCHER)) {
-    return;
-  }
-
-  // We only need to visit rooms upon reaching a new floor for the first time.
-  if (onFirstFloor() || !inStartingRoom() || !isFirstVisit) {
-    return;
-  }
-
-  // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
-  if (isGreedMode) {
-    return;
-  }
-
-  // Disable this feature on the Ascent, since that is outside of the scope of normal speedruns.
-  if (onTheAscent) {
+  if (
+    v.level.warpState !== DreamCatcherWarpState.INITIAL
+    || !anyPlayerHasCollectible(CollectibleType.DREAM_CATCHER)
+    // We only need to visit rooms upon reaching a new floor for the first time.
+    || onFirstFloor()
+    || !inStartingRoom()
+    || !isFirstVisit
+    // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
+    || isGreedMode
+    // Disable this feature on the Ascent, since that is outside of the scope of normal speedruns.
+    || onTheAscent
+    // Disable this feature on the Void, since there are no Treasure Rooms and knowing what bosses
+    // exist is not particularly helpful.
+    || stage === LevelStage.VOID
+  ) {
     return;
   }
 

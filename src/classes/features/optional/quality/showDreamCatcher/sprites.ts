@@ -61,7 +61,7 @@ function newBossSprite(
     logError(
       `Failed to get the boss ID corresponding to: ${entityType}.${variant}`,
     );
-    bossID = BossID.MONSTRO; // Default to the first Boss ID.
+    bossID = BossID.MONSTRO; // Default to the first boss.
   }
 
   const pngPath = getBossPortraitPNGFilePath(bossID);
