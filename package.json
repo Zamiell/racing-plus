@@ -34,6 +34,7 @@
     "isaacscript-common": "87.8.1"
   },
   "devDependencies": {
+    "complete-node": "12.0.0",
     "convert-xml-to-json": "1.0.3",
     "isaacscript": "6.0.1",
     "isaacscript-lint": "7.3.2",
