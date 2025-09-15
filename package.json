@@ -31,11 +31,11 @@
   },
   "dependencies": {
     "isaac-typescript-definitions": "42.3.0",
-    "isaacscript-common": "87.8.0"
+    "isaacscript-common": "87.8.1"
   },
   "devDependencies": {
     "convert-xml-to-json": "1.0.3",
-    "isaacscript": "6.0.0",
+    "isaacscript": "6.0.1",
     "isaacscript-lint": "7.3.2",
     "isaacscript-spell": "1.15.2",
     "isaacscript-tsconfig": "7.0.1",
