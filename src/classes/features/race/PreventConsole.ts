@@ -1,5 +1,9 @@
 import { ButtonAction, InputHook } from "isaac-typescript-definitions";
-import { CallbackCustom, ModCallbackCustom } from "isaacscript-common";
+import {
+  CallbackCustom,
+  isRepentancePlus,
+  ModCallbackCustom,
+} from "isaacscript-common";
 import { RaceFormat } from "../../../enums/RaceFormat";
 import { inRace } from "../../../features/race/v";
 import { g } from "../../../globals";
@@ -12,9 +16,19 @@ export class PreventConsole extends ConfigurableModFeature {
   @CallbackCustom(
     ModCallbackCustom.INPUT_ACTION_FILTER,
     InputHook.IS_ACTION_TRIGGERED,
-    ButtonAction.CONSOLE,
   )
-  inputActionFilterIsActionTriggeredConsole(): boolean | undefined {
+  inputActionFilterIsActionTriggeredConsole(
+    _entity: Entity | undefined,
+    _inputHook: InputHook,
+    buttonAction: ButtonAction,
+  ): boolean | undefined {
+    const buttonActionConsole = isRepentancePlus()
+      ? ButtonAction.CONSOLE_REPENTANCE_PLUS
+      : ButtonAction.CONSOLE_REPENTANCE;
+    if (buttonAction !== buttonActionConsole) {
+      return undefined;
+    }
+
     if (g.debug) {
       return undefined;
     }

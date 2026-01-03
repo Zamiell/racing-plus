@@ -9,6 +9,7 @@ import {
   game,
   isActionTriggeredOnAnyInput,
   isKeyboardPressed,
+  isRepentancePlus,
   restart,
 } from "isaacscript-common";
 import { mod } from "../../../../mod";
@@ -62,7 +63,10 @@ export class FastReset extends ConfigurableModFeature {
 
     // Check to see if the player has pressed the restart input. (We check all inputs instead of
     // "player.ControllerIndex" because a controller player might be using the keyboard to reset.)
-    if (isActionTriggeredOnAnyInput(ButtonAction.RESTART)) {
+    const buttonActionRestart = isRepentancePlus()
+      ? ButtonAction.RESTART_REPENTANCE_PLUS
+      : ButtonAction.RESTART_REPENTANCE;
+    if (isActionTriggeredOnAnyInput(buttonActionRestart)) {
       this.checkReset();
     }
   }
