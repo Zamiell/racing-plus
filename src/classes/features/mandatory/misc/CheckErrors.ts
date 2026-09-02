@@ -195,10 +195,12 @@ export class CheckErrors extends MandatoryModFeature {
 }
 
 function checkAfterbirthPlus() {
-  if (!isRepentance()) {
-    log("Error: Afterbirth+ detected.");
-    v.run.afterbirthPlus = true;
+  if (isRepentance()) {
+  	return;
   }
+
+  log("Error: Afterbirth+ detected.");
+  v.run.afterbirthPlus = true;
 }
 
 /**
@@ -302,10 +304,12 @@ function checkBabiesModEnabled() {
 }
 
 function checkInvalidCharOrder() {
-  if (inSpeedrun() && !hasValidCharacterOrder()) {
-    v.run.invalidCharOrder = true;
-    log("Error: Invalid character order detected.");
+  if (!inSpeedrun() || hasValidCharacterOrder()) {
+  	return;
   }
+
+  v.run.invalidCharOrder = true;
+  log("Error: Invalid character order detected.");
 }
 
 function checkGameRecentlyOpenedForRandomCharacter() {
@@ -407,15 +411,19 @@ function checkOtherRunRecentlyStartedForRandomBuild() {
 }
 
 function checkStorageHotkey() {
-  if (onSeason(4) && hotkeys.storage === -1) {
-    v.run.season4StorageHotkeyNotSet = true;
-    log("Error: Storage hotkey not set.");
+  if (!(onSeason(4) && hotkeys.storage === -1)) {
+  	return;
   }
+
+  v.run.season4StorageHotkeyNotSet = true;
+  log("Error: Storage hotkey not set.");
 }
 
 function checkSeason5Mod() {
-  if (onSeason(5) && !isBabiesModEnabled()) {
-    v.run.season5ModNotEnabled = true;
-    log("Error: Season 5 mod not found.");
+  if (!onSeason(5) || isBabiesModEnabled()) {
+  	return;
   }
+
+  v.run.season5ModNotEnabled = true;
+  log("Error: Season 5 mod not found.");
 }

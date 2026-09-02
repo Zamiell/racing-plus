@@ -118,11 +118,13 @@ export class SolCustom extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
     // Automatically replace the vanilla Sol with the custom one.
-    if (player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
-      player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
-      player.AddCollectible(NEW_COLLECTIBLE_TYPE, 0, false);
-      addCollectibleCostume(player, OLD_COLLECTIBLE_TYPE);
+    if (!player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
+    	return;
     }
+
+    player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
+    player.AddCollectible(NEW_COLLECTIBLE_TYPE, 0, false);
+    addCollectibleCostume(player, OLD_COLLECTIBLE_TYPE);
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)

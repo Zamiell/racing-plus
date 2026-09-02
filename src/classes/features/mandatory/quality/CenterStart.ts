@@ -26,13 +26,14 @@ export class CenterStart extends MandatoryModFeature {
   postEffectInitPoof1(effect: EntityEffect): void {
     // If players start the run with familiars, they will leave behind stray poofs when they get
     // moved.
-    if (onGameFrame(0)) {
-      effect.Remove();
-
-      // Even though we have removed it, it will still appear for a frame unless we make it
-      // invisible.
-      effect.Visible = false;
+    if (!onGameFrame(0)) {
+    	return;
     }
+
+    effect.Remove();
+
+    // Even though we have removed it, it will still appear for a frame unless we make it invisible.
+    effect.Visible = false;
   }
 
   /**

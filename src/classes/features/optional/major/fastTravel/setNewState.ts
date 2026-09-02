@@ -227,11 +227,13 @@ function warpForgottenBody(player: EntityPlayer) {
 }
 
 function dropTaintedForgotten(player: EntityPlayer) {
-  if (isCharacter(player, PlayerType.FORGOTTEN_B)) {
-    const taintedSoul = player.GetOtherTwin();
-    if (taintedSoul !== undefined) {
-      taintedSoul.ThrowHeldEntity(VectorZero);
-    }
+  if (!isCharacter(player, PlayerType.FORGOTTEN_B)) {
+  	return;
+  }
+
+  const taintedSoul = player.GetOtherTwin();
+  if (taintedSoul !== undefined) {
+    taintedSoul.ThrowHeldEntity(VectorZero);
   }
 }
 

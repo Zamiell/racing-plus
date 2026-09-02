@@ -33,12 +33,11 @@ function checkGameOpenedInMiddleOfRace() {
   // game is closed and reopened in the middle of a race, then the race will never become started.
   // Explicitly check for this. (The timer won't be correct, but at least everything else will be
   // functional.)
-  if (
-    g.race.status === RaceStatus.IN_PROGRESS
-    && g.race.myStatus === RacerStatus.RACING
-    && !g.raceVars.started
-  ) {
-    log("The game was opened in the middle of a race!");
-    raceStart();
+  if (!(g.race.status === RaceStatus.IN_PROGRESS
+    && g.race.myStatus === RacerStatus.RACING) || g.raceVars.started) {
+  	return;
   }
+
+  log("The game was opened in the middle of a race!");
+  raceStart();
 }

@@ -169,10 +169,12 @@ export class FastTravel extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_GAME_STARTED_REORDERED, true)
   postGameStartedReorderedTrue(): void {
     // Cancel fast-travel if we save & quit in the middle of the jumping animation.
-    if (v.run.state === FastTravelState.FADING_TO_BLACK) {
-      setNewFastTravelState(FastTravelState.DISABLED);
-      mod.enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
+    if (v.run.state !== FastTravelState.FADING_TO_BLACK) {
+    	return;
     }
+
+    setNewFastTravelState(FastTravelState.DISABLED);
+    mod.enableAllInputs(FAST_TRAVEL_FEATURE_NAME);
   }
 
   @CallbackCustom(

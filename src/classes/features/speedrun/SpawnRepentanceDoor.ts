@@ -94,11 +94,13 @@ export class SpawnRepentanceDoor extends ChallengeModFeature {
    * Boss Room.
    */
   checkEnteringClearedBossRoom(): void {
-    if (shouldSpawnRepentanceDoor() && hasUnusedDoorSlot()) {
-      const room = game.GetRoom();
-      room.TrySpawnSecretExit(false, true);
-      this.setRepentanceDoorState();
+    if (!(shouldSpawnRepentanceDoor() && hasUnusedDoorSlot())) {
+    	return;
     }
+
+    const room = game.GetRoom();
+    room.TrySpawnSecretExit(false, true);
+    this.setRepentanceDoorState();
   }
 
   setRepentanceDoorState(): void {

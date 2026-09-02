@@ -279,11 +279,13 @@ export class FlipCustom extends ConfigurableModFeature {
    */
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
-    if (player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
-      player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
-      const charges = getCollectibleMaxCharges(NEW_COLLECTIBLE_TYPE);
-      player.AddCollectible(NEW_COLLECTIBLE_TYPE, charges, false);
+    if (!player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
+    	return;
     }
+
+    player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
+    const charges = getCollectibleMaxCharges(NEW_COLLECTIBLE_TYPE);
+    player.AddCollectible(NEW_COLLECTIBLE_TYPE, charges, false);
   }
 
   /**

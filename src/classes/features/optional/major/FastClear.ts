@@ -177,11 +177,13 @@ export class FastClear extends ConfigurableModFeature {
   }
 
   checkVanillaRoomClear(roomClear: boolean): void {
-    if (roomClear && !v.room.fastClearedRoom) {
-      log(
-        "Vanilla room clear detected; executing post-fast-clear functions manually.",
-      );
-      postFastClear();
+    if (!roomClear || v.room.fastClearedRoom) {
+    	return;
     }
+
+    log(
+      "Vanilla room clear detected; executing post-fast-clear functions manually.",
+    );
+    postFastClear();
   }
 }

@@ -49,7 +49,6 @@ export default defineConfig(
       "unicorn/no-useless-template-literals": "off",
       "unicorn/prefer-continue": "off",
       "unicorn/prefer-direct-iteration": "off",
-      "unicorn/prefer-early-return": "off",
       "unicorn/prefer-simple-condition-first": "off",
 
       // @template-customization-end

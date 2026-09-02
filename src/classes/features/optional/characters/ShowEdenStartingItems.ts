@@ -131,10 +131,12 @@ export function changeStartingPassiveItem(
 }
 
 function setItemSprites() {
-  if (shouldShowSprites()) {
-    activeSprite = newGlowingCollectibleSprite(v.run.active);
-    passiveSprite = newGlowingCollectibleSprite(v.run.passive);
+  if (!shouldShowSprites()) {
+  	return;
   }
+
+  activeSprite = newGlowingCollectibleSprite(v.run.active);
+  passiveSprite = newGlowingCollectibleSprite(v.run.passive);
 }
 
 /** Only show the sprites in the starting room of the first floor. */
