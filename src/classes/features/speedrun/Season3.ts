@@ -314,7 +314,10 @@ export class Season3 extends ChallengeModFeature {
       ...passiveCollectibleTypes,
     ];
 
-    return { collectibleTypes, trinketType };
+    return {
+      collectibleTypes,
+      trinketType,
+    };
   }
 
   isCollectibleTypeBannedOnThisCharacter(

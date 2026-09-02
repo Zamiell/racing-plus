@@ -296,27 +296,19 @@ function getChargeSituationForPickup(
     // 20
     case PickupVariant.COIN: {
       if (player.HasTrinket(TrinketType.CHARGED_PENNY)) {
-        return {
-          numCharges: 1,
-        };
+        return { numCharges: 1 };
       }
 
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
 
     // 30
     case PickupVariant.KEY: {
       if (pickupSubType === asNumber(KeySubType.CHARGED)) {
-        return {
-          numCharges: LIL_BATTERY_CHARGES,
-        };
+        return { numCharges: LIL_BATTERY_CHARGES };
       }
 
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
 
     // 90
@@ -326,9 +318,7 @@ function getChargeSituationForPickup(
     }
 
     default: {
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
   }
 }
@@ -338,42 +328,30 @@ function getChargeSituationForBattery(
 ): ChargeSituation {
   switch (batterySubType) {
     case BatterySubType.NULL: {
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
 
     case BatterySubType.NORMAL: {
-      return {
-        numCharges: LIL_BATTERY_CHARGES,
-      };
+      return { numCharges: LIL_BATTERY_CHARGES };
     }
 
     case BatterySubType.MICRO: {
-      return {
-        numCharges: MICRO_BATTERY_CHARGES,
-      };
+      return { numCharges: MICRO_BATTERY_CHARGES };
     }
 
     case BatterySubType.MEGA: {
       // This fully-charges every active item, so this feature does not need to handle it.
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
 
     case BatterySubType.GOLDEN: {
-      return {
-        numCharges: LIL_BATTERY_CHARGES,
-      };
+      return { numCharges: LIL_BATTERY_CHARGES };
     }
 
     // eslint-disable-next-line @typescript-eslint/switch-exhaustiveness-check
     default: {
       // Handle modded battery types.
-      return {
-        numCharges: 0,
-      };
+      return { numCharges: 0 };
     }
   }
 }

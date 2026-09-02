@@ -127,7 +127,10 @@ export class FastKrampus extends ConfigurableModFeature {
       || anyPlayerHasCollectible(CollectibleType.HEAD_OF_KRAMPUS)
       || anyPlayerHasTrinket(TrinketType.NO);
 
-    return { coalBanned, headBanned };
+    return {
+      coalBanned,
+      headBanned,
+    };
   }
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_LEVEL_REORDERED)

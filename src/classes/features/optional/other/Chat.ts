@@ -76,16 +76,12 @@ export class Chat extends ConfigurableModFeature {
       }
 
       const textSegments: TextSegment[] = [
-        {
-          text: `[${chatMessage.time}] <`,
-        },
+        { text: `[${chatMessage.time}] <` },
         {
           text: chatMessage.username,
           color: HexColors.GREEN,
         },
-        {
-          text: `> ${chatMessage.msg}`,
-        },
+        { text: `> ${chatMessage.msg}` },
       ];
       drawText(textSegments, Vector(x, y), modifiedAlpha);
 
