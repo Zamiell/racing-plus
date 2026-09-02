@@ -111,7 +111,6 @@ const v = {
  */
 export class Autofire extends MandatoryModFeature {
   v = v;
-  private readonly frameLastSpawned = 0;
 
   constructor() {
     super();
