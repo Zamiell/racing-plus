@@ -25,7 +25,8 @@ const RENDER_FRAMES_FOR_CHAT_TO_SHOW = 120;
 
 /**
  * TODO:
- *  - Don't display race chat from the previous race.
+ *                                                                                                                                 -
+ * Don't display race chat from the previous race.
  *  - Send all race chat history upon joining race.
  */
 export class Chat extends ConfigurableModFeature {

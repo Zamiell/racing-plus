@@ -67,7 +67,8 @@ export class StartWithD6 extends ConfigurableModFeature {
    * Record the current charge so that we can propagate it to the other Flip.
    *
    * This function is triggered when:
-   *  - flip is used by the player
+   *                                                                                                                                 -
+   * flip is used by the player
    *  - flip is triggered automatically by clearing a room
    */
   // 23, 711
