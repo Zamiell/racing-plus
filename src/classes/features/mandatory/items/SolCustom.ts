@@ -133,7 +133,7 @@ export class SolCustom extends ConfigurableModFeature {
   }
 
   checkRemoveSolBuff(): void {
-    const playerIndexes = [...v.run.playersSolEffect.values()];
+    const playerIndexes = [...v.run.playersSolEffect];
     v.run.playersSolEffect.clear();
 
     for (const playerIndex of playerIndexes) {

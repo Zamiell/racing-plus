@@ -48,7 +48,6 @@ export default defineConfig(
       "unicorn/no-top-level-side-effects": "off",
       "unicorn/no-useless-template-literals": "off",
       "unicorn/prefer-continue": "off",
-      "unicorn/prefer-direct-iteration": "off",
       "unicorn/prefer-simple-condition-first": "off",
 
       // @template-customization-end
