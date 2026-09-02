@@ -27,10 +27,7 @@ const ENTITY_TYPES_THAT_CAUSE_TELEPORT = [
 ] as const;
 
 type OneByOneRoomDoorSlot =
-  | DoorSlot.LEFT_0
-  | DoorSlot.UP_0
-  | DoorSlot.RIGHT_0
-  | DoorSlot.DOWN_0;
+  DoorSlot.LEFT_0 | DoorSlot.UP_0 | DoorSlot.RIGHT_0 | DoorSlot.DOWN_0;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 const LEAVE_DOOR_SLOT_TO_1x1_DOOR_SLOT = {

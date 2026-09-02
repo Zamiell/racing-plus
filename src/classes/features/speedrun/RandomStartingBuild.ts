@@ -53,8 +53,7 @@ import {
 } from "./randomStartingBuild/constants";
 
 declare const CCPMainResetPlayerCostumes:
-  | ((player: EntityPlayer) => void)
-  | undefined;
+  ((player: EntityPlayer) => void) | undefined;
 
 const DEBUG_BUILD = undefined as int | undefined;
 
