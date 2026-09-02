@@ -51,7 +51,6 @@ export default defineConfig(
       "unicorn/prefer-direct-iteration": "off",
       "unicorn/prefer-early-return": "off",
       "unicorn/prefer-simple-condition-first": "off",
-      "unicorn/prefer-unary-minus": "off",
 
       // @template-customization-end
     },

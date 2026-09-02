@@ -246,7 +246,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
     switch (firstCollectibleType) {
       // 10 - Revelation (no soul hearts, no flight).
       case CollectibleType.REVELATION: {
-        player.AddSoulHearts(NUM_REVELATION_SOUL_HEARTS * -1);
+        player.AddSoulHearts(-NUM_REVELATION_SOUL_HEARTS);
         removeCollectibleCostume(player, CollectibleType.REVELATION);
 
         break;

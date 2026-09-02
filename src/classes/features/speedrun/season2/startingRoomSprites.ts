@@ -146,7 +146,7 @@ function getPosition(spriteName: keyof typeof sprites): Readonly<Vector> {
     }
 
     case "seededItemLeft": {
-      return topRightPosition.add(Vector(SPRITE_ITEM_OFFSET * -1, 0));
+      return topRightPosition.add(Vector(-SPRITE_ITEM_OFFSET, 0));
     }
 
     case "seededItemRight": {
