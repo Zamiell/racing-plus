@@ -217,6 +217,7 @@ function appendHistory() {
     }
   }
 
+  // eslint-disable-next-line unicorn/no-array-front-mutation
   v.persistent.inputHistory.unshift(inputText);
   if (v.persistent.inputHistory.length >= MAX_HISTORY_LENGTH) {
     v.persistent.inputHistory.pop();

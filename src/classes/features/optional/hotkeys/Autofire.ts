@@ -169,6 +169,7 @@ export class Autofire extends MandatoryModFeature {
         v.run.vanillaShootHistoryMap.getAndSetDefault(buttonAction);
       shootHistory.push(pressed);
       if (shootHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY) {
+        // eslint-disable-next-line unicorn/no-array-front-mutation
         shootHistory.shift();
       }
     }
@@ -176,6 +177,7 @@ export class Autofire extends MandatoryModFeature {
     const leftMousePressed = Input.IsMouseBtnPressed(Mouse.BUTTON_LEFT);
     v.run.leftMouseHistory.push(leftMousePressed);
     if (v.run.leftMouseHistory.length > POWERFUL_COLLECTIBLE_GAME_FRAME_DELAY) {
+      // eslint-disable-next-line unicorn/no-array-front-mutation
       v.run.leftMouseHistory.shift();
     }
   }

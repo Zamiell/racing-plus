@@ -89,6 +89,7 @@ export function planetariumFixBeginWarp(): void {
 function warpToNextRoom() {
   const room = game.GetRoom();
 
+  // eslint-disable-next-line unicorn/no-array-front-mutation
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
   if (roomGridIndex !== undefined) {
     log(`Planetarium Fix - Warping to room: ${roomGridIndex}`);

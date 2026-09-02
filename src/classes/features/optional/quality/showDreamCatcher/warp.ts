@@ -118,6 +118,7 @@ export function showDreamCatcherWarpToNextRoom(): void {
   const room = game.GetRoom();
   const players = getPlayers();
 
+  // eslint-disable-next-line unicorn/no-array-front-mutation
   const roomGridIndex = v.level.warpRoomGridIndexes.shift();
   if (roomGridIndex !== undefined) {
     log(`Dream Catcher - Warping to room: ${roomGridIndex}`);

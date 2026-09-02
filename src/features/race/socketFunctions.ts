@@ -88,6 +88,7 @@ function chat(rawData: string) {
   const renderFrameCount = Isaac.GetFrameCount();
   const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
   chatMessage.renderFrameReceived = renderFrameCount;
+  // eslint-disable-next-line unicorn/no-array-front-mutation
   g.chatMessages.unshift(chatMessage);
   log(
     `Chat: [${chatMessage.time}] <${chatMessage.username}> ${chatMessage.msg}`,

@@ -39,7 +39,6 @@ export default defineConfig(
 
       // TODO
       "complete/type-declaration-immutability": "off",
-      "unicorn/no-array-front-mutation": "off",
       "unicorn/no-declarations-before-early-exit": "off",
       "unicorn/no-immediate-mutation": "off",
       "unicorn/no-non-function-verb-prefix": "off",
