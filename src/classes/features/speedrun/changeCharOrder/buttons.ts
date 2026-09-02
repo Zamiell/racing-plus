@@ -356,6 +356,7 @@ function buildButtonPressed(gridEntity: GridEntity, i: int) {
     }
     v.persistent.charOrders.set(
       v.room.challengeCustomAbbreviation,
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       v.room.buildsChosen as PlayerType[],
     );
     fadeOutToChallenge();

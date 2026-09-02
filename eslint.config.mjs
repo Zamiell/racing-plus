@@ -38,7 +38,6 @@ export default defineConfig(
       ],
 
       // TODO
-      "@typescript-eslint/no-unnecessary-type-assertion": "off",
       "@typescript-eslint/no-unused-private-class-members": "off",
       "complete/type-declaration-immutability": "off",
       "unicorn/consistent-class-member-order": "off",

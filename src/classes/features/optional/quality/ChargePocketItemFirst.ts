@@ -313,6 +313,7 @@ function getChargeSituationForPickup(
 
     // 90
     case PickupVariant.LIL_BATTERY: {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       const batterySubType = pickupSubType as BatterySubType;
       return getChargeSituationForBattery(batterySubType);
     }

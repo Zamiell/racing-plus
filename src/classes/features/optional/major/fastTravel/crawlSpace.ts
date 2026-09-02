@@ -85,6 +85,7 @@ const FAST_TRAVEL_ENTITY_TYPE = FastTravelEntityType.CRAWLSPACE;
 export function crawlSpacePostGridEntityInitCrawlSpace(
   gridEntity: GridEntity,
 ): void {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
 
   // We re-implement crawl spaces that lead to the beginning of the floor as a teleport pad since it
@@ -213,7 +214,7 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
 
 function touched(entity: GridEntity | EntityEffect) {
   const gridEntity = entity as GridEntity;
-  const variant = gridEntity.GetVariant() as CrawlSpaceVariant;
+  const variant = gridEntity.GetVariant();
   const level = game.GetLevel();
   const previousRoomGridIndex = level.GetPreviousRoomIndex();
   const roomGridIndex = getRoomGridIndex();
@@ -241,6 +242,7 @@ function touched(entity: GridEntity | EntityEffect) {
 
   // Enter the crawl space room.
   const destinationRoomGridIndex =
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
     variant === CrawlSpaceVariant.SECRET_SHOP
       ? GridRoom.SECRET_SHOP
       : GridRoom.DUNGEON;

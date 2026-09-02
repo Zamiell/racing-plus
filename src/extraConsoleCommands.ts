@@ -181,6 +181,7 @@ function raceCharacter(params: string) {
   }
 
   let character: PlayerType;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   const num = tonumber(params) as PlayerType | undefined;
   if (num === undefined) {
     const match = getMapPartialMatch(params, CHARACTER_NAME_TO_TYPE_MAP);

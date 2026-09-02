@@ -365,6 +365,7 @@ function getKeyName(optionType: ModConfigMenuOptionType, key: int): string {
     }
 
     case ModConfigMenuOptionType.KEY_BIND_CONTROLLER: {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       return controllerToString(key as Controller) ?? "Unknown";
     }
 

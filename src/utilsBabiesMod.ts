@@ -5,6 +5,7 @@ export const RANDOM_BABY_NAME = "Random Baby";
 
 export function getRandomBabyPlayerType(): PlayerType | undefined {
   // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME) as
     PlayerType | -1;
 

@@ -6,5 +6,6 @@ const nextUnusedPickupPrice =
   asNumber(PickupPrice.ONE_HEART_AND_ONE_SOUL_HEART) - 1;
 
 export const PickupPriceCustom = {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
   PRICE_FREE_DEVIL_DEAL: nextUnusedPickupPrice as PickupPrice,
 } as const;

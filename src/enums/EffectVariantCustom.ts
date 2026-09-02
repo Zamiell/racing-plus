@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
+
 import type { EffectVariant } from "isaac-typescript-definitions";
 import { validateCustomEnum } from "isaacscript-common";
 

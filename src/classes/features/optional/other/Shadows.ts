@@ -155,8 +155,7 @@ export class Shadows extends MandatoryModFeature {
     };
 
     const structData: unknown[] = [];
-    for (const field of SHADOW_FIELDS) {
-      const key = field as keyof typeof structObject;
+    for (const key of SHADOW_FIELDS) {
       const fieldData = structObject[key];
       structData.push(fieldData);
     }

@@ -195,6 +195,7 @@ function killFleshDeathsHeads() {
 function killCreep() {
   const creeps = getEntities(EntityType.EFFECT, -1, -1, true);
   for (const creep of creeps) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     if (CREEP_VARIANTS_TO_KILL.has(creep.Variant as EffectVariant)) {
       creep.Kill();
     }
