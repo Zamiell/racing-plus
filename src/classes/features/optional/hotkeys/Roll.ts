@@ -60,7 +60,7 @@ export class Roll extends MandatoryModFeature {
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
     if (!v.run.rolling) {
-    	return;
+      return;
     }
 
     const player = getRollPlayer();

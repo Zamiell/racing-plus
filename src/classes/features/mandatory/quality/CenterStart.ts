@@ -27,7 +27,7 @@ export class CenterStart extends MandatoryModFeature {
     // If players start the run with familiars, they will leave behind stray poofs when they get
     // moved.
     if (!onGameFrame(0)) {
-    	return;
+      return;
     }
 
     effect.Remove();

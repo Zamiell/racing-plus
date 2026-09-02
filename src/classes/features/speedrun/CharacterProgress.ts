@@ -79,7 +79,7 @@ export class CharacterProgress extends ChallengeModFeature {
 
   checkManualResetAtEndOfFadeout(): void {
     if (v.run.resetFrame === null || !onOrAfterRenderFrame(v.run.resetFrame)) {
-    	return;
+      return;
     }
 
     v.run.resetFrame = null;

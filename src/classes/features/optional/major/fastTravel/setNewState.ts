@@ -228,7 +228,7 @@ function warpForgottenBody(player: EntityPlayer) {
 
 function dropTaintedForgotten(player: EntityPlayer) {
   if (!isCharacter(player, PlayerType.FORGOTTEN_B)) {
-  	return;
+    return;
   }
 
   const taintedSoul = player.GetOtherTwin();

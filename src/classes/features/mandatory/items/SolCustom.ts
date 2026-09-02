@@ -119,7 +119,7 @@ export class SolCustom extends ConfigurableModFeature {
   postPEffectUpdateReordered(player: EntityPlayer): void {
     // Automatically replace the vanilla Sol with the custom one.
     if (!player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
-    	return;
+      return;
     }
 
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);

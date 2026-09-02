@@ -14,7 +14,7 @@ export class DoubleAngelNerf extends MandatoryModFeature {
   @Callback(ModCallback.POST_NPC_INIT, EntityType.GABRIEL)
   postNPCInitGabriel(npc: EntityNPC): void {
     if (npc.MaxHitPoints !== VANILLA_GABRIEL_HP_AMOUNT) {
-    	return;
+      return;
     }
 
     npc.MaxHitPoints = NERFED_GABRIEL_HP_AMOUNT;

@@ -280,7 +280,7 @@ export class FlipCustom extends ConfigurableModFeature {
   @CallbackCustom(ModCallbackCustom.POST_PEFFECT_UPDATE_REORDERED)
   postPEffectUpdateReordered(player: EntityPlayer): void {
     if (!player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)) {
-    	return;
+      return;
     }
 
     player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);

@@ -56,7 +56,7 @@ export class FastAngels extends ConfigurableModFeature {
   @Callback(ModCallback.POST_ENTITY_KILL)
   postEntityKill(entity: Entity): void {
     if (!this.shouldSpawnKeyPiece(entity)) {
-    	return;
+      return;
     }
 
     this.spawnKeyPiece(entity);

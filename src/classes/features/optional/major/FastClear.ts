@@ -178,7 +178,7 @@ export class FastClear extends ConfigurableModFeature {
 
   checkVanillaRoomClear(roomClear: boolean): void {
     if (!roomClear || v.room.fastClearedRoom) {
-    	return;
+      return;
     }
 
     log(

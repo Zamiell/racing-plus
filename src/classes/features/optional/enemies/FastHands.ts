@@ -30,7 +30,7 @@ export class FastHands extends ConfigurableModFeature {
   checkSpeedUpHand(npc: EntityNPC): void {
     // `NPCState.MOVE` is when they are following the player.
     if (npc.State !== NPCState.MOVE) {
-    	return;
+      return;
     }
 
     this.speedUpInitialDelay(npc);

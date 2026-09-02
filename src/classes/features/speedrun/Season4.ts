@@ -88,7 +88,7 @@ export class Season4 extends ChallengeModFeature {
 
   preventBlackRuneOnStoredItems(player: EntityPlayer): void {
     if (!inRoomWithSeason4StoredItems()) {
-    	return;
+      return;
     }
 
     player.AnimateSad();

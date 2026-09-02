@@ -132,7 +132,7 @@ export function changeStartingPassiveItem(
 
 function setItemSprites() {
   if (!shouldShowSprites()) {
-  	return;
+    return;
   }
 
   activeSprite = newGlowingCollectibleSprite(v.run.active);

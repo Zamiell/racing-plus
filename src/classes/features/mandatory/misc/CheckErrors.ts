@@ -196,7 +196,7 @@ export class CheckErrors extends MandatoryModFeature {
 
 function checkAfterbirthPlus() {
   if (isRepentance()) {
-  	return;
+    return;
   }
 
   log("Error: Afterbirth+ detected.");
@@ -305,7 +305,7 @@ function checkBabiesModEnabled() {
 
 function checkInvalidCharOrder() {
   if (!inSpeedrun() || hasValidCharacterOrder()) {
-  	return;
+    return;
   }
 
   v.run.invalidCharOrder = true;
@@ -412,7 +412,7 @@ function checkOtherRunRecentlyStartedForRandomBuild() {
 
 function checkStorageHotkey() {
   if (!(onSeason(4) && hotkeys.storage === -1)) {
-  	return;
+    return;
   }
 
   v.run.season4StorageHotkeyNotSet = true;
@@ -421,7 +421,7 @@ function checkStorageHotkey() {
 
 function checkSeason5Mod() {
   if (!onSeason(5) || isBabiesModEnabled()) {
-  	return;
+    return;
   }
 
   v.run.season5ModNotEnabled = true;

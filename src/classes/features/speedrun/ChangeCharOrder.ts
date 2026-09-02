@@ -79,8 +79,11 @@ export class ChangeCharOrder extends ChallengeModFeature {
   }
 
   checkReset(): void {
-    if (v.room.resetRenderFrame === null || !onOrAfterRenderFrame(v.room.resetRenderFrame)) {
-    	return;
+    if (
+      v.room.resetRenderFrame === null
+      || !onOrAfterRenderFrame(v.room.resetRenderFrame)
+    ) {
+      return;
     }
 
     v.room.resetRenderFrame = null;

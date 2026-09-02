@@ -46,7 +46,7 @@ export class DrawVersion extends MandatoryModFeature {
   /** Make the version persist for a while after the player presses the hotkey. */
   checkInput(): void {
     if (!isKeyboardPressed(SHOW_VERSION_HOTKEY)) {
-    	return;
+      return;
     }
 
     const renderFrameCount = Isaac.GetFrameCount();
