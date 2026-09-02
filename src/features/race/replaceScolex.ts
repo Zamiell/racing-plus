@@ -30,9 +30,6 @@ export function postNewRoom(): void {
 
   const room = game.GetRoom();
   const roomClear = room.IsClear();
-  const roomSeed = room.GetSpawnSeed();
-  const centerPos = room.GetCenterPos();
-  const rng = newRNG(roomSeed);
 
   if (roomClear) {
     return;
@@ -43,6 +40,10 @@ export function postNewRoom(): void {
     return;
   }
 
+  const roomSeed = room.GetSpawnSeed();
+  const centerPos = room.GetCenterPos();
+  const rng = newRNG(roomSeed);
+
   // There are 10 Scolex entities for each Scolex.
   removeAllMatchingEntities(SCOLEX_TYPE, SCOLEX_VARIANT);
 
@@ -50,7 +51,7 @@ export function postNewRoom(): void {
     // We don't want to spawn both of them on top of each other since that would make them behave a
     // little glitchy. Note that pos.X += 200 causes the hitbox to appear too close to the
     // left/right side, causing damage if the player moves into the room too quickly.
-    const modification = i === 0 ? Vector(-150, 0) : Vector(150, 0);
+    const modification = Vector(i === 0 ? -150 : 150, 0);
     const position = centerPos.add(modification);
     const seed = rng.Next();
     const frail = spawnWithSeed(

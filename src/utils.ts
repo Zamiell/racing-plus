@@ -108,7 +108,10 @@ export function getPlayerPhotoStatus(): {
   const hasPolaroid = anyPlayerHasCollectible(CollectibleType.POLAROID, true);
   const hasNegative = anyPlayerHasCollectible(CollectibleType.NEGATIVE, true);
 
-  return { hasPolaroid, hasNegative };
+  return {
+    hasPolaroid,
+    hasNegative,
+  };
 }
 
 export function inClearedMomBossRoom(): boolean {

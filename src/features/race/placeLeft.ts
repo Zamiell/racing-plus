@@ -1,3 +1,5 @@
+
+
 // This is the sprite for "1st", "2nd", etc. on the left side of the screen.
 
 import { game, newSprite } from "isaacscript-common";
@@ -19,10 +21,12 @@ export function postRender(): void {
 }
 
 function drawSprite() {
-  if (shouldDrawPlaceLeftSprite() && sprite !== undefined) {
-    const position = getPlaceSpritePosition();
-    sprite.Render(position);
+  if (sprite === undefined || !shouldDrawPlaceLeftSprite()) {
+    return;
   }
+
+  const position = getPlaceSpritePosition();
+  sprite.Render(position);
 }
 
 export function shouldDrawPlaceLeftSprite(): boolean {

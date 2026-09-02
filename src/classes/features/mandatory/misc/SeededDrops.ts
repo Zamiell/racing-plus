@@ -275,9 +275,11 @@ export class SeededDrops extends MandatoryModFeature {
 
   /** Remove certain collectibles and trinkets that change room drop calculation. */
   removeSeededCollectiblesTrinkets(): void {
-    if (onSetSeed()) {
-      removeCollectibleFromPools(...BANNED_COLLECTIBLES_FOR_SEEDED_DROPS);
-      removeTrinketFromPools(...BANNED_TRINKETS_FOR_SEEDED_DROPS);
+    if (!onSetSeed()) {
+      return;
     }
+
+    removeCollectibleFromPools(...BANNED_COLLECTIBLES_FOR_SEEDED_DROPS);
+    removeTrinketFromPools(...BANNED_TRINKETS_FOR_SEEDED_DROPS);
   }
 }

@@ -1,44 +1,40 @@
-import { $, commandExists, lintScript } from "complete-node";
+import { commandExists, lintCommands } from "complete-node";
 
-await lintScript(import.meta.dirname, async () => {
-  const promises = [
-    // Use TypeScript to type-check the code.
-    $`tsc --noEmit`,
-    $`tsc --noEmit --project ./scripts/tsconfig.json`,
+const commands = [
+  // Use TypeScript to type-check the code.
+  "tsc --noEmit",
+  "tsc --noEmit --project ./scripts/tsconfig.json",
 
-    // Use ESLint to lint the TypeScript code.
-    // - "--max-warnings 0" makes warnings fail, since we set all ESLint errors to warnings.
-    $`eslint --max-warnings 0 .`,
+  // Use ESLint to lint the TypeScript code.
+  "eslint",
 
-    // Use Prettier to check formatting.
-    // - "--log-level=warn" makes it only output errors.
-    $`prettier --log-level=warn --check .`,
+  // Use Prettier to check formatting.
+  // - "--log-level=warn" makes it only output errors.
+  "prettier --log-level=warn --check .",
 
-    // Use ts-prune to check for unused exports.
-    // - "--error" makes it return an error code of 1 if unused exports are found.
-    $`ts-prune --error`,
+  // Use ts-prune to check for unused exports.
+  // - "--error" makes it return an error code of 1 if unused exports are found.
+  "ts-prune --error",
 
-    // Use CSpell to spell check every file.
-    // - "--no-progress" and "--no-summary" make it only output errors.
-    $`cspell --no-progress --no-summary .`,
+  // Use CSpell to spell check every file.
+  // - "--no-progress" and "--no-summary" make it only output errors.
+  "cspell --no-progress --no-summary",
 
-    // Check for unused words in the CSpell configuration file.
-    $`cspell-check-unused-words`,
+  // Check for unused words in the CSpell configuration file.
+  "cspell-check-unused-words",
 
-    // @template-customization-start
+  // @template-customization-start
 
-    // Check for base file updates.
-    $`isaacscript check`,
+  // Check for base file updates.
+  "isaacscript check",
 
-    // @template-customization-end
-  ];
+  // @template-customization-end
+];
 
-  const pythonExists = await commandExists("python");
-  if (pythonExists) {
-    await $`python -m pip install isaac-xml-validator --upgrade --quiet`;
-    // @template-ignore-next-line
-    promises.push($`isaac-xml-validator --quiet --ignore cutscenes.xml`);
-  }
+const pythonExists = await commandExists("uvx");
+if (pythonExists) {
+  // @template-ignore-next-line
+  commands.push("uvx isaac-xml-validator --quiet --ignore cutscenes.xml");
+}
 
-  await Promise.all(promises);
-});
+await lintCommands(import.meta.dirname, commands);

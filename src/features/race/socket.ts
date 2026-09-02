@@ -19,7 +19,7 @@ import {
   socketClientSendTCP,
   socketClientSendUDP,
 } from "./socketClient";
-import { SOCKET_DEBUG, reset, socketFunctions } from "./socketFunctions";
+import { SOCKET_DEBUG, SOCKET_FUNCTION_MAP, reset } from "./socketFunctions";
 
 const DEBUG = false as boolean;
 
@@ -130,7 +130,7 @@ function read() {
   }
 
   const [command, parsedData] = unpackSocketMsg(data);
-  const socketFunction = socketFunctions.get(command);
+  const socketFunction = SOCKET_FUNCTION_MAP.get(command);
   if (socketFunction === undefined) {
     logError(`Error: Received an unknown socket command: ${command}`);
   } else {
@@ -164,7 +164,7 @@ export function send(command: SocketCommandOut, data = ""): void {
     return;
   }
 
-  if (g.race.status === RaceStatus.NONE && command !== "ping") {
+  if (command !== "ping" && g.race.status === RaceStatus.NONE) {
     return;
   }
 

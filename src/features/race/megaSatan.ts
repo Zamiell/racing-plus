@@ -13,9 +13,6 @@ import { g } from "../../globals";
 
 // ModCallback.POST_NEW_LEVEL (18)
 export function postNewLevel(): void {
-  const room = game.GetRoom();
-  const player = Isaac.GetPlayer();
-
   if (
     g.race.status !== RaceStatus.IN_PROGRESS
     || g.race.myStatus !== RacerStatus.RACING
@@ -24,6 +21,9 @@ export function postNewLevel(): void {
   ) {
     return;
   }
+
+  const room = game.GetRoom();
+  const player = Isaac.GetPlayer();
 
   const topDoor = room.GetDoor(DoorSlot.UP_0);
   if (topDoor !== undefined) {

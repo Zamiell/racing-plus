@@ -15,16 +15,16 @@ class TimerSprites {
   clock = newSprite("gfx/timer/clock.anm2");
 
   colons = {
-    afterMinutes: newSprite("gfx/timer/colon.anm2"),
     afterHours: newSprite("gfx/timer/colon.anm2"),
+    afterMinutes: newSprite("gfx/timer/colon.anm2"),
   };
 
   digits = {
+    hour: newSprite("gfx/timer/timer.anm2"),
     minute1: newSprite("gfx/timer/timer.anm2"),
     minute2: newSprite("gfx/timer/timer.anm2"),
     second1: newSprite("gfx/timer/timer.anm2"),
     second2: newSprite("gfx/timer/timer.anm2"),
-    hour: newSprite("gfx/timer/timer.anm2"),
   };
 
   digitMini = newSprite("gfx/timer/timer_mini.anm2");
@@ -72,13 +72,13 @@ export function timerDraw(
     y -= 10;
   }
 
-  const hourAdjustment = 2;
-  let hourAdjustment2 = 0;
-
   const timerValues = convertSecondsToTimerValues(seconds);
   if (timerValues === undefined) {
     return;
   }
+
+  const hourAdjustment = 2;
+  let hourAdjustment2 = 0;
 
   const { hours, minute1, minute2, second1, second2, tenths } = timerValues;
 
@@ -185,5 +185,12 @@ export function convertSecondsToTimerValues(totalSeconds: int):
   const decimals = rawSeconds - Math.floor(rawSeconds);
   const tenths = Math.floor(decimals * 10);
 
-  return { hours, minute1, minute2, second1, second2, tenths };
+  return {
+    hours,
+    minute1,
+    minute2,
+    second1,
+    second2,
+    tenths,
+  };
 }

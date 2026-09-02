@@ -30,18 +30,18 @@
     "update": "isaacscript update"
   },
   "dependencies": {
-    "isaac-typescript-definitions": "43.0.1",
-    "isaacscript-common": "87.8.3"
+    "isaac-typescript-definitions": "43.0.8",
+    "isaacscript-common": "87.10.1"
   },
   "devDependencies": {
-    "complete-node": "16.2.0",
+    "complete-node": "18.0.1",
     "convert-xml-to-json": "1.0.3",
-    "isaacscript": "6.0.2",
-    "isaacscript-lint": "7.3.2",
+    "isaacscript": "6.0.6",
+    "isaacscript-lint": "8.1.0",
     "isaacscript-spell": "1.15.2",
-    "isaacscript-tsconfig": "7.0.1",
-    "tsx": "4.21.0",
-    "typescript": "5.9.3",
-    "typescript-to-lua": "1.33.2"
+    "isaacscript-tsconfig": "7.1.0",
+    "tsx": "4.23.13",
+    "typescript": "6.0.2",
+    "typescript-to-lua": "1.37.1"
   }
 }

@@ -28,11 +28,13 @@ export function modConfigMenuVanillaInit(): void {
   deleteOldConfig(CATEGORY_NAME);
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.NUMBER,
     CurrentSetting: () => Options.AnnouncerVoiceMode,
-    Minimum: 0,
-    Maximum: 2,
     Display: () => `Announcer Voice Mode: ${getAnnouncerVoiceModeText()}`,
+    Info: [
+      "Whether the announcer voice should play when using items, pills, cards, and runes.",
+    ],
+    Maximum: 2,
+    Minimum: 0,
     OnChange: (newValue: number | boolean | undefined) => {
       if (isNumber(newValue) && isEnumValue(newValue, AnnouncerVoiceMode)) {
         Options.AnnouncerVoiceMode = newValue;
@@ -40,17 +42,15 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Announcer Voice Mode");
       }
     },
-    Info: [
-      "Whether the announcer voice should play when using items, pills, cards, and runes.",
-    ],
+    Type: ModConfigMenuOptionType.NUMBER,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.NUMBER,
     CurrentSetting: () => Options.ConsoleFont,
-    Minimum: 0,
-    Maximum: 2,
     Display: () => `Debug Console Font: ${getConsoleFontText()}`,
+    Info: ["Customize the font of the in-game debug console."],
+    Maximum: 2,
+    Minimum: 0,
     OnChange: (newValue: number | boolean | undefined) => {
       if (isNumber(newValue) && isEnumValue(newValue, ConsoleFont)) {
         Options.ConsoleFont = newValue;
@@ -58,13 +58,13 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Debug Console Font");
       }
     },
-    Info: ["Customize the font of the in-game debug console."],
+    Type: ModConfigMenuOptionType.NUMBER,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.DebugConsoleEnabled,
     Display: () => `Debug Console: ${onOff(Options.DebugConsoleEnabled)}`,
+    Info: ["Enable or disable the in-game debug console."],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.DebugConsoleEnabled = newValue;
@@ -72,14 +72,16 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Debug Console");
       }
     },
-    Info: ["Enable or disable the in-game debug console."],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.FadedConsoleDisplay,
     Display: () =>
       `Faded Console Display: ${onOff(Options.FadedConsoleDisplay)}`,
+    Info: [
+      "Shows Lua errors and other console output in-game without having to manually bring up the console.",
+    ],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.FadedConsoleDisplay = newValue;
@@ -87,17 +89,17 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Faded Console Display");
       }
     },
-    Info: [
-      "Shows Lua errors and other console output in-game without having to manually bring up the console.",
-    ],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.NUMBER,
     CurrentSetting: () => Options.MaxRenderScale,
-    Minimum: 1,
-    Maximum: 99,
     Display: () => `Max Render Scale: ${Options.MaxRenderScale}`,
+    Info: [
+      "How big the window can be before the game changes the rendering to fill the screen.",
+    ],
+    Maximum: 99,
+    Minimum: 1,
     OnChange: (newValue: number | boolean | undefined) => {
       if (isNumber(newValue) && newValue >= 1 && newValue <= 99) {
         Options.MaxRenderScale = newValue;
@@ -105,17 +107,15 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Max Render Scale");
       }
     },
-    Info: [
-      "How big the window can be before the game changes the rendering to fill the screen.",
-    ],
+    Type: ModConfigMenuOptionType.NUMBER,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.NUMBER,
     CurrentSetting: () => Options.MaxScale,
-    Minimum: 1,
-    Maximum: 99,
     Display: () => `Max Scale: ${Options.MaxScale}`,
+    Info: ["n/a"],
+    Maximum: 99,
+    Minimum: 1,
     OnChange: (newValue: number | boolean | undefined) => {
       if (isNumber(newValue) && newValue >= 1 && newValue <= 99) {
         Options.MaxScale = newValue;
@@ -123,13 +123,15 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Max Scale");
       }
     },
-    Info: ["n/a"],
+    Type: ModConfigMenuOptionType.NUMBER,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.MouseControl,
     Display: () => `Mouse Control: ${onOff(Options.MouseControl)}`,
+    Info: [
+      "Whether the mouse can be used to shoot tears and control items like Epic Fetus or Marked.",
+    ],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.MouseControl = newValue;
@@ -137,15 +139,15 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Mouse Control");
       }
     },
-    Info: [
-      "Whether the mouse can be used to shoot tears and control items like Epic Fetus or Marked.",
-    ],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.PauseOnFocusLost,
     Display: () => `Pause on Focus Lost: ${onOff(Options.PauseOnFocusLost)}`,
+    Info: [
+      "Whether the game will automatically pause if you switch to a different program.",
+    ],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.PauseOnFocusLost = newValue;
@@ -153,15 +155,13 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Pause on Focus Lost");
       }
     },
-    Info: [
-      "Whether the game will automatically pause if you switch to a different program.",
-    ],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.RumbleEnabled,
     Display: () => `Rumble: ${onOff(Options.RumbleEnabled)}`,
+    Info: ["Whether the rumble feature is enabled for controller players."],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.RumbleEnabled = newValue;
@@ -169,13 +169,15 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Rumble");
       }
     },
-    Info: ["Whether the rumble feature is enabled for controller players."],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.SaveCommandHistory,
     Display: () => `Save Command History: ${onOff(Options.SaveCommandHistory)}`,
+    Info: [
+      "Whether the game will save the history of executed debug console commands.",
+    ],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.SaveCommandHistory = newValue;
@@ -183,16 +185,14 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Save Command History");
       }
     },
-    Info: [
-      "Whether the game will save the history of executed debug console commands.",
-    ],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.UseBorderlessFullscreen,
     Display: () =>
       `Borderless Fullscreen: ${onOff(Options.UseBorderlessFullscreen)}`,
+    Info: ["This only takes effect if the game is in full screen mode."],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.UseBorderlessFullscreen = newValue;
@@ -200,13 +200,13 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: Borderless Fullscreen");
       }
     },
-    Info: ["This only takes effect if the game is in full screen mode."],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, undefined, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => Options.VSync,
     Display: () => `VSync: ${onOff(Options.VSync)}`,
+    Info: ["n/a"],
     OnChange: (newValue: number | boolean | undefined) => {
       if (isBoolean(newValue)) {
         Options.VSync = newValue;
@@ -214,7 +214,7 @@ export function modConfigMenuVanillaInit(): void {
         logError("Failed to parse the new value for: VSync");
       }
     },
-    Info: ["n/a"],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 }
 

@@ -1,6 +1,6 @@
 import type { CollectibleType } from "isaac-typescript-definitions";
-import { jsonDecode, log } from "isaacscript-common";
-import { RaceData, cloneRaceData } from "../../classes/RaceData";
+import { jsonDecode, log, ReadonlyMap } from "isaacscript-common";
+import { cloneRaceData, RaceData } from "../../classes/RaceData";
 import { g } from "../../globals";
 import type { ChatMessage } from "../../interfaces/ChatMessage";
 import type { SocketCommandIn } from "../../types/SocketCommands";
@@ -8,12 +8,15 @@ import { checkRaceChanged } from "./checkRaceChanged";
 
 export const SOCKET_DEBUG = false as boolean;
 
-export const socketFunctions = new Map<
+export const SOCKET_FUNCTION_MAP = new ReadonlyMap<
   SocketCommandIn,
-  (data: string) => void
->();
+  (rawData: string) => void
+>([
+  ["reset", reset],
+  ["set", set],
+  ["chat", chat],
+]);
 
-socketFunctions.set("reset", reset);
 export function reset(): void {
   const oldRaceData = cloneRaceData(g.race);
   g.race = new RaceData();
@@ -22,7 +25,7 @@ export function reset(): void {
   checkRaceChanged(oldRaceData, g.race);
 }
 
-socketFunctions.set("set", (rawData: string) => {
+function set(rawData: string) {
   const [propertyString, data] = unpackSetMsg(rawData);
   const property = propertyString as keyof RaceData;
   const previousValue = g.race[property];
@@ -38,7 +41,7 @@ socketFunctions.set("set", (rawData: string) => {
     case "string": {
       // No type conversion is necessary.
       setRace(property, data);
-      return undefined;
+      return;
     }
 
     case "boolean": {
@@ -53,7 +56,7 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, bool);
-      return undefined;
+      return;
     }
 
     case "number": {
@@ -64,25 +67,24 @@ socketFunctions.set("set", (rawData: string) => {
         );
       }
       setRace(property, num);
-      return undefined;
+      return;
     }
 
     case "table": {
       // "startingItems" is the only property that is a table.
       const newArray = jsonDecode(data) as unknown as CollectibleType[];
       g.race.startingItems = newArray;
-      return undefined;
+      return;
     }
 
+    // eslint-disable-next-line complete/require-break
     default: {
-      return error(
-        `Setting race types of "${previousValueType}" are not supported.`,
-      );
+      error(`Setting race types of "${previousValueType}" are not supported.`);
     }
   }
-});
+}
 
-socketFunctions.set("chat", (rawData: string) => {
+function chat(rawData: string) {
   const renderFrameCount = Isaac.GetFrameCount();
   const chatMessage = jsonDecode(rawData) as unknown as ChatMessage;
   chatMessage.renderFrameReceived = renderFrameCount;
@@ -90,7 +92,7 @@ socketFunctions.set("chat", (rawData: string) => {
   log(
     `Chat: [${chatMessage.time}] <${chatMessage.username}> ${chatMessage.msg}`,
   );
-});
+}
 
 /** This is mostly copied from the `unpackSocketMsg` function. */
 function unpackSetMsg(rawData: string): [string, string] {

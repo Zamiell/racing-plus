@@ -1,6 +1,6 @@
 export interface ChatMessage {
-  time: string;
-  username: string;
-  msg: string;
+  readonly time: string;
+  readonly username: string;
+  readonly msg: string;
   renderFrameReceived: int;
 }

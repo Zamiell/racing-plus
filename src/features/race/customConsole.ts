@@ -10,6 +10,7 @@ import {
   isKeyboardPressed,
   keyboardToString,
   log,
+  ReadonlyMap,
   RENDER_FRAMES_PER_SECOND,
 } from "isaacscript-common";
 import { HexColors } from "../../enums/HexColors";
@@ -56,8 +57,6 @@ export function customConsoleInit(): void {
 export function postRender(): void {
   const isPaused = game.IsPaused();
   const hud = game.GetHUD();
-  const renderFrameCount = Isaac.GetFrameCount();
-  const player = Isaac.GetPlayer();
 
   // Don't check for inputs or draw the console when Mod Config Menu is open.
   if (!hud.IsVisible()) {
@@ -69,11 +68,14 @@ export function postRender(): void {
     return;
   }
 
+  const player = Isaac.GetPlayer();
+
   if (player.IsDead()) {
     close(false);
     return;
   }
 
+  const renderFrameCount = Isaac.GetFrameCount();
   const consoleOpenInput =
     hotkeys.console === -1 ? DEFAULT_CONSOLE_OPEN_INPUT : hotkeys.console;
 
@@ -152,7 +154,7 @@ function keyPressed(keyboardValue: Keyboard, consoleOpenInput: Keyboard) {
     return;
   }
 
-  const keyFunction = keyFunctionMap.get(keyboardValue);
+  const keyFunction = KEY_FUNCTION_MAP.get(keyboardValue);
   if (keyFunction !== undefined && !shiftPressed) {
     keyFunction();
     return;
@@ -281,15 +283,22 @@ function getScreenPosition(
   );
 }
 
-const keyFunctionMap = new Map<Keyboard, () => void>();
+const KEY_FUNCTION_MAP = new ReadonlyMap<Keyboard, () => void>([
+  [Keyboard.ESCAPE, escape], // 256
+  [Keyboard.BACKSPACE, backspace], // 259
+  [Keyboard.RIGHT, right], // 262
+  [Keyboard.LEFT, left], // 263
+  [Keyboard.DOWN, down], // 264
+  [Keyboard.UP, up], // 265
+  [Keyboard.HOME, home], // 268
+  [Keyboard.END, end], // 269
+]);
 
-// 256
-keyFunctionMap.set(Keyboard.ESCAPE, () => {
+function escape() {
   close(false);
-});
+}
 
-// 259
-keyFunctionMap.set(Keyboard.BACKSPACE, () => {
+function backspace() {
   if (inputTextIndex === 0) {
     return;
   }
@@ -299,28 +308,21 @@ keyFunctionMap.set(Keyboard.BACKSPACE, () => {
   const frontWithLastCharRemoved = front.slice(0, -1);
   inputText = frontWithLastCharRemoved + back;
   inputTextIndex--;
-});
+}
 
-// 262
-keyFunctionMap.set(Keyboard.RIGHT, () => {
-  if (inputTextIndex === inputText.length) {
-    return;
+function right() {
+  if (inputTextIndex !== inputText.length) {
+    inputTextIndex++;
   }
+}
 
-  inputTextIndex++;
-});
-
-// 263
-keyFunctionMap.set(Keyboard.LEFT, () => {
-  if (inputTextIndex === 0) {
-    return;
+function left() {
+  if (inputTextIndex !== 0) {
+    inputTextIndex--;
   }
+}
 
-  inputTextIndex--;
-});
-
-// 264
-keyFunctionMap.set(Keyboard.DOWN, () => {
+function down() {
   if (historyIndex === -1) {
     return;
   }
@@ -340,10 +342,9 @@ keyFunctionMap.set(Keyboard.DOWN, () => {
 
   inputText = inputHistoryText;
   inputTextIndex = inputHistoryText.length;
-});
+}
 
-// 265
-keyFunctionMap.set(Keyboard.UP, () => {
+function up() {
   if (historyIndex === -1) {
     savedText = inputText;
   }
@@ -365,17 +366,15 @@ keyFunctionMap.set(Keyboard.UP, () => {
 
   inputText = inputHistoryText;
   inputTextIndex = inputHistoryText.length;
-});
+}
 
-// 268
-keyFunctionMap.set(Keyboard.HOME, () => {
+function home() {
   inputTextIndex = 0;
-});
+}
 
-// 269
-keyFunctionMap.set(Keyboard.END, () => {
+function end() {
   inputTextIndex = inputText.length;
-});
+}
 
 export function isConsoleOpen(): boolean {
   return consoleOpen;

@@ -178,11 +178,9 @@ export function spawnEndOfRaceButtons(): void {
 function spawnDPSButton() {
   const roomListIndex = getRoomListIndex();
 
-  let gridIndex = 32; // Top-left
-  if (inMegaSatanRoom()) {
-    // The normal position is out of bounds inside of the Mega Satan room.
-    gridIndex = 107;
-  }
+  const gridIndex = inMegaSatanRoom()
+    ? 107 // The normal position is out of bounds inside of the Mega Satan room.
+    : 32; // Top-left;
 
   const button = spawnGridEntityWithVariant(
     GridEntityType.PRESSURE_PLATE,
@@ -206,11 +204,9 @@ export function spawnVictoryLapButton(center?: boolean): void {
   const room = game.GetRoom();
   const roomListIndex = getRoomListIndex();
 
-  let gridIndex = 42; // Top right
-  if (inMegaSatanRoom()) {
-    // The normal position is out of bounds inside of the Mega Satan room.
-    gridIndex = 117;
-  }
+  let gridIndex = inMegaSatanRoom()
+    ? 117 // The normal position is out of bounds inside of the Mega Satan room.
+    : 42; // Top right
 
   if (center === true) {
     const centerPos = room.GetCenterPos();

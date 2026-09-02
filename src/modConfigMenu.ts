@@ -103,13 +103,13 @@ export function deleteOldConfig(categoryName: string): void {
  */
 function validateConfigDescriptions() {
   for (const key of Object.keys(config)) {
-    if (!ALL_CONFIG_DESCRIPTIONS.some((array) => key === array[0])) {
+    if (ALL_CONFIG_DESCRIPTIONS.every((array) => key !== array[0])) {
       error(`Failed to find key "${key}" in the config descriptions.`);
     }
   }
 
   for (const key of Object.keys(hotkeys)) {
-    if (!ALL_HOTKEY_DESCRIPTIONS.some((array) => key === array[0])) {
+    if (ALL_HOTKEY_DESCRIPTIONS.every((array) => key !== array[0])) {
       error(`Failed to find key "${key}" in the hotkey descriptions.`);
     }
   }
@@ -145,9 +145,9 @@ function registerPresets() {
   ModConfigMenu.AddSpace(CATEGORY_NAME, PRESETS_NAME);
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, PRESETS_NAME, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => isAllConfigSetTo(true),
     Display: () => `Enable every setting: ${onOff(isAllConfigSetTo(true))}`,
+    Info: ["Turn every configurable setting on."],
     OnChange: (newValue: boolean | number | undefined) => {
       if (newValue === undefined) {
         return;
@@ -156,13 +156,13 @@ function registerPresets() {
       const booleanNewValue = newValue as boolean;
       setAllModConfigMenuSettings(booleanNewValue);
     },
-    Info: ["Turn every configurable setting on."],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 
   ModConfigMenu.AddSetting(CATEGORY_NAME, PRESETS_NAME, {
-    Type: ModConfigMenuOptionType.BOOLEAN,
     CurrentSetting: () => isAllConfigSetTo(false),
     Display: () => `Disable every setting: ${onOff(isAllConfigSetTo(false))}`,
+    Info: ["Turn every configurable setting off."],
     OnChange: (newValue: boolean | number | undefined) => {
       if (newValue === undefined) {
         return;
@@ -171,7 +171,7 @@ function registerPresets() {
       const booleanNewValue = newValue as boolean;
       setAllModConfigMenuSettings(!booleanNewValue);
     },
-    Info: ["Turn every configurable setting off."],
+    Type: ModConfigMenuOptionType.BOOLEAN,
   });
 }
 
@@ -208,7 +208,6 @@ function registerSubMenuConfig(
     const [optionType, code, shortDescription, longDescription] = array;
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {
-      Type: optionType,
       CurrentSetting: () => config[configName as keyof Config],
       Display: () =>
         getDisplayTextBoolean(
@@ -216,6 +215,7 @@ function registerSubMenuConfig(
           code,
           shortDescription,
         ),
+      Info: [longDescription],
       OnChange: (newValue: number | boolean | undefined) => {
         if (newValue === undefined) {
           return;
@@ -224,7 +224,7 @@ function registerSubMenuConfig(
         config[configName as keyof Config] = newValue as boolean;
         mod.saveDataManagerSave();
       },
-      Info: [longDescription],
+      Type: optionType,
     });
   }
 }
@@ -241,7 +241,6 @@ function registerSubMenuHotkeys(
     const [optionType, , shortDescription, longDescription] = array;
 
     ModConfigMenu.AddSetting(CATEGORY_NAME, subMenuName, {
-      Type: optionType,
       CurrentSetting: () => hotkeys[configName as keyof Hotkeys],
       Display: () =>
         getDisplayTextKeyboardController(
@@ -249,6 +248,7 @@ function registerSubMenuHotkeys(
           optionType,
           shortDescription,
         ),
+      Info: [longDescription],
       OnChange: (newValue: number | boolean | undefined) => {
         newValue ??= getDefaultValue(optionType);
 
@@ -258,7 +258,7 @@ function registerSubMenuHotkeys(
       Popup: () => getPopupDescription(configName as keyof Hotkeys, optionType),
       PopupGfx: getPopupGfx(optionType),
       PopupWidth: getPopupWidth(optionType),
-      Info: [longDescription],
+      Type: optionType,
     });
   }
 }

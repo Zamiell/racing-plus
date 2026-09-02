@@ -6,8 +6,7 @@ export const RANDOM_BABY_NAME = "Random Baby";
 export function getRandomBabyPlayerType(): PlayerType | undefined {
   // We cannot make a `PlayerTypeCustom` enum because of mod load order. (It would be equal to -1.)
   const randomBaby = Isaac.GetPlayerTypeByName(RANDOM_BABY_NAME) as
-    | PlayerType
-    | -1;
+    PlayerType | -1;
 
   return randomBaby === -1 ? undefined : randomBaby;
 }

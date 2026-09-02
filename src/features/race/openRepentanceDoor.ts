@@ -31,7 +31,7 @@ function openRepentanceDoor() {
   const player = Isaac.GetPlayer();
   const roomInsideGrid = isRoomInsideGrid();
 
-  if (inRoomType(RoomType.BOSS) && roomInsideGrid && roomClear) {
+  if (roomInsideGrid && roomClear && inRoomType(RoomType.BOSS)) {
     const repentanceDoor = getRepentanceDoor();
     if (repentanceDoor !== undefined && repentanceDoor.IsLocked()) {
       repentanceDoor.TryUnlock(player, true);

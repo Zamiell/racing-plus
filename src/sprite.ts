@@ -68,7 +68,7 @@ function newGlowingItemSprite(
 }
 
 function getDirectory(itemID: int, useSeason2BuildsDir: boolean): string {
-  if (onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER) || useSeason2BuildsDir) {
+  if (useSeason2BuildsDir || onChallenge(ChallengeCustom.CHANGE_CHAR_ORDER)) {
     return "season-2-builds";
   }
 

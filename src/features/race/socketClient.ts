@@ -68,11 +68,7 @@ export function socketClientConnect(): boolean {
   }
 
   clientUDP = sandbox.connectLocalhost(UDP_PORT, false);
-  if (clientUDP === undefined) {
-    return false;
-  }
-
-  return true;
+  return clientUDP !== undefined;
 }
 
 export function socketClientDisconnect(): void {
@@ -103,11 +99,17 @@ export function socketClientSendUDP(packedMsg: string): {
   errMsg: string;
 } {
   if (clientUDP === undefined) {
-    return { sentBytes: undefined, errMsg: "UDP client is not initialized" };
+    return {
+      sentBytes: undefined,
+      errMsg: "UDP client is not initialized",
+    };
   }
 
   const [sentBytes, errMsg] = clientUDP.send(packedMsg);
-  return { sentBytes, errMsg };
+  return {
+    sentBytes,
+    errMsg,
+  };
 }
 
 export function socketClientReceiveTCP(): {
@@ -115,11 +117,17 @@ export function socketClientReceiveTCP(): {
   errMsg: string;
 } {
   if (clientTCP === undefined) {
-    return { data: undefined, errMsg: "TCP client is not initialized" };
+    return {
+      data: undefined,
+      errMsg: "TCP client is not initialized",
+    };
   }
 
   const [data, errMsg] = clientTCP.receive();
-  return { data, errMsg };
+  return {
+    data,
+    errMsg,
+  };
 }
 
 export function socketClientReceiveUDP(): {
@@ -127,11 +135,17 @@ export function socketClientReceiveUDP(): {
   errMsg: string;
 } {
   if (clientUDP === undefined) {
-    return { data: undefined, errMsg: "UDP client is not initialized" };
+    return {
+      data: undefined,
+      errMsg: "UDP client is not initialized",
+    };
   }
 
   const [data, errMsg] = clientUDP.receive();
-  return { data, errMsg };
+  return {
+    data,
+    errMsg,
+  };
 }
 
 export function socketClientIsActive(): boolean {

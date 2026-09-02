@@ -261,17 +261,18 @@ export function postNewRoom(): void {
 function checkVictoryLapBossReplace() {
   const room = game.GetRoom();
   const roomClear = room.IsClear();
-  const roomSeed = room.GetSpawnSeed();
-  const centerPos = room.GetCenterPos();
-  const rng = newRNG(roomSeed);
 
   if (
-    !g.raceVars.finished
-    || roomClear
+    roomClear
+    || !g.raceVars.finished
     || (!inBossRoomOf(BossID.BLUE_BABY) && !inBossRoomOf(BossID.LAMB))
   ) {
     return;
   }
+
+  const roomSeed = room.GetSpawnSeed();
+  const centerPos = room.GetCenterPos();
+  const rng = newRNG(roomSeed);
 
   // Replace Blue Baby or The Lamb with some random bosses (based on the number of Victory Laps).
   removeAllMatchingEntities(EntityType.ISAAC);

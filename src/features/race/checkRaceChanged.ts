@@ -5,6 +5,7 @@ import {
   isTable,
   log,
   onFirstFloor,
+  ReadonlyMap,
 } from "isaacscript-common";
 import type { RaceData, RaceDataType } from "../../classes/RaceData";
 import {
@@ -81,18 +82,70 @@ function raceValueChanged(
     }
   }
 
-  const changedFunction = functionMap.get(property);
+  const changedFunction = FUNCTION_MAP.get(property);
   if (changedFunction !== undefined) {
     changedFunction(oldValue, newValue);
   }
 }
 
-const functionMap = new Map<
+const FUNCTION_MAP = new ReadonlyMap<
   keyof RaceData,
   (oldValue: RaceDataType, newValue: RaceDataType) => void
->();
+>([
+  ["countdown", countdown],
+  ["message", message],
+  ["myStatus", myStatus],
+  ["numEntrants", numEntrants],
+  ["numReady", numReady],
+  ["place", place],
+  ["placeMid", placeMid],
+  ["status", status],
+]);
 
-functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
+function countdown(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  topSprite.countdownChanged();
+}
+
+function message(_oldValue: RaceDataType, newValue: RaceDataType) {
+  if (typeof newValue !== "string") {
+    return;
+  }
+
+  if (newValue === "") {
+    return;
+  }
+
+  const renderFrameCount = Isaac.GetFrameCount();
+  g.renderFrameLastClientMessageReceived = renderFrameCount;
+}
+
+function myStatus(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  // It is possible for "myStatus" to flip between "racing" and "ready" during the middle of a
+  // seeded run. Thus, since we cannot rely on the variable, we cannot automatically reset the game
+  // status to that of an unseeded run after a seeded race is finished.
+
+  raceRoom.myStatusChanged();
+  placeLeft.statusOrMyStatusChanged();
+}
+
+function numEntrants(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  raceRoom.numEntrantsChanged();
+}
+
+function numReady(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  raceRoom.numReadyChanged();
+}
+
+function place(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  placeLeft.placeChanged();
+  topSprite.placeChanged();
+}
+
+function placeMid(_oldValue: RaceDataType, _newValue: RaceDataType) {
+  placeLeft.placeMidChanged();
+}
+
+function status(_oldValue: RaceDataType, newValue: RaceDataType) {
   const newStatus = newValue as RaceStatus;
 
   switch (newStatus) {
@@ -136,65 +189,4 @@ functionMap.set("status", (_oldValue: RaceDataType, newValue: RaceDataType) => {
       break;
     }
   }
-});
-
-functionMap.set(
-  "myStatus",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-    // It is possible for "myStatus" to flip between "racing" and "ready" during the middle of a
-    // seeded run. Thus, since we cannot rely on the variable, we cannot automatically reset the
-    // game status to that of an unseeded run after a seeded race is finished.
-
-    raceRoom.myStatusChanged();
-    placeLeft.statusOrMyStatusChanged();
-  },
-);
-
-functionMap.set(
-  "countdown",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-    topSprite.countdownChanged();
-  },
-);
-
-functionMap.set("place", (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-  placeLeft.placeChanged();
-  topSprite.placeChanged();
-});
-
-functionMap.set(
-  "placeMid",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-    placeLeft.placeMidChanged();
-  },
-);
-
-functionMap.set(
-  "numReady",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-    raceRoom.numReadyChanged();
-  },
-);
-
-functionMap.set(
-  "numEntrants",
-  (_oldValue: RaceDataType, _newValue: RaceDataType) => {
-    raceRoom.numEntrantsChanged();
-  },
-);
-
-functionMap.set(
-  "message",
-  (_oldValue: RaceDataType, newValue: RaceDataType) => {
-    if (typeof newValue !== "string") {
-      return;
-    }
-
-    if (newValue === "") {
-      return;
-    }
-
-    const renderFrameCount = Isaac.GetFrameCount();
-    g.renderFrameLastClientMessageReceived = renderFrameCount;
-  },
-);
+}

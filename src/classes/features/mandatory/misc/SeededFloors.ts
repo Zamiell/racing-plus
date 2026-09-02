@@ -27,14 +27,14 @@ import { config } from "../../../../modConfigMenu";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 
 interface GameStateFlags {
-  devilRoomVisited: boolean;
-  bookTouched: boolean;
+  readonly devilRoomVisited: boolean;
+  readonly bookTouched: boolean;
 }
 
 interface Inventory {
-  coins: int;
-  bombs: int;
-  keys: int;
+  readonly coins: int;
+  readonly bombs: int;
+  readonly keys: int;
 }
 
 const v = {

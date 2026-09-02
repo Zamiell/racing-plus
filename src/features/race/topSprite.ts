@@ -66,11 +66,7 @@ function shouldHideGoSprite() {
 
   const elapsedMilliseconds = Isaac.GetTime() - g.raceVars.startedTime;
   const elapsedSeconds = elapsedMilliseconds / 1000;
-  if (elapsedSeconds >= 3) {
-    return true;
-  }
-
-  return false;
+  return elapsedSeconds >= 3;
 }
 
 // ModCallback.POST_GAME_STARTED (15)

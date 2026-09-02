@@ -79,10 +79,12 @@ function drawSprites() {
   // the race room sprites.
 
   for (const [key, sprite] of Object.entries(sprites)) {
-    if (sprite !== null) {
-      const position = getPosition(key as keyof typeof sprites);
-      sprite.Render(position);
+    if (sprite === null) {
+      continue;
     }
+
+    const position = getPosition(key as keyof typeof sprites);
+    sprite.Render(position);
   }
 }
 
@@ -111,11 +113,11 @@ function getPosition(spriteName: keyof typeof sprites): Readonly<Vector> {
     }
 
     case "ranked": {
-      return screenCenterPos.add(Vector(X_SPACING * -1, Y_SPACING));
+      return screenCenterPos.add(Vector(-X_SPACING, Y_SPACING));
     }
 
     case "rankedIcon": {
-      return screenCenterPos.add(Vector(X_SPACING * -1, Y_SPACING + 23));
+      return screenCenterPos.add(Vector(-X_SPACING, Y_SPACING + 23));
     }
 
     case "format": {
@@ -278,13 +280,15 @@ function initNumSprite(num: int) {
 }
 
 export function statusChanged(): void {
-  if (g.race.status === RaceStatus.STARTING) {
-    sprites.wait = null;
-    sprites.myStatus = null;
-    sprites.numReady = null;
-    sprites.slash = null;
-    sprites.numEntrants = null;
+  if (g.race.status !== RaceStatus.STARTING) {
+    return;
   }
+
+  sprites.wait = null;
+  sprites.myStatus = null;
+  sprites.numReady = null;
+  sprites.slash = null;
+  sprites.numEntrants = null;
 }
 
 export function myStatusChanged(): void {

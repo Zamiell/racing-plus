@@ -24,9 +24,9 @@ export function postNewRoom(): void {
   const room = game.GetRoom();
 
   if (
-    !v.run.spawnedCorpseTrapdoor
+    mausoleumHeartKilled
+    && !v.run.spawnedCorpseTrapdoor
     && inRaceToMother()
-    && mausoleumHeartKilled
     && inRoomType(RoomType.BOSS)
   ) {
     v.run.spawnedCorpseTrapdoor = true;

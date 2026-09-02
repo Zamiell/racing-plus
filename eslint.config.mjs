@@ -24,18 +24,38 @@ export default defineConfig(
       "no-restricted-syntax": [
         "error",
         {
-          selector: "MethodDefinition[accessibility='public']",
           message: 'Using "public" class method modifiers are not allowed.',
+          selector: "MethodDefinition[accessibility='public']",
         },
         {
-          selector: "MethodDefinition[accessibility='private']",
           message: 'Using "private" class method modifiers are not allowed.',
+          selector: "MethodDefinition[accessibility='private']",
         },
         {
-          selector: "MethodDefinition[accessibility='protected']",
           message: 'Using "protected" class method modifiers are not allowed.',
+          selector: "MethodDefinition[accessibility='protected']",
         },
       ],
+
+      // TODO
+      "@typescript-eslint/no-unnecessary-type-assertion": "off",
+      "@typescript-eslint/no-unused-private-class-members": "off",
+      "complete/consistent-object-braces": "off",
+      "complete/format-jsdoc-comments": "off",
+      "complete/type-declaration-immutability": "off",
+      "unicorn/consistent-class-member-order": "off",
+      "unicorn/no-array-front-mutation": "off",
+      "unicorn/no-declarations-before-early-exit": "off",
+      "unicorn/no-immediate-mutation": "off",
+      "unicorn/no-non-function-verb-prefix": "off",
+      "unicorn/no-top-level-assignment-in-function": "off",
+      "unicorn/no-top-level-side-effects": "off",
+      "unicorn/no-useless-template-literals": "off",
+      "unicorn/prefer-continue": "off",
+      "unicorn/prefer-direct-iteration": "off",
+      "unicorn/prefer-early-return": "off",
+      "unicorn/prefer-simple-condition-first": "off",
+      "unicorn/prefer-unary-minus": "off",
 
       // @template-customization-end
     },

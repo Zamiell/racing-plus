@@ -8,9 +8,9 @@ import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 
 interface ButtonDescription {
-  roomListIndex: int;
-  gridIndex: int;
-  spritePosition: Vector;
+  readonly roomListIndex: int;
+  readonly gridIndex: int;
+  readonly spritePosition: Readonly<Vector>;
   pressed: boolean;
 }
 

@@ -56,17 +56,19 @@ const THREE_DOLLAR_BILL_ITEMS = [
 
 // ModCallback.POST_PEFFECT_UPDATE (4)
 export function postPEffectUpdate(player: EntityPlayer): void {
-  if (
+  if (!(
     g.race.status === RaceStatus.IN_PROGRESS
     && g.race.myStatus === RacerStatus.RACING
     && g.race.format === RaceFormat.SEEDED
     && player.HasCollectible(OLD_COLLECTIBLE_TYPE, true)
-  ) {
-    player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
-    player.AddCollectible(NEW_COLLECTIBLE_TYPE);
-
-    checkApplySeeded3DollarBillItem(player);
+  )) {
+    return;
   }
+
+  player.RemoveCollectible(OLD_COLLECTIBLE_TYPE);
+  player.AddCollectible(NEW_COLLECTIBLE_TYPE);
+
+  checkApplySeeded3DollarBillItem(player);
 }
 
 // ModCallback.POST_NEW_ROOM (19)
