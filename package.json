@@ -36,7 +36,7 @@
   "devDependencies": {
     "complete-node": "18.0.1",
     "convert-xml-to-json": "1.0.3",
-    "isaacscript": "6.0.6",
+    "isaacscript": "6.0.8",
     "isaacscript-lint": "8.1.0",
     "isaacscript-spell": "1.15.2",
     "isaacscript-tsconfig": "7.1.0",
