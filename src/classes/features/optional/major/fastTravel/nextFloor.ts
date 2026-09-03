@@ -171,10 +171,12 @@ function isAscentGoal(): boolean {
  */
 function removeBuggedBlanketEffect() {
   for (const player of getPlayers()) {
-    if (hasBlanketEffect(player)) {
-      const effects = player.GetEffects();
-      effects.RemoveCollectibleEffect(CollectibleType.HOLY_MANTLE);
+    if (!hasBlanketEffect(player)) {
+    	continue;
     }
+
+    const effects = player.GetEffects();
+    effects.RemoveCollectibleEffect(CollectibleType.HOLY_MANTLE);
   }
 }
 

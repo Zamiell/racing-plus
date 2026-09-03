@@ -182,11 +182,13 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
   getRoomBosses(): ReadonlyArray<[entityType: EntityType, variant: int]> {
     const bosses: Array<[int, int]> = [];
     for (const boss of getBosses()) {
-      if (!this.isBossException(boss.Type, boss.Variant)) {
-        const bossArray: [int, int] = [boss.Type, boss.Variant];
-        if (!isArrayInArray(bossArray, bosses)) {
-          bosses.push(bossArray);
-        }
+      if (this.isBossException(boss.Type, boss.Variant)) {
+      	continue;
+      }
+
+      const bossArray: [int, int] = [boss.Type, boss.Variant];
+      if (!isArrayInArray(bossArray, bosses)) {
+        bosses.push(bossArray);
       }
     }
 

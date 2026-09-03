@@ -50,12 +50,14 @@ export class FastMom extends ConfigurableModFeature {
     v.room.killedExtraEnemies = true;
 
     for (const npc of getNPCs()) {
-      if (BUGGED_NPC_TYPES.has(npc.Type)) {
-        // Removing it just causes it to disappear, which looks buggy. Thus, show a small blood
-        // explosion as well.
-        npc.BloodExplode();
-        npc.Remove();
+      if (!BUGGED_NPC_TYPES.has(npc.Type)) {
+      	continue;
       }
+
+      // Removing it just causes it to disappear, which looks buggy. Thus, show a small blood
+      // explosion as well.
+      npc.BloodExplode();
+      npc.Remove();
     }
   }
 }

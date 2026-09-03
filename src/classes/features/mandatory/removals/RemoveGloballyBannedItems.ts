@@ -108,13 +108,15 @@ export class RemoveGloballyBannedItems extends MandatoryModFeature {
   @Callback(ModCallback.POST_USE_ITEM, CollectibleType.SPINDOWN_DICE)
   postUseItemSpindownDice(): boolean | undefined {
     for (const collectible of getCollectibles()) {
-      if (isBannedCollectible(collectible)) {
-        // Skip over the banned collectible and turn it into the one before that.
-        const previousCollectibleType = asCollectibleType(
-          asNumber(collectible.SubType) - 1,
-        );
-        setCollectibleSubType(collectible, previousCollectibleType);
+      if (!isBannedCollectible(collectible)) {
+      	continue;
       }
+
+      // Skip over the banned collectible and turn it into the one before that.
+      const previousCollectibleType = asCollectibleType(
+        asNumber(collectible.SubType) - 1,
+      );
+      setCollectibleSubType(collectible, previousCollectibleType);
     }
 
     return undefined;
@@ -178,10 +180,12 @@ export class RemoveGloballyBannedItems extends MandatoryModFeature {
     const edens = getPlayersOfType(PlayerType.EDEN, PlayerType.EDEN_B);
     for (const player of edens) {
       for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES) {
-        if (player.HasCollectible(collectibleType)) {
-          player.RemoveCollectible(collectibleType);
-          this.addNewRandomPassiveToEden(player);
+        if (!player.HasCollectible(collectibleType)) {
+        	continue;
         }
+
+        player.RemoveCollectible(collectibleType);
+        this.addNewRandomPassiveToEden(player);
       }
 
       if (v.run.startedWithCompass) {

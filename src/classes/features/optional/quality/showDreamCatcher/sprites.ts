@@ -30,23 +30,27 @@ export function showDreamCatcherSetSprites(): void {
   );
 
   for (let i = 0; i < v.level.collectibles.length; i++) {
-    if (itemSprites[i] === undefined) {
-      const collectibleType = v.level.collectibles[i];
-      if (collectibleType !== undefined) {
-        itemSprites[i] = newGlowingCollectibleSprite(collectibleType);
-      }
+    if (itemSprites[i] !== undefined) {
+    	continue;
+    }
+
+    const collectibleType = v.level.collectibles[i];
+    if (collectibleType !== undefined) {
+      itemSprites[i] = newGlowingCollectibleSprite(collectibleType);
     }
   }
 
   for (let i = 0; i < v.level.bosses.length; i++) {
-    if (bossSprites[i] === undefined) {
-      const boss = v.level.bosses[i];
-      if (boss !== undefined) {
-        const [entityType, variant] = boss;
-        const bossSprite = newBossSprite(entityType, variant);
-        if (bossSprite !== undefined) {
-          bossSprites[i] = bossSprite;
-        }
+    if (bossSprites[i] !== undefined) {
+    	continue;
+    }
+
+    const boss = v.level.bosses[i];
+    if (boss !== undefined) {
+      const [entityType, variant] = boss;
+      const bossSprite = newBossSprite(entityType, variant);
+      if (bossSprite !== undefined) {
+        bossSprites[i] = bossSprite;
       }
     }
   }

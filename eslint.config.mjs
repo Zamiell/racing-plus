@@ -40,12 +40,10 @@ export default defineConfig(
       // TODO
       "complete/type-declaration-immutability": "off",
       "unicorn/no-declarations-before-early-exit": "off",
-      "unicorn/no-immediate-mutation": "off",
       "unicorn/no-non-function-verb-prefix": "off",
       "unicorn/no-top-level-assignment-in-function": "off",
       "unicorn/no-top-level-side-effects": "off",
       "unicorn/no-useless-template-literals": "off",
-      "unicorn/prefer-continue": "off",
       "unicorn/prefer-simple-condition-first": "off",
 
       // @template-customization-end

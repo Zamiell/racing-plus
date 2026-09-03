@@ -53,11 +53,13 @@ export class CenterStart extends MandatoryModFeature {
    */
   pickUpTaintedForgotten(): void {
     for (const player of getPlayers()) {
-      if (isCharacter(player, PlayerType.SOUL_B)) {
-        const taintedForgotten = player.GetOtherTwin();
-        if (taintedForgotten !== undefined) {
-          player.TryHoldEntity(taintedForgotten);
-        }
+      if (!isCharacter(player, PlayerType.SOUL_B)) {
+      	continue;
+      }
+
+      const taintedForgotten = player.GetOtherTwin();
+      if (taintedForgotten !== undefined) {
+        player.TryHoldEntity(taintedForgotten);
       }
     }
   }
