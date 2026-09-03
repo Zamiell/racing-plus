@@ -36,8 +36,8 @@ import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 interface ChargeSituation {
-  numCharges: int;
-  overcharge?: boolean;
+  readonly numCharges: int;
+  readonly overcharge?: boolean;
 }
 
 const ACTIVE_SLOTS_PRECEDENCE = [

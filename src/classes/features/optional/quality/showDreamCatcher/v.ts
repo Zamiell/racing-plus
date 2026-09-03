@@ -9,7 +9,7 @@ import { DreamCatcherWarpState } from "../../../../../enums/DreamCatcherWarpStat
 
 export interface CardReadingPortalDescription {
   readonly subType: int;
-  readonly position: Vector;
+  readonly position: Readonly<Vector>;
 }
 
 // This is registered in "ShowDreamCatcher.ts".

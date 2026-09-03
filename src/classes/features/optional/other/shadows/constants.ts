@@ -20,41 +20,41 @@ import type {
 import { RENDER_FRAMES_PER_SECOND } from "isaacscript-common";
 
 export interface ShadowData {
-  userID: int;
-  x: float;
-  y: float;
-  stage: LevelStage;
-  stageType: StageType;
+  readonly userID: int;
+  readonly x: float;
+  readonly y: float;
+  readonly stage: LevelStage;
+  readonly stageType: StageType;
 
   /** Equal to the room list index specifically. */
-  roomIndex: int;
+  readonly roomIndex: int;
 
-  character: PlayerType;
-  animation: string;
-  animationFrame: int;
-  overlayAnimation: string;
-  overlayAnimationFrame: int;
-  username: string;
-  renderFrameUpdated: int;
+  readonly character: PlayerType;
+  readonly animation: string;
+  readonly animationFrame: int;
+  readonly overlayAnimation: string;
+  readonly overlayAnimationFrame: int;
+  readonly username: string;
+  readonly renderFrameUpdated: int;
 }
 
 export interface ShadowMessage {
-  raceID: int;
-  userID: int;
-  x: float;
-  y: float;
-  stage: LevelStage;
-  stageType: StageType;
+  readonly raceID: int;
+  readonly userID: int;
+  readonly x: float;
+  readonly y: float;
+  readonly stage: LevelStage;
+  readonly stageType: StageType;
 
   /** Equal to the room list index specifically. */
-  roomIndex: int;
+  readonly roomIndex: int;
 
-  character: PlayerType;
-  animation: string;
-  animationFrame: int;
-  overlayAnimation: string;
-  overlayAnimationFrame: int;
-  username: string;
+  readonly character: PlayerType;
+  readonly animation: string;
+  readonly animationFrame: int;
+  readonly overlayAnimation: string;
+  readonly overlayAnimationFrame: int;
+  readonly username: string;
 }
 
 export const BEACON_INTERVAL = 10 * RENDER_FRAMES_PER_SECOND;

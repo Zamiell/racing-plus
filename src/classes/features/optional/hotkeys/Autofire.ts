@@ -26,18 +26,19 @@ import { isRandomBaby } from "../../../../utilsBabiesMod";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";
 import { setStreakText } from "../../mandatory/misc/StreakText";
 
+// eslint-disable-next-line complete/type-declaration-immutability
 interface Lockout {
-  buttonAction: ButtonAction;
-  value: float;
-  startGameFrame: int;
-  endGameFrame: int;
+  readonly buttonAction: ButtonAction;
+  readonly value: float;
+  readonly startGameFrame: int;
+  readonly endGameFrame: int;
   playerReleasedKey: boolean;
 }
 
 interface QueuedShot {
-  buttonAction: ButtonAction;
-  value: float;
-  gameFrame: int;
+  readonly buttonAction: ButtonAction;
+  readonly value: float;
+  readonly gameFrame: int;
 }
 
 /** Release the key on every other frame for e.g. Anti-Gravity. */

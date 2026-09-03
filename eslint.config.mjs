@@ -37,9 +37,6 @@ export default defineConfig(
         },
       ],
 
-      // TODO
-      "complete/type-declaration-immutability": "off",
-
       // @template-customization-end
     },
   },

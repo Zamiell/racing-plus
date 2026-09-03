@@ -31,6 +31,7 @@ import { isBabiesModEnabled } from "../../../../utilsBabiesMod";
 import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
+// eslint-disable-next-line complete/type-declaration-immutability
 interface PillDescription {
   pillColor: PillColor;
   pillEffect: PillEffect;

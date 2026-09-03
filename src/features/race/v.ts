@@ -7,6 +7,7 @@ import { g } from "../../globals";
 import { mod } from "../../mod";
 import { config } from "../../modConfigMenu";
 
+// eslint-disable-next-line complete/type-declaration-immutability
 interface ButtonDescription {
   readonly roomListIndex: int;
   readonly gridIndex: int;
