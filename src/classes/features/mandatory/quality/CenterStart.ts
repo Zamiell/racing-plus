@@ -54,7 +54,7 @@ export class CenterStart extends MandatoryModFeature {
   pickUpTaintedForgotten(): void {
     for (const player of getPlayers()) {
       if (!isCharacter(player, PlayerType.SOUL_B)) {
-      	continue;
+        continue;
       }
 
       const taintedForgotten = player.GetOtherTwin();

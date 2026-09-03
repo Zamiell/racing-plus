@@ -109,7 +109,7 @@ export class RemoveGloballyBannedItems extends MandatoryModFeature {
   postUseItemSpindownDice(): boolean | undefined {
     for (const collectible of getCollectibles()) {
       if (!isBannedCollectible(collectible)) {
-      	continue;
+        continue;
       }
 
       // Skip over the banned collectible and turn it into the one before that.
@@ -181,7 +181,7 @@ export class RemoveGloballyBannedItems extends MandatoryModFeature {
     for (const player of edens) {
       for (const collectibleType of BANNED_COLLECTIBLES_ON_SEEDED_RACES) {
         if (!player.HasCollectible(collectibleType)) {
-        	continue;
+          continue;
         }
 
         player.RemoveCollectible(collectibleType);

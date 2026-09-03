@@ -91,7 +91,7 @@ export function season3InitStartingRoomSprites(
 export function season3DrawStartingRoomSprites(): void {
   for (const [spriteName, sprite] of Object.entries(sprites)) {
     if (sprite === null) {
-    	continue;
+      continue;
     }
 
     const position = getPosition(spriteName as keyof typeof sprites);

@@ -172,7 +172,7 @@ function isAscentGoal(): boolean {
 function removeBuggedBlanketEffect() {
   for (const player of getPlayers()) {
     if (!hasBlanketEffect(player)) {
-    	continue;
+      continue;
     }
 
     const effects = player.GetEffects();

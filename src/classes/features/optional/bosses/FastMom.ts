@@ -51,7 +51,7 @@ export class FastMom extends ConfigurableModFeature {
 
     for (const npc of getNPCs()) {
       if (!BUGGED_NPC_TYPES.has(npc.Type)) {
-      	continue;
+        continue;
       }
 
       // Removing it just causes it to disappear, which looks buggy. Thus, show a small blood

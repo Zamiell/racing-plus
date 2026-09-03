@@ -31,7 +31,7 @@ export function showDreamCatcherSetSprites(): void {
 
   for (let i = 0; i < v.level.collectibles.length; i++) {
     if (itemSprites[i] !== undefined) {
-    	continue;
+      continue;
     }
 
     const collectibleType = v.level.collectibles[i];
@@ -42,7 +42,7 @@ export function showDreamCatcherSetSprites(): void {
 
   for (let i = 0; i < v.level.bosses.length; i++) {
     if (bossSprites[i] !== undefined) {
-    	continue;
+      continue;
     }
 
     const boss = v.level.bosses[i];

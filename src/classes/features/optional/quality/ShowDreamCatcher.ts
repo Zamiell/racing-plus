@@ -183,7 +183,7 @@ export class ShowDreamCatcher extends ConfigurableModFeature {
     const bosses: Array<[int, int]> = [];
     for (const boss of getBosses()) {
       if (this.isBossException(boss.Type, boss.Variant)) {
-      	continue;
+        continue;
       }
 
       const bossArray: [int, int] = [boss.Type, boss.Variant];
