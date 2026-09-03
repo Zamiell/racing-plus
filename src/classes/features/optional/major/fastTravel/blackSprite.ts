@@ -1,9 +1,9 @@
-import { newSprite, setSpriteOpacity, VectorZero } from "isaacscript-common";
+import { setSpriteOpacity, VectorZero } from "isaacscript-common";
 import { FastTravelState } from "../../../../../enums/FastTravelState";
 import { FADE_TO_BLACK_FRAMES } from "./constants";
 import { v } from "./v";
 
-const sprite = newSprite("gfx/black.anm2");
+const sprite = Sprite();
 
 // ModCallback.POST_RENDER (2)
 export function blackSpritePostRender(): void {
@@ -16,6 +16,12 @@ function drawBlackSprite() {
     return;
   }
 
+  if (!sprite.IsLoaded()) {
+    sprite.Load("gfx/ui/boss/versusscreen.anm2", true);
+    sprite.SetFrame("Scene", 0);
+    sprite.Scale = Vector(100, 100);
+  }
+
   // Conditionally adjust the opacity.
   if (v.run.state === FastTravelState.FADING_TO_BLACK) {
     const opacity = v.run.renderFramesPassed / FADE_TO_BLACK_FRAMES;
@@ -25,7 +31,7 @@ function drawBlackSprite() {
     setSpriteOpacity(sprite, opacity);
   }
 
-  sprite.Render(VectorZero);
+  sprite.RenderLayer(0, VectorZero);
 }
 
 export function setBlackSpriteFullyOpaque(): void {
