@@ -165,13 +165,13 @@ export class CharacterProgress extends ChallengeModFeature {
 
   /** @returns True if the current character was wrong. */
   setCorrectCharacter(): boolean {
-    const player = Isaac.GetPlayer();
-    const character = player.GetPlayerType();
-
     // Character order is explicitly handled in some seasons.
     if (onSpeedrunWithRandomCharacterOrder()) {
       return false;
     }
+
+    const player = Isaac.GetPlayer();
+    const character = player.GetPlayerType();
 
     const currentCharacter = speedrunGetCurrentCharacter();
     if (character !== currentCharacter) {

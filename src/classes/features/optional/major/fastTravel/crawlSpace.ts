@@ -183,15 +183,15 @@ export function crawlSpacePostGridEntityRemoveCrawlSpace(gridIndex: int): void {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  const room = game.GetRoom();
-  const roomClear = room.IsClear();
-
   // Crawl spaces created after a room has already initialized should spawn closed by default. For
   // example, crawl spaces created by We Need to Go Deeper should spawn closed because the player
   // will be standing on top of them.
   if (isAfterRoomFrame(0)) {
     return false;
   }
+
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
 
   // If we just entered a new room with enemies in it, spawn the crawl space closed so that the
   // player has to defeat the enemies first before using the crawl space.
@@ -433,8 +433,6 @@ function playerIsTouchingExitTile(player: EntityPlayer) {
 function checkExitSoftlock(player: EntityPlayer) {
   const level = game.GetLevel();
   const previousRoomGridIndex = level.GetPreviousRoomIndex(); // We need the unsafe version here.
-  const room = game.GetRoom();
-  const roomType = room.GetType();
 
   if (
     previousRoomGridIndex !== asNumber(GridRoom.DUNGEON)
@@ -442,6 +440,9 @@ function checkExitSoftlock(player: EntityPlayer) {
   ) {
     return;
   }
+
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   const direction = getExitDirection(roomType, player);
   if (direction !== undefined) {

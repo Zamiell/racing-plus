@@ -70,8 +70,6 @@ export class SolCustom extends ConfigurableModFeature {
   // 70
   @Callback(ModCallback.PRE_SPAWN_CLEAR_AWARD)
   preSpawnClearAward(): boolean | undefined {
-    const level = game.GetLevel();
-
     if (!inRoomType(RoomType.BOSS)) {
       return undefined;
     }
@@ -85,6 +83,8 @@ export class SolCustom extends ConfigurableModFeature {
     if (roomGridIndex !== solRoomGridIndex) {
       return undefined;
     }
+
+    const level = game.GetLevel();
 
     const players = getPlayersWithCollectible(NEW_COLLECTIBLE_TYPE);
     for (const player of players) {

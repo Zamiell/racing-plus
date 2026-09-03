@@ -37,9 +37,6 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const room = game.GetRoom();
-    const roomShape = room.GetRoomShape();
-
     if (!this.enteredRoomViaTeleport()) {
       return;
     }
@@ -62,6 +59,9 @@ export class TeleportInvalidEntrance extends ConfigurableModFeature {
       // Some rooms have no doors, like I AM ERROR rooms.
       return;
     }
+
+    const room = game.GetRoom();
+    const roomShape = room.GetRoomShape();
 
     // Don't bother fixing entrances in big room, as teleporting the player to a valid door can
     // cause the camera to jerk in a buggy way.

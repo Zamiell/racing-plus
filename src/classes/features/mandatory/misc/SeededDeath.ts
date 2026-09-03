@@ -295,12 +295,12 @@ export class SeededDeath extends MandatoryModFeature {
 
   /** Prevent people from abusing the death mechanic to use a Sacrifice Room. */
   removeSpikesInSacrificeRoom(): void {
-    const room = game.GetRoom();
-    const player = Isaac.GetPlayer();
-
     if (!inRoomType(RoomType.SACRIFICE)) {
       return;
     }
+
+    const room = game.GetRoom();
+    const player = Isaac.GetPlayer();
 
     const spikes = room.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
     if (spikes !== undefined) {

@@ -223,14 +223,14 @@ function debuffOnRemoveAllCollectibles(player: EntityPlayer) {
 }
 
 function debuffOnRemoveGoldenBombsAndKeys(player: EntityPlayer) {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const stageType = level.GetStageType();
-
   // Esau can not carry bombs and keys.
   if (isCharacter(player, PlayerType.ESAU)) {
     return;
   }
+
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
 
   // Store their golden bomb / key status.
   v.run.goldenBomb = player.HasGoldenBomb();
@@ -432,14 +432,14 @@ function disableSpiritShackles(player: EntityPlayer) {
 }
 
 function debuffOffAddGoldenBombAndKey(player: EntityPlayer) {
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const stageType = level.GetStageType();
-
   // Esau can not carry bombs and keys.
   if (isCharacter(player, PlayerType.ESAU)) {
     return;
   }
+
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const stageType = level.GetStageType();
 
   if (v.run.goldenBomb) {
     v.run.goldenBomb = false;

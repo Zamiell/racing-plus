@@ -306,13 +306,13 @@ export class StreakText extends MandatoryModFeature {
   }
 
   showLevelText(): void {
-    const level = game.GetLevel();
-
     // Going to or being in the race room is a special case; we don't want to display the level text
     // here.
     if (g.race.status === RaceStatus.OPEN && onFirstFloor()) {
       return;
     }
+
+    const level = game.GetLevel();
 
     // Show what the new floor is. (The game will not show this naturally after doing a "stage"
     // console command.)

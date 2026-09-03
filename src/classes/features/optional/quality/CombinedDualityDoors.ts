@@ -123,8 +123,6 @@ export class CombinedDualityDoors extends ConfigurableModFeature {
 }
 
 function checkModifyDevilRoomDoor() {
-  const level = game.GetLevel();
-
   if (!inRoomType(RoomType.BOSS)) {
     return;
   }
@@ -132,6 +130,8 @@ function checkModifyDevilRoomDoor() {
   if (!anyPlayerHasCollectible(CollectibleType.DUALITY)) {
     return;
   }
+
+  const level = game.GetLevel();
 
   // If we have already entered a Devil Room or an Angel Room, only that specific door will spawn.
   const devilOrAngelRoomDesc = level.GetRoomByIdx(GridRoom.DEVIL);

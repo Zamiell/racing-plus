@@ -101,12 +101,11 @@ export function trapdoorPostGridEntityRemoveTrapdoor(gridIndex: int): void {
 }
 
 function shouldIgnore(gridEntity: GridEntity) {
-  const seeds = game.GetSeeds();
-  const repentanceStage = onRepentanceStage();
-
   if (isPostBossVoidPortal(gridEntity)) {
     return true;
   }
+
+  const seeds = game.GetSeeds();
 
   // There is no way to manually travel to the "Infinite Basements" Easter Egg floors, so just
   // disable the fast-travel feature if this is the case.
@@ -114,25 +113,14 @@ function shouldIgnore(gridEntity: GridEntity) {
     return true;
   }
 
-  // Don't replace the trap door that leads to Mother.
-  if (onStage(LevelStage.WOMB_2) && repentanceStage) {
-    return true;
-  }
+  const repentanceStage = onRepentanceStage();
 
-  return false;
+  // Don't replace the trap door that leads to Mother.
+  return onStage(LevelStage.WOMB_2) && repentanceStage;
 }
 
 function shouldRemove() {
   const gameFrameCount = game.GetFrameCount();
-  const mausoleumHeartKilled = game.GetStateFlag(
-    GameStateFlag.MAUSOLEUM_HEART_KILLED,
-  );
-  const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
-  const level = game.GetLevel();
-  const stage = level.GetStage();
-  const roomGridIndex = getRoomGridIndex();
-  const repentanceStage = onRepentanceStage();
-  const secretExit = inSecretExit();
 
   // If the goal of the race is the Boss Rush, delete any Womb trapdoors on Depths 2.
   if (inRaceToBossRush() && onStage(LevelStage.DEPTHS_2)) {
@@ -153,6 +141,14 @@ function shouldRemove() {
     );
     return true;
   }
+
+  const mausoleumHeartKilled = game.GetStateFlag(
+    GameStateFlag.MAUSOLEUM_HEART_KILLED,
+  );
+  const backwardPath = game.GetStateFlag(GameStateFlag.BACKWARDS_PATH);
+  const level = game.GetLevel();
+  const stage = level.GetStage();
+  const roomGridIndex = getRoomGridIndex();
 
   // If the goal of the race is Hush, delete the trapdoor that spawns after It Lives!
   if (
@@ -190,6 +186,9 @@ function shouldRemove() {
     );
     return true;
   }
+
+  const repentanceStage = onRepentanceStage();
+  const secretExit = inSecretExit();
 
   // If the goal of the race is Mother, remove trapdoors after bosses on most floors. (But leave
   // trapdoors created by shovels and in I AM ERROR rooms.)
@@ -246,9 +245,6 @@ function shouldRemove() {
 }
 
 function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
-  const room = game.GetRoom();
-  const roomClear = room.IsClear();
-
   // After defeating Satan, the trapdoor should always spawn open (because there is no reason to
   // remain in Sheol).
   if (onSheol()) {
@@ -263,6 +259,9 @@ function shouldSpawnOpen(entity: GridEntity | EntityEffect) {
   if (isAfterRoomFrame(0)) {
     return false;
   }
+
+  const room = game.GetRoom();
+  const roomClear = room.IsClear();
 
   // If we just entered a new room with enemies in it, spawn the trapdoor closed so that the player
   // has to defeat the enemies first before using the trapdoor.

@@ -113,8 +113,6 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
     PickupVariant.COLLECTIBLE,
   )
   postPickupInitCollectible(pickup: EntityPickup): void {
-    const collectible = pickup as EntityPickupCollectible;
-
     if (!this.shouldEasyFirstFloorItemsApply()) {
       return;
     }
@@ -122,6 +120,8 @@ export class EasyFirstFloorItems extends ConfigurableModFeature {
     if (!anyPlayerHasCollectible(CollectibleType.DAMOCLES_PASSIVE)) {
       return;
     }
+
+    const collectible = pickup as EntityPickupCollectible;
 
     // When the player has Damocles, the collectible will first spawn on the normal tile (in between
     // the spikes) on room frame -1. After being spawned, the collectible will have

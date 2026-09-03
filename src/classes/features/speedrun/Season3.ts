@@ -359,8 +359,6 @@ export class Season3 extends ChallengeModFeature {
   }
 
   checkSpawnMegaSatanDoor(): void {
-    const room = game.GetRoom();
-
     if (!onStage(LevelStage.DARK_ROOM_CHEST) || !inStartingRoom()) {
       return;
     }
@@ -368,6 +366,8 @@ export class Season3 extends ChallengeModFeature {
     if (!season3HasMegaSatanGoal() || isOnFirstCharacter()) {
       return;
     }
+
+    const room = game.GetRoom();
 
     room.TrySpawnMegaSatanRoomDoor(true); // It has to be forced in order to work.
     const topDoor = room.GetDoor(DoorSlot.UP_0);
@@ -578,8 +578,6 @@ export function season3GetBigChestReplacementAction(): BigChestReplacementAction
 }
 
 function getGoalCorrespondingToRoom(): Season3Goal | undefined {
-  const repentanceStage = onRepentanceStage();
-
   // First, check for goals related to the specific room type.
   if (inRoomType(RoomType.BOSS_RUSH)) {
     return Season3Goal.BOSS_RUSH;
@@ -601,6 +599,8 @@ function getGoalCorrespondingToRoom(): Season3Goal | undefined {
   if (onDarkRoom()) {
     return Season3Goal.THE_LAMB;
   }
+
+  const repentanceStage = onRepentanceStage();
 
   if (onStage(LevelStage.WOMB_2) && repentanceStage) {
     return Season3Goal.MOTHER;

@@ -138,11 +138,11 @@ export function spawnRepentanceDoorPostFastClear(): void {
 }
 
 function checkSpawnRepentanceDoor() {
-  const room = game.GetRoom();
-
   if (!shouldSpawnRepentanceDoor()) {
     return;
   }
+
+  const room = game.GetRoom();
 
   if (hasUnusedDoorSlot()) {
     room.TrySpawnSecretExit(true, true);

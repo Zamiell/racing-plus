@@ -40,11 +40,11 @@ export class PreventSacrificeRoomTeleport extends MandatoryModFeature {
 }
 
 function checkDeleteSpikes() {
-  const room = game.GetRoom();
-
   if (!shouldDeleteSpikes()) {
     return;
   }
+
+  const room = game.GetRoom();
 
   const gridEntity = room.GetGridEntity(GRID_INDEX_CENTER_OF_1X1_ROOM);
   if (

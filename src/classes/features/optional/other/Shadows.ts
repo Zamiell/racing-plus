@@ -229,16 +229,13 @@ export class Shadows extends MandatoryModFeature {
       return;
     }
 
-    const isPaused = game.IsPaused();
     const hud = game.GetHUD();
-    const level = game.GetLevel();
-    const stage = level.GetStage();
-    const stageType = level.GetStageType();
-    const roomListIndex = getRoomListIndex();
 
     if (!hud.IsVisible()) {
       return;
     }
+
+    const isPaused = game.IsPaused();
 
     // We do not want shadows to be drawn during room slide animations.
     if (isPaused) {
@@ -252,6 +249,11 @@ export class Shadows extends MandatoryModFeature {
       if (renderFramesSinceLastUpdate > RENDER_FRAMES_PER_SECOND) {
         continue;
       }
+
+      const level = game.GetLevel();
+      const stage = level.GetStage();
+      const stageType = level.GetStageType();
+      const roomListIndex = getRoomListIndex();
 
       if (
         shadowData.stage !== stage

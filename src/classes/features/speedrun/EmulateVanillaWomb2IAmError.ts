@@ -33,13 +33,13 @@ export class EmulateVanillaWomb2IAmError extends ChallengeModFeature {
   }
 
   checkWomb2IAmError(): void {
-    const level = game.GetLevel();
-    const room = game.GetRoom();
-    const levelSeed = level.GetDungeonPlacementSeed();
-
     if (!onStage(LevelStage.WOMB_2) || !inRoomType(RoomType.ERROR)) {
       return;
     }
+
+    const level = game.GetLevel();
+    const room = game.GetRoom();
+    const levelSeed = level.GetDungeonPlacementSeed();
 
     const trapdoorChance = getRandom(levelSeed);
     if (trapdoorChance < 0.5) {

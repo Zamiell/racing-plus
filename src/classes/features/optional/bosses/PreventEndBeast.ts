@@ -41,9 +41,6 @@ export class PreventEndBeast extends ConfigurableModFeature {
 
   @CallbackCustom(ModCallbackCustom.POST_NEW_ROOM_REORDERED)
   postNewRoomReordered(): void {
-    const room = game.GetRoom();
-    const centerPos = room.GetCenterPos();
-
     if (!onStage(LevelStage.HOME) || !v.run.beastDefeated) {
       return;
     }
@@ -52,6 +49,9 @@ export class PreventEndBeast extends ConfigurableModFeature {
     // begin again. If we remove all of the Beast entities, it will trigger the credits. Instead, we
     // spawn another Beast to prevent the fight from beginning.
     spawnNPC(EntityType.BEAST, BeastVariant.BEAST, 0, VectorZero);
+
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
 
     // Spawn a big chest (which will get replaced with a trophy if we happen to be in a race).
     spawnPickup(PickupVariant.BIG_CHEST, 0, centerPos);

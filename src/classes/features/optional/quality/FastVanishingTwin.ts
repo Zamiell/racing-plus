@@ -125,12 +125,12 @@ export class FastVanishingTwin extends ConfigurableModFeature {
       return;
     }
 
-    const room = game.GetRoom();
-
     // Vanishing Twin only takes effect in Boss Rooms.
     if (!inRoomType(RoomType.BOSS)) {
       return;
     }
+
+    const room = game.GetRoom();
 
     // Vanishing Twin only takes effect in uncleared rooms.
     const roomClear = room.IsClear();

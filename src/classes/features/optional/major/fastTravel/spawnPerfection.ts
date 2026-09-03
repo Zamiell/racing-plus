@@ -17,9 +17,6 @@ export function spawnPerfectionPreSpawnClearAward(): void {
     return;
   }
 
-  const seeds = game.GetSeeds();
-  const startSeed = seeds.GetStartSeed();
-
   if (!inRoomType(RoomType.BOSS)) {
     return;
   }
@@ -41,6 +38,9 @@ export function spawnPerfectionPreSpawnClearAward(): void {
   const centerPos = room.GetCenterPos();
   const position = findFreePosition(centerPos);
   const velocity = RandomVector().mul(PERFECTION_VELOCITY_MULTIPLIER);
+  const seeds = game.GetSeeds();
+  const startSeed = seeds.GetStartSeed();
+
   spawnTrinket(
     TrinketType.PERFECTION,
     position,

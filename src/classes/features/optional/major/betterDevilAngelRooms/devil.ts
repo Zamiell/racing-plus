@@ -107,12 +107,12 @@ export function emptyRoomRacingPlus(): void {
 }
 
 export function checkRespawnKrampus(): void {
-  const room = game.GetRoom();
-  const centerPos = room.GetCenterPos();
-
   if (!inRoomType(RoomType.DEVIL)) {
     return;
   }
+
+  const room = game.GetRoom();
+  const centerPos = room.GetCenterPos();
 
   if (v.level.spawnedKrampusOnThisFloor && !v.level.killedKrampusOnThisFloor) {
     const seed = v.run.rng.krampus.GetSeed();

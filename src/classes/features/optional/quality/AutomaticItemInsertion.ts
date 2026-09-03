@@ -179,14 +179,6 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
     pickup: EntityPickup,
     lookingForPickupVariant: PickupVariant,
   ): PickupVariant {
-    // Other players can change the drops.
-    const hasStarterDeck = anyPlayerHasCollectible(
-      CollectibleType.STARTER_DECK,
-    );
-    const hasLittleBaggy = anyPlayerHasCollectible(
-      CollectibleType.LITTLE_BAGGY,
-    );
-
     if (
       lookingForPickupVariant === PICKUP_VARIANT_CARD_OR_PILL
       && (pickup.Variant === PickupVariant.CARD
@@ -195,6 +187,14 @@ export class AutomaticItemInsertion extends ConfigurableModFeature {
       // Handle the case where we need to automatically insert either a card or a pill.
       return pickup.Variant;
     }
+
+    // Other players can change the drops.
+    const hasStarterDeck = anyPlayerHasCollectible(
+      CollectibleType.STARTER_DECK,
+    );
+    const hasLittleBaggy = anyPlayerHasCollectible(
+      CollectibleType.LITTLE_BAGGY,
+    );
 
     if (hasStarterDeck && hasLittleBaggy) {
       // If both conversion items are present, they cancel each other out.
@@ -277,13 +277,13 @@ function updateDelta(
   pickupInserted: [PickupVariant, int],
   oldHearts: int,
 ) {
-  const gameFrameCount = game.GetFrameCount();
-
   // Determining where to draw the UI indicators for players other than the first player is too
   // difficult, so ignore this case.
   if (!isFirstPlayer(player)) {
     return;
   }
+
+  const gameFrameCount = game.GetFrameCount();
 
   const [pickupType, value] = pickupInserted;
   switch (pickupType) {

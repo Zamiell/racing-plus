@@ -94,18 +94,19 @@ function fixVariousFastTravelBugsBeforeLeavingFloor() {
 }
 
 function getNextStageCustom(travelDirection: Direction): LevelStage {
-  const backwardsPathInit = game.GetStateFlag(
-    GameStateFlag.BACKWARDS_PATH_INIT,
-  );
   const level = game.GetLevel();
   const stage = level.GetStage();
-  const repentanceStage = onRepentanceStage();
-  const ascentGoal = isAscentGoal();
-  const clearedMomBossRoom = inClearedMomBossRoom();
 
   if (travelDirection === Direction.NO_DIRECTION) {
     return stage;
   }
+
+  const ascentGoal = isAscentGoal();
+  const clearedMomBossRoom = inClearedMomBossRoom();
+  const repentanceStage = onRepentanceStage();
+  const backwardsPathInit = game.GetStateFlag(
+    GameStateFlag.BACKWARDS_PATH_INIT,
+  );
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (
@@ -124,18 +125,19 @@ function getNextStageTypeCustom(
   travelDirection: Direction,
   nextStage: LevelStage,
 ): StageType {
-  const backwardsPathInit = game.GetStateFlag(
-    GameStateFlag.BACKWARDS_PATH_INIT,
-  );
   const level = game.GetLevel();
   const stageType = level.GetStageType();
-  const repentanceStage = onRepentanceStage();
-  const ascentGoal = isAscentGoal();
-  const clearedMomBossRoom = inClearedMomBossRoom();
 
   if (travelDirection === Direction.NO_DIRECTION) {
     return stageType;
   }
+
+  const ascentGoal = isAscentGoal();
+  const clearedMomBossRoom = inClearedMomBossRoom();
+  const repentanceStage = onRepentanceStage();
+  const backwardsPathInit = game.GetStateFlag(
+    GameStateFlag.BACKWARDS_PATH_INIT,
+  );
 
   // In races to The Beast, take the player from the Mom room to Mausoleum 2.
   if (

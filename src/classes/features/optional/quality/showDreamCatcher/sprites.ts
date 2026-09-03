@@ -91,23 +91,25 @@ function shouldShowSprites(): boolean {
 }
 
 export function showDreamCatcherDrawSprites(): void {
-  const isPaused = game.IsPaused();
   const hud = game.GetHUD();
-  const room = game.GetRoom();
-  const topLeftRoomPosition = room.GetGridPosition(TOP_LEFT_GRID_INDEX);
-  const nextToDreamCatcherPosition = room.GetGridPosition(
-    TOP_LEFT_GRID_INDEX + 1,
-  );
 
   if (!hud.IsVisible()) {
     return;
   }
+
+  const isPaused = game.IsPaused();
 
   // We don't care if the sprites show when the game is paused, but we do not want the sprites to
   // show during room slide animations.
   if (isPaused) {
     return;
   }
+
+  const room = game.GetRoom();
+  const topLeftRoomPosition = room.GetGridPosition(TOP_LEFT_GRID_INDEX);
+  const nextToDreamCatcherPosition = room.GetGridPosition(
+    TOP_LEFT_GRID_INDEX + 1,
+  );
 
   if (dreamCatcherSprite !== undefined) {
     const renderPosition = Isaac.WorldToScreen(topLeftRoomPosition);

@@ -40,10 +40,6 @@ export function earlyClearRoomPostUpdate(): void {
 }
 
 function checkEarlyClearRoom() {
-  const room = game.GetRoom();
-  const roomType = room.GetType();
-  const roomClear = room.IsClear();
-
   // Do nothing if we already cleared the room.
   if (v.room.fastClearedRoom) {
     return;
@@ -54,6 +50,9 @@ function checkEarlyClearRoom() {
   if (isBeforeRoomFrame(1)) {
     return;
   }
+
+  const room = game.GetRoom();
+  const roomType = room.GetType();
 
   // Certain types of rooms are exempt from the fast-clear feature.
   if (EARLY_CLEAR_ROOM_TYPE_BLACKLIST.has(roomType)) {
@@ -86,6 +85,8 @@ function checkEarlyClearRoom() {
   ) {
     v.room.delayClearUntilGameFrame = null;
   }
+
+  const roomClear = room.IsClear();
 
   // Check on every frame to see if we need to open the doors.
   if (

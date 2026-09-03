@@ -274,11 +274,12 @@ export class ChargePocketItemFirst extends ConfigurableModFeature {
     currentAnimation: string,
   ): void {
     const player = Isaac.GetPlayer();
-    const gameFrameCount = game.GetFrameCount();
 
     if (dropButtonPressed(player)) {
       return;
     }
+
+    const gameFrameCount = game.GetFrameCount();
 
     if (currentAnimation === "Prize") {
       v.run.checkForBatteryBumChargesUntilGameFrame =

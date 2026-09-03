@@ -39,7 +39,6 @@ export default defineConfig(
 
       // TODO
       "complete/type-declaration-immutability": "off",
-      "unicorn/no-declarations-before-early-exit": "off",
       "unicorn/no-non-function-verb-prefix": "off",
       "unicorn/no-top-level-assignment-in-function": "off",
       "unicorn/no-top-level-side-effects": "off",

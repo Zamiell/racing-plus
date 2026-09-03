@@ -78,9 +78,6 @@ export class FastDogma extends ConfigurableModFeature {
    * trigger) and then manually set up the fight.
    */
   enteredDogmaRoom(): void {
-    const room = game.GetRoom();
-    const centerPos = room.GetCenterPos();
-
     // Don't do anything if we already spawned Dogma. (It is possible to get here twice on the same
     // frame.)
     if (doesEntityExist(EntityType.DOGMA)) {
@@ -96,6 +93,9 @@ export class FastDogma extends ConfigurableModFeature {
     if (checkpointExists || doesTrophyExist()) {
       return;
     }
+
+    const room = game.GetRoom();
+    const centerPos = room.GetCenterPos();
 
     removeAllNPCs(EntityType.GENERIC_PROP);
     removeAllEffects(EffectVariant.CARPET);
