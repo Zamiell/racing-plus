@@ -46,10 +46,14 @@ export default defineConfig(
     },
   },
 
+  // @template-customization-start
+
   {
     files: ["src/enums/*.ts"],
     rules: {
       "unicorn/no-top-level-side-effects": "off",
     },
   },
+
+  // @template-customization-end
 );
