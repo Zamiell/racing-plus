@@ -15,6 +15,7 @@ import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 import { MAX_BLOODY_LUST_CHARGES, v } from "./bloodyLustChargeBar/v";
 
 const sprite = Sprite();
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 sprite.Load("gfx/chargebar_bloody_lust.anm2", true);
 
 export class BloodyLustChargeBar extends ConfigurableModFeature {

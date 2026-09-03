@@ -13,6 +13,7 @@ import type { Config } from "../../../Config";
 import { ConfigurableModFeature } from "../../../ConfigurableModFeature";
 
 const chargeBarSprite = Sprite();
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 chargeBarSprite.Load("gfx/chargebar_tainted_samson.anm2", true);
 
 export class TaintedSamsonChargeBar extends ConfigurableModFeature {

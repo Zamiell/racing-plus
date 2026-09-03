@@ -27,6 +27,7 @@ const v = {
 };
 
 const sprite = Sprite();
+// eslint-disable-next-line unicorn/no-top-level-side-effects
 sprite.Load("gfx/chargebar_lead_pencil.anm2", true);
 
 /**

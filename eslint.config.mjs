@@ -48,7 +48,7 @@ export default defineConfig(
   },
 
   {
-    files: ["src/classes/features/optional/quality/*.ts", "src/enums/*.ts"],
+    files: ["src/enums/*.ts"],
     rules: {
       "unicorn/no-top-level-side-effects": "off",
     },
