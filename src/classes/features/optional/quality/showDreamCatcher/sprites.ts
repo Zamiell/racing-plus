@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 import type { EntityType } from "isaac-typescript-definitions";
 import { BossID, CollectibleType } from "isaac-typescript-definitions";
 import {

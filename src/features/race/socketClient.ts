@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 import { log } from "isaacscript-common";
 
 const TCP_PORT = 9112; // Arbitrarily chosen to not conflict with common IANA ports.

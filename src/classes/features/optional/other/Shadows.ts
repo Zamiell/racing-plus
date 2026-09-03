@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 import type { PlayerType } from "isaac-typescript-definitions";
 import { ButtonAction, ModCallback } from "isaac-typescript-definitions";
 import {

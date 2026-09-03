@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 import { Keyboard } from "isaac-typescript-definitions";
 import {
   DefaultMap,

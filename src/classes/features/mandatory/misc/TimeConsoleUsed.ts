@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 import { Keyboard, ModCallback } from "isaac-typescript-definitions";
 import { Callback, isKeyboardPressed } from "isaacscript-common";
 import { MandatoryModFeature } from "../../../MandatoryModFeature";

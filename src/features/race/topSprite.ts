@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/no-top-level-assignment-in-function */
+
 // We show several things at the top of the screen:
 // 1) "Wait for the race to begin" (only in the race room)
 // 2) An error message if we are on the wrong difficulty.
