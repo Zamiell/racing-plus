@@ -82,6 +82,7 @@ export function logRaceData(raceData: RaceData): void {
   for (const key of keys) {
     const property = key as keyof RaceData;
     const value = raceData[property];
+    // eslint-disable-next-line unicorn/no-useless-template-literals
     const valueString = isArray(value) ? arrayToString(value) : `${value}`;
     log(`- ${key} - ${valueString}`);
   }

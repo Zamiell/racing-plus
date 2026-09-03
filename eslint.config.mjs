@@ -41,7 +41,6 @@ export default defineConfig(
       "complete/type-declaration-immutability": "off",
       "unicorn/no-non-function-verb-prefix": "off",
       "unicorn/no-top-level-assignment-in-function": "off",
-      "unicorn/no-useless-template-literals": "off",
 
       // @template-customization-end
     },
