@@ -3,8 +3,8 @@ import { inMegaSatanRoom } from "isaacscript-common";
 import { config } from "../../../modConfigMenu";
 import * as makeBossRushItemsFree from "../makeBossRushItemsFree";
 import * as raceRoom from "../raceRoom";
-import * as removeRepentanceDoor from "../removeRepentanceDoor";
-import * as removeStrangeDoor from "../removeStrangeDoor";
+import * as removeRepentanceDoor from "../removeRepentanceDoor"; // eslint-disable-line unicorn/no-non-function-verb-prefix
+import * as removeStrangeDoor from "../removeStrangeDoor"; // eslint-disable-line unicorn/no-non-function-verb-prefix
 import * as replaceScolex from "../replaceScolex";
 import * as seeded3DollarBill from "../seeded3DollarBill";
 import * as socket from "../socket";
