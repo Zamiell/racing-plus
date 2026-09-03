@@ -273,7 +273,7 @@ export class FastBossRush extends ConfigurableModFeature {
       // Ensure that we do not spawn a boss too close to the player or on top of red poop. (For some
       // reason, the `Room.FindFreePickupSpawnPosition` method will return positions that overlap
       // with red poop from Carrion Queen.)
-      if (!anyPlayerCloserThan(position, 120) && gridEntity === undefined) {
+      if (gridEntity === undefined && !anyPlayerCloserThan(position, 120)) {
         return position;
       }
     }

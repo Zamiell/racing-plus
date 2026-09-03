@@ -176,7 +176,7 @@ export class RandomStartingBuild extends ChallengeModFeature {
     this.addBuild(player, startingBuild);
 
     // In Season 5, the baby will appear to be glitched if we grant items during this callback.
-    if (onSeason(5) && CCPMainResetPlayerCostumes !== undefined) {
+    if (CCPMainResetPlayerCostumes !== undefined && onSeason(5)) {
       CCPMainResetPlayerCostumes(player);
     }
   }

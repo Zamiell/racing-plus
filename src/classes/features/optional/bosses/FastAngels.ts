@@ -174,17 +174,17 @@ export class FastAngels extends ConfigurableModFeature {
 
     // Second, try to assign key pieces based on the type of angel that was killed.
     if (
-      entity.Type === EntityType.URIEL
-      && !hasKeyPiece1
+      !hasKeyPiece1
       && !keyPiece1Spawned
+      && entity.Type === EntityType.URIEL
     ) {
       return CollectibleType.KEY_PIECE_1;
     }
 
     if (
-      entity.Type === EntityType.GABRIEL
-      && !hasKeyPiece2
+      !hasKeyPiece2
       && !keyPiece2Spawned
+      && entity.Type === EntityType.GABRIEL
     ) {
       return CollectibleType.KEY_PIECE_2;
     }

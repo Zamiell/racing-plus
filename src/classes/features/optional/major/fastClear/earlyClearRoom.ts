@@ -90,9 +90,9 @@ function checkEarlyClearRoom() {
 
   // Check on every frame to see if we need to open the doors.
   if (
-    v.room.aliveEnemies.size === 0
+    !roomClear
+    && v.room.aliveEnemies.size === 0
     && v.room.delayClearUntilGameFrame === null
-    && !roomClear
     && isAllPressurePlatesPushed()
   ) {
     earlyClearRoom();

@@ -96,29 +96,29 @@ function getCustomSpriteFilename(
 
       // Trapdoors that have to do with specific kinds of races.
       if (
-        inRaceToBeast()
-        && clearedMomBossRoom
+        clearedMomBossRoom
         && !repentanceStage
         && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+        && inRaceToBeast()
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
       // Trapdoors that have to do with specific kinds of multi-character speedruns.
       if (
-        onSeason(3)
-        && clearedMomBossRoom
+        clearedMomBossRoom
         && !repentanceStage
         && gridIndex === SEASON_3_INVERTED_TRAPDOOR_GRID_INDEX
+        && onSeason(3)
       ) {
         return "gfx/grid/trapdoor_mausoleum_custom.anm2";
       }
 
       if (
-        onSeason(3)
-        && clearedMomBossRoom
+        clearedMomBossRoom
         && repentanceStage
         && gridIndex === NORMAL_TRAPDOOR_GRID_INDEX
+        && onSeason(3)
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";
       }
@@ -131,23 +131,23 @@ function getCustomSpriteFilename(
       // -10
       if (roomGridIndex === asNumber(GridRoom.SECRET_EXIT)) {
         if (
-          onStage(LevelStage.BASEMENT_1, LevelStage.BASEMENT_2)
-          && !repentanceStage
+          !repentanceStage
+          && onStage(LevelStage.BASEMENT_1, LevelStage.BASEMENT_2)
         ) {
           return "gfx/grid/trapdoor_downpour_custom.anm2";
         }
 
         if (
-          (onStage(LevelStage.CAVES_1, LevelStage.CAVES_2) && !repentanceStage)
-          || (onStage(LevelStage.BASEMENT_2) && repentanceStage)
+          (!repentanceStage && onStage(LevelStage.CAVES_1, LevelStage.CAVES_2))
+          || (repentanceStage && onStage(LevelStage.BASEMENT_2))
         ) {
           return "gfx/grid/trapdoor_mines_custom.anm2";
         }
 
         if (
-          (onStage(LevelStage.DEPTHS_1, LevelStage.DEPTHS_2)
-            && !repentanceStage)
-          || (onStage(LevelStage.CAVES_2) && repentanceStage)
+          (!repentanceStage
+            && onStage(LevelStage.DEPTHS_1, LevelStage.DEPTHS_2))
+          || (repentanceStage && onStage(LevelStage.CAVES_2))
         ) {
           return "gfx/grid/trapdoor_mausoleum_custom.anm2";
         }
@@ -155,8 +155,8 @@ function getCustomSpriteFilename(
 
       if (
         (repentanceStage
-          && onStage(LevelStage.DEPTHS_2)
-          && mausoleumHeartKilled)
+          && mausoleumHeartKilled
+          && onStage(LevelStage.DEPTHS_2))
         || (repentanceStage && onStage(LevelStage.WOMB_1))
       ) {
         return "gfx/grid/door_11_corpsehole_custom.anm2";

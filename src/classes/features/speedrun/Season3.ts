@@ -386,12 +386,12 @@ export class Season3 extends ChallengeModFeature {
     const roomInsideGrid = isRoomInsideGrid();
 
     if (
-      season3HasDogmaGoal()
-      && onStage(LevelStage.DEPTHS_2)
-      && repentanceStage
-      && inRoomType(RoomType.BOSS)
+      repentanceStage
       && roomInsideGrid
       && backwardsPathInit
+      && season3HasDogmaGoal()
+      && onStage(LevelStage.DEPTHS_2)
+      && inRoomType(RoomType.BOSS)
       && !isDreamCatcherWarping()
     ) {
       // Take them directly to Home to avoid wasting time.
@@ -602,7 +602,7 @@ function getGoalCorrespondingToRoom(): Season3Goal | undefined {
 
   const repentanceStage = onRepentanceStage();
 
-  if (onStage(LevelStage.WOMB_2) && repentanceStage) {
+  if (repentanceStage && onStage(LevelStage.WOMB_2)) {
     return Season3Goal.MOTHER;
   }
 

@@ -259,7 +259,7 @@ function giveD6(player: EntityPlayer, gotHereFromEsauJr = false) {
   player.SetActiveCharge(d6Charge, ActiveSlot.POCKET);
 
   // If we previously had a pocket active item, move it to the normal active item slot.
-  if (pocketItem !== CollectibleType.NULL && !gotHereFromEsauJr) {
+  if (!gotHereFromEsauJr && pocketItem !== CollectibleType.NULL) {
     giveActiveItem(player, pocketItem, pocketItemCharge);
   }
 }

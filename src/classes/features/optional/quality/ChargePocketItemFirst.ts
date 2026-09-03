@@ -200,10 +200,10 @@ export class ChargePocketItemFirst extends ConfigurableModFeature {
     const hasHairpin = player.HasTrinket(TrinketType.HAIRPIN);
 
     if (
-      !inRoomType(RoomType.BOSS)
-      || !onRoomFrame(-1)
-      || !firstVisit
+      !firstVisit
       || !hasHairpin
+      || !inRoomType(RoomType.BOSS)
+      || !onRoomFrame(-1)
     ) {
       return;
     }

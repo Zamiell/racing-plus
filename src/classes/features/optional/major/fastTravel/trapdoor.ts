@@ -193,14 +193,14 @@ function shouldRemove() {
   // If the goal of the race is Mother, remove trapdoors after bosses on most floors. (But leave
   // trapdoors created by shovels and in I AM ERROR rooms.)
   if (inRaceToMother() && inRoomType(RoomType.BOSS)) {
-    if (onStageOrLower(LevelStage.DEPTHS_1) && !repentanceStage) {
+    if (!repentanceStage && onStageOrLower(LevelStage.DEPTHS_1)) {
       log(
         `Removed a vanilla trapdoor on non-Repentance stage ${stage} (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
       return true;
     }
 
-    if (onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2) && repentanceStage) {
+    if (repentanceStage && onStage(LevelStage.BASEMENT_2, LevelStage.CAVES_2)) {
       log(
         `Removed a vanilla trapdoor Downpour/Dross or Mines/Ashpit (for a race Mother goal) on game frame: ${gameFrameCount}`,
       );
@@ -208,9 +208,9 @@ function shouldRemove() {
     }
 
     if (
-      onStage(LevelStage.DEPTHS_2)
-      && repentanceStage
+      repentanceStage
       && !mausoleumHeartKilled
+      && onStage(LevelStage.DEPTHS_2)
     ) {
       log(
         `Removed a vanilla trapdoor on Mausoleum/Gehenna 2 (for a race Mother goal) on game frame: ${gameFrameCount}`,
@@ -234,7 +234,7 @@ function shouldRemove() {
 
   // Delete the trapdoors on the Ascent. (In vanilla, they stay closed, but instead of emulating
   // this functionality it is simpler to delete them.)
-  if (onStageOrLower(LevelStage.WOMB_1) && backwardPath && !secretExit) {
+  if (backwardPath && !secretExit && onStageOrLower(LevelStage.WOMB_1)) {
     log(
       `Removed a vanilla trapdoor on the Ascent on game frame: ${gameFrameCount}`,
     );

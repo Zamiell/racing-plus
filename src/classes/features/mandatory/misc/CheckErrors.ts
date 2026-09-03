@@ -292,9 +292,9 @@ function checkBabiesModEnabled() {
   const roomVisitedCount = getRoomVisitedCount();
 
   if (
-    onFirstFloor()
+    roomVisitedCount === 1
+    && onFirstFloor()
     && inStartingRoom()
-    && roomVisitedCount === 1
     && !isRandomBaby(player)
     && !onSeason(5) // We might get here before the mod switches from Isaac to Random Baby.
   ) {

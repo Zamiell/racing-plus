@@ -43,12 +43,8 @@ export function showDreamCatcherCheckStartWarp(): void {
   const isFirstVisit = room.IsFirstVisit();
 
   if (
-    v.level.warpState !== DreamCatcherWarpState.INITIAL
-    || !anyPlayerHasCollectible(CollectibleType.DREAM_CATCHER)
     // We only need to visit rooms upon reaching a new floor for the first time.
-    || onFirstFloor()
-    || !inStartingRoom()
-    || !isFirstVisit
+    !isFirstVisit
     // Disable this feature in Greed Mode, since that is outside of the scope of normal speedruns.
     || isGreedMode
     // Disable this feature on the Ascent, since that is outside of the scope of normal speedruns.
@@ -56,6 +52,10 @@ export function showDreamCatcherCheckStartWarp(): void {
     // Disable this feature on the Void, since there are no Treasure Rooms and knowing what bosses
     // exist is not particularly helpful.
     || stage === LevelStage.VOID
+    || v.level.warpState !== DreamCatcherWarpState.INITIAL
+    || !anyPlayerHasCollectible(CollectibleType.DREAM_CATCHER)
+    || onFirstFloor()
+    || !inStartingRoom()
   ) {
     return;
   }

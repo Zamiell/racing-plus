@@ -107,7 +107,7 @@ export class FastTravel extends ConfigurableModFeature {
     const room = game.GetRoom();
     const isFirstVisit = room.IsFirstVisit();
 
-    if (inStartingRoom() && isFirstVisit) {
+    if (isFirstVisit && inStartingRoom()) {
       mod.runNextRoom(() => {
         v.run.state = FastTravelState.DISABLED;
       });

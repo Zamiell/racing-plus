@@ -43,7 +43,6 @@ export default defineConfig(
       "unicorn/no-top-level-assignment-in-function": "off",
       "unicorn/no-top-level-side-effects": "off",
       "unicorn/no-useless-template-literals": "off",
-      "unicorn/prefer-simple-condition-first": "off",
 
       // @template-customization-end
     },

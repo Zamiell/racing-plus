@@ -43,7 +43,7 @@ export function fastClearCheckRemove(
   // - We cannot check to see if the sprite is playing the "ReGenChamp" animation, since that will
   //   only be updated on the next frame.
   const championColor = npc.GetChampionColorIdx();
-  if (championColor === ChampionColor.DARK_RED && callbackIsPostEntityKill) {
+  if (callbackIsPostEntityKill && championColor === ChampionColor.DARK_RED) {
     // We do not want to open the doors yet until the flesh pile is actually removed in the
     // PostEntityRemove callback.
     return;

@@ -76,9 +76,9 @@ export class Battery9VoltSynergy extends ConfigurableModFeature {
     const playerIndex = getPlayerIndex(player);
 
     if (
-      activeItemMaxCharges >= 2
-      && activeCharge === activeItemMaxCharges
+      activeCharge === activeItemMaxCharges
       && batteryCharge === activeItemMaxCharges
+      && activeItemMaxCharges >= 2
     ) {
       v.run.giveExtraChargePlayerIndex = playerIndex;
       v.run.giveExtraChargeActiveSlot = activeSlot;

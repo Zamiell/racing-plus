@@ -321,8 +321,8 @@ export class Autofire extends MandatoryModFeature {
   ): boolean | float | undefined {
     // Early return if we are on some specific babies from The Babies Mod.
     if (
-      isRandomBaby(player)
-      && BabiesModBabyType !== undefined
+      BabiesModBabyType !== undefined
+      && isRandomBaby(player)
       && ANTI_SYNERGY_BABIES.has(BabiesModBabyType)
     ) {
       return undefined;

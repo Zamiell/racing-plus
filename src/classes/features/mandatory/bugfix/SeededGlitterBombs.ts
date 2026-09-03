@@ -97,8 +97,8 @@ export class SeededGlitterBombs extends MandatoryModFeature {
     | [entityType: EntityType, variant: int, subType: int, initSeed: Seed]
     | undefined {
     if (
-      v.run.spawningPrize
-      || spawner === undefined
+      spawner === undefined
+      || v.run.spawningPrize
       || spawner.Type !== EntityType.BOMB
       || spawner.SpawnerEntity === undefined
     ) {

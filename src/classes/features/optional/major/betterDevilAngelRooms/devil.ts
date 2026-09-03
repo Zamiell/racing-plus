@@ -69,8 +69,8 @@ function checkSpawnKrampus() {
   const effectiveDevilDeals = getEffectiveDevilDeals();
 
   if (
-    v.run.metKrampus
-    || effectiveDevilDeals === 0
+    effectiveDevilDeals === 0
+    || v.run.metKrampus
     // Number Magnet prevents Krampus from appearing.
     || anyPlayerHasTrinket(TrinketType.NUMBER_MAGNET)
   ) {
